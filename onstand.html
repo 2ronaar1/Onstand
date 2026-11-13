@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0B0E12"><script>try{const d=localStorage.getItem('onstandDesign');if(d&&d!=='kupfer')document.documentElement.dataset.design=d}catch(e){}</script><title>Onstand</title>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0B0E12"><script>try{const d=localStorage.getItem('onstandDesign');if(d&&d!=='kupfer')document.documentElement.dataset.design=d}catch(e){}</script><title>Onstand</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%230D1014%22/%3E%3Cline%20x1%3D%2278.64%22%20y1%3D%2261.86%22%20x2%3D%2261.86%22%20y2%3D%2278.64%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2261.86%22%20y1%3D%2278.64%22%20x2%3D%2238.14%22%20y2%3D%2278.64%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2238.14%22%20y1%3D%2278.64%22%20x2%3D%2221.36%22%20y2%3D%2261.86%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2221.36%22%20y1%3D%2261.86%22%20x2%3D%2221.36%22%20y2%3D%2238.14%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2221.36%22%20y1%3D%2238.14%22%20x2%3D%2238.14%22%20y2%3D%2221.36%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2238.14%22%20y1%3D%2221.36%22%20x2%3D%2261.86%22%20y2%3D%2221.36%22%20stroke%3D%22%23D19A6A%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2261.86%22%20y1%3D%2221.36%22%20x2%3D%2278.64%22%20y2%3D%2238.14%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3Cline%20x1%3D%2278.64%22%20y1%3D%2238.14%22%20x2%3D%2278.64%22%20y2%3D%2261.86%22%20stroke%3D%22%23EEE9E4%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E"><link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Onstand"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 /* ===== Onstand · Designs: Kupfer (Standard), Nachtblau, Hell =====
    Diese Datei setzt nur die Farbwerte. bauen.py ersetzt beim Bauen alle festen Farben in den übrigen CSS-Teilen
@@ -287,6 +287,26 @@ body.on-baustelle #am .onnav [data-f="brain"]{display:none}
 #am .brant{width:100%;resize:vertical}
 @media (prefers-reduced-motion:reduce){#am .brliste button.frisch{animation:none}}
 #am .onni[data-f="brain"] em{background:var(--gelb);color:var(--k-auf)}
+
+/* ===== App: Startbild, Hinweis „als App“, Update-Hinweis ===== */
+.onsplash{position:fixed;inset:0;z-index:100;background:color-mix(in srgb,var(--k-b1) 78%,var(--k-b0));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .5s ease}
+.onsplash svg{width:92px;height:92px}
+.onsplash b{font:400 13px Arial;letter-spacing:7px;color:var(--k-t)}
+.onsplash.weg{opacity:0;pointer-events:none}
+.onapp{position:fixed;left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;max-width:440px;margin:0 auto;background:var(--k-b1);border:1px solid color-mix(in srgb,var(--aj) 45%,transparent);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:9px;box-shadow:0 14px 40px #000a;transform:translateY(140%);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:Arial,Helvetica,sans-serif}
+.onapp.an{transform:none}
+.onapp .oak{display:flex;gap:11px;align-items:center}
+.onapp .oai{width:38px;height:38px;border-radius:10px;background:color-mix(in srgb,var(--k-b1) 40%,var(--k-b0));border:1px solid color-mix(in srgb,var(--aj) 40%,transparent);display:grid;place-items:center;flex:none}
+.onapp .oai svg{width:84%;height:84%}
+.onapp b{font-size:12.5px;color:var(--k-t);font-weight:600}
+.onapp small{display:block;font-size:11px;color:var(--sub);line-height:1.45;margin-top:2px}
+.onapp small b{font-size:11px;color:var(--k-t)}
+.onapp .oar{display:flex;gap:7px;justify-content:flex-end}
+.onapp .oar button{font:10px Arial;letter-spacing:1.5px;border:1px solid color-mix(in srgb,var(--k-sub) 30%,transparent);background:none;color:var(--row);border-radius:14px;padding:8px 12px;cursor:pointer}
+.onapp .oar button.ja{background:var(--aj);border-color:var(--aj);color:var(--k-auf);font-weight:700}
+.onupd{transform:none;animation:onupd .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes onupd{from{transform:translateY(140%)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.onapp,.onsplash{transition:none}.onupd{animation:none}}
 
 /* ===== Arbeitsmodus: Funktionsmenü (im Arbeitsmodus nach links wischen) ===== */
 #am{position:fixed;inset:0;z-index:35;pointer-events:none;--aj:var(--k-akz);--ad:var(--k-akzd);--awe:color-mix(in srgb,var(--k-sub) 44%,var(--k-b1))}
@@ -1417,7 +1437,7 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.7';
+const ON_VER='0.8';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -1545,6 +1565,7 @@ function onMenu(){const m=AM_EL.querySelector('.onmenu');if(m.classList.contains
   <button type="button" data-m="ordner">Datenordner <small>${GED&&GED.handy?'dieses Gerät':esc(ROOT?ROOT.name:'—')}</small></button><hr>
   <div class="ondesign"><span>DESIGN</span><div>${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}"><i style="background:linear-gradient(135deg,${d.f[0]} 50%,${d.f[1]} 50%)"></i>${d.name}</button>`).join('')}</div></div><hr>
   <button type="button" data-m="abo">Abo &amp; KI-Paket <small>${typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht'}</small></button>
+  ${typeof APP!=='undefined'&&APP.standalone?'':'<button type="button" data-m="app">Als App installieren <small>PC &amp; Handy</small></button>'}
   <button type="button" data-m="ueber">Über Onstand <small>v${ON_VER}</small></button>`;
  m.classList.add('an');
  m.querySelectorAll('[data-design]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();onDesign(b.dataset.design,true);m.querySelectorAll('[data-design]').forEach(x=>{const an=x===b;x.classList.toggle('an',an);x.setAttribute('aria-pressed',an)})});
@@ -1556,6 +1577,7 @@ function onMenu(){const m=AM_EL.querySelector('.onmenu');if(m.classList.contains
   if(a==='pk'&&typeof pkAuf==='function')pkAuf('pk');if(a==='si'&&typeof pkAuf==='function')pkAuf('si');
   if(a==='ordner')onOrdner();if(a==='konto')syKontoDialog();
   if(a==='abo')kiAboDialog();
+  if(a==='app'&&typeof appInstallieren==='function')appInstallieren();
   if(a==='ueber')onDialog(`<h3>Onstand v${ON_VER}</h3><p>Firmensoftware für Baustelle und Büro: Cockpit, Angebote, Rechnungen, offene Posten, Bautagebuch, Kalender, Kunden, Personal, Mängel, Baupläne – mit Assistent zum Einsprechen.</p><p class="kl">Erste Testversion für ESTETA.</p>`,[['OK','']])})}
 function onMenuZu(){const m=AM_EL&&AM_EL.querySelector('.onmenu');if(m)m.classList.remove('an')}
 // ---------- kleiner Dialog ----------
@@ -5855,6 +5877,50 @@ function kiAboDialog(){const t=KI.aktiv?`<p><b>KI-Paket aktiv.</b> Heute sind no
  :`<p>Mit dem KI-Paket beantwortet der Assistent Fragen zu deinen Baustellen, Rechnungen und Terminen – z. B. „Was ist bei Müller diese Woche passiert?“ oder „Welche Rechnungen sind überfällig und was schlägst du vor?“.</p><p class="kl">Bis zu ${KI.limit} Denk-Fragen am Tag. Befehle und das Tagebuch funktionieren auch ohne KI.</p>`;
  onDialog('<h3>Abo &amp; KI-Paket</h3>'+t,[['OK','']])}
 const KI_ONLOS=onLos;onLos=function(){const out=KI_ONLOS.apply(this,arguments);setTimeout(async()=>{await kiStand();if(KI.aktiv&&typeof brWochenCheck==='function')setTimeout(brWochenCheck,6000)},2500);return out};
+// ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
+// Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
+// dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
+const APP={prompt:null,ios:/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
+ standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,web:location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'};
+const appAdresse=()=>APP.web?location.origin+location.pathname:((typeof ON_SERVER_FEST!=='undefined'&&ON_SERVER_FEST&&ON_SERVER_FEST.handy)||'');
+// Service Worker: Offline-Start und frische Fassung beim Öffnen
+if(APP.web&&'serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('Service Worker',e))});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();APP.prompt=e;appHinweis()});
+addEventListener('appinstalled',()=>{APP.prompt=null;appBannerZu();try{localStorage.setItem('onstandAppHinweis','installiert')}catch(e){}try{onToast('Onstand ist jetzt als App installiert')}catch(e){}});
+// Startbild in der installierten App
+if(APP.standalone&&!RM){const s=document.createElement('div');s.className='onsplash';s.innerHTML=`<svg viewBox="0 0 100 100" aria-hidden="true">${ON_LOGO.replace(/^<svg[^>]*>|<\/svg>$/g,'')}</svg><b>ONSTAND</b>`;document.body.appendChild(s);setTimeout(()=>s.classList.add('weg'),650);setTimeout(()=>s.remove(),1200)}
+// Einstellungen mitnehmen (Datei-Fassung am PC → App-Fassung): alles aus dem Browser-Speicher, das mit „onstand“ beginnt
+function appEinstellungenCode(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^onstand/.test(k))o[k]=localStorage.getItem(k)}return 'ONSTAND1:'+btoa(unescape(encodeURIComponent(JSON.stringify(o))))}
+function appEinstellungenLesen(code){const c=String(code||'').trim();if(!c.startsWith('ONSTAND1:'))throw new Error('code');const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(9)))));let n=0;for(const [k,v] of Object.entries(o))if(/^onstand/.test(k)&&typeof v==='string'){localStorage.setItem(k,v);n++}return n}
+function appInstallieren(){
+ if(APP.standalone){onDialog('<h3>ONSTAND ALS APP</h3><p>Du benutzt Onstand bereits als App.</p>',[['OK','']]);return}
+ if(!APP.web){const a=appAdresse();
+  onDialog(`<h3>ALS APP INSTALLIEREN</h3><p>Diese Fassung ist als Datei vom PC geöffnet. Installieren geht nur über die Internet-Adresse:</p><p><b>${esc(a||'– noch keine Adresse hinterlegt –')}</b></p>
+   <p class="kl">So nimmst du alles mit: 1. Hier auf <b>EINSTELLUNGEN KOPIEREN</b> tippen (Firma &amp; Preise, Profil, Firmenkonto, Design). 2. Die Adresse in Chrome oder Edge öffnen. 3. Dort Logo → „Als App installieren“, den Code einfügen und installieren. 4. Danach einmal den Datenordner wählen.</p>`,
+   [['SCHLIESSEN',''],['ADRESSE KOPIEREN','adr'],['EINSTELLUNGEN KOPIEREN','kop']],
+   {adr:async(d,b)=>{try{await navigator.clipboard.writeText(a);b.textContent='KOPIERT'}catch(e){b.textContent='BITTE VON HAND KOPIEREN'}return false},
+    kop:async(d,b)=>{try{await navigator.clipboard.writeText(appEinstellungenCode());b.textContent='KOPIERT ✓'}catch(e){b.textContent='KOPIEREN NICHT MÖGLICH'}return false}});return}
+ const einf=`<label>EINSTELLUNGEN VOM ALTEN ONSTAND (OPTIONAL)<input id="appcode" placeholder="Code einfügen, beginnt mit ONSTAND1:" autocomplete="off"></label>`;
+ const binden={code:async(d,b)=>{const i=d.querySelector('#appcode');if(!i.value.trim()){i.focus();return false}try{const n=appEinstellungenLesen(i.value);b.textContent=n+' EINSTELLUNGEN ÜBERNOMMEN';i.value='';setTimeout(()=>location.reload(),900)}catch(e){b.textContent='CODE UNGÜLTIG'}return false}};
+ if(APP.prompt){onDialog(`<h3>ALS APP INSTALLIEREN</h3><p>Onstand bekommt ein eigenes Symbol, öffnet im eigenen Fenster ohne Browserleiste und startet auch ohne Netz.</p>${einf}`,[['SPÄTER',''],['CODE ÜBERNEHMEN','code'],['INSTALLIEREN','inst']],
+   Object.assign({inst:async()=>{try{APP.prompt.prompt();await APP.prompt.userChoice}catch(e){}APP.prompt=null}},binden));return}
+ if(APP.ios){onDialog(`<h3>ALS APP AUFS IPHONE</h3><p>1. Unten in Safari auf <b>Teilen</b> tippen (Quadrat mit Pfeil nach oben).</p><p>2. <b>„Zum Home-Bildschirm“</b> wählen und <b>Hinzufügen</b> tippen.</p><p class="kl">Hattest du Onstand schon auf dem Home-Bildschirm, das alte Symbol vorher löschen. Danach in der App einmal über Logo → Konto &amp; Geräte mit der Firma verbinden, die Daten kommen aus dem Firmenkonto zurück.</p>`,[['OK','']]);return}
+ onDialog(`<h3>ALS APP INSTALLIEREN</h3><p>In Chrome oder Edge oben rechts in der Adressleiste auf das Symbol <b>„Installieren“</b> klicken, am Handy im Menü ⋮ auf <b>„App installieren“</b>.</p>${einf}`,[['SCHLIESSEN',''],['CODE ÜBERNEHMEN','code']],binden)}
+// Einmaliger Hinweis am Handy, wenn Onstand im Browser läuft
+function appBannerZu(){const b=document.querySelector('.onapp');if(b){b.classList.remove('an');setTimeout(()=>b.remove(),400)}}
+function appHinweis(){if(APP.standalone||!APP.web||W>760)return;let s='';try{s=localStorage.getItem('onstandAppHinweis')||''}catch(e){}if(s)return;if(!APP.ios&&!APP.prompt)return;if(document.querySelector('.onapp'))return;
+ if(!document.getElementById('am')){setTimeout(appHinweis,4000);return}
+ const b=document.createElement('div');b.className='onapp';b.setAttribute('role','dialog');b.setAttribute('aria-label','Onstand als App');
+ b.innerHTML=`<div class="oak"><span class="oai">${ON_LOGO}</span><div><b>Onstand als App</b><small>${APP.ios?'Tippe unten auf <b>Teilen</b> und dann auf <b>„Zum Home-Bildschirm“</b>.':'Mit eigenem Symbol, im Vollbild und auch ohne Netz.'}</small></div></div><div class="oar"><button type="button" data-x="spaeter">SPÄTER</button><button type="button" class="ja" data-x="ok">${APP.ios?'VERSTANDEN':'INSTALLIEREN'}</button></div>`;
+ document.body.appendChild(b);requestAnimationFrame(()=>requestAnimationFrame(()=>b.classList.add('an')));
+ b.querySelector('[data-x=spaeter]').onclick=()=>{appBannerZu();try{localStorage.setItem('onstandAppHinweis','spaeter')}catch(e){}};
+ b.querySelector('[data-x=ok]').onclick=async()=>{appBannerZu();try{localStorage.setItem('onstandAppHinweis','gesehen')}catch(e){}if(APP.prompt){try{APP.prompt.prompt();await APP.prompt.userChoice}catch(e){}APP.prompt=null}}}
+setTimeout(appHinweis,6000);
+// Neue Fassung auf dem Server? Beim Zurückkehren in die App und alle 30 Minuten nachsehen
+async function appUpdatePruefen(){if(!APP.web||!navigator.onLine)return;try{const r=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)return;const t=await r.text(),m=t.match(/const ON_VER='([^']+)'/);if(!m||m[1]===ON_VER||document.querySelector('.onupd'))return;
+ const b=document.createElement('div');b.className='onapp onupd an';b.setAttribute('role','status');b.innerHTML=`<div class="oak"><span class="oai">${ON_LOGO}</span><div><b>Neue Version ${esc(m[1])} ist da</b><small>Deine Daten bleiben, wie sie sind.</small></div></div><div class="oar"><button type="button" data-x="spaeter">SPÄTER</button><button type="button" class="ja" data-x="neu">NEU LADEN</button></div>`;
+ document.body.appendChild(b);b.querySelector('[data-x=spaeter]').onclick=()=>b.remove();b.querySelector('[data-x=neu]').onclick=()=>location.reload()}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')appUpdatePruefen()});setInterval(appUpdatePruefen,30*6e4);
 // ===== Onstand · Start: Kalender-Animation antreiben, Ordner prüfen, Oberfläche aufbauen =====
 (function lauf(){try{if(typeof kalRahmen==='function'&&typeof KAL!=='undefined'&&KAL.el)kalRahmen()}catch(e){}requestAnimationFrame(lauf)})();
 onStart().catch(e=>{console.error(e);onStartBild('neu')});
