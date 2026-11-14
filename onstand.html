@@ -167,7 +167,22 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  #am .ongriff svg{width:13px;height:13px}
  #am .oneinschub{width:100%}
  #am .onmenu{left:8px;top:calc(60px + var(--st))}
+ /* Seitenleiste aufklappen: legt sich über den Inhalt, nichts verrutscht */
+ #am .onseite{transition:width .28s cubic-bezier(.2,.8,.2,1),margin-right .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease;margin-right:0;position:relative}
+ #am .onklapp{display:flex}
+ #am .onklapp svg{transition:transform .28s ease}
+ #am.seiteauf .onseite{width:214px;margin-right:-152px;z-index:46;align-items:stretch;box-shadow:12px 0 40px #000a}
+ #am.seiteauf .onlogo .ln,#am.seiteauf .onni span{display:block;animation:onklappein .25s ease both}
+ #am.seiteauf .onni{justify-content:flex-start;padding:10px 10px}
+ #am.seiteauf .onni em{position:static;margin-left:auto;padding:1px 6px;font-size:9px}
+ #am.seiteauf .onklapp svg{transform:rotate(180deg)}
+ #am .onseitedimm{position:absolute;inset:0;z-index:45;background:color-mix(in srgb,var(--k-b0) 55%,transparent);opacity:0;pointer-events:none;transition:opacity .28s ease}
+ #am.seiteauf .onseitedimm{opacity:1;pointer-events:auto}
 }
+@keyframes onklappein{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+#am .onklapp{display:none}
+#am .onseitedimm{display:none}
+@media (max-width:760px){#am .onseitedimm{display:block}#am .onklapp{display:flex}}
 @media (prefers-reduced-motion:reduce){#am.onstand *,#onstart *{animation:none!important;transition:none!important}}
 
 #am .amberuf{display:none}
@@ -1437,7 +1452,7 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.8';
+const ON_VER='0.8.1';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -1512,14 +1527,17 @@ const ON_LOGO=`<svg viewBox="0 0 100 100" aria-label="Onstand"><line x1="78.64" 
 function onInitialen(){const F=(()=>{try{return JSON.parse(localStorage.getItem('onstandFirma')||'{}')}catch(e){return {}}})(),n=F.name||ON_PROFIL.firma||'Onstand';return {firma:n,ini:n.replace(/\b(gmbh|ag|kg|ug|e\.?\s?k\.?|ohg|gbr|mbh)\b/ig,'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'ON',logo:F.logo||''}}
 function onBau(){if(AM_EL)return AM_EL;const e=document.createElement('div');e.id='am';e.className='auf onstand';
  e.innerHTML=`<div class="amlade"><aside class="onseite"><button type="button" class="onlogo" data-menu aria-label="Firma und Einstellungen"></button><nav class="onnav" aria-label="Funktionen"></nav>
-  <div class="onunten"><button type="button" class="onni" data-pk><svg viewBox="0 0 20 20">${ON_ICO_PK}</svg><span>PAPIERKORB</span></button></div></aside>
-  <main class="aminhalt"></main>
+  <div class="onunten"><button type="button" class="onni onklapp" data-klapp aria-expanded="false" aria-label="Namen der Funktionen anzeigen"><svg viewBox="0 0 20 20"><path d="M8 5l5 5-5 5"/></svg><span>EINKLAPPEN</span></button><button type="button" class="onni" data-pk><svg viewBox="0 0 20 20">${ON_ICO_PK}</svg><span>PAPIERKORB</span></button></div></aside>
+  <div class="onseitedimm" data-klappzu></div><main class="aminhalt"></main>
   <button type="button" class="ongriff" data-as aria-label="Assistent öffnen"><svg viewBox="0 0 20 20"><rect x="7" y="2.5" width="6" height="10" rx="3"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5"/></svg><span>SPRECHEN</span></button>
   <div class="ondimm" data-aszu></div><div class="oneinschub" role="dialog" aria-label="Assistent"></div>
   <div class="onmenu" role="menu"></div><div class="ontoast" role="status"></div><div class="ondlg" role="dialog"></div></div>`;
  document.body.appendChild(e);AM_EL=e;
- e.querySelector('[data-menu]').onclick=ev=>{ev.stopPropagation();onMenu()};
- e.querySelector('[data-pk]').onclick=()=>{if(typeof pkAuf==='function')pkAuf('pk')};
+ e.querySelector('[data-menu]').onclick=ev=>{ev.stopPropagation();onSeiteKlappen(false);onMenu()};
+ e.querySelector('[data-klapp]').onclick=ev=>{ev.stopPropagation();onSeiteKlappen(!e.classList.contains('seiteauf'))};
+ e.querySelector('[data-klappzu]').onclick=()=>onSeiteKlappen(false);
+ addEventListener('resize',()=>{if(W>760)onSeiteKlappen(false)});
+ e.querySelector('[data-pk]').onclick=()=>{onSeiteKlappen(false);if(typeof pkAuf==='function')pkAuf('pk')};
  e.querySelector('[data-as]').onclick=()=>asAuf();e.querySelector('[data-aszu]').onclick=()=>asZu();
  document.addEventListener('click',ev=>{const m=e.querySelector('.onmenu');if(m.classList.contains('an')&&!ev.target.closest('.onmenu')&&!ev.target.closest('[data-menu]'))m.classList.remove('an')});
  // Handy: nach links wischen öffnet den Assistenten, nach rechts schließt ihn
@@ -1527,8 +1545,10 @@ function onBau(){if(AM_EL)return AM_EL;const e=document.createElement('div');e.i
  e.addEventListener('pointerup',ev=>{if(!z)return;const dx=ev.clientX-z.x,dy=ev.clientY-z.y,dt=performance.now()-z.t;z=null;if(dt>700||Math.abs(dx)<70||Math.abs(dx)<Math.abs(dy)*1.5)return;if(dx<0&&!asOffen())asAuf();else if(dx>0&&asOffen())asZu()},true);
  onLogo();return e}
 function onLogo(){const {firma,ini,logo}=onInitialen(),b=AM_EL.querySelector('[data-menu]');b.innerHTML=`<span class="av">${logo?`<img src="${esc(logo)}" alt="">`:ON_LOGO}</span><span class="ln"><b>${esc(firma)}</b><small>${esc(ON_PROFIL.name||'Profil einrichten')}${ON_PROFIL.rolle?' · '+esc(ON_PROFIL.rolle):''}</small></span>`}
+// Handy: Seitenleiste aufklappen, damit die Namen neben den Symbolen stehen
+function onSeiteKlappen(auf){if(!AM_EL)return;auf=!!auf&&W<=760;AM_EL.classList.toggle('seiteauf',auf);const b=AM_EL.querySelector('[data-klapp]');if(b){b.setAttribute('aria-expanded',String(auf));b.setAttribute('aria-label',auf?'Seitenleiste einklappen':'Namen der Funktionen anzeigen')}}
 function amSchiene(){const n=AM_EL.querySelector('.onnav');n.innerHTML=onFunktionen().map(x=>{let z=0;try{z=x.zahl?x.zahl():0}catch(e){}return `<button type="button" class="onni${AM_AKT===x.id?' an':''}" data-f="${x.id}"><svg viewBox="0 0 20 20">${x.ico}</svg><span>${esc(x.name)}</span>${z?`<em>${z}</em>`:''}</button>`}).join('');
- n.querySelectorAll('[data-f]').forEach(t=>t.onclick=()=>amFunktion(t.dataset.f))}
+ n.querySelectorAll('[data-f]').forEach(t=>t.onclick=()=>{onSeiteKlappen(false);amFunktion(t.dataset.f)})}
 function amFunktion(id,opt){onBau();const L=onFunktionen(),f=L.find(x=>x.id===id)||L[0];AM_AKT=f?f.id:null;try{onMenuZu()}catch(e){}
  if(AM_AKT==='kalender'){amSchiene();try{kalAuf()}catch(e){}return}
  try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}
