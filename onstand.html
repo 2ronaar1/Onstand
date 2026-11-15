@@ -2560,13 +2560,16 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
  #am .brx{display:flex!important;flex-direction:column}
  #am .brx>.brreiter{order:0}#am .brx>.brtoast{order:1}#am .brx>.brfrage{order:2;position:static!important;bottom:auto!important;margin:2px 0 4px}#am .brx>.brwiki{order:3}
 }
+/* v0.10.21 · echte App (Capacitor): Fenster ist der ganze Bildschirm, keine Korrektur für den Web-App-Fehler */
+html.onnativ #am.onstand,html.onnativ #onstart{bottom:0!important;height:auto!important}
+@media (max-width:760px){html.onnativ #kal{height:auto!important;bottom:var(--hyl)!important}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.20';
+const ON_VER='0.10.21';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7465,9 +7468,12 @@ addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{h
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
 const APP={prompt:null,ios:/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
  standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,web:location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'};
+// v0.10.21: Onstand als echte iPhone-App (Capacitor-Hülle, erkennbar am Zusatz „OnstandApp“ im User-Agent).
+// Dort gibt es den iOS-Fehler der Home-Bildschirm-Web-Apps nicht: kein Service Worker, kein „Als App installieren“, keine Rand-Korrektur.
+APP.nativ=/OnstandApp/.test(navigator.userAgent);if(APP.nativ){APP.standalone=true;document.documentElement.classList.add('onnativ')}
 const appAdresse=()=>APP.web?location.origin+location.pathname:((typeof ON_SERVER_FEST!=='undefined'&&ON_SERVER_FEST&&ON_SERVER_FEST.handy)||'');
 // Service Worker: Offline-Start und frische Fassung beim Öffnen
-if(APP.web&&'serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('Service Worker',e))});
+if(APP.web&&!APP.nativ&&'serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('Service Worker',e))});
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();APP.prompt=e;appHinweis()});
 addEventListener('appinstalled',()=>{APP.prompt=null;appBannerZu();try{localStorage.setItem('onstandAppHinweis','installiert')}catch(e){}try{onToast('Onstand ist jetzt als App installiert')}catch(e){}});
 // Startbild in der installierten App
@@ -7522,7 +7528,7 @@ function onRandMessen(){const p=document.createElement('div');p.style.cssText='p
 // iOS 26 (Fehler 301994): Im App-Modus kann lb ÜBER der sichtbaren Unterkante liegen. Dann hing die Leiste mitten im Bild
 // und darunter blieb ein dunkler Streifen – das war der Fehler seit dem neuen Handy-Design. Jetzt reicht Onstand um genau
 // diese Differenz nach unten (--unten). Fehlt dagegen wirklich Fenster (vb < sh), wird nur der Rand für den Home-Balken kleiner.
-function onRandPruefen(){try{const m=onRandMessen(),p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;bottom:0;width:1px;visibility:hidden;pointer-events:none';document.body.appendChild(p);
+function onRandPruefen(){try{if(APP.nativ){const r=document.documentElement;['--unten','--st','--sb','--vollh'].forEach(k=>r.style.removeProperty(k));r.classList.remove('onrandweg','onvoll');ON_RAND.w={nativ:1,kurz:0,lb:'App',vb:'App',unten:0};onRandPruefen.w={sa:true,iw:innerWidth,ih:Math.round(innerHeight),st:'App',sb:'App',weg:false};return}const m=onRandMessen(),p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;bottom:0;width:1px;visibility:hidden;pointer-events:none';document.body.appendChild(p);
  const lb=Math.round(p.getBoundingClientRect().bottom),lt=Math.round(p.getBoundingClientRect().top);p.remove();
  const vv=window.visualViewport,vb=vv?Math.round(vv.offsetTop+vv.height):lb,ios=APP.ios&&APP.standalone,tast=document.activeElement&&/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
  if(tast&&ON_RAND.w)return;// Tastatur offen: nichts umstellen
