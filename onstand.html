@@ -2231,13 +2231,21 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 @media (max-width:760px){#am .mgk .mgakt{flex-wrap:wrap;row-gap:2px;max-width:100%}#am .mgk .mgakt .tr{display:none}}
 /* v0.10.12 · Handy: die Fläche selbst bekommt keinen Rand mehr (der kam doppelt zu Seitenleiste und Inhalt dazu) */
 #am.onstand .amlade{padding:0}
+/* v0.10.13 · iPhone: Fläche bis zum Boden, untere Kante gerade */
+:root.onvoll,:root.onvoll body{height:var(--vollh)}
+:root.onvoll #am.onstand,:root.onvoll #onstart{bottom:auto;height:var(--vollh)}
+@media (max-width:760px){
+ #am.onstand .aminhalt{padding-bottom:var(--sb)}
+ #am .cpx,#am .kuliste,#am .kuform,#am .mgliste,#am .mgscroll,#am .aux,#am .bpliste,#am .brx,#am .amtext,#am .gltab,#am .glr,#am .gll,#am .brseite,#am .brliste{padding-bottom:14px;scroll-padding-bottom:14px}
+ #am .onseite{padding-bottom:calc(10px + var(--sb))}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.12';
+const ON_VER='0.10.13';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7114,15 +7122,20 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 function onRandPruefen(){try{const p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)';document.body.appendChild(p);
  const cs=getComputedStyle(p),st=parseFloat(cs.paddingTop)||0,sb=parseFloat(cs.paddingBottom)||0;p.remove();
  const hoch=innerHeight>=innerWidth,sh=hoch?Math.max(screen.width,screen.height):Math.min(screen.width,screen.height),vh=window.visualViewport&&!document.activeElement.matches('input,textarea,[contenteditable]')?Math.max(innerHeight,visualViewport.height):innerHeight,luecke=sh-vh;
+ // iOS-Fehler (WebKit 301994): das Fenster ist kürzer als der Bildschirm, die „große“ Höhe (100lvh) reicht aber bis unten.
+ // Dann zieht Onstand Hintergrund und Seitenleiste bis zum Boden; Inhalt bleibt oberhalb des Streifens, den iOS unten freilässt.
+ const lvh=(()=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:100lvh';document.body.appendChild(d);const h=d.getBoundingClientRect().height;d.remove();return h})(),voll=APP.ios&&APP.standalone&&lvh>innerHeight+8;
+ document.documentElement.classList.toggle('onvoll',voll);if(voll)document.documentElement.style.setProperty('--vollh',lvh+'px');else document.documentElement.style.removeProperty('--vollh');
  const vvTop=window.visualViewport?visualViewport.offsetTop:0,weg=APP.ios&&(st+sb)>0&&luecke>=Math.max(20,Math.min(st,sb)-2);onRandPruefen.w={st,sb,sh,vh,ih:innerHeight,iw:innerWidth,weg,sa:APP.standalone};
  document.documentElement.classList.toggle('onrandweg',weg);
- if(weg){const oben=luecke>=st+sb-4&&vvTop>0?0:st,unten=luecke>=sb-2?0:sb;document.documentElement.style.setProperty('--st',oben+'px');document.documentElement.style.setProperty('--sb',unten+'px')}else{document.documentElement.style.removeProperty('--st');document.documentElement.style.removeProperty('--sb')}}catch(e){}}
+ if(voll){document.documentElement.style.setProperty('--st',(vvTop>0?0:st)+'px');document.documentElement.style.setProperty('--sb',Math.max(sb,Math.round(lvh-innerHeight))+'px')}
+ else if(weg){const oben=luecke>=st+sb-4&&vvTop>0?0:st,unten=luecke>=sb-2?0:sb;document.documentElement.style.setProperty('--st',oben+'px');document.documentElement.style.setProperty('--sb',unten+'px')}else{document.documentElement.style.removeProperty('--st');document.documentElement.style.removeProperty('--sb')}}catch(e){}}
 ['load','resize','orientationchange','pageshow'].forEach(n=>addEventListener(n,()=>{onRandPruefen();setTimeout(onRandPruefen,350)}));document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(onRandPruefen,200)});
 if(window.visualViewport)visualViewport.addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,150)});
 setTimeout(onRandPruefen,0);
 
 function onRandInfo(){onRandPruefen();const w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
- return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()}`}
+ return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'}`}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
