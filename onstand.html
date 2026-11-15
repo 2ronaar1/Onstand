@@ -2531,7 +2531,7 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.18';
+const ON_VER='0.10.19';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7486,8 +7486,10 @@ function onRandPruefen(){try{const m=onRandMessen(),p=document.createElement('di
  const lb=Math.round(p.getBoundingClientRect().bottom),lt=Math.round(p.getBoundingClientRect().top);p.remove();
  const vv=window.visualViewport,vb=vv?Math.round(vv.offsetTop+vv.height):lb,ios=APP.ios&&APP.standalone,tast=document.activeElement&&/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
  if(tast&&ON_RAND.w)return;// Tastatur offen: nichts umstellen
- const sig=[m.st,m.sb,m.sh,m.quer,lb,lt,vb].join('|');if(sig===ON_RAND.sig&&ON_RAND.w)return;ON_RAND.sig=sig;
- const unten=ios?Math.max(0,Math.min(m.sh,vb)-lb):0,fehlt=ios?Math.max(0,m.sh-Math.max(vb,lb)):0;
+ const sig=[m.st,m.sb,m.sh,m.quer,lb,lt,vb,m.lvh].join('|');if(sig===ON_RAND.sig&&ON_RAND.w)return;ON_RAND.sig=sig;
+ // Messung vom iPhone (v0.10.18): Fenster 812, Bildschirm 874, 100lvh 874, sichtbar 812. iOS meldet das Fenster 62 px zu kurz,
+ // malt aber bis 874 (unten sah man den Seitenhintergrund). Also reicht Onstand bis 100lvh (höchstens Bildschirmhöhe).
+ const unten=ios?Math.max(0,Math.min(m.sh,Math.max(vb,m.lvh))-lb):0,fehlt=ios?Math.max(0,m.sh-Math.max(vb,lb+unten)):0;
  let st=null,sb=null;if(fehlt>2&&(m.st+m.sb)>0){let rest=fehlt;sb=Math.max(0,m.sb-rest);rest-=m.sb-sb;st=Math.max(0,m.st-rest)}
  const weg=fehlt>2||unten>2,w={...m,lb,lt,vb,unten,kurz:fehlt,voll:unten>2,weg,st2:st,sb2:sb,sa:APP.standalone};ON_RAND.w=w;onRandPruefen.w={st:m.st,sb:m.sb,sh:m.sh,vh:m.svh,ih:Math.round(innerHeight),iw:innerWidth,weg,sa:APP.standalone};
  const r=document.documentElement,setz=(k,v)=>{if(v==null){if(r.style.getPropertyValue(k))r.style.removeProperty(k)}else if(r.style.getPropertyValue(k)!==v)r.style.setProperty(k,v)};
