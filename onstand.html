@@ -2808,7 +2808,7 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.26';
+const ON_VER='0.10.27';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -2867,13 +2867,16 @@ async function ordnerAusSpeicher(){try{const h=await IDB(st=>st.get('root'));if(
 async function datenBereit(){if(!ROOT)return false;if(!(await ordnerRecht(false)))return false;GED=await ROOT.getDirectoryHandle('Daten',{create:true});
  if(!(await lesen('_Info.md')))try{await schreiben('_Info.md','# Onstand\n\nDatenordner von Onstand. Bitte nicht von Hand ändern.\n\n- `Daten/` – alle Firmendaten (Baustellen, Tagebuch, Angebote, Rechnungen, Personal, Mängel, Baupläne, Termine)\n- `Daten/.papierkorb/` – Gelöschtes (30 Tage)\n- `Sicherungen/` – tägliche Sicherungen der Daten\n')}catch(e){}
  return true}
-async function ordnerWaehlen(){const h=await showDirectoryPicker({id:'onstand',mode:'readwrite'});ROOT=h;if(!(await ordnerRecht(true)))return false;try{await IDB(st=>st.put(h,'root'))}catch(e){}return datenBereit()}// ===== Onstand · Oberfläche (Konzept D): Navigation links, ganze Fläche fürs Arbeiten, Assistent als Einschub rechts =====
+async function ordnerWaehlen(){const h=await showDirectoryPicker({id:'onstand',mode:'readwrite'});ROOT=h;if(!(await ordnerRecht(true)))return false;try{await IDB(st=>st.put(h,'root'))}catch(e){}return datenBereit()}
+// Druckansicht: Blatt #bpdruck holen bzw. anlegen und Drucken starten (in der iPhone-App entsteht daraus ein Text-PDF, siehe kern/nativ.js und kern/pdftext.js)
+function druckBlatt(kl){let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className=kl;return d}
+function druckStart(d){document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
+// ===== Onstand · Oberfläche (Konzept D): Navigation links, ganze Fläche fürs Arbeiten, Assistent als Einschub rechts =====
 // Oben links das Firmenlogo: Einstellungen, Firma, Mitarbeiter, Mahnwesen, Papierkorb, Sicherung, Datenordner.
 // Die Funktionen (Cockpit, Aufträge, Tagebuch …) melden sich wie bisher über AM_FUNK an.
 const AM_FUNK=[];
 let AM_BERUF='handwerk',AM_AKT=null,AM_EL=null;
 const AM_BERUFE=[{id:'handwerk',name:'HANDWERK & BAUSTELLE',j:'#FF9E4A',d:'#B8622E'}];
-const amBeruf=()=>AM_BERUFE[0];
 const ON_KAL={beruf:'handwerk',id:'kalender',name:'KALENDER',ico:'<rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14M7 3v3M13 3v3"/>',zeigen:()=>{}};
 const ON_FOLGE=['cockpit','auftraege','tagebuch','kalender','kunden','brain','personal','maengel','bauplan'];
 const ON_ICO_PK='<path d="M4 6h12M8 6V4h4v2M5.5 6l1 11h7l1-11"/>';
@@ -3108,7 +3111,6 @@ async function pkMalen(){const x=PKV.el.querySelector('.pkx'),L=await pkListe();
 (()=>{const vp=document.getElementById('vp');if(!vp)return;const s=document.createElement('section');s.className='vs';s.innerHTML='<h3>Papierkorb &amp; Sicherung</h3><p class="vh">Gelöschtes bleibt 30 Tage zurückholbar. Jeden Morgen sichert Onstand das ganze Gedächtnis.</p><div class="vrow"><span class="vst" id="pkstat"></span><span class="pb" id="pkbtn">ÖFFNEN</span></div>';
  const ref=[...vp.querySelectorAll('section.vs')].find(x=>/Stimme/.test(x.textContent));vp.insertBefore(s,ref||null);document.getElementById('pkbtn').onclick=()=>pkAuf('pk')})();
 // --- Sprache: „Papierkorb“, „hol das Angebot Wagner zurück“, „mach das rückgängig“ ---
-const PK_FRAGE=/(papierkorb|(^|[^a-zäöüß])(hol|bring)[a-zäöüß]*\b[^.?!]*\bzur(ü|ue)ck\b|wiederherstell|r(ü|ue)ckg(ä|ae)ngig|(^|[^a-zäöüß])sicherung)/i;
 async function pkSprache(text){const t=String(text||'').toLowerCase();
  if(typeof siSprache==='function'&&/(sicherung|von gestern|vorgestern|letzte[nm]?\s+(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|woche)|heute\s+morgen|vom\s+\d)/.test(t)){if(await siSprache(text))return}
  const L=await pkListe();
@@ -3356,18 +3358,14 @@ function cpMalen(inh,wechsel){const L=cpListe();if(!L.length){inh.innerHTML='<di
  x.querySelectorAll('[data-mg]').forEach(e=>e.onclick=()=>amFunktion('maengel',{id:e.dataset.mg}));
  x.querySelectorAll('[data-tag]').forEach(e=>e.onclick=()=>{amZu();setTimeout(()=>kalAuf(e.dataset.tag),RM?0:350)})}
 // Kundenbericht: eine druckbare Seite (auch als PDF)
-function cpBericht(b,D,lg,M,TER){let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className='bericht';
+function cpBericht(b,D,lg,M,TER){let d=druckBlatt('bericht');
  const arb=Object.keys(TB).sort().reverse().flatMap(t=>(TB[t]||[]).filter(e=>e.b===b.name&&e.l).map(e=>({t,e}))).slice(0,12);
  d.innerHTML=`<section><h1>Baustellenbericht · ${esc(b.name)}</h1><p>Stand ${new Date().toLocaleDateString('de-DE')}${b.ort?' · '+esc(b.ort):''}${b.kontakt?' · Ansprechpartner '+esc(b.kontakt):''}${/^\d{4}/.test(b.einzug||'')?' · Einzug '+cpDat(b.einzug):''}</p>
   <h3>STAND</h3><p>${esc(lg.text)} ${D.anzahl} Arbeitstage${D.start?' seit '+cpDat(D.start):''}.</p>
   <h3>AUSGEFÜHRTE ARBEITEN</h3><table>${arb.map(x=>`<tr><td>${cpDat(x.t)}</td><td>${esc(x.e.l)}</td></tr>`).join('')||'<tr><td>–</td></tr>'}</table>
   <h3>MÄNGEL</h3><table>${M.map(m=>`<tr><td>${esc(m.nr)}</td><td>${esc(m.t)}${m.raum?' ('+esc(m.raum)+')':''}</td><td>${esc(MG_STN[m.st]||m.st)}${m.frist&&mgOffen(m)?' · bis '+cpDat(m.frist):''}</td></tr>`).join('')||'<tr><td>keine</td></tr>'}</table>
   <h3>NÄCHSTE TERMINE</h3><table>${TER.map(t=>`<tr><td>${cpDat(t.d)}</td><td>${esc(t.t)}</td></tr>`).join('')||'<tr><td>–</td></tr>'}</table>${typeof ON_MARKE!=="undefined"?ON_MARKE:'<p class="fu">Erstellt mit Onstand</p>'}</section>`;
- document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
-// Sprache: „Wie steht's bei Müller?“, „Öffne das Cockpit“
-const CP_FRAGE=/(^|[^a-zäöüß])(cockpit|wie\s+(steht|läuft|laeuft|sieht)[^?.!]*\b(bei|mit|auf|in)\b)/i;
-async function cpSprache(frage){try{await Promise.all([bstLaden(),tbLaden(),peLaden(),mgLaden()])}catch(x){}const m=frage.match(/\b(?:bei|mit|auf|in)\s+(?:der\s+|dem\s+|den\s+)?(?:baustelle\s+)?([^?.!]+)/i),b=m?bstFinde(m[1].replace(/\b(aus|so|gerade|heute)\b/gi,'').trim()):null;
- let t='Hier ist das Cockpit.';if(b){CPV.b=b.name;const D=cpDaten(b),lg=cpLage(b,D);t=`${b.name}: ${lg.teile.join(', ')}.`}amAuf('cockpit',b?{name:b.name}:{});say(t);VERLAUF.push({r:'a',t})}
+ druckStart(d)}
 AM_FUNK.push({beruf:'handwerk',id:'cockpit',name:'COCKPIT',ico:'<g transform="scale(.8333)" stroke-width="2.05"><path d="M12 3.5 20.5 8 12 12.5 3.5 8z" fill="currentColor" fill-opacity=".14"/><path d="M3.5 12 12 16.5 20.5 12"/><path d="M3.5 16 12 20.5 20.5 16"/></g>',zeigen:cpZeigen,zahl:()=>0});
 // ===== Arbeitsmodus · Handwerk · AUFTRÄGE (v15.13, Schritt 1, Konzept A „Kette & Dokument“ aus der Probe „Onstand Aufträge“) =====
 // Angebote mit Positionen aus der eigenen Preisliste oder direkt aus dem Bauplan (Mengen rechnet Iris), PDF, Status Entwurf → Verschickt → Angenommen.
@@ -3513,7 +3511,7 @@ function auFirmaMalen(inh){const F=auFirma(),FE=[['name','FIRMA','ESTETA GmbH'],
  inh.querySelectorAll('.aupr .auweg').forEach(b=>b.onclick=async()=>{const i=+b.dataset.i,x=AU_P[i];AU_P.splice(i,1);spei();auMalen(inh);if(x){const id=await pkWeg({k:'pr',t:'Leistung · '+x.n,s:auEur(x.p)+' / '+x.e+' · Lohn '+Math.round(x.l||0)+' %',data:{x,i},wieder:'pr'});pkRueckgaengig('Leistung „'+x.n+'“ gelöscht',id,()=>{if(inh.isConnected)auMalen(inh)})}});
  inh.querySelector('.aupneu').onclick=()=>{AU_P.unshift({n:'Neue Leistung',e:'m²',p:0,l:70,f:'frei',bsp:false});spei();auMalen(inh);const r=inh.querySelector('.aupr');if(r){r.scrollIntoView({block:'nearest'});const i=r.querySelector('input');i.focus();i.select()}}}
 // PDF (Druck-Ebene des Bauplans)
-function auPdf(a){const F=auFirma(),b=BST[a.b]||{},n=auNetto(a),g=+F.gueltig||30,bis=tbIso(tbPlus(tbAusIso(a.d),g));let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className='angebot';
+function auPdf(a){const F=auFirma(),b=BST[a.b]||{},n=auNetto(a),g=+F.gueltig||30,bis=tbIso(tbPlus(tbAusIso(a.d),g));let d=druckBlatt('angebot');
  d.innerHTML=`<section>${auBriefKopf(F)}<div class="ak"><div class="abs">${esc([F.name,F.str,F.ort].filter(Boolean).join(' · ')||'Firmendaten unter FIRMA & PREISE eintragen')}</div>
   <div class="emp">${esc(b.kontakt||a.b)}<br>${esc(b.ort||'')}</div>${auInfo('Angebot',[['Nr.',esc(a.nr)],['Datum',auDat(a.d)],['Gültig bis',auDat(bis)],['Bauvorhaben',esc(a.b)]])}</div>
   <h1>${esc(a.t)}</h1><p>Sehr geehrte Damen und Herren,<br>vielen Dank für Ihre Anfrage. Gerne bieten wir Ihnen folgende Leistungen an:</p>
@@ -3521,12 +3519,7 @@ function auPdf(a){const F=auFirma(),b=BST[a.b]||{},n=auNetto(a),g=+F.gueltig||30
   <div class="su"><div><span>Summe netto</span><span>${auEur(n)}</span></div><div><span>zzgl. 19 % MwSt.</span><span>${auEur(n*.19)}</span></div><div class="ge"><span>Angebotssumme</span><span>${auEur(n*1.19)}</span></div><div class="gr"><span>darin Lohnkosten (brutto)</span><span>${auEur(auLohn(a)*1.19)}</span></div></div>
   <p>Wir freuen uns auf Ihren Auftrag.</p><p>Mit freundlichen Grüßen<br>${esc(F.inhaber||F.name||'')}</p>
   <div class="fz"><div>${esc(F.name||'')}<br>${esc(F.str||'')}<br>${esc(F.ort||'')}</div><div>${F.tel?'Tel. '+esc(F.tel)+'<br>':''}${esc(F.mail||'')}<br>${F.stnr?'St.-Nr. '+esc(F.stnr):''}${F.ust?'<br>USt-IdNr. '+esc(F.ust):''}</div><div>${esc(F.bank||'')}<br>${F.iban?'IBAN '+esc(F.iban):''}<br>${F.bic?'BIC '+esc(F.bic):''}${F.hr?'<br>'+esc(F.hr):''}</div></div>${ON_MARKE}</section>`;
- document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
-// Sprache: „Erstell ein Angebot für Müller“, „Zeig meine Angebote“
-const AU_FRAGE=/(^|[^a-zäöüß])(angebot|angebote|aufträge|auftraege|preisliste|rechnung|rechnungen|abschlag|abschlagsrechnung|schlussrechnung|regierechnung)([^a-zäöüß]|$)/i;
-async function auSprache(frage){try{await bstLaden()}catch(e){}if(/rechnung|abschlag/i.test(frage)&&!/angebot/i.test(frage)){const neu=/(erstell|mach|schreib|neue?)/i.test(frage);amAuf('auftraege',{tab:'rech',rechNeu:neu});const t=neu?'Welche Rechnung? Abschlag, Schlussrechnung, Regie oder frei.':'Hier sind deine Rechnungen.';say(t);VERLAUF.push({r:'a',t});return}const neu=/(erstell|mach|schreib|neue?s?)\w*[^.?!]*angebot/i.test(frage),m=frage.match(/\bfür\s+(?:die\s+|den\s+|das\s+)?(?:baustelle\s+)?([^?.!]+)/i),b=m?bstFinde(m[1].trim()):null;
- if(neu){amAuf('auftraege',{neu:1,b:b?b.name:''});const t=b?`Neues Angebot für ${b.name} – gib noch einen Titel ein.`:'Für welche Baustelle soll das Angebot sein?';say(t);VERLAUF.push({r:'a',t});return}
- amAuf('auftraege');const t='Hier sind deine Angebote.';say(t);VERLAUF.push({r:'a',t})}
+ druckStart(d)}
 // ===== Schritt 2 (v15.14): Rechnungen – Abschlag (Prozent oder Leistungsstand), Schlussrechnung nach Aufmaß, Regie aus dem Tagebuch, freie Rechnung =====
 // Probe „Onstand Rechnungen“. Entwurf → Rechnung stellen (feste fortlaufende Nummer R-JJJJ-NNN, danach gesperrt) → bezahlt.
 const AR_ORD='@/Persönlich/Arbeit/Rechnungen';
@@ -3635,7 +3628,7 @@ function arMalen(inh){const r=AUV.rech,a=arAng(r),b=BST[r.b]||{},fest=r.st!=='en
  const bz=inh.querySelector('.arbez');if(bz)bz.onclick=async()=>{const rest=opOffen(r);if(rest>0)(r.zahl=r.zahl||[]).push({d:mgHeute(),b:rest});r.st='bezahlt';r.bez=mgHeute();await arSpeichern(r);mgToast(inh,r.nr+' als bezahlt markiert');arMalen(inh)};
  if(!fest&&!AU_R.includes(r)){AU_R.unshift(r);arAend(r)}}
 // Rechnungs-PDF mit Pflichtangaben
-function arPdf(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf')arBerechne(r);let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className='angebot';
+function arPdf(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf')arBerechne(r);let d=druckBlatt('angebot');
  const zeile=(n,v,k)=>`<div class="${k||''}"><span>${n}</span><span>${v}</span></div>`;let tab='',sum='';
  if(r.art==='abschlag'&&a){tab=r.modus==='ls'?`<table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Auftrag</th><th class="aur">Stand</th><th class="aur">Leistung</th></tr>${a.pos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}</td><td class="aur">${auEur(p.p*p.m)}</td><td class="aur">${r.ls[i]||0} %</td><td class="aur">${auEur(p.p*p.m*(r.ls[i]||0)/100)}</td></tr>`).join('')}</table>`:`<p>Leistungsstand gesamt ${r.proz} % von ${auEur(auNetto(a))} netto (Angebot ${esc(a.nr)}).</p>`;
   sum=zeile('Leistungsstand gesamt netto',auEur(r.kum))+(r.st==='entwurf'?arAbschlaege(a,r):r.abz||[]).map(x=>zeile('abzgl. '+esc(x.t)+' ('+esc(x.nr)+')','− '+auEur(x.netto),'gr')).join('')+zeile('Abschlag netto',auEur(r.netto),'st')}
@@ -3649,7 +3642,7 @@ function arPdf(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf
   ${r.p13b?'<p><b>Steuerschuldnerschaft des Leistungsempfängers (§ 13b UStG).</b> Die Umsatzsteuer schuldet der Leistungsempfänger.</p>':''}
   ${r.bezug?`<p>${r.art==='storno'?'Hiermit stornieren wir die Rechnung '+esc(r.bezug)+' vom '+auDat(r.bezugD)+' in voller Höhe.':'Hiermit korrigieren wir die Rechnung '+esc(r.bezug)+' vom '+auDat(r.bezugD)+' um den oben genannten Betrag.'} Bereits gezahlte Beträge verrechnen bzw. erstatten wir.</p>`:`<p>Bitte überweisen Sie den Betrag bis zum ${auDat(arFaellig(r))} ohne Abzug${r.nr?' unter Angabe der Rechnungsnummer '+esc(r.nr):''}.</p>${F.iban?`<div class="zb"><div><small>Zahlbar bis</small>${auDat(arFaellig(r))}</div><div><small>IBAN${F.bank?' · '+esc(F.bank):''}</small>${esc(F.iban)}</div><div><small>Verwendungszweck</small>${esc(r.nr||'Rechnungsnummer')}</div></div>`:''}`}<p>Mit freundlichen Grüßen<br>${esc(F.inhaber||F.name||'')}</p>
   <div class="fz"><div>${esc(F.name||'')}<br>${esc(F.str||'')}<br>${esc(F.ort||'')}</div><div>${F.tel?'Tel. '+esc(F.tel)+'<br>':''}${esc(F.mail||'')}<br>${F.stnr?'St.-Nr. '+esc(F.stnr):''}${F.ust?'<br>USt-IdNr. '+esc(F.ust):''}</div><div>${esc(F.bank||'')}<br>${F.iban?'IBAN '+esc(F.iban):''}<br>${F.bic?'BIC '+esc(F.bic):''}${F.hr?'<br>'+esc(F.hr):''}</div></div>${ON_MARKE}</section>`;
- document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
+ druckStart(d)}
 AM_FUNK.push({beruf:'handwerk',id:'auftraege',name:'AUFTRÄGE',ico:'<path d="M14.5 5.5A5.5 5.5 0 1 0 14.5 14.5"/><path d="M4 8.5h7M4 11.5h7"/>',zeigen:auZeigen,zahl:()=>0});
 // v15.14.1: Neu-Zeichnen derselben Ansicht (z. B. nach ✕ Löschen) behält die Scroll-Position
 (function(){const id=o=>o==null?'':typeof o==='object'?String(o.id||o.nr||'x'):String(o);
@@ -3726,12 +3719,12 @@ function opText(r,k){const E=opEinst(),F=auFirma(),b=BST[r.b]||{},o=opOffen(r),f
  if(k==='m1')return `1. Mahnung – Rechnung ${r.nr} vom ${auDat(r.d)}\n\n${an},\n\ntrotz unserer Zahlungserinnerung${m.er?' vom '+auDat(m.er):''} ist unsere Rechnung ${r.nr} über ${auEur(arBrutto(r))} weiterhin nicht beglichen.${teil} Die Zahlung war am ${auDat(f)} fällig, seit dem ${auDat(opPlus(f,1))} befinden Sie sich in Zahlungsverzug.\n\nWir bitten Sie, ${auEur(o+geb)}${geb?` (inkl. ${auEur(geb)} Mahngebühr)`:''} bis spätestens ${auDat(frist)}${konto} zu überweisen, Verwendungszweck ${r.nr}.\n\nSollte es Gründe geben, warum Sie nicht zahlen können oder mit unserer Leistung nicht einverstanden sind, melden Sie sich bitte direkt bei uns – wir finden eine Lösung.\n\n${gruss}`;
  const Z=opZinsen(r,E),ges=o+Z.z+Z.pausch+geb,pz=v=>auZ(v).replace(/^(\d+)$/,'$1,00');
  return `2. Mahnung – letzte Zahlungsaufforderung – Rechnung ${r.nr}\n\n${an},\n\nauf unsere Zahlungserinnerung${m.er?' vom '+auDat(m.er):''} und unsere 1. Mahnung${m.m1?' vom '+auDat(m.m1):''} haben wir leider keine Zahlung erhalten. Unsere Rechnung ${r.nr} vom ${auDat(r.d)} ist seit dem ${auDat(f)} fällig.\n\nOffener Rechnungsbetrag: ${auEur(o)}\nVerzugszinsen ${pz(Z.satz)} % p. a. vom ${auDat(Z.von)} bis ${auDat(H)} (${Z.t} Tage): ${auEur(Z.z)}${Z.pausch?`\nVerzugspauschale (§ 288 Abs. 5 BGB): ${auEur(Z.pausch)}`:''}${geb?`\nMahngebühr: ${auEur(geb)}`:''}\nZu zahlen: ${auEur(ges)}\n\nBitte überweisen Sie diesen Betrag bis spätestens ${auDat(frist)}${konto}, Verwendungszweck ${r.nr}. Geht die Zahlung bis dahin nicht ein, beantragen wir ohne weitere Ankündigung einen gerichtlichen Mahnbescheid. Die Kosten dafür gehen zu Ihren Lasten.\n\n${gruss}`}
-function opBriefPdf(r,txt){const F=auFirma(),b=BST[r.b]||{};let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className='angebot';
+function opBriefPdf(r,txt){const F=auFirma(),b=BST[r.b]||{};let d=druckBlatt('angebot');
  const z=String(txt||'').split('\n'),bt=z.shift();
  d.innerHTML=`<section>${auBriefKopf(F)}<div class="ak"><div class="abs">${esc([F.name,F.str,F.ort].filter(Boolean).join(' · ')||'Firmendaten unter FIRMA & PREISE eintragen')}</div><div class="emp">${esc(b.kontakt||r.b)}<br>${esc(b.ort||'')}</div>${auInfo('Zahlungserinnerung',[['Datum',auDat(opHeute())],['Rechnung',esc(r.nr)],['Bauvorhaben',esc(r.b)]])}</div>
   <h1>${esc(bt)}</h1><div style="white-space:pre-wrap;line-height:1.6">${esc(z.join('\n').trim())}</div>
   <div class="fz"><div>${esc(F.name||'')}<br>${esc(F.str||'')}<br>${esc(F.ort||'')}</div><div>${F.tel?'Tel. '+esc(F.tel)+'<br>':''}${esc(F.mail||'')}<br>${F.stnr?'St.-Nr. '+esc(F.stnr):''}${F.ust?'<br>USt-IdNr. '+esc(F.ust):''}</div><div>${esc(F.bank||'')}<br>${F.iban?'IBAN '+esc(F.iban):''}<br>${F.bic?'BIC '+esc(F.bic):''}</div></div>${ON_MARKE}</section>`;
- document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
+ druckStart(d)}
 // ---------- Korrektur / Storno als eigenes Dokument ----------
 function opNeueNr(p){const j=new Date().getFullYear(),n=Math.max(0,...AU_R.filter(r=>r.nr&&r.nr.startsWith(p+'-'+j)).map(r=>+r.nr.split('-')[2]||0))+1;return `${p}-${j}-${String(n).padStart(3,'0')}`}
 async function opKorrektur(r,art,brutto,grund){await arLaden();const R=AU_R.find(x=>x.nr===r.nr)||r;const netto=-(R.p13b?brutto:Math.round(brutto/1.19*100)/100);
@@ -4050,7 +4043,6 @@ let EG=[],EG_OK=false;
 const egKid=(el,n)=>el?Array.from(el.children).find(c=>c.localName===n)||null:null;
 const egWeg=(el,p)=>p.split('/').reduce((e,n)=>egKid(e,n),el);
 const egTxt=(el,p)=>{const e=p?egWeg(el,p):el;return e?e.textContent.trim():''};
-const egAlle=(el,n)=>el?Array.from(el.getElementsByTagNameNS('*',n)):[];
 const egDat=s=>{s=String(s||'').trim();if(/^\d{8}$/.test(s))return s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8);return s.slice(0,10)};
 function egLesen(xml){const d=new DOMParser().parseFromString(xml,'application/xml');if(d.getElementsByTagName('parsererror').length)throw new Error('Die Datei ist keine lesbare XML.');const R=d.documentElement,ln=R.localName;
  if(ln==='CrossIndustryInvoice'){const doc=egKid(R,'ExchangedDocument'),tr=egKid(R,'SupplyChainTradeTransaction'),ag=egKid(tr,'ApplicableHeaderTradeAgreement'),st=egKid(tr,'ApplicableHeaderTradeSettlement'),su=egKid(st,'SpecifiedTradeSettlementHeaderMonetarySummation');
@@ -4107,6 +4099,92 @@ function egZeigen(R,xml,inh,gespeichert){const vor=gespeichert?gespeichert.b:egV
    if(gespeichert){const p=EG_ORD+'/'+gespeichert.datei+'.md',t=await lesen(p);const neu=/^- Baustelle:.*$/m.test(t)?t.replace(/^- Baustelle:.*$/m,'- '+zeileMeta('Baustelle: '+bst,'Eingabe (Eingang)','hoch')):t.replace(/(\n## Positionen)/,'\n- '+zeileMeta('Baustelle: '+bst,'Eingabe (Eingang)','hoch')+'\n$1');await schreiben(p,neu);await egLaden()}
    else await egSpeichern(R,xml,bst);onToast('Eingangsrechnung gespeichert');if(inh.isConnected)auMalen(inh)}});
  d.querySelector('.ondk').classList.add('sykonto')}
+// ===== Onstand · Text-PDF aus der Druckansicht =====
+// Statt eines Bildes (Bildschirmfoto der Seite) entsteht ein echtes PDF: Schrift als Text (durchsuchbar, kopierbar, gestochen scharf in jeder Größe),
+// Linien und Flächen als Vektoren, Bilder in voller Auflösung. Grundlage ist das fertige Layout des Browsers: jedes Wort wird an genau der Stelle
+// gesetzt, an der es in der Druckansicht steht. Seitenränder wie beim Drucken (@page), Umbruch nie mitten durch eine Zeile oder Tabellenzeile.
+// Schrift: Liberation Sans (gleiche Breiten wie Arial) aus kern/pdfschrift.js, Zeichen nach Windows-1252; ✓ ✗ ● ■ als gezeichnete Formen (keine nicht eingebettete Schrift).
+const PT_K=72/96;// 1 CSS-Pixel = 0,75 pt → Originalgröße
+const PT_SYM={'✓':'✔','✔':'✔','✗':'✘','✘':'✘','●':'●','■':'■'};
+const PT_ERS={'→':'›','←':'‹','⇒':'›','≈':'~','−':'-','✕':'×','…':'…'};
+function ptFarbe(c){if(!c)return null;let m=String(c).match(/rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:[\s,/]+([\d.]+%?))?\s*\)/);
+ if(m){let a=m[4]==null?1:(m[4].endsWith('%')?parseFloat(m[4])/100:+m[4]);return a<.04?null:{r:+m[1]/255,g:+m[2]/255,b:+m[3]/255,a}}
+ m=String(c).match(/color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+))?\)/);if(m){const a=m[4]==null?1:+m[4];return a<.04?null:{r:+m[1],g:+m[2],b:+m[3],a}}return null}
+// Farbe mit Deckkraft gegen Weiß mischen (PDF ohne Transparenz-Gruppen)
+const ptMisch=f=>({r:1-(1-f.r)*f.a,g:1-(1-f.g)*f.a,b:1-(1-f.b)*f.a});
+function ptSchrift(ctx,key,tag){const L=PDFLib,meta=ER_SCHRIFT[key],bytes=erB64(meta.d),ff=ctx.register(ctx.flateStream(bytes,{Length1:bytes.length})),nm=tag+'+LiberationSans'+(key==='b'?'-Bold':'');
+ const desc=ctx.register(ctx.obj({Type:'FontDescriptor',FontName:nm,Flags:32,FontBBox:meta.bbox,ItalicAngle:0,Ascent:meta.asc,Descent:meta.desc,CapHeight:meta.cap,StemV:key==='b'?120:80,FontFile2:ff}));
+ return ctx.register(ctx.obj({Type:'Font',Subtype:'TrueType',BaseFont:nm,FirstChar:32,LastChar:255,Widths:meta.w,Encoding:'WinAnsiEncoding',FontDescriptor:desc}))}
+// Seitenrand und Format wie die @page-Regeln der jeweiligen Druckansicht
+function ptFormat(el){const k=' '+(el.className||'')+' ';if(/ (angebot|stz) /.test(k))return {quer:false,rand:[15,16,15,16]};if(/ sw /.test(k))return {quer:true,rand:[8,8,8,8]};return {quer:false,rand:[8,8,8,8]}}
+// Elemente einsammeln: Flächen/Rahmen, Wörter, Bilder – alle Maße in px relativ zur Druckansicht
+function ptSammeln(el){const win=el.ownerDocument.defaultView,R0=el.getBoundingClientRect(),B=[],T=[],I=[],Z=[],F=[];
+ const rel=r=>({x:r.left-R0.left,y:r.top-R0.top,w:r.width,h:r.height});
+ const geh=(n,cs)=>{for(const c of n.childNodes){if(c.nodeType===3)ptWoerter(c,cs,T,R0);else if(c.nodeType===1)knoten(c)}};
+ const knoten=n=>{const cs=win.getComputedStyle(n);if(cs.display==='none'||cs.visibility==='hidden'||+cs.opacity===0)return;const r=rel(n.getBoundingClientRect()),tag=n.tagName;
+  if(cs.breakBefore==='page'||cs.pageBreakBefore==='always')F.push(r.y);if(cs.breakAfter==='page'||cs.pageBreakAfter==='always')F.push(r.y+r.h);
+  if(tag==='TR'||cs.breakInside==='avoid'||cs.pageBreakInside==='avoid')Z.push(r);
+  const bg=ptFarbe(cs.backgroundColor),S=['Top','Right','Bottom','Left'].map(s=>{const w=parseFloat(cs['border'+s+'Width'])||0,f=ptFarbe(cs['border'+s+'Color']),st=cs['border'+s+'Style'];return w>0&&f&&st!=='none'&&st!=='hidden'?{w,f,st}:null});
+  if((bg||S.some(Boolean))&&r.w>0&&r.h>0)B.push({...r,bg,S,rad:Math.min(parseFloat(cs.borderTopLeftRadius)||0,r.w/2,r.h/2)});
+  if(tag==='IMG'||tag==='CANVAS'||tag.toLowerCase()==='svg'){if(r.w>0&&r.h>0)I.push({...r,n});return}
+  geh(n,cs)};
+ knoten(el);return {B,T,I,Z,F,H:Math.max(el.scrollHeight,...B.map(b=>b.y+b.h),...T.map(t=>t.y+t.h),...I.map(i=>i.y+i.h),1)}}
+function ptWoerter(tn,cs,T,R0){let t=tn.nodeValue;if(!t||!/\S/.test(t))return;const doc=tn.ownerDocument,rg=doc.createRange(),tt=cs.textTransform,f=ptFarbe(cs.color);if(!f)return;
+ const size=parseFloat(cs.fontSize)||12,bold=(parseInt(cs.fontWeight)||400)>=600,ls=parseFloat(cs.letterSpacing)||0,dec=/underline/.test(cs.textDecorationLine||cs.textDecoration||'');
+ for(const m of t.matchAll(/\S+/g)){rg.setStart(tn,m.index);rg.setEnd(tn,m.index+m[0].length);const R=[...rg.getClientRects()].filter(r=>r.width>0);if(!R.length)continue;
+  let w=m[0];if(tt==='uppercase')w=w.toLocaleUpperCase('de');else if(tt==='lowercase')w=w.toLocaleLowerCase('de');else if(tt==='capitalize')w=w.charAt(0).toLocaleUpperCase('de')+w.slice(1);
+  // Wort über zwei Zeilen (Silbentrennung): Teile einzeln über Zeichen-Rechtecke
+  if(R.length>1){let cur=null;for(let i=0;i<m[0].length;i++){rg.setStart(tn,m.index+i);rg.setEnd(tn,m.index+i+1);const r=rg.getClientRects()[0];if(!r)continue;
+    if(!cur||Math.abs(r.top-cur.r.top)>2){if(cur)T.push(cur.o);cur={r,o:{x:r.left-R0.left,y:r.top-R0.top,h:r.height,t:'',size,bold,f,ls,dec}}}cur.o.t+=w[i]||'';cur.o.w=r.right-R0.left-cur.o.x}if(cur)T.push(cur.o);continue}
+  const r=R[0];T.push({x:r.left-R0.left,y:r.top-R0.top,w:r.width,h:r.height,t:w,size,bold,f,ls,dec})}}
+// Seitenumbrüche: erzwungene zuerst, sonst so weit unten wie möglich, aber über der ersten angeschnittenen Zeile bzw. Tabellenzeile
+function ptSeiten(D,hoch){const out=[],F=[...new Set(D.F.map(Math.round))].sort((a,b)=>a-b);let s=0;
+ while(s<D.H-1&&out.length<60){let e=s+hoch;const f=F.find(y=>y>s+4&&y<=e);if(f)e=f;else if(e<D.H){for(let n=0;n<3;n++){for(const t of D.T)if(t.y>s&&t.y<e&&t.y+t.h>e)e=t.y-1;for(const z of D.Z)if(z.y>s+4&&z.y<e&&z.y+z.h>e&&z.h<hoch/3)e=z.y-.5}if(e<=s+hoch*.3)e=s+hoch}
+  const leer=!D.T.some(t=>t.y>=s&&t.y<e)&&!D.I.some(i=>i.y<e&&i.y+i.h>s);if(!leer||!out.length)out.push([s,e]);s=e}return out}
+async function ptBild(doc,it){const n=it.n,tag=n.tagName.toLowerCase();let url;
+ try{if(tag==='canvas')url=n.toDataURL('image/png');
+  else if(tag==='img'){const src=n.currentSrc||n.src;if(/^data:image\/jpe?g/i.test(src))return doc.embedJpg(src);if(/^data:image\/png/i.test(src))return doc.embedPng(src);url=await ptRaster(n,it.w,it.h,src)}
+  else{const c=n.cloneNode(true),win=n.ownerDocument.defaultView,A=[n,...n.querySelectorAll('*')],C=[c,...c.querySelectorAll('*')];
+   A.forEach((x,i)=>{const cs=win.getComputedStyle(x),y=C[i];['fill','stroke','stroke-width','stroke-linecap','stroke-linejoin','opacity','font-family','font-size','font-weight'].forEach(p=>{const v=cs.getPropertyValue(p);if(v)y.style.setProperty(p,v)});const col=cs.color;if(y.getAttribute('fill')==='currentColor'||cs.fill==='currentcolor')y.style.fill=col;if(y.getAttribute('stroke')==='currentColor')y.style.stroke=col});
+   c.setAttribute('width',it.w);c.setAttribute('height',it.h);c.setAttribute('xmlns','http://www.w3.org/2000/svg');
+   url=await ptRaster(null,it.w,it.h,'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(c)))}
+  return url?doc.embedPng(url):null}catch(e){return null}}
+// Bild als PNG mit 4-facher Auflösung (Druckqualität, ca. 380 dpi)
+function ptRaster(img,w,h,src){return new Promise(ok=>{const im=new Image();im.crossOrigin='anonymous';im.onload=()=>{try{const f=4,cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(w*f));cv.height=Math.max(1,Math.round(h*f));cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);ok(cv.toDataURL('image/png'))}catch(e){ok(null)}};im.onerror=()=>ok(null);im.src=src})}
+// Text ohne Zeichen außerhalb von Windows-1252
+const ptText=t=>String(t).replace(/[→←⇒≈−✕]/g,c=>PT_ERS[c]||c);
+async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});const L=PDFLib,mm=x=>x*72/25.4,PW=o.quer?841.89:595.28,PH=o.quer?595.28:841.89,[rt,rr,rb,rl]=o.rand.map(mm);
+ const doc=await L.PDFDocument.create(),ctx=doc.context,tag=Array.from(crypto.getRandomValues(new Uint8Array(6))).map(x=>String.fromCharCode(65+x%26)).join('');
+ const FN=ptSchrift(ctx,'n',tag),FB=ptSchrift(ctx,'b',tag);
+ doc.setTitle(o.titel||'Onstand');doc.setCreator('Onstand');doc.setProducer('Onstand · Software für Handwerksbetriebe');doc.setCreationDate(new Date());
+ const breite=(PW-rl-rr)/PT_K,alt=el.getAttribute('style')||'';
+ el.setAttribute('style',alt+`;width:${breite}px!important;max-width:none!important;min-width:0!important;position:absolute!important;left:0!important;top:0!important;margin:0!important;background:#fff`);
+ let D;try{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));D=ptSammeln(el)}finally{el.setAttribute('style',alt)}
+ const hoch=(PH-rt-rb)/PT_K,S=ptSeiten(D,hoch),asc=905/1117,bilder=new Map();
+ for(const it of D.I)bilder.set(it,await ptBild(doc,it));
+ for(const [s,e] of S){const pg=doc.addPage([PW,PH]);pg.node.setFontDictionary(L.PDFName.of('F1'),FN);pg.node.setFontDictionary(L.PDFName.of('F2'),FB);
+  const X=x=>rl+x*PT_K,Y=y=>PH-rt-(y-s)*PT_K,inn=(y,h)=>y<e&&y+h>s;
+  pg.pushOperators(L.pushGraphicsState(),L.rectangle(rl-1,PH-rt-(e-s)*PT_K,PW-rl-rr+2,(e-s)*PT_K+1),L.clip(),L.endPath());
+  for(const b of D.B){if(!inn(b.y,b.h))continue;const x=X(b.x),y=Y(b.y),w=b.w*PT_K,h=b.h*PT_K,rad=b.rad*PT_K;
+   const pfad=(x0,y0,w0,h0,r0)=>r0>0.3?`M${r0},0H${w0-r0}A${r0},${r0} 0 0 1 ${w0},${r0}V${h0-r0}A${r0},${r0} 0 0 1 ${w0-r0},${h0}H${r0}A${r0},${r0} 0 0 1 0,${h0-r0}V${r0}A${r0},${r0} 0 0 1 ${r0},0Z`:`M0,0H${w0}V${h0}H0Z`;
+   if(b.bg){const c=ptMisch(b.bg);pg.drawSvgPath(pfad(0,0,w,h,rad),{x,y,color:L.rgb(c.r,c.g,c.b),borderWidth:0})}
+   const [t,r,u,l]=b.S;const gleich=t&&r&&u&&l&&[r,u,l].every(z=>Math.abs(z.w-t.w)<.1&&z.f.r===t.f.r&&z.f.g===t.f.g&&z.f.b===t.f.b);
+   if(gleich&&rad>0.3){const c=ptMisch(t.f),d=t.w*PT_K;pg.drawSvgPath(pfad(0,0,w-d,h-d,Math.max(0,rad-d/2)),{x:x+d/2,y:y-d/2,borderColor:L.rgb(c.r,c.g,c.b),borderWidth:d,borderDashArray:t.st==='dashed'?[3*d,2*d]:t.st==='dotted'?[d,d]:undefined})}
+   else[[t,x,y-(t?t.w*PT_K/2:0),x+w,y-(t?t.w*PT_K/2:0)],[r,x+w-(r?r.w*PT_K/2:0),y,x+w-(r?r.w*PT_K/2:0),y-h],[u,x,y-h+(u?u.w*PT_K/2:0),x+w,y-h+(u?u.w*PT_K/2:0)],[l,x+(l?l.w*PT_K/2:0),y,x+(l?l.w*PT_K/2:0),y-h]].forEach(([z,x1,y1,x2,y2])=>{if(!z)return;const c=ptMisch(z.f),d=z.w*PT_K;
+    pg.drawLine({start:{x:x1,y:y1},end:{x:x2,y:y2},thickness:d,color:L.rgb(c.r,c.g,c.b),dashArray:z.st==='dashed'?[3*d,2*d]:z.st==='dotted'?[d,d]:undefined})})}
+  for(const it of D.I){if(!inn(it.y,it.h))continue;const im=bilder.get(it);if(im)pg.drawImage(im,{x:X(it.x),y:Y(it.y)-it.h*PT_K,width:it.w*PT_K,height:it.h*PT_K})}
+  for(const t of D.T){if(t.y<s-.5||t.y>=e)continue;const sz=t.size*PT_K,c=ptMisch(t.f),bl=Y(t.y+t.h*asc),x0=X(t.x);
+   const teile=[];let akt='';for(const ch of t.t){if(PT_SYM[ch]){if(akt)teile.push([akt,0]);teile.push([PT_SYM[ch],1]);akt=''}else akt+=ch}if(akt)teile.push([akt,0]);
+   let x=x0;for(const [txt,sym] of teile){if(sym){const col=L.rgb(c.r,c.g,c.b),q=sz*.72,d=Math.max(.5,sz*.1),ln=(a,b,c2,e2)=>pg.drawLine({start:{x:x+a*q,y:bl+b*q},end:{x:x+c2*q,y:bl+e2*q},thickness:d,color:col,lineCap:L.LineCapStyle.Round});
+     if(txt==='✔'){ln(.05,.42,.38,.1);ln(.38,.1,.95,.82)}else if(txt==='✘'){ln(.1,.08,.9,.82);ln(.1,.82,.9,.08)}else if(txt==='●')pg.drawCircle({x:x+q/2,y:bl+q*.42,size:q*.36,color:col});else pg.drawRectangle({x:x+q*.12,y:bl+q*.06,width:q*.72,height:q*.72,color:col});
+     x+=q*1.05+t.ls*PT_K;continue}
+    const tx=ptText(txt),hex=L.PDFHexString.of(erCodes(tx).map(n=>n.toString(16).padStart(2,'0')).join(''));
+    pg.pushOperators(L.beginText(),L.setFillingRgbColor(c.r,c.g,c.b),L.setFontAndSize(t.bold?'F2':'F1',sz),L.setCharacterSpacing(t.ls*PT_K),L.moveText(x,bl),L.showText(hex),L.endText());
+    x+=erBreite(tx,t.bold,sz)+tx.length*t.ls*PT_K}
+   if(t.dec)pg.drawLine({start:{x:x0,y:bl-sz*.12},end:{x:x0+t.w*PT_K,y:bl-sz*.12},thickness:Math.max(.4,sz*.06),color:L.rgb(c.r,c.g,c.b)})}
+  pg.pushOperators(L.popGraphicsState())}
+ const bytes=await doc.save();return new Blob([bytes],{type:'application/pdf'})}
+window.onTextPdf=ptPdf;
 
 // ===== Handwerk · Funktion 1: Baustellen-Tagebuch =====
 // Gedächtnis/Persönlich/Arbeit/Bautagebuch/Bautagebuch JJJJ-MM.md – ein Abschnitt pro Tag und Baustelle, jederzeit bearbeitbar; Übersicht Bautagebuch.md.
@@ -4144,21 +4222,6 @@ async function tbSchreibenJetzt(ym){if(!(await gedOk())||!TB_OK)return false;awa
 // Eintrag speichern (gleicher Tag + gleiche Baustelle = derselbe Eintrag)
 async function tbEintragen(tag,e,idx){await tbBereit();const l=TB[tag]=TB[tag]||[];if(idx!=null&&l[idx])l[idx]=e;else{const i=l.findIndex(x=>x.b===e.b);if(i>=0){const a=l[i];for(const [f] of TB_F)if(f==='p'&&e.p)a.p=[...new Set(peListe(a.p).concat(peListe(e.p)))].join(', ');else if(e[f]&&f!=='b'&&!String(a[f]||'').includes(e[f]))a[f]=a[f]&&f!=='z'?a[f]+'; '+e[f]:e[f];a.iris=e.iris&&a.iris}else l.push(e)}
  return tbSchreiben(tag.slice(0,7))}
-// ---- Erkennung: Aaron erzählt, was heute auf der Baustelle passiert ist ----
-function tbErkenne(t){const s=String(t||'');if(/\b(zeig|öffne|oeffne)\w*\b[^.?!]*\b(bau)?tagebuch\b/i.test(s))return 'zeigen';if(/\b(bau)?tagebuch\b/i.test(s))return 'eintragen';
- if(/\?\s*$/.test(s)||/^\s*(wie|was|wann|wo|warum|wieso|welche\w*|kannst|soll|darf|ist|gibt)\b/i.test(s))return '';
- // Zeitwort (heute/gestern) + erledigte Arbeit (Partizip wie gespachtelt, abgedichtet, eingebaut oder fertig/kam nicht)
- return /\b(heute|gestern|vorhin|heut)\b/i.test(s)&&/(^|[^a-zäöüß])([a-zäöüß]*ge[a-zäöüß]{3,}(t|en)|fertig|erledigt|kam|kamen|ausgefallen)(?![a-zäöüß])/i.test(s)?'eintragen':''}
-async function tbErzaehlt(text){if(!(await gedOk())){const t='Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).';say(t);set('ruhe');return}
- LIVE=true;stages(true);await Promise.all([bstLaden(),peLaden()]).catch(()=>{});const h=new Date(),tage=[...Array(8)].map((_,i)=>{const d=tbPlus(h,-i);return TB_WT[tbWt(d)]+' '+tbIso(d)}).join(', ');
- let j=null;try{j=await SAMPLE.json(`Eingabe (Handwerker, Innenausbau) erzählt, was auf der Baustelle passiert ist. Mach daraus Bautagebuch-Einträge.\nNachricht: „${text}“\nHeute: ${TB_WT[tbWt(h)]} ${tbIso(h)}. Letzte Tage: ${tage}.\n„ich“ = Aaron. Bekannte Baustellen (Name · Kürzel · Ort): ${Object.values(BST).map(b=>b.name+' · '+b.k+(b.ort?' · '+b.ort:'')).join(' | ')||'(noch keine)'}\nBekannte Personen (Name · Kürzel · Schreibweisen): ${Object.values(PER).filter(p=>p.status==='aktiv').map(p=>p.name+' · '+p.k+(p.alias.length?' · '+p.alias.join('/'):'')+(p.du?' (= ich)':'')).join(' | ')||'-'}\n\nAntworte NUR mit JSON: {"eintraege":[{"datum":"JJJJ-MM-TT","baustelle":"exakter Name aus der Liste, falls gemeint (auch über Kürzel/Nachname) – sonst neuer Kurzname: Nachname/Firma + Ort","neu":true|false,"ort":"","zeit":"z. B. 7:00–16:30","personal":"Namen kommagetrennt – bekannte Personen mit ihrem Namen aus der Liste, ich = Aaron","ausgefuehrt":"was gemacht wurde, knapp","lieferungen":"","behinderung":"Probleme, Verzug, Ausfälle","absprachen":"Absprachen, Wünsche von Kunde/Architekt"}],"frage":"nur wenn völlig unklar ist, welche Baustelle gemeint ist – sonst leer","antwort":"1 kurzer Satz Bestätigung"}\nNichts erfinden, leere Felder leer lassen. Mehrere Baustellen = mehrere Einträge.`,{modelTier:'quick'})}catch(e){stages(false);throw e}
- stages(false);const E=(j&&Array.isArray(j.eintraege)?j.eintraege:[]).filter(x=>x&&(x.ausgefuehrt||x.behinderung||x.absprachen||x.lieferungen));
- if(!E.length||j.frage){const t=String(j&&j.frage||'Zu welcher Baustelle gehört das?');say(t);VERLAUF.push({r:'a',t});set('ruhe');return}
- const ok=[];for(const x of E){let tag=/^\d{4}-\d\d-\d\d$/.test(x.datum||'')?x.datum:tbIso(h);if(tbAusIso(tag)>h)tag=tbIso(h);
-  const b=bstFinde(x.baustelle)||await bstNeu(x.baustelle||'Baustelle',x.ort);
-  await tbEintragen(tag,{b:b?b.name:String(x.baustelle||''),z:x.zeit||'',p:await peAusTagebuch(x.personal||'',tag),l:x.ausgefuehrt||'',m:x.lieferungen||'',x:x.behinderung||'',a:x.absprachen||'',iris:1});ok.push({tag,b})}
- const t=String(j.antwort||'Ins Bautagebuch eingetragen.');say(t);VERLAUF.push({r:'a',t});try{gedErinnerung(text,'Bautagebuch: '+ok.map(o=>(o.b?o.b.name:'')+' '+o.tag).join(', '))}catch(e){}
- set('ruhe');TBV.sel=tbAusIso(ok[0].tag);TBV.ans=5;TBV.edit=false;TBV.idx=0;amAuf('tagebuch')}
 // ---- Ansicht im Funktionsmenü ----
 function tbMark(e){const b=e&&bstFinde(e.b);if(!b)return '<span class="amkz"></span>';return `<span class="amkz" style="color:${b.c}">${esc(b.k)}</span><span class="amfb" style="--bc:${b.c}"></span>`}
 function tbTagMark(s){const l=TB[s]||[];if(!l.length)return '<span class="amkz"></span>';return tbMark(l[0])+(l.length>1?`<span class="ammehr">+${l.length-1}</span>`:'')}
@@ -4406,7 +4469,7 @@ const peZeitraum=a=>{const v=tbAusIso(a.von),b=tbAusIso(a.bis);return a.von===a.
 function peUrlaubHtml(name){const p=PER[name],A=peAbwesend(name),heute=tbIso(new Date()),j=new Date().getFullYear(),gen=A.filter(a=>/urlaub/i.test(a.grund)).reduce((s,a)=>s+peWerktage(a.von,a.bis,j),0),an=parseFloat(p.urlaub)||0,kommt=A.filter(a=>a.bis>=heute).slice(0,2);
  return `<div class="peabz"><span>${kommt.length?kommt.map(a=>esc(peZeitraum(a)+' '+a.grund)+(a.von<=heute?' (jetzt)':'')).join(' · '):'<i class="ohne">nichts geplant</i>'}${gen||an?`<small>${gen} ${an?'von '+an+' Urlaubstagen':gen===1?'Urlaubstag':'Urlaubstage'} ${j} eingetragen</small>`:''}</span><button type="button" class="peurl">Eintragen</button></div>`}
 // Stundenzettel: ein Blatt pro Person und Monat, zum Drucken oder als PDF
-function peStundenzettel(namen,bez){const y=bez.getFullYear(),m=bez.getMonth(),n=new Date(y,m+1,0).getDate(),F=typeof auFirma==='function'?auFirma():{};let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className='stz';
+function peStundenzettel(namen,bez){const y=bez.getFullYear(),m=bez.getMonth(),n=new Date(y,m+1,0).getDate(),F=typeof auFirma==='function'?auFirma():{};let d=druckBlatt('stz');
  d.innerHTML=namen.map(name=>{const p=PER[name];if(!p)return '';let ges=0,tage=0,zl='',wsum=0;const A=peAbwesend(name);
   for(let t=1;t<=n;t++){const dt=tbNeu(y,m,t),iso=tbIso(dt),E=(TB[iso]||[]).filter(e=>peListe(e.p).some(x=>x===name||p.alias.includes(x))),ab=A.find(a=>a.von<=iso&&a.bis>=iso),we=tbWt(dt)>4;
    const h=E.reduce((s,e)=>s+peDauer(e.z),0);ges+=h;wsum+=h;if(h)tage++;
@@ -4418,7 +4481,7 @@ function peStundenzettel(namen,bez){const y=bez.getFullYear(),m=bez.getMonth(),n
    <table><tr><th>Tag</th><th>Datum</th><th>Zeit</th><th>Baustelle</th><th>Tätigkeit</th><th class="r">Std.</th></tr>${zl}</table>
    <div class="su"><span>Arbeitstage <b>${tage}</b></span><span>Stunden <b>${peH(ges)}</b></span>${soll?`<span>Soll (${peH(soll)} h/Woche, ${wt} Werktage${frei?', '+frei+' abwesend':''}) <b>${peH(ms)}</b></span><span>Differenz <b>${ges-ms>=0?'+':'−'}${peH(Math.abs(ges-ms))}</b></span>`:''}</div>
    <p class="hw">Stunden laut Bautagebuch (Anwesenheit, ohne Pausenabzug).</p><div class="un"><span>Datum, Unterschrift Mitarbeiter</span><span>Datum, Unterschrift Betrieb</span></div>${ON_MARKE}</section>`}).join('');
- document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
+ druckStart(d)}
 const peBst=(name,bez)=>{const mo=tbMo(bez),bst=new Set(),p=PER[name];for(let i=0;i<7;i++)(TB[tbIso(tbPlus(mo,i))]||[]).forEach(e=>{if(peListe(e.p).some(x=>x===name||(p&&p.alias.includes(x)))&&e.b)bst.add(e.b)});return [...bst]};
 function peMalen(inh){const bez=PE_BEZ||TBV.sel||new Date();
  if(PE_SEL===null){const L=Object.values(PER).sort((a,b)=>(b.du-a.du)||(b.neu-a.neu)||((a.status==='aktiv'?0:1)-(b.status==='aktiv'?0:1))||a.name.localeCompare(b.name));
@@ -4667,21 +4730,10 @@ function abDrucken(k,html){const f=document.createElement('iframe');f.style.cssT
  d.open();d.write(`<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Abnahmeprotokoll ${esc(k)}</title><style>body{font:12px/1.5 Arial,sans-serif;color:#111;margin:18mm}h3{margin:0 0 2px;font-size:18px;letter-spacing:1px}.meta{color:#555;margin-bottom:14px}table{width:100%;border-collapse:collapse;margin:10px 0}td,th{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left;vertical-align:top}th{font-size:10px;color:#666;font-weight:400;letter-spacing:1px}.sig{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}.sig img{height:60px;display:block}.sig i{display:block;height:60px}.sig small{display:block;border-top:1px solid #333;padding-top:4px;color:#555}</style></head><body>${html}</body></html>`);d.close();
  setTimeout(()=>{try{if(typeof APP!=='undefined'&&APP.nativ&&window.natPdfAusElement)natPdfAusElement(f.contentDocument.body,'Onstand Abnahmeprotokoll.pdf');else{f.contentWindow.focus();f.contentWindow.print()}}catch(e){}setTimeout(()=>f.remove(),60000)},400)}
 // ---------- Onstand versteht einen erzählten Mangel ----------
-function mgErkenne(t){const s=String(t||'');if(/\b(zeig|öffne|oeffne|welche|liste)\w*\b[^.?!]*\b(m(ä|ae)ngel\w*|abnahme\w*)\b/i.test(s)||/\bwas\s+ist\s+(noch\s+)?offen\b[^.?!]*\bm(ä|ae)ngel/i.test(s))return 'zeigen';
- if(/\?\s*$/.test(s)||/^\s*(wie|was|wann|wo|warum|wieso|welche\w*|kannst|darf|gibt)\b/i.test(s))return '';
- if(/\bm(ä|ae)ngel\b|\bmangel\b/i.test(s))return 'eintragen';
- return /\b(gesprungen|gerissen|kaputt|fehlt|fehlen|undicht|beschädigt|beschaedigt|schief|abgeplatzt|locker|nicht\s+sauber|ungleich|verkratzt|zerkratzt)\b/i.test(s)&&/\b(soll|muss|bis\s+(montag|dienstag|mittwoch|donnerstag|freitag|samstag|morgen|übermorgen|nächste\w*|\d)|nacharbeit\w*|nachbesser\w*|beheb\w*)\b/i.test(s)?'eintragen':''}
 async function mgVerstehen(text){await Promise.all([bstLaden(),peLaden()]).catch(()=>{});const h=new Date(),tage=[...Array(15)].map((_,i)=>{const d=tbPlus(h,i);return TB_WT[tbWt(d)]+' '+tbIso(d)}).join(', ');
  const j=await SAMPLE.json(`Eingabe (Handwerker, Innenausbau) meldet einen oder mehrere Mängel auf einer Baustelle.\nNachricht: „${text}“\nHeute: ${TB_WT[tbWt(h)]} ${tbIso(h)}. Nächste Tage: ${tage}.\n„ich“ = Aaron. Baustellen (Name · Kürzel · Ort): ${Object.values(BST).map(b=>b.name+' · '+b.k+(b.ort?' · '+b.ort:'')).join(' | ')||'(noch keine)'}\nPersonen (Name · Kürzel · Rolle · Schreibweisen): ${Object.values(PER).filter(p=>p.status==='aktiv').map(p=>p.name+' · '+p.k+' · '+(p.rolle||'')+(p.alias.length?' · '+p.alias.join('/'):'')+(p.du?' (= ich)':'')).join(' | ')||'-'}\n\nAntworte NUR mit JSON: {"maengel":[{"baustelle":"exakter Name aus der Liste (auch über Kürzel/Nachname/Ort), sonst leer","raum":"Raum oder Stelle, sonst leer","titel":"der Mangel, knapp, max. 8 Wörter","zustaendig":"exakter Name aus der Personenliste, sonst leer","frist":"JJJJ-MM-TT nur wenn genannt, sonst leer","wesentlich":true|false (nur bei Gefahr, Wasser, Statik, Funktion stark beeinträchtigt)}],"frage":"nur wenn völlig unklar ist, was der Mangel ist","antwort":"1 kurzer Satz"}\nNichts erfinden.`,{modelTier:'quick',cache:false,ohneAnh:true});
  const L=(j&&Array.isArray(j.maengel)?j.maengel:[]).filter(x=>x&&x.titel).slice(0,5);
  return L.map(x=>{const b=bstFinde(x.baustelle),p=x.zustaendig?peFinde(x.zustaendig):null;return {b:b?b.name:'',raum:String(x.raum||''),t:String(x.titel),z:p?p.name:'',frist:/^\d{4}-\d\d-\d\d$/.test(x.frist||'')?x.frist:mgPlus(mgHeute(),7),schwer:x.wesentlich?1:0,antwort:j.antwort}})}
-async function mgErzaehlt(text){if(!(await gedOk())){const t='Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).';say(t);set('ruhe');return}
- LIVE=true;stages(true);let L=[];try{await mgLaden();L=await mgVerstehen(text)}catch(e){stages(false);LIVE=false;throw e}stages(false);LIVE=false;
- if(!L.length){const t='Welcher Mangel ist es genau?';say(t);VERLAUF.push({r:'a',t});set('ruhe');return}
- const fertig=L.filter(x=>x.b&&x.z);if(!fertig.length){set('ruhe');MGV.form=Object.assign(L[0],{iris:1});amAuf('maengel',{neu:MGV.form});const t='Ich habe den Mangel vorbereitet. Sag mir noch '+(L[0].b?'':'die Baustelle'+(L[0].z?'':' und ')) +(L[0].z?'':'wer sich kümmert')+', oder wähl es aus.';say(t);VERLAUF.push({r:'a',t});return}
- let erst=null;for(const x of fertig){const m={nr:'',t:x.t,raum:x.raum,z:x.z,frist:x.frist,st:'offen',schwer:x.schwer,notiz:'',herkunft:'Assistent · aus Erzählung',an:mgHeute(),vor:'',nach:'',erledigt:'',iris:1,b:x.b};await mgSpeichern(null,m);erst=erst||m}
- const t=String(L[0].antwort||(fertig.length>1?fertig.length+' Mängel eingetragen.':'Mangel eingetragen: '+erst.nr+'.'));say(t);VERLAUF.push({r:'a',t});try{gedErinnerung(text,'Mängel: '+fertig.map(x=>x.b+' – '+x.t).join(', '))}catch(e){}
- set('ruhe');amAuf('maengel',{id:mgId(erst)})}
 // ---------- für Kalender, Erinnerungen und Leiste ----------
 function mgKalender(tag){const out=[];for(const m of mgAlle())if(mgOffen(m)&&m.frist===tag)out.push({art:'mangel',t:mgB(m.b).k+' · '+m.nr+' '+m.t,c:mgB(m.b).c,id:mgId(m),ganz:1,schwer:m.schwer});
  for(const [k,a] of Object.entries(AB)){if(a.datum===tag)out.push({art:'abnahme',t:'Abnahme '+k+(a.erg?' · '+AB_ERG[a.erg]:''),von:a.zeit||'',bis:'',ort:(BST[k]&&BST[k].ort)||'',b:k,c:mgB(k).c,ganz:!a.zeit});if(a.erg&&a.erg!=='nein'&&abEnde(a)===tag)out.push({art:'gewaehr',t:'Gewährleistung endet · '+k,b:k,c:mgB(k).c,ganz:1})}return out}
@@ -5358,9 +5410,6 @@ function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)r
   h.querySelector('.kw24').onclick=()=>{try{localStorage.setItem('onstandKal24',voll?'0':'1')}catch(e){}KAL.w24=!voll;kalZeichnen()};
   {const kb=h.querySelector('.kwkb');if(voll){const erste=Math.min(...T.flatMap(d=>d.zz.map(z=>z.a)),7*60);kb.scrollTop=Math.max(0,(erste-30)/1440*kb.scrollHeight)}}
   h.querySelectorAll('.kwsp').forEach(sp=>sp.ondblclick=ev=>{if(ev.target!==sp)return;const r=sp.getBoundingClientRect(),m=Math.min(23.5,Math.max(0,Math.floor(((ev.clientY-r.top)/r.height*n+von)*2)/2)),hh=String(Math.floor(m)).padStart(2,'0')+':'+(m%1?'30':'00');kalFormular(null,sp.dataset.t,hh)})}
- else if(false){// (v0.10.16) Handy-Wochenliste – ersetzt durch das Raster mit Uhrzeiten – jeder Tag eine Zeile, Termine untereinander, freie Tage schmal
-  const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i));
-  h.innerHTML=`<div class="kwa">${tage.map(t=>{const l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),L=l.filter(e=>e.art!=='feiertag');return `<section class="kwar${kWt(t)>4?' kwe':''}${t===heute?' kheute':''}${t===s?' ksel':''}${L.length?'':' kfrei'}"><button type="button" class="kwad" data-t="${t}"><small>${KTAG[kWt(t)]}</small><b>${kD(t).getDate()}</b></button><div class="kwal">${fei?`<span class="kwafei">${esc(fei.t)}</span>`:''}${L.map(e=>`<button type="button" class="kwae${kNeben(e)?' kneben':''}" style="--c:${kCol(e)}" data-t="${t}" data-i="${l.indexOf(e)}"><span class="kwaz">${e.von&&!e.ganz?esc(e.von)+(e.bis?'<br>'+esc(e.bis):''):'ganzt.'}</span><span class="kwat"><b>${esc(e.t)}</b>${e.ort||kArtName(e)?`<small>${e.ort?esc(e.ort):kArtName(e)}</small>`:''}</span></button>`).join('')||`<button type="button" class="kwafrei" data-t="${t}">frei · antippen zum Eintragen</button>`}</div></section>`}).join('')}</div>`}
  else if(KAL.ans==='woche'){// Zeitband: Tage als Zeilen, 24 Stunden waagerecht (scrollbar), Stundenleiste und Tage bleiben stehen
   const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i)),HW=kalHw(),min=v=>{const [a,b]=v.split(':').map(Number);return a*60+b},jetzt=new Date(),jm=jetzt.getHours()*60+jetzt.getMinutes();
   let x=`<div class="kzb" style="--hw:${HW}px"><div class="kzbach"><span class="kzbecke"></span>${Array.from({length:24},(_,i)=>`<span>${HW>=22||i%3===0?String(i).padStart(2,'0'):''}</span>`).join('')}</div>`;
@@ -5529,30 +5578,6 @@ async function terminAktion(ev,neu){const alt=terminTeile(ev);if(!(await terminW
  try{await gedErinnerung(msg,neu?'Termin geändert':'Termin gelöscht')}catch(e){}
  FAKTEN=FAKTEN.filter(f=>!f.includes(ev.roh.split(' · Quelle:')[0]));try{await ladeGedaechtnis()}catch(e){}
  await kalLaden();if(KAL.el)kalZeichnen();setTimeout(()=>{KAL.neu=null},4000);return msg}
-const KAL_AEND=/\b(verschieb\w*|verleg\w*|(ä|ae)nder\w*|l(ö|oe)sch\w*|streich\w*|entfern\w*|absag\w*|sag\w*\b[^.?!]*\bab)\b[^.?!]*\btermin|\btermin\w*\b[^.?!]*\b(verschieb\w*|verleg\w*|(ä|ae)nder\w*|l(ö|oe)sch\w*|streich\w*|entfern\w*|absag\w*|f(ä|ae)llt\s+aus)\b/i;
-function istTerminAenderung(t){if(KAL_AEND.test(t))return true;if(/\b(wand|w(ä|ae)nde|t(ü|ue)r|fenster|raum|zimmer|k(ü|ue)che|bad|flur|treppe|grundriss|plan|m(ö|oe)bel|panel)\b|\d+\s*(cm|mm|m)\b/i.test(t))return false;if(!/\b(verschieb|verleg|l(ö|oe)sch|streich|absag|cancel)\w*|\bsag\w*\b[^.?!]*\bab\b|f(ä|ae)llt\s+aus/i.test(t))return false;
- if(/\b(auf|nach|um)\b[^.?!]*(\d|morgen|(ü|ue)bermorgen|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|woche)/i.test(t))return true;
- const w=String(t).toLowerCase().split(/[^a-zäöüß0-9]+/).filter(x=>x.length>=4);return FAKTEN.some(f=>/^Termine \d{4}-\d\d: /.test(f)&&w.some(x=>f.toLowerCase().includes(x)))}
-async function kalAendern(text){if(!(await gedOk())){say('Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).');set('ruhe');return}await kalLaden();
- const h=new Date(),von=new Date(h);von.setDate(h.getDate()-14);const bis=new Date(h);bis.setDate(h.getDate()+120);const liste=[];
- KAL.ter.slice().sort((a,b)=>a.datum.localeCompare(b.datum)).forEach(ev=>{const d=kD(ev.datum);if((d<von&&(!ev.wdh||ev.wdh==='nie'))||d>bis)return;liste.push(ev)});
- if(!liste.length){say('Ich finde keine Termine, die ich ändern könnte.');set('ruhe');return}
- const tage=[...Array(15)].map((_,i)=>{const d=new Date(h);d.setDate(h.getDate()+i);return d.toLocaleDateString('de-DE',{weekday:'long'})+' = '+kIso(d)}).join(', ');
- let j=null;try{j=await SAMPLE.json(`Der Nutzer will einen Termin ändern oder löschen.\nNachricht: «${text}»\nHeute ist ${h.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'})}. Nächste Tage: ${tage}.\n\nSeine Termine:\n${liste.map((e,i)=>i+': '+terminZeile(terminTeile(e))).join('\n')}\n\nAntworte NUR mit JSON {"aktion":"aendern|loeschen","nr":Nummer aus der Liste,"neu":{"datum":"YYYY-MM-DD","von":"HH:MM oder leer","bis":"HH:MM oder leer","titel":"…","ort":"…","erinnerung":"${KERIN.join('|')}","wiederholung":"${KWDH.join('|')}"},"antwort":"ein kurzer Satz an Aaron","frage":"nur wenn unklar ist, welcher Termin gemeint ist, sonst leer"}\nBei aendern: „neu“ ist der komplette neue Termin (Unverändertes übernehmen). Bei loeschen: „neu“ weglassen.`,{modelTier:'quick',cache:false,ohneAnh:true})}catch(e){say(fehlerText(e&&e.code));set('ruhe');return}
- const ev=j&&Number.isInteger(+j.nr)?liste[+j.nr]:null;if(!ev||j.frage){say(String(j&&j.frage||'Welchen Termin meinst du genau?'));set('ruhe');return}
- let neu=null;if(j.aktion==='aendern'){const n=j.neu||{},a=terminTeile(ev);neu=Object.assign({},a,{datum:/^\d{4}-\d\d-\d\d$/.test(n.datum||'')?n.datum:a.datum,von:n.von!==undefined?n.von:a.von,bis:n.bis!==undefined?n.bis:a.bis,titel:n.titel||a.titel,ort:n.ort!==undefined?n.ort:a.ort,erin:KERIN.includes(n.erinnerung)?n.erinnerung:a.erin,wdh:KWDH.includes(n.wiederholung)?n.wiederholung:a.wdh});if(neu.bisDatum&&neu.bisDatum<=neu.datum)neu.bisDatum=''}
- try{await terminAktion(ev,neu)}catch(e){say('Den Termin konnte ich nicht finden.');set('ruhe');return}
- const a=String(j.antwort||(neu?'Erledigt, Termin geändert.':'Erledigt, Termin gelöscht.'));VERLAUF.push({r:'a',t:a});say(a);await kalAuf(neu?neu.datum:ev.datum)}
-const KAL_BEFEHL=/\b(trag\w*|eintrag\w*|notier\w*|speicher\w*)\b[^.?!]*\b(termin|kalender|ein)\b|\btermin\b[^.?!]*\b(am|um|morgen|übermorgen|heute|nächste\w*|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|\d{1,2}\.)|\berinner\w*\s+mich\b[^.?!]*\b(am|um|morgen|übermorgen|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|\d{1,2}\.)/i;
-const KAL_OEFFNEN=/^\s*(iris[, ]+)?(zeig|öffne|oeffne)\w*\s+(mir\s+)?(den\s+|meinen\s+)?kalender\b|^\s*(iris[, ]+)?kalender[\s.!]*$/i;
-async function kalEintrag(text,imKal){if(!(await gedOk())){const t='Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).';say(t);if(!imKal)set('ruhe');return}
- const h=new Date(),liste=[...Array(15)].map((_,i)=>{const d=new Date(h);d.setDate(h.getDate()+i);return d.toLocaleDateString('de-DE',{weekday:'long'})+' = '+kIso(d)}).join(', ');
- let j=null;try{j=await SAMPLE.json(`Der Nutzer will einen oder mehrere Termine in seinen Kalender eintragen.\nNachricht: «${text}»\nHeute ist ${h.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'})}, ${h.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr. Nächste Tage: ${liste}.\n\nAntworte NUR mit JSON {"termine":[{"datum":"YYYY-MM-DD","von":"HH:MM oder leer (leer = ganztägig)","bis":"HH:MM oder leer","bisDatum":"YYYY-MM-DD nur bei mehrtägig, sonst leer","titel":"kurz, max. 8 Wörter","ort":"oder leer","erinnerung":"${KERIN.join('|')} – nur wenn er es sagt („erinner mich“ ohne Angabe = 30 Minuten vorher), sonst keine","wiederholung":"${KWDH.join('|')} – nur wenn er es sagt"}],"antwort":"ein kurzer Satz an Aaron","frage":"nur wenn Datum fehlt, sonst leer"}\nErfinde keine Uhrzeit. „morgen“, Wochentage usw. mit der Liste oben umrechnen.`,{modelTier:'quick',cache:false,ohneAnh:true})}catch(e){const t=fehlerText(e&&e.code);say(t);if(!imKal)set('ruhe');return}
- const T=(j&&Array.isArray(j.termine)?j.termine:[]).filter(x=>x&&/^\d{4}-\d\d-\d\d$/.test(x.datum)&&!isNaN(new Date(x.datum))&&x.titel).slice(0,5);
- if(!T.length){const t=String(j&&j.frage||'An welchem Tag soll ich das eintragen?');say(t);if(!imKal){set('ruhe');}return}
- for(const x of T){const z=await terminNeu({datum:x.datum,von:/^\d\d:\d\d$/.test(x.von||'')?x.von:'',bis:/^\d\d:\d\d$/.test(x.von||'')&&/^\d\d:\d\d$/.test(x.bis||'')?x.bis:'',titel:x.titel,ort:x.ort||'',bisDatum:/^\d{4}-\d\d-\d\d$/.test(x.bisDatum||'')&&x.bisDatum>x.datum?x.bisDatum:'',erin:KERIN.includes(x.erinnerung)?x.erinnerung:'keine',wdh:KWDH.includes(x.wiederholung)?x.wiederholung:'nie',notiz:''});FAKTEN.push('Termine: '+z)}
- const a=String(j.antwort||'Eingetragen.');VERLAUF.push({r:'a',t:a});say(a);try{gedErinnerung(text,'Termin eingetragen: '+T.map(x=>x.titel).join(', '))}catch(e){}
- KAL.neu=T[0].datum;await kalAuf(T[0].datum);setTimeout(()=>{KAL.neu=null},4000)}
 
 // ===== Onstand · Firmen-Brain (Probe „Onstand Firmen-Brain“) – Teil des KI-Pakets =====
 // Ordner verknüpfen (z. B. „ESTETA“) → das Brain steht sofort → die KI sortiert jede Datei in ein verlinktes Firmen-Wiki.
@@ -7577,7 +7602,6 @@ const KI_TAT=/(gespachtelt|verspachtelt|gestrichen|grundiert|tapeziert|montiert|
 function kiArt(t,tb,gesprochen){const s=String(t||'').trim().toLowerCase();if(!s)return '';const f=(tb&&tb.f)||{};
  const fw=KI_FW.test(s),fz=!gesprochen&&/\?\s*$/.test(s),merk=(f.z?2:0)+((KI_TAT.test(s)||f.m||f.x)?2:0);
  if(merk>=2)return 'tagebuch';if(fw)return 'frage';if(fz)return 'unklar';return 'tagebuch'}
-function kiIstFrage(t,tb){return kiArt(t,tb,false)==='frage'}
 // Kurze Zusammenfassung der Firmendaten (nur was diese Rolle sehen darf)
 function kiKontext(frage){const H=HEUTE(),f=String(frage||'').toLowerCase(),rolle=(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.rolle)||'chef',geld=rolle!=='baustelle';
  const plus=(iso,n)=>{const d=new Date(iso+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
@@ -7924,17 +7948,19 @@ if(NAT.an){
  if(typeof erHerunterladen==='function'){erHerunterladen=async function(bytes,name,mime){const bl=bytes instanceof Blob?bytes:new Blob([bytes],{type:mime});try{await natTeilen(bl,name)}catch(e){if(!(e&&/abort|cancel/i.test(e.name+' '+e.message)))onToast('Teilen ging nicht: '+(e.message||e))}}}
 
 // ---------- PDF statt Drucken ----------
-// Die Druckansicht (#bpdruck) wird mit den Druck-Regeln als Bild gerendert und auf A4-Seiten verteilt.
+// Die Druckansicht (#bpdruck) bekommt die Druck-Regeln und wird als echtes Text-PDF gesetzt (kern/pdftext.js). Nur wenn das scheitert: Bild-PDF wie bisher.
  const lade=src=>new Promise((ok,nein)=>{if(document.querySelector(`script[src="${src}"]`))return ok();const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>nein(new Error('Ohne Internet kann das PDF gerade nicht erstellt werden.'));document.head.appendChild(s)});
  const druckRegeln=()=>{let css='';for(const sh of document.styleSheets){let R;try{R=sh.cssRules}catch(e){continue}for(const r of R)if(r.media&&/print/.test(r.media.mediaText))for(const x of r.cssRules)if(x.type===1)css+=x.cssText+'\n'}return css};
- async function natPdf(el,name,quer){await lade('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');await lade('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+ async function natPdf(el,name,quer){if(window.onTextPdf&&window.PDFLib){try{return await window.onTextPdf(el,{titel:String(name||'Onstand').replace(/\.pdf$/i,'')})}catch(e){try{console.warn('Text-PDF ging nicht, Bild-PDF als Ersatz',e)}catch(x){}}}
+  await lade('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');await lade('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
   const br=quer?1123:794,doc=el.ownerDocument,alt=el.getAttribute('style')||'';
   el.setAttribute('style',alt+`;width:${br}px!important;max-width:none!important;position:absolute!important;left:0;top:0;background:#fff;color:#000`);
   let cv;try{cv=await window.html2canvas(el,{scale:2,backgroundColor:'#ffffff',width:br,windowWidth:br,useCORS:true,logging:false})}finally{el.setAttribute('style',alt)}
   const {jsPDF}=window.jspdf,pdf=new jsPDF({orientation:quer?'landscape':'portrait',unit:'pt',format:'a4'}),pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight(),seiteH=Math.floor(cv.width*ph/pw);
   for(let y=0,i=0;y<cv.height;y+=seiteH,i++){const t=document.createElement('canvas');t.width=cv.width;t.height=Math.min(seiteH,cv.height-y);t.getContext('2d').drawImage(cv,0,y,cv.width,t.height,0,0,cv.width,t.height);if(i)pdf.addPage();pdf.addImage(t.toDataURL('image/jpeg',.92),'JPEG',0,0,pw,t.height*pw/cv.width)}
   return pdf.output('blob')}
- const titel=el=>{const h=el.querySelector('h1,h2,.tit b,b');return 'Onstand '+((h&&h.textContent)||'Dokument').replace(/\s+/g,' ').trim().slice(0,60)+'.pdf'};
+ const titel=el=>{const t=String(el.textContent||'').replace(/\s+/g,' '),art=(t.match(/(Schlussrechnung|Abschlagsrechnung|Regierechnung|Rechnung|Angebot|Zahlungserinnerung|Mahnung|Stundenzettel|Abnahmeprotokoll|Mängelplan|Baustellenbericht|Bericht)/i)||[''])[0],nr=(t.match(/[AR]-\d{4}-\d{2,4}(?!\d)/)||[''])[0];
+  if(art){const a=art.charAt(0).toUpperCase()+art.slice(1).toLowerCase();return (a+(nr?' '+nr:'')).replace(/[\\/:*?"<>|]/g,'-')+'.pdf'}const h=el.querySelector('h1,h2,.tit b,b');return 'Onstand '+((h&&h.textContent)||'Dokument').replace(/\s+/g,' ').trim().slice(0,60)+'.pdf'};
  window.print=function(){const d=document.getElementById('bpdruck');if(!d||!d.innerHTML.trim()){onToast('Nichts zum Drucken.');return}
   const html=d.innerHTML,kl=d.className,quer=/(^|\s)(sw|plan|bp\w*)(\s|$)/.test(kl),css=druckRegeln();onToast('PDF wird erstellt …');
   (async()=>{const st=document.createElement('style');st.textContent=css;try{d.className=kl;d.innerHTML=html;document.head.appendChild(st);document.body.classList.add('bpdruckt');const bl=await natPdf(d,titel(d),quer);st.remove();document.body.classList.remove('bpdruckt');await natTeilen(bl,titel(d))}
