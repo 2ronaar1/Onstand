@@ -5,13 +5,23 @@
   "backgroundColor": "#0A0C0F",
   "server": {
     "url": "https://2ronaar1.github.io/Onstand/onstand.html",
-    "cleartext": false
+    "cleartext": false,
+    "errorPath": "index.html"
   },
   "ios": {
     "contentInset": "never",
     "backgroundColor": "#0A0C0F",
     "appendUserAgent": "OnstandApp",
     "scrollEnabled": false,
-    "limitsNavigationsToAppBoundDomains": false
+    "limitsNavigationsToAppBoundDomains": true
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
+    }
   }
 }

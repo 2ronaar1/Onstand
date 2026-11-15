@@ -36,6 +36,10 @@ jobs:
           setze NSPhotoLibraryUsageDescription string "Onstand braucht Zugriff auf Fotos, um Bilder an Mängel und Einträge zu hängen."
           setze UIViewControllerBasedStatusBarAppearance bool false
           setze UIStatusBarStyle string UIStatusBarStyleLightContent
+          # Offline: Service Worker in der App erlauben (nur für die eigene Adresse)
+          /usr/libexec/PlistBuddy -c "Delete :WKAppBoundDomains" "$P" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :WKAppBoundDomains array" "$P"
+          /usr/libexec/PlistBuddy -c "Add :WKAppBoundDomains:0 string 2ronaar1.github.io" "$P"
           /usr/libexec/PlistBuddy -c "Print" "$P"
       - name: Web-Teil übernehmen
         run: npx cap sync ios

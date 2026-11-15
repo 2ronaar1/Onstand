@@ -30,3 +30,9 @@ Neu bauen musst du nur, wenn sich etwas an der Hülle ändert (Ordner `app`).
 - Die App läuft **7 Tage**, dann einfach in Sideloadly erneut auf **Start** (Daten bleiben).
 - Höchstens 3 solcher Apps pro iPhone.
 - Für Kunden/Team später: Apple-Entwicklerkonto (99 €/Jahr) → TestFlight bzw. App Store.
+
+## Neue Fassung der App-Hülle (z. B. 0.2.0)
+1. Ordner `app` neu hochladen (Add file → Upload files, alles ersetzen).
+2. Datei `.github/workflows/onstand-iphone.yml` im Repo öffnen → Stift (Bearbeiten) → alles löschen →
+   Inhalt von `app/onstand-iphone.yml` einfügen → Commit changes.
+3. Actions → iPhone-App bauen → neue `Onstand.ipa` herunterladen → in Sideloadly erneut auf Start.
