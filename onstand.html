@@ -2638,7 +2638,7 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.24';
+const ON_VER='0.10.25';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7678,14 +7678,22 @@ if(NAT.an){
  async function natErinnern(){if(!natHat('LocalNotifications')||typeof kalAm!=='function'||typeof KAL==='undefined')return;
   let ok=false;try{const p=await nat('LocalNotifications','checkPermissions');ok=p&&p.display==='granted';if(!ok&&p&&p.display!=='denied'){const q=await nat('LocalNotifications','requestPermissions');ok=q&&q.display==='granted'}}catch(e){}
   if(!ok)return;
-  try{const offen=await nat('LocalNotifications','getPending');const alt=((offen&&offen.notifications)||[]).filter(n=>n.id>=ER_ID0&&n.id<ER_ID0+500).map(n=>({id:n.id}));if(alt.length)await nat('LocalNotifications','cancel',{notifications:alt})}catch(e){}
+  // v0.10.25: Titel immer „Onstand“, Inhalt beginnt mit „Heute“ usw. Zeitpunkt als Kalenderdatum (on) statt Text (at) –
+  // „at“ wurde von iOS offenbar nicht gelesen, dann kam die Mitteilung sofort, bei jedem Start wieder. Unveränderte Liste wird nicht neu geplant.
   const jetzt=Date.now(),L=[],frist=e=>['frist','mangel','faellig','abnahme','gewaehr'].includes(e.art)||e.kat==='frist',termin=e=>e.art==='termin'||e.art==='einzug'||e.kat==='termin';
   for(let i=0;i<21&&L.length<60;i++){const t=kPlus(kIso(new Date()),i),d=kD(t);let l=[];try{l=kalAm(t,true)}catch(e){}
-   for(const e of l){if(!frist(e)&&!termin(e))continue;let wann;
-    if(e.von&&!e.ganz){const [h,m]=e.von.split(':').map(Number);wann=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m-30)}else wann=new Date(d.getFullYear(),d.getMonth(),d.getDate(),7,30);
+   for(const e of l){if(!frist(e)&&!termin(e))continue;let wann;const zeit=e.von&&!e.ganz;
+    if(zeit){const [h,m]=e.von.split(':').map(Number);wann=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m-30)}else wann=new Date(d.getFullYear(),d.getMonth(),d.getDate(),7,30);
     if(wann.getTime()<jetzt+60000)continue;
-    L.push({id:ER_ID0+L.length,title:frist(e)?'Frist heute':(e.von&&!e.ganz?'In 30 Minuten · '+e.von+' Uhr':'Heute'),body:String(e.t||'Termin')+(e.ort?' · '+e.ort:''),schedule:{at:wann.toISOString(),allowWhileIdle:true}})}}
-  if(L.length)try{await nat('LocalNotifications','schedule',{notifications:L})}catch(e){}}
+    // Der Text wird erst beim Eintreffen gelesen – und das ist immer am Tag selbst
+    const was=String(e.t||'Termin')+(e.ort?' · '+e.ort:''),kopf=frist(e)?'Frist heute':zeit?`In 30 Minuten · ${e.von} Uhr`:'Heute';
+    L.push({id:ER_ID0+L.length,title:'Onstand',body:kopf+': '+was,schedule:{on:{year:wann.getFullYear(),month:wann.getMonth()+1,day:wann.getDate(),hour:wann.getHours(),minute:wann.getMinutes()},repeats:false,allowWhileIdle:true},extra:{onstand:1}})}}
+  const sig=JSON.stringify(L.map(n=>[n.id,n.body,n.schedule.on]));let altSig='';try{altSig=localStorage.getItem('onstandErinnerungen')||''}catch(e){}
+  let offen=[];try{const o=await nat('LocalNotifications','getPending');offen=((o&&o.notifications)||[]).filter(n=>n.id>=ER_ID0&&n.id<ER_ID0+500)}catch(e){}
+  if(sig===altSig&&offen.length===L.filter(n=>{const x=n.schedule.on;return new Date(x.year,x.month-1,x.day,x.hour,x.minute).getTime()>Date.now()}).length)return;// nichts geändert
+  try{if(offen.length)await nat('LocalNotifications','cancel',{notifications:offen.map(n=>({id:n.id}))})}catch(e){}
+  if(L.length)try{await nat('LocalNotifications','schedule',{notifications:L})}catch(e){}
+  try{localStorage.setItem('onstandErinnerungen',sig)}catch(e){}}
  window.natErinnern=natErinnern;
  const plane=()=>{clearTimeout(plane.t);plane.t=setTimeout(async()=>{try{if(typeof kalLaden==='function'&&!KAL.ok)await kalLaden()}catch(e){}natErinnern()},4000)};
  addEventListener('load',plane);document.addEventListener('visibilitychange',()=>{if(!document.hidden)plane()});
