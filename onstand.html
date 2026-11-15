@@ -2521,13 +2521,17 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 .brzur{display:none}
 @media (max-width:760px){#am .brzur{display:inline-flex;align-items:center}}
 @media (max-width:760px){#kal .kwb .kwbis{display:none}#kal .kwb small{overflow:visible;text-overflow:clip}#kal .kwb b,#kal .kwb.kurz b,#kal .kwb.mittel b{white-space:normal;-webkit-line-clamp:3;overflow-wrap:break-word;hyphens:auto;font-size:9.5px}#kal .kwb.kurz b{-webkit-line-clamp:1}}
+/* v0.10.18 · iOS-App: Onstand reicht bis zur sichtbaren Unterkante, auch wenn der fixed-Bereich von iOS zu kurz ist */
+#am.onstand{bottom:calc(0px - var(--unten,0px))}
+#am.onstand #onstart,#onstart{bottom:calc(0px - var(--unten,0px))}
+@media (max-width:760px){#kal{bottom:calc(var(--hyl) - var(--unten,0px))!important}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.17';
+const ON_VER='0.10.18';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7472,18 +7476,23 @@ function onRandMessen(){const p=document.createElement('div');p.style.cssText='p
  p.style.paddingTop=p.style.paddingBottom='0';p.style.height='100svh';const svh=Math.round(p.getBoundingClientRect().height);p.style.height='100lvh';const lvh=Math.round(p.getBoundingClientRect().height);p.remove();
  const quer=screen.orientation&&screen.orientation.type?/landscape/.test(screen.orientation.type):Math.abs(window.orientation||0)===90,sh=quer?Math.min(screen.width,screen.height):Math.max(screen.width,screen.height);
  return {st,sb,svh,lvh,sh,quer}}
-// v0.10.17: Onstand setzt KEINE Höhe mehr (kein 100lvh). #am liegt mit position:fixed im echten Fenster, das iOS vergibt.
-// Nur wenn das App-Fenster kürzer ist als der Bildschirm (iOS-Fehler 301994), werden die gemeldeten Ränder um genau diese
-// fehlende Höhe verkleinert – zuerst unten (Home-Balken), dann oben. Vorher wurde der untere Rand teils VERGRÖSSERT
-// (größte minus kleinste Höhe) und kam zur vollen Leistenhöhe dazu: dadurch saß die untere Leiste zu hoch.
-function onRandPruefen(){try{const m=onRandMessen(),ih=Math.round(innerHeight),sig=[m.st,m.sb,m.sh,m.quer,ih].join('|');
- if(sig===ON_RAND.sig&&ON_RAND.w)return;ON_RAND.sig=sig;
- const ios=APP.ios&&APP.standalone,fehlt=ios?Math.max(0,m.sh-ih):0,weg=fehlt>2&&(m.st+m.sb)>0;
- let st=null,sb=null;if(weg){let rest=fehlt;sb=Math.max(0,m.sb-rest);rest-=m.sb-sb;st=Math.max(0,m.st-rest)}
- const w={...m,kurz:fehlt,voll:false,weg,st2:st,sb2:sb,sa:APP.standalone,ih};ON_RAND.w=w;onRandPruefen.w={st:m.st,sb:m.sb,sh:m.sh,vh:m.svh,ih,iw:innerWidth,weg,sa:APP.standalone};
+// v0.10.18: Der untere Rand wird GEMESSEN statt vermutet. Drei Werte, die Onstand selbst nicht verändert:
+//  lb = Unterkante des Bereichs, an dem position:fixed hängt (dort hängt auch die Leiste),
+//  vb = Unterkante dessen, was wirklich sichtbar ist (visualViewport), sh = Bildschirmhöhe.
+// iOS 26 (Fehler 301994): Im App-Modus kann lb ÜBER der sichtbaren Unterkante liegen. Dann hing die Leiste mitten im Bild
+// und darunter blieb ein dunkler Streifen – das war der Fehler seit dem neuen Handy-Design. Jetzt reicht Onstand um genau
+// diese Differenz nach unten (--unten). Fehlt dagegen wirklich Fenster (vb < sh), wird nur der Rand für den Home-Balken kleiner.
+function onRandPruefen(){try{const m=onRandMessen(),p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;bottom:0;width:1px;visibility:hidden;pointer-events:none';document.body.appendChild(p);
+ const lb=Math.round(p.getBoundingClientRect().bottom),lt=Math.round(p.getBoundingClientRect().top);p.remove();
+ const vv=window.visualViewport,vb=vv?Math.round(vv.offsetTop+vv.height):lb,ios=APP.ios&&APP.standalone,tast=document.activeElement&&/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+ if(tast&&ON_RAND.w)return;// Tastatur offen: nichts umstellen
+ const sig=[m.st,m.sb,m.sh,m.quer,lb,lt,vb].join('|');if(sig===ON_RAND.sig&&ON_RAND.w)return;ON_RAND.sig=sig;
+ const unten=ios?Math.max(0,Math.min(m.sh,vb)-lb):0,fehlt=ios?Math.max(0,m.sh-Math.max(vb,lb)):0;
+ let st=null,sb=null;if(fehlt>2&&(m.st+m.sb)>0){let rest=fehlt;sb=Math.max(0,m.sb-rest);rest-=m.sb-sb;st=Math.max(0,m.st-rest)}
+ const weg=fehlt>2||unten>2,w={...m,lb,lt,vb,unten,kurz:fehlt,voll:unten>2,weg,st2:st,sb2:sb,sa:APP.standalone};ON_RAND.w=w;onRandPruefen.w={st:m.st,sb:m.sb,sh:m.sh,vh:m.svh,ih:Math.round(innerHeight),iw:innerWidth,weg,sa:APP.standalone};
  const r=document.documentElement,setz=(k,v)=>{if(v==null){if(r.style.getPropertyValue(k))r.style.removeProperty(k)}else if(r.style.getPropertyValue(k)!==v)r.style.setProperty(k,v)};
  if(r.classList.contains('onvoll'))r.classList.remove('onvoll');if(r.classList.contains('onrandweg')!==weg)r.classList.toggle('onrandweg',weg);
- setz('--vollh',null);setz('--st',st==null?null:st+'px');setz('--sb',sb==null?null:sb+'px')}catch(e){}}
+ setz('--vollh',null);setz('--unten',unten>2?unten+'px':null);setz('--st',st==null?null:st+'px');setz('--sb',sb==null?null:sb+'px')}catch(e){}}
 // nur bei echten Wechseln neu prüfen (Drehen, Rückkehr in die App); die Prüfung selbst löst keine Änderung mehr aus, wenn nichts anders ist
 ['load','orientationchange','pageshow'].forEach(n=>addEventListener(n,()=>{onRandPruefen();setTimeout(onRandPruefen,400)}));
 addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,250)});
@@ -7491,7 +7500,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout
 setTimeout(onRandPruefen,0);
 
 function onRandInfo(){onRandPruefen();const W2=ON_RAND.w||{},w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
- return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'} · kurz ${W2.kurz}`}
+ return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'} · kurz ${W2.kurz} · fix-unten ${W2.lb} · sichtbar-unten ${W2.vb} · ausgleich ${W2.unten}`}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
@@ -7572,7 +7581,17 @@ function eiTippPos(p){const t=eiEbene().querySelector('.ftipp');
  const tw=Math.min(270,innerWidth-24),th=t.offsetHeight,oben=eiEbene().classList.contains('mitleiste')?60:12;t.style.width=tw+'px';let x,y;
  if(p.x+p.w+14+tw<innerWidth-10){x=p.x+p.w+14;y=p.y}else if(p.x-14-tw>10){x=p.x-14-tw;y=p.y}else{x=Math.max(12,Math.min(p.x,innerWidth-tw-12));y=p.y+p.h+14+th<innerHeight-10?p.y+p.h+14:Math.max(oben,p.y-14-th)}
  t.style.left=x+'px';t.style.top=Math.max(oben,Math.min(y,innerHeight-th-12))+'px'}
-async function eiFuehren(o){if(EI.weg){document.removeEventListener('pointerdown',EI.weg,true);EI.weg=null}clearTimeout(EI.jetztT);const E=eiEbene();EI.fuehrung=o;E.classList.add('an');E.classList.toggle('mitleiste',!!o.leiste);E.classList.remove('jetzt');
+// Handy: Seitenleiste, Logo und Sprechen-Griff gibt es dort nicht – die Schritte zeigen auf Leiste unten, Mehr-Kacheln und Einstellungen
+function eiHandy(o){if(W>760)return o;const mehr=async()=>{if(AM_AKT!=='mehr'){amFunktion('mehr');await eiWarte('#am .hykach')}},unten=['cockpit','tagebuch','kalender'];
+ const um=x=>{if(typeof x.sel!=='string')return x;let s=x.sel,v=x.vor,p=x.p,t=x.t,an=x.a;const m=s.match(/^#am \.onnav \[data-f="([a-z]+)"\]$/);
+  if(s==='.ongriff'){s='#am .onleiste .hymic';p='Tippe unten in der Mitte auf das Mikrofon. Dann hört der Assistent zu.'}
+  else if(s==='#am .onnav'){s='#am .onleiste';p='Unten sind die wichtigsten Bereiche. Alles Weitere findest du unter „Mehr“.';an='<span style="color:var(--aj)">COCKPIT · TAGEBUCH · KALENDER · MEHR</span>'}
+  else if(m&&unten.includes(m[1]))s=`#am .onleiste [data-hy="${m[1]}"]`;
+  else if(m){s=`#am .hykach [data-f="${m[1]}"]`;const alt=v;v=async()=>{await mehr();if(alt)await alt()}}
+  else if(s==='#am .onlogo'){s='#am .hygrp [data-hx=menu]';t='Einstellungen';p=x.t==='Logo antippen'?'Unter „Mehr“ → Einstellungen liegen Firma, Konto und Design.':'Unter „Mehr“ → Einstellungen findest du Firma & Preise, Mitarbeiter verbinden, Design und diesen Rundgang.';const alt=v;v=async()=>{await mehr();if(alt)await alt()}}
+  return Object.assign({},x,{sel:s,vor:v,p,t,a:an})};
+ const n=Object.assign({},o,{schritte:o.schritte.map(um)});if(typeof o.ziel==='string'&&o.ziel==='.ongriff')n.ziel='#am .onleiste .hymic';return n}
+async function eiFuehren(o){o=eiHandy(o);if(EI.weg){document.removeEventListener('pointerdown',EI.weg,true);EI.weg=null}clearTimeout(EI.jetztT);const E=eiEbene();EI.fuehrung=o;E.classList.add('an');E.classList.toggle('mitleiste',!!o.leiste);E.classList.remove('jetzt');
  E.querySelector('.fleiste').innerHTML=o.leiste?`<span>${esc(o.leiste)}</span><span class="fpk">${o.schritte.map(()=>'<i></i>').join('')}</span><button type="button" data-f="zu" aria-label="Beenden">×</button>`:'';
  if(o.leiste)E.querySelector('[data-f=zu]').onclick=ev=>{ev.stopPropagation();eiFuehrEnde()};
  let i=0;const zeig=async()=>{EI.bereit=false;const x=o.schritte[i];if(EI.fuehrung!==o)return;if(!x)return eiFuehrEnde();if(x.vor){try{await x.vor()}catch(e){}}let el=await eiFinde(x.sel);if(EI.fuehrung!==o)return;if(!el||!el.isConnected||!el.getClientRects().length){if(i<o.schritte.length-1){i++;return zeig()}return eiFuehrEnde()}
