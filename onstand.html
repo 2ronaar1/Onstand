@@ -2849,13 +2849,121 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
  #am .aminhalt.glneu .cpml,#am .aminhalt.glneu .cpwoche button,#am .aminhalt.glneu .cpphasen span{animation-duration:.25s;animation-delay:.12s!important}
  @keyframes hyauf{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 }
+/* ===== v0.10.31 · Auffrischung 1–13 (nur Handy): normale Schreibweise, feste Fußzeile, Formulare als Zeilen, Blätter von unten ===== */
+@media (max-width:760px){
+ /* --- gemeinsame Knopfform --- */
+ #am .auknoepfe button,#am .auknoepfe a,#am .amaktion button,#am .aukh button,#am .brx .auknoepfe button,#am .brdat,#am .opalle,#am .bpliste button em,#am .amleerk button,#am .aupneu,#am .aukat{letter-spacing:0!important;text-transform:none!important;font-family:"Manrope",Arial,sans-serif!important}
+ #am .auknoepfe{gap:8px;flex-wrap:wrap}
+ #am .auknoepfe button,#am .auknoepfe a{min-height:44px;padding:0 16px;border-radius:12px;font-size:14.5px;font-weight:600}
+ #am .aukh button{font-size:13.5px;font-weight:600;color:var(--k-akz)}
+ #am .auknoepfe[hidden],#am .amaktion[hidden]{display:none!important}
+ /* --- 1 · 6 · 9: Fußzeile mit Hauptknopf, Nebenknopf und „···“ --- */
+ #am .hyfuss{position:absolute;left:16px;right:16px;bottom:calc(var(--hyl) + 4px);z-index:16;display:flex;gap:10px}
+ #am.hykal .hyfuss{display:none}
+ #am.onstand .aminhalt.hatfuss{padding-bottom:calc(var(--hyl) + 96px)!important}
+ #am .hyfuss:before{content:'';position:absolute;left:-16px;right:-16px;top:-22px;bottom:-8px;z-index:-1;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--k-b0) 92%,transparent) 38%);pointer-events:none}
+ #am .hyfk{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;height:50px;padding:0 14px;border-radius:14px;font:700 16px/1 "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;border:1px solid var(--lin);background:var(--k-b1);color:var(--k-t);box-shadow:none;transition:transform .12s}
+ #am .hyfk:active{transform:scale(.97)}
+ #am .hyfk.p{background:linear-gradient(160deg,color-mix(in srgb,var(--k-akz) 68%,white),var(--k-akz) 45%,var(--k-akzd));color:var(--k-auf);border-color:transparent}
+ #am .hyfk.rund{flex:none;width:50px;padding:0 0 9px;font-size:22px;letter-spacing:1px}
+ #am .hyfk[disabled]{opacity:.5}
+ #am .hymenue{position:absolute;left:0;bottom:calc(100% + 6px);min-width:240px;max-width:calc(100vw - 32px);border-radius:16px;overflow:hidden;background:color-mix(in srgb,var(--k-b1) 94%,white);border:1px solid color-mix(in srgb,white 12%,transparent);box-shadow:0 20px 40px -10px black;display:flex;flex-direction:column;opacity:0;transform:translateY(8px) scale(.97);transform-origin:left bottom;pointer-events:none;transition:opacity .16s,transform .2s cubic-bezier(.2,.9,.3,1)}
+ #am .hymenue.auf{opacity:1;transform:none;pointer-events:auto}
+ #am .hymi{display:flex;align-items:center;min-height:50px;padding:0 16px;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--k-t)!important;font:500 15.5px/1.2 "Manrope",Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important;text-align:left;width:100%}
+ #am .hymi+.hymi{border-top:1px solid var(--lin)!important}
+ #am .hymi.rot{color:var(--k-rot)!important}
+ /* --- 13: Kopfzeile der Unterseiten – „‹ Zurück“ oben links --- */
+ #am .aminhalt>.amkopf:has(>.ampf),#am .aminhalt>.mgekopf:has(>.ampf){display:flex;flex-direction:column-reverse;align-items:flex-start;gap:2px;position:static;padding:0;margin:-6px 0 2px;background:none;border:0}
+ #am .aminhalt>.mgekopf:has(>.ampf){flex-direction:column}
+ #am .aminhalt>.amkopf>.ampf,#am .aminhalt>.mgekopf>.ampf{position:static;width:auto;height:44px;margin-left:-8px;padding:0 10px 0 2px;border:0;background:none;box-shadow:none;border-radius:10px;color:var(--k-akz);font-size:0;display:inline-flex;align-items:center;gap:2px}
+ #am .aminhalt>.amkopf>.ampf:before,#am .aminhalt>.mgekopf>.ampf:before{content:'';width:24px;height:24px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 5-7 7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 5-7 7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
+ #am .aminhalt>.amkopf>.ampf:after,#am .aminhalt>.mgekopf>.ampf:after{content:'Zurück';font:500 16px "Manrope",Arial,sans-serif;letter-spacing:0}
+ /* --- 2: Firma & Preise als Zeilen, Preisliste zum Antippen --- */
+ #am .auraster{display:flex;flex-direction:column;gap:0;border:1px solid var(--lin);border-radius:14px;overflow:hidden;background:color-mix(in srgb,var(--k-sub) 4%,transparent)}
+ #am .auraster label{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;min-height:50px;padding:6px 14px;margin:0;font-size:10.5px;letter-spacing:1.2px;color:var(--k-sub);white-space:nowrap}
+ #am .auraster label+label{border-top:1px solid var(--lin)}
+ #am .auraster input{flex:1;min-width:0;width:auto;border:0!important;background:none!important;box-shadow:none!important;text-align:right;padding:8px 0;font-size:16px;color:var(--k-t);letter-spacing:0;outline:0}
+ #am .aupl{display:flex;flex-direction:column;gap:0;border:1px solid var(--lin);border-radius:14px;overflow:hidden}
+ #am .aupr{border:0;border-radius:0;margin:0;padding:0 14px 14px;background:none}
+ #am .aupr+.aupr{border-top:1px solid var(--lin)}
+ #am .hyprz{display:flex;align-items:center;gap:10px;width:calc(100% + 28px);margin:0 -14px;min-height:60px;padding:8px 14px;background:none;border:0;color:var(--k-t);text-align:left;font-family:"Manrope",Arial,sans-serif}
+ #am .hyprz span{flex:1;min-width:0}#am .hyprz b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#am .hyprz small{display:block;font-size:12.5px;color:var(--k-sub);margin-top:2px}
+ #am .hyprz em{font-style:normal;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+ #am .hyprz svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;color:var(--k-sub);opacity:.6;transition:transform .2s}
+ #am .aupr:not(.zu) .hyprz svg{transform:rotate(90deg)}
+ #am .aupr.zu{padding-bottom:0}#am .aupr.zu>:not(.hyprz){display:none!important}
+ /* --- 3: Dialoge als Blatt von unten --- */
+ #am .ondlg{place-items:end stretch;padding:0}
+ #am .ondk{width:100%;max-height:calc(100% - 60px);overflow-y:auto;border-radius:26px 26px 0 0;border:0;border-top:1px solid color-mix(in srgb,white 12%,transparent);background:color-mix(in srgb,var(--k-b1) 96%,white);padding:26px 18px calc(18px + var(--sb));transform:translateY(100%);transition:transform .34s cubic-bezier(.2,.85,.25,1);position:relative;display:flex;flex-direction:column}
+ #am .ondk:before{content:'';position:absolute;left:50%;top:9px;width:38px;height:4px;margin-left:-19px;border-radius:9px;background:color-mix(in srgb,var(--k-t) 28%,transparent)}
+ #am .ondk h3{font:700 18px "Manrope",Arial,sans-serif;letter-spacing:-.2px;color:var(--k-t);margin:4px 0 12px}
+ #am .ondk p{font-size:14.5px}#am .ondk .kl{font-size:12.5px}
+ #am .ondk label{font-size:10.5px}#am .ondk input{font-size:16px!important;min-height:48px;border-radius:13px}
+ #am .ondkn{display:flex;gap:10px;margin-top:14px}
+ #am .ondkn button{flex:1;min-height:50px;border-radius:14px;font:700 16px "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none}
+ /* --- 4: Neuer Termin als Blatt, Felder als Zeilen --- */
+ #kal .kblatt{left:0;right:0;top:auto;bottom:0;width:auto;max-height:calc(100% - 54px);border-radius:26px 26px 0 0;border:0;border-top:1px solid color-mix(in srgb,white 12%,transparent);padding:22px 16px calc(16px + var(--sb));transform:translateY(105%);overflow-y:auto}
+ #kal .kblatt.auf{transform:none}
+ #kal .kblatt:before{content:'';position:absolute;left:50%;top:9px;width:38px;height:4px;margin-left:-19px;border-radius:9px;background:color-mix(in srgb,var(--k-t) 28%,transparent)}
+ #kal .kbk b{font:700 17px "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none}
+ #kal .kform{gap:0}
+ #kal .kform .kbk{margin-bottom:12px}
+ #kal .kform .kzur{border:0;background:none;color:var(--k-akz);font:500 16px "Manrope",Arial,sans-serif;letter-spacing:0;padding:0 8px 0 0;min-height:44px}
+ #kal .kform label{flex-direction:row;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:4px 14px;font-size:10.5px;letter-spacing:1.2px;white-space:nowrap;background:color-mix(in srgb,var(--k-sub) 6%,transparent);border:1px solid var(--lin);border-bottom-width:0}
+ #kal .kform label:first-of-type{border-radius:14px 14px 0 0}
+ #kal .kform>label:last-of-type,#kal .kform>:last-child label:last-child{border-bottom-width:1px}
+ #kal .kform .kzz{display:contents}
+ #kal .kform input:not([type=checkbox]),#kal .kform select,#kal .kform textarea{flex:1;min-width:0;border:0!important;background:none!important;box-shadow:none!important;text-align:right;font-size:16px!important;padding:8px 0;outline:0;color:var(--k-t)}
+ #kal .kform select{text-align-last:right;-webkit-appearance:none;appearance:none}
+ #kal .kform textarea{text-align:left;min-height:60px}
+ #kal .kform label:has(textarea){flex-direction:column;align-items:stretch;padding-top:10px}
+ #kal .kform .kschalter{font-size:15px;letter-spacing:0;color:var(--k-t);flex-direction:row-reverse}
+ #kal .kform .kschalter input{width:22px;height:22px;accent-color:var(--k-akz)}
+ #kal .kform button[type=submit],#kal .kform .kab,#kal .kblatt .kakt button{min-height:50px;border-radius:14px;font:700 16px "Manrope",Arial,sans-serif!important;letter-spacing:0!important;text-transform:none}
+ /* --- 5: Neuer Mangel --- */
+ #am .mgchips{gap:8px;flex-wrap:wrap}
+ #am .mgchips button{min-height:42px;padding:6px 15px;border-radius:999px;font:500 14px "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none}
+ #am .mgchips button small{font-size:11.5px;letter-spacing:0;margin-left:6px;opacity:.75}
+ #am .amfeld>small{font-size:10.5px;letter-spacing:1.6px;font-weight:700}
+ #am .amfeld input,#am .amfeld textarea{min-height:50px;border-radius:14px;font-size:16px;padding:13px 14px}
+ /* --- 7: Mängel-Filter als runde Chips --- */
+ #am .mgbst{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ #am .mgbst::-webkit-scrollbar{display:none}
+ #am .mgbst button{flex:none;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 15px;border-radius:999px;border:1px solid var(--lin);background:var(--karte);font:600 13px "Manrope",Arial,sans-serif;letter-spacing:.6px;color:var(--k-sub)}
+ #am .mgbst button i{width:8px;height:8px;border-radius:50%;background:var(--bc)}
+ #am .mgbst button.an{border-color:var(--bc,var(--k-akz));color:var(--k-t);background:color-mix(in srgb,var(--bc,var(--k-akz)) 14%,var(--karte))}
+ /* --- 8: Neue Rechnung – Zeilen mit Symbol und Pfeil --- */
+ #am .auarten{display:flex;flex-direction:column;gap:0;border:1px solid var(--lin);border-radius:16px;overflow:hidden;background:var(--karte)}
+ #am .auarten button{display:grid;grid-template-columns:38px minmax(0,1fr) 16px;grid-template-rows:auto auto;column-gap:12px;align-items:center;min-height:68px;padding:10px 14px;border:0;border-radius:0;background:none;text-align:left;position:relative}
+ #am .auarten button+button{border-top:1px solid var(--lin)}
+ #am .auarten button:before{content:'';grid-row:1/3;width:38px;height:38px;border-radius:11px;background:color-mix(in srgb,var(--q,var(--k-akz)) 16%,transparent)}
+ #am .auarten button:after{content:'';grid-column:3;grid-row:1/3;width:15px;height:15px;background:var(--k-sub);opacity:.6;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 5 7 7-7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 5 7 7-7 7'/%3E%3C/svg%3E") center/contain no-repeat}
+ #am .auarten button b{grid-column:2;font:600 15.5px "Manrope",Arial,sans-serif;letter-spacing:0;color:var(--k-t);align-self:end}
+ #am .auarten button span{grid-column:2;font-size:12.5px;color:var(--k-sub);line-height:1.35;align-self:start}
+ #am .auarten button:before{background-repeat:no-repeat;background-position:center;background-size:20px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D19A6A' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M17 6.5A6.5 6.5 0 1 0 17 17.5M4 10h9M4 14h9'/%3E%3C/svg%3E")}
+ #am .auarten [data-art=schluss]:before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237FD68A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7'/%3E%3C/svg%3E")}
+ #am .auarten [data-art=regie]:before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238FB8FF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h9l3 3v15H6zM9 11h6M9 15h6'/%3E%3C/svg%3E")}
+ #am .auarten [data-art=frei]:before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237FDBFF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 19h4L19.5 8.5l-4-4L5 15z'/%3E%3C/svg%3E")}
+ #am .auarten [data-art=schluss]{--q:var(--k-gruen)}#am .auarten [data-art=regie]{--q:var(--k-blau)}#am .auarten [data-art=frei]{--q:var(--k-info)}
+ /* --- 10: Offene Posten – zwei mal zwei große Kacheln --- */
+ #am .aukette.opk{grid-template-columns:1fr 1fr;gap:10px;border:0;background:none}
+ #am .aukette.opk>div{border:1px solid var(--lin);border-radius:16px;background:var(--karte);padding:14px}
+ #am .aukette.opk small{font-size:12.5px;letter-spacing:0;text-transform:none;display:flex;align-items:center;gap:7px}
+ #am .aukette.opk b{font-size:26px;margin:6px 0 2px}#am .aukette.opk span{font-size:13px}
+ #am .opeinst summary{min-height:52px;display:flex;align-items:center;font:600 15px "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none}
+ /* --- 11: Bauplan-Liste --- */
+ #am .bpliste button em{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;font:700 14.5px "Manrope",Arial,sans-serif;font-style:normal;color:var(--k-auf);background:linear-gradient(160deg,color-mix(in srgb,var(--k-akz) 68%,white),var(--k-akz) 45%,var(--k-akzd))}
+ /* --- 12: Kalender und Tagebuch – Knöpfe im aktuellen Stil --- */
+ #am .amleerk button{min-height:46px;padding:0 18px;border-radius:999px;font-size:15px;font-weight:700}
+ #kal .kneu button,#kal #kneu button,#kal .kpill,#kal .kleer button{min-height:46px;padding:0 18px;border-radius:999px;font:700 14.5px "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.30';
+const ON_VER='0.10.31';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -4683,7 +4791,7 @@ function mgListe(inh){const L=mgAlle().filter(m=>MGV.b==='alle'||m.b===MGV.b),t=
 function mgToast(inh,t){let e=inh.querySelector('.mgtoast');if(!e){e=document.createElement('div');e.className='mgtoast';e.setAttribute('role','status');inh.appendChild(e)}e.textContent=t;e.classList.add('auf');clearTimeout(mgToast.t);mgToast.t=setTimeout(()=>e.classList.remove('auf'),2600)}
 function mgFbox(lab,w,leer){return `<label class="mgfbox" data-w="${w}"><span class="mglab">${lab}</span><span class="mgfl">${MG_FOTO}<span>${leer}</span></span><input type="file" accept="image/*" capture="environment"></label>`}
 async function mgFotosZeigen(root,m){for(const w of ['vor','nach']){const el=root.querySelector(`.mgfbox[data-w="${w}"]`);if(!el)continue;const u=m[w+'Url']||await mgBild(MG_ORD,m[w]);if(u&&el.isConnected){el.classList.add('voll');const im=el.querySelector('img')||el.appendChild(document.createElement('img'));im.src=u;im.alt=w==='vor'?'Foto vorher':'Foto nachher'}}}
-function mgDetail(inh,pane,id){const root=pane||inh,nach=()=>pane?mgMalen(inh):nach(),m=mgFind(id||MGV.sel),b=mgB(m.b),s=MG_ST.findIndex(x=>x[0]===m.st),f=mgFrist(m),p=mgPers(m.z),tbTag=(m.herkunft.match(/Bautagebuch (\d{4}-\d\d-\d\d)/)||[])[1];
+function mgDetail(inh,pane,id){const root=pane||inh,nach=()=>mgMalen(inh),m=mgFind(id||MGV.sel),b=mgB(m.b),s=MG_ST.findIndex(x=>x[0]===m.st),f=mgFrist(m),p=mgPers(m.z),tbTag=(m.herkunft.match(/Bautagebuch (\d{4}-\d\d-\d\d)/)||[])[1];
  root.innerHTML=`<div class="mgekopf">${pane?'':'<button type="button" class="ampf" data-a="zu" aria-label="zurück">‹</button>'}<span class="amtt">${esc(m.nr)} · ${esc(String(m.b).toUpperCase())}</span></div>
   <div class="mgscroll">${m.iris?'<div class="mgirisbox"><span><b>Vom Assistenten eingetragen.</b> Bitte kurz prüfen.</span><button type="button" data-a="gut">PASST SO</button></div>':''}
    <h3 class="mgtitel" style="--bc:${b.c}"><span>${esc(b.k)}</span>${esc(m.t)}${m.schwer?'<i class="mgschwer"></i>':''}</h3>
@@ -7895,6 +8003,49 @@ function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK
  onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();amFunktion.lauf=(amFunktion.lauf||0)+1;
  const inh=amFrisch();if(!RM){inh.classList.add('glneu');clearTimeout(amFunktion.gl);amFunktion.gl=setTimeout(()=>{const x=AM_EL.querySelector('.aminhalt');if(x)x.classList.remove('glneu')},900)}if(opt&&opt.seite==='einst')hyEinst(inh);else hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
 addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
+// ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
+// Wirkt nur bis 760 px Breite. Der PC bleibt, wie er ist: dort stehen die Knöpfe weiter in Großbuchstaben an ihrem Platz.
+// 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
+// 2) Fußzeile: ein Hauptknopf und ein Nebenknopf fest unten, alles Seltene hinter „···“ (Angebot, Auftrag, Rechnung, Mangel).
+// 3) Preisliste in „Firma & Preise“: Zeilen zum Antippen, die Felder klappen erst beim Antippen auf.
+const FR_NOMEN=['PDF','KI','IBAN','BIC','QR','E-Rechnung','Angebot','Angebote','Auftrag','Aufträge','Rechnung','Rechnungen','Entwurf','Abschlag','Schlussrechnung','Stornorechnung','Bauplan','Mangel','Mängel','Abnahme','Arbeit','Konto','Firma','Code','Ordner','Datei','Dateien','Mahnung','Serie','Tag','Tage','Woche','Wochen','Monat','Jahr','Liste','Eintrag','Werkstatt','Protokoll','Posten','Kunden-Menü','Bautagebuch','Mail','Foto','Leistung','Preisliste','Position','Frage','Wiki','Termin','Kalender','Baustelle','Gerät','Geräte','Vorbehalt','Assistent','Passwort','Sicherung','Papierkorb','Zahlung','Kunde','Leistungsstand','Prozent','Tagebuch','Regie','Nachher-Foto','Onstand','Einstellungen','Mahnwesen','Drucken'];
+const FR_FEST={'OK':'OK','ALS PDF / DRUCKEN':'Als PDF / Drucken','ANGENOMMEN → AUFTRAG':'Angenommen','ZURÜCK AUF ENTWURF':'Zurück auf Entwurf','GEPRÜFT ✓':'Geprüft ✓','IN ARBEIT':'In Arbeit','‹ ZURÜCK':'‹ Zurück','E-RECHNUNG?':'E-Rechnung?','PASST SO':'Passt so','NACH PROZENT':'Nach Prozent','NACH LEISTUNGSSTAND':'Nach Leistungsstand','REGIE AUS TAGEBUCH':'Regie aus Tagebuch','FREIE RECHNUNG':'Freie Rechnung','IN DER WERKSTATT ÖFFNEN ›':'In der Werkstatt öffnen','+ NEUER BAUPLAN':'+ Bauplan','ALLE ZEIGEN':'Alle zeigen'};
+const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
+function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^a-zäöü]*)([a-zäöü])/,(m,a,b)=>a+b.toLocaleUpperCase('de'));
+ s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
+const FR_AUS='.onleiste,[role=tab],.autabs,.glreiter,.brreiter,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
+function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
+  if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
+function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
+{let wart=new Set(),raf=0;const lauf=()=>{raf=0;const L=[...wart];wart=new Set();if(W>760)return;L.forEach(n=>{try{frSchreib(n.nodeType===3?n.parentElement:n)}catch(e){}})};
+ new MutationObserver(M=>{if(W>760)return;for(const m of M){if(m.type==='characterData')wart.add(m.target);else m.addedNodes.forEach(n=>{if(n.nodeType===1||n.nodeType===3)wart.add(n)})}if(wart.size&&!raf)raf=requestAnimationFrame(lauf)}).observe(document.documentElement,{childList:true,subtree:true,characterData:true})}
+// ---------- Fußzeile ----------
+function frFussWeg(){if(AM_EL)AM_EL.querySelectorAll('.hyfuss').forEach(x=>x.remove());const i=AM_EL&&AM_EL.querySelector('.aminhalt');if(i)i.classList.remove('hatfuss')}
+function frFuss(inh,B,opt){opt=opt||{};frFussWeg();B=B.filter(b=>b&&!b.hidden);if(!B.length)return;
+ const haupt=B.find(b=>b.classList.contains('ja')||b.classList.contains('amja')),neben=B.find(b=>b!==haupt&&(opt.neben||/^\s*(pdf|bearbeiten|abbrechen)\s*$/i).test(b.textContent)),rest=B.filter(b=>b!==haupt&&b!==neben);
+ const f=document.createElement('div');f.className='hyfuss';
+ if(rest.length&&(haupt||neben)){const m=document.createElement('div');m.className='hymenue';rest.forEach(b=>{b.classList.add('hymi');if(/lösch|entfern|storn|ablehn|abgelehnt/i.test(b.textContent)||b.classList.contains('amlos')||b.classList.contains('arweg'))b.classList.add('rot');m.appendChild(b)});
+  const k=document.createElement('button');k.type='button';k.className='hyfk rund';k.setAttribute('aria-label','Weitere Aktionen');k.setAttribute('aria-expanded','false');k.textContent='···';
+  const zu=()=>{m.classList.remove('auf');k.setAttribute('aria-expanded','false')};k.onclick=ev=>{ev.stopPropagation();const an=m.classList.toggle('auf');k.setAttribute('aria-expanded',an)};
+  m.addEventListener('click',()=>setTimeout(()=>{if(!m.querySelector('.sicher')&&![...m.children].some(x=>/\?/.test(x.textContent)))zu()},30));
+  document.addEventListener('click',ev=>{if(!f.isConnected)return;if(!f.contains(ev.target))zu()});f.appendChild(m);f.appendChild(k)}
+ else rest.forEach(b=>{b.classList.add('hyfk','g');f.appendChild(b)});
+ if(neben){neben.classList.add('hyfk','g');f.appendChild(neben)}if(haupt){haupt.classList.add('hyfk','p');f.appendChild(haupt)}
+ (AM_EL.querySelector('.amlade')||inh).appendChild(f);inh.classList.add('hatfuss')}
+function frAuftrag(inh){if(W>760||!inh||!inh.isConnected)return;
+ if(AUV.firma){frFussWeg();frPreise(inh);return}
+ if(AUV.offen||AUV.rech||AUV.op){const K=[...inh.querySelectorAll('.aux>.auknoepfe')];frFuss(inh,K.flatMap(k=>[...k.children].filter(x=>x.matches('button,a'))));K.forEach(k=>{if(!k.children.length)k.hidden=true})}
+ else frFussWeg()}
+function frPreise(inh){inh.querySelectorAll('.aupr').forEach(r=>{if(r.querySelector('.hyprz'))return;const q=f=>r.querySelector(`[data-f="${f}"]`),z=document.createElement('button');z.type='button';z.className='hyprz';
+  const mal=()=>{const fl=q('f');z.innerHTML=`<span><b>${esc(q('n').value||'Neue Leistung')}</b><small>${esc(r.querySelector('.aueh').textContent)} · ${esc(fl.options[fl.selectedIndex].text)} · Lohn ${esc(q('l').value||'0')} %</small></span><em>${esc(q('p').value||'0')} €</em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`};
+  mal();r.classList.add('zu');r.prepend(z);z.onclick=()=>{const auf=r.classList.toggle('zu');inh.querySelectorAll('.aupr').forEach(x=>{if(x!==r)x.classList.add('zu')});if(!auf){const i=q('p');i.focus();i.select()}};
+  r.addEventListener('input',mal);r.addEventListener('change',mal);r.querySelector('.aueh').addEventListener('click',()=>setTimeout(mal,400))});
+ const erste=inh.querySelector('.aupr');if(erste&&erste.querySelector('[data-f=n]').value==='Neue Leistung')erste.classList.remove('zu')}
+{const _m=auMalen;auMalen=function(inh){const r=_m.apply(this,arguments);try{frAuftrag(inh)}catch(e){}return r}}
+{const _m=mgMalen;mgMalen=function(inh){const r=_m.apply(this,arguments);try{if(W<=760&&inh&&inh.isConnected){const a=inh.querySelector(':scope>.amaktion,.mgscroll~.amaktion,.amaktion');
+   if(a&&inh.querySelector('.mgekopf'))frFuss(inh,[...a.querySelectorAll('button')]);else frFussWeg();if(a&&!a.children.length)a.hidden=true}}catch(e){}return r}}
+// Beim Wechsel in einen anderen Bereich verschwindet die Fußzeile der Unterseite
+{const _af=amFunktion;amFunktion=function(){try{frFussWeg()}catch(e){}return _af.apply(this,arguments)}}
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
