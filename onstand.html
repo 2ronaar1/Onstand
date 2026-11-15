@@ -2284,13 +2284,174 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
  #kal .ktitel{padding:0;min-height:0}
 }
 @media (max-width:760px){#am .glr .tbfelder,#am .gldk~.tbfelder{grid-template-columns:max-content minmax(0,1fr);column-gap:14px}#am .aminhalt:has(.kuneu,.kuzur) :is(.tbfelder>span,.gllab,.gldk small){letter-spacing:1.4px}}
+/* ===== Onstand · Handy-Design (v0.10.16) – gilt nur bis 760 px Breite ===== */
+#am .onleiste,#am .onkopf,#am .cpqa,#am .kuakt,#am .amsag{display:none}
+#am .amp{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:.8em;letter-spacing:0;vertical-align:.04em}
+@media (max-width:760px){
+ :root{--hyl:calc(62px + var(--sb))}
+ /* 1 · Leiste unten statt Seitenleiste */
+ #am .onseite,#am .onseitedimm,#am .ongriff{display:none!important}
+ #am.onstand,#am .amlade{overflow:clip}
+ #am .onleiste{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;position:absolute;left:0;right:0;bottom:0;z-index:15;height:var(--hyl);padding:0 4px var(--sb);background:color-mix(in srgb,var(--k-b0) 76%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);border-top:1px solid var(--lin)}
+ #am .onleiste>button{display:flex;flex-direction:column;align-items:center;gap:4px;font:500 10.5px/1 Arial,Helvetica,sans-serif;letter-spacing:.2px;color:var(--k-sub);background:none;border:0;padding:8px 0 6px;transition:color .15s,transform .12s}
+ #am .onleiste>button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ #am .onleiste>button.an{color:var(--k-akz)}
+ #am .onleiste>button:active{transform:scale(.92)}
+ /* 2 · Sprechen in der Mitte */
+ #am .onleiste .hymic{width:58px;height:58px;justify-self:center;align-self:center;margin-top:-22px;padding:0;justify-content:center;border-radius:50%;color:var(--k-auf);background:linear-gradient(160deg,color-mix(in srgb,var(--k-akz) 68%,white),var(--k-akz) 45%,var(--k-akzd));box-shadow:0 8px 22px -6px color-mix(in srgb,var(--k-akz) 70%,transparent),0 0 0 6px var(--k-b0)}
+ #am .onleiste .hymic svg{width:26px;height:26px;stroke-width:2}
+ #am .onleiste .hymic.an,#am .onleiste .hymic:active{transform:scale(.94)}
+ /* 3 · Kopfzeile erscheint beim Scrollen */
+ #am .onkopf{display:flex;position:absolute;top:0;left:0;right:0;z-index:14;height:calc(var(--st) + 44px);padding:var(--st) 56px 0;align-items:center;justify-content:center;pointer-events:none;opacity:0;transform:translateY(-6px);transition:opacity .2s,transform .2s;background:color-mix(in srgb,var(--k-b0) 80%,transparent);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--lin)}
+ #am .onkopf.zu{opacity:1;transform:none}
+ #am .onkopf b{font:600 16px Arial,Helvetica,sans-serif;color:var(--k-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ /* 14 · Seite scrollt als Ganzes bis unter Kopfzeile und Leiste */
+ #am.onstand .aminhalt{overflow-y:auto!important;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding:calc(var(--st) + 12px) 16px calc(var(--hyl) + 26px)!important;gap:14px}
+ #am.onstand .aminhalt>*{flex-shrink:0}
+ #am .aminhalt :is(.cpx,.aux,.gltab,.kuliste,.gll,.glr,.mgliste,.mgscroll,.mgeins,.bpliste,.amtext,.kuform,.petab):not(.tbedit *){overflow:visible!important;max-height:none!important;height:auto!important;flex:none!important;min-height:0!important;padding-bottom:0!important}
+ #am .aminhalt>.amnotiz:not(.tbedit){overflow:visible!important;max-height:none!important;flex:none!important}
+ #am .ontoast{bottom:calc(var(--hyl) + 14px)}
+ #am .mgk h2.mgh,#am .amkopf+*{scroll-margin-top:60px}
+ #am .mgk h2.mgh{font-size:30px;line-height:1.12}
+ #am .mgunten{position:sticky;bottom:calc(var(--hyl) + 10px);z-index:4}
+ /* 7 · Baustelle wählen per Wischen */
+ #am .cpwahl{flex-wrap:nowrap;margin:0 -16px;padding:2px 16px 4px;scroll-padding:0 16px}
+ #am .cpwahl button{border-radius:999px;padding:9px 14px;font-size:11px}
+ #am .aminhalt:has(>.cpx)>.mgk .mgakt{display:none}
+ /* 8 · Schnellaktionen */
+ #am .cpqa{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+ #am .cpqa>*{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12px;color:var(--k-sub);background:none;border:0;padding:0;cursor:pointer;transition:transform .12s}
+ #am .cpqa>*:active{transform:scale(.94)}
+ #am .cpqa span{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;color:var(--k-akz);background:var(--karte);border:1px solid var(--lin);box-shadow:var(--gs)}
+ #am .cpqa svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ /* 9 · Phasen als Fortschrittslinie */
+ #am .cpphasen{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;border:0;border-radius:0;overflow:visible!important;padding-top:2px}
+ #am .cpphasen:before,#am .cpphasen:after{content:'';position:absolute;top:9px;left:10%;height:2px;border-radius:2px}
+ #am .cpphasen:before{right:10%;background:color-mix(in srgb,var(--k-sub) 22%,transparent)}
+ #am .cpphasen:after{width:calc(80% * var(--ph,0) / 4);background:var(--k-akz)}
+ #am .cpphasen span{flex:none;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:7px;padding:0 1px!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--k-sub)!important;font-size:10px;font-weight:400!important;white-space:normal;text-align:center;line-height:1.2;animation:none}
+ #am .cpphasen span:before{content:'';width:15px;height:15px;border-radius:50%;box-sizing:border-box;border:2px solid color-mix(in srgb,var(--k-sub) 45%,transparent);background:var(--k-b1)}
+ #am .cpphasen span.f:before{border-color:var(--k-akz);background:var(--k-akz) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7' fill='none' stroke='%231C1207' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/9px no-repeat}
+ #am .cpphasen span.j{color:var(--k-t)!important;font-weight:600!important}
+ #am .cpphasen span.j:before{border-color:var(--k-akz);box-shadow:0 0 0 4px color-mix(in srgb,var(--k-akz) 22%,transparent)}
+ #am .cpphasen svg{display:none}
+ /* 4 · Wochenleiste mit allen 7 Tagen */
+ #am .amt5.amt7{gap:5px}
+ #am .amtag{padding:9px 0 7px;min-width:0;border-radius:14px;font-size:10px;letter-spacing:1px;border-color:transparent;gap:3px}
+ #am .amtag b{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+ #am .amtag.we{border-style:solid;border-color:transparent}
+ #am .amtag.heute b{box-shadow:inset 0 0 0 1.5px var(--k-akz);color:var(--k-akz)}
+ #am .amtag.sel{background:var(--karte);border-color:var(--lin);box-shadow:none}
+ #am .amtag.sel b{background:var(--k-akz);color:var(--k-auf);box-shadow:none}
+ #am .amtag .amkz{display:none}
+ #am .amtag .amfb{width:6px;height:6px;border-radius:50%;margin-top:1px}
+ #am .amtag .ammehr{font-size:8px;letter-spacing:0;line-height:1}
+ #am .amtag:has(.amkz:only-child):after{content:'';height:7px}
+ #am .amkal{margin:0 -4px;touch-action:pan-y}
+ /* 5 · Leerer Tag: klein */
+ #am .tbk~.amnotiz:has(>.amleer){background:none!important;border:0!important;box-shadow:none!important;padding:0!important}
+ #am .tbk~.amnotiz:has(>.amleer) .amnk{padding:6px 2px 0!important;border:0}
+ #am .tbk~.amnotiz:has(>.amleer) .amnk h4{display:none}
+ #am .tbk~.amnotiz>.amleer{align-items:flex-start;text-align:left;padding:8px 2px 4px!important;gap:16px;font-size:15px}
+ #am .amleerk{display:flex;gap:10px;flex-wrap:wrap}
+ #am .amleerk button{display:flex;align-items:center;gap:7px;font-size:14.5px!important;letter-spacing:.2px!important;font-weight:600;border-radius:999px!important;padding:11px 18px!important;text-transform:none}
+ #am .amleerk .amsag{display:flex;background:var(--karte)!important;color:var(--k-t)!important;border:1px solid var(--lin)!important}
+ #am .amleerk svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+ /* 6 · Neuer Eintrag als Blatt von unten */
+ #am .tbk~.amnotiz.tbedit{position:fixed!important;left:0;right:0;bottom:0;top:auto;z-index:30;max-height:calc(100% - var(--st) - 20px);overflow:hidden auto!important;flex:none;border-radius:24px 24px 0 0!important;border:0;border-top:1px solid color-mix(in srgb,var(--k-akz) 40%,transparent)!important;background-color:var(--k-b1)!important;padding-bottom:calc(var(--sb) + 10px)!important;box-shadow:0 -20px 60px color-mix(in srgb,black 70%,transparent)!important;animation:hyblatt .4s cubic-bezier(.2,.85,.25,1) both}
+ #am .tbk~.amnotiz.tbedit .amnk{position:sticky;top:0;z-index:3;background:var(--k-b1);padding-top:20px!important}
+ #am .tbk~.amnotiz.tbedit .amnk:before{content:'';position:absolute;top:7px;left:50%;width:38px;height:5px;margin-left:-19px;border-radius:3px;background:color-mix(in srgb,var(--k-sub) 40%,transparent)}
+ #am:has(.amnotiz.tbedit) .amlade:after{content:'';position:absolute;inset:0;z-index:29;background:color-mix(in srgb,black 55%,transparent);animation:hydimm .3s ease both}
+ @keyframes hyblatt{from{transform:translateY(100%)}}
+ @keyframes hydimm{from{opacity:0}}
+ /* 10 · Formulare im iPhone-Stil: Bezeichnung links, Wert rechts */
+ #am .aufm .auraster:has(input[type=date]){display:flex!important;flex-direction:column;gap:0;border:1px solid var(--lin);border-radius:14px;overflow:hidden;background:color-mix(in srgb,var(--k-b0) 40%,transparent)}
+ #am .aufm .auraster:has(input[type=date])>label{display:flex!important;flex-direction:row!important;align-items:center;justify-content:space-between;gap:12px;min-height:50px;padding:6px 14px;margin:0;font-size:14.5px;letter-spacing:0;color:var(--k-t);text-transform:none;border-top:1px solid var(--lin);grid-column:auto!important}
+ #am .aufm .auraster:has(input[type=date])>label:first-child{border-top:0}
+ #am .aufm .auraster input[type=date]{width:auto!important;max-width:58%;min-height:0!important;flex:none;background:none!important;border:0!important;box-shadow:none!important;padding:6px 0!important;color:var(--k-akz)!important;font-size:15px;text-align:right}
+ #am .aufm .auraster input[type=date]::-webkit-date-and-time-value{text-align:right}
+ /* 11 · Kunde: Anrufen, E-Mail, Route */
+ #am .kuakt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 14px 14px}
+ #am .kuakt>*{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 0 10px;border-radius:14px;background:color-mix(in srgb,var(--k-akz) 8%,transparent);border:1px solid color-mix(in srgb,var(--k-akz) 25%,transparent);color:var(--k-akz);font-size:12.5px;text-decoration:none;transition:transform .12s}
+ #am .kuakt>*:active{transform:scale(.95)}
+ #am .kuakt .aus{opacity:.4}
+ #am .kuakt svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ #am .gldk .glanruf{display:none}
+ /* 12 · Mehr: Kacheln */
+ #am .hykach{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ #am .hykach button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:14px 12px 12px;text-align:left;border-radius:18px;background:var(--karte);border:1px solid var(--lin);color:var(--k-t);box-shadow:var(--gs);transition:transform .12s}
+ #am .hykach button:active{transform:scale(.95)}
+ #am .hykach b{font-size:13.5px;font-weight:500;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+ #am .hyki{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,transparent)}
+ #am .hyki svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+ #am .hykach em{position:absolute;top:10px;right:10px;font-style:normal;font-size:11px;font-weight:700;border-radius:8px;padding:1px 7px;background:color-mix(in srgb,var(--k-sub) 20%,transparent);color:var(--k-t)}
+ #am .hykach em.rot{background:var(--k-rot);color:white}
+ #am .hylab{font-size:11px;letter-spacing:2px;color:var(--k-sub);margin:10px 4px -4px}
+ #am .hygrp{border-radius:16px;background:var(--karte);border:1px solid var(--lin);overflow:hidden}
+ #am .hygrp button{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 14px;text-align:left;background:none;border:0;color:var(--k-t);position:relative}
+ #am .hygrp button+button:before{content:'';position:absolute;top:0;left:58px;right:0;height:1px;background:var(--lin)}
+ #am .hygrp svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ #am .hygrp>button>svg{width:15px;height:15px;color:var(--k-sub);opacity:.6}
+ #am .hyri{width:32px;height:32px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,transparent)}
+ #am .hyrt{flex:1;min-width:0}#am .hyrt b{display:block;font-weight:500;font-size:15px}#am .hyrt small{display:block;color:var(--k-sub);font-size:12.5px;margin-top:2px}
+ /* 13 · Unterseiten schieben sich von rechts herein */
+ #am .aminhalt>.gldk,#am .aminhalt>.gldk~*{animation:hyrein .36s cubic-bezier(.2,.8,.2,1) both}
+ @keyframes hyrein{from{opacity:0;transform:translateX(34px)}}
+ /* Kalender: volle Breite über der Leiste */
+ #kal{left:0!important;bottom:var(--hyl)!important;height:auto!important}
+ #kal .kin{padding:calc(var(--st) + 10px) 16px 10px!important;gap:10px!important}
+ #kal .ktitel{padding:0!important;min-height:0!important;align-items:flex-start;justify-content:flex-start}
+ #kal .ktitel small{font-size:10.5px;letter-spacing:3px;color:var(--k-akz)}
+ #kal .ktitel b{font-size:28px!important;letter-spacing:-.2px!important}
+ #kal .kseg{flex:1 1 auto;padding:3px;border-radius:12px;background:var(--karte);border:1px solid var(--lin);justify-content:stretch}
+ #kal .kseg button{flex:1;border-radius:9px;padding:8px 4px;font-size:10px;letter-spacing:1.4px}
+ #kal .kseg button.an{background:var(--k-akz);color:var(--k-auf)}
+ #kal .kplus{border-radius:12px;padding:10px 12px}
+ #kal .kneu{padding-bottom:0}
+ #kal:has(.ka-woche) #kseite,#kal:has(.ka-liste) #kseite,#kal:has(.ka-jahr) #kseite{display:none!important}
+ #kal .kbody:has(.ka-woche),#kal .kbody:has(.ka-liste),#kal .kbody:has(.ka-jahr){grid-template-rows:minmax(0,1fr)!important}
+ #kal .khaupt{will-change:transform}
+ /* Kalender · Woche: jeder Tag eine Zeile */
+ #kal .khaupt.ka-woche{overflow-y:auto;overflow-x:hidden}
+ #kal .kwa{display:flex;flex-direction:column;gap:6px;padding-bottom:6px}
+ #kal .kwar{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px 10px 6px;border-radius:16px;background:var(--karte);border:1px solid var(--lin);transition:border-color .2s,background-color .2s}
+ #kal .kwar.kfrei{padding-top:6px;padding-bottom:6px;background:none;border-style:dashed}
+ #kal .kwar.ksel{border-color:color-mix(in srgb,var(--k-akz) 55%,transparent)}
+ #kal .kwad{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;color:var(--k-sub);padding:2px 0}
+ #kal .kwad small{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase}
+ #kal .kwad b{font:500 22px/1 var(--serif,Georgia,serif);color:var(--k-t);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+ #kal .kwar.kfrei .kwad{flex-direction:row;gap:6px}#kal .kwar.kfrei .kwad b{font-size:17px;width:30px;height:30px}
+ #kal .kwar.kheute .kwad b{background:var(--k-akz);color:var(--k-auf)}
+ #kal .kwar.kwe .kwad small,#kal .kwar.kwe:not(.kheute) .kwad b{color:color-mix(in srgb,var(--k-sub) 75%,transparent)}
+ #kal .kwal{display:flex;flex-direction:column;gap:6px;min-width:0;justify-content:center;min-height:30px}
+ #kal .kwae{display:grid;grid-template-columns:44px 3px minmax(0,1fr);gap:9px;align-items:stretch;width:100%;text-align:left;background:none;border:0;padding:3px 0;color:var(--k-t)}
+ #kal .kwae:before{content:'';grid-column:2;grid-row:1;border-radius:2px;background:var(--c)}
+ #kal .kwaz{grid-column:1;grid-row:1;font-size:12px;line-height:1.35;color:var(--k-sub);font-variant-numeric:tabular-nums;padding-top:1px}
+ #kal .kwat{grid-column:3;grid-row:1;min-width:0}
+ #kal .kwat b{display:block;font-size:14.5px;font-weight:500;line-height:1.3;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ #kal .kwat small{display:block;font-size:12px;color:var(--k-sub);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #kal .kwae.kneben b{font-weight:400;color:color-mix(in srgb,var(--k-t) 80%,transparent)}
+ #kal .kwafei{font-size:11px;letter-spacing:1.2px;color:var(--k-gelb);text-transform:uppercase}
+ #kal .kwafrei{background:none;border:0;padding:0;text-align:left;color:color-mix(in srgb,var(--k-sub) 70%,transparent);font-size:13px}
+ /* Kalender · Jahr: zwölf Monate, klar gegliedert */
+ #kal .khaupt.ka-jahr{overflow-y:auto}
+ #kal .kjahr{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px 16px!important;padding:4px 2px 10px}
+ #kal .kjm{padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+ #kal .kjkopf{font:500 17px var(--serif,Georgia,serif)!important;letter-spacing:0!important;color:var(--k-t)!important;text-transform:none;padding:0 0 6px!important;display:flex;justify-content:space-between;align-items:baseline;width:100%;border-bottom:1px solid var(--lin);margin-bottom:6px}
+ #kal .kjkopf small{font:400 10px Arial,sans-serif;letter-spacing:.5px;color:var(--k-sub)}
+ #kal .kjm.kjjetzt .kjkopf{color:var(--k-akz)!important;border-bottom-color:color-mix(in srgb,var(--k-akz) 50%,transparent)}
+ #kal .kjwt span{font-size:8.5px}
+ #kal .kjt{font-size:11px!important;height:21px!important;border-radius:6px}
+ #kal .kjt.kheute{background:var(--k-akz)!important;color:var(--k-auf)!important;font-weight:700}
+}
+@media (max-width:760px) and (prefers-reduced-motion:reduce){#am .tbk~.amnotiz.tbedit,#am .aminhalt>.gldk,#am .aminhalt>.gldk~*,#am:has(.amnotiz.tbedit) .amlade:after{animation:none}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.15';
+const ON_VER='0.10.16';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -2737,7 +2898,7 @@ function cpMalen(inh,wechsel){const L=cpListe();if(!L.length){inh.innerHTML='<di
  // Phase der Baustelle: Angebot → Auftrag → Ausführung → Abnahme → Schlussrechnung
  let ph=0;try{const an=(typeof AU_A!=='undefined'?AU_A:[]).filter(a=>a.b===b.name);if(an.some(a=>a.st==='angenommen'))ph=1;if(D.anzahl)ph=2;if(ab)ph=3;if((typeof AU_R!=='undefined'?AU_R:[]).some(r=>r.b===b.name&&/schluss/i.test(r.t||'')&&r.st!=='entwurf'))ph=4}catch(e){}
  const WO=D.tage.slice(-7).filter(t=>t.l.length).reverse(),ML=(()=>{try{return AS.bereit?asPunkte():[]}catch(e){return []}})();
- const CI={doc:'<path d="M7 3.5h7l4 4v13H7z"/><path d="M10 12h5M10 15.5h5"/>',mg:'<path d="M12 3.5 21 19.5H3z"/><path d="M12 9.5v4.5M12 16.8v.2"/>',plus:'<path d="M12 5v14M5 12h14"/>',hk:'<path d="M5 12.5l4.5 4.5L19 7"/>',ku:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-4 4-5.8 7-5.8s5.8 1.8 7 5.8"/>',ort:'<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>'},ci=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${CI[k]}</svg>`;
+ const CI={doc:'<path d="M7 3.5h7l4 4v13H7z"/><path d="M10 12h5M10 15.5h5"/>',mg:'<path d="M12 3.5 21 19.5H3z"/><path d="M12 9.5v4.5M12 16.8v.2"/>',plus:'<path d="M12 5v14M5 12h14"/>',hk:'<path d="M5 12.5l4.5 4.5L19 7"/>',ku:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-4 4-5.8 7-5.8s5.8 1.8 7 5.8"/>',ort:'<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',foto:'<path d="M4 8h3l1.5-2.5h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'},ci=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${CI[k]}</svg>`;
  inh.innerHTML=`<div class="mgk"><div><span class="amtt">COCKPIT</span><h2 class="mgh">${esc(b.name)}</h2></div><div class="mgakt"><button type="button" data-geh="bericht">${ci('doc')}Kundenbericht</button><button type="button" data-geh="mangel">${ci('mg')}Mangel</button><span class="tr"></span><button type="button" class="haupt" data-geh="eintrag">${ci('plus')}Eintrag</button></div></div>
  <div class="cpx" style="--cc:${b.c}">
   ${typeof opCockpitHtml==='function'?opCockpitHtml():''}
@@ -2745,8 +2906,9 @@ function cpMalen(inh,wechsel){const L=cpListe();if(!L.length){inh.innerHTML='<di
   <div class="cpgrid"><div class="cpin${wechsel?' raus':''}">
   <div class="cpkarte cpprojekt"><div class="cpheld"><div><span class="cpkz">${esc(b.k)}</span><span class="cpstat">${ph>=3?'ABNAHME':D.anzahl?'IN ARBEIT':'START'}</span><p class="cport">${ci('ort')}${esc(b.ort||'kein Standort')}${D.start?` · <span>seit</span> ${cpDat(D.start)}`:''}</p></div>
    <div class="cpring" aria-label="${ez!=null?ez+' Tage bis Einzug':'kein Einzugstermin'}"><svg viewBox="0 0 104 104"><circle class="bg" cx="52" cy="52" r="46"/><circle class="vg" cx="52" cy="52" r="46" stroke-dasharray="289" stroke-dashoffset="289"/></svg><div>${ez!=null&&ez>=0?`<b>${ez}</b><small>${ez===1?'TAG':'TAGE'} BIS<br>EINZUG</small>`:ez!=null?`<b style="font-size:15px">✓</b><small>EINGEZOGEN</small>`:`<b style="font-size:15px">–</b><small>KEIN<br>EINZUG</small>`}</div></div></div>
-   <div class="cpphasen">${['Angebot','Auftrag','Ausführung','Abnahme','Schlussrechnung'].map((t,i)=>`<span class="${i<ph?'f':i===ph?'j':''}">${i<ph?ci('hk'):''}${t}</span>`).join('')}</div>
+   <div class="cpphasen" style="--ph:${ph}">${['Angebot','Auftrag','Ausführung','Abnahme','Schlussrechnung'].map((t,i)=>`<span class="${i<ph?'f':i===ph?'j':''}">${i<ph?ci('hk'):''}${t}</span>`).join('')}</div>
    <div class="cpkontakt"><i>${esc(String(b.kontakt||b.name).split(/\s+/).map(w=>w[0]||'').join('').slice(0,2).toUpperCase())}</i><div><b>${esc(b.kontakt||'Ansprechpartner noch nicht eingetragen')}</b><small>${esc(String(b.besonders||'Besonderheiten im Kunden-Menü eintragen').replace(/\s+/g,' '))}</small></div><div class="mgakt"><button type="button" data-geh="kunde">${ci('ku')}Kunde öffnen</button></div></div></div>
+  <div class="cpqa"><button type="button" data-geh="eintrag"><span>${ci('plus')}</span>Eintrag</button><button type="button" data-geh="mangel"><span>${ci('mg')}</span>Mangel</button><label><span>${ci('foto')}</span>Foto<input type="file" accept="image/*" capture="environment" hidden data-cpfoto></label><button type="button" data-geh="bericht"><span>${ci('doc')}</span>Bericht</button></div>
   <div class="cplage" style="--lc:${lg.f}"><i></i><div><small>LAGEBILD</small>${esc(lg.text)}</div></div>
   <div class="cpzahlen">
    <button type="button" data-z="tage"><b data-n="${D.anzahl}">0</b><small>ARBEITS-<br>TAGE</small></button>
@@ -2783,6 +2945,7 @@ function cpMalen(inh,wechsel){const L=cpListe();if(!L.length){inh.innerHTML='<di
  const geh=w=>{if(w==='tagebuch'){TBV.sel=CPV.zsel?tbAusIso(CPV.zsel.s):new Date();TBV.edit=false;TBV.idx=0;amFunktion('tagebuch')}else if(w==='eintrag'){TBV.sel=new Date();TBV.edit=false;TBV.idx=0;amFunktion('tagebuch')}
   else if(w==='personal')amFunktion('personal');else if(w==='maengel'){MGV.b=b.name;MGV.tab='maengel';amFunktion('maengel')}else if(w==='mangel')amFunktion('maengel',{neu:{b:b.name}})
   else if(w==='bauplan'){if(plan&&window.bpOeffnenPlan)window.bpOeffnenPlan(plan);else amFunktion('bauplan',{neu:1})}else if(w==='kalender'){amZu();setTimeout(()=>kalAuf(TER[0]?TER[0].d:tbIso(new Date())),RM?0:350)}else if(w==='bericht')cpBericht(b,D,lg,M,TER)};
+ inh.querySelectorAll('[data-cpfoto]').forEach(f=>f.onchange=async()=>{const fl=f.files&&f.files[0];if(!fl)return;let bl=fl;try{if(typeof mgFotoKlein==='function')bl=await mgFotoKlein(fl)}catch(e){}amFunktion('maengel',{neu:{b:b.name,vorBlob:bl,vorUrl:URL.createObjectURL(bl)}})});
  inh.querySelectorAll('[data-geh]').forEach(e=>e.onclick=ev=>{ev.stopPropagation();if(e.dataset.geh==='kunde')amFunktion('kunden',{name:b.name});else geh(e.dataset.geh)});
  x.querySelectorAll('[data-asak2]').forEach(e=>e.onclick=()=>{try{asAktion(e.dataset.asak2)}catch(err){}});
  x.querySelectorAll('[data-tbtag]').forEach(e=>e.onclick=()=>{TBV.sel=tbAusIso(e.dataset.tbtag);TBV.edit=false;TBV.idx=0;amFunktion('tagebuch')});
@@ -3594,11 +3757,13 @@ function tbZeigen(inh){if(!TBV.sel)TBV.sel=new Date();inh.innerHTML=`<div class=
  inh.querySelector('.tbheute').onclick=()=>{TBV.sel=new Date();TBV.edit=false;TBV.idx=0;tbMalen(inh)};
  inh.querySelectorAll('.ampf').forEach(b=>b.onclick=()=>{const n=+b.dataset.n,s=TBV.sel;TBV.sel=TBV.ans===30?tbNeu(s.getFullYear(),s.getMonth()+n,1):tbPlus(s,7*n);TBV.edit=false;TBV.idx=0;tbMalen(inh)});
  inh.querySelectorAll('.amans button').forEach(b=>b.onclick=()=>{TBV.ans=+b.dataset.a;tbMalen(inh)});
+ {const k=inh.querySelector('.amkal');let z=null;k.addEventListener('touchstart',e=>{z=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
+  k.addEventListener('touchend',e=>{if(!z||TBV.ans!==5)return;const dx=e.changedTouches[0].clientX-z.x,dy=e.changedTouches[0].clientY-z.y;z=null;if(Math.abs(dx)<50||Math.abs(dx)<Math.abs(dy)*1.5)return;const n=dx<0?1:-1;TBV.sel=tbPlus(TBV.sel,7*n);TBV.edit=false;TBV.idx=0;tbMalen(inh);const w=k.firstElementChild;if(w&&w.animate&&!RM)w.animate([{transform:`translateX(${n*48}px)`,opacity:0},{transform:'none',opacity:1}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'})},{passive:true})}
  tbMalen(inh);Promise.all([tbLaden(),bstLaden(),peLaden()]).then(()=>{if(inh.isConnected&&!TBV.edit)tbMalen(inh)}).catch(()=>{})}
 function tbMalen(inh){const S=TBV.sel,sI=tbIso(S),hI=tbIso(new Date());inh.querySelector('.amkw').textContent='KW '+tbKw(S);inh.querySelector('.ammon').textContent=TB_MONL[S.getMonth()];
  inh.querySelectorAll('.ampf').forEach(b=>b.disabled=TBV.ans===365);inh.querySelectorAll('.amans button').forEach(b=>b.classList.toggle('an',+b.dataset.a===TBV.ans));
  const k=inh.querySelector('.amkal');
- if(TBV.ans===5){const mo=tbMo(S);k.innerHTML=`<div class="amt5${W>760?' amt7':''}">${(W>760?[0,1,2,3,4,5,6]:[0,1,2,3,4]).map(i=>{const d=tbPlus(mo,i),s=tbIso(d);return `<button type="button" class="amtag${i>4?' we':''}${s===sI?' sel':''}${s===hI?' heute':''}" data-d="${s}">${TB_WT[i]}<b>${d.getDate()}</b>${tbTagMark(s)}</button>`}).join('')}</div>`}
+ if(TBV.ans===5){const mo=tbMo(S);k.innerHTML=`<div class="amt5 amt7">${[0,1,2,3,4,5,6].map(i=>{const d=tbPlus(mo,i),s=tbIso(d);return `<button type="button" class="amtag${i>4?' we':''}${s===sI?' sel':''}${s===hI?' heute':''}" data-d="${s}">${TB_WT[i]}<b>${d.getDate()}</b>${tbTagMark(s)}</button>`}).join('')}</div>`}
  else if(TBV.ans===30){const y=S.getFullYear(),m=S.getMonth(),n=new Date(y,m+1,0).getDate();let h=TB_WT.map((w,i)=>`<span class="amwt${i>4?' we':''}">${w}</span>`).join('');for(let i=0;i<tbWt(tbNeu(y,m,1));i++)h+='<span class="amzelle leer"></span>';
   for(let t=1;t<=n;t++){const d=tbNeu(y,m,t),s=tbIso(d);h+=`<button type="button" class="amzelle${tbWt(d)>4?' we':''}${s===sI?' sel':''}${s===hI?' heute':''}" data-d="${s}">${t}${tbTagMark(s)}</button>`}k.innerHTML=`<div class="amraster">${h}</div>`+tbLegende()}
  else{const y=S.getFullYear(),ende=tbNeu(y,11,31);let mo=tbMo(tbNeu(y,0,1)),erste=true,h=`<div class="amjk"><span></span><span>KW</span>${TB_WT.map((w,i)=>`<span class="${i>4?'we':''}">${w[0]}</span>`).join('')}</div>`;
@@ -3608,7 +3773,7 @@ function tbMalen(inh){const S=TBV.sel,sI=tbIso(S),hI=tbIso(new Date());inh.query
  k.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{TBV.sel=tbAusIso(b.dataset.d);TBV.edit=false;TBV.idx=0;TBV.loesch=0;tbMalen(inh)});tbNotiz(inh)}
 function tbNotiz(inh){const n=inh.querySelector('.amnotiz'),S=TBV.sel,s=tbIso(S),l=TB[s]||[],tagT=TB_WT[tbWt(S)]+' '+S.getDate()+'. '+TB_MON[S.getMonth()]+' '+S.getFullYear();if(TBV.idx>=l.length&&!TBV.edit)TBV.idx=0;const e=l[TBV.idx];
  n.classList.remove('streif','tbedit');
- if(!e&&!TBV.edit){n.innerHTML=`<div class="amnk"><div><small>${tagT}</small><h4>KEIN EINTRAG</h4></div></div><div class="amleer"><span>Für diesen Tag gibt es noch keinen Eintrag.<br>Erzähl es einfach dem Assistenten – was auf der Baustelle passiert ist.</span><button type="button" class="amneu">+ EINTRAG ANLEGEN</button></div>`;n.querySelector('.amneu').onclick=()=>{TBV.edit=true;TBV.idx=l.length;tbNotiz(inh)};return}
+ if(!e&&!TBV.edit){n.innerHTML=`<div class="amnk"><div><small>${tagT}</small><h4>KEIN EINTRAG</h4></div></div><div class="amleer"><span>Für diesen Tag gibt es noch keinen Eintrag.<br>Erzähl es einfach dem Assistenten – was auf der Baustelle passiert ist.</span><div class="amleerk"><button type="button" class="amneu">+ EINTRAG ANLEGEN</button><button type="button" class="amsag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Sagen</button></div></div>`;n.querySelector('.amneu').onclick=()=>{TBV.edit=true;TBV.idx=l.length;tbNotiz(inh)};n.querySelector('.amsag').onclick=()=>{try{asAuf()}catch(e){}};return}
  if(TBV.edit){const v=e||{};n.classList.add('tbedit');n.innerHTML=`<div class="amnk"><div><small>${tagT} · ${e?'BEARBEITEN':'NEUER EINTRAG'}</small><h4 class="tbbw"><input data-f="b" value="${esc(v.b||'')}" autocomplete="off" placeholder="Baustelle wählen oder neu eintippen" aria-label="Baustelle" role="combobox" aria-expanded="false"><div class="tbwahl" role="listbox" hidden></div></h4></div><div class="mgakt"><button type="button" class="amab">Abbrechen</button><button type="button" class="amja haupt">${TB_I.haken}Speichern</button></div></div>
    <div class="amtext"><div class="tbfelder"><span>ZEIT &amp; TEAM</span><div class="tbzt"><input data-f="z" value="${esc(v.z||'')}" placeholder="07:00–16:00" aria-label="Arbeitszeit"><input data-f="p" value="${esc(v.p||'')}" placeholder="Wer war da?" aria-label="Personal"><div class="tbpchips">${Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu).map(x=>`<button type="button" data-pn="${esc(x.name)}" class="${peListe(v.p).includes(x.name)?'an':''}">${esc(x.k)}</button>`).join('')}</div></div>
    ${[['l','AUSGEFÜHRT','Was wurde gemacht?'],['m','LIEFERUNG','keine'],['x','BEHINDERUNG','keine'],['a','ABSPRACHE','keine']].map(([f,t,ph])=>`<span>${t}</span><div><textarea data-f="${f}" rows="1" placeholder="${ph}" aria-label="${t}">${esc(v[f]||'')}</textarea></div>`).join('')}</div>
@@ -3652,7 +3817,8 @@ AM_FUNK.push({beruf:'handwerk',id:'tagebuch',name:'TAGEBUCH',ico:'<path d="M5 3h
 // ===== Handwerk · Funktion 2: Kunden-Menü – Baustellen selbst kategorisieren: Kürzel, Farbe, Standort, Ansprechpartner, Einzug, Status, Zugang, Besonderheiten =====
 // Daten im Baustellen-Register (Gedächtnis/Persönlich/Arbeit/Baustellen). Neue Namen, die Aaron Onstand erzählt, erscheinen hier automatisch.
 let KU_SEL=null;const KU_V={tab:'aktiv',q:'',such:false,ed:false};
-const KU_I={druck:'<svg viewBox="0 0 24 24"><path d="M7 9V4h10v5M7 17H4.500v-7h15v7H17"/><rect x="7" y="14" width="10" height="6"/></svg>',lupe:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>',plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',stift:'<svg viewBox="0 0 24 24"><path d="M4 20l1-4.5L16.5 4a2 2 0 0 1 3 3L8 18.5z"/></svg>',tel:'<svg viewBox="0 0 24 24"><path d="M6 3.5h3l1.5 4.5-2 1.5a12 12 0 0 0 6 6l1.5-2 4.5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5.500a2 2 0 0 1 2-2z"/></svg>',doc:'<svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7z"/><path d="M10 12h5M10 15.500h5"/></svg>',cockpit:'<svg viewBox="0 0 24 24"><path d="M12 4l8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4M4 16l8 4 8-4"/></svg>',euro:'<svg viewBox="0 0 24 24"><path d="M17 6.500a6.500 6.500 0 1 0 0 11M5 10.500h8M5 13.500h8"/></svg>',mangel:'<svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.500M12 17.500h.01"/></svg>',plan:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="1.500"/><path d="M3.500 11h17M10 5v14"/></svg>',ab:'<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.300-5.600M20 4.500v4h-4"/></svg>'};// null = Liste, '' = neu, sonst Name
+const KU_AKT={tel:'<svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a10 10 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15.5 15.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></svg>',mail:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg>',ort:'<svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>'};
+KU_I={druck:'<svg viewBox="0 0 24 24"><path d="M7 9V4h10v5M7 17H4.500v-7h15v7H17"/><rect x="7" y="14" width="10" height="6"/></svg>',lupe:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>',plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',stift:'<svg viewBox="0 0 24 24"><path d="M4 20l1-4.5L16.5 4a2 2 0 0 1 3 3L8 18.5z"/></svg>',tel:'<svg viewBox="0 0 24 24"><path d="M6 3.5h3l1.5 4.5-2 1.5a12 12 0 0 0 6 6l1.5-2 4.5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5.500a2 2 0 0 1 2-2z"/></svg>',doc:'<svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7z"/><path d="M10 12h5M10 15.500h5"/></svg>',cockpit:'<svg viewBox="0 0 24 24"><path d="M12 4l8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4M4 16l8 4 8-4"/></svg>',euro:'<svg viewBox="0 0 24 24"><path d="M17 6.500a6.500 6.500 0 1 0 0 11M5 10.500h8M5 13.500h8"/></svg>',mangel:'<svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.500M12 17.500h.01"/></svg>',plan:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="1.500"/><path d="M3.500 11h17M10 5v14"/></svg>',ab:'<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.300-5.600M20 4.500v4h-4"/></svg>'};// null = Liste, '' = neu, sonst Name
 const kuDatum=s=>/^\d{4}-\d\d-\d\d$/.test(s||'')?s.split('-').reverse().join('.'):(s||'');
 // Auswahl als Knöpfe (schreibt in ein verstecktes Auswahlfeld) und Formular mit Reitern: Punkt je Reiter, Enter springt weiter
 function glWahl(f,opt,akt){return `<select data-f="${f}" hidden>${opt.map(([v,t])=>`<option value="${esc(v)}"${v===akt?' selected':''}>${esc(t)}</option>`).join('')}</select><div class="glwahl" data-fw="${f}">${opt.map(([v,t])=>`<button type="button" data-v="${esc(v)}" class="${v===akt?'an':''}">${esc(t)}</button>`).join('')}</div>`}
@@ -3672,7 +3838,7 @@ function kuMalen(inh){
  if(KU_SEL===null){const alle=Object.values(BST).sort((a,b)=>a.name.localeCompare(b.name)),akt=alle.filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent'),fer=alle.filter(b=>b.status==='abgeschlossen'),intr=alle.filter(b=>b.status==='interessent');
   const q=KU_V.q.trim().toLowerCase(),L=(KU_V.tab==='fertig'?fer:KU_V.tab==='intr'?intr:akt).filter(b=>!q||(b.name+' '+b.k+' '+(b.ort||'')+' '+(b.kontakt||'')).toLowerCase().includes(q));
   const letzte=Object.keys(TB).sort().reverse().flatMap(t=>(TB[t]||[]).filter(e=>e&&e.b&&(e.l||e.x||e.a)).map(e=>({t,e}))).slice(0,4);
-  inh.innerHTML=`<div class="mgk"><div><span class="amtt">KUNDEN</span><h2 class="mgh">Kunden &amp; Baustellen</h2></div><div class="mgakt">${KU_V.such?`<input class="glsuch kusuch" type="search" placeholder="Name, Ort, Ansprechpartner …" value="${esc(KU_V.q)}" aria-label="Kunden durchsuchen">`:''}<button type="button" class="kusb">${KU_I.lupe}Suchen</button><span class="tr"></span><button type="button" class="haupt kuneu">${KU_I.plus}Kunde</button></div></div>
+  inh.innerHTML=`<div class="mgk"><div><span class="amtt">KUNDEN</span><h2 class="mgh">Kunden <span class="amp">&amp;</span> Baustellen</h2></div><div class="mgakt">${KU_V.such?`<input class="glsuch kusuch" type="search" placeholder="Name, Ort, Ansprechpartner …" value="${esc(KU_V.q)}" aria-label="Kunden durchsuchen">`:''}<button type="button" class="kusb">${KU_I.lupe}Suchen</button><span class="tr"></span><button type="button" class="haupt kuneu">${KU_I.plus}Kunde</button></div></div>
    <div class="glreiter" role="tablist"><button type="button" data-kt="aktiv" class="${KU_V.tab==='aktiv'?'an':''}">Aktiv<i>${akt.length}</i></button><button type="button" data-kt="fertig" class="${KU_V.tab==='fertig'?'an':''}">Abgeschlossen<i>${fer.length}</i></button><button type="button" data-kt="intr" class="${KU_V.tab==='intr'?'an':''}">Interessenten<i>${intr.length}</i></button></div>
    <div class="kuliste glkarte gltab">${L.length?L.map(b=>{const fertig=b.status==='abgeschlossen',it=b.status==='interessent';return `<button type="button" class="kurow" data-n="${esc(b.name)}" style="--bc:${b.c}"><span class="kust"></span><span class="kutx"><b>${esc(b.name)}</b><small>${[(b.ort||'').split(',')[0],b.kontakt,b.einzug?'Einzug '+kuDatum(b.einzug):''].filter(Boolean).map(esc).join(' · ')||'noch ohne Standort'}</small></span><em class="${fertig?'fertig':it?'intr':'offen'}">${fertig?'FERTIG':it?'INTERESSENT':'IN ARBEIT'}</em></button>`}).join(''):`<div class="amleer">${q?'Nichts gefunden für „'+esc(KU_V.q)+'“.':KU_V.tab==='intr'?'Noch keine Interessenten.<br>Lege einen Kunden an und stelle den Status auf „Interessent“ – so behältst du Anfragen im Blick, bevor ein Auftrag daraus wird.':KU_V.tab==='fertig'?'Noch nichts abgeschlossen.<br>Stelle den Status einer Baustelle auf „abgeschlossen“, wenn sie fertig ist.':alle.length?'Gerade keine laufende Baustelle.':'Noch keine Baustellen.<br>Lege eine an oder erzähl dem Assistenten, wo du heute warst.'}</div>`}
    ${letzte.length&&!q?`<div class="gllab">ZULETZT AUF DEN BAUSTELLEN</div>${letzte.map(({t,e})=>{const d=tbAusIso(t);return `<button type="button" class="glzeile" data-tb="${t}">${KU_I.doc}<span><b>${esc(String(e.l||e.x||e.a).split(/;|\n/)[0])}</b><small>${esc(e.b)}</small></span><em>${TB_WT[tbWt(d)].charAt(0)+TB_WT[tbWt(d)].charAt(1).toLowerCase()} ${d.getDate()}.${d.getMonth()+1}.</em></button>`}).join('')}`:''}</div>`;
@@ -3684,6 +3850,7 @@ function kuMalen(inh){
   const AN=typeof AU_A!=='undefined'?AU_A.filter(a=>a.b===n&&a.st==='angenommen'):[],asum=AN.reduce((x,a)=>x+auNetto(a),0),auf=b.summe?esc(b.summe):AN.length?esc(AN.map(a=>a.t).filter(Boolean).join(' · ')||'Auftrag')+' · '+auEur(asum)+' netto':'',lnk=(h,t)=>`<a href="${h}">${esc(t)}</a>`;
   const F=[['ANSPRECHPARTNER',esc(b.kontakt||'')],['TELEFON',b.tel?lnk('tel:'+b.tel.replace(/[^+\d]/g,''),b.tel):''],['E-MAIL',b.mail?lnk('mailto:'+encodeURIComponent(b.mail).replace(/%40/g,'@'),b.mail):'']].concat(bau?[]:[['AUFTRAG',auf]]).concat([['STANDORT',esc(b.ort||'')],['EINZUG',b.einzug?esc(kuDatum(b.einzug)):''],['ZUGANG',esc(b.zugang||'')],['BESONDERHEITEN',esc(b.besonders||'')]]).concat(b.rname?[['RECHNUNG AN',esc([b.rname,b.rstr,b.rort,b.rmail].filter(Boolean).join(' · '))]]:[]);
   inh.innerHTML=`<div class="gldk"><div><small><span class="ambadge" style="color:${b.c}">${esc(b.k)}</span>${b.ort?' · '+esc(b.ort.split(',')[0].toUpperCase()):''}${b.status==='abgeschlossen'?' · ABGESCHLOSSEN':b.status==='interessent'?' · INTERESSENT':''}</small><h3>${esc(n)}</h3></div><div class="mgakt"><button type="button" class="kuzur">‹ Liste</button>${b.tel?`<a class="glanruf" href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}">${KU_I.tel}Anrufen</a>`:''}<button type="button" class="kued">${KU_I.stift}Bearbeiten</button></div></div>
+   <div class="kuakt">${b.tel?`<a href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}">${KU_AKT.tel}Anrufen</a>`:`<span class="aus">${KU_AKT.tel}Anrufen</span>`}${b.mail?`<a href="mailto:${esc(b.mail)}">${KU_AKT.mail}E-Mail</a>`:`<span class="aus">${KU_AKT.mail}E-Mail</span>`}${b.ort?`<a href="https://maps.apple.com/?daddr=${encodeURIComponent(b.ort)}" target="_blank" rel="noopener">${KU_AKT.ort}Route</a>`:`<span class="aus">${KU_AKT.ort}Route</span>`}</div>
    <div class="tbfelder">${F.map(([l,v])=>`<span>${l}</span><div>${v||ohne}</div>`).join('')}</div>
    <div class="gllab">VERKNÜPFT</div><div class="glverkn"><button type="button" data-go="cockpit">${KU_I.cockpit}<span>Cockpit<small>${E.length} Tagebuch-${E.length===1?'Eintrag':'Einträge'}${std?' · '+String(Math.round(std*10)/10).replace('.',',')+' h':''}</small></span><b>›</b></button>${bau?'':`<button type="button" data-go="auftraege">${KU_I.euro}<span>Angebote &amp; Rechnungen<small>${an} ${an===1?'Angebot':'Angebote'} · ${ar} ${ar===1?'Rechnung':'Rechnungen'}</small></span><b>›</b></button>`}<button type="button" data-go="maengel">${KU_I.mangel}<span>Mängel<small>${mo?mo+' offen':'keine offenen'}</small></span><b>›</b></button><button type="button" data-go="bauplan">${KU_I.plan}<span>Bauplan<small>${pl?'Plan „'+esc(pl.name)+'“':'Grundriss und Aufmaß'}</small></span><b>›</b></button></div>`;
   inh.querySelector('.kuzur').onclick=()=>{KU_SEL=null;kuMalen(inh)};inh.querySelector('.kued').onclick=()=>{KU_V.ed=true;kuMalen(inh)};
@@ -4684,6 +4851,7 @@ function kalBau(){if(KAL.el)return;const k=document.createElement('div');k.id='k
  k.querySelector('#klupe').onclick=()=>{const auf=!k.classList.contains('ksuchauf');k.classList.toggle('ksuchauf',auf);k.querySelector('#klupe').setAttribute('aria-expanded',String(auf));if(auf)setTimeout(()=>k.querySelector('#ksuche').focus(),60);else if(KAL.q){KAL.q='';k.querySelector('#ksuche').value='';kalZeichnen()}};
  k.querySelector('#kfiltbtn').onclick=()=>{const auf=!k.classList.contains('kfilterauf');k.classList.toggle('kfilterauf',auf);k.querySelector('#kfiltbtn').setAttribute('aria-expanded',String(auf))};
  kalPinch(k.querySelector('#khaupt'));
+ {const kh=k.querySelector('#khaupt');let z=null;kh.addEventListener('touchstart',e=>{z=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});kh.addEventListener('touchend',e=>{if(!z||W>760)return;const dx=e.changedTouches[0].clientX-z.x,dy=e.changedTouches[0].clientY-z.y;z=null;if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.5)return;kalSchritt(dx<0?1:-1)},{passive:true})}
  k.querySelector('#kplus').onclick=()=>kalAuswahl(KAL.sel);
  k.querySelector('#kfilter').innerHTML=KFILTER.map(([id,n,c])=>`<button type="button" data-f="${id}" style="--c:${c}"><i></i>${n}</button>`).join('');
  k.querySelectorAll('#kfilter button').forEach(b=>b.onclick=()=>{KAL.an[b.dataset.f]=KAL.an[b.dataset.f]?0:1;try{localStorage.setItem('onstandKalFilter',JSON.stringify(KAL.an))}catch(e){}kalZeichnen()});
@@ -4724,6 +4892,7 @@ function kalMini(){const m=document.getElementById('kmini');if(!m)return;const s
 function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)return;if(!KAL.sel)KAL.sel=kIso(new Date());const s=KAL.sel,heute=kIso(new Date());kalLinks();kalTitel();
  KAL.el.querySelectorAll('#kans button').forEach(b=>b.classList.toggle('an',b.dataset.a===KAL.ans));
  KAL.el.querySelectorAll('#kfilter button').forEach(b=>{const an=!!KAL.an[b.dataset.f];b.classList.toggle('aus',!an);b.setAttribute('aria-pressed',String(an))});{const n=KFILTER.length,a=KFILTER.filter(([f])=>KAL.an[f]).length,std={termin:1,geb:1,url:1,frist:1,notiz:1,sonst:1,fei:1,ged:1,tb:1,mg:1,geld:1,ges:0},fb=KAL.el.querySelector('#kfiltbtn');if(fb)fb.textContent=KFILTER.every(([f])=>!!KAL.an[f]===!!std[f])?'FILTER':'FILTER '+a+'/'+n}
+ const K_RANG={woche:0,monat:1,liste:1,jahr:2},kAlt=KAL._ans;KAL._ans=KAL.ans;
  h.className='khaupt ka-'+KAL.ans;
  if(KAL.ans==='monat'){const d=kD(s),y=d.getFullYear(),m=d.getMonth(),erst=kIso(new Date(y,m,1,12)),start=kMo(erst),wochen=Math.ceil((kWt(erst)+new Date(y,m+1,0).getDate())/7);
   let x=`<div class="kmonat" style="grid-template-rows:auto repeat(${wochen},minmax(0,1fr))"><span class="kwt kecke"></span>${KTAG.map((t,i)=>`<span class="kwt${i>4?' kwe':''}">${t}</span>`).join('')}`;
@@ -4743,6 +4912,9 @@ function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)r
   h.querySelector('.kw24').onclick=()=>{try{localStorage.setItem('onstandKal24',voll?'0':'1')}catch(e){}KAL.w24=!voll;kalZeichnen()};
   {const kb=h.querySelector('.kwkb');if(voll){const erste=Math.min(...T.flatMap(d=>d.zz.map(z=>z.a)),7*60);kb.scrollTop=Math.max(0,(erste-30)/1440*kb.scrollHeight)}}
   h.querySelectorAll('.kwsp').forEach(sp=>sp.ondblclick=ev=>{if(ev.target!==sp)return;const r=sp.getBoundingClientRect(),m=Math.min(23.5,Math.max(0,Math.floor(((ev.clientY-r.top)/r.height*n+von)*2)/2)),hh=String(Math.floor(m)).padStart(2,'0')+':'+(m%1?'30':'00');kalFormular(null,sp.dataset.t,hh)})}
+ else if(KAL.ans==='woche'&&W<=760){// Handy: Woche als Liste – jeder Tag eine Zeile, Termine untereinander, freie Tage schmal
+  const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i));
+  h.innerHTML=`<div class="kwa">${tage.map(t=>{const l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),L=l.filter(e=>e.art!=='feiertag');return `<section class="kwar${kWt(t)>4?' kwe':''}${t===heute?' kheute':''}${t===s?' ksel':''}${L.length?'':' kfrei'}"><button type="button" class="kwad" data-t="${t}"><small>${KTAG[kWt(t)]}</small><b>${kD(t).getDate()}</b></button><div class="kwal">${fei?`<span class="kwafei">${esc(fei.t)}</span>`:''}${L.map(e=>`<button type="button" class="kwae${kNeben(e)?' kneben':''}" style="--c:${kCol(e)}" data-t="${t}" data-i="${l.indexOf(e)}"><span class="kwaz">${e.von&&!e.ganz?esc(e.von)+(e.bis?'<br>'+esc(e.bis):''):'ganzt.'}</span><span class="kwat"><b>${esc(e.t)}</b>${e.ort||kArtName(e)?`<small>${e.ort?esc(e.ort):kArtName(e)}</small>`:''}</span></button>`).join('')||`<button type="button" class="kwafrei" data-t="${t}">frei · antippen zum Eintragen</button>`}</div></section>`}).join('')}</div>`}
  else if(KAL.ans==='woche'){// Zeitband: Tage als Zeilen, 24 Stunden waagerecht (scrollbar), Stundenleiste und Tage bleiben stehen
   const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i)),HW=kalHw(),min=v=>{const [a,b]=v.split(':').map(Number);return a*60+b},jetzt=new Date(),jm=jetzt.getHours()*60+jetzt.getMinutes();
   let x=`<div class="kzb" style="--hw:${HW}px"><div class="kzbach"><span class="kzbecke"></span>${Array.from({length:24},(_,i)=>`<span>${HW>=22||i%3===0?String(i).padStart(2,'0'):''}</span>`).join('')}</div>`;
@@ -4761,15 +4933,19 @@ function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)r
    for(let dd=1;dd<=n;dd++){const t=kIso(new Date(y,m,dd,12)),l=kalAm(t),haupt=l.filter(e=>!kNeben(e)&&e.art!=='feiertag'),fei=l.some(e=>e.art==='feiertag');zahl+=haupt.filter(e=>e.art==='termin'||e.art==='einzug').length;
     z+=`<button type="button" class="kjt${kWt(t)>4?' kwe':''}${t===heute?' kheute':''}${t===s?' ksel':''}${fei?' kfei':''}" data-t="${t}" title="${l.map(e=>e.t).slice(0,4).join(' · ')}"${haupt.length?` style="--c:${kCol(haupt[0])}"`:l.length?` style="--c:color-mix(in srgb,${kCol(l[0])} 55%,transparent)"`:''}>${dd}${l.length?`<em class="${haupt.length?'':'kjneben'}"></em>`:''}</button>`}
    x+=`<section class="kjm${m===kD(heute).getMonth()&&y===kD(heute).getFullYear()?' kjjetzt':''}"><button type="button" class="kjkopf" data-m="${m}">${KMON[m]}<small>${zahl?zahl+(zahl>1?' Termine':' Termin'):''}</small></button><div class="kjwt">${KTAG.map(t=>`<span>${t[0]}</span>`).join('')}</div><div class="kjtage">${z}</div></section>`}
-  h.innerHTML=x+'</div>';{const sm=h.querySelectorAll('.kjm')[kD(s).getMonth()];if(sm&&kD(s).getFullYear()===y)h.scrollTop=Math.max(0,sm.offsetTop-h.offsetTop-8)}h.querySelectorAll('.kjkopf').forEach(b=>b.onclick=()=>{KAL.sel=kIso(new Date(y,+b.dataset.m,1,12));KAL.ans='monat';kalZeichnen()})}
+  h.innerHTML=x+'</div>';{const sm=h.querySelectorAll('.kjm')[kD(s).getMonth()];if(sm&&kD(s).getFullYear()===y)h.scrollTop=Math.max(0,sm.offsetTop-h.offsetTop-8)}h.querySelectorAll('.kjkopf').forEach(b=>b.onclick=()=>{const r=b.closest('.kjm').getBoundingClientRect(),hr=h.getBoundingClientRect();KAL._orig=Math.round(r.left+r.width/2-hr.left)+'px '+Math.round(r.top+r.height/2-hr.top)+'px';KAL.sel=kIso(new Date(y,+b.dataset.m,1,12));KAL.ans='monat';kalZeichnen()})}
  else{let x='<div class="kliste">';let n=0;for(let i=0;i<60;i++){const t=kPlus(s,i),l=kalAm(t);if(!l.length)continue;n++;
    x+=`<section><h4>${KTAGL[kWt(t)].toUpperCase()} · ${kD(t).getDate()}. ${KMON[kD(t).getMonth()]}${t===heute?' · HEUTE':''}</h4>${l.map((e,j)=>`<button type="button" class="kzeile${kNeben(e)?' kneben':''}" style="--c:${kCol(e)}" data-t="${t}" data-i="${j}"><span>${e.von&&!e.ganz?esc(e.von)+(e.bis?'–'+esc(e.bis):''):'ganztägig'}</span><span><b>${esc(e.t)}</b><small>${kArtName(e)}${e.ort?' · '+esc(e.ort):''}</small></span></button>`).join('')}</section>`}
   h.innerHTML=x+(n?'':'<p class="kleer">In den nächsten 60 Tagen steht nichts an.</p>')+'</div>'}
  if(richtung&&!RM){h.style.setProperty('--dx',richtung*24+'px');h.classList.remove('krein');void h.offsetWidth;h.classList.add('krein')}
+ // Wechsel der Ansicht: weicher Zoom – zur genaueren Ansicht hinein, zur Übersicht heraus
+ if(kAlt&&kAlt!==KAL.ans&&!RM&&h.animate){const ein=K_RANG[KAL.ans]<K_RANG[kAlt],z=ein?.9:1.08;h.style.transformOrigin=ein&&KAL._orig?KAL._orig:'50% 0';h.scrollTop=KAL.ans==='jahr'?h.scrollTop:0;h.animate([{opacity:0,transform:`scale(${z})`},{opacity:1,transform:'none'}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'})}KAL._orig=null;
  h.querySelectorAll('[data-t]').forEach(b=>{if(b.classList.contains('kzbband'))return;b.onclick=ev=>{if(b.classList.contains('kwsp')&&ev.target!==b)return;ev.stopPropagation();const t=b.dataset.t;if(KAL.seiteZu&&b.dataset.i==null)kalSeiteZu(false);
   if(b.dataset.i!=null){const e=kalAm(t)[+b.dataset.i];KAL.sel=t;kalZeichnen();if(e)kalDetail(e,t);return}
   if(KAL.ans==='monat'&&b.classList.contains('kaus')){KAL.sel=t;kalZeichnen(t<s?-1:1);return}
+  if(KAL.ans==='jahr'&&W<=760){const r=b.getBoundingClientRect(),hr=h.getBoundingClientRect();KAL._orig=Math.round(r.left+r.width/2-hr.left)+'px '+Math.round(r.top-hr.top)+'px';KAL.sel=t;KAL.ans='monat';kalZeichnen();return}
   KAL.sel=t;h.querySelectorAll('.kwtag,.kwsp').forEach(z=>z.classList.toggle('an',z.dataset.t===t));h.querySelectorAll('.kwgz').forEach((z,i)=>z.classList.toggle('an',i===kWt(t)));h.querySelectorAll('.kz,.kjt').forEach(z=>z.classList.toggle('ksel',z===b));h.querySelectorAll('.kzbz').forEach(z=>z.classList.toggle('ksel',z.contains(b)));kalSeite()}});
+ h.querySelectorAll('.kwafrei').forEach(b=>b.onclick=ev=>{ev.stopPropagation();KAL.sel=b.dataset.t;kalAuswahl(b.dataset.t)});
  h.querySelectorAll('.kzbband').forEach(sp=>sp.ondblclick=ev=>{if(ev.target!==sp)return;const r=sp.getBoundingClientRect(),hw=parseFloat(getComputedStyle(h.querySelector('.kzb')).getPropertyValue('--hw'))||56,m=Math.min(23.5,Math.floor((ev.clientX-r.left)/hw*2)/2),hh=String(Math.floor(m)).padStart(2,'0')+':'+(m%1?'30':'00');kalFormular(null,sp.dataset.t,hh)});
  kalSeite()}
 const kArtName=e=>e.kat&&KKAT[e.kat]?KKAT[e.kat].n+((e.extra||{}).Bezug?' · '+esc(e.extra.Bezug):''):({termin:'Termin',einzug:'Einzug · Kunden',geburtstag:'Geburtstag',feiertag:'Feiertag (Hessen)',gedaechtnis:'aus „'+esc(e.q||'Gedächtnis')+'“',tb:'Bautagebuch',gespraech:'Gespräch mit Onstand',mangel:'Mangel · Frist',abnahme:'Abnahme',gewaehr:'Gewährleistung',faellig:'Rechnung fällig'})[e.art]||'';
@@ -7116,6 +7292,48 @@ function glTeilen(inh,orig,get,set,merk,zeile){const sp=inh.closest&&inh.closest
  set(sel);orig(r);Z.forEach(z=>z.classList.toggle('sel',z.dataset.n===sel));const a=l.querySelector(zeile+'.sel');if(a)a.scrollIntoView({block:'nearest'});return auto}
 const GL_KU=kuMalen;kuMalen=function(inh){kuMalen.auto=glTeilen(inh,GL_KU,()=>KU_SEL,v=>{KU_SEL=v},'ku','.kurow')};
 const GL_PE=peMalen;peMalen=function(inh){peMalen.auto=glTeilen(inh,GL_PE,()=>PE_SEL,v=>{PE_SEL=v},'pe','.perow')};
+// ===== Onstand · Handy (bis 760 px Breite): Leiste unten, Kopfzeile beim Scrollen, Seite „Mehr“ =====
+// Am PC ändert sich nichts – Leiste und Kopfzeile sind dort per CSS ausgeblendet.
+const HY_I={cockpit:'<path d="M12 3.5 20.5 8 12 12.5 3.5 8z"/><path d="M3.5 12 12 16.5 20.5 12"/><path d="M3.5 16 12 20.5 20.5 16"/>',
+ tagebuch:'<path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/>',
+ kalender:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+ mehr:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/>',
+ mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+ pk:'<path d="M5 7h14M10 7V4.5h4V7M7 7l.8 13h8.4L17 7"/>',
+ gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/>',
+ chev:'<path d="m9 5 7 7-7 7"/>'};
+const hyIco=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${HY_I[k]}</svg>`;
+const hyHandy=()=>W<=760;
+const hyAkt=()=>['cockpit','tagebuch','kalender'].includes(AM_AKT)?AM_AKT:'mehr';
+function hyBau(){if(!AM_EL||AM_EL.querySelector('.onleiste'))return;const l=AM_EL.querySelector('.amlade');
+ l.insertAdjacentHTML('beforeend',`<div class="onkopf" aria-hidden="true"><b></b></div><nav class="onleiste" aria-label="Bereiche">${[['cockpit','Cockpit'],['tagebuch','Tagebuch'],null,['kalender','Kalender'],['mehr','Mehr']].map(x=>x?`<button type="button" data-hy="${x[0]}">${hyIco(x[0])}<span>${x[1]}</span></button>`:`<button type="button" class="hymic" data-hymic aria-label="Mit dem Assistenten sprechen">${hyIco('mic')}</button>`).join('')}</nav>`);
+ l.querySelectorAll('[data-hy]').forEach(b=>b.onclick=()=>{const id=b.dataset.hy,inh=AM_EL.querySelector('.aminhalt');try{if(asOffen())asZu()}catch(e){}
+  if(id===hyAkt()&&id!=='kalender'&&!(id==='mehr'&&AM_AKT!=='mehr')){inh.scrollTo({top:0,behavior:RM?'auto':'smooth'});return}amFunktion(id)});
+ l.querySelector('[data-hymic]').onclick=()=>{try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}asAuf()};
+ AM_EL.querySelector('.aminhalt').addEventListener('scroll',hyKopf,{passive:true});
+ // Blatt von unten (neuer Tagebuch-Eintrag): Tippen auf die abgedunkelte Fläche bricht ab
+ l.addEventListener('click',ev=>{if(ev.target!==l||!hyHandy())return;const ab=AM_EL.querySelector('.amnotiz.tbedit .amab');if(ab)ab.click()});
+ hyLeiste()}
+function hyLeiste(){if(!AM_EL)return;const a=hyAkt();AM_EL.querySelectorAll('.onleiste [data-hy]').forEach(b=>{const an=b.dataset.hy===a;b.classList.toggle('an',an);if(an)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
+function hyKopf(){if(!AM_EL)return;if(AM_EL.scrollLeft)AM_EL.scrollLeft=0;const inh=AM_EL.querySelector('.aminhalt'),k=AM_EL.querySelector('.onkopf');if(!k||!inh)return;const zu=hyHandy()&&inh.scrollTop>44;
+ if(zu){const t=inh.querySelector('.mgh,.gldk h3,.amkopf>span,.amkopf>b');k.querySelector('b').textContent=t?t.textContent.replace(/\s+/g,' ').trim():''}if(k.classList.contains('zu')!==zu)k.classList.toggle('zu',zu)}
+function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','kalender'].includes(x.id));
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">ONSTAND</span><h2 class="mgh">Mehr</h2></div></div>
+ <div class="hykach">${F.map(x=>{let z=0;try{z=x.zahl?x.zahl():0}catch(e){}return `<button type="button" data-f="${x.id}"><span class="hyki"><svg viewBox="0 0 20 20" aria-hidden="true">${x.ico}</svg></span><b>${esc(ON_NAMEN[x.id]||x.name)}</b>${z?`<em${x.id==='maengel'?' class="rot"':''}>${z}</em>`:''}</button>`}).join('')}</div>
+ <div class="hylab">ALLGEMEIN</div>
+ <div class="hygrp"><button type="button" data-hx="pk"><span class="hyri">${hyIco('pk')}</span><span class="hyrt"><b>Papierkorb</b><small>Gelöschtes wiederherstellen</small></span>${hyIco('chev')}</button><button type="button" data-hx="menu"><span class="hyri">${hyIco('gear')}</span><span class="hyrt"><b>Einstellungen</b><small>Firma &amp; Preise · Konto &amp; Geräte · Design</small></span>${hyIco('chev')}</button></div>`;
+ inh.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>amFunktion(b.dataset.f));
+ inh.querySelector('[data-hx=pk]').onclick=()=>{const p=AM_EL.querySelector('.onseite [data-pk]');if(p)p.click()};
+ inh.querySelector('[data-hx=menu]').onclick=ev=>{ev.stopPropagation();try{onMenu()}catch(e){}}}
+// bestehende Funktionen erweitern
+{const _bau=onBau;onBau=function(){const e=_bau.apply(this,arguments);try{hyBau()}catch(x){}return e}}
+{const _sch=amSchiene;amSchiene=function(){_sch.apply(this,arguments);hyLeiste()}}
+{const _af=amFunktion;amFunktion=function(id,opt){if(id==='mehr'&&!hyHandy())id='cockpit';
+ const inh0=AM_EL&&AM_EL.querySelector('.aminhalt');
+ if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);return r}
+ onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();
+ const inh=AM_EL.querySelector('.aminhalt');inh.classList.remove('raus');hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
+addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
