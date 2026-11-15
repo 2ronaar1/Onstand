@@ -2245,7 +2245,7 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.13';
+const ON_VER='0.10.14';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7116,26 +7116,35 @@ async function appUpdatePruefen(){if(!APP.web||!navigator.onLine)return;try{cons
  document.body.appendChild(b);b.querySelector('[data-x=spaeter]').onclick=()=>b.remove();b.querySelector('[data-x=neu]').onclick=()=>location.reload()}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')appUpdatePruefen()});setInterval(appUpdatePruefen,30*6e4);
 
-// ---------- Handy: Rand für Statusleiste und Home-Balken nur dann, wenn Onstand wirklich bis an den Rand reicht ----------
-// iOS 26 öffnet die App manchmal in einem verkleinerten Fenster (unter der Statusleiste, über dem Home-Balken), meldet aber
-// trotzdem die vollen Ränder. Dann kam der Abstand doppelt dazu und alles saß zu tief. Hier wird nachgemessen und der Rand weggelassen.
-function onRandPruefen(){try{const p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)';document.body.appendChild(p);
- const cs=getComputedStyle(p),st=parseFloat(cs.paddingTop)||0,sb=parseFloat(cs.paddingBottom)||0;p.remove();
- const hoch=innerHeight>=innerWidth,sh=hoch?Math.max(screen.width,screen.height):Math.min(screen.width,screen.height),vh=window.visualViewport&&!document.activeElement.matches('input,textarea,[contenteditable]')?Math.max(innerHeight,visualViewport.height):innerHeight,luecke=sh-vh;
- // iOS-Fehler (WebKit 301994): das Fenster ist kürzer als der Bildschirm, die „große“ Höhe (100lvh) reicht aber bis unten.
- // Dann zieht Onstand Hintergrund und Seitenleiste bis zum Boden; Inhalt bleibt oberhalb des Streifens, den iOS unten freilässt.
- const lvh=(()=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:100lvh';document.body.appendChild(d);const h=d.getBoundingClientRect().height;d.remove();return h})(),voll=APP.ios&&APP.standalone&&lvh>innerHeight+8;
- document.documentElement.classList.toggle('onvoll',voll);if(voll)document.documentElement.style.setProperty('--vollh',lvh+'px');else document.documentElement.style.removeProperty('--vollh');
- const vvTop=window.visualViewport?visualViewport.offsetTop:0,weg=APP.ios&&(st+sb)>0&&luecke>=Math.max(20,Math.min(st,sb)-2);onRandPruefen.w={st,sb,sh,vh,ih:innerHeight,iw:innerWidth,weg,sa:APP.standalone};
- document.documentElement.classList.toggle('onrandweg',weg);
- if(voll){document.documentElement.style.setProperty('--st',(vvTop>0?0:st)+'px');document.documentElement.style.setProperty('--sb',Math.max(sb,Math.round(lvh-innerHeight))+'px')}
- else if(weg){const oben=luecke>=st+sb-4&&vvTop>0?0:st,unten=luecke>=sb-2?0:sb;document.documentElement.style.setProperty('--st',oben+'px');document.documentElement.style.setProperty('--sb',unten+'px')}else{document.documentElement.style.removeProperty('--st');document.documentElement.style.removeProperty('--sb')}}catch(e){}}
-['load','resize','orientationchange','pageshow'].forEach(n=>addEventListener(n,()=>{onRandPruefen();setTimeout(onRandPruefen,350)}));document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(onRandPruefen,200)});
-if(window.visualViewport)visualViewport.addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,150)});
+// ---------- Handy: Rand für Statusleiste und Home-Balken an die echte Fenstergröße anpassen ----------
+// iOS 26 öffnet die App manchmal in einem verkleinerten Fenster (WebKit-Fehler 301994) und meldet trotzdem die vollen Ränder.
+// Gemessen wird NUR mit Werten, die Onstand selbst nicht verändert: Bildschirm, 100svh (kleinste Höhe), 100lvh (größte Höhe)
+// und die gemeldeten Ränder. innerHeight/visualViewport werden bewusst nicht benutzt – sie ändern sich, sobald Onstand die
+// Höhe setzt, und dann schaukelte sich das Format endlos zwischen zwei Zuständen hin und her (v0.10.13).
+const ON_RAND={sig:'',w:null};
+function onRandMessen(){const p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)';document.body.appendChild(p);
+ const cs=getComputedStyle(p),st=Math.round(parseFloat(cs.paddingTop)||0),sb=Math.round(parseFloat(cs.paddingBottom)||0);
+ p.style.paddingTop=p.style.paddingBottom='0';p.style.height='100svh';const svh=Math.round(p.getBoundingClientRect().height);p.style.height='100lvh';const lvh=Math.round(p.getBoundingClientRect().height);p.remove();
+ const quer=screen.orientation&&screen.orientation.type?/landscape/.test(screen.orientation.type):Math.abs(window.orientation||0)===90,sh=quer?Math.min(screen.width,screen.height):Math.max(screen.width,screen.height);
+ return {st,sb,svh,lvh,sh,quer}}
+function onRandPruefen(){try{const m=onRandMessen(),sig=[m.st,m.sb,m.svh,m.lvh,m.sh,m.quer].join('|');
+ if(sig===ON_RAND.sig&&ON_RAND.w)return;ON_RAND.sig=sig;
+ const ios=APP.ios&&APP.standalone,kurz=m.sh-m.svh,voll=ios&&m.lvh>m.svh+8,weg=!voll&&APP.ios&&(m.st+m.sb)>0&&kurz>=Math.max(20,Math.min(m.st,m.sb)-2);
+ let st=null,sb=null;
+ if(voll){st=m.st;sb=Math.max(m.sb,m.lvh-m.svh)}
+ else if(weg){st=kurz>=m.st+m.sb-4?0:m.st;sb=kurz>=m.sb-2?0:m.sb}
+ const w={...m,kurz,voll,weg,st2:st,sb2:sb,sa:APP.standalone};ON_RAND.w=w;onRandPruefen.w={st:m.st,sb:m.sb,sh:m.sh,vh:m.svh,ih:innerHeight,iw:innerWidth,weg:voll||weg,sa:APP.standalone};
+ const r=document.documentElement,setz=(k,v)=>{if(v==null){if(r.style.getPropertyValue(k))r.style.removeProperty(k)}else if(r.style.getPropertyValue(k)!==v)r.style.setProperty(k,v)};
+ if(r.classList.contains('onvoll')!==voll)r.classList.toggle('onvoll',voll);if(r.classList.contains('onrandweg')!==(voll||weg))r.classList.toggle('onrandweg',voll||weg);
+ setz('--vollh',voll?m.lvh+'px':null);setz('--st',st==null?null:st+'px');setz('--sb',sb==null?null:sb+'px')}catch(e){}}
+// nur bei echten Wechseln neu prüfen (Drehen, Rückkehr in die App); die Prüfung selbst löst keine Änderung mehr aus, wenn nichts anders ist
+['load','orientationchange','pageshow'].forEach(n=>addEventListener(n,()=>{onRandPruefen();setTimeout(onRandPruefen,400)}));
+addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,250)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(onRandPruefen,250)});
 setTimeout(onRandPruefen,0);
 
-function onRandInfo(){onRandPruefen();const w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
- return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'}`}
+function onRandInfo(){onRandPruefen();const W2=ON_RAND.w||{},w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
+ return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'} · kurz ${W2.kurz}`}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
