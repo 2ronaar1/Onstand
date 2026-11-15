@@ -2288,17 +2288,19 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 #am .onleiste,#am .onkopf,#am .cpqa,#am .kuakt,#am .amsag{display:none}
 #am .amp{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:.8em;letter-spacing:0;vertical-align:.04em}
 @media (max-width:760px){
- :root{--hyl:calc(62px + var(--sb))}
+ :root{--hyl:calc(54px + var(--sb))}
  /* 1 · Leiste unten statt Seitenleiste */
  #am .onseite,#am .onseitedimm,#am .ongriff{display:none!important}
  #am.onstand,#am .amlade{overflow:clip}
- #am .onleiste{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;position:absolute;left:0;right:0;bottom:0;z-index:15;height:var(--hyl);padding:0 4px var(--sb);background:color-mix(in srgb,var(--k-b0) 76%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);border-top:1px solid var(--lin)}
- #am .onleiste>button{display:flex;flex-direction:column;align-items:center;gap:4px;font:500 10.5px/1 Arial,Helvetica,sans-serif;letter-spacing:.2px;color:var(--k-sub);background:none;border:0;padding:8px 0 6px;transition:color .15s,transform .12s}
+ #am .onleiste{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:start;position:absolute;left:0;right:0;bottom:0;z-index:15;height:var(--hyl);padding:0 4px var(--sb);background:color-mix(in srgb,var(--k-b0) 76%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);border-top:1px solid var(--lin)}
+ #am .onleiste>button{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:54px;font:500 10.5px/1 Arial,Helvetica,sans-serif;letter-spacing:.2px;color:var(--k-sub);background:none;border:0;padding:0;transition:color .2s}
+ #am .onleiste>button svg{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+ #am .onleiste>button.an svg{transform:translateY(-1px) scale(1.06)}
+ #am .onleiste .hyind{position:absolute;z-index:1;top:7px;left:0;width:74px;height:40px;border-radius:999px;background:color-mix(in srgb,black 42%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k-akz) 18%,transparent),0 6px 18px -8px black;pointer-events:none;will-change:transform}
  #am .onleiste>button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
  #am .onleiste>button.an{color:var(--k-akz)}
- #am .onleiste>button:active{transform:scale(.92)}
  /* 2 · Sprechen in der Mitte */
- #am .onleiste .hymic{width:58px;height:58px;justify-self:center;align-self:center;margin-top:-22px;padding:0;justify-content:center;border-radius:50%;color:var(--k-auf);background:linear-gradient(160deg,color-mix(in srgb,var(--k-akz) 68%,white),var(--k-akz) 45%,var(--k-akzd));box-shadow:0 8px 22px -6px color-mix(in srgb,var(--k-akz) 70%,transparent),0 0 0 6px var(--k-b0)}
+ #am .onleiste .hymic{width:58px;height:58px;justify-self:center;align-self:center;margin-top:-20px;padding:0;justify-content:center;border-radius:50%;color:var(--k-auf);background:linear-gradient(160deg,color-mix(in srgb,var(--k-akz) 68%,white),var(--k-akz) 45%,var(--k-akzd));box-shadow:0 8px 22px -6px color-mix(in srgb,var(--k-akz) 70%,transparent),0 0 0 6px var(--k-b0)}
  #am .onleiste .hymic svg{width:26px;height:26px;stroke-width:2}
  #am .onleiste .hymic.an,#am .onleiste .hymic:active{transform:scale(.94)}
  /* 3 · Kopfzeile erscheint beim Scrollen */
@@ -2445,13 +2447,87 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
  #kal .kjt.kheute{background:var(--k-akz)!important;color:var(--k-auf)!important;font-weight:700}
 }
 @media (max-width:760px) and (prefers-reduced-motion:reduce){#am .tbk~.amnotiz.tbedit,#am .aminhalt>.gldk,#am .aminhalt>.gldk~*,#am:has(.amnotiz.tbedit) .amlade:after{animation:none}}
+
+/* ===== v0.10.17 · App-Probe übernommen ===== */
+@media (max-width:760px){
+ /* Einheitliche Größen: große Knöpfe 50, kleine 44, Chips 38, Zeilen ab 54 */
+ #am .mgk .mgakt>:is(button,a,label),#am .gldk .mgakt>:is(button,a,label){min-height:44px;display:inline-flex;align-items:center;gap:7px;font-size:14.5px;padding:0 12px}
+ #am .mgakt .ampf{min-width:44px;min-height:44px;justify-content:center;font-size:20px;padding:0}
+ #am .amans{min-height:44px;align-items:stretch}#am .amans button{min-height:36px;padding:0 14px;font-size:14px}
+ #am :is(.cpwahl,.mgbst)>button,#am .tbpchips button,#am .glul .glwahl button,#am .pequal button{min-height:38px}
+ #am :is(.autabs,.glreiter,.brreiter)>button{min-height:44px}
+ #am .mgzaehler button{min-height:44px}
+ #am :is(.kurow,.perow,.mgrow,.glzeile,.bprow .bpauf),#am .glverkn button{min-height:54px}
+ #am .amaktion :is(button,label,a),#am .auknoepfe :is(button,label),#am .mgerz button{min-height:44px}
+ #am .ja,#am .haupt{min-height:44px}
+ #kal :is(.krund,.kpill,.kplus,.klupe,.kfiltbtn){min-height:44px;min-width:44px}
+ #kal .kseg{min-height:44px}#kal .kseg button{min-height:36px}
+ /* Kalender · Woche mit Uhrzeiten: Tageskopf bleibt direkt unter „KW“, nur die Stunden scrollen */
+ #kal .khaupt.ka-woche{overflow:hidden!important;display:flex;flex-direction:column}
+ #kal .kwk{flex:1;min-height:0;border-radius:16px;background:var(--karte)}
+ #kal .kwkh,#kal .kwkg,#kal .kwkbi{grid-template-columns:38px repeat(7,minmax(0,1fr))!important}
+ #kal .kwkh{background:color-mix(in srgb,var(--k-b1) 88%,transparent)}
+ #kal .kwtag{flex-direction:column;align-items:center;gap:2px;padding:7px 0 6px;min-height:52px;border-left:0}
+ #kal .kwtag small{font-size:10px;letter-spacing:.8px}
+ #kal .kwtag b{font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:600;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+ #kal .kwtag.kheute b{background:var(--k-akz);color:var(--k-auf)}
+ #kal .kwtag.an{box-shadow:none;background:color-mix(in srgb,var(--k-akz) 8%,transparent)}
+ #kal .kw24{font-size:9px;padding:3px 4px;min-height:0}
+ #kal .kwkg{min-height:24px}
+ #kal .kwgl{font-size:7.5px;padding:5px 4px 0 0;letter-spacing:.4px}
+ #kal .kwgz{padding:3px 1.5px;gap:2px;border-left:0}
+ #kal .kwgz .kc{font-size:0!important;height:6px;min-height:0!important;padding:0!important;border-radius:3px;background:var(--c)!important;border:0}
+ #kal .kwgz .kc:before{display:none}
+ #kal .kwmehr{font-size:9px;padding:0}
+ #kal .kwkbi{height:calc(var(--n) * 46px)!important}
+ #kal .kwax span{font-size:10px;padding:0 5px 0 0;transform:translateY(-6px)}
+ #kal .kwax span:first-child{visibility:hidden}
+ #kal .kwsp{border-left-color:color-mix(in srgb,var(--k-sub) 8%,transparent)}
+ #kal .kwb{left:1.5px!important;width:auto!important;right:1.5px;padding:3px 4px;border-radius:7px;border-left-width:3px}
+ #kal .kwb b{font-size:10px;line-height:1.2;-webkit-line-clamp:3}
+ #kal .kwb small{font-size:9.5px;font-weight:600;color:color-mix(in srgb,var(--c) 70%,white);order:-1}
+ #kal .kwb.kurz,#kal .kwb.mittel{flex-direction:column;align-items:stretch;gap:0;padding:2px 4px}
+ #kal .kwb.kurz b{-webkit-line-clamp:1;white-space:nowrap}
+ /* Firmen-Brain: weniger Freiraum oben, Liste und Seite nacheinander */
+ #am .aminhalt:has(>.brx)>.mgk{flex-direction:row!important;align-items:flex-end!important;justify-content:space-between}
+ #am .aminhalt:has(>.brx)>.mgk .mgakt{flex-wrap:nowrap;gap:2px}
+ #am .aminhalt:has(>.brx)>.mgk .mgakt>:is(button,label){font-size:0;width:44px;padding:0;justify-content:center;position:relative}
+ #am .aminhalt:has(>.brx)>.mgk .mgakt svg{width:20px;height:20px}
+ #am .aminhalt:has(>.brx)>.mgk .mgakt em{position:absolute;top:4px;right:2px;font-size:10px}
+ #am .aminhalt:has(>.brx)>.mgk .mgakt .tr{display:none}
+ #am .brx{overflow:visible!important;gap:12px}
+ #am .brreiter .brlauf{order:-1;flex:1 1 100%;margin:0 0 6px;padding:0;display:flex;align-items:center;justify-content:space-between;gap:8px}
+ #am .brreiter .brlauf span{font-size:12.5px;letter-spacing:0;white-space:normal;flex:1;margin:0}
+ #am .brreiter .brlauf button{min-height:38px;border:1px solid color-mix(in srgb,var(--k-akz) 40%,transparent)!important;border-radius:999px!important;padding:0 14px!important;font-size:13.5px!important}
+ #am .brreiter{flex-wrap:wrap}
+ #am .brwiki{display:block!important}
+ #am .brliste{max-height:none!important;overflow:visible!important;background:none!important;border:0!important;box-shadow:none!important}
+ #am .brliste .brgr{border:0;padding:0 0 14px}
+ #am .brliste .brgr>small{display:block;padding:4px 4px 8px;font-size:11px;letter-spacing:2px;font-weight:400;color:var(--k-sub)}
+ #am .brliste .brgr>button,#am .brliste .brgr>.brneu{min-height:52px;padding:0 14px;font-size:15.5px;align-items:center;background:var(--karte);border:1px solid var(--lin);border-top-width:0;border-radius:0}
+ #am .brliste .brgr>small+button,#am .brliste .brgr>small+.brneu{border-top-width:1px;border-radius:14px 14px 0 0}
+ #am .brliste .brgr>:is(button,.brneu):last-child{border-radius:0 0 14px 14px}
+ #am .brliste .brgr>small+:is(button,.brneu):last-child{border-radius:14px}
+ #am .brliste button:after{content:'›';color:var(--k-sub);font-size:18px;margin-left:6px}
+ #am .brliste button.an{background:var(--karte);color:var(--k-t);font-weight:400}
+ #am .brwiki:not(.brmseite) .brseite{display:none!important}
+ #am .brwiki.brmseite .brliste{display:none!important}
+ #am .brseite{max-height:none!important;overflow:visible!important;padding:16px!important;animation:hyrein .36s cubic-bezier(.2,.8,.2,1) both}
+ #am .brzur{align-self:flex-start;min-height:44px;padding:0 4px;margin:-8px 0 -6px -4px;background:none;border:0;color:var(--k-akz);font-size:15px}
+ #am .brfakten{grid-template-columns:minmax(0,1fr)!important}
+ #am .brfrage{position:sticky;bottom:calc(var(--hyl) + 10px);z-index:4;min-height:48px}
+ #am .brfrage .brklein{display:none}
+}
+.brzur{display:none}
+@media (max-width:760px){#am .brzur{display:inline-flex;align-items:center}}
+@media (max-width:760px){#kal .kwb .kwbis{display:none}#kal .kwb small{overflow:visible;text-overflow:clip}#kal .kwb b,#kal .kwb.kurz b,#kal .kwb.mittel b{white-space:normal;-webkit-line-clamp:3;overflow-wrap:break-word;hyphens:auto;font-size:9.5px}#kal .kwb.kurz b{-webkit-line-clamp:1}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.16';
+const ON_VER='0.10.17';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -3838,7 +3914,7 @@ function kuMalen(inh){
  if(KU_SEL===null){const alle=Object.values(BST).sort((a,b)=>a.name.localeCompare(b.name)),akt=alle.filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent'),fer=alle.filter(b=>b.status==='abgeschlossen'),intr=alle.filter(b=>b.status==='interessent');
   const q=KU_V.q.trim().toLowerCase(),L=(KU_V.tab==='fertig'?fer:KU_V.tab==='intr'?intr:akt).filter(b=>!q||(b.name+' '+b.k+' '+(b.ort||'')+' '+(b.kontakt||'')).toLowerCase().includes(q));
   const letzte=Object.keys(TB).sort().reverse().flatMap(t=>(TB[t]||[]).filter(e=>e&&e.b&&(e.l||e.x||e.a)).map(e=>({t,e}))).slice(0,4);
-  inh.innerHTML=`<div class="mgk"><div><span class="amtt">KUNDEN</span><h2 class="mgh">Kunden <span class="amp">&amp;</span> Baustellen</h2></div><div class="mgakt">${KU_V.such?`<input class="glsuch kusuch" type="search" placeholder="Name, Ort, Ansprechpartner …" value="${esc(KU_V.q)}" aria-label="Kunden durchsuchen">`:''}<button type="button" class="kusb">${KU_I.lupe}Suchen</button><span class="tr"></span><button type="button" class="haupt kuneu">${KU_I.plus}Kunde</button></div></div>
+  inh.innerHTML=`<div class="mgk"><div><span class="amtt">KUNDEN &amp; BAUSTELLEN</span><h2 class="mgh">Kunden</h2></div><div class="mgakt">${KU_V.such?`<input class="glsuch kusuch" type="search" placeholder="Name, Ort, Ansprechpartner …" value="${esc(KU_V.q)}" aria-label="Kunden durchsuchen">`:''}<button type="button" class="kusb">${KU_I.lupe}Suchen</button><span class="tr"></span><button type="button" class="haupt kuneu">${KU_I.plus}Kunde</button></div></div>
    <div class="glreiter" role="tablist"><button type="button" data-kt="aktiv" class="${KU_V.tab==='aktiv'?'an':''}">Aktiv<i>${akt.length}</i></button><button type="button" data-kt="fertig" class="${KU_V.tab==='fertig'?'an':''}">Abgeschlossen<i>${fer.length}</i></button><button type="button" data-kt="intr" class="${KU_V.tab==='intr'?'an':''}">Interessenten<i>${intr.length}</i></button></div>
    <div class="kuliste glkarte gltab">${L.length?L.map(b=>{const fertig=b.status==='abgeschlossen',it=b.status==='interessent';return `<button type="button" class="kurow" data-n="${esc(b.name)}" style="--bc:${b.c}"><span class="kust"></span><span class="kutx"><b>${esc(b.name)}</b><small>${[(b.ort||'').split(',')[0],b.kontakt,b.einzug?'Einzug '+kuDatum(b.einzug):''].filter(Boolean).map(esc).join(' · ')||'noch ohne Standort'}</small></span><em class="${fertig?'fertig':it?'intr':'offen'}">${fertig?'FERTIG':it?'INTERESSENT':'IN ARBEIT'}</em></button>`}).join(''):`<div class="amleer">${q?'Nichts gefunden für „'+esc(KU_V.q)+'“.':KU_V.tab==='intr'?'Noch keine Interessenten.<br>Lege einen Kunden an und stelle den Status auf „Interessent“ – so behältst du Anfragen im Blick, bevor ein Auftrag daraus wird.':KU_V.tab==='fertig'?'Noch nichts abgeschlossen.<br>Stelle den Status einer Baustelle auf „abgeschlossen“, wenn sie fertig ist.':alle.length?'Gerade keine laufende Baustelle.':'Noch keine Baustellen.<br>Lege eine an oder erzähl dem Assistenten, wo du heute warst.'}</div>`}
    ${letzte.length&&!q?`<div class="gllab">ZULETZT AUF DEN BAUSTELLEN</div>${letzte.map(({t,e})=>{const d=tbAusIso(t);return `<button type="button" class="glzeile" data-tb="${t}">${KU_I.doc}<span><b>${esc(String(e.l||e.x||e.a).split(/;|\n/)[0])}</b><small>${esc(e.b)}</small></span><em>${TB_WT[tbWt(d)].charAt(0)+TB_WT[tbWt(d)].charAt(1).toLowerCase()} ${d.getDate()}.${d.getMonth()+1}.</em></button>`}).join('')}`:''}</div>`;
@@ -4900,19 +4976,19 @@ function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)r
    for(let i=0;i<7;i++){const t=kPlus(mo,i),l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),sicht=l.filter(e=>e.art!=='feiertag');
     x+=`<button type="button" class="kz${i>4?' kwe':''}${kD(t).getMonth()!==m?' kaus':''}${t===heute?' kheute':''}${t===s?' ksel':''}${t<heute?' kvorbei':''}${t===KAL.neu?' kneu2':''}" data-t="${t}"><span class="kn"><b>${kD(t).getDate()}</b>${fei?`<em>${esc(fei.t)}</em>`:''}</span>${sicht.slice(0,3).map(kChip).join('')}${sicht.length>3?`<u>+${sicht.length-3} weitere</u>`:''}</button>`}}
   h.innerHTML=x+'</div>'}
- else if(KAL.ans==='woche'&&W>=980){// PC: Wochenraster wie in der Probe – Tage als Spalten, Stunden senkrecht, oben „Ganzer Tag“. Standard 07–18 Uhr (wächst mit den Einträgen), Knopf „24 h“ zeigt den ganzen Tag.
+ else if(KAL.ans==='woche'&&(W>=980||W<=760)){// PC und Handy: Wochenraster wie in der Probe – Tage als Spalten, Stunden senkrecht, oben „Ganzer Tag“. Standard 07–18 Uhr (wächst mit den Einträgen), Knopf „24 h“ zeigt den ganzen Tag.
   const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i)),min=v=>{const [a,b]=v.split(':').map(Number);return a*60+b},jetzt=new Date(),jm=jetzt.getHours()*60+jetzt.getMinutes(),voll=kal24();
   const T=tage.map(t=>{const l=kalAm(t),zz=l.filter(e=>e.von&&!e.ganz).map(e=>{const a=min(e.von);return {e,a,b:Math.min(1440,Math.max(a+30,e.bis&&min(e.bis)>a?min(e.bis):a+60))}}).sort((p,q)=>p.a-q.a||q.b-p.b);
    let gr=[],ende=0;const fertig=()=>{const bahn=[];gr.forEach(z=>{let k=bahn.findIndex(v=>v<=z.a);if(k<0){k=bahn.length;bahn.push(0)}bahn[k]=z.b;z.k=k});gr.forEach(z=>z.n=bahn.length);gr=[]};
    zz.forEach(z=>{if(gr.length&&z.a>=ende)fertig();gr.push(z);ende=Math.max(ende,z.b)});fertig();return {t,l,zz,ganz:l.filter(e=>e.ganz||!e.von)}});
   let von=7,bis=18;if(voll){von=0;bis=24}else T.forEach(d=>d.zz.forEach(z=>{von=Math.min(von,Math.floor(z.a/60));bis=Math.max(bis,Math.ceil(z.b/60))}));const n=bis-von,pz=m=>((m-von*60)/(n*60)*100).toFixed(3)+'%';
-  h.innerHTML=`<div class="kwk${voll?' kw24an':''}" style="--n:${n}"><div class="kwkh"><button type="button" class="kw24" aria-pressed="${voll}" title="${voll?'Nur die Arbeitszeit zeigen':'Ganzen Tag zeigen, 0 bis 24 Uhr'}">24 h</button>${T.map(d=>`<button type="button" class="kwtag${d.t===heute?' kheute':''}${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}"><small>${KTAG[kWt(d.t)]}</small><b>${kD(d.t).getDate()}</b></button>`).join('')}</div>
+  h.innerHTML=`<div class="kwk${voll?' kw24an':''}" style="--n:${n};--von:${von}"><div class="kwkh"><button type="button" class="kw24" aria-pressed="${voll}" title="${voll?'Nur die Arbeitszeit zeigen':'Ganzen Tag zeigen, 0 bis 24 Uhr'}">24 h</button>${T.map(d=>`<button type="button" class="kwtag${d.t===heute?' kheute':''}${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}"><small>${KTAG[kWt(d.t)]}</small><b>${kD(d.t).getDate()}</b></button>`).join('')}</div>
    <div class="kwkg"><span class="kwgl">GANZER<br>TAG</span>${T.map(d=>`<div class="kwgz${d.t===s?' an':''}">${d.ganz.slice(0,3).map(e=>`<button type="button" class="kc${kNeben(e)?' kneben':''}${e.ganz?' kganz':''}" style="--c:${kCol(e)}" data-t="${d.t}" data-i="${d.l.indexOf(e)}" title="${esc(e.t)}">${esc(e.t)}</button>`).join('')}${d.ganz.length>3?`<button type="button" class="kwmehr" data-t="${d.t}">+${d.ganz.length-3} weitere</button>`:''}</div>`).join('')}</div>
-   <div class="kwkb"><div class="kwkbi"><div class="kwax">${Array.from({length:n},(_,i)=>`<span>${String(von+i).padStart(2,'0')}:00</span>`).join('')}</div>${T.map(d=>`<div class="kwsp${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}">${d.zz.map(z=>`<button type="button" class="kwb${kNeben(z.e)?' kneben':''}${(z.b-z.a)*(voll?46:38)/60<42?' kurz':(z.b-z.a)*(voll?46:38)/60<60?' mittel':''}" style="--c:${kCol(z.e)};top:${pz(z.a)};height:${((z.b-z.a)/(n*60)*100).toFixed(3)}%;left:calc(${(z.k/z.n*100).toFixed(2)}% + 3px);width:calc(${(100/z.n).toFixed(2)}% - 6px)" data-t="${d.t}" data-i="${d.l.indexOf(z.e)}" title="${esc(z.e.von+(z.e.bis?'–'+z.e.bis:'')+' '+z.e.t)}"><b>${esc(z.e.t)}</b><small>${esc(z.e.von)}${z.e.bis?'–'+esc(z.e.bis):''}${z.e.ort?' · '+esc(z.e.ort):''}</small></button>`).join('')}${d.t===heute&&jm>=von*60&&jm<=bis*60?`<span class="kwjetzt" style="top:${pz(jm)}"></span>`:''}</div>`).join('')}</div></div></div>`;
+   <div class="kwkb"><div class="kwkbi"><div class="kwax">${Array.from({length:n},(_,i)=>`<span>${String(von+i).padStart(2,'0')}:00</span>`).join('')}</div>${T.map(d=>`<div class="kwsp${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}">${d.zz.map(z=>`<button type="button" class="kwb${kNeben(z.e)?' kneben':''}${(z.b-z.a)*(voll?46:38)/60<42?' kurz':(z.b-z.a)*(voll?46:38)/60<60?' mittel':''}" style="--c:${kCol(z.e)};top:${pz(z.a)};height:${((z.b-z.a)/(n*60)*100).toFixed(3)}%;left:calc(${(z.k/z.n*100).toFixed(2)}% + 3px);width:calc(${(100/z.n).toFixed(2)}% - 6px)" data-t="${d.t}" data-i="${d.l.indexOf(z.e)}" title="${esc(z.e.von+(z.e.bis?'–'+z.e.bis:'')+' '+z.e.t)}"><b>${esc(z.e.t)}</b><small>${esc(z.e.von)}<span class="kwbis">${z.e.bis?'–'+esc(z.e.bis):''}${z.e.ort?' · '+esc(z.e.ort):''}</span></small></button>`).join('')}${d.t===heute&&jm>=von*60&&jm<=bis*60?`<span class="kwjetzt" style="top:${pz(jm)}"></span>`:''}</div>`).join('')}</div></div></div>`;
   h.querySelector('.kw24').onclick=()=>{try{localStorage.setItem('onstandKal24',voll?'0':'1')}catch(e){}KAL.w24=!voll;kalZeichnen()};
   {const kb=h.querySelector('.kwkb');if(voll){const erste=Math.min(...T.flatMap(d=>d.zz.map(z=>z.a)),7*60);kb.scrollTop=Math.max(0,(erste-30)/1440*kb.scrollHeight)}}
   h.querySelectorAll('.kwsp').forEach(sp=>sp.ondblclick=ev=>{if(ev.target!==sp)return;const r=sp.getBoundingClientRect(),m=Math.min(23.5,Math.max(0,Math.floor(((ev.clientY-r.top)/r.height*n+von)*2)/2)),hh=String(Math.floor(m)).padStart(2,'0')+':'+(m%1?'30':'00');kalFormular(null,sp.dataset.t,hh)})}
- else if(KAL.ans==='woche'&&W<=760){// Handy: Woche als Liste – jeder Tag eine Zeile, Termine untereinander, freie Tage schmal
+ else if(false){// (v0.10.16) Handy-Wochenliste – ersetzt durch das Raster mit Uhrzeiten – jeder Tag eine Zeile, Termine untereinander, freie Tage schmal
   const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i));
   h.innerHTML=`<div class="kwa">${tage.map(t=>{const l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),L=l.filter(e=>e.art!=='feiertag');return `<section class="kwar${kWt(t)>4?' kwe':''}${t===heute?' kheute':''}${t===s?' ksel':''}${L.length?'':' kfrei'}"><button type="button" class="kwad" data-t="${t}"><small>${KTAG[kWt(t)]}</small><b>${kD(t).getDate()}</b></button><div class="kwal">${fei?`<span class="kwafei">${esc(fei.t)}</span>`:''}${L.map(e=>`<button type="button" class="kwae${kNeben(e)?' kneben':''}" style="--c:${kCol(e)}" data-t="${t}" data-i="${l.indexOf(e)}"><span class="kwaz">${e.von&&!e.ganz?esc(e.von)+(e.bis?'<br>'+esc(e.bis):''):'ganzt.'}</span><span class="kwat"><b>${esc(e.t)}</b>${e.ort||kArtName(e)?`<small>${e.ort?esc(e.ort):kArtName(e)}</small>`:''}</span></button>`).join('')||`<button type="button" class="kwafrei" data-t="${t}">frei · antippen zum Eintragen</button>`}</div></section>`}).join('')}</div>`}
  else if(KAL.ans==='woche'){// Zeitband: Tage als Zeilen, 24 Stunden waagerecht (scrollbar), Stundenleiste und Tage bleiben stehen
@@ -5286,7 +5362,7 @@ function brMalen(inh){const rolle=typeof SY_KONTO!=='undefined'&&SY_KONTO?SY_KON
   <div class="brx"><div class="brreiter" role="tablist">${[['wiki','Wiki',P.length],['neu','Neu',neu],['nz','Nicht zugeordnet',nz.length]].filter(([k,n,z])=>k==='wiki'||z).map(([k,n,z])=>`<button type="button" role="tab" data-brtab="${k}" class="${BR.tab===k?'an':''}${k==='nz'?' warn':''}" aria-selected="${BR.tab===k}">${n}<i>${z}</i></button>`).join('')}
    <div class="brlauf"><span>${BR.laeuft?`<b>Sortiere …</b> ${esc(BR.fort)}`:(lz?'ZULETZT SORTIERT '+lzT+' · ':'')+'NÄCHSTER LAUF SONNTAG'}</span>${BR.quelle&&!BR.neuQuelle.length&&!BR.laeuft?'<button type="button" class="brpruef">Ordner prüfen</button>':''}<button type="button" class="ja brjetzt" ${BR.laeuft?'disabled':''}>Jetzt sortieren</button></div></div>
   ${BR.toast?`<div class="brtoast">${esc(BR.toast)}</div>`:''}
-  <div class="brwiki"><div class="brliste">${liste}</div><div class="brseite">${seite}</div></div>
+  <div class="brwiki${BR.mob?' brmseite':''}"><div class="brliste">${liste}</div><div class="brseite"><button type="button" class="brzur">‹ Übersicht</button>${seite}</div></div>
   <form class="brfrage"><input placeholder="Frag das Firmenwissen, z. B. „Was müssen wir bei Familie Müller beachten?“" aria-label="Frage an das Firmen-Brain"><small class="brklein">zählt als Denk-Frage</small><button type="submit" class="ja" aria-label="Fragen">${BR_I.senden}</button></form></div>`;
  brBinden(inh)}
 function brInterviewMalen(inh){const o=brOffeneFragen(),pct=brProfilProzent(),c=2*Math.PI*24,f=o[0];
@@ -5306,9 +5382,10 @@ function brBinden(inh){const q=s=>inh.querySelector(s);
  const j=q('.brjetzt');if(j)j.onclick=async()=>{await brLauf({frag:true});brMalen(inh)};
  const pr=q('.brpruef');if(pr)pr.onclick=async()=>{await brNeuErmitteln(true);brMalen(inh)};
  const it=q('.brint');if(it)it.onclick=()=>{BR.ansicht='interview';brMalen(inh)};
- inh.querySelectorAll('[data-brtab]').forEach(b=>b.onclick=()=>{BR.tab=b.dataset.brtab;BR.sel=null;BR.toast='';brMalen(inh)});
- inh.querySelectorAll('[data-brs]').forEach(b=>b.onclick=e=>{e.preventDefault();BR.tab='wiki';BR.sel=b.dataset.brs;BR.toast='';brMalen(inh)});
- inh.querySelectorAll('[data-brnz]').forEach(b=>b.onclick=()=>{BR.sel='NZ:'+b.dataset.brnz;BR.toast='';brMalen(inh)});
+ inh.querySelectorAll('[data-brtab]').forEach(b=>b.onclick=()=>{BR.tab=b.dataset.brtab;BR.sel=null;BR.mob=0;BR.toast='';brMalen(inh)});
+ inh.querySelectorAll('[data-brs]').forEach(b=>b.onclick=e=>{e.preventDefault();BR.tab='wiki';BR.sel=b.dataset.brs;BR.mob=1;BR.toast='';brMalen(inh);inh.scrollTop=0});
+ inh.querySelectorAll('[data-brnz]').forEach(b=>b.onclick=()=>{BR.sel='NZ:'+b.dataset.brnz;BR.mob=1;BR.toast='';brMalen(inh);inh.scrollTop=0});
+ const bz=q('.brzur');if(bz)bz.onclick=()=>{BR.mob=0;brMalen(inh);inh.scrollTop=0};
  const zs=q('[data-brziel]');if(zs)zs.onchange=()=>{const neu=zs.value==='__neu';q('[data-brneu]').hidden=!neu;q('[data-brgr]').hidden=!neu};
  const zo=q('[data-brzuord]');if(zo)zo.onclick=async()=>{const id=BR.sel.slice(3),neu=zs.value==='__neu',titel=neu?q('[data-brneu]').value.trim():zs.value;if(!titel){q('[data-brneu]').focus();return}
   const t=await brZuordnen(id,titel,neu?q('[data-brgr]').value:(BR.seiten[titel]||{}).gruppe);BR.tab='wiki';BR.sel=t;BR.toast=`„${(BR.stand.dateien[id]||{}).name||''}“ ist jetzt bei ${t}.`;brMalen(inh)};
@@ -7306,7 +7383,7 @@ const hyIco=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${HY_I[k]}</svg>`;
 const hyHandy=()=>W<=760;
 const hyAkt=()=>['cockpit','tagebuch','kalender'].includes(AM_AKT)?AM_AKT:'mehr';
 function hyBau(){if(!AM_EL||AM_EL.querySelector('.onleiste'))return;const l=AM_EL.querySelector('.amlade');
- l.insertAdjacentHTML('beforeend',`<div class="onkopf" aria-hidden="true"><b></b></div><nav class="onleiste" aria-label="Bereiche">${[['cockpit','Cockpit'],['tagebuch','Tagebuch'],null,['kalender','Kalender'],['mehr','Mehr']].map(x=>x?`<button type="button" data-hy="${x[0]}">${hyIco(x[0])}<span>${x[1]}</span></button>`:`<button type="button" class="hymic" data-hymic aria-label="Mit dem Assistenten sprechen">${hyIco('mic')}</button>`).join('')}</nav>`);
+ l.insertAdjacentHTML('beforeend',`<div class="onkopf" aria-hidden="true"><b></b></div><nav class="onleiste" aria-label="Bereiche"><span class="hyind" aria-hidden="true"></span>${[['cockpit','Cockpit'],['tagebuch','Tagebuch'],null,['kalender','Kalender'],['mehr','Mehr']].map(x=>x?`<button type="button" data-hy="${x[0]}">${hyIco(x[0])}<span>${x[1]}</span></button>`:`<button type="button" class="hymic" data-hymic aria-label="Mit dem Assistenten sprechen">${hyIco('mic')}</button>`).join('')}</nav>`);
  l.querySelectorAll('[data-hy]').forEach(b=>b.onclick=()=>{const id=b.dataset.hy,inh=AM_EL.querySelector('.aminhalt');try{if(asOffen())asZu()}catch(e){}
   if(id===hyAkt()&&id!=='kalender'&&!(id==='mehr'&&AM_AKT!=='mehr')){inh.scrollTo({top:0,behavior:RM?'auto':'smooth'});return}amFunktion(id)});
  l.querySelector('[data-hymic]').onclick=()=>{try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}asAuf()};
@@ -7314,7 +7391,12 @@ function hyBau(){if(!AM_EL||AM_EL.querySelector('.onleiste'))return;const l=AM_E
  // Blatt von unten (neuer Tagebuch-Eintrag): Tippen auf die abgedunkelte Fläche bricht ab
  l.addEventListener('click',ev=>{if(ev.target!==l||!hyHandy())return;const ab=AM_EL.querySelector('.amnotiz.tbedit .amab');if(ab)ab.click()});
  hyLeiste()}
-function hyLeiste(){if(!AM_EL)return;const a=hyAkt();AM_EL.querySelectorAll('.onleiste [data-hy]').forEach(b=>{const an=b.dataset.hy===a;b.classList.toggle('an',an);if(an)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
+function hyLeiste(sofort){if(!AM_EL)return;const a=hyAkt();AM_EL.querySelectorAll('.onleiste [data-hy]').forEach(b=>{const an=b.dataset.hy===a;b.classList.toggle('an',an);if(an)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});hyKreis(a,sofort)}
+// Dunkler, breiter Kreis hinter dem gewählten Knopf: wandert mit einem Swoosh (in die Breite ziehen, flach, nachfedern) zur neuen Stelle
+function hyKreis(a,sofort){const l=AM_EL&&AM_EL.querySelector('.onleiste'),ind=l&&l.querySelector('.hyind'),b=l&&l.querySelector(`[data-hy="${a}"]`);if(!ind||!b||!hyHandy())return;
+ const x1=b.offsetLeft+b.offsetWidth/2-ind.offsetWidth/2,x0=hyKreis.x,alt=hyKreis.a;hyKreis.x=x1;hyKreis.a=a;ind.style.transform=`translateX(${x1}px)`;
+ if(sofort||RM||x0==null||alt===a||!ind.animate||!ind.offsetWidth)return;const m=(x0+x1)/2,d=Math.sign(x1-x0),weit=Math.min(2.4,1+Math.abs(x1-x0)/120);
+ ind.animate([{transform:`translateX(${x0}px) scale(1,1)`,opacity:1},{transform:`translateX(${x0+d*10}px) scale(.92,1.04)`,offset:.12},{transform:`translateX(${m}px) scale(${weit},.72)`,opacity:.75,offset:.5},{transform:`translateX(${x1+d*5}px) scale(1.08,.95)`,offset:.82},{transform:`translateX(${x1}px) scale(1,1)`,opacity:1}],{duration:460,easing:'cubic-bezier(.45,0,.2,1)'})}
 function hyKopf(){if(!AM_EL)return;if(AM_EL.scrollLeft)AM_EL.scrollLeft=0;const inh=AM_EL.querySelector('.aminhalt'),k=AM_EL.querySelector('.onkopf');if(!k||!inh)return;const zu=hyHandy()&&inh.scrollTop>44;
  if(zu){const t=inh.querySelector('.mgh,.gldk h3,.amkopf>span,.amkopf>b');k.querySelector('b').textContent=t?t.textContent.replace(/\s+/g,' ').trim():''}if(k.classList.contains('zu')!==zu)k.classList.toggle('zu',zu)}
 function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','kalender'].includes(x.id));
@@ -7333,7 +7415,7 @@ function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','ka
  if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);return r}
  onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();
  const inh=AM_EL.querySelector('.aminhalt');inh.classList.remove('raus');hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
-addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
+addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
@@ -7390,16 +7472,18 @@ function onRandMessen(){const p=document.createElement('div');p.style.cssText='p
  p.style.paddingTop=p.style.paddingBottom='0';p.style.height='100svh';const svh=Math.round(p.getBoundingClientRect().height);p.style.height='100lvh';const lvh=Math.round(p.getBoundingClientRect().height);p.remove();
  const quer=screen.orientation&&screen.orientation.type?/landscape/.test(screen.orientation.type):Math.abs(window.orientation||0)===90,sh=quer?Math.min(screen.width,screen.height):Math.max(screen.width,screen.height);
  return {st,sb,svh,lvh,sh,quer}}
-function onRandPruefen(){try{const m=onRandMessen(),sig=[m.st,m.sb,m.svh,m.lvh,m.sh,m.quer].join('|');
+// v0.10.17: Onstand setzt KEINE Höhe mehr (kein 100lvh). #am liegt mit position:fixed im echten Fenster, das iOS vergibt.
+// Nur wenn das App-Fenster kürzer ist als der Bildschirm (iOS-Fehler 301994), werden die gemeldeten Ränder um genau diese
+// fehlende Höhe verkleinert – zuerst unten (Home-Balken), dann oben. Vorher wurde der untere Rand teils VERGRÖSSERT
+// (größte minus kleinste Höhe) und kam zur vollen Leistenhöhe dazu: dadurch saß die untere Leiste zu hoch.
+function onRandPruefen(){try{const m=onRandMessen(),ih=Math.round(innerHeight),sig=[m.st,m.sb,m.sh,m.quer,ih].join('|');
  if(sig===ON_RAND.sig&&ON_RAND.w)return;ON_RAND.sig=sig;
- const ios=APP.ios&&APP.standalone,kurz=m.sh-m.svh,voll=ios&&m.lvh>m.svh+8,weg=!voll&&APP.ios&&(m.st+m.sb)>0&&kurz>=Math.max(20,Math.min(m.st,m.sb)-2);
- let st=null,sb=null;
- if(voll){st=m.st;sb=Math.max(m.sb,m.lvh-m.svh)}
- else if(weg){st=kurz>=m.st+m.sb-4?0:m.st;sb=kurz>=m.sb-2?0:m.sb}
- const w={...m,kurz,voll,weg,st2:st,sb2:sb,sa:APP.standalone};ON_RAND.w=w;onRandPruefen.w={st:m.st,sb:m.sb,sh:m.sh,vh:m.svh,ih:innerHeight,iw:innerWidth,weg:voll||weg,sa:APP.standalone};
+ const ios=APP.ios&&APP.standalone,fehlt=ios?Math.max(0,m.sh-ih):0,weg=fehlt>2&&(m.st+m.sb)>0;
+ let st=null,sb=null;if(weg){let rest=fehlt;sb=Math.max(0,m.sb-rest);rest-=m.sb-sb;st=Math.max(0,m.st-rest)}
+ const w={...m,kurz:fehlt,voll:false,weg,st2:st,sb2:sb,sa:APP.standalone,ih};ON_RAND.w=w;onRandPruefen.w={st:m.st,sb:m.sb,sh:m.sh,vh:m.svh,ih,iw:innerWidth,weg,sa:APP.standalone};
  const r=document.documentElement,setz=(k,v)=>{if(v==null){if(r.style.getPropertyValue(k))r.style.removeProperty(k)}else if(r.style.getPropertyValue(k)!==v)r.style.setProperty(k,v)};
- if(r.classList.contains('onvoll')!==voll)r.classList.toggle('onvoll',voll);if(r.classList.contains('onrandweg')!==(voll||weg))r.classList.toggle('onrandweg',voll||weg);
- setz('--vollh',voll?m.lvh+'px':null);setz('--st',st==null?null:st+'px');setz('--sb',sb==null?null:sb+'px')}catch(e){}}
+ if(r.classList.contains('onvoll'))r.classList.remove('onvoll');if(r.classList.contains('onrandweg')!==weg)r.classList.toggle('onrandweg',weg);
+ setz('--vollh',null);setz('--st',st==null?null:st+'px');setz('--sb',sb==null?null:sb+'px')}catch(e){}}
 // nur bei echten Wechseln neu prüfen (Drehen, Rückkehr in die App); die Prüfung selbst löst keine Änderung mehr aus, wenn nichts anders ist
 ['load','orientationchange','pageshow'].forEach(n=>addEventListener(n,()=>{onRandPruefen();setTimeout(onRandPruefen,400)}));
 addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,250)});
