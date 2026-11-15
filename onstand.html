@@ -2284,6 +2284,89 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
  #kal .ktitel{padding:0;min-height:0}
 }
 @media (max-width:760px){#am .glr .tbfelder,#am .gldk~.tbfelder{grid-template-columns:max-content minmax(0,1fr);column-gap:14px}#am .aminhalt:has(.kuneu,.kuzur) :is(.tbfelder>span,.gllab,.gldk small){letter-spacing:1.4px}}
+/* ===== Suchen & Filtern (kern/finden.js), Letzte Kontakte (Kunden), Suche im Firmen-Brain – PC und Handy ===== */
+.fiweg{display:none!important}
+#am .fibar{display:flex;flex-direction:column;gap:10px;margin:0 0 12px}
+#am .fisuch{display:flex;align-items:center;gap:8px;height:42px;padding:0 6px 0 13px;border-radius:12px;background:color-mix(in srgb,var(--k-sub) 7%,transparent);border:1px solid color-mix(in srgb,var(--k-sub) 18%,transparent);color:var(--k-sub);transition:border-color .15s}
+#am .fisuch:focus-within{border-color:color-mix(in srgb,var(--k-akz) 60%,transparent)}
+#am .fisuch>svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+#am .fisuch input{flex:1;min-width:0;height:100%;background:none;border:0;outline:0;box-shadow:none;color:var(--k-t);font:inherit;font-size:14px;padding:0}
+#am .fisuch input::-webkit-search-cancel-button{display:none}
+#am .fix{width:30px;height:30px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--k-sub);visibility:hidden;cursor:pointer}
+#am .fix svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+#am .fizeile{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#am .fichips{display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
+#am .fichips button{height:32px;padding:0 13px;border-radius:999px;border:1px solid color-mix(in srgb,var(--k-sub) 22%,transparent);background:none;color:var(--k-sub);font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#am .fichips button:hover{color:var(--k-t)}
+#am .fichips button.an{border-color:var(--k-akz);color:var(--k-t);background:color-mix(in srgb,var(--k-akz) 14%,transparent)}
+#am .fijahr{display:flex;gap:2px;padding:2px;border-radius:10px;background:color-mix(in srgb,var(--k-sub) 8%,transparent);border:1px solid color-mix(in srgb,var(--k-sub) 15%,transparent)}
+#am .fijahr button{height:28px;padding:0 10px;border-radius:8px;border:0;background:none;color:var(--k-sub);font:inherit;font-size:12.5px;cursor:pointer;font-variant-numeric:tabular-nums}
+#am .fijahr button.an{background:var(--k-akz);color:var(--k-auf);font-weight:600}
+#am .fiinfo{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:var(--k-sub);letter-spacing:.3px;padding:0 2px}
+#am .fiinfo b{font-size:14px;color:var(--k-t);font-weight:600;font-variant-numeric:tabular-nums}
+#am .fibar.fistill:not(.aktiv) .fiinfo{display:none}
+#am .fileer .fialle{margin-top:10px;background:none;border:1px solid color-mix(in srgb,var(--k-akz) 45%,transparent);color:var(--k-akz);border-radius:999px;padding:7px 14px;font:inherit;font-size:12.5px;cursor:pointer}
+#am .aukette>div[data-fs]{cursor:pointer;transition:background .15s,box-shadow .15s}
+#am .aukette>div[data-fs]:hover{background:color-mix(in srgb,var(--k-akz) 5%,transparent)}
+#am .aukette>div.fian{background:color-mix(in srgb,var(--k-akz) 12%,transparent);box-shadow:inset 0 -2px 0 var(--k-akz)}
+#am .auheld,#am .auanruf{display:none}
+/* Kunden: letzter Kontakt in der Liste, Abschnitt „Letzte Kontakte“ */
+#am .kurow .kulk{display:flex!important;align-items:center;gap:5px;color:var(--k-akz)!important;margin-top:3px}
+#am .kurow .kulk .kuki{width:15px;height:15px;background:none!important;padding:0}
+#am .kurow .kulk .kuki svg{width:13px;height:13px}
+#am .kukonlab{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#am .kukneu{display:inline-flex;align-items:center;gap:5px;background:none;border:0;color:var(--k-akz);font:inherit;font-size:12px;letter-spacing:.3px;cursor:pointer;padding:4px 0}
+#am .kukneu svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+#am .kukonl{display:flex;flex-direction:column;border-radius:14px;border:1px solid var(--lin);background:var(--karte);overflow:hidden}
+#am .kukon{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:9px 12px;background:none;border:0;color:var(--k-t);text-align:left;font:inherit;cursor:pointer;position:relative}
+#am .kukon+.kukon{border-top:1px solid var(--lin)}
+#am .kukon:hover{background:color-mix(in srgb,var(--k-akz) 5%,transparent)}
+#am .kukon>span:not(.kukx){flex:1;min-width:0}
+#am .kukon b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .kukon small{display:block;font-size:12px;color:var(--k-sub);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .kukon em{font-style:normal;font-size:12px;color:var(--k-sub);white-space:nowrap;font-variant-numeric:tabular-nums}
+#am .kukx{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--k-sub);font-size:16px;flex:none;opacity:.6}
+#am .kukx.sicher{width:auto;padding:0 8px;border-radius:999px;color:var(--k-rot);opacity:1;font-size:11.5px;border:1px solid currentColor}
+#am .kuki{width:34px;height:34px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;color:var(--k-sub);background:color-mix(in srgb,var(--k-sub) 10%,transparent)}
+#am .kuki svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#am .kuki.k-tel{color:var(--k-gruen);background:color-mix(in srgb,var(--k-gruen) 12%,transparent)}
+#am .kuki.k-mail{color:var(--k-blau);background:color-mix(in srgb,var(--k-blau) 12%,transparent)}
+#am .kuki.k-ort,#am .kuki.k-kal{color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,transparent)}
+#am .kuki.k-beleg{color:var(--k-gelb);background:color-mix(in srgb,var(--k-gelb) 12%,transparent)}
+#am .kukleer{padding:16px 14px;font-size:13px;color:var(--k-sub);line-height:1.5}
+#am .kukmehr{border:0;border-top:1px solid var(--lin);background:none;color:var(--k-akz);font:inherit;font-size:12.5px;padding:12px;cursor:pointer}
+#am .kukf{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 10px}
+#am .kukf::-webkit-scrollbar{display:none}
+#am .kukf button{flex:none;height:30px;padding:0 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--k-sub) 22%,transparent);background:none;color:var(--k-sub);font:inherit;font-size:12px;cursor:pointer}
+#am .kukf button.an{border-color:var(--k-akz);color:var(--k-t);background:color-mix(in srgb,var(--k-akz) 14%,transparent)}
+#am .kukonform{border-radius:14px;border:1px solid color-mix(in srgb,var(--k-akz) 35%,transparent);background:var(--karte);padding:12px;margin:0 0 10px;display:flex;flex-direction:column;gap:10px}
+#am .kukonform[hidden]{display:none}
+#am .kukarten{display:flex;gap:6px;flex-wrap:wrap}
+#am .kukarten button{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px 0 5px;border-radius:999px;border:1px solid color-mix(in srgb,var(--k-sub) 22%,transparent);background:none;color:var(--k-sub);font:inherit;font-size:12.5px;cursor:pointer}
+#am .kukarten button .kuki{width:24px;height:24px;border-radius:50%}
+#am .kukarten button .kuki svg{width:13px;height:13px}
+#am .kukarten button.an{border-color:var(--k-akz);color:var(--k-t);background:color-mix(in srgb,var(--k-akz) 12%,transparent)}
+#am .kukonform textarea{width:100%;min-height:60px;resize:vertical;border-radius:10px;border:1px solid color-mix(in srgb,var(--k-sub) 22%,transparent);background:color-mix(in srgb,var(--k-sub) 6%,transparent);color:var(--k-t);font:inherit;font-size:14px;padding:10px 12px;outline:0}
+#am .kukonform textarea:focus{border-color:color-mix(in srgb,var(--k-akz) 60%,transparent)}
+#am .kukfuss{display:flex;justify-content:flex-end;gap:8px}
+#am .kukfuss button{height:36px;padding:0 16px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer;border:1px solid color-mix(in srgb,var(--k-sub) 25%,transparent);background:none;color:var(--k-t)}
+#am .kukfuss .haupt{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf);font-weight:600}
+/* Firmen-Brain: Suche über der Seitenliste */
+#am .brsuche{margin:0 0 10px;display:flex;flex-direction:column;gap:8px}
+#am .brsuche .fisuch{height:38px}
+#am .brliste mark,#am .brtreffer mark{background:color-mix(in srgb,var(--k-akz) 30%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+#am .brliste .brsn{display:block;font-size:11.5px;color:var(--k-sub);margin-top:2px;white-space:normal;line-height:1.35;text-align:left}
+#am .brliste [data-brs]>span:has(.brsn){display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+#am .brliste .brfragq{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,var(--k-akz) 40%,transparent);background:color-mix(in srgb,var(--k-akz) 8%,transparent);color:var(--k-t);font:inherit;text-align:left;cursor:pointer}
+#am .brliste .brfragq>svg{width:30px;height:30px;padding:6px;border-radius:9px;background:var(--k-akz);color:var(--k-auf);fill:none;stroke:currentColor;stroke-width:1.8;flex:none;box-sizing:border-box}
+#am .brliste .brfragq span{flex:1;min-width:0}#am .brliste .brfragq small{display:block;font-size:10px;letter-spacing:1.4px;color:var(--k-akz);font-weight:700}#am .brliste .brfragq b{display:block;font-size:13.5px;font-weight:600;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#am .brliste .brfragq i{font-style:normal;color:var(--k-akz);font-size:18px}
+#am .brtz{margin:2px 2px 0;font-size:11.5px;color:var(--k-sub);line-height:1.4}
+#pk .pkgr{display:none}
+#am .brliste .brfragq:after{display:none}
+#am .brliste .brfragq span{white-space:normal}
+#am .brliste .fix{padding:0;justify-content:center}#am .brliste .fix:after{display:none}
+#am .brliste .brsn{letter-spacing:0;text-transform:none}
 /* ===== Onstand · Handy-Design (v0.10.16) – gilt nur bis 760 px Breite ===== */
 #am .onleiste,#am .onkopf,#am .cpqa,#am .kuakt,#am .amsag{display:none}
 #am .amp{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:.8em;letter-spacing:0;vertical-align:.04em}
@@ -2632,13 +2715,100 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
  #kal .kplus:before{content:'+';font-size:26px;font-weight:500;line-height:1}
  #kal .ksuche{order:6;flex:1 1 100%!important}
 }
+/* ===== v0.10.26 · Suche & Filter, Letzte Kontakte, Unterseiten im Handy-Stil ===== */
+@media (max-width:760px){
+ #am .fisuch{height:46px;border-radius:14px;background:var(--karte);border-color:var(--lin)}
+ #am .fisuch input{font-size:16px}
+ #am .fizeile{flex-direction:column;align-items:stretch;gap:10px}
+ #am .fichips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:1px 0 2px}
+ #am .fichips::-webkit-scrollbar{display:none}
+ #am .fichips button{flex:none;height:36px;padding:0 15px;font-size:13.5px;background:var(--karte);border-color:var(--lin)}
+ #am .fijahr{align-self:flex-start}
+ #am .fijahr button{height:32px;padding:0 12px;font-size:13px}
+ #am .fiinfo{font-size:12.5px;padding:2px 4px 0}
+ #am .aukette>div.fian{box-shadow:inset 0 -2px 0 var(--k-akz)}
+ /* Angebot: Kopf mit Summe, Stand und Gültigkeit */
+ #am .auheld{display:block;padding:16px;border-radius:18px;background:var(--karte);border:1px solid var(--lin);margin:0 0 12px}
+ #am .auhz{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+ #am .auhz small{display:block;color:var(--k-sub);font-size:12.5px}
+ #am .auhz b{display:block;font:800 30px/1.1 Manrope,Arial,sans-serif;color:var(--k-akz);margin-top:4px;letter-spacing:-.8px;font-variant-numeric:tabular-nums}
+ #am .auhz>div>span{display:block;color:var(--k-sub);font-size:13px;margin-top:5px}
+ #am .auhz i{font-style:normal}
+ #am .austeps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;font-size:11px;color:var(--k-sub);text-align:center;margin:18px 0 2px}
+ #am .austeps:before{content:'';position:absolute;left:12.5%;right:12.5%;top:7px;height:2px;background:var(--lin)}
+ #am .austeps span{display:flex;flex-direction:column;align-items:center;gap:7px;position:relative;z-index:1}
+ #am .austeps span:before{content:'';width:16px;height:16px;border-radius:50%;box-sizing:border-box;border:2px solid color-mix(in srgb,var(--k-sub) 40%,transparent);background:var(--karte)}
+ #am .austeps .f:before{background:var(--k-akz);border-color:var(--k-akz)}
+ #am .austeps .j{color:var(--k-t);font-weight:700}
+ #am .austeps .j:before{border-color:var(--k-akz);box-shadow:0 0 0 4px color-mix(in srgb,var(--k-akz) 20%,transparent)}
+ #am .auhfz{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--lin);margin-top:14px;padding-top:12px;font-size:13.5px;color:var(--k-sub)}
+ #am .auhfz b{color:var(--k-t);font-weight:600}#am .auhfz b.knapp{color:var(--k-gelb)}#am .auhfz b.rot{color:var(--k-rot)}
+ #am .aukunde{position:relative;padding-right:52px}
+ #am .auanruf{display:flex;position:absolute;right:0;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,transparent)}
+ #am .auanruf svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ /* Mangel-Detail: große Fotos, Angaben als Kacheln */
+ #am .mgfotos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ #am .mgfotos .mgfbox{min-height:170px;border-radius:16px}
+ #am .mgfelder{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ #am .mgfelder>div{background:var(--karte);border:1px solid var(--lin);border-radius:14px;padding:11px 13px;margin:0;font-size:14.5px;font-weight:600;line-height:1.35;min-width:0;overflow-wrap:anywhere}
+ #am .mgfelder>div>span{display:block;font-size:10.5px;letter-spacing:1.4px;color:var(--k-sub);font-weight:700;margin-bottom:4px}
+ #am .mgfelder>div small{font-weight:400;color:var(--k-sub)}
+ #am .mgfelder>.mgbreit{grid-column:1/-1;font-weight:400}
+ #am .mgfelder>div:has(.mgfrist.ueber){border-color:color-mix(in srgb,var(--k-rot) 45%,transparent)}
+ /* Person: Kopf mittig, Anrufen und Bearbeiten als Kacheln */
+ #am .aminhalt>.gldk:has(>.peava.gross){flex-direction:column;align-items:center;text-align:center;gap:10px;position:relative;padding-top:6px}
+ #am .aminhalt>.gldk:has(>.peava.gross) .peava.gross{width:78px;height:78px;font-size:21px}
+ #am .aminhalt>.gldk:has(>.peava.gross)>div:not(.mgakt){display:flex;flex-direction:column-reverse;align-items:center}
+ #am .aminhalt>.gldk:has(>.peava.gross) h3{font-size:26px!important;margin:0 0 3px}
+ #am .aminhalt>.gldk:has(>.peava.gross) .mgakt{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px;margin-top:6px}
+ #am .aminhalt>.gldk:has(>.peava.gross) .mgakt>.pezur{position:absolute;left:-6px;top:-8px;width:auto;min-height:0;height:40px;padding:0 8px;border:0;background:none;color:var(--k-akz);font-size:16px}
+ #am .aminhalt>.gldk:has(>.peava.gross) .mgakt>:not(.pezur):not(.tr){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;height:66px;border-radius:14px;background:color-mix(in srgb,var(--k-akz) 8%,transparent);border:1px solid color-mix(in srgb,var(--k-akz) 25%,transparent);color:var(--k-akz);font-size:12.5px;text-decoration:none}
+ #am .aminhalt>.gldk:has(>.peava.gross) .mgakt svg{width:20px;height:20px}
+ #am .aminhalt>.gldk:has(>.peava.gross) .mgakt .tr{display:none}
+ /* Papierkorb: nach Zeit gruppiert, Zurückholen als Knopf, Endgültig leise */
+ #pk .pkgr{display:block;font-size:11px;letter-spacing:2px;font-weight:700;color:var(--k-sub);margin:18px 4px 8px}
+ #pk .pkl{gap:0}
+ #pk .pki{display:grid;grid-template-columns:38px minmax(0,1fr);gap:4px 12px;align-items:start;padding:13px 14px;border-radius:0;border:0;border-top:1px solid color-mix(in srgb,var(--k-sub) 14%,transparent);background:color-mix(in srgb,var(--k-sub) 7%,transparent);margin:0}
+ #pk .pkgr+.pki{border-top:0;border-radius:16px 16px 0 0}
+ #pk .pki:has(+.pkgr),#pk .pki:last-child{border-radius:0 0 16px 16px}
+ #pk .pkgr+.pki:has(+.pkgr),#pk .pkgr+.pki:last-child{border-radius:16px}
+ #pk .pkic{width:38px;height:38px;border-radius:11px}
+ #pk .pki b{font-size:15px}
+ #pk .pktg{font-size:10.5px}
+ #pk .pkak{grid-column:2;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:8px;margin-top:8px}
+ #pk .pkak button{height:36px;border-radius:999px;padding:0 14px;font-size:12.5px;letter-spacing:.6px}
+ #pk .pkak button.zu{flex:1}
+ /* Einstellungen als eigene Seite */
+ #am .hyzur{display:inline-flex;align-items:center;gap:2px;height:44px;margin:-8px 0 2px -8px;padding:0 10px 0 4px;background:none;border:0;color:var(--k-akz);font-size:16px;font-weight:500}
+ #am .hyzur svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ #am .hysq{color:var(--q);background:color-mix(in srgb,var(--q) 16%,transparent)}
+ #am .hyprofil{margin-top:4px}
+ #am .hyprofil button{min-height:76px}
+ #am .hyprofil button:before{display:none}
+ #am .hyav{width:52px;height:52px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;background:color-mix(in srgb,var(--k-akz) 10%,transparent);border:1px solid color-mix(in srgb,var(--k-akz) 30%,transparent);color:var(--k-t)}
+ #am .hyav img{width:100%;height:100%;object-fit:cover}#am .hyav svg{width:28px!important;height:28px!important;color:var(--k-t)}
+ #am .hyprofil .hyrt b{font-size:17px}
+ #am .hydes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px;background:var(--karte)}
+ #am .hygrp.hydes button{flex-direction:column;justify-content:center;gap:7px;min-height:78px;padding:10px 4px;border-radius:12px;border:1px solid var(--lin);text-align:center;font-size:13px;color:var(--k-sub)}
+ #am .hygrp.hydes button:before{display:none}
+ #am .hygrp.hydes button.an{border-color:var(--k-akz);color:var(--k-t);background:color-mix(in srgb,var(--k-akz) 10%,transparent)}
+ #am .hydes i{width:28px;height:28px;border-radius:50%;display:block;border:1px solid var(--lin)}
+ #am .hyfuss{text-align:center;color:var(--k-sub);font-size:12px;margin:14px 0 4px}
+ /* Kunden: Letzte Kontakte */
+ #am .kukonlab{margin-top:18px}
+ #am .kukneu{font-size:13px;letter-spacing:0;text-transform:none;font-weight:600}
+ #am .kukon{min-height:60px;padding:10px 14px}
+ #am .kukf button{height:34px;padding:0 14px;font-size:13px}
+ #am .brsuche .fisuch{height:44px}
+ #am .brx>.brwiki:not(.brmseite)~.brfrage,#am .brx:has(>.brwiki:not(.brmseite))>.brfrage{display:none}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.25';
+const ON_VER='0.10.26';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -2783,7 +2953,9 @@ function onMenu(){const m=AM_EL.querySelector('.onmenu');if(m.classList.contains
  m.classList.add('an');
  m.querySelectorAll('[data-schrift]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();onSchrift(b.dataset.schrift);m.querySelectorAll('[data-schrift]').forEach(x=>{const an=x===b;x.classList.toggle('an',an);x.setAttribute('aria-pressed',an)})});
  m.querySelectorAll('[data-design]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();onDesign(b.dataset.design,true);m.querySelectorAll('[data-design]').forEach(x=>{const an=x===b;x.classList.toggle('an',an);x.setAttribute('aria-pressed',an)})});
- m.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{m.classList.remove('an');const a=b.dataset.m;
+ m.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{m.classList.remove('an');onMenuAktion(b.dataset.m)})}
+// Ausführen eines Menüpunkts (auch von der Handy-Seite „Einstellungen“)
+function onMenuAktion(a){
   if(a==='profil')onProfil();
   if(a==='firma')amFunktion('auftraege',{firma:true});
   if(a==='personal')amFunktion('personal');
@@ -2793,7 +2965,7 @@ function onMenu(){const m=AM_EL.querySelector('.onmenu');if(m.classList.contains
   if(a==='ordner')onOrdner();if(a==='konto')syKontoDialog();
   if(a==='abo')kiAboDialog();
   if(a==='app'&&typeof appInstallieren==='function')appInstallieren();
-  if(a==='ueber')onDialog(`<h3>Onstand v${ON_VER}</h3><p>Firmensoftware für Baustelle und Büro: Cockpit, Angebote, Rechnungen, offene Posten, Bautagebuch, Kalender, Kunden, Personal, Mängel, Baupläne – mit Assistent zum Einsprechen.</p><p class="kl">Erste Testversion für ESTETA.</p><p class="kl" style="font-size:11px;opacity:.75">${typeof onRandInfo==='function'?esc(onRandInfo()):''}</p>`,[['OK','']])})}
+  if(a==='ueber')onDialog(`<h3>Onstand v${ON_VER}</h3><p>Firmensoftware für Baustelle und Büro: Cockpit, Angebote, Rechnungen, offene Posten, Bautagebuch, Kalender, Kunden, Personal, Mängel, Baupläne – mit Assistent zum Einsprechen.</p><p class="kl">Erste Testversion für ESTETA.</p><p class="kl" style="font-size:11px;opacity:.75">${typeof onRandInfo==='function'?esc(onRandInfo()):''}</p>`,[['OK','']])}
 function onMenuZu(){const m=AM_EL&&AM_EL.querySelector('.onmenu');if(m)m.classList.remove('an')}
 // ---------- kleiner Dialog ----------
 function onDialog(html,knoepfe,bind){const d=AM_EL.querySelector('.ondlg');d.innerHTML=`<div class="ondk">${html}<div class="ondkn">${(knoepfe||[]).map(([t,a],i)=>`<button type="button" class="${i===knoepfe.length-1?'ja':''}" data-d="${a}">${t}</button>`).join('')}</div></div>`;d.classList.add('an');
@@ -2829,6 +3001,35 @@ function onLos(){if(ON_LOS){onNeuLaden();return}ON_LOS=true;onBau();onLogo();let
 async function onStart(){if(window.showDirectoryPicker&&!(typeof eiKonto==='function'&&eiKonto())&&await ordnerAusSpeicher()){if(await datenBereit()){onLos();return}onStartBild('frei');return}
  if((typeof eiKonto==='function'&&eiKonto())||(!window.showDirectoryPicker&&ON_PROFIL.name)){GED=await handyGed();onLos();return}
  if(typeof onStartNeu==='function')onStartNeu();else onStartBild(window.showDirectoryPicker?'neu':'handy')}
+// ===== Onstand · Suchen & Filtern in Listen (Aufträge, Personal) =====
+// fiLeiste(inh,o) setzt über eine Liste: Suchfeld, Status-Chips und – wenn gewünscht – die Jahresauswahl. Gefiltert wird an Ort und Stelle
+// (keine Neuzeichnung, das Suchfeld behält den Fokus). Jede Zeile trägt data-st (Status, mehrere durch Leerzeichen), data-j (Jahr), data-e (Betrag), data-su (Zusatztext für die Suche).
+const FI={};
+const FI_I={such:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>',x:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>'};
+function fiLeiste(inh,o){const Z=[...inh.querySelectorAll(o.zeilen)],ziel=inh.querySelector(o.vor);if(!ziel||!Z.length)return;
+ const s=FI[o.key]=FI[o.key]||{q:'',st:'',j:null},jj=new Date().getFullYear();
+ const J=o.jahre?[...new Set(Z.map(z=>+z.dataset.j).filter(Boolean))].sort((a,b)=>b-a):[];
+ if(o.jahre&&s.j===null)s.j=J.includes(jj)&&J.length>1?jj:'alle';if(o.jahre&&s.j!=='alle'&&!J.includes(s.j))s.j='alle';
+ const bar=document.createElement('div');bar.className='fibar'+(o.klasse?' '+o.klasse:'');
+ bar.innerHTML=`<label class="fisuch">${FI_I.such}<input type="search" enterkeyhint="search" placeholder="${esc(o.platz||'Suchen …')}" value="${esc(s.q)}" aria-label="${esc(o.platz||'Suchen')}"><button type="button" class="fix" aria-label="Suche leeren">${FI_I.x}</button></label>
+  <div class="fizeile"><div class="fichips" role="group" aria-label="Status">${[['','Alle']].concat(o.status||[]).map(([k,t])=>`<button type="button" data-fst="${k}" class="${s.st===k?'an':''}">${esc(t)}</button>`).join('')}</div>${J.length?`<div class="fijahr" role="group" aria-label="Jahr">${J.map(j=>`<button type="button" data-fj="${j}" class="${s.j===j?'an':''}">${j}</button>`).join('')}<button type="button" data-fj="alle" class="${s.j==='alle'?'an':''}">Alle</button></div>`:''}</div>
+  <div class="fiinfo"><span></span><b></b></div>`;
+ ziel.before(bar);const leer=document.createElement('div');leer.className='amleer fileer';leer.hidden=true;ziel.after(leer);
+ const inp=bar.querySelector('input'),kette=o.kette?[...inh.querySelectorAll(o.kette)]:[];
+ const tun=()=>{const q=s.q.trim().toLowerCase();let n=0,e=0;
+  Z.forEach(z=>{const st=(z.dataset.st||'').split(' '),ok=(!s.st||st.includes(s.st))&&(!o.jahre||s.j==='alle'||+z.dataset.j===s.j)&&(!q||(z.textContent+' '+(z.dataset.su||'')).toLowerCase().includes(q));
+   z.hidden=!ok;z.classList.toggle('fiweg',!ok);if(ok){n++;e+=+z.dataset.e||0}});
+  bar.querySelectorAll('[data-fst]').forEach(b=>b.classList.toggle('an',b.dataset.fst===s.st));bar.querySelectorAll('[data-fj]').forEach(b=>b.classList.toggle('an',String(s.j)===b.dataset.fj));
+  kette.forEach(k=>k.classList.toggle('fian',!!s.st&&k.dataset.fs===s.st));bar.querySelector('.fix').style.visibility=s.q?'visible':'hidden';
+  const gefiltert=!!(q||s.st||(o.jahre&&s.j!=='alle'));bar.classList.toggle('aktiv',gefiltert);
+  bar.querySelector('.fiinfo span').textContent=n+' '+(n===1?o.einheit[0]:o.einheit[1])+(o.jahre&&s.j!=='alle'?' · '+s.j:'');bar.querySelector('.fiinfo b').textContent=o.summe&&n?auEur(e):'';
+  leer.hidden=n>0;ziel.hidden=!n;if(!n)leer.innerHTML=`<span>Nichts gefunden${s.q?' für „'+esc(s.q)+'“':''}.<br><button type="button" class="fialle">Filter zurücksetzen</button></span>`;const fa=leer.querySelector('.fialle');if(fa)fa.onclick=()=>{s.q='';s.st='';if(o.jahre)s.j='alle';inp.value='';tun()};if(o.nachher)o.nachher(n)};
+ inp.oninput=()=>{s.q=inp.value;tun()};inp.onkeydown=e=>{if(e.key==='Escape'){s.q='';inp.value='';tun()}};
+ bar.querySelector('.fix').onclick=e=>{e.preventDefault();s.q='';inp.value='';tun();inp.focus()};
+ bar.querySelectorAll('[data-fst]').forEach(b=>b.onclick=()=>{s.st=b.dataset.fst;tun()});
+ bar.querySelectorAll('[data-fj]').forEach(b=>b.onclick=()=>{s.j=b.dataset.fj==='alle'?'alle':+b.dataset.fj;tun()});
+ kette.forEach(k=>{k.setAttribute('role','button');k.tabIndex=0;k.title='Nach '+k.querySelector('small').textContent.toLowerCase()+' filtern';k.onclick=()=>{s.st=s.st===k.dataset.fs?'':k.dataset.fs;tun()}});
+ tun();return bar}
 // ===== Onstand · Papierkorb =====
 // Alles, was in Onstand gelöscht wird, landet erst hier: 8 Sekunden RÜCKGÄNGIG, dann 30 Tage im Papierkorb, danach endgültig weg.
 // Speicher: Daten/.papierkorb/<id>.json (versteckter Ordner – Obsidian zeigt ihn nicht, Onstand liest ihn nicht als Wissen).
@@ -2893,7 +3094,7 @@ async function pkMalen(){const x=PKV.el.querySelector('.pkx'),L=await pkListe();
  if(!(await gedOk())){x.innerHTML='<p class="pkleer">Kein Datenordner verbunden – oben links über das Firmenlogo den Onstand-Ordner wählen.</p>';x.classList.remove('raus');return}
  const q=PKV.q.toLowerCase(),F=L.filter(r=>!q||(r.t+' '+r.s+' '+(PK_MENU[r.k]||'')).toLowerCase().includes(q));
  x.innerHTML=`<input class="pksuche" type="search" placeholder="Im Papierkorb suchen …" value="${esc(PKV.q)}" aria-label="Im Papierkorb suchen">
-  ${F.length?`<div class="pkl">${F.map(r=>{const a=pkAlter(r),rest=Math.max(0,PK_TAGE-a);return `<div class="pki" data-id="${r.id}"><span class="pkic"><svg viewBox="0 0 20 20">${PK_ICO[r.k]||PK_ICO.datei}</svg></span><div><b>${esc(r.t)}</b>${r.s?`<small>${esc(r.s)}</small>`:''}<span class="pktg${rest<=7?' knapp':''}">${PK_MENU[r.k]||''} · GELÖSCHT ${a===0?'HEUTE':a===1?'GESTERN':'VOR '+a+' TAGEN'} · NOCH ${rest} TAG${rest===1?'':'E'}<i style="--p:${rest/PK_TAGE*100}%"></i></span></div><div class="pkak"><button type="button" class="zu" data-zu="${r.id}">ZURÜCKHOLEN</button><button type="button" data-weg="${r.id}">ENDGÜLTIG</button></div></div>`}).join('')}</div>`
+  ${F.length?`<div class="pkl">${F.map((r,i)=>{const a=pkAlter(r),rest=Math.max(0,PK_TAGE-a),gr=a<=6?'DIESE WOCHE':'ÄLTER',gv=i?(pkAlter(F[i-1])<=6?'DIESE WOCHE':'ÄLTER'):'';return `${gr!==gv?`<div class="pkgr">${gr}</div>`:''}<div class="pki" data-id="${r.id}"><span class="pkic"><svg viewBox="0 0 20 20">${PK_ICO[r.k]||PK_ICO.datei}</svg></span><div><b>${esc(r.t)}</b>${r.s?`<small>${esc(r.s)}</small>`:''}<span class="pktg${rest<=7?' knapp':''}">${PK_MENU[r.k]||''} · GELÖSCHT ${a===0?'HEUTE':a===1?'GESTERN':'VOR '+a+' TAGEN'} · NOCH ${rest} TAG${rest===1?'':'E'}<i style="--p:${rest/PK_TAGE*100}%"></i></span></div><div class="pkak"><button type="button" class="zu" data-zu="${r.id}">ZURÜCKHOLEN</button><button type="button" data-weg="${r.id}">ENDGÜLTIG</button></div></div>`}).join('')}</div>`
   :`<p class="pkleer">${q?'Nichts gefunden.':'Der Papierkorb ist leer.<br>Gelöschtes bleibt hier 30 Tage, dann räumt Onstand es auf.'}</p>`}
   ${L.length?`<div class="pkfuss"><span>Was älter als 30 Tage ist, löscht Onstand endgültig – vorher steckt es noch in den Sicherungen.</span><button type="button" class="pkleeren">LEEREN</button></div>`:''}`;
  x.classList.remove('raus');
@@ -3023,7 +3224,7 @@ function bstZeilen(t){const o={};String(t||'').split('\n').forEach(l=>{const m=l
 let BST_LAD=null;
 function bstLaden(){if(BST_LAD)return BST_LAD;BST_LAD=bstLadenJetzt().finally(()=>{BST_LAD=null});return BST_LAD}
 async function bstLadenJetzt(){const N={};if(!(await gedOk())){BST=N;return BST}const ix=await lesen(BST_ORD+'/Baustellen.md');
- for(const m of String(ix||'').matchAll(/\[\[([^\]]+)\]\]/g)){const n=m[1];if(n==='Arbeit')continue;const z=bstZeilen(await lesen(bstNotiz(n)));if(z['Kürzel']){const b={name:n};BST_FELD.forEach(([k,t])=>b[k]=z[t]||'');b.c=b.c||BST_PAL[0];b.status=b.status||'offen';N[n]=b}}BST=N;return BST}
+ for(const m of String(ix||'').matchAll(/\[\[([^\]]+)\]\]/g)){const n=m[1];if(n==='Arbeit')continue;const roh=await lesen(bstNotiz(n)),z=bstZeilen(roh);if(z['Kürzel']){const b={name:n,kon:bstKonParse(roh)};BST_FELD.forEach(([k,t])=>b[k]=z[t]||'');b.c=b.c||BST_PAL[0];b.status=b.status||'offen';N[n]=b}}BST=N;return BST}
 // Name, Kürzel oder Nachname → Baustelle
 function bstFinde(t){const s=String(t||'').trim();if(!s)return null;const l=s.toLowerCase(),L=Object.values(BST);
  return L.find(b=>b.name.toLowerCase()===l)||L.find(b=>b.k.toLowerCase()===l)||L.find(b=>b.name.toLowerCase().split(' ')[0]===l.split(' ')[0])||L.find(b=>l.includes(b.name.toLowerCase())||b.name.toLowerCase().includes(l))||null}
@@ -3045,13 +3246,21 @@ async function bstLoeschen(n){if(!(await gedOk())||!n)return false;const b=BST[n
  const id=await pkWeg({k:'ku',t:'Kunde · '+n,s:'Baustelle'+(b.k?' · Kürzel '+b.k:'')+(b.ort?' · '+b.ort:'')+(b.kontakt?' · '+b.kontakt:''),files:[bstNotiz(n)],idx:[[BST_ORD+'/Baustellen.md','- [['+n+']]']]});
  if(!id)return false;delete BST[n];try{gedErinnerung('Baustelle gelöscht','In den Papierkorb: '+n)}catch(e){}return id}
 // Baustelle speichern (Kunden-Menü): Notiz neu schreiben, bei neuem Namen umbenennen und das Tagebuch mitziehen
-async function bstSpeichern(alt,b){if(!(await gedOk()))return false;const n=notizName(b.name);if(!n)return false;b.name=n;b.k=String(b.k||bstKuerzel(n)).toUpperCase().slice(0,3);
+async function bstSpeichern(alt,b){if(!(await gedOk()))return false;const n=notizName(b.name);if(!n)return false;b.name=n;if(!Array.isArray(b.kon))b.kon=(BST[alt||n]||{}).kon||[];b.k=String(b.k||bstKuerzel(n)).toUpperCase().slice(0,3);
  const zl=BST_FELD.filter(([k])=>b[k]).map(([k,t])=>'- '+zeileMeta(t+': '+String(b[k]).replace(/\s+/g,' ').trim(),'Eingabe (Kunden-Menü)','hoch')).join('\n');
- await schreiben(bstNotiz(n),kopfMeta('baustelle','persönlich','Eingabe (Kunden-Menü)','hoch')+`# ${n}\n\nBaustelle. Teil von [[Baustellen]].\n\n${zl}\n`);
+ await schreiben(bstNotiz(n),kopfMeta('baustelle','persönlich','Eingabe (Kunden-Menü)','hoch')+`# ${n}\n\nBaustelle. Teil von [[Baustellen]].\n\n${zl}\n${bstKonText(b.kon)}`);
  let ix=await lesen(BST_ORD+'/Baustellen.md');if(!ix)ix=kopfMeta('bereich','persönlich','System (Arbeitsmodus)','hoch')+'# Baustellen\n\nAlle Baustellen mit Kürzel und Farbe. Teil von [[Arbeit]].\n';
  if(alt&&alt!==n){ix=ix.replace('[['+alt+']]','[['+n+']]');delete BST[alt];try{await entfernen(bstNotiz(alt).replace(/^@\//,'@/'))}catch(e){}
   if(typeof tbUmbenennen==='function')await tbUmbenennen(alt,n);if(typeof mgUmbenennen==='function')await mgUmbenennen(alt,n)}
  if(!ix.includes('[['+n+']]'))ix=ix.replace(/\s*$/,'\n')+'- [['+n+']]\n';await schreiben(BST_ORD+'/Baustellen.md',ix.replace(/^stand: .*$/m,'stand: '+HEUTE()));BST[n]=b;return true}
+// Kontakte zum Kunden (Anruf, E-Mail, Besuch, Termin, Notiz): eigener Abschnitt „## Kontakte“ unten in der Baustellen-Notiz, neueste oben
+const BST_KART=['Anruf','E-Mail','Besuch','Termin','Notiz'];
+function bstKonParse(t){const i=String(t||'').indexOf('\n## Kontakte');if(i<0)return [];return String(t).slice(i).split('\n').map(l=>l.match(/^-\s+(\d{4}-\d\d-\d\d)(?:\s+(\d\d)\.(\d\d))?\s+·\s+([^·]+?)\s+·\s+(.*)$/)).filter(Boolean).map(m=>({d:m[1],z:m[2]?m[2]+':'+m[3]:'',art:m[4].trim(),t:m[5].trim()}))}
+function bstKonText(L){return (L||[]).length?'\n## Kontakte\n'+L.slice(0,60).map(k=>`- ${k.d}${k.z?' '+k.z.replace(':','.'):''} · ${k.art} · ${String(k.t||'').replace(/\s+/g,' ').trim()}`).join('\n')+'\n':''}
+async function bstKontakt(n,art,text){const b=BST[n];if(!b||!(await gedOk()))return false;const d=new Date(),k={d:tbIso(d),z:String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'),art:BST_KART.includes(art)?art:'Notiz',t:String(text||'').trim()||art};
+ b.kon=[k].concat(b.kon||[]);let t=await lesen(bstNotiz(n));if(!t)return false;const i=t.indexOf('\n## Kontakte');if(i>=0)t=t.slice(0,i).replace(/\s*$/,'\n');else t=t.replace(/\s*$/,'\n');
+ await schreiben(bstNotiz(n),t+bstKonText(b.kon));return k}
+async function bstKontaktWeg(n,k){const b=BST[n];if(!b)return;b.kon=(b.kon||[]).filter(x=>x!==k);let t=await lesen(bstNotiz(n));if(!t)return;const i=t.indexOf('\n## Kontakte');if(i>=0)t=t.slice(0,i).replace(/\s*$/,'\n');await schreiben(bstNotiz(n),t+bstKonText(b.kon))}
 setTimeout(()=>{bstLaden().catch(()=>{})},2500);
 // ===== Arbeitsmodus · Handwerk · Baustellen-Cockpit (v15.11) – aus der abgenommenen Probe „Onstand Baustellen-Cockpit“ =====
 // Eine Baustelle auf einen Blick: Lagebild, Einzugs-Ring, 30-Tage-Zeitleiste, Team-Stunden, Mängel & Abnahme, Bauplan, Termine, Kundenbericht.
@@ -3202,15 +3411,17 @@ function auMalen(inh){if(AUV.op)return opMalen(inh);if(AUV.firma)return auFirmaM
  inh.innerHTML=`<div class="mgk"><div><span class="amtt">AUFTRÄGE</span><h2 class="mgh">${{ang:'Angebote',rech:'Rechnungen',offen:'Offene Posten',eing:'Eingang'}[AUV.tab]||'Angebote'}</h2></div><div class="mgakt"><button type="button" class="aufir" title="Firmendaten und Preisliste">${AI('fi')}Firma &amp; Preise</button>${AUV.tab==='ang'?`<span class="tr"></span><button type="button" class="haupt auneu">${AI('pl')}Angebot</button>`:AUV.tab==='rech'?`<span class="tr"></span><button type="button" class="haupt arneu">${AI('pl')}Rechnung</button>`:''}</div></div>
  <div class="aux">
   <div class="autabs" role="tablist"><button type="button" data-t="ang" class="${AUV.tab==='ang'?'an':''}">ANGEBOTE<em>${AU_A.length}</em></button><button type="button" data-t="rech" class="${AUV.tab==='rech'?'an':''}">RECHNUNGEN<em>${AU_R.length}</em></button><button type="button" data-t="offen" class="${AUV.tab==='offen'?'an':''}">OFFEN<em class="${opDran().length?'rot':''}">${opListe().length}</em></button><button type="button" data-t="eing" class="${AUV.tab==='eing'?'an':''}">EINGANG${typeof EG!=='undefined'&&EG_OK?`<em>${EG.length}</em>`:''}</button></div>
-  ${AUV.tab==='ang'?`<div class="aukette">${['entwurf','verschickt','angenommen','abgelehnt'].map(s=>`<div><small>${AU_ST[s][0]}</small><b>${cnt(s)}</b><span>${auEur(sum(s))}</span></div>`).join('')}</div>
-   ${AU_A.length?`<div class="${breit?'ausplit':'aueins'}"><div class="aual">${AU_A.map((a,i)=>{const b=BST[a.b];return `<button type="button" class="auar${breit&&i===AUV.vs?' sel':''}" data-i="${i}" style="--bc:${b?b.c:'var(--aj)'}"><i></i><span><b>${esc(a.t||'ohne Titel')}</b><small>${a.nr} · ${b?esc(b.k)+' ':''}${esc(a.b)} · ${auDat(a.d)}</small><span class="aust" style="--sc:${AU_ST[a.st][1]}">${AU_ST[a.st][0]}</span></span><span class="aur"><strong>${auEur(auBrutto(a))}</strong><small>${a.pos.length} ${a.pos.length===1?'Position':'Positionen'}</small></span></button>`}).join('')}</div>${breit?auVorschau(AU_A[AUV.vs]):''}</div>`:'<div class="amleer"><span>Noch kein Angebot.<br>Oben rechts auf „+ Angebot“.</span></div>'}`
+  ${AUV.tab==='ang'?`<div class="aukette">${['entwurf','verschickt','angenommen','abgelehnt'].map(s=>`<div data-fs="${s}"><small>${AU_ST[s][0]}</small><b>${cnt(s)}</b><span>${auEur(sum(s))}</span></div>`).join('')}</div>
+   ${AU_A.length?`<div class="${breit?'ausplit':'aueins'}"><div class="aual">${AU_A.map((a,i)=>{const b=BST[a.b];return `<button type="button" class="auar${breit&&i===AUV.vs?' sel':''}" data-i="${i}" data-st="${a.st}" data-j="${String(a.d||'').slice(0,4)}" data-e="${auBrutto(a)}" data-su="${esc(b?b.kontakt||'':'')}" style="--bc:${b?b.c:'var(--aj)'}"><i></i><span><b>${esc(a.t||'ohne Titel')}</b><small>${a.nr} · ${b?esc(b.k)+' ':''}${esc(a.b)} · ${auDat(a.d)}</small><span class="aust" style="--sc:${AU_ST[a.st][1]}">${AU_ST[a.st][0]}</span></span><span class="aur"><strong>${auEur(auBrutto(a))}</strong><small>${a.pos.length} ${a.pos.length===1?'Position':'Positionen'}</small></span></button>`}).join('')}</div>${breit?auVorschau(AU_A[AUV.vs]):''}</div>`:'<div class="amleer"><span>Noch kein Angebot.<br>Oben rechts auf „+ Angebot“.</span></div>'}`
   :AUV.tab==='rech'?arListeHtml():AUV.tab==='eing'?erEingangHtml():opListeHtml()}
  </div>`;
  inh.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{AUV.tab=b.dataset.t;auMalen(inh)});
  inh.querySelectorAll('.auar[data-i]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(breit&&AUV.vs!==i){AUV.vs=i;auMalen(inh);return}AUV.offen=AU_A[i];AUV.bpBox=AUV.katBox=false;auMalen(inh)});
  inh.querySelectorAll('[data-vo]').forEach(b=>b.onclick=()=>{if(b.dataset.vo==='a'){AUV.offen=AU_A[AUV.vs];AUV.bpBox=AUV.katBox=false}else AUV.rech=AU_R[AUV.vr];auMalen(inh)});
  inh.querySelectorAll('[data-vpdf]').forEach(b=>b.onclick=()=>{try{b.dataset.vpdf==='a'?auPdf(AU_A[AUV.vs]):arPdf(AU_R[AUV.vr])}catch(e){}});
- const n=inh.querySelector('.auneu');if(n)n.onclick=()=>{AUV.neu={b:''};auMalen(inh)};inh.querySelector('.aufir').onclick=()=>{AUV.firma=true;auMalen(inh)};inh.querySelectorAll('.auar[data-r]').forEach(b=>b.onclick=()=>{const i=+b.dataset.r;if(breit&&AUV.vr!==i){AUV.vr=i;auMalen(inh);return}AUV.rech=AU_R[i];auMalen(inh)});const rn=inh.querySelector('.arneu');if(rn)rn.onclick=()=>{AUV.rechNeu=true;auMalen(inh)};if(AUV.tab==='offen')opBinden(inh);if(AUV.tab==='eing')erEingangBinden(inh)}
+ const n=inh.querySelector('.auneu');if(n)n.onclick=()=>{AUV.neu={b:''};auMalen(inh)};inh.querySelector('.aufir').onclick=()=>{AUV.firma=true;auMalen(inh)};inh.querySelectorAll('.auar[data-r]').forEach(b=>b.onclick=()=>{const i=+b.dataset.r;if(breit&&AUV.vr!==i){AUV.vr=i;auMalen(inh);return}AUV.rech=AU_R[i];auMalen(inh)});const rn=inh.querySelector('.arneu');if(rn)rn.onclick=()=>{AUV.rechNeu=true;auMalen(inh)};if(AUV.tab==='offen')opBinden(inh);if(AUV.tab==='eing')erEingangBinden(inh);
+ if(AUV.tab==='ang'||AUV.tab==='rech')fiLeiste(inh,{key:'au'+AUV.tab,zeilen:'.auar',vor:'.ausplit,.aueins',kette:'.aukette>div[data-fs]',jahre:true,summe:true,platz:'Kunde, Nummer, Titel oder Betrag',
+  einheit:AUV.tab==='ang'?['Angebot','Angebote']:['Rechnung','Rechnungen'],status:AUV.tab==='ang'?[['entwurf','Entwurf'],['verschickt','Verschickt'],['angenommen','Angenommen'],['abgelehnt','Abgelehnt']]:[['entwurf','Entwurf'],['gestellt','Offen'],['ueber','Überfällig'],['bezahlt','Bezahlt']]})}
 // Belegvorschau rechts neben der Liste (breite Bildschirme): Blatt mit Briefkopf, Positionen und Summen
 function auBlattKopf(F){return `<div class="bk"><div><b>${esc(String(F.name||'Firmenname').toUpperCase())}</b><small>${esc(F.inhaber||'')}</small></div><div class="r"><small>${esc(F.str||'')}<br>${esc(F.ort||'')}${F.tel?'<br>'+esc(F.tel):''}</small></div></div>`}
 function auVorschau(a){if(!a)return '';const F=auFirma(),b=BST[a.b]||{},n=auNetto(a),g=+F.gueltig||30,bis=tbIso(tbPlus(tbAusIso(a.d),g)),P=a.pos.slice(0,9);
@@ -3235,10 +3446,17 @@ function auNeuMalen(inh){const B=Object.values(BST).filter(b=>b.status!=='abgesc
  inh.querySelector('.aut').oninput=e=>AUV.neu.t=e.target.value;const zu=()=>{AUV.neu=null;auMalen(inh)};inh.querySelector('.auzur').onclick=zu;inh.querySelector('.auab').onclick=zu;
  inh.querySelector('.auok').onclick=async()=>{if(!AUV.neu.b){mgToast(inh,'Erst die Baustelle wählen');return}if(!(await gedOk())){mgToast(inh,'Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).');return}const a={v:1,nr:auNeueNr(),b:AUV.neu.b,t:(AUV.neu.t||'').trim()||'Angebot '+AUV.neu.b,st:'entwurf',d:mgHeute(),pos:[]};AU_A.unshift(a);await auSpeichern(a);AUV.neu=null;AUV.offen=a;auMalen(inh)}}
 // Angebot als Dokument
+// Handy: Kopf des Angebots mit Summe, Stand und Gültigkeit (am PC per CSS ausgeblendet)
+function auHeld(a){const k=a.st==='entwurf'?0:a.st==='verschickt'?1:a.st==='angenommen'?(AU_R.some(r=>r.a===a.nr)?3:2):-1,F=auFirma(),bis=tbAusIso(a.d||tbIso(new Date()));bis.setDate(bis.getDate()+(+F.gueltig||30));
+ const rest=Math.round((bis-new Date(new Date().toDateString()))/864e5);
+ return `<div class="auheld"><div class="auhz"><div><small>Gesamt brutto</small><b class="sb2">${auEur(auBrutto(a))}</b><span><i class="sn2">${auEur(auNetto(a))}</i> netto · ${a.pos.length} ${a.pos.length===1?'Position':'Positionen'}</span></div><span class="aust" style="--sc:${AU_ST[a.st][1]}">${AU_ST[a.st][0]}</span></div>
+  ${k<0?'':`<div class="austeps">${['Entwurf','Verschickt','Angenommen','Rechnung'].map((t,i)=>`<span class="${i<k?'f':i===k?'j':''}">${t}</span>`).join('')}</div>`}
+  ${a.st==='entwurf'||a.st==='verschickt'?`<div class="auhfz"><span>Gültig bis ${bis.getDate()}.${bis.getMonth()+1}.${bis.getFullYear()}</span><b class="${rest<0?'rot':rest<=7?'knapp':''}">${rest<0?'abgelaufen':rest===0?'endet heute':'noch '+rest+(rest===1?' Tag':' Tage')}</b></div>`:''}</div>`}
 function auDokMalen(inh,a){const b=BST[a.b]||{},ed=a.st==='entwurf'||a.st==='verschickt',F=auFirma();
  inh.innerHTML=`<div class="amkopf"><span class="amtt">${esc(a.nr)} · ${AU_ST[a.st][0]}</span><button type="button" class="ampf auzur" aria-label="Zur Liste">‹</button></div>
  <div class="aux">
-  <div class="aukarte"><div class="aukunde" style="--bc:${b.c||'var(--aj)'}"><span>${esc(b.k||'')}</span> ${esc(a.b)}<br><small>${esc(b.kontakt||'kein Ansprechpartner')} · ${esc(b.ort||'kein Standort')}</small></div>${ed?`<input class="autitel" value="${esc(a.t)}" aria-label="Titel">`:`<b class="autitel2">${esc(a.t)}</b>`}</div>
+  ${auHeld(a)}
+  <div class="aukarte"><div class="aukunde" style="--bc:${b.c||'var(--aj)'}"><span>${esc(b.k||'')}</span> ${esc(a.b)}<br><small>${esc(b.kontakt||'kein Ansprechpartner')} · ${esc(b.ort||'kein Standort')}</small>${b.tel?`<a class="auanruf" href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}" aria-label="${esc(b.kontakt||a.b)} anrufen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a10 10 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15.5 15.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></svg></a>`:''}</div>${ed?`<input class="autitel" value="${esc(a.t)}" aria-label="Titel">`:`<b class="autitel2">${esc(a.t)}</b>`}</div>
   <div class="aukarte"><div class="aukh"><b>POSITIONEN</b>${ed?'<button type="button" class="aukat">+ AUS PREISLISTE</button>':''}</div>
    <div class="aupos">${a.pos.length?a.pos.map((p,i)=>`<div class="aupz ${AUV.hl&&AUV.hl.includes(p)?'neu':''}"><span class="aun">${i+1}</span><span class="aut">${ed?`<input class="aupn" data-i="${i}" value="${esc(p.n)}" aria-label="Leistung">`:esc(p.n)}${p.her?`<small class="${p.her.startsWith('aus Bauplan')?'bp':''}">${esc(p.her)}</small>`:''}</span><span class="aum">${ed?`<input inputmode="decimal" data-i="${i}" data-f="m" value="${auZ(p.m)}" aria-label="Menge">`:auZ(p.m)}${ed?`<button type="button" class="aueh" data-ei="${i}" aria-label="Einheit ändern" title="Einheit ändern">${esc(p.e)}</button>`:`<em>${esc(p.e)}</em>`}</span><span class="aug"><b>${auEur(p.p*p.m)}</b>${ed?`<small><input inputmode="decimal" data-i="${i}" data-f="p" value="${auZ(p.p)}" aria-label="Einzelpreis">€/${esc(p.e)}</small>`:`<small>${auEur(p.p)}/${esc(p.e)}</small>`}</span>${ed?`<button type="button" class="auweg" data-i="${i}" aria-label="Position löschen">×</button>`:''}</div>`).join(''):'<div class="auhin">Noch keine Positionen. Aus der Preisliste oder direkt aus dem Bauplan hinzufügen.</div>'}</div>
    <div class="aubox"></div>
@@ -3249,7 +3467,7 @@ function auDokMalen(inh,a){const b=BST[a.b]||{},ed=a.st==='entwurf'||a.st==='ver
   ${!F.name?'<div class="auhin">Für das PDF fehlen noch deine Firmendaten – oben in der Liste unter „FIRMA &amp; PREISE“ eintragen.</div>':''}
  </div>`;
  AUV.hl=null;inh.querySelector('.auzur').onclick=()=>{AUV.offen=null;auMalen(inh)};
- const neu=()=>{const sn=inh.querySelector('.sn');if(!sn)return;sn.textContent=auEur(auNetto(a));inh.querySelector('.sm').textContent=auEur(auNetto(a)*.19);inh.querySelector('.sb').textContent=auEur(auBrutto(a));inh.querySelector('.sl').textContent=auEur(auLohn(a)*1.19);auAend(a)};
+ const neu=()=>{const sn=inh.querySelector('.sn');if(!sn)return;sn.textContent=auEur(auNetto(a));{const h=inh.querySelector('.auheld');if(h){h.querySelector('.sb2').textContent=auEur(auBrutto(a));h.querySelector('.sn2').textContent=auEur(auNetto(a))}}inh.querySelector('.sm').textContent=auEur(auNetto(a)*.19);inh.querySelector('.sb').textContent=auEur(auBrutto(a));inh.querySelector('.sl').textContent=auEur(auLohn(a)*1.19);auAend(a)};
  const ti=inh.querySelector('.autitel');if(ti)ti.oninput=()=>{a.t=ti.value;auAend(a)};
  inh.querySelectorAll('.aupz input[data-f]').forEach(i=>i.oninput=()=>{const p=a.pos[+i.dataset.i],v=auNum(i.value);if(v<0)return;p[i.dataset.f]=v;i.closest('.aupz').querySelector('.aug b').textContent=auEur(p.p*p.m);neu()});
  inh.querySelectorAll('.aupn').forEach(i=>i.oninput=()=>{a.pos[+i.dataset.i].n=i.value;auAend(a)});
@@ -3345,8 +3563,8 @@ function arBerechne(r){const a=arAng(r);
  if(r.art==='frei'){r.netto=r.pos.reduce((s,p)=>s+p.p*p.m,0);r.lohn=r.pos.reduce((s,p)=>s+p.p*p.m*(p.l||0)/100,0)}}
 // Liste (Reiter RECHNUNGEN)
 function arListeHtml(){const sum=st=>AU_R.filter(r=>r.st===st).reduce((s,r)=>s+arBrutto(r),0),cnt=st=>AU_R.filter(r=>r.st===st).length;
- return `<div class="aukette au3">${['entwurf','gestellt','bezahlt'].map(s=>`<div><small>${AR_ST[s][0]}</small><b>${cnt(s)}</b><span>${auEur(sum(s))}</span></div>`).join('')}</div>
-  ${AU_R.length?`<div class="${AUV.breit?'ausplit':'aueins'}"><div class="aual">${AU_R.map((r,i)=>{const b=BST[r.b];return `<button type="button" class="auar${AUV.breit&&i===AUV.vr?' sel':''}" data-r="${i}" style="--bc:${b?b.c:'var(--aj)'}"><i></i><span><b>${esc(r.t)}</b><small>${esc(r.nr||'Entwurf')} · ${b?esc(b.k)+' ':''}${esc(r.b)} · ${auDat(r.d)}</small><span class="aust" style="--sc:${AR_ST[r.st][1]}">${AR_ST[r.st][0]}${r.st==='gestellt'?' · FÄLLIG '+auDat(arFaellig(r)):''}</span></span><span class="aur"><strong>${auEur(arBrutto(r))}</strong><small>${AR_ART[r.art].replace('rechnung','')}</small></span></button>`}).join('')}</div>${AUV.breit?arVorschau(AU_R[AUV.vr]):''}</div>`:'<div class="amleer"><span>Noch keine Rechnung.<br>Oben rechts „+ Rechnung“ oder im angenommenen Angebot auf ABSCHLAG / SCHLUSSRECHNUNG.</span></div>'}`}
+ return `<div class="aukette au3">${['entwurf','gestellt','bezahlt'].map(s=>`<div data-fs="${s}"><small>${AR_ST[s][0]}</small><b>${cnt(s)}</b><span>${auEur(sum(s))}</span></div>`).join('')}</div>
+  ${AU_R.length?`<div class="${AUV.breit?'ausplit':'aueins'}"><div class="aual">${AU_R.map((r,i)=>{const b=BST[r.b];return `<button type="button" class="auar${AUV.breit&&i===AUV.vr?' sel':''}" data-r="${i}" data-st="${r.st}${r.st==='gestellt'&&arFaellig(r)<tbIso(new Date())?' ueber':''}" data-j="${String(r.d||'').slice(0,4)}" data-e="${arBrutto(r)}" data-su="${esc(r.nr||'')} ${esc(b?b.kontakt||'':'')}" style="--bc:${b?b.c:'var(--aj)'}"><i></i><span><b>${esc(r.t)}</b><small>${esc(r.nr||'Entwurf')} · ${b?esc(b.k)+' ':''}${esc(r.b)} · ${auDat(r.d)}</small><span class="aust" style="--sc:${AR_ST[r.st][1]}">${AR_ST[r.st][0]}${r.st==='gestellt'?' · FÄLLIG '+auDat(arFaellig(r)):''}</span></span><span class="aur"><strong>${auEur(arBrutto(r))}</strong><small>${AR_ART[r.art].replace('rechnung','')}</small></span></button>`}).join('')}</div>${AUV.breit?arVorschau(AU_R[AUV.vr]):''}</div>`:'<div class="amleer"><span>Noch keine Rechnung.<br>Oben rechts „+ Rechnung“ oder im angenommenen Angebot auf ABSCHLAG / SCHLUSSRECHNUNG.</span></div>'}`}
 // Abrechnung im angenommenen Angebot
 function arAuftragHtml(a){const n=auBrutto(a),L=AU_R.filter(r=>r.a===a.nr),stv=r=>r.st==='korrektur'?((AU_R.find(x=>x.nr===r.bezug)||{}).st||''):r.st,bez=L.filter(r=>stv(r)==='bezahlt').reduce((s,r)=>s+arBrutto(r),0),ges=L.filter(r=>stv(r)==='gestellt').reduce((s,r)=>s+arBrutto(r),0),rest=Math.max(0,n-bez-ges),schluss=L.some(r=>r.art==='schluss'&&r.st!=='entwurf'),pc=v=>n?Math.min(100,v/n*100):0;
  return `<div class="aukarte"><div class="aukh"><b>ABRECHNUNG · AUFTRAG ${auEur(n)}</b></div><div class="aubalken"><span style="background:#7FD68A" data-w="${pc(bez)}"></span><span style="background:#FFC857" data-w="${pc(ges)}"></span></div>
@@ -4026,17 +4244,17 @@ function glFormBind(inh,o){const T=[...inh.querySelectorAll('[data-ft]')],P=[...
    const L=F(),i=L.indexOf(x);if(i>=0&&i<L.length-1){L[i+1].focus();return}const k=(x.closest('[data-fp]')||{dataset:{}}).dataset.fp,ti=T.findIndex(t=>t.dataset.ft===k);
    if(!T.length){o.speichern();return}if(!k){const erst=F().find(y=>y.closest('[data-fp]'));if(erst)erst.focus();return}if(ti>=0&&ti<T.length-1){zeig(T[ti+1].dataset.ft);const erst=F().find(y=>y.closest('[data-fp]'));if(erst)erst.focus()}else o.speichern()})});
  pkt();inh.querySelectorAll('.glform textarea').forEach(x=>{x.style.height='auto';x.style.height=x.scrollHeight+'px'})}
-function kuZeigen(inh,opt){const w=opt&&opt.name?opt.name:null;KU_V.ed=false;KU_SEL=w&&BST[w]?w:null;kuMalen(inh);Promise.all([bstLaden(),tbLaden(),typeof auLaden==='function'?auLaden():null,typeof arLaden==='function'?arLaden():null]).then(()=>{if(!inh.isConnected)return;if(w&&BST[w]&&(KU_SEL===null||KU_SEL===w)){KU_SEL=w;kuMalen(inh)}else if(KU_SEL===null||kuMalen.auto)kuMalen(inh)}).catch(()=>{})}
+function kuZeigen(inh,opt){const w=opt&&opt.name?opt.name:null;KU_V.ed=false;KU_SEL=w&&BST[w]?w:null;kuMalen(inh);Promise.all([bstLaden(),tbLaden(),typeof auLaden==='function'?auLaden():null,typeof arLaden==='function'?arLaden():null,typeof kalLaden==='function'&&typeof KAL!=='undefined'&&!(KAL.ter||[]).length?kalLaden().catch(()=>{}):null]).then(()=>{if(!inh.isConnected)return;if(w&&BST[w]&&(KU_SEL===null||KU_SEL===w)){KU_SEL=w;kuMalen(inh)}else if(KU_SEL===null||kuMalen.auto)kuMalen(inh)}).catch(()=>{})}
 function kuMalen(inh){
  if(KU_SEL===null){const alle=Object.values(BST).sort((a,b)=>a.name.localeCompare(b.name)),akt=alle.filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent'),fer=alle.filter(b=>b.status==='abgeschlossen'),intr=alle.filter(b=>b.status==='interessent');
   const q=KU_V.q.trim().toLowerCase(),L=(KU_V.tab==='fertig'?fer:KU_V.tab==='intr'?intr:akt).filter(b=>!q||(b.name+' '+b.k+' '+(b.ort||'')+' '+(b.kontakt||'')).toLowerCase().includes(q));
-  const letzte=Object.keys(TB).sort().reverse().flatMap(t=>(TB[t]||[]).filter(e=>e&&e.b&&(e.l||e.x||e.a)).map(e=>({t,e}))).slice(0,4);
+  const letzte=akt.flatMap(b=>kuKontakte(b).slice(0,4).map(k=>Object.assign({b},k))).sort((a,b)=>(b.d+b.z).localeCompare(a.d+a.z)).slice(0,4);
   inh.innerHTML=`<div class="mgk"><div><span class="amtt">KUNDEN &amp; BAUSTELLEN</span><h2 class="mgh">Kunden</h2></div><div class="mgakt">${KU_V.such?`<input class="glsuch kusuch" type="search" placeholder="Name, Ort, Ansprechpartner …" value="${esc(KU_V.q)}" aria-label="Kunden durchsuchen">`:''}<button type="button" class="kusb">${KU_I.lupe}Suchen</button><span class="tr"></span><button type="button" class="haupt kuneu">${KU_I.plus}Kunde</button></div></div>
    <div class="glreiter" role="tablist"><button type="button" data-kt="aktiv" class="${KU_V.tab==='aktiv'?'an':''}">Aktiv<i>${akt.length}</i></button><button type="button" data-kt="fertig" class="${KU_V.tab==='fertig'?'an':''}">Abgeschlossen<i>${fer.length}</i></button><button type="button" data-kt="intr" class="${KU_V.tab==='intr'?'an':''}">Interessenten<i>${intr.length}</i></button></div>
-   <div class="kuliste glkarte gltab">${L.length?L.map(b=>{const fertig=b.status==='abgeschlossen',it=b.status==='interessent';return `<button type="button" class="kurow" data-n="${esc(b.name)}" style="--bc:${b.c}"><span class="kust"></span><span class="kutx"><b>${esc(b.name)}</b><small>${[(b.ort||'').split(',')[0],b.kontakt,b.einzug?'Einzug '+kuDatum(b.einzug):''].filter(Boolean).map(esc).join(' · ')||'noch ohne Standort'}</small></span><em class="${fertig?'fertig':it?'intr':'offen'}">${fertig?'FERTIG':it?'INTERESSENT':'IN ARBEIT'}</em></button>`}).join(''):`<div class="amleer">${q?'Nichts gefunden für „'+esc(KU_V.q)+'“.':KU_V.tab==='intr'?'Noch keine Interessenten.<br>Lege einen Kunden an und stelle den Status auf „Interessent“ – so behältst du Anfragen im Blick, bevor ein Auftrag daraus wird.':KU_V.tab==='fertig'?'Noch nichts abgeschlossen.<br>Stelle den Status einer Baustelle auf „abgeschlossen“, wenn sie fertig ist.':alle.length?'Gerade keine laufende Baustelle.':'Noch keine Baustellen.<br>Lege eine an oder erzähl dem Assistenten, wo du heute warst.'}</div>`}
-   ${letzte.length&&!q?`<div class="gllab">ZULETZT AUF DEN BAUSTELLEN</div>${letzte.map(({t,e})=>{const d=tbAusIso(t);return `<button type="button" class="glzeile" data-tb="${t}">${KU_I.doc}<span><b>${esc(String(e.l||e.x||e.a).split(/;|\n/)[0])}</b><small>${esc(e.b)}</small></span><em>${TB_WT[tbWt(d)].charAt(0)+TB_WT[tbWt(d)].charAt(1).toLowerCase()} ${d.getDate()}.${d.getMonth()+1}.</em></button>`}).join('')}`:''}</div>`;
+   <div class="kuliste glkarte gltab">${L.length?L.map(b=>{const fertig=b.status==='abgeschlossen',it=b.status==='interessent';return `<button type="button" class="kurow" data-n="${esc(b.name)}" style="--bc:${b.c}"><span class="kust"></span><span class="kutx"><b>${esc(b.name)}</b><small>${[(b.ort||'').split(',')[0],b.kontakt,b.einzug?'Einzug '+kuDatum(b.einzug):''].filter(Boolean).map(esc).join(' · ')||'noch ohne Standort'}</small>${(k=>k?`<small class="kulk">${kuKonIco(k.art)}${esc(k.art==='Beleg'?k.t.split(' ')[0]:k.art)} ${kuWann(k.d,k.z)}</small>`:'')(kuKontakte(b)[0])}</span><em class="${fertig?'fertig':it?'intr':'offen'}">${fertig?'FERTIG':it?'INTERESSENT':'IN ARBEIT'}</em></button>`}).join(''):`<div class="amleer">${q?'Nichts gefunden für „'+esc(KU_V.q)+'“.':KU_V.tab==='intr'?'Noch keine Interessenten.<br>Lege einen Kunden an und stelle den Status auf „Interessent“ – so behältst du Anfragen im Blick, bevor ein Auftrag daraus wird.':KU_V.tab==='fertig'?'Noch nichts abgeschlossen.<br>Stelle den Status einer Baustelle auf „abgeschlossen“, wenn sie fertig ist.':alle.length?'Gerade keine laufende Baustelle.':'Noch keine Baustellen.<br>Lege eine an oder erzähl dem Assistenten, wo du heute warst.'}</div>`}
+   ${letzte.length&&!q?`<div class="gllab">LETZTE KONTAKTE</div><div class="kukonl">${letzte.map(k=>kuKonZeile(k,'',k.b.name)).join('')}</div>`:''}</div>`;
   inh.querySelectorAll('.kurow').forEach(r=>r.onclick=()=>{KU_SEL=r.dataset.n;KU_V.ed=false;kuMalen(inh)});inh.querySelector('.kuneu').onclick=()=>{KU_SEL='';kuMalen(inh)};
-  inh.querySelectorAll('[data-kt]').forEach(b=>b.onclick=()=>{KU_V.tab=b.dataset.kt;KU_SEL=null;GL.ku=null;kuMalen(inh)});inh.querySelectorAll('[data-tb]').forEach(b=>b.onclick=()=>{TBV.sel=tbAusIso(b.dataset.tb);TBV.ans=5;TBV.edit=false;amFunktion('tagebuch')});
+  inh.querySelectorAll('[data-kt]').forEach(b=>b.onclick=()=>{KU_V.tab=b.dataset.kt;KU_SEL=null;GL.ku=null;kuMalen(inh)});kuKonBinden(inh,inh.querySelector('.kukonl'),letzte,true);
   inh.querySelector('.kusb').onclick=()=>{KU_V.such=!KU_V.such;if(!KU_V.such)KU_V.q='';KU_SEL=null;kuMalen(inh);const x=document.querySelector('#am .kusuch');if(x)x.focus()};
   {const x=inh.querySelector('.kusuch');if(x){x.oninput=()=>{KU_V.q=x.value;const pos=x.selectionStart;KU_SEL=null;kuMalen(inh);const y=document.querySelector('#am .kusuch');if(y){y.focus();try{y.setSelectionRange(pos,pos)}catch(e){}}};x.onkeydown=e=>{if(e.key==='Escape'){KU_V.such=false;KU_V.q='';KU_SEL=null;kuMalen(inh)}}}}return}
  if(KU_SEL&&BST[KU_SEL]&&!KU_V.ed){const b=BST[KU_SEL],n=b.name,E=Object.values(TB).flat().filter(e=>e&&e.b===n),std=E.reduce((s,e)=>s+(typeof peDauer==='function'?peDauer(e.z)*Math.max(1,peListe(e.p).length):0),0),an=typeof AU_A!=='undefined'?AU_A.filter(a=>a.b===n).length:0,ar=typeof AU_R!=='undefined'?AU_R.filter(r=>r.b===n).length:0,mo=typeof mgAlle==='function'?mgAlle().filter(m=>m.b===n&&mgOffen(m)).length:0,pl=(typeof BPL!=='undefined'?BPL:[]).find(p=>p.baustelle===n),bau=document.body.classList.contains('on-baustelle'),ohne='<i class="ohne">—</i>';
@@ -4044,9 +4262,10 @@ function kuMalen(inh){
   const F=[['ANSPRECHPARTNER',esc(b.kontakt||'')],['TELEFON',b.tel?lnk('tel:'+b.tel.replace(/[^+\d]/g,''),b.tel):''],['E-MAIL',b.mail?lnk('mailto:'+encodeURIComponent(b.mail).replace(/%40/g,'@'),b.mail):'']].concat(bau?[]:[['AUFTRAG',auf]]).concat([['STANDORT',esc(b.ort||'')],['EINZUG',b.einzug?esc(kuDatum(b.einzug)):''],['ZUGANG',esc(b.zugang||'')],['BESONDERHEITEN',esc(b.besonders||'')]]).concat(b.rname?[['RECHNUNG AN',esc([b.rname,b.rstr,b.rort,b.rmail].filter(Boolean).join(' · '))]]:[]);
   inh.innerHTML=`<div class="gldk"><div><small><span class="ambadge" style="color:${b.c}">${esc(b.k)}</span>${b.ort?' · '+esc(b.ort.split(',')[0].toUpperCase()):''}${b.status==='abgeschlossen'?' · ABGESCHLOSSEN':b.status==='interessent'?' · INTERESSENT':''}</small><h3>${esc(n)}</h3></div><div class="mgakt"><button type="button" class="kuzur">‹ Liste</button>${b.tel?`<a class="glanruf" href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}">${KU_I.tel}Anrufen</a>`:''}<button type="button" class="kued">${KU_I.stift}Bearbeiten</button></div></div>
    <div class="kuakt">${b.tel?`<a href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}">${KU_AKT.tel}Anrufen</a>`:`<span class="aus">${KU_AKT.tel}Anrufen</span>`}${b.mail?`<a href="mailto:${esc(b.mail)}">${KU_AKT.mail}E-Mail</a>`:`<span class="aus">${KU_AKT.mail}E-Mail</span>`}${b.ort?`<a href="https://maps.apple.com/?daddr=${encodeURIComponent(b.ort)}" target="_blank" rel="noopener">${KU_AKT.ort}Route</a>`:`<span class="aus">${KU_AKT.ort}Route</span>`}</div>
+   ${kuKonBlock(b)}
    <div class="tbfelder">${F.map(([l,v])=>`<span>${l}</span><div>${v||ohne}</div>`).join('')}</div>
    <div class="gllab">VERKNÜPFT</div><div class="glverkn"><button type="button" data-go="cockpit">${KU_I.cockpit}<span>Cockpit<small>${E.length} Tagebuch-${E.length===1?'Eintrag':'Einträge'}${std?' · '+String(Math.round(std*10)/10).replace('.',',')+' h':''}</small></span><b>›</b></button>${bau?'':`<button type="button" data-go="auftraege">${KU_I.euro}<span>Angebote &amp; Rechnungen<small>${an} ${an===1?'Angebot':'Angebote'} · ${ar} ${ar===1?'Rechnung':'Rechnungen'}</small></span><b>›</b></button>`}<button type="button" data-go="maengel">${KU_I.mangel}<span>Mängel<small>${mo?mo+' offen':'keine offenen'}</small></span><b>›</b></button><button type="button" data-go="bauplan">${KU_I.plan}<span>Bauplan<small>${pl?'Plan „'+esc(pl.name)+'“':'Grundriss und Aufmaß'}</small></span><b>›</b></button></div>`;
-  inh.querySelector('.kuzur').onclick=()=>{KU_SEL=null;kuMalen(inh)};inh.querySelector('.kued').onclick=()=>{KU_V.ed=true;kuMalen(inh)};
+  inh.querySelector('.kuzur').onclick=()=>{KU_SEL=null;kuMalen(inh)};inh.querySelector('.kued').onclick=()=>{KU_V.ed=true;kuMalen(inh)};kuKonDetail(inh,b);
   inh.querySelectorAll('[data-go]').forEach(x=>x.onclick=()=>{const g=x.dataset.go;if(g==='cockpit')amFunktion('cockpit',{name:n});else if(g==='maengel'){try{MGV.b=n;MGV.tab='maengel';MGV.sel=null}catch(e){}amFunktion('maengel')}else amFunktion(g)});return}
  const neu=KU_SEL==='',alt=BST[KU_SEL]||{},b=neu?{name:'',k:'',c:bstFarbe(),ort:'',kontakt:'',einzug:'',status:KU_V.tab==='intr'?'interessent':'offen',zugang:'',besonders:''}:{...alt};let farbe=b.c;
  const o=(v,t,c)=>`<option value="${v}"${c?' selected':''}>${t}</option>`,ft=KU_V.ftab&&['allg','kont','rech'].includes(KU_V.ftab)?KU_V.ftab:'allg';
@@ -4084,6 +4303,40 @@ function kuMalen(inh){
  inh.querySelector('.kusp').onclick=async()=>{const n=q('name').value.trim();if(!n){q('name').focus();return}const o={c:farbe};KU_V.ftab=null;['k','name','ort','kontakt','tel','mail','summe','einzug','status','zugang','besonders','kart','rname','rstr','rort','rmail','rust','leitweg'].forEach(f=>o[f]=q(f).value.trim());
   const doppelt=Object.values(BST).find(x=>x.k===o.k.toUpperCase()&&x.name!==(neu?'':KU_SEL));if(doppelt){q('k').focus();q('k').setCustomValidity('Kürzel schon vergeben ('+doppelt.name+')');q('k').reportValidity();setTimeout(()=>q('k').setCustomValidity(''),2000);return}
   await bstSpeichern(neu?null:KU_SEL,o);KU_V.ed=false;KU_SEL=BST[o.name]?o.name:null;if(KU_SEL)KU_V.tab=BST[KU_SEL].status==='abgeschlossen'?'fertig':BST[KU_SEL].status==='interessent'?'intr':'aktiv';kuMalen(inh)}}
+// ---------- Letzte Kontakte: notierte Gespräche + Tagebuch, Termine und Belege zum Kunden ----------
+const KU_KI={Anruf:KU_AKT.tel,'E-Mail':KU_AKT.mail,Besuch:KU_AKT.ort,Termin:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',Notiz:'<svg viewBox="0 0 24 24"><path d="M5 19h4L19.5 8.5l-4-4L5 15z"/></svg>',Tagebuch:'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/></svg>',Beleg:'<svg viewBox="0 0 24 24"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10h9M4 14h9"/></svg>'};
+const KU_KF=[['alle','Alle',()=>1],['Anruf','Anrufe',k=>k.art==='Anruf'],['E-Mail','E-Mails',k=>k.art==='E-Mail'],['Termin','Termine',k=>k.art==='Termin'||k.art==='Besuch'],['Tagebuch','Tagebuch',k=>k.art==='Tagebuch'],['Beleg','Belege',k=>k.art==='Beleg']];
+const kuKonIco=a=>`<i class="kuki k-${{'E-Mail':'mail',Anruf:'tel',Besuch:'ort',Termin:'kal',Notiz:'not',Tagebuch:'tb',Beleg:'beleg'}[a]||'not'}">${KU_KI[a]||KU_KI.Notiz}</i>`;
+function kuWann(d,z){if(!d)return '';const t=tbAusIso(d),h=new Date(new Date().toDateString()),n=Math.round((h-new Date(t.toDateString()))/864e5);
+ if(n===0)return z?'heute '+z:'heute';if(n===1)return 'gestern';if(n>1&&n<7)return TB_WT[tbWt(t)].charAt(0)+TB_WT[tbWt(t)].charAt(1).toLowerCase()+' '+t.getDate()+'.'+(t.getMonth()+1)+'.';return t.getDate()+'.'+(t.getMonth()+1)+'.'+(t.getFullYear()!==h.getFullYear()?String(t.getFullYear()).slice(2):'')}
+function kuKontakte(b){const n=b.name,h=tbIso(new Date()),L=[];
+ (b.kon||[]).forEach(k=>L.push({d:k.d,z:k.z,art:k.art,t:k.t,s:'notiert',kon:k}));
+ Object.entries(TB).forEach(([t,l])=>(l||[]).forEach(e=>{if(e&&e.b===n)L.push({d:t,z:'',art:'Tagebuch',t:String(e.l||e.x||e.a||'Tagebuch-Eintrag').split(/;|\n/)[0],s:[typeof peListe==='function'?peListe(e.p).join(', '):'',e.z].filter(Boolean).join(' · ')||'Tagebuch',tb:t})}));
+ if(typeof KAL!=='undefined'&&Array.isArray(KAL.ter)){const N=[n.toLowerCase()].concat(b.kontakt&&b.kontakt.trim().length>3?[b.kontakt.trim().toLowerCase()]:[]);
+  KAL.ter.forEach(e=>{if(!e||e.kat==='url'||e.kat==='geb'||!e.datum||e.datum>h)return;const tx=((e.titel||'')+' '+(e.ort||'')+' '+(e.notiz||'')).toLowerCase();if(N.some(x=>tx.includes(x)))L.push({d:e.datum,z:e.von||'',art:'Termin',t:e.titel,s:e.ort||'Kalender',kal:e.datum})})}
+ if(typeof AU_A!=='undefined')AU_A.filter(a=>a.b===n&&a.d).forEach(a=>L.push({d:a.d,z:'',art:'Beleg',t:'Angebot '+a.nr+(a.t?' · '+a.t:''),s:(AU_ST[a.st]||[''])[0].toLowerCase()+' · '+auEur(auBrutto(a)),au:1}));
+ if(typeof AU_R!=='undefined')AU_R.filter(r=>r.b===n&&r.d&&r.st!=='entwurf').forEach(r=>L.push({d:r.d,z:'',art:'Beleg',t:'Rechnung '+(r.nr||'')+(r.t?' · '+r.t:''),s:((AR_ST[r.st]||[''])[0]||'').toLowerCase()+' · '+auEur(arBrutto(r)),au:1}));
+ return L.filter(x=>x.d<=h).sort((a,b)=>(b.d+(b.z||'')).localeCompare(a.d+(a.z||'')))}
+function kuKonZeile(k,i,name){return `<button type="button" class="kukon" data-ki="${i}">${kuKonIco(k.art)}<span><b>${esc(k.t)}</b><small>${name?esc(name)+' · ':''}${esc(k.art==='Beleg'||k.art==='Tagebuch'||k.art==='Termin'?k.s:k.art+(k.s&&k.s!=='notiert'?' · '+k.s:''))}</small></span><em>${kuWann(k.d,k.z)}</em>${k.kon?`<span class="kukx" role="button" tabindex="0" data-kx="${i}" aria-label="Kontakt löschen">×</span>`:''}</button>`}
+function kuKonBlock(b){const L=kuKontakte(b),f=KU_V.kf&&KU_KF.some(x=>x[0]===KU_V.kf)?KU_V.kf:'alle',F=L.filter(KU_KF.find(x=>x[0]===f)[2]),zeig=KU_V.kalle?F:F.slice(0,5),art=KU_KF.filter(([k,t,fn])=>k==='alle'||L.some(fn));
+ return `<div class="gllab kukonlab">LETZTE KONTAKTE<button type="button" class="kukneu">${KU_I.plus}Kontakt notieren</button></div>
+  <div class="kukonform" hidden><div class="kukarten">${BST_KART.map((a,i)=>`<button type="button" data-ka="${a}" class="${i?'':'an'}">${kuKonIco(a)}${a}</button>`).join('')}</div><textarea rows="2" placeholder="Worum ging es? z. B. Fliesen kommen Donnerstag" aria-label="Worum ging es"></textarea><div class="kukfuss"><button type="button" class="kukab">Abbrechen</button><button type="button" class="haupt kuksp">Speichern</button></div></div>
+  ${art.length>2?`<div class="kukf">${art.map(([k,t])=>`<button type="button" data-kf="${k}" class="${k===f?'an':''}">${t}</button>`).join('')}</div>`:''}
+  <div class="kukonl">${zeig.length?zeig.map((k,i)=>kuKonZeile(k,i)).join(''):`<div class="kukleer">${L.length?'Nichts in dieser Art.':'Noch keine Kontakte. Anrufe und E-Mails über die Knöpfe oben merkt sich Onstand, alles andere über „Kontakt notieren“.'}</div>`}${F.length>5?`<button type="button" class="kukmehr">${KU_V.kalle?'Weniger anzeigen':'Alle '+F.length+' anzeigen'}</button>`:''}</div>`}
+function kuKonBinden(inh,box,L,mitName){if(!box)return;box.querySelectorAll('[data-ki]').forEach(z=>z.onclick=ev=>{if(ev.target.closest('[data-kx]'))return;const k=L[+z.dataset.ki];if(!k)return;
+  if(mitName&&k.b){KU_SEL=k.b.name;KU_V.ed=false;kuMalen(inh);return}
+  if(k.tb){TBV.sel=tbAusIso(k.tb);TBV.ans=5;TBV.edit=false;amFunktion('tagebuch')}else if(k.kal){try{amZu();kalAuf(k.kal)}catch(e){amFunktion('kalender')}}else if(k.au)amFunktion('auftraege')})}
+function kuKonDetail(inh,b){const L=kuKontakte(b),f=KU_V.kf&&KU_KF.some(x=>x[0]===KU_V.kf)?KU_V.kf:'alle',F=L.filter(KU_KF.find(x=>x[0]===f)[2]),neu=()=>{const y=inh.scrollTop;kuMalen(inh);inh.scrollTop=y};
+ kuKonBinden(inh,inh.querySelector('.kukonl'),F,false);
+ inh.querySelectorAll('[data-kf]').forEach(x=>x.onclick=()=>{KU_V.kf=x.dataset.kf;KU_V.kalle=false;neu()});const m=inh.querySelector('.kukmehr');if(m)m.onclick=()=>{KU_V.kalle=!KU_V.kalle;neu()};
+ inh.querySelectorAll('[data-kx]').forEach(x=>x.onclick=async ev=>{ev.stopPropagation();const k=F[+x.dataset.kx];if(!k||!k.kon)return;if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='löschen?';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent='×'}},3000);return}await bstKontaktWeg(b.name,k.kon);neu()});
+ const fo=inh.querySelector('.kukonform'),ta=fo.querySelector('textarea');
+ inh.querySelector('.kukneu').onclick=()=>{fo.hidden=!fo.hidden;if(!fo.hidden)ta.focus()};fo.querySelectorAll('[data-ka]').forEach(x=>x.onclick=()=>fo.querySelectorAll('[data-ka]').forEach(y=>y.classList.toggle('an',y===x)));
+ fo.querySelector('.kukab').onclick=()=>{fo.hidden=true;ta.value=''};
+ fo.querySelector('.kuksp').onclick=async()=>{const a=fo.querySelector('[data-ka].an').dataset.ka,t=ta.value.trim();if(!t){ta.focus();return}fo.querySelector('.kuksp').disabled=true;const ok=await bstKontakt(b.name,a,t);if(!ok){mgToast(inh,'Konnte nicht gespeichert werden – Datenordner verbunden?');fo.querySelector('.kuksp').disabled=false;return}KU_V.kf='alle';neu();mgToast(inh,a+' gespeichert')};
+ ta.onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))fo.querySelector('.kuksp').click()};
+ // Anrufen / E-Mail über Onstand: automatisch als Kontakt merken
+ inh.querySelectorAll('.kuakt a[href^="tel:"],.glanruf,.kuakt a[href^="mailto:"]').forEach(a=>a.addEventListener('click',()=>{const mail=a.getAttribute('href').startsWith('mailto:');bstKontakt(b.name,mail?'E-Mail':'Anruf',mail?'E-Mail geschrieben':'angerufen').then(k=>{if(k)setTimeout(()=>{if(inh.isConnected&&KU_SEL===b.name&&!KU_V.ed)neu()},1200)}).catch(()=>{})}))}
 AM_FUNK.push({beruf:'handwerk',id:'kunden',name:'KUNDEN',ico:'<circle cx="10" cy="7" r="3.2"/><path d="M3.5 17c.8-3.4 3.4-5 6.5-5s5.7 1.6 6.5 5"/>',zeigen:kuZeigen});
 
 // ===== Handwerk · Funktion 3: Personal – das Team mit Rolle, Firma, Qualifikationen und den Schreibweisen, unter denen Onstand jemanden erkennt =====
@@ -4172,10 +4425,10 @@ function peMalen(inh){const bez=PE_BEZ||TBV.sel||new Date();
   const kw=tbKw(bez);let ges=0,sollG=0;
   inh.innerHTML=`<div class="mgk"><div><span class="amtt">PERSONAL</span><h2 class="mgh">Team</h2></div><div class="mgakt"><span class="pekw"><button type="button" data-kw="-1" aria-label="Vorherige Woche">‹</button><b>KW ${kw}</b><button type="button" data-kw="1" aria-label="Nächste Woche">›</button></span><span class="tr"></span><button type="button" class="pestz" title="Stundenzettel für ${TB_MONL[bez.getMonth()]} drucken oder als PDF sichern">${KU_I.druck}<span>Stundenzettel</span></button><button type="button" class="peallab" title="Alle aktiven abrechnen (Zähler auf 0)">${KU_I.ab}<span>Alle abrechnen</span></button><span class="tr"></span><button type="button" class="haupt peneu">${KU_I.plus}Mitarbeiter</button></div></div>
    <div class="kuliste glkarte gltab petab"><div class="petk"><span></span><span>NAME</span><span>ROLLE</span><span>EINGESETZT</span><span>KW ${kw}</span></div>${L.map(p=>{const sum=peWoche(p.name,bez).reduce((a,b)=>a+b,0),bst=peBst(p.name,bez);if(p.status==='aktiv'){ges+=sum;sollG+=peSoll(p)}
-    return `<button type="button" class="perow${p.neu?' neu':''}${p.status!=='aktiv'?' weg':''}" data-n="${esc(p.name)}"><span class="peava">${esc(p.k)}</span><b>${esc(p.name)}${p.du?'<i>DU</i>':''}${p.neu?'<i>NEU ERKANNT</i>':''}</b><span>${esc(p.rolle||'Rolle offen')}${p.status!=='aktiv'?' · nicht mehr dabei':''}</span><span>${bst.length?bst.map(n=>esc((bstFinde(n)||{}).k||n)).join(' · '):'<i class="ohne">—</i>'}</span><span class="pestd">${peH(sum)} h</span></button>`}).join('')}
+    const gr=p.status!=='aktiv'?'weg':(p.rolle==='Subunternehmer'||p.firma)?'sub':'team';return `<button type="button" class="perow${p.neu?' neu':''}${p.status!=='aktiv'?' weg':''}" data-n="${esc(p.name)}" data-st="${gr}${p.status==='aktiv'&&!sum?' ohne':''}" data-su="${esc([p.k,p.firma].concat(p.alias||[]).filter(Boolean).join(' '))}"><span class="peava">${esc(p.k)}</span><b>${esc(p.name)}${p.du?'<i>DU</i>':''}${p.neu?'<i>NEU ERKANNT</i>':''}</b><span>${esc(p.rolle||'Rolle offen')}${p.status!=='aktiv'?' · nicht mehr dabei':''}</span><span>${bst.length?bst.map(n=>esc((bstFinde(n)||{}).k||n)).join(' · '):'<i class="ohne">—</i>'}</span><span class="pestd">${peH(sum)} h</span></button>`}).join('')}
     <div class="petf"><span></span><span>${L.filter(p=>p.status==='aktiv').length} ${L.filter(p=>p.status==='aktiv').length===1?'Person':'Personen'} · Soll ${peH(sollG)} h</span><span></span><span></span><span>${peH(ges)} h</span></div></div>
    <div class="petipp">Stunden kommen aus Arbeitszeit und Personal im Tagebuch (Anwesenheit, ohne Pausenabzug).</div>`;
-  inh.querySelectorAll('.perow').forEach(r=>r.onclick=()=>{PE_SEL=r.dataset.n;PE_ED=false;peMalen(inh)});inh.querySelectorAll('.pekw [data-kw]').forEach(k=>k.onclick=()=>{PE_BEZ=tbPlus(tbMo(bez),7*+k.dataset.kw);peMalen(inh)});{const ab=inh.querySelector('.peallab');let s=0;ab.onclick=async()=>{if(!s){s=1;ab.lastChild.textContent='Wirklich alle abrechnen?';ab.classList.add('sicher');setTimeout(()=>{if(ab.isConnected){s=0;ab.lastChild.textContent='Alle abrechnen';ab.classList.remove('sicher')}},4000);return}ab.disabled=true;for(const x of Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu))await peAbrechnen(x.name);peMalen(inh)}}inh.querySelector('.peneu').onclick=()=>{PE_SEL='';peMalen(inh)};inh.querySelector('.pestz').onclick=()=>{const wahl=GL.pe&&PER[GL.pe]&&inh.closest('.glsplit')?[GL.pe]:Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu).map(x=>x.name);if(!wahl.length){onToast('Noch niemand im Team.');return}peStundenzettel(wahl,bez)};return}
+  fiLeiste(inh,{key:'pe',zeilen:'.perow',vor:'.petab',klasse:'fistill',platz:'Name, Rolle oder Kürzel',einheit:['Person','Personen'],status:[['team','Team'],['sub','Subunternehmer'],['ohne','Ohne Stunden']].concat(L.some(p=>p.status!=='aktiv')?[['weg','Nicht mehr dabei']]:[])});inh.querySelectorAll('.perow').forEach(r=>r.onclick=()=>{PE_SEL=r.dataset.n;PE_ED=false;peMalen(inh)});inh.querySelectorAll('.pekw [data-kw]').forEach(k=>k.onclick=()=>{PE_BEZ=tbPlus(tbMo(bez),7*+k.dataset.kw);peMalen(inh)});{const ab=inh.querySelector('.peallab');let s=0;ab.onclick=async()=>{if(!s){s=1;ab.lastChild.textContent='Wirklich alle abrechnen?';ab.classList.add('sicher');setTimeout(()=>{if(ab.isConnected){s=0;ab.lastChild.textContent='Alle abrechnen';ab.classList.remove('sicher')}},4000);return}ab.disabled=true;for(const x of Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu))await peAbrechnen(x.name);peMalen(inh)}}inh.querySelector('.peneu').onclick=()=>{PE_SEL='';peMalen(inh)};inh.querySelector('.pestz').onclick=()=>{const wahl=GL.pe&&PER[GL.pe]&&inh.closest('.glsplit')?[GL.pe]:Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu).map(x=>x.name);if(!wahl.length){onToast('Noch niemand im Team.');return}peStundenzettel(wahl,bez)};return}
  if(PE_SEL&&PER[PE_SEL]&&!PE_ED&&!PER[PE_SEL].neu){const p=PER[PE_SEL],n=p.name,w=peWoche(n,bez),sum=w.reduce((a,b)=>a+b,0),mx=Math.max(9,...w),mo=tbMo(bez),fr=tbPlus(mo,4),bst=peBst(n,bez),hMo=tbIso(tbMo(new Date()))===tbIso(mo),ohne='<i class="ohne">—</i>',tage=w[5]||w[6]?7:5;
    const E=[];for(let i=6;i>=0;i--)(TB[tbIso(tbPlus(mo,i))]||[]).forEach(e=>{if(peListe(e.p).some(x=>x===n||p.alias.includes(x)))E.push({i,e})});
    inh.innerHTML=`<div class="gldk"><span class="peava gross">${esc(p.k)}</span><div><small>${esc((p.rolle||'ROLLE OFFEN').toUpperCase())}${p.firma?' · '+esc(p.firma.toUpperCase()):''}${p.status!=='aktiv'?' · NICHT MEHR DABEI':''}</small><h3>${esc(n)}</h3></div><div class="mgakt"><button type="button" class="pezur">‹ Liste</button>${p.tel?`<a class="glanruf" href="tel:${esc(p.tel.replace(/[^+\d]/g,''))}">${KU_I.tel}Anrufen</a>`:''}<button type="button" class="peed">${KU_I.stift}Bearbeiten</button></div></div>
@@ -5479,9 +5732,21 @@ function brMalen(inh){const rolle=typeof SY_KONTO!=='undefined'&&SY_KONTO?SY_KON
   <div class="brx"><div class="brreiter" role="tablist">${[['wiki','Wiki',P.length],['neu','Neu',neu],['nz','Nicht zugeordnet',nz.length]].filter(([k,n,z])=>k==='wiki'||z).map(([k,n,z])=>`<button type="button" role="tab" data-brtab="${k}" class="${BR.tab===k?'an':''}${k==='nz'?' warn':''}" aria-selected="${BR.tab===k}">${n}<i>${z}</i></button>`).join('')}
    <div class="brlauf"><span>${BR.laeuft?`<b>Sortiere …</b> ${esc(BR.fort)}`:(lz?'ZULETZT SORTIERT '+lzT+' · ':'')+'NÄCHSTER LAUF SONNTAG'}</span>${BR.quelle&&!BR.neuQuelle.length&&!BR.laeuft?'<button type="button" class="brpruef">Ordner prüfen</button>':''}<button type="button" class="ja brjetzt" ${BR.laeuft?'disabled':''}>Jetzt sortieren</button></div></div>
   ${BR.toast?`<div class="brtoast">${esc(BR.toast)}</div>`:''}
-  <div class="brwiki${BR.mob?' brmseite':''}"><div class="brliste">${liste}</div><div class="brseite"><button type="button" class="brzur">‹ Übersicht</button>${seite}</div></div>
+  <div class="brwiki${BR.mob?' brmseite':''}"><div class="brliste">${BR.tab==='wiki'&&P.length?`<div class="brsuche"><label class="fisuch">${FI_I.such}<input type="search" enterkeyhint="search" placeholder="Im Firmenwissen suchen …" value="${esc(BR.q||'')}" aria-label="Im Firmenwissen suchen"><button type="button" class="fix" aria-label="Suche leeren">${FI_I.x}</button></label><div class="brtreffer" hidden></div></div>`:''}${liste}</div><div class="brseite"><button type="button" class="brzur">‹ Übersicht</button>${seite}</div></div>
   <form class="brfrage"><input placeholder="Frag das Firmenwissen, z. B. „Was müssen wir bei Familie Müller beachten?“" aria-label="Frage an das Firmen-Brain"><small class="brklein">zählt als Denk-Frage</small><button type="submit" class="ja" aria-label="Fragen">${BR_I.senden}</button></form></div>`;
  brBinden(inh)}
+// Suche in der Seitenliste: Titel, Fakten, Notizen; dazu „Frag das Firmenwissen“ mit dem Suchtext
+function brSuchText(p){return [p.titel,p.unter,p.intro].concat(p.fakten.map(f=>f.join(' ')),p.notizen).join(' \n ')}
+function brSuchBinden(inh){const box=inh.querySelector('.brsuche');if(!box)return;const inp=box.querySelector('input'),tr=box.querySelector('.brtreffer'),B=[...inh.querySelectorAll('.brliste [data-brs]')];
+ const tun=()=>{const q=(BR.q||'').trim(),ql=q.toLowerCase();let n=0;box.querySelector('.fix').style.visibility=q?'visible':'hidden';
+  B.forEach(b=>{const p=BR.seiten[b.dataset.brs],t=p?brSuchText(p):b.textContent,i=t.toLowerCase().indexOf(ql),ok=!ql||i>=0;b.classList.toggle('fiweg',!ok);if(ok)n++;
+   let sn=b.querySelector('.brsn');if(ql&&ok&&i>=0&&!p.titel.toLowerCase().includes(ql)){if(!sn){sn=document.createElement('small');sn.className='brsn';b.querySelector('span').appendChild(sn)}const a=Math.max(0,i-28),z=t.slice(a,i+ql.length+40).replace(/\[\[|\]\]/g,'').replace(/\s+/g,' ');
+    sn.innerHTML=(a?'… ':'')+esc(z).replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'),m=>'<mark>'+m+'</mark>')}else if(sn)sn.remove()});
+  inh.querySelectorAll('.brliste .brgr').forEach(g=>g.classList.toggle('fiweg',!!ql&&!g.querySelector('[data-brs]:not(.fiweg)')));
+  tr.hidden=!q;if(q){tr.innerHTML=`<button type="button" class="brfragq">${BR_I.frage}<span><small>FRAG DAS FIRMENWISSEN</small><b>„${esc(q)}“</b></span></button><p class="brtz">${n?n+(n===1?' Seite enthält':' Seiten enthalten')+' „'+esc(q)+'“':'Keine Seite enthält „'+esc(q)+'“ – frag oben, der Assistent sucht auch in den Dateien.'}</p>`;
+   tr.querySelector('.brfragq').onclick=()=>{asAuf();setTimeout(()=>kiFragen(/[?]$/.test(q)?q:q+'?'),250)}}};
+ inp.oninput=()=>{BR.q=inp.value;tun()};inp.onkeydown=e=>{if(e.key==='Enter'&&BR.q&&BR.q.trim()){e.preventDefault();const f=tr.querySelector('.brfragq');if(f&&!B.some(b=>!b.classList.contains('fiweg')))f.click()}if(e.key==='Escape'){BR.q='';inp.value='';tun()}};
+ box.querySelector('.fix').onclick=e=>{e.preventDefault();BR.q='';inp.value='';tun();inp.focus()};tun()}
 function brInterviewMalen(inh){const o=brOffeneFragen(),pct=brProfilProzent(),c=2*Math.PI*24,f=o[0];
  inh.innerHTML=`<div class="mgk"><div><span class="amtt">FIRMEN-BRAIN</span><h2 class="mgh">Interview</h2></div><div class="mgakt"><button type="button" class="brzur">‹ Zurück zum Wiki</button></div></div><div class="brx">
   <div class="aukarte"><div class="brmeter"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="24" fill="none" stroke="rgba(154,171,187,.18)" stroke-width="6"/><circle cx="30" cy="30" r="24" fill="none" stroke="var(--aj)" stroke-width="6" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-pct/100)}" transform="rotate(-90 30 30)"/></svg><div><b>${pct} %</b><small>FIRMENPROFIL VOLLSTÄNDIG</small></div></div>
@@ -5507,7 +5772,7 @@ function brBinden(inh){const q=s=>inh.querySelector(s);
  const zo=q('[data-brzuord]');if(zo)zo.onclick=async()=>{const id=BR.sel.slice(3),neu=zs.value==='__neu',titel=neu?q('[data-brneu]').value.trim():zs.value;if(!titel){q('[data-brneu]').focus();return}
   const t=await brZuordnen(id,titel,neu?q('[data-brgr]').value:(BR.seiten[titel]||{}).gruppe);BR.tab='wiki';BR.sel=t;BR.toast=`„${(BR.stand.dateien[id]||{}).name||''}“ ist jetzt bei ${t}.`;brMalen(inh)};
  const ig=q('[data-brign]');if(ig)ig.onclick=async()=>{await brIgnorieren(BR.sel.slice(3));BR.sel=null;brMalen(inh)};
- const fr=q('.brfrage');if(fr)fr.onsubmit=e=>{e.preventDefault();const t=fr.querySelector('input').value.trim();if(!t)return;asAuf();setTimeout(()=>kiFragen(/[?]$/.test(t)?t:t+'?'),250)}}
+ brSuchBinden(inh);const fr=q('.brfrage');if(fr)fr.onsubmit=e=>{e.preventDefault();const t=fr.querySelector('input').value.trim();if(!t)return;asAuf();setTimeout(()=>kiFragen(/[?]$/.test(t)?t:t+'?'),250)}}
 AM_FUNK.push({beruf:'handwerk',id:'brain',name:'FIRMEN-BRAIN',ico:'<g transform="scale(.8333)" stroke-width="2.05"><path d="M12 5.2a2.9 2.9 0 0 0-5.4-1.3A3.2 3.2 0 0 0 4 8.7a3.4 3.4 0 0 0 .4 5.5A3.3 3.3 0 0 0 8 19.4a2.8 2.8 0 0 0 4 .9z"/><path d="M12 5.2a2.9 2.9 0 0 1 5.4-1.3A3.2 3.2 0 0 1 20 8.7a3.4 3.4 0 0 1-.4 5.5 3.3 3.3 0 0 1-3.6 5.2 2.8 2.8 0 0 1-4 .9"/><path d="M8 9.3c1.2 0 2.2.8 2.4 2M16 9.3c-1.2 0-2.2.8-2.4 2M7.4 14.6c1-.7 2.3-.6 3.1.3M16.6 14.6c-1-.7-2.3-.6-3.1.3"/></g>',zeigen:brZeigen,zahl:()=>brNichtZugeordnet().length});
 // Firmen-Brain im Wissen des Assistenten (nur Chef und Büro)
 // Für den Assistenten: Inhaltsverzeichnis aller Seiten nach Bereich (mit Kurzinfo) + Details zu den passenden Seiten
@@ -7502,7 +7767,7 @@ const hyAkt=()=>['cockpit','tagebuch','kalender'].includes(AM_AKT)?AM_AKT:'mehr'
 function hyBau(){if(!AM_EL||AM_EL.querySelector('.onleiste'))return;const l=AM_EL.querySelector('.amlade');
  l.insertAdjacentHTML('beforeend',`<div class="onkopf" aria-hidden="true"><b></b></div><nav class="onleiste" aria-label="Bereiche"><span class="hyind" aria-hidden="true"></span>${[['cockpit','Cockpit'],['tagebuch','Tagebuch'],null,['kalender','Kalender'],['mehr','Mehr']].map(x=>x?`<button type="button" data-hy="${x[0]}">${hyIco(x[0])}<span>${x[1]}</span></button>`:`<button type="button" class="hymic" data-hymic aria-label="Mit dem Assistenten sprechen">${hyIco('mic')}</button>`).join('')}</nav>`);
  l.querySelectorAll('[data-hy]').forEach(b=>b.onclick=()=>{const id=b.dataset.hy,inh=AM_EL.querySelector('.aminhalt');try{if(asOffen())asZu()}catch(e){}
-  if(id===hyAkt()&&id!=='kalender'&&!(id==='mehr'&&AM_AKT!=='mehr')){inh.scrollTo({top:0,behavior:RM?'auto':'smooth'});return}amFunktion(id)});
+  if(id===hyAkt()&&id!=='kalender'&&!(id==='mehr'&&(AM_AKT!=='mehr'||inh.querySelector(':scope>.hyzur')))){inh.scrollTo({top:0,behavior:RM?'auto':'smooth'});return}amFunktion(id)});
  l.querySelector('[data-hymic]').onclick=()=>{try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}asAuf()};
  AM_EL.querySelector('.aminhalt').addEventListener('scroll',hyKopf,{passive:true});
  // Blatt von unten (neuer Tagebuch-Eintrag): Tippen auf die abgedunkelte Fläche bricht ab
@@ -7523,7 +7788,22 @@ function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','ka
  <div class="hygrp"><button type="button" data-hx="pk"><span class="hyri">${hyIco('pk')}</span><span class="hyrt"><b>Papierkorb</b><small>Gelöschtes wiederherstellen</small></span>${hyIco('chev')}</button><button type="button" data-hx="menu"><span class="hyri">${hyIco('gear')}</span><span class="hyrt"><b>Einstellungen</b><small>Firma &amp; Preise · Konto &amp; Geräte · Design</small></span>${hyIco('chev')}</button></div>`;
  inh.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>amFunktion(b.dataset.f));
  inh.querySelector('[data-hx=pk]').onclick=()=>{const p=AM_EL.querySelector('.onseite [data-pk]');if(p)p.click()};
- inh.querySelector('[data-hx=menu]').onclick=ev=>{ev.stopPropagation();try{onMenu()}catch(e){}}}
+ inh.querySelector('[data-hx=menu]').onclick=ev=>{ev.stopPropagation();amFunktion('mehr',{seite:'einst'})}}
+// Handy: „Einstellungen“ als eigene Seite (statt des kleinen Menüs am PC), gleiche Punkte, gruppiert, mit farbigen Symbolen
+const HY_EF={profil:'#D19A6A',firma:'#D19A6A',personal:'#8FB8FF',mahn:'#FFC857',pk:'#A29D97',si:'#7FD68A',konto:'#B79CFF',ordner:'#6FD3C7',abo:'#D19A6A',app:'#8FB8FF',rundgang:'#FF9F6B',ueber:'#A29D97'};
+function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK_CACHE||[]).length}catch(e){}try{const z=localStorage.getItem('onstandSiLetzt');if(z)si='zuletzt '+new Date(z).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}catch(e){}
+ const Z=(k,t,s)=>`<button type="button" data-m="${k}"><span class="hyri hysq" style="--q:${HY_EF[k]||'#A29D97'}"><svg viewBox="0 0 24 24" aria-hidden="true">${ON_MZ_ICO[k]||''}</svg></span><span class="hyrt"><b>${t}</b>${s?`<small>${s}</small>`:''}</span>${hyIco('chev')}</button>`;
+ inh.innerHTML=`<button type="button" class="hyzur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Mehr</button><div class="mgk"><div><span class="amtt">ONSTAND</span><h2 class="mgh">Einstellungen</h2></div></div>
+ <div class="hygrp hyprofil"><button type="button" data-m="profil"><span class="hyav">${logo?`<img src="${esc(logo)}" alt="">`:ON_LOGO}</span><span class="hyrt"><b>${esc(firma)}</b><small>${esc([ON_PROFIL.name,ON_PROFIL.rolle].filter(Boolean).join(' · ')||'Profil')} · Name, Rolle</small></span>${hyIco('chev')}</button></div>
+ <div class="hylab">FIRMA</div><div class="hygrp">${Z('firma','Firma &amp; Preise','Logo, Steuernummer, IBAN, Preisliste')}${Z('personal','Mitarbeiter','Team, Stunden, Urlaub')}${Z('mahn','Mahnwesen','Mahnstufen und Fristen')}</div>
+ <div class="hylab">DATEN &amp; KONTO</div><div class="hygrp">${Z('pk','Papierkorb',pk?pk+(pk===1?' Eintrag':' Einträge')+' · 30 Tage zurückholbar':'30 Tage zurückholbar')}${Z('si','Sicherung',si||'jeden Morgen automatisch')}${Z('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}${Z('ordner','Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'))}</div>
+ <div class="hylab">DESIGN</div><div class="hygrp hydes">${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}"><i style="background:linear-gradient(135deg,${d.f[0]} 50%,${d.f[1]} 50%)"></i>${d.name}</button>`).join('')}</div>
+ <div class="hylab">APP</div><div class="hygrp">${Z('abo','Abo &amp; KI-Paket',typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht')}${typeof APP!=='undefined'&&APP.standalone?'':Z('app','Als App installieren','auf den Home-Bildschirm')}${Z('rundgang','Rundgang','noch einmal zeigen')}${Z('ueber','Über Onstand','Version '+ON_VER)}</div>
+ <p class="hyfuss">Onstand ${ON_VER} · Deine Daten liegen in deinem Datenordner</p>`;
+ inh.querySelector('.hyzur').onclick=()=>amFunktion('mehr');
+ inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}});
+ inh.querySelectorAll('[data-design]').forEach(b=>b.onclick=()=>{onDesign(b.dataset.design,true);inh.querySelectorAll('[data-design]').forEach(x=>{const an=x===b;x.classList.toggle('an',an);x.setAttribute('aria-pressed',an)})})}
+{const _om=onMenu;onMenu=function(){if(hyHandy()&&AM_EL){amFunktion('mehr',{seite:'einst'});return}return _om.apply(this,arguments)}}
 // bestehende Funktionen erweitern
 {const _bau=onBau;onBau=function(){const e=_bau.apply(this,arguments);try{hyBau()}catch(x){}return e}}
 {const _sch=amSchiene;amSchiene=function(){_sch.apply(this,arguments);hyLeiste()}}
@@ -7531,7 +7811,7 @@ function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','ka
  const inh0=AM_EL&&AM_EL.querySelector('.aminhalt');
  if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);else hyKopf();return r}
  onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();
- const inh=AM_EL.querySelector('.aminhalt');inh.classList.remove('raus');hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
+ const inh=AM_EL.querySelector('.aminhalt');inh.classList.remove('raus');if(opt&&opt.seite==='einst')hyEinst(inh);else hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
 addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
@@ -7787,6 +8067,7 @@ function eiHandy(o){if(W>760)return o;const mehr=async()=>{if(AM_AKT!=='mehr'){a
   else if(m&&unten.includes(m[1]))s=`#am .onleiste [data-hy="${m[1]}"]`;
   else if(m){s=`#am .hykach [data-f="${m[1]}"]`;const alt=v;v=async()=>{await mehr();if(alt)await alt()}}
   else if(s==='#am .onlogo'){s='#am .hygrp [data-hx=menu]';t='Einstellungen';p=x.t==='Logo antippen'?'Unter „Mehr“ → Einstellungen liegen Firma, Konto und Design.':'Unter „Mehr“ → Einstellungen findest du Firma & Preise, Mitarbeiter verbinden, Design und diesen Rundgang.';const alt=v;v=async()=>{await mehr();if(alt)await alt()}}
+  else{const mm=s.match(/^#am \.onmenu (\[data-m="[a-z]+"\])$/);if(mm){s='#am .aminhalt '+mm[1];v=async()=>{if(!document.querySelector('#am .aminhalt .hyzur')){amFunktion('mehr',{seite:'einst'});await eiWarte(s)}}}}
   return Object.assign({},x,{sel:s,vor:v,p,t,a:an})};
  const n=Object.assign({},o,{schritte:o.schritte.map(um)});if(typeof o.ziel==='string'&&o.ziel==='.ongriff')n.ziel='#am .onleiste .hymic';return n}
 async function eiFuehren(o){o=eiHandy(o);if(EI.weg){document.removeEventListener('pointerdown',EI.weg,true);EI.weg=null}clearTimeout(EI.jetztT);const E=eiEbene();EI.fuehrung=o;E.classList.add('an');E.classList.toggle('mitleiste',!!o.leiste);E.classList.remove('jetzt');
