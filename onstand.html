@@ -2229,13 +2229,15 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 @media (max-width:760px){#am .petab .petf>:nth-child(2){grid-column:2/3}#am .mgakt .pekw b{white-space:nowrap}}
 #am .mgakt .pekw b{white-space:nowrap}
 @media (max-width:760px){#am .mgk .mgakt{flex-wrap:wrap;row-gap:2px;max-width:100%}#am .mgk .mgakt .tr{display:none}}
+/* v0.10.12 · Handy: die Fläche selbst bekommt keinen Rand mehr (der kam doppelt zu Seitenleiste und Inhalt dazu) */
+#am.onstand .amlade{padding:0}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.11';
+const ON_VER='0.10.12';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -2306,7 +2308,7 @@ const ON_FOLGE=['cockpit','auftraege','tagebuch','kalender','kunden','brain','pe
 const ON_ICO_PK='<path d="M4 6h12M8 6V4h4v2M5.5 6l1 11h7l1-11"/>';
 function onFunktionen(){const L=AM_FUNK.filter(x=>x.beruf==='handwerk').concat([ON_KAL]);return ON_FOLGE.map(id=>L.find(x=>x.id===id)).filter(Boolean).concat(L.filter(x=>!ON_FOLGE.includes(x.id)))}
 // Onstand-Logo (Konzept G · Zollstock; Kupfer-Glied fest, Rest in Textfarbe des Designs) – steht oben links, solange die Firma kein eigenes Logo hinterlegt hat
-const ON_LOGO=`<svg viewBox="0 0 100 100" aria-label="Onstand"><line x1="78.64" y1="61.86" x2="61.86" y2="78.64" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/><line x1="61.86" y1="78.64" x2="38.14" y2="78.64" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/><line x1="38.14" y1="78.64" x2="21.36" y2="61.86" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/><line x1="21.36" y1="61.86" x2="21.36" y2="38.14" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/><line x1="21.36" y1="38.14" x2="38.14" y2="21.36" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/><line x1="38.14" y1="21.36" x2="61.86" y2="21.36" stroke="#D19A6A" stroke-width="9" stroke-linecap="round"/><line x1="61.86" y1="21.36" x2="78.64" y2="38.14" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/><line x1="78.64" y1="38.14" x2="78.64" y2="61.86" stroke="var(--k-t)" stroke-width="9" stroke-linecap="round"/></svg>`;
+const ON_LOGO=`<svg viewBox="0 0 100 100" aria-label="Onstand"><path d="M38.14 21.36 21.36 38.14V61.86L38.14 78.64H61.86L78.64 61.86V38.14L61.86 21.36Z" fill="none" stroke="var(--k-t)" stroke-width="9" stroke-linejoin="round"/><path d="M38.14 21.36H61.86" stroke="#D19A6A" stroke-width="9" stroke-linecap="butt"/></svg>`;
 function onInitialen(){const F=(()=>{try{return JSON.parse(localStorage.getItem('onstandFirma')||'{}')}catch(e){return {}}})(),n=F.name||ON_PROFIL.firma||'Onstand';return {firma:n,ini:n.replace(/\b(gmbh|ag|kg|ug|e\.?\s?k\.?|ohg|gbr|mbh)\b/ig,'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'ON',logo:F.logo||''}}
 function onBau(){if(AM_EL)return AM_EL;const e=document.createElement('div');e.id='am';e.className='auf onstand';
  e.innerHTML=`<div class="amlade"><aside class="onseite"><button type="button" class="onlogo" data-menu aria-label="Firma und Einstellungen"></button><nav class="onnav" aria-label="Funktionen"></nav>
@@ -3046,7 +3048,7 @@ function auBriefKopf(F){return `<div class="bk"><b>${esc(F.name||'')}</b><span>$
 function auInfo(titel,Z){return `<div class="info"><b>${esc(titel)}</b><dl>${Z.filter(z=>z&&z[1]).map(([l,v])=>`<dt>${l}</dt><dd>${v}</dd>`).join('')}</dl></div>`}
 
 // ---------- Onstand-Hinweis auf Angebot, Rechnung, Mahnschreiben, Stundenzettel: kleines Logo + Name, unten rechts unter der Fußzeile ----------
-const ON_MARKE_SVG='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M38.14 21.36H61.86" stroke="#C88A52" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M61.86 21.36 78.64 38.14V61.86L61.86 78.64H38.14L21.36 61.86V38.14L38.14 21.36" stroke="#1b2230" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+const ON_MARKE_SVG='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M38.14 21.36 21.36 38.14V61.86L38.14 78.64H61.86L78.64 61.86V38.14L61.86 21.36Z" stroke="#1b2230" stroke-width="11" stroke-linejoin="round" fill="none"/><path d="M38.14 21.36H61.86" stroke="#C88A52" stroke-width="11" stroke-linecap="butt" fill="none"/></svg>';
 const ON_MARKE=`<div class="ons">${ON_MARKE_SVG}<span>Erstellt mit <b>Onstand</b></span><i>Software für Handwerksbetriebe</i></div>`;
 // ===== AUFTRÄGE · Schritt 3: Offene Posten (v15.15, Probe „Onstand Offene Posten“) =====
 // Jede gestellte Rechnung ist ein offener Posten, bis sie bezahlt ist. Onstand rechnet die Termine für Zahlungserinnerung,
@@ -3314,7 +3316,7 @@ async function erPdf(M,xml){const L=PDFLib,{PDFName,PDFString,PDFHexString}=L,do
  const linie=(x1,y1,x2,y2,d,g)=>page.drawLine({start:{x:x1,y:y1},end:{x:x2,y:y2},thickness:d||.5,color:L.rgb(...(g||[.78,.8,.82]))});
  const platz=n=>{if(y-n<84){fuss();neueSeite()}};
  const fussZeilen=[[F.name,F.str,[F.plz,F.stadt].filter(Boolean).join(' ')],[F.tel?'Tel. '+F.tel:'',F.mail||'',F.stnr?'St.-Nr. '+F.stnr:'',F.ustNr?'USt-IdNr. '+F.ustNr:''],[F.bank||'',F.ibanNr?'IBAN '+F.iban:'',F.bicNr?'BIC '+F.bicNr:'',F.hr||'']].map(s=>s.filter(Boolean));
- const fuss=()=>{linie(RAND,74,W-RAND,74);fussZeilen.forEach((sp,i)=>sp.forEach((t,j)=>text(t,RAND+i*((W-2*RAND)/3),62-j*9,{s:7,g:GRAU})));(()=>{const s1='Erstellt mit ',s2='Onstand',s3='Software für Handwerksbetriebe',gs=7.5,gs3=7,yy=17,w3=erBreite(s3,false,gs3),w2=erBreite(s2,true,gs),w1=erBreite(s1,false,gs);let x=W-RAND-w3;text(s3,x,yy,{s:gs3,g:[.54,.58,.63]});x-=6;linie(x,yy-1.5,x,yy+6.5,.5,[.77,.79,.82]);x-=6+w2;text(s2,x,yy,{s:gs,b:true});x-=w1;text(s1,x,yy,{s:gs,g:GRAU});x-=4.5;const g=11.5,o=x-g,u=yy-2.6,P=[[21.36,38.14],[38.14,21.36],[61.86,21.36],[78.64,38.14],[78.64,61.86],[61.86,78.64],[38.14,78.64],[21.36,61.86]].map(([a,b])=>[o+a/100*g,u+(100-b)/100*g]);for(let i=0;i<8;i++){const A=P[i],B=P[(i+1)%8];page.drawLine({start:{x:A[0],y:A[1]},end:{x:B[0],y:B[1]},thickness:1.15,color:i===1?L.rgb(.784,.541,.322):L.rgb(...TINTE),lineCap:L.LineCapStyle.Round})}})()};
+ const fuss=()=>{linie(RAND,74,W-RAND,74);fussZeilen.forEach((sp,i)=>sp.forEach((t,j)=>text(t,RAND+i*((W-2*RAND)/3),62-j*9,{s:7,g:GRAU})));(()=>{const s1='Erstellt mit ',s2='Onstand',s3='Software für Handwerksbetriebe',gs=7.5,gs3=7,yy=17,w3=erBreite(s3,false,gs3),w2=erBreite(s2,true,gs),w1=erBreite(s1,false,gs);let x=W-RAND-w3;text(s3,x,yy,{s:gs3,g:[.54,.58,.63]});x-=6;linie(x,yy-1.5,x,yy+6.5,.5,[.77,.79,.82]);x-=6+w2;text(s2,x,yy,{s:gs,b:true});x-=w1;text(s1,x,yy,{s:gs,g:GRAU});x-=4.5;const g=11.5,o=x-g,u=yy-2.6,P=[[21.36,38.14],[38.14,21.36],[61.86,21.36],[78.64,38.14],[78.64,61.86],[61.86,78.64],[38.14,78.64],[21.36,61.86]].map(([a,b])=>[o+a/100*g,u+(100-b)/100*g]);for(const i of [0,2,3,4,5,6,7,1]){const A=P[i],B=P[(i+1)%8];page.drawLine({start:{x:A[0],y:A[1]},end:{x:B[0],y:B[1]},thickness:1.15,color:i===1?L.rgb(.784,.541,.322):L.rgb(...TINTE),lineCap:i===1?L.LineCapStyle.Butt:L.LineCapStyle.Round})}})()};
  const feld=(x,yy,b,h,g)=>page.drawRectangle({x,y:yy,width:b,height:h,color:L.rgb(...g)});
  neueSeite();
  text(F.name||'',RAND,y,{s:17,b:true});[F.tel?'Tel. '+F.tel:'',F.mail||''].filter(Boolean).forEach((t,i)=>text(t,W-RAND,y+9-i*9.5,{s:7.5,g:GRAU,r:true}));y-=9;linie(RAND,y,W-RAND,y,1.6,TINTE);
@@ -7112,14 +7114,15 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 function onRandPruefen(){try{const p=document.createElement('div');p.style.cssText='position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)';document.body.appendChild(p);
  const cs=getComputedStyle(p),st=parseFloat(cs.paddingTop)||0,sb=parseFloat(cs.paddingBottom)||0;p.remove();
  const hoch=innerHeight>=innerWidth,sh=hoch?Math.max(screen.width,screen.height):Math.min(screen.width,screen.height),vh=window.visualViewport&&!document.activeElement.matches('input,textarea,[contenteditable]')?Math.max(innerHeight,visualViewport.height):innerHeight,luecke=sh-vh;
- const weg=APP.ios&&(st+sb)>0&&luecke>=Math.max(24,(st+sb)*.75);onRandPruefen.w={st,sb,sh,vh,ih:innerHeight,iw:innerWidth,weg,sa:APP.standalone};document.documentElement.classList.toggle('onrandweg',weg);
- if(weg){const oben=luecke>=st+sb-4?0:st;document.documentElement.style.setProperty('--st',oben+'px');document.documentElement.style.setProperty('--sb','0px')}else{document.documentElement.style.removeProperty('--st');document.documentElement.style.removeProperty('--sb')}}catch(e){}}
+ const vvTop=window.visualViewport?visualViewport.offsetTop:0,weg=APP.ios&&(st+sb)>0&&luecke>=Math.max(20,Math.min(st,sb)-2);onRandPruefen.w={st,sb,sh,vh,ih:innerHeight,iw:innerWidth,weg,sa:APP.standalone};
+ document.documentElement.classList.toggle('onrandweg',weg);
+ if(weg){const oben=luecke>=st+sb-4&&vvTop>0?0:st,unten=luecke>=sb-2?0:sb;document.documentElement.style.setProperty('--st',oben+'px');document.documentElement.style.setProperty('--sb',unten+'px')}else{document.documentElement.style.removeProperty('--st');document.documentElement.style.removeProperty('--sb')}}catch(e){}}
 ['load','resize','orientationchange','pageshow'].forEach(n=>addEventListener(n,()=>{onRandPruefen();setTimeout(onRandPruefen,350)}));document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(onRandPruefen,200)});
 if(window.visualViewport)visualViewport.addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,150)});
 setTimeout(onRandPruefen,0);
 
 function onRandInfo(){onRandPruefen();const w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
- return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()}`}
+ return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()}`}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
@@ -7127,7 +7130,7 @@ const EI={};
 const eiKonto=()=>{try{return localStorage.getItem('onstandSpeicher')==='konto'}catch(e){return false}};
 function eiKontoSetzen(){try{localStorage.setItem('onstandSpeicher','konto')}catch(e){}}
 const EI_P=[[78.64,61.86],[61.86,78.64],[38.14,78.64],[21.36,61.86],[21.36,38.14],[38.14,21.36],[61.86,21.36],[78.64,38.14]];
-const eiZollstock=()=>[6,7,0,1,2,3,4].map((k,i)=>`<line pathLength="1" style="--i:${i}" x1="${EI_P[k][0]}" y1="${EI_P[k][1]}" x2="${EI_P[(k+1)%8][0]}" y2="${EI_P[(k+1)%8][1]}" stroke="#F3EFEA" stroke-width="9" stroke-linecap="round"/>`).join('')+`<line class="cu" pathLength="1" x1="${EI_P[5][0]}" y1="${EI_P[5][1]}" x2="${EI_P[6][0]}" y2="${EI_P[6][1]}" stroke="#D19A6A" stroke-width="9" stroke-linecap="round"/>`;
+const eiZollstock=()=>[6,7,0,1,2,3,4].map((k,i)=>`<line pathLength="1" style="--i:${i}" x1="${EI_P[k][0]}" y1="${EI_P[k][1]}" x2="${EI_P[(k+1)%8][0]}" y2="${EI_P[(k+1)%8][1]}" stroke="#F3EFEA" stroke-width="9" stroke-linecap="round"/>`).join('')+`<line class="cu" pathLength="1" x1="${EI_P[5][0]}" y1="${EI_P[5][1]}" x2="${EI_P[6][0]}" y2="${EI_P[6][1]}" stroke="#D19A6A" stroke-width="9" stroke-linecap="butt"/>`;
 const EI_ICO={neu:'<path d="M3 21h18M5 21V8l7-5 7 5v13M10 21v-6h4v6"/>',code:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v7M14 20h3"/>',an:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>'};
 
 // ---------- Start-Bildschirm ----------
