@@ -2817,7 +2817,7 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
  #am .onleiste>button.vor svg{transform:scale(1.14)}
  #am .onleiste>button:not(.hymic):active svg{transform:scale(.9);transition-duration:.12s}
  /* Unschärfe unter und neben der Leiste: drei Schichten mit zunehmender Unschärfe nach unten (weicher Übergang statt harter Kante) */
- #am .hyschleier{position:absolute;left:0;right:0;bottom:0;height:calc(var(--hyl) + 30px);z-index:14;pointer-events:none}
+ #am .hyschleier{display:block;position:absolute;left:0;right:0;bottom:0;height:calc(var(--hyl) + 34px);z-index:14;pointer-events:none}
  #am .hyschleier i{position:absolute;inset:0}
  #am .hyschleier i:nth-child(1){-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);-webkit-mask-image:linear-gradient(to top,#000 60%,transparent);mask-image:linear-gradient(to top,#000 60%,transparent)}
  #am .hyschleier i:nth-child(2){-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);-webkit-mask-image:linear-gradient(to top,#000 50%,transparent 85%);mask-image:linear-gradient(to top,#000 50%,transparent 85%)}
@@ -2855,7 +2855,7 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.29';
+const ON_VER='0.10.30';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
