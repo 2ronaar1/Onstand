@@ -2587,13 +2587,58 @@ html.onnativ #am,html.onnativ #kal{-webkit-user-select:none;user-select:none;-we
 html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 /* Assistent: Kupferlinie am linken Rand auch am PC weg */
 #am .oneinschub{border-left-color:transparent!important}
+
+/* ===== v0.10.23 ===== */
+.aszur{display:none}
+@media (max-width:760px){
+ /* Assistent und Papierkorb: „‹ Zurück“ oben links statt × oben rechts */
+ #am .asschl,#pk .pkzu{width:auto;height:44px;border:0;background:none;border-radius:12px;padding:0 10px 0 4px;color:var(--k-akz,#D19A6A);font-size:16px}
+ #am .asschl{left:6px;right:auto;top:calc(4px + var(--st))}
+ :is(#am .asschl,#pk .pkzu) .asx1{display:none}
+ :is(#am .asschl,#pk .pkzu) .aszur{display:inline-flex;align-items:center;gap:2px;letter-spacing:0;font-weight:500}
+ :is(#am .asschl,#pk .pkzu) svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ #am .asgruss{padding:calc(54px + var(--st)) 20px 6px 20px!important}
+ #pk .pkkopf{flex-direction:row-reverse;justify-content:flex-end;gap:6px;margin:-12px 0 0 -10px}
+ #pk .pkkopf>span{display:none}
+ #pk .pkin::before{content:'PAPIERKORB & SICHERUNG';order:1;font-size:11px;letter-spacing:3px;color:var(--aj)}
+ #pk .pkkopf{order:0}#pk .pktabs{order:2}#pk .pkx{order:3}
+ #pk,#pk *:not(svg):not(svg *){font-family:"Manrope",Arial,Helvetica,sans-serif!important}
+ /* Platzhalter im Eingabefeld nie umbrechen */
+ #am .aseing textarea::placeholder{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ /* Leiste schwebt als runde, in die Breite gezogene Kapsel (wie WhatsApp und Instagram) */
+ :root{--hyb:max(10px,calc(var(--sb) - 10px));--hyl:calc(64px + var(--hyb) + 10px)}
+ #am .onleiste{left:12px;right:12px;bottom:var(--hyb);height:64px;padding:0 6px;border-radius:999px;align-items:center;border:1px solid color-mix(in srgb,white 12%,transparent);border-top-color:color-mix(in srgb,white 20%,transparent);background:color-mix(in srgb,var(--k-b1) 62%,transparent);box-shadow:0 14px 34px -12px black,inset 0 1px 0 color-mix(in srgb,white 8%,transparent);-webkit-backdrop-filter:blur(24px) saturate(1.6);backdrop-filter:blur(24px) saturate(1.6)}
+ #am .onleiste>button{height:64px}
+ #am .onleiste .hyind{top:7px;height:48px;width:78px}
+ #am .onleiste .hymic{width:54px;height:54px;margin-top:0;box-shadow:0 8px 20px -6px color-mix(in srgb,var(--k-akz) 70%,transparent)}
+}
+@media (max-width:760px){#am.hykal .aminhalt,#am.hykal .onkopf{visibility:hidden}}
+
+/* ===== v0.10.24 · Kalender-Kopf am Handy kompakt: Titel mit ‹ Heute › daneben, darunter Ansicht + Suche/Filter/+ als Symbole ===== */
+#kal .knav .kpill{text-transform:uppercase}
+@media (max-width:760px){
+ #kal .kkopf{display:flex!important;flex-wrap:wrap;align-items:center;gap:8px!important}
+ #kal .ktitel{order:0;flex:1 1 140px!important;min-width:0}
+ #kal .ktitel b{font-size:24px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #kal .knav{order:1;gap:4px}
+ #kal .knav .krund{width:40px;height:40px;min-width:40px;min-height:40px;font-size:18px;border-color:var(--lin)}
+ #kal .knav .kpill{text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;min-height:40px;padding:0 14px!important;border-color:var(--lin);color:var(--k-t)}
+ #kal .kseg{order:3;flex:1 1 190px!important;min-width:0}
+ #kal .kmobil{order:4;display:flex!important;margin:0!important;gap:4px}
+ #kal .kmobil .krund,#kal .kmobil .kpill{width:42px;height:42px;min-width:42px;min-height:42px;padding:0!important;border-radius:12px;border-color:var(--lin);display:flex;align-items:center;justify-content:center}
+ #kal .kfiltbtn{font-size:0!important;position:relative}
+ #kal .kfiltbtn:before{content:'';width:20px;height:20px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 6h16M7 12h10M10 18h4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 6h16M7 12h10M10 18h4'/%3E%3C/svg%3E") center/contain no-repeat}
+ #kal .kplus{order:5;font-size:0!important;width:42px;height:42px;min-width:42px;min-height:42px;padding:0!important;border-radius:12px;display:flex;align-items:center;justify-content:center}
+ #kal .kplus:before{content:'+';font-size:26px;font-weight:500;line-height:1}
+ #kal .ksuche{order:6;flex:1 1 100%!important}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.22';
+const ON_VER='0.10.24';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -2835,7 +2880,7 @@ function pkHinweis(t){const e=PK_UNDO;e.querySelector('span').textContent=t;e.qu
 // --- Fenster PAPIERKORB & SICHERUNG ---
 const PKV={tab:'pk',q:'',sel:null,el:null};
 function pkBau(){if(PKV.el)return;const d=document.createElement('div');d.id='pk';d.setAttribute('aria-hidden','true');
- d.innerHTML='<div class="pkin"><div class="pkkopf"><span>PAPIERKORB &amp; SICHERUNG</span><button type="button" class="pkzu" aria-label="Schließen">×</button></div><div class="pktabs" role="tablist"></div><div class="pkx"></div></div><div class="pktoast" role="status"></div>';
+ d.innerHTML='<div class="pkin"><div class="pkkopf"><span>PAPIERKORB &amp; SICHERUNG</span><button type="button" class="pkzu" aria-label="Schließen"><span class="asx1">×</span><span class="aszur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Zurück</span></button></div><div class="pktabs" role="tablist"></div><div class="pkx"></div></div><div class="pktoast" role="status"></div>';
  document.body.appendChild(d);PKV.el=d;d.querySelector('.pkzu').onclick=pkZu;d.addEventListener('keydown',e=>{if(e.key==='Escape')pkZu()})}
 function pkAuf(tab){pkBau();if(tab)PKV.tab=tab;PKV.el.setAttribute('aria-hidden','false');requestAnimationFrame(()=>PKV.el.classList.add('auf'));pkMalen();try{const vp=document.getElementById('vp');if(vp&&vp.classList.contains('on')&&typeof vpZu==='function')vpZu()}catch(e){}}
 function pkZu(){if(!PKV.el)return;PKV.el.classList.remove('auf');PKV.el.setAttribute('aria-hidden','true')}
@@ -4367,7 +4412,7 @@ async function abHtml(k){const a=AB[k],b=mgB(k),vb=(MG[k]||[]).filter(m=>a.vorb.
   <div class="sig"><div>${sK?`<img src="${sK}" alt="">`:'<i></i>'}<small>Auftraggeber</small></div><div>${sW?`<img src="${sW}" alt="">`:'<i></i>'}<small>Auftragnehmer</small></div></div>`}
 function abDrucken(k,html){const f=document.createElement('iframe');f.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0';document.body.appendChild(f);const d=f.contentDocument;
  d.open();d.write(`<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Abnahmeprotokoll ${esc(k)}</title><style>body{font:12px/1.5 Arial,sans-serif;color:#111;margin:18mm}h3{margin:0 0 2px;font-size:18px;letter-spacing:1px}.meta{color:#555;margin-bottom:14px}table{width:100%;border-collapse:collapse;margin:10px 0}td,th{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left;vertical-align:top}th{font-size:10px;color:#666;font-weight:400;letter-spacing:1px}.sig{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}.sig img{height:60px;display:block}.sig i{display:block;height:60px}.sig small{display:block;border-top:1px solid #333;padding-top:4px;color:#555}</style></head><body>${html}</body></html>`);d.close();
- setTimeout(()=>{try{f.contentWindow.focus();f.contentWindow.print()}catch(e){}setTimeout(()=>f.remove(),60000)},400)}
+ setTimeout(()=>{try{if(typeof APP!=='undefined'&&APP.nativ&&window.natPdfAusElement)natPdfAusElement(f.contentDocument.body,'Onstand Abnahmeprotokoll.pdf');else{f.contentWindow.focus();f.contentWindow.print()}}catch(e){}setTimeout(()=>f.remove(),60000)},400)}
 // ---------- Onstand versteht einen erzählten Mangel ----------
 function mgErkenne(t){const s=String(t||'');if(/\b(zeig|öffne|oeffne|welche|liste)\w*\b[^.?!]*\b(m(ä|ae)ngel\w*|abnahme\w*)\b/i.test(s)||/\bwas\s+ist\s+(noch\s+)?offen\b[^.?!]*\bm(ä|ae)ngel/i.test(s))return 'zeigen';
  if(/\?\s*$/.test(s)||/^\s*(wie|was|wann|wo|warum|wieso|welche\w*|kannst|darf|gibt)\b/i.test(s))return '';
@@ -4982,9 +5027,9 @@ const KAL_ICO='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" w
 const kalBtn=(()=>{const b=document.createElement('button');b.type='button';b.id='kalbtn';b.setAttribute('aria-label','Kalender öffnen');b.title='Kalender';b.innerHTML=KAL_ICO;b.onclick=e=>{e.stopPropagation();if(KAL.pz>0)kalZu();else kalAuf()};document.body.appendChild(b);return b})();
 function kalBau(){if(KAL.el)return;const k=document.createElement('div');k.id='kal';k.setAttribute('aria-hidden','true');k.innerHTML=`<div class="kin">
  <div class="kkopf"><div class="ktitel"><small id="kklein">KALENDER</small><b id="kmon"></b></div>
-  <div class="knav"><button type="button" class="krund" data-k="-1" aria-label="zurück">‹</button><button type="button" class="kpill" data-k="0">HEUTE</button><button type="button" class="krund" data-k="1" aria-label="weiter">›</button></div>
+  <div class="knav"><button type="button" class="krund" data-k="-1" aria-label="zurück">‹</button><button type="button" class="kpill" data-k="0">Heute</button><button type="button" class="krund" data-k="1" aria-label="weiter">›</button></div>
   <div class="kseg" id="kans">${[['woche','WOCHE'],['monat','MONAT'],['jahr','JAHR'],['liste','LISTE']].map(([a,n])=>`<button type="button" data-a="${a}">${n}</button>`).join('')}</div>
-  <span class="kmobil"><button type="button" class="krund klupe" id="klupe" aria-label="Suchen" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></button><button type="button" class="kpill kfiltbtn" id="kfiltbtn" aria-expanded="false">FILTER</button></span>
+  <span class="kmobil"><button type="button" class="krund klupe" id="klupe" aria-label="Suchen" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></button><button type="button" class="kpill kfiltbtn" id="kfiltbtn" aria-expanded="false" aria-label="Filter">FILTER</button></span>
   <input class="ksuche" id="ksuche" type="search" placeholder="Suchen …" aria-label="Kalender durchsuchen" autocomplete="off">
   <button type="button" class="kplus" id="kplus">+ EINTRAGEN</button></div>
  <div class="kfilter" id="kfilter"></div>
@@ -7093,14 +7138,14 @@ function asGruss(){const h=new Date().getHours(),n=String(ON_PROFIL.name||'').sp
 // ---------- Darstellung ----------
 function asMalen(){if(!AM_EL)return;const e=AM_EL.querySelector('.oneinschub');if(!AS.offen&&e.innerHTML)return;const P=AS.bereit?asPunkte():[],zeig=AS.mehr?P:P.slice(0,3);
  const datum=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();
- e.innerHTML=`<button type="button" class="asschl" data-aszu aria-label="Schließen">×</button><div class="asx">
+ e.innerHTML=`<button type="button" class="asschl" data-aszu aria-label="Schließen"><span class="asx1">×</span><span class="aszur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Zurück</span></button><div class="asx">
   <div class="asgruss"><h3>${esc(asGruss())}</h3><small>${datum}</small></div>
   <div class="astk">${!AS.bereit?'<div class="asleer">Ich schaue nach, was heute ansteht …</div>':zeig.length?zeig.map((p,i)=>`<div style="--c:${p.c}" class="${p.stufe===1?'eins':''}"><i></i><span>${p.html}</span><button type="button" data-asak="${esc(p.kn[1])}">${p.kn[0]}</button></div>`).join(''):'<div class="asleer ruhig">Heute ist alles im Plan.</div>'}
    ${P.length>3?`<button type="button" class="asmehr" data-asmehr>${AS.mehr?'WENIGER ZEIGEN':'+ '+(P.length-3)+' WEITERE'}</button>`:''}</div>
   ${asErzHtml()}
   <div class="asfluss">${AS.fluss.map(asNachricht).join('')}</div></div>
   <div class="asunten"><div class="asvor">${['Offene Posten','Neues Angebot','Tagebuch-Eintrag','Mangel melden'].map(t=>`<button type="button" data-asq="${t}">${t}</button>`).join('')}</div>
-  <form class="aseing" data-asform><textarea rows="1" placeholder="Schreib, was los war – oder einen Befehl …" aria-label="Nachricht an den Assistenten" autocomplete="off" enterkeyhint="send"></textarea><button type="submit" aria-label="Senden">➤</button></form></div>`;
+  <form class="aseing" data-asform><textarea rows="1" placeholder="Schreib oder frag mich etwas …" aria-label="Nachricht an den Assistenten" autocomplete="off" enterkeyhint="send"></textarea><button type="submit" aria-label="Senden">➤</button></form></div>`;
  asBinden(e);asLinie();const f=e.querySelector('.asx');if(AS.scrollUnten)f.scrollTop=f.scrollHeight;AS.scrollUnten=false}
 // ---------- „Erzähl mir deinen Tag“ · Fluchtlinie (Konzept C) ----------
 // gestrichelt = Tagebuch heute fehlt · schwingt beim Zuhören, erkannte Angaben setzen sich als Marken darauf · gerade + Haken = erledigt
@@ -7463,13 +7508,13 @@ function hyBau(){if(!AM_EL||AM_EL.querySelector('.onleiste'))return;const l=AM_E
  // Blatt von unten (neuer Tagebuch-Eintrag): Tippen auf die abgedunkelte Fläche bricht ab
  l.addEventListener('click',ev=>{if(ev.target!==l||!hyHandy())return;const ab=AM_EL.querySelector('.amnotiz.tbedit .amab');if(ab)ab.click()});
  hyLeiste()}
-function hyLeiste(sofort){if(!AM_EL)return;const a=hyAkt();AM_EL.querySelectorAll('.onleiste [data-hy]').forEach(b=>{const an=b.dataset.hy===a;b.classList.toggle('an',an);if(an)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});hyKreis(a,sofort)}
+function hyLeiste(sofort){if(!AM_EL)return;const a=hyAkt();AM_EL.classList.toggle('hykal',AM_AKT==='kalender');AM_EL.querySelectorAll('.onleiste [data-hy]').forEach(b=>{const an=b.dataset.hy===a;b.classList.toggle('an',an);if(an)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});hyKreis(a,sofort)}
 // Dunkler, breiter Kreis hinter dem gewählten Knopf: wandert mit einem Swoosh (in die Breite ziehen, flach, nachfedern) zur neuen Stelle
 function hyKreis(a,sofort){const l=AM_EL&&AM_EL.querySelector('.onleiste'),ind=l&&l.querySelector('.hyind'),b=l&&l.querySelector(`[data-hy="${a}"]`);if(!ind||!b||!hyHandy())return;
  const x1=b.offsetLeft+b.offsetWidth/2-ind.offsetWidth/2,x0=hyKreis.x,alt=hyKreis.a;hyKreis.x=x1;hyKreis.a=a;ind.style.transform=`translateX(${x1}px)`;
  if(sofort||RM||x0==null||alt===a||!ind.animate||!ind.offsetWidth)return;const m=(x0+x1)/2,d=Math.sign(x1-x0),weit=Math.min(2.4,1+Math.abs(x1-x0)/120);
  ind.animate([{transform:`translateX(${x0}px) scale(1,1)`,opacity:1},{transform:`translateX(${x0+d*10}px) scale(.92,1.04)`,offset:.12},{transform:`translateX(${m}px) scale(${weit},.72)`,opacity:.75,offset:.5},{transform:`translateX(${x1+d*5}px) scale(1.08,.95)`,offset:.82},{transform:`translateX(${x1}px) scale(1,1)`,opacity:1}],{duration:460,easing:'cubic-bezier(.45,0,.2,1)'})}
-function hyKopf(){if(!AM_EL)return;if(AM_EL.scrollLeft)AM_EL.scrollLeft=0;const inh=AM_EL.querySelector('.aminhalt'),k=AM_EL.querySelector('.onkopf');if(!k||!inh)return;const zu=hyHandy()&&inh.scrollTop>44;
+function hyKopf(){if(!AM_EL)return;if(AM_EL.scrollLeft)AM_EL.scrollLeft=0;const inh=AM_EL.querySelector('.aminhalt'),k=AM_EL.querySelector('.onkopf');if(!k||!inh)return;const zu=hyHandy()&&AM_AKT!=='kalender'&&inh.scrollTop>44;
  if(zu){const t=inh.querySelector('.mgh,.gldk h3,.amkopf>span,.amkopf>b');k.querySelector('b').textContent=t?t.textContent.replace(/\s+/g,' ').trim():''}if(k.classList.contains('zu')!==zu)k.classList.toggle('zu',zu)}
 function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','kalender'].includes(x.id));
  inh.innerHTML=`<div class="mgk"><div><span class="amtt">ONSTAND</span><h2 class="mgh">Mehr</h2></div></div>
@@ -7484,7 +7529,7 @@ function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','ka
 {const _sch=amSchiene;amSchiene=function(){_sch.apply(this,arguments);hyLeiste()}}
 {const _af=amFunktion;amFunktion=function(id,opt){if(id==='mehr'&&!hyHandy())id='cockpit';
  const inh0=AM_EL&&AM_EL.querySelector('.aminhalt');
- if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);return r}
+ if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);else hyKopf();return r}
  onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();
  const inh=AM_EL.querySelector('.aminhalt');inh.classList.remove('raus');hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
 addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
@@ -7498,13 +7543,11 @@ const APP={prompt:null,ios:/iphone|ipad|ipod/i.test(navigator.userAgent)||(navig
 APP.nativ=/OnstandApp/.test(navigator.userAgent);if(APP.nativ){APP.standalone=true;document.documentElement.classList.add('onnativ');
  // In der App: kein Zoomen der Oberfläche (Doppeltippen, Aufziehen, Hineinzoomen in Textfelder)
  const vp=document.querySelector('meta[name=viewport]');if(vp)vp.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover');
- // Drucken gibt es in der App-Hülle nicht – statt still nichts zu tun, sagt Onstand Bescheid
- window.print=()=>{try{onToast('Drucken und PDF gehen in der Test-App noch nicht – bitte am PC oder in Safari öffnen.')}catch(e){}};
- // Dateien (E-Rechnung) über das Teilen-Menü von iOS weitergeben statt Download, den es in der App nicht gibt
- if(typeof erHerunterladen==='function'){erHerunterladen=async function(bytes,name,mime){try{const f=new File([bytes instanceof Blob?bytes:new Blob([bytes],{type:mime})],name,{type:mime});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return}}catch(e){if(e&&e.name==='AbortError')return}try{onToast('Speichern geht in der Test-App noch nicht – bitte am PC öffnen.')}catch(e){}}}}
+ // Drucken, Teilen, Sprache, Erinnerungen: siehe kern/nativ.js
+}
 const appAdresse=()=>APP.web?location.origin+location.pathname:((typeof ON_SERVER_FEST!=='undefined'&&ON_SERVER_FEST&&ON_SERVER_FEST.handy)||'');
 // Service Worker: Offline-Start und frische Fassung beim Öffnen
-if(APP.web&&!APP.nativ&&'serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('Service Worker',e))});
+if(APP.web&&'serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('Service Worker',e))});
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();APP.prompt=e;appHinweis()});
 addEventListener('appinstalled',()=>{APP.prompt=null;appBannerZu();try{localStorage.setItem('onstandAppHinweis','installiert')}catch(e){}try{onToast('Onstand ist jetzt als App installiert')}catch(e){}});
 // Startbild in der installierten App
@@ -7580,6 +7623,74 @@ setTimeout(onRandPruefen,0);
 
 function onRandInfo(){onRandPruefen();const W2=ON_RAND.w||{},w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
  return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'} · kurz ${W2.kurz} · fix-unten ${W2.lb} · sichtbar-unten ${W2.vb} · ausgleich ${W2.unten}`}
+// ===== Onstand · nur in der iPhone-App (Capacitor-Hülle): PDF statt Drucken, Teilen, Spracherkennung, Erinnerungen, Vibration =====
+// Im Browser und am PC passiert hier nichts. Die Funktionen der App-Hülle heißen „Plugins“ (Share, Filesystem, Haptics,
+// LocalNotifications, SpeechRecognition) und werden über window.Capacitor erreicht.
+const NAT={an:typeof APP!=='undefined'&&APP.nativ};
+const natHat=p=>{const C=window.Capacitor;if(!C)return false;if((C.PluginHeaders||[]).some(h=>h.name===p))return true;try{return !!(C.Plugins&&C.Plugins[p]&&typeof C.Plugins[p]==='object')}catch(e){return false}};
+function nat(p,m,o){const C=window.Capacitor;if(!C)return Promise.reject(new Error('keine App'));try{if(C.Plugins&&C.Plugins[p]&&typeof C.Plugins[p][m]==='function')return C.Plugins[p][m](o||{})}catch(e){}if(typeof C.nativePromise==='function')return C.nativePromise(p,m,o||{});return Promise.reject(new Error('Plugin '+p+' fehlt'))}
+if(NAT.an){
+// ---------- Vibration: kurzes Antippen-Gefühl auf der Leiste und bei Hauptknöpfen ----------
+ const tipp=(stil)=>{if(natHat('Haptics'))nat('Haptics','impact',{style:stil||'LIGHT'}).catch(()=>{})};
+ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button,label,a');if(!b)return;
+  if(b.closest('.onleiste'))tipp('LIGHT');else if(b.matches('.ja,.haupt,.amja,.amneu,[data-sp],[data-msp],.osb,.btn.p'))tipp('MEDIUM')},true);
+
+// ---------- Datei teilen (PDF, E-Rechnung) über das Teilen-Menü von iOS ----------
+ const b64=bl=>new Promise((ok,nein)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]);r.onerror=nein;r.readAsDataURL(bl)});
+ window.natTeilen=async function(bl,name){name=String(name||'Onstand.pdf').replace(/[\\/:*?"<>|]+/g,' ').replace(/\s+/g,' ').trim();
+  if(natHat('Filesystem')&&natHat('Share')){const w=await nat('Filesystem','writeFile',{path:name,data:await b64(bl),directory:'CACHE'});await nat('Share','share',{title:name,files:[w.uri],dialogTitle:'PDF teilen'});return true}
+  const f=new File([bl],name,{type:bl.type||'application/pdf'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return true}
+  throw new Error('Teilen nicht möglich')};
+ if(typeof erHerunterladen==='function'){erHerunterladen=async function(bytes,name,mime){const bl=bytes instanceof Blob?bytes:new Blob([bytes],{type:mime});try{await natTeilen(bl,name)}catch(e){if(!(e&&/abort|cancel/i.test(e.name+' '+e.message)))onToast('Teilen ging nicht: '+(e.message||e))}}}
+
+// ---------- PDF statt Drucken ----------
+// Die Druckansicht (#bpdruck) wird mit den Druck-Regeln als Bild gerendert und auf A4-Seiten verteilt.
+ const lade=src=>new Promise((ok,nein)=>{if(document.querySelector(`script[src="${src}"]`))return ok();const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>nein(new Error('Ohne Internet kann das PDF gerade nicht erstellt werden.'));document.head.appendChild(s)});
+ const druckRegeln=()=>{let css='';for(const sh of document.styleSheets){let R;try{R=sh.cssRules}catch(e){continue}for(const r of R)if(r.media&&/print/.test(r.media.mediaText))for(const x of r.cssRules)if(x.type===1)css+=x.cssText+'\n'}return css};
+ async function natPdf(el,name,quer){await lade('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');await lade('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  const br=quer?1123:794,doc=el.ownerDocument,alt=el.getAttribute('style')||'';
+  el.setAttribute('style',alt+`;width:${br}px!important;max-width:none!important;position:absolute!important;left:0;top:0;background:#fff;color:#000`);
+  let cv;try{cv=await window.html2canvas(el,{scale:2,backgroundColor:'#ffffff',width:br,windowWidth:br,useCORS:true,logging:false})}finally{el.setAttribute('style',alt)}
+  const {jsPDF}=window.jspdf,pdf=new jsPDF({orientation:quer?'landscape':'portrait',unit:'pt',format:'a4'}),pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight(),seiteH=Math.floor(cv.width*ph/pw);
+  for(let y=0,i=0;y<cv.height;y+=seiteH,i++){const t=document.createElement('canvas');t.width=cv.width;t.height=Math.min(seiteH,cv.height-y);t.getContext('2d').drawImage(cv,0,y,cv.width,t.height,0,0,cv.width,t.height);if(i)pdf.addPage();pdf.addImage(t.toDataURL('image/jpeg',.92),'JPEG',0,0,pw,t.height*pw/cv.width)}
+  return pdf.output('blob')}
+ const titel=el=>{const h=el.querySelector('h1,h2,.tit b,b');return 'Onstand '+((h&&h.textContent)||'Dokument').replace(/\s+/g,' ').trim().slice(0,60)+'.pdf'};
+ window.print=function(){const d=document.getElementById('bpdruck');if(!d||!d.innerHTML.trim()){onToast('Nichts zum Drucken.');return}
+  const html=d.innerHTML,kl=d.className,quer=/(^|\s)(sw|plan|bp\w*)(\s|$)/.test(kl),css=druckRegeln();onToast('PDF wird erstellt …');
+  (async()=>{const st=document.createElement('style');st.textContent=css;try{d.className=kl;d.innerHTML=html;document.head.appendChild(st);document.body.classList.add('bpdruckt');const bl=await natPdf(d,titel(d),quer);st.remove();document.body.classList.remove('bpdruckt');await natTeilen(bl,titel(d))}
+   catch(e){st.remove();document.body.classList.remove('bpdruckt');if(!(e&&/abort|cancel/i.test(e.name+' '+e.message)))onToast(e.message||'PDF ging nicht.')}})()};
+ window.natPdfAusElement=async function(el,name){try{onToast('PDF wird erstellt …');const bl=await natPdf(el,name,false);await natTeilen(bl,name)}catch(e){if(!(e&&/abort|cancel/i.test(e.name+' '+e.message)))onToast(e.message||'PDF ging nicht.')}};
+
+// ---------- Spracherkennung des iPhones, falls die App keine Browser-Spracherkennung hat ----------
+ if(!window.SpeechRecognition&&!window.webkitSpeechRecognition&&natHat('SpeechRecognition')){
+  window.SpeechRecognition=class{constructor(){this.lang='de-DE';this.continuous=true;this.interimResults=true;this._l=[];this._t='';this._aus=false}
+   _res(t,fin){if(this.onresult)this.onresult({resultIndex:0,results:[Object.assign([{transcript:t}],{isFinal:fin})]})}
+   async start(){try{const r=await nat('SpeechRecognition','requestPermissions');const s=r&&(r.speechRecognition||r.microphone);if(s&&s!=='granted'){this.onerror&&this.onerror({error:'not-allowed'});this._ende();return}}catch(e){}
+    try{const C=window.Capacitor.Plugins.SpeechRecognition;this._l.push(await C.addListener('partialResults',d=>{const t=(d&&d.matches&&d.matches[0])||'';if(t){this._t=t;this._res(t,false)}}));
+     this._l.push(await C.addListener('listeningState',d=>{if(d&&d.status==='stopped')this._ende()}))}catch(e){}
+    try{await nat('SpeechRecognition','start',{language:this.lang,partialResults:true,popup:false,maxResults:1})}catch(e){this.onerror&&this.onerror({error:'service-not-allowed'});this._ende()}}
+   _ende(){if(this._aus)return;this._aus=true;if(this._t){const t=this._t;this._t='';this._res(t,true)}this._l.forEach(h=>{try{h.remove()}catch(e){}});this._l=[];this.onend&&this.onend()}
+   stop(){this._ende();nat('SpeechRecognition','stop').catch(()=>{})}
+   abort(){this._t='';this.stop()}}}
+
+// ---------- Erinnerungen: Termine (30 Minuten vorher, ganztägig um 7:30) und Fristen (am Tag um 7:30) ----------
+ const ER_ID0=410000;
+ async function natErinnern(){if(!natHat('LocalNotifications')||typeof kalAm!=='function'||typeof KAL==='undefined')return;
+  let ok=false;try{const p=await nat('LocalNotifications','checkPermissions');ok=p&&p.display==='granted';if(!ok&&p&&p.display!=='denied'){const q=await nat('LocalNotifications','requestPermissions');ok=q&&q.display==='granted'}}catch(e){}
+  if(!ok)return;
+  try{const offen=await nat('LocalNotifications','getPending');const alt=((offen&&offen.notifications)||[]).filter(n=>n.id>=ER_ID0&&n.id<ER_ID0+500).map(n=>({id:n.id}));if(alt.length)await nat('LocalNotifications','cancel',{notifications:alt})}catch(e){}
+  const jetzt=Date.now(),L=[],frist=e=>['frist','mangel','faellig','abnahme','gewaehr'].includes(e.art)||e.kat==='frist',termin=e=>e.art==='termin'||e.art==='einzug'||e.kat==='termin';
+  for(let i=0;i<21&&L.length<60;i++){const t=kPlus(kIso(new Date()),i),d=kD(t);let l=[];try{l=kalAm(t,true)}catch(e){}
+   for(const e of l){if(!frist(e)&&!termin(e))continue;let wann;
+    if(e.von&&!e.ganz){const [h,m]=e.von.split(':').map(Number);wann=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m-30)}else wann=new Date(d.getFullYear(),d.getMonth(),d.getDate(),7,30);
+    if(wann.getTime()<jetzt+60000)continue;
+    L.push({id:ER_ID0+L.length,title:frist(e)?'Frist heute':(e.von&&!e.ganz?'In 30 Minuten · '+e.von+' Uhr':'Heute'),body:String(e.t||'Termin')+(e.ort?' · '+e.ort:''),schedule:{at:wann.toISOString(),allowWhileIdle:true}})}}
+  if(L.length)try{await nat('LocalNotifications','schedule',{notifications:L})}catch(e){}}
+ window.natErinnern=natErinnern;
+ const plane=()=>{clearTimeout(plane.t);plane.t=setTimeout(async()=>{try{if(typeof kalLaden==='function'&&!KAL.ok)await kalLaden()}catch(e){}natErinnern()},4000)};
+ addEventListener('load',plane);document.addEventListener('visibilitychange',()=>{if(!document.hidden)plane()});
+ if(typeof terminNeu==='function'){const tn=terminNeu;terminNeu=function(){const r=tn.apply(this,arguments);plane();return r}}
+}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
