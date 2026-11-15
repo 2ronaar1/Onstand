@@ -2656,7 +2656,7 @@ html.onnativ #am.onstand,html.onnativ #onstart{bottom:0!important;height:auto!im
  #am,#kal,#onfuehr,#onstart{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
  #am :is(button,a,label,img,svg,.onleiste),#kal :is(button,a,img),#onfuehr button{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
  /* Reiter und Chips: nur waagerecht wischen, nicht frei nach oben/unten verschiebbar */
- #am :is(.glreiter,.autabs,.brreiter,.cpwahl,.mgbst,.mgzaehler,.amans,.tbpchips,.chips,.amleg),#kal :is(.kseg,.kfilter){overflow-x:auto;overflow-y:hidden!important;overscroll-behavior:contain;scrollbar-width:none}
+ #am :is(.glreiter,.autabs,.brreiter,.cpwahl,.mgbst,.mgzaehler,.amans,.tbpchips,.chips,.amleg,.fichips,.kukf),#kal :is(.kseg,.kfilter){overflow-x:auto;overflow-y:hidden!important;overscroll-behavior:contain;scrollbar-width:none}
  #am :is(.glreiter,.autabs,.brreiter,.cpwahl,.mgbst,.mgzaehler)::-webkit-scrollbar{display:none}
  /* Assistent: kommt von unten statt von der Seite, ohne Kupferlinie am Rand */
  #am .oneinschub{width:100%;border-left:0!important;transform:translateY(100%);transition:transform .42s cubic-bezier(.2,.85,.25,1),visibility 0s linear .42s}
@@ -2957,13 +2957,58 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
  #am .amleerk button{min-height:46px;padding:0 18px;border-radius:999px;font-size:15px;font-weight:700}
  #kal .kneu button,#kal #kneu button,#kal .kpill,#kal .kleer button{min-height:46px;padding:0 18px;border-radius:999px;font:700 14.5px "Manrope",Arial,sans-serif;letter-spacing:0;text-transform:none}
 }
+/* ===== v0.10.32 · Fehler in der Handy-Ansicht ===== */
+@media (max-width:760px){
+ /* Filter-Chips lassen sich bis zum letzten wischen */
+ #am .fibar,#am .fizeile{min-width:0;max-width:100%;width:100%;box-sizing:border-box}
+ #am .fichips,#am .kukf{-webkit-overflow-scrolling:touch;touch-action:pan-x;padding-right:16px;min-width:0;max-width:100%;width:100%;flex:none;box-sizing:border-box}
+ #am .fichips:after,#am .kukf:after{content:'';flex:none;width:1px}
+ /* Unterseiten mit Fußzeile: echter Platzhalter am Ende statt Innenabstand (iPhone rechnet den Innenabstand beim Scrollen nicht immer mit) */
+ #am.onstand .aminhalt.hatfuss{padding-bottom:calc(var(--hyl) + 26px)!important}
+ #am.onstand .aminhalt.hatfuss:after{content:'';display:block;flex:none;height:84px;width:1px}
+ #am.onstand .aminhalt:not(.hatfuss):after{content:'';display:block;flex:none;height:1px;width:1px}
+ /* Datum und Uhrzeit: bleiben in ihrem Feld, leere Felder zeigen einen Hinweis */
+ #am input[type=date],#am input[type=time]{-webkit-appearance:none;appearance:none;min-width:0;max-width:100%;box-sizing:border-box;min-height:44px;text-align:left;display:block}
+ #am input[type=date]::-webkit-date-and-time-value,#am input[type=time]::-webkit-date-and-time-value{text-align:left;min-height:1.3em}
+ #am input.frleer{position:relative}
+ #am input[type=date].frleer:before{content:'Datum wählen';color:var(--k-sub);opacity:.75}
+ #am input[type=time].frleer:before{content:'Uhrzeit';color:var(--k-sub);opacity:.75}
+ #am input.frleer::-webkit-datetime-edit{display:none}
+ #am .kuform input[type=date]{min-width:150px;border-bottom:1px solid color-mix(in srgb,var(--k-sub) 30%,transparent)}
+ /* Kunde anlegen: Beschriftung und Feld überdecken sich nicht mehr */
+ #am .kuform .tbfelder{grid-template-columns:max-content minmax(0,1fr);column-gap:14px}
+ #am .kuform .tbfelder>span{white-space:nowrap}
+ #am .kuform .tbfelder input,#am .kuform .tbfelder textarea{min-width:0;width:100%;text-overflow:ellipsis}
+ /* Mängel: Vorher/Nachher nebeneinander ohne Überdecken, Raum und Frist gleich breit */
+ #am .mgfotos{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ #am .mgfotos .mgfbox{aspect-ratio:auto;min-width:0;width:100%;height:170px;min-height:0}
+ #am .mgzz{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end}
+ #am .mgzz .amfeld{min-width:0}
+ #am .mgzz input{width:100%;min-width:0;box-sizing:border-box;height:50px}
+ /* Unterschrift: Feld antippen öffnet die große Fläche */
+ #am .mgpad.frgross{position:relative}
+ #am .mgpad.frgross canvas{touch-action:none}
+ #am .mgpad.frgross.hat:after{display:none}
+ #am .mgpad.frgross:after{content:'Antippen zum Unterschreiben';position:absolute;left:0;right:0;bottom:46px;text-align:center;font:500 12.5px "Manrope",Arial,sans-serif;letter-spacing:0;color:#7b8494;pointer-events:none}
+}
+.frsig{position:fixed;inset:0;z-index:200;background:color-mix(in srgb,var(--k-t) 84%,var(--k-sub));display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(10px + env(safe-area-inset-top,0px)) 16px calc(12px + env(safe-area-inset-bottom,0px));opacity:0;transform:translateY(24px);transition:opacity .22s,transform .26s cubic-bezier(.2,.85,.25,1);font-family:"Manrope",Arial,sans-serif;color:color-mix(in srgb,var(--k-sub) 11%,var(--k-b1));touch-action:none}
+.frsig.auf{opacity:1;transform:none}
+.frsk{text-align:center}.frsk b{display:block;font-size:16px}.frsk small{display:block;font-size:12.5px;color:color-mix(in srgb,var(--k-sub) 64%,var(--k-b1));margin-top:2px}
+.frsf{position:relative;background:var(--k-t);border-radius:16px;box-shadow:0 0 0 1px color-mix(in srgb,var(--k-t) 60%,var(--k-sub)),0 10px 30px -18px #000}
+.frsf canvas{position:absolute;inset:0;touch-action:none;border-radius:16px}
+.frsf i{position:absolute;top:8%;bottom:8%;left:28%;width:0;border-left:1.5px dashed color-mix(in srgb,var(--k-t) 23%,var(--k-sub));pointer-events:none}
+.frsf span{position:absolute;left:28%;top:50%;transform:translate(-50%,-50%) rotate(90deg) translateY(16px);white-space:nowrap;font-size:12px;color:color-mix(in srgb,var(--k-sub) 95%,var(--k-b1));pointer-events:none;transition:opacity .2s}
+.frsig.schreibt .frsf span{opacity:0}
+.frsb{display:flex;gap:10px;width:100%}
+.frsb button{flex:1;height:50px;border-radius:14px;border:1px solid color-mix(in srgb,var(--k-t) 51%,var(--k-sub));background:var(--k-t);color:color-mix(in srgb,var(--k-sub) 11%,var(--k-b1));font:700 16px "Manrope",Arial,sans-serif;cursor:pointer}
+.frsb button.p{background:#D19A6A;border-color:#D19A6A;color:color-mix(in srgb,var(--k-b1) 85%,var(--k-b0))}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.31';
+const ON_VER='0.10.32';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -3619,7 +3664,7 @@ function auDokMalen(inh,a){const b=BST[a.b]||{},ed=a.st==='entwurf'||a.st==='ver
  <div class="aux">
   ${auHeld(a)}
   <div class="aukarte"><div class="aukunde" style="--bc:${b.c||'var(--aj)'}"><span>${esc(b.k||'')}</span> ${esc(a.b)}<br><small>${esc(b.kontakt||'kein Ansprechpartner')} · ${esc(b.ort||'kein Standort')}</small>${b.tel?`<a class="auanruf" href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}" aria-label="${esc(b.kontakt||a.b)} anrufen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a10 10 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15.5 15.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></svg></a>`:''}</div>${ed?`<input class="autitel" value="${esc(a.t)}" aria-label="Titel">`:`<b class="autitel2">${esc(a.t)}</b>`}</div>
-  <div class="aukarte"><div class="aukh"><b>POSITIONEN</b>${ed?'<button type="button" class="aukat">+ AUS PREISLISTE</button>':''}</div>
+  <div class="aukarte"><div class="aukh"><b>POSITIONEN</b>${ed?'<button type="button" class="aukat">+ NEUE POSITION</button>':''}</div>
    <div class="aupos">${a.pos.length?a.pos.map((p,i)=>`<div class="aupz ${AUV.hl&&AUV.hl.includes(p)?'neu':''}"><span class="aun">${i+1}</span><span class="aut">${ed?`<input class="aupn" data-i="${i}" value="${esc(p.n)}" aria-label="Leistung">`:esc(p.n)}${p.her?`<small class="${p.her.startsWith('aus Bauplan')?'bp':''}">${esc(p.her)}</small>`:''}</span><span class="aum">${ed?`<input inputmode="decimal" data-i="${i}" data-f="m" value="${auZ(p.m)}" aria-label="Menge">`:auZ(p.m)}${ed?`<button type="button" class="aueh" data-ei="${i}" aria-label="Einheit ändern" title="Einheit ändern">${esc(p.e)}</button>`:`<em>${esc(p.e)}</em>`}</span><span class="aug"><b>${auEur(p.p*p.m)}</b>${ed?`<small><input inputmode="decimal" data-i="${i}" data-f="p" value="${auZ(p.p)}" aria-label="Einzelpreis">€/${esc(p.e)}</small>`:`<small>${auEur(p.p)}/${esc(p.e)}</small>`}</span>${ed?`<button type="button" class="auweg" data-i="${i}" aria-label="Position löschen">×</button>`:''}</div>`).join(''):'<div class="auhin">Noch keine Positionen. Aus der Preisliste oder direkt aus dem Bauplan hinzufügen.</div>'}</div>
    <div class="aubox"></div>
    <div class="ausumme"><span>Netto</span><b class="sn">${auEur(auNetto(a))}</b><span>MwSt. 19 %</span><b class="sm">${auEur(auNetto(a)*.19)}</b><span class="gross">Brutto</span><b class="sb">${auEur(auBrutto(a))}</b><span class="lohn">davon Lohnanteil brutto (§ 35a, für Privatkunden)</span><b class="lohn sl">${auEur(auLohn(a)*1.19)}</b></div></div>
@@ -4875,7 +4920,7 @@ function abProtokoll(inh){const k=MGV.abn,a=AB[k];if(!a){MGV.abn=null;return mgM
  inh.querySelectorAll('[data-g=j] [data-v]').forEach(x=>x.onclick=()=>{a.jahre=+x.dataset.v;merk();sammeln();abProtokoll(inh)});
  inh.querySelectorAll('canvas[data-s]').forEach(async cv=>{const c=cv.getContext('2d'),s=cv.dataset.s;c.lineWidth=3;c.lineCap='round';c.lineJoin='round';c.strokeStyle='#14203a';const u=await mgBild(AB_ORD,a['sig'+s]);if(u){const im=new Image();im.onload=()=>c.drawImage(im,0,0,cv.width,cv.height);im.src=u}
   let z=null;const p=ev=>{const r=cv.getBoundingClientRect();return [(ev.clientX-r.left)*cv.width/r.width,(ev.clientY-r.top)*cv.height/r.height]};
-  cv.onpointerdown=ev=>{ev.stopPropagation();cv.setPointerCapture(ev.pointerId);z=p(ev)};cv.onpointermove=ev=>{if(!z)return;const n=p(ev);c.beginPath();c.moveTo(z[0],z[1]);c.lineTo(n[0],n[1]);c.stroke();z=n};cv.onpointerup=cv.onpointercancel=ev=>{ev.stopPropagation();if(z){sig[s]=true;merk()}z=null}});
+  cv._gesetzt=()=>{sig[s]=true;merk()};cv.onpointerdown=ev=>{ev.stopPropagation();cv.setPointerCapture(ev.pointerId);z=p(ev)};cv.onpointermove=ev=>{if(!z)return;const n=p(ev);c.beginPath();c.moveTo(z[0],z[1]);c.lineTo(n[0],n[1]);c.stroke();z=n};cv.onpointerup=cv.onpointercancel=ev=>{ev.stopPropagation();if(z){sig[s]=true;merk()}z=null}});
  inh.querySelectorAll('[data-cl]').forEach(x=>x.onclick=()=>{const cv=inh.querySelector(`canvas[data-s=${x.dataset.cl}]`);cv.getContext('2d').clearRect(0,0,cv.width,cv.height);a['sig'+x.dataset.cl]='';sig[x.dataset.cl]=null;merk()});
  q('sp').onclick=async()=>{q('sp').disabled=true;try{await sichern();mgToast(inh,'Gespeichert')}catch(e){mgToast(inh,'Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).')}q('sp').disabled=false};
  let sicher=0;q('weg').onclick=async ev=>{if(!sicher){sicher=1;ev.currentTarget.textContent='WIRKLICH ENTFERNEN?';return}const id=await pkWeg({k:'ab',t:'Abnahme · '+k,s:'Abnahmeprotokoll',files:[abNotiz(k)],idx:[[AB_ORD+'/Abnahmen.md','- [[Abnahme '+notizName(k)+']]']]});if(!id){try{await entfernen(abNotiz(k))}catch(e){}try{const p=AB_ORD+'/Abnahmen.md',ix=await lesen(p);await schreiben(p,ix.split('\n').filter(l=>!l.includes('[[Abnahme '+notizName(k)+']]')).join('\n'))}catch(e){}}delete AB[k];MGV.abn=null;mgMalen(inh);pkRueckgaengig('Abnahme entfernt',id,async()=>{await mgLaden();if(inh.isConnected)mgMalen(inh)})};
@@ -8043,9 +8088,26 @@ function frPreise(inh){inh.querySelectorAll('.aupr').forEach(r=>{if(r.querySelec
  const erste=inh.querySelector('.aupr');if(erste&&erste.querySelector('[data-f=n]').value==='Neue Leistung')erste.classList.remove('zu')}
 {const _m=auMalen;auMalen=function(inh){const r=_m.apply(this,arguments);try{frAuftrag(inh)}catch(e){}return r}}
 {const _m=mgMalen;mgMalen=function(inh){const r=_m.apply(this,arguments);try{if(W<=760&&inh&&inh.isConnected){const a=inh.querySelector(':scope>.amaktion,.mgscroll~.amaktion,.amaktion');
-   if(a&&inh.querySelector('.mgekopf'))frFuss(inh,[...a.querySelectorAll('button')]);else frFussWeg();if(a&&!a.children.length)a.hidden=true}}catch(e){}return r}}
+   frUnterschrift(inh);if(a&&inh.querySelector('.mgekopf'))frFuss(inh,[...a.querySelectorAll('button')]);else frFussWeg();if(a&&!a.children.length)a.hidden=true}}catch(e){}return r}}
 // Beim Wechsel in einen anderen Bereich verschwindet die Fußzeile der Unterseite
 {const _af=amFunktion;amFunktion=function(){try{frFussWeg()}catch(e){}return _af.apply(this,arguments)}}
+// ---------- Leere Datumsfelder sichtbar machen (iPhone zeigt ein leeres Datumsfeld sonst als nichts) ----------
+function frDatum(root){if(W>760||!root.querySelectorAll)return;root.querySelectorAll('input[type=date],input[type=time]').forEach(i=>{const mal=()=>i.classList.toggle('frleer',!i.value);mal();if(!i._fr){i._fr=1;i.addEventListener('input',mal);i.addEventListener('change',mal);i.addEventListener('blur',mal)}})}
+new MutationObserver(M=>{if(W>760)return;clearTimeout(frDatum.t);frDatum.t=setTimeout(()=>frDatum(document.body),60)}).observe(document.documentElement,{childList:true,subtree:true});
+// ---------- Unterschrift groß: Feld antippen → ganzer Bildschirm, Handy quer halten ----------
+function frUnterschrift(inh){inh.querySelectorAll('.mgpad').forEach(pad=>{const cv=pad.querySelector('canvas[data-s]');if(!cv||pad._fr)return;pad._fr=1;pad.classList.add('frgross');
+  pad.addEventListener('pointerdown',ev=>{if(W>760||ev.target!==cv)return;ev.stopPropagation();ev.preventDefault();frSigAuf(cv,cv.dataset.s==='K'?'Unterschrift Kunde':'Unterschrift Auftragnehmer')},true)})}
+function frSigAuf(ziel,titel){const o=document.createElement('div');o.className='frsig';const vw=innerWidth,vh=innerHeight,bw=Math.round(Math.min(vw-32,(vh-150)/(ziel.width/ziel.height))),bh=Math.round(bw*ziel.width/ziel.height),dpr=Math.min(3,devicePixelRatio||1);
+ o.innerHTML=`<div class="frsk"><b>${esc(titel)}</b><small>Handy quer halten und entlang der Linie unterschreiben</small></div><div class="frsf" style="width:${bw}px;height:${bh}px"><canvas width="${bw*dpr}" height="${bh*dpr}" style="width:${bw}px;height:${bh}px"></canvas><i></i><span>Hier unterschreiben</span></div><div class="frsb"><button type="button" data-a="ab">Abbrechen</button><button type="button" data-a="neu">Löschen</button><button type="button" class="p" data-a="ok">Fertig</button></div>`;
+ document.body.appendChild(o);requestAnimationFrame(()=>o.classList.add('auf'));const cv=o.querySelector('canvas'),c=cv.getContext('2d');c.scale(dpr,dpr);c.lineWidth=2.6;c.lineCap='round';c.lineJoin='round';c.strokeStyle='#14203a';
+ let z=null,etwas=false;const p=ev=>{const r=cv.getBoundingClientRect();return [ev.clientX-r.left,ev.clientY-r.top]};
+ cv.onpointerdown=ev=>{ev.preventDefault();try{cv.setPointerCapture(ev.pointerId)}catch(e){}z=p(ev);o.classList.add('schreibt')};
+ cv.onpointermove=ev=>{if(!z)return;const n=p(ev);c.beginPath();c.moveTo(z[0],z[1]);c.lineTo(n[0],n[1]);c.stroke();z=n;etwas=true};cv.onpointerup=cv.onpointercancel=()=>{z=null};
+ const zu=()=>{o.classList.remove('auf');setTimeout(()=>o.remove(),260)};
+ o.querySelector('[data-a=ab]').onclick=zu;o.querySelector('[data-a=neu]').onclick=()=>{c.clearRect(0,0,bw,bh);etwas=false;o.classList.remove('schreibt')};
+ o.querySelector('[data-a=ok]').onclick=()=>{if(!etwas){zu();return}const t=ziel.getContext('2d');t.save();t.setTransform(1,0,0,1,0,0);t.clearRect(0,0,ziel.width,ziel.height);
+  // Hochformat-Fläche (bw × bh) um 90° gegen den Uhrzeigersinn in das Querformat-Feld legen: oben am Handy = links in der Unterschrift
+  t.scale(ziel.width/bh,ziel.height/bw);t.translate(0,bw);t.rotate(-Math.PI/2);t.drawImage(cv,0,0,bw,bh);t.restore();try{ziel._gesetzt&&ziel._gesetzt()}catch(e){}const pd=ziel.closest('.mgpad');if(pd)pd.classList.add('hat');zu()}}
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
