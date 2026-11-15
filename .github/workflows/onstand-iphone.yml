@@ -1,0 +1,55 @@
+# Baut die Onstand-iPhone-App auf einem Mac bei GitHub (kostenlos bei öffentlichen Repos).
+# Ergebnis: Onstand.ipa (ohne Signatur) zum Herunterladen unter „Actions“ → letzter Lauf → „Artifacts“.
+# Aufs iPhone kommt sie mit Sideloadly (Windows) und deiner kostenlosen Apple-ID.
+name: iPhone-App bauen
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'app/**'
+      - '.github/workflows/onstand-iphone.yml'
+jobs:
+  ios:
+    runs-on: macos-15
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pakete laden
+        run: npm install --no-audit --no-fund
+      - name: iOS-Projekt anlegen
+        run: npx cap add ios
+      - name: Symbol und Startbild
+        run: npx @capacitor/assets generate --ios --iconBackgroundColor '#0D1014' --iconBackgroundColorDark '#0D1014' --splashBackgroundColor '#0A0C0F' --splashBackgroundColorDark '#0A0C0F'
+      - name: Rechte, Name und Statusleiste
+        run: |
+          P=ios/App/App/Info.plist
+          setze () { /usr/libexec/PlistBuddy -c "Set :$1 $3" "$P" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :$1 $2 $3" "$P"; }
+          setze CFBundleDisplayName string "Onstand"
+          setze NSMicrophoneUsageDescription string "Onstand braucht das Mikrofon, damit du deinen Tag einsprechen kannst."
+          setze NSSpeechRecognitionUsageDescription string "Onstand wandelt deine Sprache in Text um, z. B. für das Bautagebuch."
+          setze NSCameraUsageDescription string "Onstand braucht die Kamera für Fotos von Mängeln und Baustellen."
+          setze NSPhotoLibraryUsageDescription string "Onstand braucht Zugriff auf Fotos, um Bilder an Mängel und Einträge zu hängen."
+          setze UIViewControllerBasedStatusBarAppearance bool false
+          setze UIStatusBarStyle string UIStatusBarStyleLightContent
+          /usr/libexec/PlistBuddy -c "Print" "$P"
+      - name: Web-Teil übernehmen
+        run: npx cap sync ios
+      - name: App bauen (ohne Signatur – Sideloadly signiert beim Aufspielen)
+        run: |
+          if [ -d ios/App/App.xcworkspace ]; then ZIEL="-workspace ios/App/App.xcworkspace"; else ZIEL="-project ios/App/App.xcodeproj"; fi
+          xcodebuild $ZIEL -scheme App -configuration Release -sdk iphoneos -destination 'generic/platform=iOS' \
+            -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build | tail -80
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/App.app Payload/
+          zip -qry Onstand.ipa Payload
+          ls -la Onstand.ipa
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Onstand-iPhone-App
+          path: app/Onstand.ipa
+          retention-days: 30
