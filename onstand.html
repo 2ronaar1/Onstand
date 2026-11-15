@@ -2226,13 +2226,16 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 #am .glul .glwahl button.an,#am .glul .pequal button.an{font-weight:600}
 #am .petab .petf>:nth-child(2){grid-column:2/5}#am .petab .petf>:nth-child(3),#am .petab .petf>:nth-child(4){display:none}
 @media (max-width:760px){#am .brreiter .brlauf span{flex:1 1 100%;white-space:normal;margin:0 0 2px}}
+@media (max-width:760px){#am .petab .petf>:nth-child(2){grid-column:2/3}#am .mgakt .pekw b{white-space:nowrap}}
+#am .mgakt .pekw b{white-space:nowrap}
+@media (max-width:760px){#am .mgk .mgakt{flex-wrap:wrap;row-gap:2px;max-width:100%}#am .mgk .mgakt .tr{display:none}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.10';
+const ON_VER='0.10.11';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7115,7 +7118,8 @@ function onRandPruefen(){try{const p=document.createElement('div');p.style.cssTe
 if(window.visualViewport)visualViewport.addEventListener('resize',()=>{clearTimeout(onRandPruefen.t);onRandPruefen.t=setTimeout(onRandPruefen,150)});
 setTimeout(onRandPruefen,0);
 
-function onRandInfo(){const w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0};return `Anzeige: Fenster ${w.iw}×${w.ih} · sichtbar ${Math.round(w.vh||0)} · Bildschirm ${w.sh} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'}`}
+function onRandInfo(){onRandPruefen();const w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
+ return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()}`}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
