@@ -2826,13 +2826,36 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
  #am.hykal .hyschleier{display:none}
 }
 @media (max-width:760px) and (prefers-reduced-motion:reduce){#am .onleiste .hyind.flug:after{animation:none}}
+/* ===== v0.10.29 · Leiste „Auftauchen“: eigene Glasblase je Knopf, Lichtfaden dazwischen; Bereich baut sich schneller und weicher auf ===== */
+@media (max-width:760px){
+ #am .onleiste>button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+ #am .onleiste .hybl{position:absolute;z-index:-1;left:50%;top:50%;width:78px;height:48px;margin:-24px 0 0 -39px;border-radius:999px;overflow:hidden;pointer-events:none;opacity:0;transform:scale(.5);
+  background:linear-gradient(180deg,color-mix(in srgb,white 15%,transparent),color-mix(in srgb,white 5%,transparent) 55%,color-mix(in srgb,black 22%,transparent));
+  box-shadow:inset 0 1px 0 color-mix(in srgb,white 40%,transparent),inset 0 -1px 0 color-mix(in srgb,black 35%,transparent),inset 0 0 0 1px color-mix(in srgb,white 10%,transparent),0 8px 20px -10px black;
+  -webkit-backdrop-filter:blur(10px) saturate(1.6);backdrop-filter:blur(10px) saturate(1.6);
+  transition:opacity .16s ease-out,transform .2s cubic-bezier(.4,0,.6,1)}
+ #am .onleiste .hybl:before{content:'';position:absolute;left:12%;right:12%;top:2px;height:46%;border-radius:999px;background:linear-gradient(180deg,color-mix(in srgb,white 32%,transparent),transparent);opacity:.75}
+ #am .onleiste>button.an .hybl{opacity:1;transform:scale(1);transition:opacity .18s ease-out,transform .3s cubic-bezier(.25,1.45,.4,1)}
+ #am .onleiste>button:not(.hymic):active .hybl{opacity:.55;transform:scale(.9);transition-duration:.08s}
+ #am .onleiste .hyfaden{position:absolute;z-index:1;top:50%;height:4px;margin-top:-2px;border-radius:9px;pointer-events:none;opacity:0;filter:blur(1px);background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--k-akz) 60%,white),transparent)}
+ #am .onleiste>button svg{transition:transform .28s cubic-bezier(.25,1.6,.45,1)}
+ /* Bereich öffnet sich: kürzer, engere Staffelung, kleinerer Weg */
+ #am.onstand .aminhalt{transition:opacity .09s ease-out,transform .12s ease-out}
+ #am.onstand .aminhalt.raus{opacity:0;transform:none}
+ #am .aminhalt.glneu>*,#am .aminhalt.glneu .cpin>*,#am .aminhalt.glneu .cpmeld,#am .aminhalt.glneu .mgsplit>*{animation:hyauf .3s cubic-bezier(.22,.9,.3,1) both}
+ #am .aminhalt.glneu>:nth-child(2),#am .aminhalt.glneu .cpin>:nth-child(2){animation-delay:22ms}#am .aminhalt.glneu>:nth-child(3),#am .aminhalt.glneu .cpin>:nth-child(3){animation-delay:44ms}
+ #am .aminhalt.glneu>:nth-child(4),#am .aminhalt.glneu .cpin>:nth-child(4){animation-delay:66ms}#am .aminhalt.glneu>:nth-child(5),#am .aminhalt.glneu .cpin>:nth-child(5){animation-delay:88ms}
+ #am .aminhalt.glneu>:nth-child(n+6),#am .aminhalt.glneu .cpin>:nth-child(n+6),#am .aminhalt.glneu .cpmeld{animation-delay:110ms}
+ #am .aminhalt.glneu .cpml,#am .aminhalt.glneu .cpwoche button,#am .aminhalt.glneu .cpphasen span{animation-duration:.25s;animation-delay:.12s!important}
+ @keyframes hyauf{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.28';
+const ON_VER='0.10.29';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -2943,12 +2966,15 @@ function amSchiene(){const n=AM_EL.querySelector('.onnav'),F=onFunktionen(),knop
  const G=ON_GRUPPEN.map(([t,ids])=>[t,ids.map(id=>F.find(x=>x.id===id)).filter(Boolean)]),rest=F.filter(x=>!ON_GRUPPEN.some(([,ids])=>ids.includes(x.id)));if(rest.length)G[G.length-1][1].push(...rest);
  n.innerHTML=G.filter(([,L])=>L.length).map(([t,L])=>`<div class="ongr" data-gr="${t}"><small>${t}</small>${L.map(knopf).join('')}</div>`).join('');
  n.querySelectorAll('[data-f]').forEach(t=>t.onclick=()=>{onSeiteKlappen(false);amFunktion(t.dataset.f)})}
-function amFunktion(id,opt){onBau();const L=onFunktionen(),f=L.find(x=>x.id===id)||L[0];AM_AKT=f?f.id:null;try{onMenuZu()}catch(e){}
+function amFrisch(){const alt=AM_EL.querySelector('.aminhalt'),neu=alt.cloneNode(false);neu.classList.remove('raus');neu.removeAttribute('style');alt.replaceWith(neu);return neu}
+function amFunktion(id,opt){onBau();const L=onFunktionen(),f=L.find(x=>x.id===id)||L[0];AM_AKT=f?f.id:null;try{onMenuZu()}catch(e){}const lauf=amFunktion.lauf=(amFunktion.lauf||0)+1;
  if(AM_AKT==='kalender'){amSchiene();try{kalAuf()}catch(e){}return}
  try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}
- amSchiene();const inh=AM_EL.querySelector('.aminhalt');inh.classList.add('raus');
- const zeig=()=>{inh.classList.remove('raus');try{f.zeigen(inh,opt||{})}catch(e){inh.innerHTML='<div class="amleer">Das ging gerade nicht.</div>';console.error(e)}};
- if(RM||!inh.firstChild)zeig();else setTimeout(zeig,120);
+ amSchiene();const alt=AM_EL.querySelector('.aminhalt');alt.classList.add('raus');
+ // Jeder Wechsel bekommt eine frische Inhaltsfläche: was ein vorher gewählter Bereich noch nachlädt, landet nicht mehr im neuen Bereich,
+ // und schnelles Tippen hintereinander zeigt immer nur den zuletzt gewählten.
+ const zeig=()=>{if(lauf!==amFunktion.lauf)return;const inh=amFrisch();try{f.zeigen(inh,opt||{})}catch(e){inh.innerHTML='<div class="amleer">Das ging gerade nicht.</div>';console.error(e)}};
+ if(RM||!alt.firstChild)zeig();else setTimeout(zeig,W<=760?55:120);
  try{localStorage.setItem('onstandAnsicht',AM_AKT)}catch(e){}}
 // wartet, bis ein Element sichtbar da ist (z. B. nachdem ein Bereich fertig geladen hat)
 const onWarte=(sel,ms=3000)=>new Promise(res=>{const t0=Date.now(),f=()=>{const e=typeof sel==='function'?sel():document.querySelector(sel);if(e&&e.getClientRects().length)return res(e);if(Date.now()-t0>ms)return res(null);setTimeout(f,60)};f()});
@@ -7792,7 +7818,7 @@ const GL_ONBAU=onBau;
 onBau=function(){const out=GL_ONBAU.apply(this,arguments);try{if(AM_EL&&!AM_EL.querySelector('.onlicht')){const l=document.createElement('div');l.className='onlicht';l.setAttribute('aria-hidden','true');AM_EL.appendChild(l);
   let raf=0;AM_EL.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||raf)return;const x=e.clientX,y=e.clientY;raf=requestAnimationFrame(()=>{raf=0;l.style.transform='translate3d('+x+'px,'+y+'px,0)'})},{passive:true})}}catch(e){}return out};
 const GL_FUNKTION=amFunktion;
-amFunktion=function(id){const vor=AM_AKT,out=GL_FUNKTION.apply(this,arguments);try{if(!RM&&AM_AKT!==vor&&AM_EL){const inh=AM_EL.querySelector('.aminhalt');inh.classList.add('glneu');clearTimeout(amFunktion.gl);amFunktion.gl=setTimeout(()=>inh.classList.remove('glneu'),1500)}}catch(e){}return out};
+amFunktion=function(id){const vor=AM_AKT,out=GL_FUNKTION.apply(this,arguments);try{if(!RM&&AM_AKT!==vor&&AM_EL){const inh=AM_EL.querySelector('.aminhalt');inh.classList.add('glneu');clearTimeout(amFunktion.gl);amFunktion.gl=setTimeout(()=>{const x=AM_EL.querySelector('.aminhalt');if(x)x.classList.remove('glneu')},W<=760?900:1500)}}catch(e){}return out};
 // ---------- Kunden und Personal: auf breiten Bildschirmen Liste links, Detail rechts ----------
 const GL={ku:null,pe:null};
 function glTeilen(inh,orig,get,set,merk,zeile){const sp=inh.closest&&inh.closest('.glsplit'),w=sp?sp.parentElement:inh;if(!w)return orig(inh);
@@ -7819,43 +7845,22 @@ const hyIco=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${HY_I[k]}</svg>`;
 const hyHandy=()=>W<=760;
 const hyAkt=()=>['cockpit','tagebuch','kalender'].includes(AM_AKT)?AM_AKT:'mehr';
 function hyBau(){if(!AM_EL||AM_EL.querySelector('.onleiste'))return;const l=AM_EL.querySelector('.amlade');
- l.insertAdjacentHTML('beforeend',`<div class="onkopf" aria-hidden="true"><b></b></div><div class="hyschleier" aria-hidden="true"><i></i><i></i><i></i></div><nav class="onleiste" aria-label="Bereiche"><span class="hyind" aria-hidden="true"></span>${[['cockpit','Cockpit'],['tagebuch','Tagebuch'],null,['kalender','Kalender'],['mehr','Mehr']].map(x=>x?`<button type="button" data-hy="${x[0]}">${hyIco(x[0])}<span>${x[1]}</span></button>`:`<button type="button" class="hymic" data-hymic aria-label="Mit dem Assistenten sprechen">${hyIco('mic')}</button>`).join('')}</nav>`);
+ l.insertAdjacentHTML('beforeend',`<div class="onkopf" aria-hidden="true"><b></b></div><div class="hyschleier" aria-hidden="true"><i></i><i></i><i></i></div><nav class="onleiste" aria-label="Bereiche"><span class="hyfaden" aria-hidden="true"></span>${[['cockpit','Cockpit'],['tagebuch','Tagebuch'],null,['kalender','Kalender'],['mehr','Mehr']].map(x=>x?`<button type="button" data-hy="${x[0]}"><i class="hybl" aria-hidden="true"></i>${hyIco(x[0])}<span>${x[1]}</span></button>`:`<button type="button" class="hymic" data-hymic aria-label="Mit dem Assistenten sprechen">${hyIco('mic')}</button>`).join('')}</nav>`);
  l.querySelectorAll('[data-hy]').forEach(b=>b.onclick=()=>{const id=b.dataset.hy,inh=AM_EL.querySelector('.aminhalt');try{if(asOffen())asZu()}catch(e){}
   if(id===hyAkt()&&id!=='kalender'&&!(id==='mehr'&&(AM_AKT!=='mehr'||inh.querySelector(':scope>.hyzur')))){inh.scrollTo({top:0,behavior:RM?'auto':'smooth'});return}amFunktion(id)});
- hyZiehen(l.querySelector('.onleiste'));
  l.querySelector('[data-hymic]').onclick=()=>{try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}asAuf()};
- AM_EL.querySelector('.aminhalt').addEventListener('scroll',hyKopf,{passive:true});
+ AM_EL.addEventListener('scroll',ev=>{if(ev.target&&ev.target.classList&&ev.target.classList.contains('aminhalt'))hyKopf()},{passive:true,capture:true});
  // Blatt von unten (neuer Tagebuch-Eintrag): Tippen auf die abgedunkelte Fläche bricht ab
  l.addEventListener('click',ev=>{if(ev.target!==l||!hyHandy())return;const ab=AM_EL.querySelector('.amnotiz.tbedit .amab');if(ab)ab.click()});
  hyLeiste()}
 function hyLeiste(sofort){if(!AM_EL)return;const a=hyAkt();AM_EL.classList.toggle('hykal',AM_AKT==='kalender');AM_EL.querySelectorAll('.onleiste [data-hy]').forEach(b=>{const an=b.dataset.hy===a;b.classList.toggle('an',an);if(an)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});hyKreis(a,sofort)}
-// Glasblase hinter dem gewählten Knopf (Vorbild WhatsApp): beim Wechsel hebt sie sich kurz an (Linse), zieht sich in Laufrichtung lang,
-// schießt minimal über und federt ein – alles in gut 0,3 s. Man kann sie auch mit dem Finger über die Leiste ziehen; beim Loslassen rastet sie ein.
-const HY_FEDER='cubic-bezier(.25,.9,.25,1)';
-function hyZiel(l,b,ind){return b.offsetLeft+b.offsetWidth/2-ind.offsetWidth/2}
-function hyKreis(a,sofort){const l=AM_EL&&AM_EL.querySelector('.onleiste'),ind=l&&l.querySelector('.hyind'),b=l&&l.querySelector(`[data-hy="${a}"]`);if(!ind||!b||!hyHandy())return;
- const x1=hyZiel(l,b,ind),x0=hyKreis.x,alt=hyKreis.a,vomFinger=hyKreis.finger;hyKreis.x=x1;hyKreis.a=a;hyKreis.finger=false;ind.style.transform=`translateX(${x1}px)`;
- if(sofort||RM||x0==null||!ind.animate||!ind.offsetWidth||(alt===a&&!vomFinger))return;
- try{(hyKreis.lauf||{}).cancel&&hyKreis.lauf.cancel()}catch(e){}
- const dx=x1-x0,d=Math.sign(dx)||1,weit=Math.min(1.42,1+Math.abs(dx)/260),m=x0+dx*.55;
- const K=vomFinger?[{transform:`translateX(${x0}px) scale(1.12)`},{transform:`translateX(${x1+d*Math.min(8,Math.abs(dx)*.12)}px) scale(1.05,.97)`,offset:.55},{transform:`translateX(${x1-d*2}px) scale(.99,1.01)`,offset:.8},{transform:`translateX(${x1}px) scale(1)`}]
-  :[{transform:`translateX(${x0}px) scale(1)`},{transform:`translateX(${x0+d*4}px) scale(1.13)`,offset:.16},{transform:`translateX(${m}px) scale(${(weit*1.08).toFixed(3)},1.02)`,offset:.5},{transform:`translateX(${x1+d*Math.min(9,Math.abs(dx)*.06)}px) scale(1.04,.97)`,offset:.78},{transform:`translateX(${x1}px) scale(1)`}];
- ind.classList.add('flug');hyKreis.lauf=ind.animate(K,{duration:vomFinger?280:340,easing:HY_FEDER});hyKreis.lauf.onfinish=hyKreis.lauf.oncancel=()=>ind.classList.remove('flug')}
-// Blase mit dem Finger ziehen
-function hyZiehen(l){const ind=l.querySelector('.hyind');let z=null;
- const B=()=>[...l.querySelectorAll('[data-hy]')],naechst=x=>B().reduce((a,b)=>Math.abs(b.offsetLeft+b.offsetWidth/2-x)<Math.abs(a.offsetLeft+a.offsetWidth/2-x)?b:a);
- l.addEventListener('pointerdown',e=>{const b=e.target.closest('[data-hy]');if(!b||!hyHandy()||RM)return;const r=l.getBoundingClientRect();z={id:e.pointerId,x0:e.clientX,r,b,zieh:false};
-  if(b.dataset.hy===hyAkt()){try{(hyKreis.lauf||{}).cancel&&hyKreis.lauf.cancel()}catch(x){}ind.classList.add('flug');ind.style.transition='transform .18s '+HY_FEDER;ind.style.transform=`translateX(${hyKreis.x||0}px) scale(1.12)`}},{passive:true});
- l.addEventListener('pointermove',e=>{if(!z||e.pointerId!==z.id)return;if(!z.zieh){if(Math.abs(e.clientX-z.x0)<8)return;if(z.b.dataset.hy!==hyAkt()){z=null;return}z.zieh=true;try{l.setPointerCapture(e.pointerId)}catch(x){}ind.style.transition='none'}
-  const x=Math.max(0,Math.min(l.clientWidth-ind.offsetWidth,e.clientX-z.r.left-ind.offsetWidth/2));z.x=x;ind.style.transform=`translateX(${x}px) scale(1.12)`;
-  const n=naechst(x+ind.offsetWidth/2);B().forEach(b=>b.classList.toggle('vor',b===n))},{passive:true});
- const ende=e=>{if(!z||e.pointerId!==z.id)return;const w=z;z=null;ind.style.transition='';B().forEach(b=>b.classList.remove('vor'));
-  if(!w.zieh){if(w.b.dataset.hy===hyAkt()){ind.style.transform=`translateX(${hyKreis.x||0}px) scale(1)`;setTimeout(()=>ind.classList.remove('flug'),180)}return}
-  const n=naechst(w.x+ind.offsetWidth/2);hyKreis.x=w.x;hyKreis.finger=true;l.dataset.nachZug='1';setTimeout(()=>{delete l.dataset.nachZug},60);
-  if(n.dataset.hy===hyAkt())hyKreis(n.dataset.hy);else{try{if(asOffen())asZu()}catch(x){}amFunktion(n.dataset.hy)}try{navigator.vibrate&&navigator.vibrate(8)}catch(x){}};
- l.addEventListener('pointerup',ende);l.addEventListener('pointercancel',ende);
- // nach dem Ziehen kein zusätzlicher Klick auf den Knopf unter dem Finger
- l.addEventListener('click',e=>{if(l.dataset.nachZug&&e.target.closest('[data-hy]')){e.stopPropagation();e.preventDefault()}},true)}
+// Glasblase „Auftauchen“: jeder Knopf hat seine eigene Blase. Beim Wechsel taucht die alte ins Symbol ab, die neue taucht am Ziel auf,
+// ein feiner Lichtfaden zeigt kurz den Weg. Nichts wandert, nichts sperrt: jeder Tipp gilt sofort, auch mitten im Wechsel.
+function hyKreis(a,sofort){const l=AM_EL&&AM_EL.querySelector('.onleiste'),f=l&&l.querySelector('.hyfaden'),b=l&&l.querySelector(`[data-hy="${a}"]`);if(!f||!b||!hyHandy())return;
+ const x1=b.offsetLeft+b.offsetWidth/2,x0=hyKreis.x,alt=hyKreis.a;hyKreis.x=x1;hyKreis.a=a;
+ if(sofort||RM||x0==null||alt===a||!f.animate||Math.abs(x1-x0)<4)return;try{(hyKreis.lauf||{}).cancel&&hyKreis.lauf.cancel()}catch(e){}
+ f.style.left=Math.min(x0,x1)+'px';f.style.width=Math.abs(x1-x0)+'px';f.style.transformOrigin=x1>x0?'left center':'right center';
+ hyKreis.lauf=f.animate([{opacity:0,transform:'scaleX(.15)'},{opacity:1,transform:'scaleX(1)',offset:.45},{opacity:0,transform:'scaleX(1)'}],{duration:280,easing:'ease-out'})}
 function hyKopf(){if(!AM_EL)return;if(AM_EL.scrollLeft)AM_EL.scrollLeft=0;const inh=AM_EL.querySelector('.aminhalt'),k=AM_EL.querySelector('.onkopf');if(!k||!inh)return;const zu=hyHandy()&&AM_AKT!=='kalender'&&inh.scrollTop>44;
  if(zu){const t=inh.querySelector('.mgh,.gldk h3,.amkopf>span,.amkopf>b');k.querySelector('b').textContent=t?t.textContent.replace(/\s+/g,' ').trim():''}if(k.classList.contains('zu')!==zu)k.classList.toggle('zu',zu)}
 function hyMehr(inh){const F=onFunktionen().filter(x=>!['cockpit','tagebuch','kalender'].includes(x.id));
@@ -7887,8 +7892,8 @@ function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK
 {const _af=amFunktion;amFunktion=function(id,opt){if(id==='mehr'&&!hyHandy())id='cockpit';
  const inh0=AM_EL&&AM_EL.querySelector('.aminhalt');
  if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);else hyKopf();return r}
- onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();
- const inh=AM_EL.querySelector('.aminhalt');inh.classList.remove('raus');if(opt&&opt.seite==='einst')hyEinst(inh);else hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
+ onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();amFunktion.lauf=(amFunktion.lauf||0)+1;
+ const inh=amFrisch();if(!RM){inh.classList.add('glneu');clearTimeout(amFunktion.gl);amFunktion.gl=setTimeout(()=>{const x=AM_EL.querySelector('.aminhalt');if(x)x.classList.remove('glneu')},900)}if(opt&&opt.seite==='einst')hyEinst(inh);else hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
 addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
