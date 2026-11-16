@@ -3452,13 +3452,60 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #kal .kseg{flex:1 1 auto}
 }
 #kal .kpill,#kal .kseg button{text-transform:none!important;letter-spacing:0!important}
+/* Tagebuch „30 Tage“: Tage als volle Kästchen genau unter den Wochentagen (vorher schmal und linksbündig, dadurch versetzt) */
+#am .amraster{gap:6px}
+#am .amraster .amwt{text-align:center;font-size:11.5px;font-weight:600;color:var(--k-sub);padding-bottom:2px}
+#am .amzelle{aspect-ratio:auto;max-height:none;height:64px;width:100%;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font-size:15px;font-weight:600;border-radius:6px;gap:4px}
+#am .amzelle.we{background:color-mix(in srgb,var(--k-sub) 6%,var(--k-b1));color:var(--k-sub)}
+#am .amzelle.heute{color:var(--k-akz);border-color:color-mix(in srgb,var(--k-akz) 45%,var(--k-lin))}
+#am .amzelle.sel{border-color:var(--k-akz);box-shadow:inset 0 0 0 1px var(--k-akz);background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1));color:var(--k-akz)}
+#am .amzelle:hover{border-color:color-mix(in srgb,var(--k-akz) 50%,var(--k-lin))}
+@media (max-width:760px){#am .amraster{gap:4px}#am .amzelle{height:48px;font-size:14px;border-radius:10px}}
+/* Kalender-Monat B: Nachbarmonate grau hinterlegt statt verblasst, Linie + Monatsname am 1. */
+#kal .kz.kaus{opacity:1;background:color-mix(in srgb,var(--k-sub) 9%,var(--k-b0));border-color:transparent}
+#kal .kz.kaus .kn b{color:var(--k-sub)!important}
+#kal .kz.kerst{box-shadow:inset 3px 0 0 var(--k-akz)}
+#kal .kz.kerst.kaus{box-shadow:inset 3px 0 0 var(--k-sub)}
+#kal .kz.kerst.ksel{box-shadow:inset 3px 0 0 var(--k-akz),inset 0 0 0 1px var(--k-akz)}
+#kal .kml{font-style:normal;font-size:11px;font-weight:600;color:var(--k-sub);margin-right:auto;margin-left:4px}
+/* Kunden (Probe): Kürzel im Kreis, Status als Pille, gewählter Kunde hell kupfer, Felder ruhig */
+#am .gltab .kurow{grid-template-columns:34px minmax(0,1fr) auto;gap:12px;padding:11px 16px}
+#am .gltab .kust{width:34px;height:34px;align-self:center;border-radius:50%;background:color-mix(in srgb,var(--bc) 15%,var(--k-b1));color:color-mix(in srgb,var(--bc) 65%,var(--k-t));display:grid;place-items:center;font-size:11px;font-weight:700;letter-spacing:0;font-style:normal}
+#am .aminhalt:has(.kuneu,.kuzur) .gltab .kurow b{font-family:inherit;font-weight:600;font-size:14px}
+#am .gltab .kurow em,#am .aminhalt:has(.kuneu,.kuzur) .gltab .kurow em{font-style:normal;font-size:11.5px!important;font-weight:600!important;letter-spacing:0!important;border:0;border-radius:20px;padding:3px 10px;text-transform:none;white-space:nowrap}
+#am .gltab .kurow em.offen{color:var(--k-gruen)!important;background:color-mix(in srgb,var(--k-gruen) 13%,transparent)}
+#am .gltab .kurow em.fertig{color:var(--k-info)!important;background:color-mix(in srgb,var(--k-info) 12%,transparent)}
+#am .gltab .kurow em.intr{color:var(--k-sub)!important;background:color-mix(in srgb,var(--k-sub) 13%,transparent)}
+#am .gll .kurow.sel{background-color:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));box-shadow:none}
+#am .glr .kuzur{display:none!important}
+#am .aminhalt:has(.kuneu,.kuzur,.kusp) :is(.tbfelder>span,.gllab,.gldk small){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none}
+#am .aminhalt:has(.kuzur) .tbfelder>div{font-size:13.5px}
+#am .glreiter:has([data-kt]) button{text-transform:none!important;letter-spacing:0!important;font-size:13px}
+@media (max-width:760px){
+ #am .aminhalt:has(.kuneu)>.mgk{position:relative;padding-right:60px}
+ #am .aminhalt>.mgk .kuneu{position:absolute!important;top:14px;right:16px;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border-radius:22px!important;font-size:0!important;display:grid!important;place-items:center;background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important}
+ #am .aminhalt>.mgk .kuneu svg{width:20px;height:20px;margin:0!important;stroke:currentColor}
+ #am .mgk .kusb{display:none!important}
+ #am .mgk:has(.kusuch) .mgakt{flex:1 1 100%;order:3;width:100%}
+ #am .mgk .kusuch{flex:1 1 100%;max-width:none!important;width:100%!important;height:38px;border:0!important;border-radius:12px!important;background:color-mix(in srgb,var(--k-sub) 13%,transparent)!important;font-size:16px;padding:0 12px}
+ #am .kuliste.glkarte{border:0;border-radius:20px;overflow:hidden}
+ #am .gltab .kurow{grid-template-columns:40px minmax(0,1fr) auto;padding:10px 14px}
+ #am .gltab .kust{width:40px;height:40px;font-size:12.5px}
+ #am .aminhalt:has(.kuneu,.kuzur) .gltab .kurow b{font-size:15.5px}
+ #am .gltab .kurow small{font-size:13px}
+ #am .aminhalt:has(.kuzur) .tbfelder{display:grid;grid-template-columns:minmax(0,1fr)!important;background:var(--k-b1);border-radius:20px;padding:4px 0;margin-top:10px}
+ #am .aminhalt:has(.kuzur) .tbfelder>span{border:0!important;padding:10px 16px 0!important}
+ #am .aminhalt:has(.kuzur) .tbfelder>div{border:0!important;border-bottom:.5px solid var(--k-lin)!important;margin-left:16px;padding:1px 16px 10px 0!important;font-size:15.5px}
+ #am .aminhalt:has(.kuzur) .tbfelder>div:last-child{border-bottom:0!important}
+}
+[data-design="dunkel"] #kal .kz.kaus{background:color-mix(in srgb,var(--k-b0) 50%,#000);border-color:transparent}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.55';
+const ON_VER='0.10.57';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6270,7 +6317,7 @@ function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)r
   let x=`<div class="kmonat" style="grid-template-rows:auto repeat(${wochen},minmax(0,1fr))"><span class="kwt kecke"></span>${KTAG.map((t,i)=>`<span class="kwt${i>4?' kwe':''}">${t}</span>`).join('')}`;
   for(let w=0;w<wochen;w++){const mo=kPlus(start,w*7);x+=`<span class="kkw">${kKw(mo)}</span>`;
    for(let i=0;i<7;i++){const t=kPlus(mo,i),l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),sicht=l.filter(e=>e.art!=='feiertag');
-    x+=`<button type="button" class="kz${i>4?' kwe':''}${kD(t).getMonth()!==m?' kaus':''}${t===heute?' kheute':''}${t===s?' ksel':''}${t<heute?' kvorbei':''}${t===KAL.neu?' kneu2':''}" data-t="${t}"><span class="kn"><b>${kD(t).getDate()}</b>${fei?`<em>${esc(fei.t)}</em>`:''}</span>${sicht.slice(0,3).map(kChip).join('')}${sicht.length>3?`<u>+${sicht.length-3} weitere</u>`:''}</button>`}}
+    x+=`<button type="button" class="kz${i>4?' kwe':''}${kD(t).getMonth()!==m?' kaus':''}${kD(t).getDate()===1?' kerst':''}${t===heute?' kheute':''}${t===s?' ksel':''}${t<heute?' kvorbei':''}${t===KAL.neu?' kneu2':''}" data-t="${t}"><span class="kn"><b>${kD(t).getDate()}</b>${kD(t).getDate()===1?`<i class="kml">${KMONL[kD(t).getMonth()].slice(0,3)}</i>`:''}${fei?`<em>${esc(fei.t)}</em>`:''}</span>${sicht.slice(0,3).map(kChip).join('')}${sicht.length>3?`<u>+${sicht.length-3} weitere</u>`:''}</button>`}}
   h.innerHTML=x+'</div>'}
  else if(KAL.ans==='tag'||(KAL.ans==='woche'&&(W>=980||W<=760))){// PC und Handy: Wochenraster wie in der Probe – Tage als Spalten, Stunden senkrecht, oben „Ganzer Tag“. Standard 07–18 Uhr (wächst mit den Einträgen), Knopf „24 h“ zeigt den ganzen Tag.
   const tage=KAL.ans==='tag'?[s]:[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i)),min=v=>{const [a,b]=v.split(':').map(Number);return a*60+b},jetzt=new Date(),jm=jetzt.getHours()*60+jetzt.getMinutes(),voll=kal24();
@@ -9582,6 +9629,14 @@ tbMalen=function(inh){const o=TBB_MALEN2.apply(this,arguments);try{inh.querySele
  w.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{TBV.sel=tbAusIso(b.dataset.d);TBV.idx=+b.dataset.j;TBV.edit=false;TBV.loesch=0;tbMalen(inh);const k=inh.querySelector('.amnotiz');if(k)k.scrollIntoView({block:'start',behavior:RM?'auto':'smooth'})})}catch(e){}return o};
 if(typeof GE_WISCH!=='undefined')GE_WISCH.push(['#am .tbbz[data-d]',el=>{if(typeof reRecht==='function'&&['lesen','kein'].includes(reRecht('tagebuch')))return [];const inh=el.closest('.aminhalt'),hin=()=>{TBV.sel=tbAusIso(el.dataset.d);TBV.idx=+el.dataset.j;TBV.loesch=0};
  return [['Bearbeiten','akz',()=>{hin();TBV.edit=true;tbMalen(inh)}],['Lieferschein','sub',()=>{hin();TBV.edit=false;tbMalen(inh);if(typeof lsStart==='function')lsStart(inh)}]]}]);
+// ===== Kunden im Büro-Design (Probe „Kunden“) =====
+// Kürzel im Kreis statt Farbstreifen, Bezeichnungen in normaler Schreibweise, am Handy ist die Suche immer offen.
+const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an'};
+const KB_MAL=kuMalen;
+kuMalen=function(inh){if(W<=760&&KU_SEL===null&&!KU_V.such)KU_V.such=true;const r=KB_MAL.apply(this,arguments);try{kbFein()}catch(e){}return r};
+function kbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.kuneu,.kuzur,.kusp'))return;
+ a.querySelectorAll('.kurow').forEach(z=>{const b=BST[z.dataset.n],s=z.querySelector('.kust');if(b&&s&&!s.textContent)s.textContent=b.k||''});
+ a.querySelectorAll('.tbfelder>span,.gllab').forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=KB_FEST[k]||frSatz(k)})}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -9592,7 +9647,7 @@ const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','AN
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
+const FR_AUS='.kutx>b,.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
