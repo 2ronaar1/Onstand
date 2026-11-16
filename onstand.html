@@ -3254,13 +3254,44 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  :root[data-design="dunkel"] #am .onleiste .hylinse:before{background:linear-gradient(180deg,color-mix(in srgb,white 30%,transparent),transparent)}
 }
 @media (max-width:760px){#kal .ktitel{min-width:0;flex:1 1 auto;overflow:hidden}#kal .ktitel b{font-size:21px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100%;letter-spacing:-.4px!important}}
+/* Kalender: Tagesansicht nutzt das Wochenraster mit einer Spalte */
+#kal .kwtag1 :is(.kwkh,.kwkg,.kwkbi){grid-template-columns:56px minmax(0,1fr)!important}
+@media (max-width:760px){#kal .kwtag1 :is(.kwkh,.kwkg,.kwkbi){grid-template-columns:44px minmax(0,1fr)!important}}
+#kal .kwtag1 .kwb{font-size:13px}
+@media (max-width:760px){
+ /* Leiste: keine Doppeltipp-/Wischgesten des Browsers, damit schnelle Tipps hintereinander alle ankommen */
+ #am .onleiste,#am .onleiste *{touch-action:none}
+ #kal .kseg button{letter-spacing:.2px;padding:8px 2px}
+}
+/* Handy: Mikrofon als eigener Knopf neben der Leiste; Gesten (kern/gesten.js) */
+@media (max-width:760px){
+ #am .onleiste{right:84px;grid-template-columns:repeat(4,minmax(0,1fr))}
+ #am .onleiste .hymic{position:absolute;right:-72px;top:50%;width:62px;height:62px;margin:-31px 0 0}
+ #am .mgrow,#kal .kzeile,#am .kurow{touch-action:pan-y}
+ .gezieh{transition:none!important}
+ #am .mgrow,#kal .kzeile{transition:transform .28s cubic-bezier(.32,.72,0,1);position:relative;z-index:1}
+ .geakt{position:absolute;right:0;display:flex;z-index:0;border-radius:12px;overflow:hidden}
+ :is(#am,#kal) .geakt button{width:82px;height:auto;min-height:0;padding:0 6px;border-radius:0;font-size:13px!important;border:0;background:var(--c);color:var(--k-t);font:600 13px var(--k-ui);letter-spacing:0;text-transform:none}
+ .gemenue{position:fixed;inset:0;z-index:200;background:color-mix(in srgb,var(--k-b0) 40%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;transition:opacity .18s;font-family:var(--k-ui)}
+ .gemenue.an{opacity:1}
+ .gemenue .getitel{padding:12px 16px 8px;font:600 13px var(--k-ui);color:var(--k-sub)}
+ .gemenue .geliste{position:absolute;left:16px;min-width:230px;border-radius:16px;overflow:hidden;background:color-mix(in srgb,var(--k-b1) 88%,transparent);-webkit-backdrop-filter:blur(20px) saturate(1.8);backdrop-filter:blur(20px) saturate(1.8);box-shadow:0 18px 40px -12px color-mix(in srgb,black 40%,transparent);transform:scale(.7);transform-origin:top left;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+ .gemenue.an .geliste{transform:none}
+ .gemenue .geliste button{display:block;width:100%;text-align:left;padding:13px 16px;border:0;border-top:.5px solid var(--k-lin);background:none;color:var(--k-t);font:400 16px var(--k-ui)}
+ .gemenue .geliste .getitel+button{border-top:0}
+}
+/* PC: Tagebuch-Eintrag als Leiste rechts */
+@media (min-width:761px){
+ #am .tbk~.amnotiz.tbedit{position:fixed!important;top:0;right:0;bottom:0;left:auto;width:min(440px,100%);z-index:30;overflow:hidden auto!important;margin:0;border-radius:0!important;border:0!important;border-left:1px solid var(--k-lin)!important;background:var(--k-b1);box-shadow:-12px 0 30px -18px color-mix(in srgb,black 40%,transparent);animation:berein .22s cubic-bezier(.2,.8,.2,1)}
+ @keyframes berein{from{transform:translateX(30px);opacity:0}}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.46';
+const ON_VER='0.10.48';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5996,7 +6027,7 @@ const kalBtn=(()=>{const b=document.createElement('button');b.type='button';b.id
 function kalBau(){if(KAL.el)return;const k=document.createElement('div');k.id='kal';k.setAttribute('aria-hidden','true');k.innerHTML=`<div class="kin">
  <div class="kkopf"><div class="ktitel"><small id="kklein">KALENDER</small><b id="kmon"></b></div>
   <div class="knav"><button type="button" class="krund" data-k="-1" aria-label="zurück">‹</button><button type="button" class="kpill" data-k="0">Heute</button><button type="button" class="krund" data-k="1" aria-label="weiter">›</button></div>
-  <div class="kseg" id="kans">${[['woche','WOCHE'],['monat','MONAT'],['jahr','JAHR'],['liste','LISTE']].map(([a,n])=>`<button type="button" data-a="${a}">${n}</button>`).join('')}</div>
+  <div class="kseg" id="kans">${[['tag','TAG'],['woche','WOCHE'],['monat','MONAT'],['jahr','JAHR'],['liste','LISTE']].map(([a,n])=>`<button type="button" data-a="${a}">${n}</button>`).join('')}</div>
   <span class="kmobil"><button type="button" class="krund klupe" id="klupe" aria-label="Suchen" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></button><button type="button" class="kpill kfiltbtn" id="kfiltbtn" aria-expanded="false" aria-label="Filter">FILTER</button></span>
   <input class="ksuche" id="ksuche" type="search" placeholder="Suchen …" aria-label="Kalender durchsuchen" autocomplete="off">
   <button type="button" class="kplus" id="kplus">+ EINTRAGEN</button></div>
@@ -6032,9 +6063,10 @@ function kalPinch(h){let z=null;const lab=()=>W<=760?52:64;
  const ende=ev=>{if(z&&ev.touches.length<2){if(z.neu)try{localStorage.setItem(W<=760?'onstandKalHwM':'onstandKalHw',z.neu<=kalHwFit()+.5?'0':String(Math.round(z.neu)))}catch(e){}z=null}};
  h.addEventListener('touchend',ende);h.addEventListener('touchcancel',ende)}
 addEventListener('resize',()=>{clearTimeout(kalHw.t);kalHw.t=setTimeout(()=>{if(KAL.pz>0)try{kalZeichnen()}catch(e){}},150)});
-function kalSchritt(n){const s=KAL.sel||kIso(new Date());if(KAL.ans==='monat'){const d=kD(s);KAL.sel=kIso(new Date(d.getFullYear(),d.getMonth()+n,1,12))}else if(KAL.ans==='jahr'){const d=kD(s);KAL.sel=kIso(new Date(d.getFullYear()+n,d.getMonth(),1,12))}else KAL.sel=kPlus(s,n*(KAL.ans==='woche'?7:14));kalZeichnen(n)}
+function kalSchritt(n){const s=KAL.sel||kIso(new Date());if(KAL.ans==='monat'){const d=kD(s);KAL.sel=kIso(new Date(d.getFullYear(),d.getMonth()+n,1,12))}else if(KAL.ans==='jahr'){const d=kD(s);KAL.sel=kIso(new Date(d.getFullYear()+n,d.getMonth(),1,12))}else KAL.sel=kPlus(s,n*(KAL.ans==='woche'?7:KAL.ans==='tag'?1:14));kalZeichnen(n)}
 function kalTitel(){const s=KAL.sel,d=kD(s),k=document.getElementById('kmon'),kl=document.getElementById('kklein');
  if(KAL.ans==='monat'){k.textContent=KMON[d.getMonth()]+' '+d.getFullYear();kl.textContent=KAL.ok?'KALENDER':'KALENDER · GEDÄCHTNIS NICHT VERBUNDEN'}
+ else if(KAL.ans==='tag'){k.textContent=KTAGL[kWt(s)]+', '+d.getDate()+'. '+KMONL[d.getMonth()];kl.textContent='TAG · KW '+kKw(s)}
  else if(KAL.ans==='woche'&&W>=980){const mo=kMo(s),so=kPlus(mo,6),a=kD(mo),b=kD(so);k.textContent=a.getDate()+'. '+(a.getMonth()!==b.getMonth()?KMONL[a.getMonth()]+' ':'')+'– '+b.getDate()+'. '+KMONL[b.getMonth()]+' '+b.getFullYear();kl.textContent='KALENDER · KW '+kKw(s)}
  else if(KAL.ans==='woche'){const mo=kMo(s),so=kPlus(mo,6);k.textContent='KW '+kKw(s)+' · '+kD(mo).getDate()+'.–'+kD(so).getDate()+'. '+KMON[kD(so).getMonth()].slice(0,3);kl.textContent='WOCHE'}
  else if(KAL.ans==='jahr'){k.textContent=String(d.getFullYear());kl.textContent='JAHR'}
@@ -6053,7 +6085,7 @@ function kalMini(){const m=document.getElementById('kmini');if(!m)return;const s
 function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)return;if(!KAL.sel)KAL.sel=kIso(new Date());const s=KAL.sel,heute=kIso(new Date());kalLinks();kalTitel();
  KAL.el.querySelectorAll('#kans button').forEach(b=>b.classList.toggle('an',b.dataset.a===KAL.ans));
  KAL.el.querySelectorAll('#kfilter button').forEach(b=>{const an=!!KAL.an[b.dataset.f];b.classList.toggle('aus',!an);b.setAttribute('aria-pressed',String(an))});{const n=KFILTER.length,a=KFILTER.filter(([f])=>KAL.an[f]).length,std={termin:1,geb:1,url:1,frist:1,notiz:1,sonst:1,fei:1,ged:1,tb:1,mg:1,geld:1,ges:0},fb=KAL.el.querySelector('#kfiltbtn');if(fb)fb.textContent=KFILTER.every(([f])=>!!KAL.an[f]===!!std[f])?'FILTER':'FILTER '+a+'/'+n}
- const K_RANG={woche:0,monat:1,liste:1,jahr:2},kAlt=KAL._ans;KAL._ans=KAL.ans;
+ const K_RANG={tag:-1,woche:0,monat:1,liste:1,jahr:2},kAlt=KAL._ans;KAL._ans=KAL.ans;
  h.className='khaupt ka-'+KAL.ans;
  if(KAL.ans==='monat'){const d=kD(s),y=d.getFullYear(),m=d.getMonth(),erst=kIso(new Date(y,m,1,12)),start=kMo(erst),wochen=Math.ceil((kWt(erst)+new Date(y,m+1,0).getDate())/7);
   let x=`<div class="kmonat" style="grid-template-rows:auto repeat(${wochen},minmax(0,1fr))"><span class="kwt kecke"></span>${KTAG.map((t,i)=>`<span class="kwt${i>4?' kwe':''}">${t}</span>`).join('')}`;
@@ -6061,13 +6093,13 @@ function kalZeichnen(richtung){const h=document.getElementById('khaupt');if(!h)r
    for(let i=0;i<7;i++){const t=kPlus(mo,i),l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),sicht=l.filter(e=>e.art!=='feiertag');
     x+=`<button type="button" class="kz${i>4?' kwe':''}${kD(t).getMonth()!==m?' kaus':''}${t===heute?' kheute':''}${t===s?' ksel':''}${t<heute?' kvorbei':''}${t===KAL.neu?' kneu2':''}" data-t="${t}"><span class="kn"><b>${kD(t).getDate()}</b>${fei?`<em>${esc(fei.t)}</em>`:''}</span>${sicht.slice(0,3).map(kChip).join('')}${sicht.length>3?`<u>+${sicht.length-3} weitere</u>`:''}</button>`}}
   h.innerHTML=x+'</div>'}
- else if(KAL.ans==='woche'&&(W>=980||W<=760)){// PC und Handy: Wochenraster wie in der Probe – Tage als Spalten, Stunden senkrecht, oben „Ganzer Tag“. Standard 07–18 Uhr (wächst mit den Einträgen), Knopf „24 h“ zeigt den ganzen Tag.
-  const tage=[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i)),min=v=>{const [a,b]=v.split(':').map(Number);return a*60+b},jetzt=new Date(),jm=jetzt.getHours()*60+jetzt.getMinutes(),voll=kal24();
+ else if(KAL.ans==='tag'||(KAL.ans==='woche'&&(W>=980||W<=760))){// PC und Handy: Wochenraster wie in der Probe – Tage als Spalten, Stunden senkrecht, oben „Ganzer Tag“. Standard 07–18 Uhr (wächst mit den Einträgen), Knopf „24 h“ zeigt den ganzen Tag.
+  const tage=KAL.ans==='tag'?[s]:[0,1,2,3,4,5,6].map(i=>kPlus(kMo(s),i)),min=v=>{const [a,b]=v.split(':').map(Number);return a*60+b},jetzt=new Date(),jm=jetzt.getHours()*60+jetzt.getMinutes(),voll=kal24();
   const T=tage.map(t=>{const l=kalAm(t),zz=l.filter(e=>e.von&&!e.ganz).map(e=>{const a=min(e.von);return {e,a,b:Math.min(1440,Math.max(a+30,e.bis&&min(e.bis)>a?min(e.bis):a+60))}}).sort((p,q)=>p.a-q.a||q.b-p.b);
    let gr=[],ende=0;const fertig=()=>{const bahn=[];gr.forEach(z=>{let k=bahn.findIndex(v=>v<=z.a);if(k<0){k=bahn.length;bahn.push(0)}bahn[k]=z.b;z.k=k});gr.forEach(z=>z.n=bahn.length);gr=[]};
    zz.forEach(z=>{if(gr.length&&z.a>=ende)fertig();gr.push(z);ende=Math.max(ende,z.b)});fertig();return {t,l,zz,ganz:l.filter(e=>e.ganz||!e.von)}});
   let von=7,bis=18;if(voll){von=0;bis=24}else T.forEach(d=>d.zz.forEach(z=>{von=Math.min(von,Math.floor(z.a/60));bis=Math.max(bis,Math.ceil(z.b/60))}));const n=bis-von,pz=m=>((m-von*60)/(n*60)*100).toFixed(3)+'%';
-  h.innerHTML=`<div class="kwk${voll?' kw24an':''}" style="--n:${n};--von:${von}"><div class="kwkh"><button type="button" class="kw24" aria-pressed="${voll}" title="${voll?'Nur die Arbeitszeit zeigen':'Ganzen Tag zeigen, 0 bis 24 Uhr'}">24 h</button>${T.map(d=>`<button type="button" class="kwtag${d.t===heute?' kheute':''}${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}"><small>${KTAG[kWt(d.t)]}</small><b>${kD(d.t).getDate()}</b></button>`).join('')}</div>
+  h.innerHTML=`<div class="kwk${voll?' kw24an':''}${tage.length===1?' kwtag1':''}" style="--n:${n};--von:${von}"><div class="kwkh"><button type="button" class="kw24" aria-pressed="${voll}" title="${voll?'Nur die Arbeitszeit zeigen':'Ganzen Tag zeigen, 0 bis 24 Uhr'}">24 h</button>${T.map(d=>`<button type="button" class="kwtag${d.t===heute?' kheute':''}${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}"><small>${KTAG[kWt(d.t)]}</small><b>${kD(d.t).getDate()}</b></button>`).join('')}</div>
    <div class="kwkg"><span class="kwgl">GANZER<br>TAG</span>${T.map(d=>`<div class="kwgz${d.t===s?' an':''}">${d.ganz.slice(0,3).map(e=>`<button type="button" class="kc${kNeben(e)?' kneben':''}${e.ganz?' kganz':''}" style="--c:${kCol(e)}" data-t="${d.t}" data-i="${d.l.indexOf(e)}" title="${esc(e.t)}">${esc(e.t)}</button>`).join('')}${d.ganz.length>3?`<button type="button" class="kwmehr" data-t="${d.t}">+${d.ganz.length-3} weitere</button>`:''}</div>`).join('')}</div>
    <div class="kwkb"><div class="kwkbi"><div class="kwax">${Array.from({length:n},(_,i)=>`<span>${String(von+i).padStart(2,'0')}:00</span>`).join('')}</div>${T.map(d=>`<div class="kwsp${d.t===s?' an':''}${kWt(d.t)>4?' kwe':''}" data-t="${d.t}">${d.zz.map(z=>`<button type="button" class="kwb${kNeben(z.e)?' kneben':''}${(z.b-z.a)*(voll?46:38)/60<42?' kurz':(z.b-z.a)*(voll?46:38)/60<60?' mittel':''}" style="--c:${kCol(z.e)};top:${pz(z.a)};height:${((z.b-z.a)/(n*60)*100).toFixed(3)}%;left:calc(${(z.k/z.n*100).toFixed(2)}% + 3px);width:calc(${(100/z.n).toFixed(2)}% - 6px)" data-t="${d.t}" data-i="${d.l.indexOf(z.e)}" title="${esc(z.e.von+(z.e.bis?'–'+z.e.bis:'')+' '+z.e.t)}"><b>${esc(z.e.t)}</b><small>${esc(z.e.von)}<span class="kwbis">${z.e.bis?'–'+esc(z.e.bis):''}${z.e.ort?' · '+esc(z.e.ort):''}</span></small></button>`).join('')}${d.t===heute&&jm>=von*60&&jm<=bis*60?`<span class="kwjetzt" style="top:${pz(jm)}"></span>`:''}</div>`).join('')}</div></div></div>`;
   h.querySelector('.kw24').onclick=()=>{try{localStorage.setItem('onstandKal24',voll?'0':'1')}catch(e){}KAL.w24=!voll;kalZeichnen()};
@@ -8683,6 +8715,38 @@ function hyLinse(l){if(!l)return;const li=document.createElement('i');li.classNa
  const los=e=>{if(e.pointerId!==id)return;id=null;l.classList.remove('lupe');tabs().forEach(b=>b.style.removeProperty('--lupe'));
   if(zog&&e.type==='pointerup'){const b=tabs().reduce((a,b)=>Math.abs(mitte(b)-e.clientX)<Math.abs(mitte(a)-e.clientX)?b:a);b.click()}};
  l.addEventListener('pointerup',los);l.addEventListener('pointercancel',los)}
+// ===== Onstand · Handy-Gesten (bis 760 px): in Listen nach links wischen, lange drücken für ein Menü =====
+// Die Gesten sind nur Abkürzungen zu Funktionen und Knöpfen, die es schon gibt – die Logik bleibt in den Modulen.
+// GE_WISCH: [Zeile, (Zeile) → Knöpfe [Text, Farbe, Aktion]] · GE_HALTEN: [Zeile, (Zeile) → Menü [Text, Aktion]]
+const GE_WISCH=[
+ ['#am .mgrow[data-id]',el=>{const m=typeof mgFind==='function'&&mgFind(el.dataset.id);if(!m||(typeof reRecht==='function'&&['lesen','kein'].includes(reRecht('maengel'))))return [];
+  return (m.st==='offen'||m.st==='arbeit')?[['Behoben','gruen',()=>geMg(m,'behoben')]]:m.st==='behoben'?[['Geprüft','gruen',()=>geMg(m,'geprueft')]]:[]}],
+ ['#kal .kzeile[data-t]',el=>{const e=(kalAm(el.dataset.t)||[])[+el.dataset.i];return e&&e.art==='termin'?[['Bearbeiten','akz',()=>geKal(el,'bea')],['Löschen','rot',()=>geKal(el,'weg')]]:[]}]];
+const GE_HALTEN=[
+ ['#am .kurow[data-n]',el=>{const b=(typeof BST!=='undefined'&&BST[el.dataset.n])||{};return [['Öffnen',()=>el.click()],b.tel&&['Anrufen',()=>{location.href='tel:'+String(b.tel).replace(/[^\d+]/g,'')}],['Tagebuch',()=>amFunktion('tagebuch')],['Mängel',()=>amFunktion('maengel')],['Aufträge',()=>amFunktion('auftraege')]].filter(Boolean)}]];
+async function geMg(m,st){m.st=st;m.erledigt=st==='geprueft'?mgHeute():'';delete m.iris;await mgSpeichern(m,m);try{onToast(m.nr+(st==='geprueft'?' geprüft und erledigt':' als behoben markiert'))}catch(e){}amFunktion('maengel')}
+function geKal(el,a){el.click();setTimeout(()=>{const b=document.querySelector(`#kal .kblatt [data-a="${a}"]`);if(b)b.click()},80)}
+(()=>{const treffer=(L,t)=>{for(const [s,f] of L){const el=t&&t.closest&&t.closest(s);if(el)return {el,f}}return null};
+ let w=null,offen=null,halt=0,schluck=false;
+ const zu=r=>{if(!r)return;r.el.style.transform='';const a=r.akt;setTimeout(()=>a.remove(),250);if(offen===r)offen=null};
+ document.addEventListener('pointerdown',e=>{if(innerWidth>760)return;if(offen&&!e.target.closest('.geakt')){zu(offen);schluck=true}
+  const x=treffer(GE_WISCH,e.target);w=x?{el:x.el,f:x.f,x0:e.clientX,y0:e.clientY,dx:0,an:false}:null;
+  const h=treffer(GE_HALTEN,e.target);clearTimeout(halt);if(h){const y0=e.clientY,x0=e.clientX;halt=setTimeout(()=>{halt=0;w=null;schluck=true;geMenue(h.el,h.f(h.el))},450);h.el._ge=[x0,y0]}},true);
+ document.addEventListener('pointermove',e=>{if(halt){const t=treffer(GE_HALTEN,e.target);const p=t&&t.el._ge;if(!p||Math.abs(e.clientX-p[0])>8||Math.abs(e.clientY-p[1])>8){clearTimeout(halt);halt=0}}
+  if(!w)return;const dx=e.clientX-w.x0,dy=e.clientY-w.y0;
+  if(!w.an){if(Math.abs(dy)>10&&Math.abs(dy)>Math.abs(dx)){w=null;return}if(dx>-12)return;const K=w.f(w.el);if(!K.length){w=null;return}
+   w.an=true;const p=w.el.parentElement;if(getComputedStyle(p).position==='static')p.style.position='relative';
+   const a=document.createElement('div');a.className='geakt';a.style.top=w.el.offsetTop+'px';a.style.height=w.el.offsetHeight+'px';
+   a.innerHTML=K.map(([t,c])=>`<button type="button" style="--c:var(--k-${c})">${t}</button>`).join('');p.appendChild(a);
+   a.querySelectorAll('button').forEach((b,i)=>b.onclick=ev=>{ev.stopPropagation();const r=offen;zu(r);K[i][2]()});w.akt=a;w.br=K.length*82;w.el.classList.add('gezieh')}
+  w.dx=Math.max(-w.br-30,Math.min(0,dx));w.el.style.transform=`translateX(${w.dx}px)`},{passive:true});
+ document.addEventListener('pointerup',()=>{clearTimeout(halt);halt=0;if(!w||!w.an){w=null;return}const r=w;w=null;r.el.classList.remove('gezieh');schluck=true;
+  if(r.dx<-60){r.el.style.transform=`translateX(${-r.br}px)`;offen=r}else zu(r)},true);
+ document.addEventListener('click',e=>{if(schluck&&!e.target.closest('.geakt,.gemenue')){e.stopPropagation();e.preventDefault()}schluck=false},true)})();
+function geMenue(el,L){try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}const r=el.getBoundingClientRect(),d=document.createElement('div');d.className='gemenue';
+ const tt=(el.querySelector('b')||el).textContent.trim(),oben=Math.max(60,Math.min(r.bottom+8,innerHeight-56*L.length-90));d.innerHTML=`<div class="geliste" style="top:${oben}px"><div class="getitel">${esc(tt)}</div>${L.map(([t])=>`<button type="button">${t}</button>`).join('')}</div>`;
+ document.body.appendChild(d);requestAnimationFrame(()=>d.classList.add('an'));const weg=()=>{d.classList.remove('an');setTimeout(()=>d.remove(),200)};
+ d.onclick=e=>{const b=e.target.closest('.geliste button');weg();if(b)L[[...d.querySelectorAll('.geliste button')].indexOf(b)][1]()}}
 // ===== Onstand · Wörterbuch der Oberfläche =====
 // Eine Zeile je Text: deutsch|polnisch|rumänisch|albanisch|kroatisch|bulgarisch. Serbisch entsteht aus Kroatisch (siehe SP_SR in sprache.js).
 // Der deutsche Text ist der Schlüssel (Groß/Klein egal). Fehlt ein Text hier, bleibt er deutsch.
@@ -9291,7 +9355,7 @@ function lsMatText(b){if(!lsGeld()||!LS_MAT)return '';const L=LS_MAT.filter(x=>x
 // 2) Fußzeile: ein Hauptknopf und ein Nebenknopf fest unten, alles Seltene hinter „···“ (Angebot, Auftrag, Rechnung, Mangel).
 // 3) Preisliste in „Firma & Preise“: Zeilen zum Antippen, die Felder klappen erst beim Antippen auf.
 const FR_NOMEN=['PDF','KI','IBAN','BIC','QR','E-Rechnung','Angebot','Angebote','Auftrag','Aufträge','Rechnung','Rechnungen','Entwurf','Abschlag','Schlussrechnung','Stornorechnung','Bauplan','Mangel','Mängel','Abnahme','Arbeit','Konto','Firma','Code','Ordner','Datei','Dateien','Mahnung','Serie','Tag','Tage','Woche','Wochen','Monat','Jahr','Liste','Eintrag','Werkstatt','Protokoll','Posten','Kunden-Menü','Bautagebuch','Mail','Foto','Leistung','Preisliste','Position','Frage','Wiki','Termin','Kalender','Baustelle','Gerät','Geräte','Vorbehalt','Assistent','Passwort','Sicherung','Papierkorb','Zahlung','Kunde','Leistungsstand','Prozent','Tagebuch','Regie','Nachher-Foto','Onstand','Einstellungen','Mahnwesen','Drucken'];
-const FR_FEST={'OK':'OK','ALS PDF / DRUCKEN':'Als PDF / Drucken','ANGENOMMEN → AUFTRAG':'Angenommen','ZURÜCK AUF ENTWURF':'Zurück auf Entwurf','GEPRÜFT ✓':'Geprüft ✓','IN ARBEIT':'In Arbeit','‹ ZURÜCK':'‹ Zurück','E-RECHNUNG?':'E-Rechnung?','PASST SO':'Passt so','NACH PROZENT':'Nach Prozent','NACH LEISTUNGSSTAND':'Nach Leistungsstand','REGIE AUS TAGEBUCH':'Regie aus Tagebuch','FREIE RECHNUNG':'Freie Rechnung','IN DER WERKSTATT ÖFFNEN ›':'In der Werkstatt öffnen','+ NEUER BAUPLAN':'+ Bauplan','ALLE ZEIGEN':'Alle zeigen'};
+const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','ANGENOMMEN → AUFTRAG':'Angenommen','ZURÜCK AUF ENTWURF':'Zurück auf Entwurf','GEPRÜFT ✓':'Geprüft ✓','IN ARBEIT':'In Arbeit','‹ ZURÜCK':'‹ Zurück','E-RECHNUNG?':'E-Rechnung?','PASST SO':'Passt so','NACH PROZENT':'Nach Prozent','NACH LEISTUNGSSTAND':'Nach Leistungsstand','REGIE AUS TAGEBUCH':'Regie aus Tagebuch','FREIE RECHNUNG':'Freie Rechnung','IN DER WERKSTATT ÖFFNEN ›':'In der Werkstatt öffnen','+ NEUER BAUPLAN':'+ Bauplan','ALLE ZEIGEN':'Alle zeigen'};
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
