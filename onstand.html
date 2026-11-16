@@ -1,5 +1,6 @@
+Server fest eingebaut: https://qagenkrtkpqpljntnglg.supabase.co
 <!DOCTYPE html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Manrope:wght@400..800&display=swap" media="print" onload="this.media='all'"><meta name="theme-color" content="#0A0C0F"><script>try{const d=localStorage.getItem('onstandDesign');if(d&&d!=='kupfer')document.documentElement.dataset.design=d}catch(e){}</script><title>Onstand</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%230D1014%22/%3E%3Cpath%20d=%22M36.28%2016.86L16.86%2036.28L16.86%2063.72L36.28%2083.14L63.72%2083.14L83.14%2063.72L83.14%2036.28L63.72%2016.86Z%20M60%2025.86L74.14%2040L74.14%2060L60%2074.14L40%2074.14L25.86%2060L25.86%2040L40%2025.86Z%22%20fill=%22%23EEE9E4%22%20fill-rule=%22evenodd%22/%3E%3Cpath%20d=%22M36.28%2016.86L63.72%2016.86L60%2025.86L40%2025.86Z%22%20fill=%22%23D19A6A%22/%3E%3C/svg%3E"><link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Onstand"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Manrope:wght@400..800&display=swap" media="print" onload="this.media='all'"><meta name="theme-color" content="#0A0C0F"><script>try{const d=localStorage.getItem('onstandDesign');if(d&&d!=='kupfer')document.documentElement.dataset.design=d}catch(e){}</script><title>Onstand</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%230D1014%22/%3E%3Cpath%20d=%22M36.28%2016.86L16.86%2036.28L16.86%2063.72L36.28%2083.14L63.72%2083.14L83.14%2063.72L83.14%2036.28L63.72%2016.86Z%20M60%2025.86L74.14%2040L74.14%2060L60%2074.14L40%2074.14L25.86%2060L25.86%2040L40%2025.86Z%22%20fill=%22%23EEE9E4%22%20fill-rule=%22evenodd%22/%3E%3Cpath%20d=%22M36.28%2016.86L63.72%2016.86L60%2025.86L40%2025.86Z%22%20fill=%22%23D19A6A%22/%3E%3C/svg%3E"><link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Onstand"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 /* ===== Onstand · Designs: Kupfer (Standard), Nachtblau, Hell =====
    Diese Datei setzt nur die Farbwerte. bauen.py ersetzt beim Bauen alle festen Farben in den übrigen CSS-Teilen
@@ -297,7 +298,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #am .sywahl>div{border:1px solid color-mix(in srgb,var(--k-sub) 18%,transparent);border-radius:10px;padding:8px 10px;min-width:0}
 #am .sywahl p{font-size:11.5px!important;margin:4px 0 0!important;word-break:break-word}
 .osb2{margin-top:10px;font-size:10px;letter-spacing:2px;background:none;border:1px solid var(--aj);color:var(--aj);border-radius:16px;padding:12px 20px}
-body.on-baustelle #am .onnav [data-f="auftraege"],body.on-baustelle #am .onnav [data-f="personal"],body.on-baustelle #am .onmenu [data-m="firma"],body.on-baustelle #am .onmenu [data-m="personal"],body.on-baustelle #am .onmenu [data-m="mahn"]{display:none}
+/* Rollen & Rechte: was eine Rolle nicht sehen darf, ist ausgeblendet (die Sperre selbst sitzt in konto.js und am Server) */
+body[data-rolle="baustelle"] #am :is(.onnav,.hykach) [data-f="auftraege"],body[data-rolle="baustelle"] #am :is(.onnav,.hykach) [data-f="personal"],body[data-rolle="baustelle"] #am :is(.onnav,.hykach) [data-f="kunden"],body[data-rolle="baustelle"] #am :is(.onnav,.hykach) [data-f="brain"],body[data-rolle="bauleiter"] #am :is(.onnav,.hykach) [data-f="auftraege"],body[data-rolle="bauleiter"] #am :is(.onnav,.hykach) [data-f="brain"],body[data-rolle="buero"] #am :is(.onnav,.hykach) [data-f="brain"],body[data-rolle="baustelle"] #am :is(.onmenu,.hygrp) [data-m="firma"],body[data-rolle="baustelle"] #am :is(.onmenu,.hygrp) [data-m="personal"],body[data-rolle="baustelle"] #am :is(.onmenu,.hygrp) [data-m="mahn"],body[data-rolle="bauleiter"] #am :is(.onmenu,.hygrp) [data-m="firma"],body[data-rolle="bauleiter"] #am :is(.onmenu,.hygrp) [data-m="mahn"]{display:none}
 @media (prefers-reduced-motion:reduce){#am .onsy i,#am .systat i{animation:none}}
 /* ---------- E-Rechnung & Eingang ---------- */
 #am .kurech{border:1px solid color-mix(in srgb,var(--k-sub) 18%,transparent);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:10px}
@@ -334,7 +336,7 @@ body.on-baustelle #am .onnav [data-f="auftraege"],body.on-baustelle #am .onnav [
 @keyframes asdenk{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 @media (prefers-reduced-motion:reduce){#am .asdenkt i{animation:none}}
 /* ---------- Firmen-Brain ---------- */
-body.on-baustelle #am .onnav [data-f="brain"]{display:none}
+#am .syrechte table{width:100%;border-collapse:collapse;font-size:11px}#am .syrechte th{font-size:8.5px;letter-spacing:1.2px;font-weight:600;color:var(--row);text-align:center;padding:4px 2px}#am .syrechte td{padding:6px 2px;border-top:1px solid color-mix(in srgb,var(--k-sub) 14%,transparent);text-align:center}#am .syrechte td:first-child{text-align:left;padding-right:8px}
 #am .brx{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:12px;padding-right:2px}
 #am .brbaum{font:10.5px/1.75 ui-monospace,Menlo,Consolas,monospace;color:var(--row);margin:4px 0;white-space:pre;overflow-x:auto}#am .brbaum b{color:var(--aj);font-weight:400}#am .brbaum u{color:var(--gelb);text-decoration:none}
 #am .brdat{cursor:pointer;display:inline-flex;align-items:center;font-size:9.5px;letter-spacing:1.5px;border:1px solid color-mix(in srgb,var(--k-sub) 30%,transparent);color:var(--row);border-radius:14px;padding:8px 12px}
@@ -1387,6 +1389,73 @@ body.on-baustelle #am .onnav [data-f="brain"]{display:none}
 #am .opzweg.sicher{color:var(--k-rot)}
 #am .auknoepfe .auloesch.sicher,#am .auknoepfe .opsok.sicher{border-color:var(--k-rot);color:var(--k-rot)}
 @media (prefers-reduced-motion:reduce){#am .opzs.jetzt>i{animation:none}}
+
+/* ===== v0.10.34 · Briefvorlage „Klassisch“ (Rechnungs-Probe, Konzept 1) für Angebot, Rechnung, Korrektur, Mahnschreiben =====
+   Seitenränder macht nicht mehr @page (dann druckt der Browser keine Kopf-/Fußzeile mit Datum und Seitenadresse),
+   sondern eine Seiten-Tabelle: Kopf- und Fußabstand wiederholen sich auf jeder Seite. Im Text-PDF (Klasse pttext) setzt pdftext.js die Ränder selbst. */
+@page hoch{size:A4 portrait;margin:0}
+#bpdruck .falz,#bpdruck .drand{display:none}
+@media print{
+html:has(body.bpdruckt),body.bpdruckt{height:auto!important;min-height:0!important;overflow:visible!important;background:#fff!important}
+#bpdruck.angebot{position:relative}
+#bpdruck.angebot table.seite{display:table;width:100%;margin:0;border-collapse:collapse;font-size:inherit}
+#bpdruck.angebot .seite>thead.drand{display:table-header-group}
+#bpdruck.angebot .seite>tfoot.drand{display:table-footer-group}
+#bpdruck.angebot .seite>thead>tr>td,#bpdruck.angebot .seite>tfoot>tr>td,#bpdruck.angebot .seite>tbody>tr>td{border:0;padding:0 18mm 0 22mm;background:none}
+#bpdruck.angebot .seite>thead td i{display:block;height:12mm}
+#bpdruck.angebot .seite>tfoot td i{display:block;height:9mm}
+#bpdruck.angebot .seite>tbody>tr{page-break-inside:auto;break-inside:auto}
+#bpdruck.angebot .falz{display:block;position:absolute;left:5mm;width:4mm;height:0;border-top:.4pt solid #b9bfc8}
+#bpdruck.angebot .falz.f1{top:105mm}#bpdruck.angebot .falz.f2{top:148.5mm;width:6mm}#bpdruck.angebot .falz.f3{top:210mm}
+#bpdruck.angebot.pttext .seite>thead,#bpdruck.angebot.pttext .seite>tfoot,#bpdruck.angebot.pttext .falz{display:none}
+#bpdruck.angebot.pttext .seite>tbody>tr>td{padding:0}
+#bpdruck.angebot section{font:9.5pt/1.45 Arial,Helvetica,sans-serif;min-height:270mm;page-break-after:auto;break-after:auto}
+#bpdruck.angebot .bk{height:19mm;align-items:flex-end;gap:10mm;border-bottom:1.6pt solid #1b2230;padding-bottom:3mm;margin-bottom:0}
+#bpdruck.angebot .bk b{display:block;font-size:17pt;letter-spacing:.2pt;line-height:1.15}
+#bpdruck.angebot .bk small{display:block;font-size:7.5pt;color:#5c6675;letter-spacing:1.2pt;text-transform:uppercase;margin-top:1mm}
+#bpdruck.angebot .bk span{font-size:8pt;line-height:1.45}
+#bpdruck.angebot .ak{grid-template-columns:85mm 1fr;gap:0 12mm;margin:14mm 0 0;min-height:45mm}
+#bpdruck.angebot .abs{margin-bottom:3mm;font-size:6.5pt}
+#bpdruck.angebot .emp{font-size:10pt}
+#bpdruck.angebot .info b{font-size:15pt;letter-spacing:1.6pt;margin-bottom:2mm}
+#bpdruck.angebot .info dl{gap:0 4mm}
+#bpdruck.angebot .info dt,#bpdruck.angebot .info dd{padding:.9mm 0}
+#bpdruck.angebot h1{font-size:12pt;margin:3mm 0 2mm}
+#bpdruck.angebot p{margin:0 0 2.6mm}
+#bpdruck.angebot table{font-size:9.5pt}
+#bpdruck.angebot th{font-size:7pt;letter-spacing:.7pt}
+#bpdruck.angebot td{padding:1.6mm 2mm;border-bottom-color:#d8dce2}
+#bpdruck.angebot td .gr{display:block;font-size:7.5pt;color:#6b7482}
+#bpdruck.angebot .su{width:82mm;margin:3mm 0 0 auto}
+#bpdruck.angebot .su .ge{margin:1mm 0;padding:2.4mm 2mm}
+#bpdruck.angebot .su .gr{font-size:7.5pt;color:#6b7482}
+#bpdruck.angebot .zb{margin:4mm 0 3.5mm}
+#bpdruck.angebot .zb small{font-size:6.5pt}
+#bpdruck.angebot .fz{grid-template-columns:1.05fr 1fr 1.1fr;gap:6mm;font-size:7pt;line-height:1.5;padding:3mm 0 0}
+#bpdruck.angebot .fz b{color:#1b2230}
+#bpdruck .ons{gap:1.6mm;margin-top:2.5mm;font-size:6.5pt;color:#8a929e;white-space:nowrap}
+#bpdruck .ons i{border-left:0;padding-left:0;color:#b0b6bf}
+}
+/* ===== Reiter EXPORT (Steuerberater) ===== */
+#am .exkopf{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:14px 0 12px}
+#am .exzeit{display:flex;align-items:center;gap:6px}#am .exzeit b{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--k-t);min-width:170px;text-align:center}
+#am .exzeit button{width:36px;height:36px;border-radius:10px;border:1px solid color-mix(in srgb,var(--k-sub) 25%,transparent);background:none;color:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));font-size:18px;line-height:1}
+#am .exsum{margin-bottom:14px}
+#am .exgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}#am .exgrid>div{display:grid;gap:14px;min-width:0}
+#am .exbox{border:1px solid color-mix(in srgb,var(--k-sub) 16%,transparent);border-radius:14px;padding:14px 16px;background:color-mix(in srgb,var(--k-sub) 4%,transparent)}
+#am .exbox h4,#am .exbox summary{margin:0 0 10px;font-size:9.5px;letter-spacing:1.8px;font-weight:600;color:var(--k-sub)}#am .exbox summary{cursor:pointer;margin:0;list-style:none;color:var(--aj)}#am .exbox summary::-webkit-details-marker{display:none}#am .exbox[open] summary{margin-bottom:12px}
+#am .expr{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid color-mix(in srgb,var(--k-sub) 10%,transparent)}#am .exbox h4+.expr{border-top:0;padding-top:0}
+#am .expr i{flex:none;width:9px;height:9px;border-radius:50%;margin-top:4px;background:var(--k-sub)}#am .expr.gruen i{background:var(--k-gruen)}#am .expr.gelb i{background:var(--k-gelb)}#am .expr.rot i{background:var(--k-rot)}#am .expr.info i{background:var(--k-blau)}
+#am .expr b,#am .exz b,#am .exdat b{display:block;font-size:13px;font-weight:600;color:var(--k-t)}#am .expr small,#am .exz small,#am .exdat small{display:block;font-size:11px;color:var(--k-sub);margin-top:2px;line-height:1.4}
+#am .exdat{display:flex;width:100%;gap:12px;align-items:center;justify-content:space-between;text-align:left;border:1px solid color-mix(in srgb,var(--k-sub) 20%,transparent);border-radius:12px;background:none;padding:11px 12px;margin-bottom:8px}
+#am .exdat em{flex:none;font-style:normal;font-size:9.5px;letter-spacing:1.6px;font-weight:600;color:var(--aj);border:1px solid var(--aj);border-radius:9px;padding:6px 10px;min-width:74px;text-align:center}
+#am .exdat:disabled{opacity:.45;cursor:default}
+#am .exhin{font-size:11px;color:var(--k-sub);margin:8px 0 0;line-height:1.5}#am .exfertig{font-size:9.5px;letter-spacing:1.4px;color:var(--aj);background:none;border:0;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
+#am .exz{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid color-mix(in srgb,var(--k-sub) 10%,transparent)}#am .exbox h4+.exz{border-top:0;padding-top:0}#am .exz .aur{text-align:right;flex:none}#am .exz strong{font-size:13px;color:var(--k-t)}
+#am .exfeld{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}#am .exfeld label{font-size:8.5px;letter-spacing:1.4px;color:var(--k-sub);display:grid;gap:5px}
+#am .exfeld input{font:inherit;font-size:14px;letter-spacing:0;color:var(--k-t);background:color-mix(in srgb,var(--k-sub) 8%,transparent);border:1px solid color-mix(in srgb,var(--k-sub) 22%,transparent);border-radius:9px;padding:9px 10px;width:100%;min-width:0}
+@media (max-width:760px){#am .exgrid{grid-template-columns:minmax(0,1fr)}#am .exkopf{margin-top:10px}#am .exzeit{width:100%;justify-content:space-between}#am .exzeit b{flex:1}#am .exzeit button{width:44px;height:44px}#am .exdat{min-height:56px}#am .exfeld input{font-size:16px}}
+@media (max-width:760px){#am .aukette.exsum{grid-template-columns:1fr 1fr;row-gap:14px}#am .aukette.exsum b{font-size:22px;white-space:nowrap}#am .aukette.exsum span{white-space:normal}}
 /* Kalender (aus I.R.I.S übernommen) */
 @keyframes kreis{to{--a:360deg}}
 /* ===== Kalender v15.3: ruhige Fläche (Iris-Leinwand dahinter ist leer), Iris klein in der Ecke ===== */
@@ -2368,6 +2437,9 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
 #am .brliste .brfragq span{white-space:normal}
 #am .brliste .fix{padding:0;justify-content:center}#am .brliste .fix:after{display:none}
 #am .brliste .brsn{letter-spacing:0;text-transform:none}
+/* v0.10.35 · Aufträge am PC: Der unsichtbare „Keine Treffer“-Block nahm der Liste und der Vorschau die halbe Höhe weg; Zeilen der Liste wurden gestaucht (Status-Schild abgeschnitten) */
+#am .fileer[hidden]{display:none!important}
+#am .ausplit .aual>.auar{flex:none}
 /* ===== Onstand · Handy-Design (v0.10.16) – gilt nur bis 760 px Breite ===== */
 #am .onleiste,#am .onkopf,#am .hyschleier,#am .cpqa,#am .kuakt,#am .amsag{display:none}
 #am .amp{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:.8em;letter-spacing:0;vertical-align:.04em}
@@ -3002,6 +3074,38 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
 .frsb{display:flex;gap:10px;width:100%}
 .frsb button{flex:1;height:50px;border-radius:14px;border:1px solid color-mix(in srgb,var(--k-t) 51%,var(--k-sub));background:var(--k-t);color:color-mix(in srgb,var(--k-sub) 11%,var(--k-b1));font:700 16px "Manrope",Arial,sans-serif;cursor:pointer}
 .frsb button.p{background:#D19A6A;border-color:#D19A6A;color:color-mix(in srgb,var(--k-b1) 85%,var(--k-b0))}
+/* ===== Mehrsprachig: Fahnen und Sprachwahl ===== */
+.spf{width:27px;height:18px;flex:none;display:block;border-radius:2px}
+#am .onmenu .onmz .spf{width:21px;height:14px;margin:0 1.5px}
+#am .hygrp .hyri .spf{width:30px;height:20px}
+#am .spliste{display:grid;gap:6px;margin:12px 0 4px}
+.sprow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:1px solid color-mix(in srgb,var(--k-sub) 20%,transparent);border-radius:12px;padding:10px 12px;color:var(--k-t);font:inherit;cursor:pointer}
+.sprow b{font-size:14px;font-weight:600;flex:1}.sprow small{font-size:11px;color:var(--k-sub)}
+.sprow.an{border-color:var(--aj);background:color-mix(in srgb,var(--aj) 12%,transparent)}
+/* Startbild: Fahne oben rechts */
+.spstart{position:fixed;top:calc(14px + var(--st,0px));right:14px;z-index:90;display:none;align-items:center;gap:8px;background:color-mix(in srgb,color-mix(in srgb,var(--k-b1) 83%,var(--k-b0)) 72%,transparent);border:1px solid color-mix(in srgb,var(--k-sub) 30%,transparent);border-radius:10px;padding:7px 10px;color:var(--k-t);font:600 12px Arial,Helvetica,sans-serif;cursor:pointer}
+.spstartl{position:fixed;top:calc(56px + var(--st,0px));right:14px;z-index:90;display:none;gap:5px;width:230px;background:color-mix(in srgb,var(--k-b1) 83%,var(--k-b0));border:1px solid color-mix(in srgb,var(--k-sub) 30%,transparent);border-radius:14px;padding:8px}
+body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not([hidden]){display:grid}
+.spstartl .sprow{padding:8px 10px;font-family:Arial,Helvetica,sans-serif}
+/* Tagebuch: Hinweis „übersetzt“ */
+#am .spueb{display:inline-flex;align-items:center;gap:7px;margin-left:auto;background:none;border:1px solid color-mix(in srgb,var(--k-sub) 25%,transparent);border-radius:9px;padding:5px 9px;font-size:11px;color:color-mix(in srgb,var(--k-t) 53%,var(--k-sub))}
+#am .spueb .spf{width:18px;height:12px}
+/* ===== Tagebuch: Lieferschein fotografieren ===== */
+#am .tbls{display:inline-flex;align-items:center;gap:7px}
+#am .tbls svg,#am .lsfoto svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#am .ondk.lsdk{width:min(680px,100%)}
+#am .lsd{display:grid;grid-template-columns:190px minmax(0,1fr);gap:16px;margin-top:12px;align-items:start}
+#am .lsbild{width:100%;max-height:330px;object-fit:cover;border-radius:10px;border:1px solid color-mix(in srgb,var(--k-sub) 25%,transparent);background:var(--k-t)}
+#am .lsgross{width:100%;max-height:70vh;object-fit:contain;border-radius:10px;background:var(--k-t);margin-top:8px}
+#am .lsf{display:grid;gap:10px;min-width:0}#am .lsf label,#am .lsf>small{font-size:8.5px;letter-spacing:1.4px;color:var(--k-sub);display:grid;gap:5px}
+#am .lsf input,#am .lsf textarea{font:inherit;font-size:14px;letter-spacing:0;color:var(--k-t);background:color-mix(in srgb,var(--k-sub) 8%,transparent);border:1px solid color-mix(in srgb,var(--k-sub) 22%,transparent);border-radius:9px;padding:9px 10px;width:100%;min-width:0;resize:vertical}
+#am .ls2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#am .lsstat{display:flex;align-items:center;gap:8px;margin:0;font-size:12px;color:color-mix(in srgb,var(--k-t) 53%,var(--k-sub))}#am .lsstat i{width:9px;height:9px;border-radius:50%;background:var(--k-sub);flex:none}
+#am .lsstat.liest i{background:var(--aj);animation:lspuls 1s ease-in-out infinite}#am .lsstat.gruen i{background:var(--k-gruen)}#am .lsstat.gelb i{background:var(--k-gelb)}
+@keyframes lspuls{50%{opacity:.25}}
+#am .lsfoto{display:inline-flex;align-items:center;gap:6px;margin:6px 6px 0 0;background:none;border:1px solid color-mix(in srgb,var(--k-sub) 25%,transparent);border-radius:9px;padding:5px 9px;font-size:11px;color:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));vertical-align:middle}
+@media (max-width:760px){#am .lsd{grid-template-columns:minmax(0,1fr)}#am .lsbild{max-height:170px}#am .lsf input,#am .lsf textarea{font-size:16px}#am .tbls{min-height:36px}.spstart{top:calc(10px + var(--st,0px))}}
+@media (prefers-reduced-motion:reduce){#am .lsstat.liest i{animation:none}}
 /* ===== Design „Hell“ = Konzept „Kreide“ (Hell-Probe): kühles Weiß, Graphit für Knöpfe und Auswahl,
    Kupfer nur für kleine Überschriften und Verweise, feine Linien statt Schatten. Wirkt nur im hellen Design. ===== */
 :root[data-design="hell"] #am.onstand{--gl:transparent;--gs:none}
@@ -3015,13 +3119,24 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
 :root[data-design="hell"] #am .mgstep .jetzt i{color:color-mix(in srgb,var(--pc) 55%,black);border-color:color-mix(in srgb,var(--pc) 70%,black);box-shadow:none}
 :root[data-design="hell"] #am .mgstep .jetzt{color:var(--k-t)}
 :root[data-design="hell"] #am .aust{color:color-mix(in srgb,var(--sc) 55%,black);border-color:color-mix(in srgb,var(--sc) 70%,black)}
+/* Hell: Schrift kräftiger und Grau dunkler, damit dünne Schrift auf Weiß gut lesbar ist.
+   Die einzelnen Schriftstärken hebt bauen.py automatisch um eine Stufe an; hier nur Grundstärke und Grauton. */
+:root[data-design="hell"]{--k-sub:color-mix(in srgb,var(--k-sub) 46%,var(--k-b1))}
+:root[data-design="hell"] :is(#am,#kal,#onfuehr,#onstart){font-weight:500}
+:root[data-design="hell"] :is(#am,#kal,#onfuehr,#onstart) :is(input,select,textarea){font-weight:500}
+:root[data-design="hell"] #am .blatt,:root[data-design="hell"] #am .blatt :is(input,select,textarea){font-weight:400}
+:root[data-design="hell"]:not([data-schrift="manrope"]) :is(#am,#kal,#onfuehr,#onstart){-webkit-text-stroke:.2px currentColor}
+:root[data-design="hell"]:not([data-schrift="manrope"]) #am .blatt{-webkit-text-stroke:0}
+
+/* Hell: Schrift eine Stufe kräftiger (beim Bauen erzeugt) */
+:root[data-design="hell"] #am .onlogo b{font-weight:500}:root[data-design="hell"] #am .asgruss h3{font-weight:500}:root[data-design="hell"] #am .astk>div b{font-weight:500}:root[data-design="hell"] #am .aserz b{font-weight:500}:root[data-design="hell"] #am .kivgl div b{font-weight:500}:root[data-design="hell"] #am .asb b{font-weight:500}:root[data-design="hell"] #am .asfelder b{font-weight:500}:root[data-design="hell"] #am .asfelder input,:root[data-design="hell"] #am .asfelder textarea{font-weight:500}:root[data-design="hell"] #am .aseing textarea{font-weight:500}:root[data-design="hell"] #am .onmenu .mk b{font-weight:500}:root[data-design="hell"] #am .ondk h3{font-weight:500}:root[data-design="hell"] #am .ondk p b{font-weight:500}:root[data-design="hell"] #am .ondk input{font-weight:500}:root[data-design="hell"] .osk h1{font-weight:500}:root[data-design="hell"] .osk p b{font-weight:500}:root[data-design="hell"] .osk input{font-weight:500}:root[data-design="hell"] #am .ondk select{font-weight:500}:root[data-design="hell"] #am .symit b{font-weight:500}:root[data-design="hell"] #am .sycode b{font-weight:500}:root[data-design="hell"] #am .kurech select{font-weight:500}:root[data-design="hell"] #am .egsum b{font-weight:500}:root[data-design="hell"] #am .ondk label select{font-weight:500}:root[data-design="hell"] #am .askizahl b{font-weight:500}:root[data-design="hell"] #am .syrechte th{font-weight:700}:root[data-design="hell"] #am .brbaum{font-weight:500}:root[data-design="hell"] #am .brbaum b{font-weight:500}:root[data-design="hell"] #am .brlauf b{font-weight:500}:root[data-design="hell"] #am .brseite h4{font-weight:500}:root[data-design="hell"] #am .brzu select,:root[data-design="hell"] #am .brzu input,:root[data-design="hell"] #am .brant,:root[data-design="hell"] #am .brfrage input{font-weight:500}:root[data-design="hell"] #am .brmeter b{font-weight:500}:root[data-design="hell"] .onsplash b{font-weight:500}:root[data-design="hell"] .onapp b{font-weight:700}:root[data-design="hell"] .onapp .oar button{font-weight:500}:root[data-design="hell"] #onstart .oswm{font-weight:400}:root[data-design="hell"] #onstart .osweg b{font-weight:700}:root[data-design="hell"] #onstart .osf h2{font-weight:500}:root[data-design="hell"] #onstart .osf input{font-weight:500}:root[data-design="hell"] #onstart .osp b{font-weight:500}:root[data-design="hell"] #onfuehr .ftipp b{font-weight:700}:root[data-design="hell"] #onfuehr .ftr button{font-weight:500}:root[data-design="hell"] #onfuehr .fleiste{font-weight:500}:root[data-design="hell"] #am .eik b{font-weight:500}:root[data-design="hell"] #am .eiz button{font-weight:500}:root[data-design="hell"] #am .amtag b{font-weight:500}:root[data-design="hell"] #am .pewoche b{font-weight:500}:root[data-design="hell"] #am .mgzaehler b{font-weight:500}:root[data-design="hell"] #am .mgrow b{font-weight:500}:root[data-design="hell"] #am .mgirisbox b{font-weight:500}:root[data-design="hell"] #am .mgbox h4{font-weight:500}:root[data-design="hell"] #am .mglink b{font-weight:500}:root[data-design="hell"] #am .mggew b{font-weight:500}:root[data-design="hell"] #am .peabr b{font-weight:500}:root[data-design="hell"] #am .peverl b{font-weight:500}:root[data-design="hell"] #am .mgh{font-weight:500}:root[data-design="hell"] #am .mgabn b{font-weight:500}:root[data-design="hell"] #bp .start h2{font-weight:500}:root[data-design="hell"] #bp .weg b{font-weight:500}:root[data-design="hell"] #bp .leiste .flaeche b{font-weight:500}:root[data-design="hell"] #bp .menue h4{font-weight:500}:root[data-design="hell"] #bp .plus b{font-weight:500}:root[data-design="hell"] #bp .bkopf b{font-weight:500}:root[data-design="hell"] #bp .etliste h4{font-weight:500}:root[data-design="hell"] #bp .etk b{font-weight:500}:root[data-design="hell"] #bp .drarten b{font-weight:500}:root[data-design="hell"] #bp .wpop .wpk b{font-weight:500}:root[data-design="hell"] #am .bprow b{font-weight:500}:root[data-design="hell"] #bp .mpkk b{font-weight:500}:root[data-design="hell"] #bp .mpkk h3{font-weight:500}:root[data-design="hell"] #bp .mpform input[type=text]{font-weight:500}:root[data-design="hell"] #am .cpkh b{font-weight:500}:root[data-design="hell"] #am .cpheld h2{font-weight:500}:root[data-design="hell"] #am .cpring div b{font-weight:500}:root[data-design="hell"] #am .cpzahlen b{font-weight:500}:root[data-design="hell"] #am .cptag b{font-weight:500}:root[data-design="hell"] #am .cptz>b{font-weight:500}:root[data-design="hell"] #am .cpbp b{font-weight:500}:root[data-design="hell"] #am .cptr .d b{font-weight:500}:root[data-design="hell"] #am .cpgeld p b{font-weight:500}:root[data-design="hell"] #am .aukette b{font-weight:500}:root[data-design="hell"] #am .aukh b{font-weight:500}:root[data-design="hell"] #am .auar b{font-weight:500}:root[data-design="hell"] #am .auar .aur strong{font-weight:500}:root[data-design="hell"] #am .autitel,:root[data-design="hell"] #am .aufm input,:root[data-design="hell"] #am .aupr input,:root[data-design="hell"] #am .aupr select{font-weight:500}:root[data-design="hell"] #am .autitel2{font-weight:500}:root[data-design="hell"] #am .aupz .aut input{font-weight:500}:root[data-design="hell"] #am .aupz .aum input{font-weight:500}:root[data-design="hell"] #am .aupz .aug b{font-weight:500}:root[data-design="hell"] #am .aupz .aug small input{font-weight:500}:root[data-design="hell"] #am .ausumme b{font-weight:500}:root[data-design="hell"] #am .auraum>b{font-weight:500}:root[data-design="hell"] #am .auarten b{font-weight:500}:root[data-design="hell"] #am .auproz b{font-weight:500}:root[data-design="hell"] #am .auabz b{font-weight:500}:root[data-design="hell"] #am .aubleg b{font-weight:500}:root[data-design="hell"] #am .aurz b{font-weight:500}:root[data-design="hell"] #am .autz b{font-weight:500}:root[data-design="hell"] #am .aufm input[type=date],:root[data-design="hell"] #am .auf input[type=date]{font-weight:500}:root[data-design="hell"] #am .opeg input{font-weight:500}:root[data-design="hell"] #am .opzs b{font-weight:500}:root[data-design="hell"] #am .opbrief{font-weight:500}:root[data-design="hell"] #am .opein input{font-weight:500}:root[data-design="hell"] #am .exzeit b{font-weight:600}:root[data-design="hell"] #am .exbox h4,:root[data-design="hell"] #am .exbox summary{font-weight:700}:root[data-design="hell"] #am .expr b,:root[data-design="hell"] #am .exz b,:root[data-design="hell"] #am .exdat b{font-weight:700}:root[data-design="hell"] #am .exdat em{font-weight:700}:root[data-design="hell"] #kal .kzblab b{font-weight:500}:root[data-design="hell"] #kal .kc.kneben{font-weight:500}:root[data-design="hell"] #kal .kliste h4{font-weight:500}:root[data-design="hell"] #kal .kzeile b{font-weight:500}:root[data-design="hell"] #kal .kein2 b{font-weight:500}:root[data-design="hell"] #kal .kkat b{font-weight:700}:root[data-design="hell"] #pk .pksuche{font-weight:500}:root[data-design="hell"] #pk .pki b{font-weight:500}:root[data-design="hell"] #pk .pkhin b{font-weight:500}:root[data-design="hell"] #pk .pkgr{font-weight:500}:root[data-design="hell"] #pk .sist b{font-weight:500}:root[data-design="hell"] #pk .siregel b{font-weight:500}:root[data-design="hell"] #pk .sizp b{font-weight:500}:root[data-design="hell"] #pk .pktoast{font-weight:500}:root[data-design="hell"] #pkundo{font-weight:500}:root[data-design="hell"] #am .mgh,:root[data-design="hell"] #am .cpheld h2,:root[data-design="hell"] #am .amnk h4,:root[data-design="hell"] #am .amkw,:root[data-design="hell"] #am .asgruss h3,:root[data-design="hell"] #am .cpzahlen b,:root[data-design="hell"] #am .cpring b,:root[data-design="hell"] #am .kiabo h4,:root[data-design="hell"] #am .mgtitel{font-weight:600}:root[data-design="hell"] #am .onni.an{font-weight:700}:root[data-design="hell"] #am .cpphasen .j{font-weight:700}:root[data-design="hell"] #am .cpkontakt>i{font-weight:700}:root[data-design="hell"] #am .cpkontakt b{font-weight:700}:root[data-design="hell"] #am .cpwoche em i{font-weight:700}:root[data-design="hell"] #am .cpwoche b{font-weight:500}:root[data-design="hell"] #am .cpml p b{font-weight:700}:root[data-design="hell"] #am .cpml button{font-weight:700}:root[data-design="hell"] #am .pekw b{font-weight:600}:root[data-design="hell"] #am .aukette b{font-weight:600}:root[data-design="hell"] #kal .ktitel b{font-weight:600}:root[data-design="hell"] #kal .kzblab b,:root[data-design="hell"] #kal .kzkopf b{font-weight:600}:root[data-design="hell"] #kal .kseite h3{font-weight:600}:root[data-design="hell"] #am .bpliste .bprow b{font-weight:600}:root[data-design="hell"] #kal .kmk{font-weight:700}:root[data-design="hell"] #kal .kmg em{font-weight:700}:root[data-design="hell"] #kal .kmg button.an{font-weight:700}:root[data-design="hell"] #kal .kwtag small{font-weight:700}:root[data-design="hell"] #kal .kwtag b{font-weight:600}:root[data-design="hell"] #kal .kw24{font-weight:700}:root[data-design="hell"] #kal .kwgl{font-weight:700}:root[data-design="hell"] #kal .kwb b{font-weight:700}:root[data-design="hell"] #am .mgakt .amans button.an{font-weight:700}:root[data-design="hell"] #am .tbk~.amnotiz .amnk small{font-weight:700}:root[data-design="hell"] #am .tbk~.amnotiz .ambadge{font-weight:700}:root[data-design="hell"] #am .tbk~.amnotiz .amwahl button{font-weight:700}:root[data-design="hell"] #am .tbfelder>span{font-weight:700}:root[data-design="hell"] #am .tbfelder .tbmangel{font-weight:700}:root[data-design="hell"] #am .tbverlauf small{font-weight:700}:root[data-design="hell"] #am .tbverlauf button{font-weight:700}:root[data-design="hell"] #am .tbk~.amnotiz.tbedit .amnk h4 input{font-weight:600}:root[data-design="hell"] #am .bpneu .amfeld>small{font-weight:700}:root[data-design="hell"] #am .bpneu .amaktion .amja{font-weight:700}:root[data-design="hell"] #am :is(.brreiter,.glreiter)>button{font-weight:700}:root[data-design="hell"] #am .brreiter .brlauf button.ja{font-weight:700}:root[data-design="hell"] #am .brliste .brgr>small{font-weight:700}:root[data-design="hell"] #am .brliste button.an{font-weight:700}:root[data-design="hell"] #am .brliste button em{font-weight:500}:root[data-design="hell"] #am .brseite h4{font-weight:600}:root[data-design="hell"] #am .brlab{font-weight:700}:root[data-design="hell"] #am .brfakten span,:root[data-design="hell"] #am .brfakten span:nth-child(odd){font-weight:700}:root[data-design="hell"] #am .brfakten b{font-weight:700}:root[data-design="hell"] #am .brseite .brzu button.ja{font-weight:700}:root[data-design="hell"] #am .gltab .kurow b{font-weight:700}:root[data-design="hell"] #am .gltab .kurow em{font-weight:700}:root[data-design="hell"] #am .gllab{font-weight:700}:root[data-design="hell"] #am .gllab button{font-weight:700}:root[data-design="hell"] #am .glzeile b{font-weight:600}:root[data-design="hell"] #am .gldk small{font-weight:700}:root[data-design="hell"] #am .gldk .ambadge{font-weight:700}:root[data-design="hell"] #am .gldk h3{font-weight:600}:root[data-design="hell"] #am .glverkn b{font-weight:500}:root[data-design="hell"] #am .petab .petk{font-weight:700}:root[data-design="hell"] #am .petab .perow b{font-weight:600}:root[data-design="hell"] #am .petab .peava{font-weight:700}:root[data-design="hell"] #am .petab .petf{font-weight:700}:root[data-design="hell"] #am .peava.gross{font-weight:700}:root[data-design="hell"] #am .pekwbox b{font-weight:700}:root[data-design="hell"] #am .pekwbox em{font-weight:600}:root[data-design="hell"] #am .pewoche.pebalken span{font-weight:700}:root[data-design="hell"] #am .peabz button{font-weight:700}:root[data-design="hell"] #am .eik{font-weight:700}:root[data-design="hell"] #am .eik b{font-weight:700}:root[data-design="hell"] #am .eiz button{font-weight:700}:root[data-design="hell"] #am .tbwahl button{font-weight:500}:root[data-design="hell"] #am .tbwahl button b{font-weight:700}:root[data-design="hell"] #am .tbwahl button small{font-weight:500}:root[data-design="hell"] #am .tbwneu{font-weight:500}:root[data-design="hell"] #am .auehpop>small{font-weight:700}:root[data-design="hell"] #am .auehpop>button b{font-weight:700}:root[data-design="hell"] #am .tbk~.amnotiz .tbwahl small{font-weight:500}:root[data-design="hell"] #am .gldk.glform h3 input{font-weight:600}:root[data-design="hell"] #am .glform input.kukz{font-weight:700}:root[data-design="hell"] #am .glwahl button.an,:root[data-design="hell"] #am .glform .pequal button.an{font-weight:700}:root[data-design="hell"] #am .peverl2 b{font-weight:600}:root[data-design="hell"] #am .glab h4{font-weight:600}:root[data-design="hell"] #am .glab h4 small{font-weight:500}:root[data-design="hell"] #am .kuform .glul{font-weight:700}:root[data-design="hell"] #am .glabs .glul>input,:root[data-design="hell"] #am .glabs .glul>textarea{font-weight:500}:root[data-design="hell"] #am .glabs .glul>input.kukz{font-weight:700}:root[data-design="hell"] #am .glabs .pealias input{font-weight:500}:root[data-design="hell"] #am .glabs .peverl2{font-weight:500}:root[data-design="hell"] #am .glul .glwahl button,:root[data-design="hell"] #am .glul .pequal button,:root[data-design="hell"] #am .glul .pealias span{font-weight:500}:root[data-design="hell"] #am .glul .glwahl button.an,:root[data-design="hell"] #am .glul .pequal button.an{font-weight:700}:root[data-design="hell"] #am .mgnix b{font-weight:600}:root[data-design="hell"] #am .aminhalt:has(.kuneu,.kuzur) .glreiter>button{font-weight:500}:root[data-design="hell"] #am .aminhalt:has(.kuneu,.kuzur) .gltab .kurow b{font-weight:600}:root[data-design="hell"] #am .aminhalt:has(.kuneu,.kuzur) .gltab .kurow em{font-weight:500}:root[data-design="hell"] #am .aminhalt:has(.kuneu,.kuzur) :is(.tbfelder>span,.gllab,.gldk small){font-weight:500}:root[data-design="hell"] #am .aminhalt:has(.kuneu,.kuzur) .glzeile b,:root[data-design="hell"] #am .aminhalt:has(.kuneu,.kuzur) .glverkn b{font-weight:500}:root[data-design="hell"] #am .fijahr button.an{font-weight:700}:root[data-design="hell"] #am .fiinfo b{font-weight:700}:root[data-design="hell"] #am .kukon b{font-weight:700}:root[data-design="hell"] #am .kukfuss .haupt{font-weight:700}:root[data-design="hell"] #am .brliste .brfragq b{font-weight:700}:root[data-design="hell"] #am .amp{font-weight:500}@media (max-width:760px){:root[data-design="hell"] #am .onleiste>button{font-weight:600}:root[data-design="hell"] #am .onkopf b{font-weight:700}:root[data-design="hell"] #am .amleerk button{font-weight:700}:root[data-design="hell"] #am .hykach b{font-weight:600}:root[data-design="hell"] #am .hyrt b{font-weight:600}:root[data-design="hell"] #kal .kwad b{font-weight:600}:root[data-design="hell"] #kal .kwat b{font-weight:600}:root[data-design="hell"] #kal .kwae.kneben b{font-weight:500}:root[data-design="hell"] #kal .kjkopf small{font-weight:500}}@media (max-width:760px){:root[data-design="hell"] #kal .kwtag b{font-weight:700}:root[data-design="hell"] #kal .kwb small{font-weight:700}:root[data-design="hell"] #am .brliste .brgr>small{font-weight:500}:root[data-design="hell"] #am .brliste button.an{font-weight:500}}@media (max-width:760px){:root[data-design="hell"] :is(#am .asschl,#pk .pkzu) .aszur{font-weight:600}}@media (max-width:760px){:root[data-design="hell"] #kal .knav .kpill{font-weight:700}:root[data-design="hell"] #kal .kplus:before{font-weight:600}}@media (max-width:760px){:root[data-design="hell"] #am .auhfz b{font-weight:700}:root[data-design="hell"] #am .mgfelder>div{font-weight:700}:root[data-design="hell"] #am .mgfelder>div small{font-weight:500}:root[data-design="hell"] #am .mgfelder>.mgbreit{font-weight:500}:root[data-design="hell"] #am .hyzur{font-weight:600}:root[data-design="hell"] #am .kukneu{font-weight:700}}@media (max-width:760px){:root[data-design="hell"] #am .auknoepfe button,:root[data-design="hell"] #am .auknoepfe a{font-weight:700}:root[data-design="hell"] #am .aukh button{font-weight:700}:root[data-design="hell"] #am .aminhalt>.amkopf>.ampf:after,:root[data-design="hell"] #am .aminhalt>.mgekopf>.ampf:after{font-weight:600}:root[data-design="hell"] #am .hyprz b{font-weight:700}:root[data-design="hell"] #kal .kform .kzur{font-weight:600}:root[data-design="hell"] #am .mgchips button{font-weight:600}:root[data-design="hell"] #am .mgbst button{font-weight:700}:root[data-design="hell"] #am .auarten button b{font-weight:700}:root[data-design="hell"] #am .opeinst summary{font-weight:700}}:root[data-design="hell"] .sprow b{font-weight:700}:root[data-design="hell"] .spstart{font-weight:700}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.33';
+const ON_VER='0.10.37';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -3082,8 +3197,10 @@ async function datenBereit(){if(!ROOT)return false;if(!(await ordnerRecht(false)
  return true}
 async function ordnerWaehlen(){const h=await showDirectoryPicker({id:'onstand',mode:'readwrite'});ROOT=h;if(!(await ordnerRecht(true)))return false;try{await IDB(st=>st.put(h,'root'))}catch(e){}return datenBereit()}
 // Druckansicht: Blatt #bpdruck holen bzw. anlegen und Drucken starten (in der iPhone-App entsteht daraus ein Text-PDF, siehe kern/nativ.js und kern/pdftext.js)
+// Briefe (Klasse angebot): Inhalt in eine Seiten-Tabelle, deren Kopf/Fuß den Rand auf jeder Seite macht, dazu Falzmarken
+function druckSeite(d){if(!d||!d.classList.contains('angebot')||d.querySelector(':scope>.seite'))return;const s=[...d.children];const t=document.createElement('table');t.className='seite';t.innerHTML='<thead class="drand"><tr><td><i></i></td></tr></thead><tfoot class="drand"><tr><td><i></i></td></tr></tfoot><tbody><tr class="seitez"><td></td></tr></tbody>';const td=t.querySelector('tbody td');s.forEach(x=>td.appendChild(x));d.appendChild(t);d.insertAdjacentHTML('afterbegin','<i class="falz f1"></i><i class="falz f2"></i><i class="falz f3"></i>')}
 function druckBlatt(kl){let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className=kl;return d}
-function druckStart(d){document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
+function druckStart(d){druckSeite(d);document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
 // Onstand-Logo (Variante B, Nov 2026): Achteck mit spitzen Ecken, oben die Kupferkante – an beiden oberen Ecken schräg auf Gehrung geschnitten,
 // damit Kupfer und Linie sich die Ecke genau teilen. Die Kante ist als eigene Fläche gezeichnet (keine Kappe, die übersteht, kein clipPath).
 // d = halbe Linienstärke in Logo-Einheiten (100 × 100). onLogoTeile liefert die Punkte für SVG und PDF.
@@ -3171,7 +3288,7 @@ const onMz=(k,t,s)=>`<button type="button" data-m="${k}" class="onmz"><svg class
 function onMenu(){const m=AM_EL.querySelector('.onmenu');if(m.classList.contains('an')){m.classList.remove('an');return}const {firma,ini,logo}=onInitialen();
  let pk=0,si='';try{pk=(PK_CACHE||[]).length}catch(e){}try{const z=localStorage.getItem('onstandSiLetzt');if(z)si=new Date(z).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}catch(e){}
  m.innerHTML=`<div class="mk"><span class="av">${logo?`<img src="${esc(logo)}" alt="">`:ON_LOGO}</span><div><b>${esc(firma)}</b><small>${esc(ON_PROFIL.name||'')}</small></div></div>
-  ${onMz('profil','Profil','Name, Rolle')}${onMz('firma','Firma &amp; Preise','Logo, Steuernr., IBAN')}${onMz('personal','Mitarbeiter','')}${onMz('mahn','Mahnwesen','')}
+  ${onMz('profil','Profil','Name, Rolle')}${typeof spName==='function'?onMz('sprache','Sprache',spName(spAkt())):''}${onMz('firma','Firma &amp; Preise','Logo, Steuernr., IBAN')}${onMz('personal','Mitarbeiter','')}${onMz('mahn','Mahnwesen','')}
   ${onMz('pk','Papierkorb',pk?String(pk):'')}${onMz('si','Sicherung',si)}${onMz('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}${onMz('ordner','Datenordner',GED&&GED.handy?'dieses Gerät':esc(ROOT?ROOT.name:'—'))}<hr>
   <div class="ondesign"><span>DESIGN</span><div>${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}"><i style="background:linear-gradient(135deg,${d.f[0]} 50%,${d.f[1]} 50%)"></i>${d.name}</button>`).join('')}</div></div><div class="ondesign onschrift"><span>SCHRIFT</span><div>${[['klassisch','Fraunces + Arial'],['manrope','Manrope']].map(([k,n])=>`<button type="button" data-schrift="${k}" class="${onSchriftAkt()===k?'an':''}" aria-pressed="${onSchriftAkt()===k}">${n}</button>`).join('')}</div></div><hr>
   ${onMz('abo','Abo &amp; KI-Paket',typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht')}${typeof APP!=='undefined'&&APP.standalone?'':onMz('app','Als App installieren','PC &amp; Handy')}${onMz('rundgang','Rundgang','wiederholen')}${onMz('ueber','Über Onstand','v'+ON_VER)}`;
@@ -3628,18 +3745,18 @@ function auMalen(inh){if(AUV.op)return opMalen(inh);if(AUV.firma)return auFirmaM
  const sum=st=>AU_A.filter(a=>a.st===st).reduce((s,a)=>s+auBrutto(a),0),cnt=st=>AU_A.filter(a=>a.st===st).length;
  const breit=(inh.clientWidth||innerWidth)>=980,AI=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${{fi:'<path d="M4 20V8l5-3v15M9 20V5l11 4v11M3 20h18"/>',pl:'<path d="M12 5v14M5 12h14"/>'}[k]}</svg>`;
  if(AUV.vs==null||AUV.vs>=AU_A.length)AUV.vs=0;if(AUV.vr==null||AUV.vr>=AU_R.length)AUV.vr=0;AUV.breit=breit;
- inh.innerHTML=`<div class="mgk"><div><span class="amtt">AUFTRÄGE</span><h2 class="mgh">${{ang:'Angebote',rech:'Rechnungen',offen:'Offene Posten',eing:'Eingang'}[AUV.tab]||'Angebote'}</h2></div><div class="mgakt"><button type="button" class="aufir" title="Firmendaten und Preisliste">${AI('fi')}Firma &amp; Preise</button>${AUV.tab==='ang'?`<span class="tr"></span><button type="button" class="haupt auneu">${AI('pl')}Angebot</button>`:AUV.tab==='rech'?`<span class="tr"></span><button type="button" class="haupt arneu">${AI('pl')}Rechnung</button>`:''}</div></div>
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">AUFTRÄGE</span><h2 class="mgh">${{ang:'Angebote',rech:'Rechnungen',offen:'Offene Posten',eing:'Eingang',exp:'Export'}[AUV.tab]||'Angebote'}</h2></div><div class="mgakt"><button type="button" class="aufir" title="Firmendaten und Preisliste">${AI('fi')}Firma &amp; Preise</button>${AUV.tab==='ang'?`<span class="tr"></span><button type="button" class="haupt auneu">${AI('pl')}Angebot</button>`:AUV.tab==='rech'?`<span class="tr"></span><button type="button" class="haupt arneu">${AI('pl')}Rechnung</button>`:''}</div></div>
  <div class="aux">
-  <div class="autabs" role="tablist"><button type="button" data-t="ang" class="${AUV.tab==='ang'?'an':''}">ANGEBOTE<em>${AU_A.length}</em></button><button type="button" data-t="rech" class="${AUV.tab==='rech'?'an':''}">RECHNUNGEN<em>${AU_R.length}</em></button><button type="button" data-t="offen" class="${AUV.tab==='offen'?'an':''}">OFFEN<em class="${opDran().length?'rot':''}">${opListe().length}</em></button><button type="button" data-t="eing" class="${AUV.tab==='eing'?'an':''}">EINGANG${typeof EG!=='undefined'&&EG_OK?`<em>${EG.length}</em>`:''}</button></div>
+  <div class="autabs" role="tablist"><button type="button" data-t="ang" class="${AUV.tab==='ang'?'an':''}">ANGEBOTE<em>${AU_A.length}</em></button><button type="button" data-t="rech" class="${AUV.tab==='rech'?'an':''}">RECHNUNGEN<em>${AU_R.length}</em></button><button type="button" data-t="offen" class="${AUV.tab==='offen'?'an':''}">OFFEN<em class="${opDran().length?'rot':''}">${opListe().length}</em></button><button type="button" data-t="eing" class="${AUV.tab==='eing'?'an':''}">EINGANG${typeof EG!=='undefined'&&EG_OK?`<em>${EG.length}</em>`:''}</button><button type="button" data-t="exp" class="${AUV.tab==='exp'?'an':''}">EXPORT</button></div>
   ${AUV.tab==='ang'?`<div class="aukette">${['entwurf','verschickt','angenommen','abgelehnt'].map(s=>`<div data-fs="${s}"><small>${AU_ST[s][0]}</small><b>${cnt(s)}</b><span>${auEur(sum(s))}</span></div>`).join('')}</div>
    ${AU_A.length?`<div class="${breit?'ausplit':'aueins'}"><div class="aual">${AU_A.map((a,i)=>{const b=BST[a.b];return `<button type="button" class="auar${breit&&i===AUV.vs?' sel':''}" data-i="${i}" data-st="${a.st}" data-j="${String(a.d||'').slice(0,4)}" data-e="${auBrutto(a)}" data-su="${esc(b?b.kontakt||'':'')}" style="--bc:${b?b.c:'var(--aj)'}"><i></i><span><b>${esc(a.t||'ohne Titel')}</b><small>${a.nr} · ${b?esc(b.k)+' ':''}${esc(a.b)} · ${auDat(a.d)}</small><span class="aust" style="--sc:${AU_ST[a.st][1]}">${AU_ST[a.st][0]}</span></span><span class="aur"><strong>${auEur(auBrutto(a))}</strong><small>${a.pos.length} ${a.pos.length===1?'Position':'Positionen'}</small></span></button>`}).join('')}</div>${breit?auVorschau(AU_A[AUV.vs]):''}</div>`:'<div class="amleer"><span>Noch kein Angebot.<br>Oben rechts auf „+ Angebot“.</span></div>'}`
-  :AUV.tab==='rech'?arListeHtml():AUV.tab==='eing'?erEingangHtml():opListeHtml()}
+  :AUV.tab==='rech'?arListeHtml():AUV.tab==='eing'?erEingangHtml():AUV.tab==='exp'?exHtml():opListeHtml()}
  </div>`;
  inh.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{AUV.tab=b.dataset.t;auMalen(inh)});
  inh.querySelectorAll('.auar[data-i]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(breit&&AUV.vs!==i){AUV.vs=i;auMalen(inh);return}AUV.offen=AU_A[i];AUV.bpBox=AUV.katBox=false;auMalen(inh)});
  inh.querySelectorAll('[data-vo]').forEach(b=>b.onclick=()=>{if(b.dataset.vo==='a'){AUV.offen=AU_A[AUV.vs];AUV.bpBox=AUV.katBox=false}else AUV.rech=AU_R[AUV.vr];auMalen(inh)});
  inh.querySelectorAll('[data-vpdf]').forEach(b=>b.onclick=()=>{try{b.dataset.vpdf==='a'?auPdf(AU_A[AUV.vs]):arPdf(AU_R[AUV.vr])}catch(e){}});
- const n=inh.querySelector('.auneu');if(n)n.onclick=()=>{AUV.neu={b:''};auMalen(inh)};inh.querySelector('.aufir').onclick=()=>{AUV.firma=true;auMalen(inh)};inh.querySelectorAll('.auar[data-r]').forEach(b=>b.onclick=()=>{const i=+b.dataset.r;if(breit&&AUV.vr!==i){AUV.vr=i;auMalen(inh);return}AUV.rech=AU_R[i];auMalen(inh)});const rn=inh.querySelector('.arneu');if(rn)rn.onclick=()=>{AUV.rechNeu=true;auMalen(inh)};if(AUV.tab==='offen')opBinden(inh);if(AUV.tab==='eing')erEingangBinden(inh);
+ const n=inh.querySelector('.auneu');if(n)n.onclick=()=>{AUV.neu={b:''};auMalen(inh)};inh.querySelector('.aufir').onclick=()=>{AUV.firma=true;auMalen(inh)};inh.querySelectorAll('.auar[data-r]').forEach(b=>b.onclick=()=>{const i=+b.dataset.r;if(breit&&AUV.vr!==i){AUV.vr=i;auMalen(inh);return}AUV.rech=AU_R[i];auMalen(inh)});const rn=inh.querySelector('.arneu');if(rn)rn.onclick=()=>{AUV.rechNeu=true;auMalen(inh)};if(AUV.tab==='offen')opBinden(inh);if(AUV.tab==='eing')erEingangBinden(inh);if(AUV.tab==='exp')exBinden(inh);
  if(AUV.tab==='ang'||AUV.tab==='rech')fiLeiste(inh,{key:'au'+AUV.tab,zeilen:'.auar',vor:'.ausplit,.aueins',kette:'.aukette>div[data-fs]',jahre:true,summe:true,platz:'Kunde, Nummer, Titel oder Betrag',
   einheit:AUV.tab==='ang'?['Angebot','Angebote']:['Rechnung','Rechnungen'],status:AUV.tab==='ang'?[['entwurf','Entwurf'],['verschickt','Verschickt'],['angenommen','Angenommen'],['abgelehnt','Abgelehnt']]:[['entwurf','Entwurf'],['gestellt','Offen'],['ueber','Überfällig'],['bezahlt','Bezahlt']]})}
 // Belegvorschau rechts neben der Liste (breite Bildschirme): Blatt mit Briefkopf, Positionen und Summen
@@ -3720,7 +3837,7 @@ async function auBauplan(inh,a){const bx=inh.querySelector('.aubpbox');if(bx.inn
  bx.querySelectorAll('[data-r]').forEach(x=>x.onclick=()=>{const k=x.dataset.r+'|'+x.dataset.i;sel[k]=!sel[k];x.classList.toggle('an',!!sel[k])});
  bx.querySelector('.aubpok').onclick=()=>{const neu=[];Object.keys(sel).filter(k=>sel[k]).forEach(k=>{const [ri,i]=k.split('|').map(Number),r=R[ri],x=AU_P[i];const p={n:x.n,e:x.e,p:x.p,l:x.l,m:Math.round(r[x.f]*100)/100,her:'aus Bauplan · '+(R.some(y=>y.et!==r.et)?r.et+' ':'')+r.name+' '+AU_FLTXT[x.f]};a.pos.push(p);neu.push(p)});if(!neu.length){mgToast(inh,'Erst Leistungen antippen');return}AUV.hl=neu;auAend(a);auMalen(inh);mgToast(inh,neu.length+(neu.length===1?' Position':' Positionen')+' aus dem Bauplan')}}
 // Firmendaten (Browser) + Preisliste (Gedächtnis)
-function auFirmaMalen(inh){const F=auFirma(),FE=[['name','FIRMA','ESTETA GmbH'],['inhaber','GESCHÄFTSFÜHRER / INHABER',''],['str','STRASSE','' ],['ort','PLZ ORT',''],['tel','TELEFON',''],['mail','E-MAIL',''],['stnr','STEUERNUMMER',''],['ust','UST-IDNR',''],['bank','BANK',''],['iban','IBAN',''],['bic','BIC',''],['hr','HANDELSREGISTER','z. B. HRB 12345, AG Frankfurt'],['gueltig','ANGEBOT GÜLTIG (TAGE)','30']];
+function auFirmaMalen(inh){const F=auFirma(),FE=[['name','FIRMA','ESTETA GmbH'],['zusatz','ZEILE UNTER DEM NAMEN','z. B. Trockenbau · Fliesen · Innenausbau'],['inhaber','GESCHÄFTSFÜHRER / INHABER',''],['str','STRASSE','' ],['ort','PLZ ORT',''],['tel','TELEFON',''],['mail','E-MAIL',''],['web','WEBSEITE','z. B. meinbetrieb.de'],['stnr','STEUERNUMMER',''],['ust','UST-IDNR',''],['bank','BANK',''],['iban','IBAN',''],['bic','BIC',''],['hr','HANDELSREGISTER','z. B. HRB 12345, AG Frankfurt'],['gueltig','ANGEBOT GÜLTIG (TAGE)','30']];
  inh.innerHTML=`<div class="amkopf"><span class="amtt">FIRMA &amp; PREISE</span><button type="button" class="ampf auzur" aria-label="Zurück">‹</button></div>
  <div class="aux"><div class="aukarte aufm"><div class="aukh"><b>FIRMENDATEN FÜRS PDF</b></div><p class="auhin">Bleiben nur in diesem Browser gespeichert (wie die Schlüssel) – nicht im Gedächtnis.</p><div class="auraster">${FE.map(([k,t,ph])=>`<label>${t}<input data-k="${k}" value="${esc(F[k]||'')}" placeholder="${esc(ph)}"></label>`).join('')}</div></div>
   <div class="aukarte"><div class="aukh"><b>PREISLISTE (NETTO)</b><button type="button" class="aupneu">+ LEISTUNG</button></div>${AU_P.some(x=>x.bsp)?'<p class="auhin">Beispielpreise von Onstand – bitte deine echten Preise eintragen.</p>':''}
@@ -3740,7 +3857,7 @@ function auPdf(a){const F=auFirma(),b=BST[a.b]||{},n=auNetto(a),g=+F.gueltig||30
   <table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Menge</th><th class="aur">Einzelpreis</th><th class="aur">Gesamt</th></tr>${a.pos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}${p.her?'<br><span class="gr">'+esc(p.her.replace('aus Bauplan · ',''))+'</span>':''}</td><td class="aur">${auZ(p.m)} ${esc(p.e)}</td><td class="aur">${auEur(p.p)}</td><td class="aur">${auEur(p.p*p.m)}</td></tr>`).join('')}</table>
   <div class="su"><div><span>Summe netto</span><span>${auEur(n)}</span></div><div><span>zzgl. 19 % MwSt.</span><span>${auEur(n*.19)}</span></div><div class="ge"><span>Angebotssumme</span><span>${auEur(n*1.19)}</span></div><div class="gr"><span>darin Lohnkosten (brutto)</span><span>${auEur(auLohn(a)*1.19)}</span></div></div>
   <p>Wir freuen uns auf Ihren Auftrag.</p><p>Mit freundlichen Grüßen<br>${esc(F.inhaber||F.name||'')}</p>
-  <div class="fz"><div>${esc(F.name||'')}<br>${esc(F.str||'')}<br>${esc(F.ort||'')}</div><div>${F.tel?'Tel. '+esc(F.tel)+'<br>':''}${esc(F.mail||'')}<br>${F.stnr?'St.-Nr. '+esc(F.stnr):''}${F.ust?'<br>USt-IdNr. '+esc(F.ust):''}</div><div>${esc(F.bank||'')}<br>${F.iban?'IBAN '+esc(F.iban):''}<br>${F.bic?'BIC '+esc(F.bic):''}${F.hr?'<br>'+esc(F.hr):''}</div></div>${ON_MARKE}</section>`;
+  ${auFuss(F)}</section>`;
  druckStart(d)}
 // ===== Schritt 2 (v15.14): Rechnungen – Abschlag (Prozent oder Leistungsstand), Schlussrechnung nach Aufmaß, Regie aus dem Tagebuch, freie Rechnung =====
 // Probe „Onstand Rechnungen“. Entwurf → Rechnung stellen (feste fortlaufende Nummer R-JJJJ-NNN, danach gesperrt) → bezahlt.
@@ -3850,7 +3967,8 @@ function arMalen(inh){const r=AUV.rech,a=arAng(r),b=BST[r.b]||{},fest=r.st!=='en
  const bz=inh.querySelector('.arbez');if(bz)bz.onclick=async()=>{const rest=opOffen(r);if(rest>0)(r.zahl=r.zahl||[]).push({d:mgHeute(),b:rest});r.st='bezahlt';r.bez=mgHeute();await arSpeichern(r);mgToast(inh,r.nr+' als bezahlt markiert');arMalen(inh)};
  if(!fest&&!AU_R.includes(r)){AU_R.unshift(r);arAend(r)}}
 // Rechnungs-PDF mit Pflichtangaben
-function arPdf(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf')arBerechne(r);let d=druckBlatt('angebot');
+function arPdf(r){druckStart(arPdfBlatt(r))}
+function arPdfBlatt(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf')arBerechne(r);let d=druckBlatt('angebot');
  const zeile=(n,v,k)=>`<div class="${k||''}"><span>${n}</span><span>${v}</span></div>`;let tab='',sum='';
  if(r.art==='abschlag'&&a){tab=r.modus==='ls'?`<table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Auftrag</th><th class="aur">Stand</th><th class="aur">Leistung</th></tr>${a.pos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}</td><td class="aur">${auEur(p.p*p.m)}</td><td class="aur">${r.ls[i]||0} %</td><td class="aur">${auEur(p.p*p.m*(r.ls[i]||0)/100)}</td></tr>`).join('')}</table>`:`<p>Leistungsstand gesamt ${r.proz} % von ${auEur(auNetto(a))} netto (Angebot ${esc(a.nr)}).</p>`;
   sum=zeile('Leistungsstand gesamt netto',auEur(r.kum))+(r.st==='entwurf'?arAbschlaege(a,r):r.abz||[]).map(x=>zeile('abzgl. '+esc(x.t)+' ('+esc(x.nr)+')','− '+auEur(x.netto),'gr')).join('')+zeile('Abschlag netto',auEur(r.netto),'st')}
@@ -3863,8 +3981,8 @@ function arPdf(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf
   <h1>${esc(r.t)}</h1><p>Sehr geehrte Damen und Herren,<br>${r.bezug?'zu unserer Rechnung '+esc(r.bezug)+' erstellen wir folgende '+esc(AR_ART[r.art])+':':'für die ausgeführten Leistungen berechnen wir Ihnen:'}</p>${tab}<div class="su">${sum}</div>
   ${r.p13b?'<p><b>Steuerschuldnerschaft des Leistungsempfängers (§ 13b UStG).</b> Die Umsatzsteuer schuldet der Leistungsempfänger.</p>':''}
   ${r.bezug?`<p>${r.art==='storno'?'Hiermit stornieren wir die Rechnung '+esc(r.bezug)+' vom '+auDat(r.bezugD)+' in voller Höhe.':'Hiermit korrigieren wir die Rechnung '+esc(r.bezug)+' vom '+auDat(r.bezugD)+' um den oben genannten Betrag.'} Bereits gezahlte Beträge verrechnen bzw. erstatten wir.</p>`:`<p>Bitte überweisen Sie den Betrag bis zum ${auDat(arFaellig(r))} ohne Abzug${r.nr?' unter Angabe der Rechnungsnummer '+esc(r.nr):''}.</p>${F.iban?`<div class="zb"><div><small>Zahlbar bis</small>${auDat(arFaellig(r))}</div><div><small>IBAN${F.bank?' · '+esc(F.bank):''}</small>${esc(F.iban)}</div><div><small>Verwendungszweck</small>${esc(r.nr||'Rechnungsnummer')}</div></div>`:''}`}<p>Mit freundlichen Grüßen<br>${esc(F.inhaber||F.name||'')}</p>
-  <div class="fz"><div>${esc(F.name||'')}<br>${esc(F.str||'')}<br>${esc(F.ort||'')}</div><div>${F.tel?'Tel. '+esc(F.tel)+'<br>':''}${esc(F.mail||'')}<br>${F.stnr?'St.-Nr. '+esc(F.stnr):''}${F.ust?'<br>USt-IdNr. '+esc(F.ust):''}</div><div>${esc(F.bank||'')}<br>${F.iban?'IBAN '+esc(F.iban):''}<br>${F.bic?'BIC '+esc(F.bic):''}${F.hr?'<br>'+esc(F.hr):''}</div></div>${ON_MARKE}</section>`;
- druckStart(d)}
+  ${auFuss(F)}</section>`;
+ return d}
 AM_FUNK.push({beruf:'handwerk',id:'auftraege',name:'AUFTRÄGE',ico:'<path d="M14.5 5.5A5.5 5.5 0 1 0 14.5 14.5"/><path d="M4 8.5h7M4 11.5h7"/>',zeigen:auZeigen,zahl:()=>0});
 // v15.14.1: Neu-Zeichnen derselben Ansicht (z. B. nach ✕ Löschen) behält die Scroll-Position
 (function(){const id=o=>o==null?'':typeof o==='object'?String(o.id||o.nr||'x'):String(o);
@@ -3886,12 +4004,14 @@ function auEinheit(btn,akt,cb){document.querySelectorAll('.auehpop').forEach(x=>
  setTimeout(()=>{document.addEventListener('pointerdown',aus,true);document.addEventListener('keydown',esc2,true)},0)}
 
 // ---------- Briefkopf und Infoblock für Angebot, Rechnung und Mahnschreiben (Druck/PDF) ----------
-function auBriefKopf(F){return `<div class="bk"><b>${esc(F.name||'')}</b><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||'')].filter(Boolean).join('<br>')}</span></div>`}
+function auBriefKopf(F){return `<div class="bk"><div><b>${esc(F.name||'')}</b>${F.zusatz?`<small>${esc(F.zusatz)}</small>`:''}</div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||''),esc(F.web||'')].filter(Boolean).join('<br>')}</span></div>`}
+// Fußzeile (drei Spalten) + Onstand-Hinweis, gleich für alle Briefe
+function auFuss(F){const z=a=>a.filter(Boolean).join('<br>');return `<div class="fz"><div>${z([F.name?'<b>'+esc(F.name)+'</b>':'',esc(F.str||''),esc(F.ort||''),F.inhaber?'Geschäftsführer/Inhaber: '+esc(F.inhaber):''])}</div><div>${z([F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||''),F.stnr?'St.-Nr. '+esc(F.stnr):'',F.ust?'USt-IdNr. '+esc(F.ust):''])}</div><div>${z([esc(F.bank||''),F.iban?'IBAN '+esc(F.iban):'',F.bic?'BIC '+esc(F.bic):'',esc(F.hr||'')])}</div></div>${ON_MARKE}`}
 function auInfo(titel,Z){return `<div class="info"><b>${esc(titel)}</b><dl>${Z.filter(z=>z&&z[1]).map(([l,v])=>`<dt>${l}</dt><dd>${v}</dd>`).join('')}</dl></div>`}
 
 // ---------- Onstand-Hinweis auf Angebot, Rechnung, Mahnschreiben, Stundenzettel: kleines Logo + Name, unten rechts unter der Fußzeile ----------
 const ON_MARKE_SVG=onLogoSvg('#1b2230','#C88A52',5.5,'aria-hidden="true"');
-const ON_MARKE=`<div class="ons">${ON_MARKE_SVG}<span>Erstellt mit <b>Onstand</b></span><i>Software für Handwerksbetriebe</i></div>`;
+const ON_MARKE=`<div class="ons">${ON_MARKE_SVG}<span>Erstellt mit <b>Onstand</b></span><i>·</i><span>onstand.de</span><i>·</i><span>info@onstand.de</span></div>`;
 // ===== AUFTRÄGE · Schritt 3: Offene Posten (v15.15, Probe „Onstand Offene Posten“) =====
 // Jede gestellte Rechnung ist ein offener Posten, bis sie bezahlt ist. Onstand rechnet die Termine für Zahlungserinnerung,
 // 1. und 2. Mahnung, schreibt die Texte vor (Verzugszinsen nach § 288 BGB), erfasst Teilzahlungen und erstellt
@@ -3945,7 +4065,7 @@ function opBriefPdf(r,txt){const F=auFirma(),b=BST[r.b]||{};let d=druckBlatt('an
  const z=String(txt||'').split('\n'),bt=z.shift();
  d.innerHTML=`<section>${auBriefKopf(F)}<div class="ak"><div class="abs">${esc([F.name,F.str,F.ort].filter(Boolean).join(' · ')||'Firmendaten unter FIRMA & PREISE eintragen')}</div><div class="emp">${esc(b.kontakt||r.b)}<br>${esc(b.ort||'')}</div>${auInfo('Zahlungserinnerung',[['Datum',auDat(opHeute())],['Rechnung',esc(r.nr)],['Bauvorhaben',esc(r.b)]])}</div>
   <h1>${esc(bt)}</h1><div style="white-space:pre-wrap;line-height:1.6">${esc(z.join('\n').trim())}</div>
-  <div class="fz"><div>${esc(F.name||'')}<br>${esc(F.str||'')}<br>${esc(F.ort||'')}</div><div>${F.tel?'Tel. '+esc(F.tel)+'<br>':''}${esc(F.mail||'')}<br>${F.stnr?'St.-Nr. '+esc(F.stnr):''}${F.ust?'<br>USt-IdNr. '+esc(F.ust):''}</div><div>${esc(F.bank||'')}<br>${F.iban?'IBAN '+esc(F.iban):''}<br>${F.bic?'BIC '+esc(F.bic):''}</div></div>${ON_MARKE}</section>`;
+  ${auFuss(F)}</section>`;
  druckStart(d)}
 // ---------- Korrektur / Storno als eigenes Dokument ----------
 function opNeueNr(p){const j=new Date().getFullYear(),n=Math.max(0,...AU_R.filter(r=>r.nr&&r.nr.startsWith(p+'-'+j)).map(r=>+r.nr.split('-')[2]||0))+1;return `${p}-${j}-${String(n).padStart(3,'0')}`}
@@ -4158,7 +4278,7 @@ async function erPdf(M,xml){const L=PDFLib,{PDFName,PDFString,PDFHexString}=L,do
  const linie=(x1,y1,x2,y2,d,g)=>page.drawLine({start:{x:x1,y:y1},end:{x:x2,y:y2},thickness:d||.5,color:L.rgb(...(g||[.78,.8,.82]))});
  const platz=n=>{if(y-n<84){fuss();neueSeite()}};
  const fussZeilen=[[F.name,F.str,[F.plz,F.stadt].filter(Boolean).join(' ')],[F.tel?'Tel. '+F.tel:'',F.mail||'',F.stnr?'St.-Nr. '+F.stnr:'',F.ustNr?'USt-IdNr. '+F.ustNr:''],[F.bank||'',F.ibanNr?'IBAN '+F.iban:'',F.bicNr?'BIC '+F.bicNr:'',F.hr||'']].map(s=>s.filter(Boolean));
- const fuss=()=>{linie(RAND,74,W-RAND,74);fussZeilen.forEach((sp,i)=>sp.forEach((t,j)=>text(t,RAND+i*((W-2*RAND)/3),62-j*9,{s:7,g:GRAU})));(()=>{const s1='Erstellt mit ',s2='Onstand',s3='Software für Handwerksbetriebe',gs=7.5,gs3=7,yy=17,w3=erBreite(s3,false,gs3),w2=erBreite(s2,true,gs),w1=erBreite(s1,false,gs);let x=W-RAND-w3;text(s3,x,yy,{s:gs3,g:[.54,.58,.63]});x-=6;linie(x,yy-1.5,x,yy+6.5,.5,[.77,.79,.82]);x-=6+w2;text(s2,x,yy,{s:gs,b:true});x-=w1;text(s1,x,yy,{s:gs,g:GRAU});x-=4.5;const g=11.5,o=x-g,u=yy-2.6;{const t=onLogoTeile(5),sp=(d,c)=>page.drawSvgPath(d,{x:o,y:u+g,scale:g/100,color:c});sp(t.ring,L.rgb(...TINTE));sp('M'+t.kante.map(p=>p.join(' ')).join('L')+'Z',L.rgb(.784,.541,.322))}})()};
+ const fuss=()=>{linie(RAND,74,W-RAND,74);fussZeilen.forEach((sp,i)=>sp.forEach((t,j)=>text(t,RAND+i*((W-2*RAND)/3),62-j*9,{s:7,g:GRAU})));(()=>{const s1='Erstellt mit ',s2='Onstand',s3='onstand.de · info@onstand.de',gs=7.5,gs3=7,yy=17,w3=erBreite(s3,false,gs3),w2=erBreite(s2,true,gs),w1=erBreite(s1,false,gs);let x=W-RAND-w3;text(s3,x,yy,{s:gs3,g:[.54,.58,.63]});x-=6;linie(x,yy-1.5,x,yy+6.5,.5,[.77,.79,.82]);x-=6+w2;text(s2,x,yy,{s:gs,b:true});x-=w1;text(s1,x,yy,{s:gs,g:GRAU});x-=4.5;const g=11.5,o=x-g,u=yy-2.6;{const t=onLogoTeile(5),sp=(d,c)=>page.drawSvgPath(d,{x:o,y:u+g,scale:g/100,color:c});sp(t.ring,L.rgb(...TINTE));sp('M'+t.kante.map(p=>p.join(' ')).join('L')+'Z',L.rgb(.784,.541,.322))}})()};
  const feld=(x,yy,b,h,g)=>page.drawRectangle({x,y:yy,width:b,height:h,color:L.rgb(...g)});
  neueSeite();
  text(F.name||'',RAND,y,{s:17,b:true});[F.tel?'Tel. '+F.tel:'',F.mail||''].filter(Boolean).forEach((t,i)=>text(t,W-RAND,y+9-i*9.5,{s:7.5,g:GRAU,r:true}));y-=9;linie(RAND,y,W-RAND,y,1.6,TINTE);
@@ -4287,7 +4407,7 @@ async function egAusPdf(bytes){const L=PDFLib,doc=await L.PDFDocument.load(bytes
  throw new Error('In dieser PDF steckt keine XML-Rechnung.')}
 function egVorschlag(R,xml){const t=(R.ref+' '+R.pos.map(p=>p.n).join(' ')+' '+xml).toLowerCase(),L=Object.values(BST);return (L.find(b=>t.includes(b.name.toLowerCase()))||L.find(b=>b.k&&new RegExp('\\b'+b.k.toLowerCase()+'\\b').test(R.ref.toLowerCase()))||{}).name||''}
 const egName=R=>notizName(((R.von||'Lieferant').replace(/[\\/:*?"<>|#^[\]]/g,' ').slice(0,40)+' '+(R.nr||'ohne Nr')).replace(/\s+/g,' ').trim());
-async function egLaden(){const ix=String(await lesen(EG_ORD+'/Eingangsrechnungen.md')||''),N=[];for(const m of ix.matchAll(/\[\[([^\]]+)\]\]/g)){const z=bstZeilen(await lesen(EG_ORD+'/'+m[1]+'.md'));if(!z['Rechnungsnummer'])continue;N.push({datei:m[1],von:z['Lieferant']||'',nr:z['Rechnungsnummer'],d:z['Datum']||'',faellig:z['Fällig']||'',brutto:auNum(z['Brutto']||'0'),zahlbar:auNum(z['Zahlbetrag']||z['Brutto']||'0'),b:z['Baustelle']||''})}
+async function egLaden(){const ix=String(await lesen(EG_ORD+'/Eingangsrechnungen.md')||''),N=[];for(const m of ix.matchAll(/\[\[([^\]]+)\]\]/g)){const z=bstZeilen(await lesen(EG_ORD+'/'+m[1]+'.md'));if(!z['Rechnungsnummer'])continue;N.push({datei:m[1],von:z['Lieferant']||'',nr:z['Rechnungsnummer'],d:z['Datum']||'',faellig:z['Fällig']||'',netto:auNum(z['Netto']||'0'),steuer:auNum(z['Umsatzsteuer']||'0'),brutto:auNum(z['Brutto']||'0'),zahlbar:auNum(z['Zahlbetrag']||z['Brutto']||'0'),b:z['Baustelle']||''})}
  N.sort((a,b)=>String(b.d).localeCompare(String(a.d)));EG=N;EG_OK=true;return EG}
 async function egSpeichern(R,xml,bst){const n=egName(R),Q='Eingabe (Eingang)';if(EG.some(e=>e.datei===n))return n;
  await schreiben(EG_ORD+'/'+n+'.xml',xml);
@@ -4338,14 +4458,14 @@ function ptSchrift(ctx,key,tag){const L=PDFLib,meta=ER_SCHRIFT[key],bytes=erB64(
  const desc=ctx.register(ctx.obj({Type:'FontDescriptor',FontName:nm,Flags:32,FontBBox:meta.bbox,ItalicAngle:0,Ascent:meta.asc,Descent:meta.desc,CapHeight:meta.cap,StemV:key==='b'?120:80,FontFile2:ff}));
  return ctx.register(ctx.obj({Type:'Font',Subtype:'TrueType',BaseFont:nm,FirstChar:32,LastChar:255,Widths:meta.w,Encoding:'WinAnsiEncoding',FontDescriptor:desc}))}
 // Seitenrand und Format wie die @page-Regeln der jeweiligen Druckansicht
-function ptFormat(el){const k=' '+(el.className||'')+' ';if(/ (angebot|stz) /.test(k))return {quer:false,rand:[15,16,15,16]};if(/ sw /.test(k))return {quer:true,rand:[8,8,8,8]};return {quer:false,rand:[8,8,8,8]}}
+function ptFormat(el){const k=' '+(el.className||'')+' ';if(/ angebot /.test(k))return {quer:false,rand:[12,18,9,22]};if(/ stz /.test(k))return {quer:false,rand:[15,16,15,16]};if(/ sw /.test(k))return {quer:true,rand:[8,8,8,8]};return {quer:false,rand:[8,8,8,8]}}
 // Elemente einsammeln: Flächen/Rahmen, Wörter, Bilder – alle Maße in px relativ zur Druckansicht
 function ptSammeln(el){const win=el.ownerDocument.defaultView,R0=el.getBoundingClientRect(),B=[],T=[],I=[],Z=[],F=[];
  const rel=r=>({x:r.left-R0.left,y:r.top-R0.top,w:r.width,h:r.height});
  const geh=(n,cs)=>{for(const c of n.childNodes){if(c.nodeType===3)ptWoerter(c,cs,T,R0);else if(c.nodeType===1)knoten(c)}};
  const knoten=n=>{const cs=win.getComputedStyle(n);if(cs.display==='none'||cs.visibility==='hidden'||+cs.opacity===0)return;const r=rel(n.getBoundingClientRect()),tag=n.tagName;
   if(cs.breakBefore==='page'||cs.pageBreakBefore==='always')F.push(r.y);if(cs.breakAfter==='page'||cs.pageBreakAfter==='always')F.push(r.y+r.h);
-  if(tag==='TR'||cs.breakInside==='avoid'||cs.pageBreakInside==='avoid')Z.push(r);
+  if((tag==='TR'&&!n.classList.contains('seitez'))||cs.breakInside==='avoid'||cs.pageBreakInside==='avoid')Z.push(r);
   const bg=ptFarbe(cs.backgroundColor),S=['Top','Right','Bottom','Left'].map(s=>{const w=parseFloat(cs['border'+s+'Width'])||0,f=ptFarbe(cs['border'+s+'Color']),st=cs['border'+s+'Style'];return w>0&&f&&st!=='none'&&st!=='hidden'?{w,f,st}:null});
   if((bg||S.some(Boolean))&&r.w>0&&r.h>0)B.push({...r,bg,S,rad:Math.min(parseFloat(cs.borderTopLeftRadius)||0,r.w/2,r.h/2)});
   if(tag==='IMG'||tag==='CANVAS'||tag.toLowerCase()==='svg'){if(r.w>0&&r.h>0)I.push({...r,n});return}
@@ -4375,13 +4495,13 @@ async function ptBild(doc,it){const n=it.n,tag=n.tagName.toLowerCase();let url;
 function ptRaster(img,w,h,src){return new Promise(ok=>{const im=new Image();im.crossOrigin='anonymous';im.onload=()=>{try{const f=4,cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(w*f));cv.height=Math.max(1,Math.round(h*f));cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);ok(cv.toDataURL('image/png'))}catch(e){ok(null)}};im.onerror=()=>ok(null);im.src=src})}
 // Text ohne Zeichen außerhalb von Windows-1252
 const ptText=t=>String(t).replace(/[→←⇒≈−✕]/g,c=>PT_ERS[c]||c);
-async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});const L=PDFLib,mm=x=>x*72/25.4,PW=o.quer?841.89:595.28,PH=o.quer?595.28:841.89,[rt,rr,rb,rl]=o.rand.map(mm);
+async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});el.classList.add('pttext');const L=PDFLib,mm=x=>x*72/25.4,PW=o.quer?841.89:595.28,PH=o.quer?595.28:841.89,[rt,rr,rb,rl]=o.rand.map(mm);
  const doc=await L.PDFDocument.create(),ctx=doc.context,tag=Array.from(crypto.getRandomValues(new Uint8Array(6))).map(x=>String.fromCharCode(65+x%26)).join('');
  const FN=ptSchrift(ctx,'n',tag),FB=ptSchrift(ctx,'b',tag);
  doc.setTitle(o.titel||'Onstand');doc.setCreator('Onstand');doc.setProducer('Onstand · Software für Handwerksbetriebe');doc.setCreationDate(new Date());
  const breite=(PW-rl-rr)/PT_K,alt=el.getAttribute('style')||'';
  el.setAttribute('style',alt+`;width:${breite}px!important;max-width:none!important;min-width:0!important;position:absolute!important;left:0!important;top:0!important;margin:0!important;background:#fff`);
- let D;try{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));D=ptSammeln(el)}finally{el.setAttribute('style',alt)}
+ let D;try{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));D=ptSammeln(el)}finally{el.setAttribute('style',alt);el.classList.remove('pttext')}
  const hoch=(PH-rt-rb)/PT_K,S=ptSeiten(D,hoch),asc=905/1117,bilder=new Map();
  for(const it of D.I)bilder.set(it,await ptBild(doc,it));
  for(const [s,e] of S){const pg=doc.addPage([PW,PH]);pg.node.setFontDictionary(L.PDFName.of('F1'),FN);pg.node.setFontDictionary(L.PDFName.of('F2'),FB);
@@ -4407,6 +4527,124 @@ async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});const L=PDFLib,mm
   pg.pushOperators(L.popGraphicsState())}
  const bytes=await doc.save();return new Blob([bytes],{type:'application/pdf'})}
 window.onTextPdf=ptPdf;
+// ===== Onstand · Aufträge · Export für den Steuerberater =====
+// Reiter EXPORT: Zeitraum wählen, Summen und Prüfung sehen, drei Dateien laden:
+// 1) Buchungsstapel im DATEV-Format (CSV)  2) Belege als ZIP (Rechnungen als PDF, Eingangsrechnungen im Original)  3) Übersicht als PDF.
+// Gebucht wird brutto auf Automatikkonten (die Steuer rechnet DATEV aus dem Konto). Die Konten sind einstellbar.
+// Einstellungen und „zuletzt übergeben“ liegen nur auf diesem Gerät (localStorage „onstandExport“).
+const EX_KONTEN={'03':{erl:'8400',erl13b:'8337',deb:'10000',auf:'3400',auf7:'3300',auf0:'3200',kred:'70000'},'04':{erl:'4400',erl13b:'4337',deb:'10000',auf:'5400',auf7:'5300',auf0:'5200',kred:'70000'}};
+const EX_FELD=[['berater','BERATERNUMMER','vom Steuerbüro'],['mandant','MANDANTENNUMMER','vom Steuerbüro'],['erl','ERLÖSE 19 %',''],['erl13b','ERLÖSE § 13b',''],['deb','KUNDEN (SAMMELKONTO)',''],['auf','EINKAUF 19 %',''],['auf7','EINKAUF 7 %',''],['auf0','EINKAUF OHNE STEUER',''],['kred','LIEFERANTEN (SAMMELKONTO)','']];
+const EX_MON=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+let EXV=null;
+function exStand(){let s={};try{s=JSON.parse(localStorage.getItem('onstandExport')||'{}')||{}}catch(e){}if(!s.skr||!EX_KONTEN[s.skr])s.skr='03';s.k=s.k||{};s.fertig=s.fertig||{};return s}
+function exMerken(s){try{localStorage.setItem('onstandExport',JSON.stringify(s))}catch(e){}}
+function exKonto(s,k){return String(s.k[k]||EX_KONTEN[s.skr][k]||'').replace(/\D/g,'')}
+// Zeitraum: art m (Monat), q (Quartal), j (Jahr); n = laufende Nummer im Jahr (Monat 0–11, Quartal 0–3)
+function exZeit(){if(!EXV){const h=new Date(),v=new Date(h.getFullYear(),h.getMonth()-1,1);EXV={art:'m',j:v.getFullYear(),n:v.getMonth()}}
+ const z=EXV,p=x=>String(x).padStart(2,'0'),m0=z.art==='m'?z.n:z.art==='q'?z.n*3:0,m1=z.art==='m'?z.n:z.art==='q'?z.n*3+2:11,letzter=new Date(z.j,m1+1,0).getDate();
+ return {von:`${z.j}-${p(m0+1)}-01`,bis:`${z.j}-${p(m1+1)}-${p(letzter)}`,name:z.art==='m'?EX_MON[z.n]+' '+z.j:z.art==='q'?(z.n+1)+'. Quartal '+z.j:'Jahr '+z.j,kurz:z.art==='m'?z.j+'-'+p(z.n+1):z.art==='q'?z.j+'-Q'+(z.n+1):''+z.j,key:z.art+z.j+'-'+z.n,j:z.j}}
+function exWeiter(d){const z=EXV;if(z.art==='j'){z.j+=d;return}const max=z.art==='m'?12:4;z.n+=d;if(z.n<0){z.n=max-1;z.j--}if(z.n>=max){z.n=0;z.j++}}
+const exIso=s=>{const m=String(s||'').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);return m?`${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`:String(s||'')};
+const exR2=v=>Math.round((+v||0)*100)/100;
+// Steuersatz einer Eingangsrechnung: 19, 7, 0 oder '?' (gemischt oder unklar, dann prüft das Steuerbüro)
+const exSatz=x=>!x.steuer?0:Math.abs(x.satz-19)<=0.6?19:Math.abs(x.satz-7)<=0.4?7:'?';
+// Alles, was in den Zeitraum gehört: gestellte Rechnungen (auch Korrekturen und Stornos), Eingangsrechnungen, Zahlungseingänge
+function exDaten(){const Z=exZeit(),drin=d=>{d=exIso(d);return d>=Z.von&&d<=Z.bis};
+ const A=AU_R.filter(r=>r.st!=='entwurf'&&r.nr&&drin(r.d)).sort((a,b)=>(a.d+a.nr).localeCompare(b.d+b.nr)).map(r=>{const netto=exR2(r.netto),brutto=exR2(arBrutto(r));return {r,nr:r.nr,d:r.d,wer:(BST[r.b]&&BST[r.b].kontakt)||r.b||'',b:r.b||'',netto,steuer:exR2(brutto-netto),brutto,p13b:!!r.p13b}});
+ const E=(typeof EG!=='undefined'?EG:[]).filter(e=>drin(e.d)).sort((a,b)=>exIso(a.d).localeCompare(exIso(b.d))).map(e=>{const brutto=exR2(e.brutto),steuer=exR2(e.steuer),netto=exR2(e.netto||brutto-steuer),satz=netto?Math.round(steuer/netto*1000)/10:0;return {e,nr:e.nr,d:exIso(e.d),wer:e.von,netto,steuer,brutto,satz}});
+ const ZA=[];AU_R.forEach(r=>(r.zahl||[]).forEach(z=>{if(drin(z.d))ZA.push({d:z.d,b:exR2(z.b),nr:r.nr,wer:(BST[r.b]&&BST[r.b].kontakt)||r.b||''})}));ZA.sort((a,b)=>a.d.localeCompare(b.d));
+ const sum=(L,k)=>exR2(L.reduce((s,x)=>s+x[k],0));
+ return {Z,A,E,ZA,an:sum(A,'netto'),as:sum(A,'steuer'),ab:sum(A,'brutto'),en:sum(E,'netto'),es:sum(E,'steuer'),eb:sum(E,'brutto'),zb:sum(ZA,'b'),sig:A.map(x=>x.nr+':'+x.brutto).concat(E.map(x=>x.nr+':'+x.brutto)).join('|')}}
+function exPruefen(D,s){const P=[],F=auFirma();
+ if(!s.berater||!s.mandant)P.push(['gelb','Berater- und Mandantennummer fehlen','Beide bekommst du vom Steuerbüro. Ohne sie lässt sich die DATEV-Datei dort nicht automatisch zuordnen.']);
+ if(!F.stnr&&!F.ust)P.push(['gelb','Steuernummer fehlt','Unter Firma & Preise eintragen, sie gehört auf jede Rechnung.']);
+ const dop=D.A.map(x=>x.nr).filter((n,i,a)=>a.indexOf(n)!==i);if(dop.length)P.push(['rot','Rechnungsnummer doppelt',[...new Set(dop)].join(', ')]);
+ const leer=D.E.filter(x=>!x.d||!x.nr||!x.brutto);if(leer.length)P.push(['rot',leer.length+' Eingangsrechnung'+(leer.length>1?'en':'')+' ohne Datum, Nummer oder Betrag',leer.map(x=>x.wer||x.nr).join(', ')]);
+ const satz=D.E.filter(x=>x.brutto&&exSatz(x)==='?');if(satz.length)P.push(['gelb',satz.length+' Eingangsrechnung'+(satz.length>1?'en':'')+' mit gemischtem Steuersatz','Auf das 19-%-Konto gebucht, bitte vom Steuerbüro prüfen lassen: '+satz.map(x=>(x.wer||x.nr)+' ('+String(x.satz).replace('.',',')+' %)').join(', ')]);
+ const s7=D.E.filter(x=>x.brutto&&exSatz(x)===7).length,s0=D.E.filter(x=>x.brutto&&exSatz(x)===0).length;if(s7||s0)P.push(['info',[s7?s7+' Eingang mit 7 %':'',s0?s0+' Eingang ohne Steuer':''].filter(Boolean).join(', '),'Gebucht auf '+[s7?'Konto '+exKonto(s,'auf7'):'',s0?'Konto '+exKonto(s,'auf0'):''].filter(Boolean).join(' und ')+'.']);
+ const p13=D.A.filter(x=>x.p13b).length;if(p13)P.push(['info',p13+' Rechnung'+(p13>1?'en':'')+' nach § 13b','Ohne Umsatzsteuer, gebucht auf Konto '+exKonto(s,'erl13b')+'.']);
+ const korr=D.A.filter(x=>x.brutto<0).length;if(korr)P.push(['info',korr+' Korrektur'+(korr>1?'en':'')+' oder Storno','Als Gutschrift gebucht (Haben statt Soll).']);
+ const alt=s.fertig[D.Z.key];if(alt&&alt.sig!==D.sig)P.push(['rot','Seit der letzten Übergabe geändert','Am '+auDat(alt.am)+' wurde dieser Zeitraum schon übergeben. Seitdem ist etwas dazugekommen oder anders. Sag dem Steuerbüro Bescheid und schick die Dateien neu.']);
+ if(!P.some(p=>p[0]!=='info'))P.unshift(['gruen','Alles vollständig','Nummern, Daten und Beträge sind da.']);return P}
+function exHtml(){const s=exStand(),D=exDaten(),P=exPruefen(D,s),alt=s.fertig[D.Z.key],leer=!D.A.length&&!D.E.length;
+ const zeile=(x,ein)=>`<div class="exz"><span><b>${esc(x.wer||'—')}</b><small>${esc(x.nr)} · ${auDat(x.d)}${x.p13b?' · § 13b':''}${ein&&x.brutto&&exSatz(x)!==19?' · '+String(x.satz).replace('.',',')+' %':''}</small></span><span class="aur"><strong>${auEur(x.brutto)}</strong><small>netto ${auEur(x.netto)}</small></span></div>`;
+ return `<div class="exkopf"><div class="mgchips">${[['m','MONAT'],['q','QUARTAL'],['j','JAHR']].map(([a,n])=>`<button type="button" data-xa="${a}" class="${EXV.art===a?'an':''}">${n}</button>`).join('')}</div>
+  <div class="exzeit"><button type="button" data-xw="-1" aria-label="Früher">‹</button><b>${esc(D.Z.name)}</b><button type="button" data-xw="1" aria-label="Später">›</button></div></div>
+ <div class="aukette exsum"><div><small>RECHNUNGEN</small><b>${D.A.length}</b><span>${auEur(D.an)} netto</span></div><div><small>UMSATZSTEUER</small><b>${auEur(D.as)}</b><span>aus ${auEur(D.ab)} brutto</span></div><div><small>EINGANG</small><b>${D.E.length}</b><span>${auEur(D.en)} netto</span></div><div><small>VORSTEUER</small><b>${auEur(D.es)}</b><span>aus ${auEur(D.eb)} brutto</span></div></div>
+ <div class="exgrid"><div>
+  <div class="exbox"><h4>PRÜFUNG</h4>${P.map(([f,t,u])=>`<div class="expr ${f}"><i></i><span><b>${esc(t)}</b><small>${esc(u)}</small></span></div>`).join('')}</div>
+  <div class="exbox"><h4>DATEIEN FÜR DAS STEUERBÜRO</h4>
+   <button type="button" class="exdat" data-xd="csv" ${leer?'disabled':''}><span><b>Buchungsstapel (DATEV)</b><small>EXTF_Buchungsstapel_${D.Z.kurz}.csv · ${D.A.length+D.E.length} Buchungen · SKR ${s.skr}</small></span><em>LADEN</em></button>
+   <button type="button" class="exdat" data-xd="zip" ${leer?'disabled':''}><span><b>Belege</b><small>Belege_${D.Z.kurz}.zip · ${D.A.length} Rechnungen als PDF, ${D.E.length} Eingangsrechnungen im Original</small></span><em>LADEN</em></button>
+   <button type="button" class="exdat" data-xd="pdf" ${leer?'disabled':''}><span><b>Übersicht</b><small>Liste aller Rechnungen, Eingänge und Zahlungen zum Ausdrucken</small></span><em>DRUCKEN</em></button>
+   <p class="exhin">${alt?'Zuletzt übergeben am '+auDat(alt.am)+'.':'Noch nicht übergeben.'} ${leer?'In diesem Zeitraum gibt es nichts zu übergeben.':`<button type="button" class="exfertig">${alt?'NEU ALS ÜBERGEBEN MERKEN':'ALS ÜBERGEBEN MERKEN'}</button>`}</p></div>
+  <details class="exbox exein"><summary>EINSTELLUNGEN · SKR ${s.skr}${s.berater?' · Berater '+esc(s.berater):''}</summary>
+   <div class="mgchips">${['03','04'].map(k=>`<button type="button" data-xs="${k}" class="${s.skr===k?'an':''}">SKR ${k}</button>`).join('')}</div>
+   <div class="exfeld">${EX_FELD.map(([k,n,ph])=>`<label>${n}<input data-xk="${k}" inputmode="numeric" value="${esc(k==='berater'||k==='mandant'?s[k]||'':s.k[k]||'')}" placeholder="${esc(ph||EX_KONTEN[s.skr][k]||'')}"></label>`).join('')}</div>
+   <p class="exhin">Welcher Kontenrahmen und welche Konten gelten, sagt dir das Steuerbüro. Leere Felder nehmen den Standard.</p></details>
+ </div><div>
+  <div class="exbox"><h4>AUSGANGSRECHNUNGEN · ${D.A.length}</h4>${D.A.length?D.A.map(x=>zeile(x)).join(''):'<p class="exhin">Keine gestellte Rechnung in diesem Zeitraum.</p>'}</div>
+  <div class="exbox"><h4>EINGANGSRECHNUNGEN · ${D.E.length}</h4>${D.E.length?D.E.map(x=>zeile(x,1)).join(''):'<p class="exhin">Keine Eingangsrechnung in diesem Zeitraum.</p>'}</div>
+  ${D.ZA.length?`<div class="exbox"><h4>ZAHLUNGSEINGÄNGE · ${auEur(D.zb)}</h4>${D.ZA.map(z=>`<div class="exz"><span><b>${esc(z.wer||'—')}</b><small>${esc(z.nr)} · ${auDat(z.d)}</small></span><span class="aur"><strong>${auEur(z.b)}</strong></span></div>`).join('')}</div>`:''}
+ </div></div>`}
+function exBinden(inh){const neu=()=>auMalen(inh),s=exStand();
+ if(typeof EG_OK!=='undefined'&&!EG_OK&&!exBinden.lud){exBinden.lud=true;egLaden().then(neu).catch(()=>{})}
+ inh.querySelectorAll('[data-xa]').forEach(b=>b.onclick=()=>{const h=new Date(),a=b.dataset.xa;EXV={art:a,j:EXV.j,n:a==='m'?(EXV.art==='q'?EXV.n*3:EXV.art==='m'?EXV.n:h.getMonth()):a==='q'?(EXV.art==='m'?Math.floor(EXV.n/3):0):0};neu()});
+ inh.querySelectorAll('[data-xw]').forEach(b=>b.onclick=()=>{exWeiter(+b.dataset.xw);neu()});
+ inh.querySelectorAll('[data-xs]').forEach(b=>b.onclick=()=>{s.skr=b.dataset.xs;s.k={};exMerken(s);EXV.einAuf=true;neu()});
+ inh.querySelectorAll('[data-xk]').forEach(f=>f.onchange=()=>{const k=f.dataset.xk,v=f.value.replace(/\D/g,'');if(k==='berater'||k==='mandant')s[k]=v;else if(v)s.k[k]=v;else delete s.k[k];exMerken(s);EXV.einAuf=true;neu()});
+ const ein=inh.querySelector('.exein');if(ein&&EXV.einAuf){ein.open=true;EXV.einAuf=false}
+ const fe=inh.querySelector('.exfertig');if(fe)fe.onclick=()=>{const D=exDaten();s.fertig[D.Z.key]={am:tbIso(new Date()),sig:D.sig};exMerken(s);onToast(D.Z.name+' als übergeben gemerkt');neu()};
+ inh.querySelectorAll('[data-xd]').forEach(b=>b.onclick=async()=>{const D=exDaten(),em=b.querySelector('em'),alt=em.textContent;b.disabled=true;em.textContent='…';
+  try{if(b.dataset.xd==='csv')erHerunterladen(exDatev(D,s),'EXTF_Buchungsstapel_'+D.Z.kurz+'.csv','text/csv');
+   else if(b.dataset.xd==='pdf')druckStart(exUebersicht(D));
+   else{const z=await exBelege(D,t=>{em.textContent=t});erHerunterladen(z.bytes,'Belege_'+D.Z.kurz+'.zip','application/zip');if(z.fehlt.length)onToast('Original nicht gefunden: '+z.fehlt.join(', '))}}
+  catch(e){try{console.warn(e)}catch(x){}onToast('Das ging nicht: '+(e&&e.message||e))}
+  b.disabled=false;em.textContent=alt})}
+
+// ---------- 1) DATEV-Buchungsstapel (EXTF, Zeichensatz Windows-1252, Zeilenende CR LF) ----------
+function exAnsi(t){const a=new Uint8Array(t.length);for(let i=0;i<t.length;i++){const c=t.charCodeAt(i);a[i]=c===0x20AC?0x80:c===0x2013||c===0x2014?0x2D:c===0x201E||c===0x201C||c===0x201D?0x22:c<256?c:0x3F}return a}
+function exDatev(D,s){const q=t=>'"'+String(t==null?'':t).replace(/"/g,'""').replace(/[\r\n;]+/g,' ')+'"',kurz=d=>d.replace(/-/g,''),z=new Date(),p=(x,n)=>String(x).padStart(n||2,'0'),
+  jetzt=z.getFullYear()+p(z.getMonth()+1)+p(z.getDate())+p(z.getHours())+p(z.getMinutes())+p(z.getSeconds())+'000',geld=v=>Math.abs(v).toFixed(2).replace('.',','),tag=d=>d.slice(8,10)+d.slice(5,7);
+ const kopf=[q('EXTF'),700,21,q('Buchungsstapel'),13,jetzt,'',q('RE'),q('Onstand'),q(''),s.berater||'',s.mandant||'',D.Z.j+'0101',4,kurz(D.Z.von),kurz(D.Z.bis),q(('Onstand '+D.Z.name).slice(0,30)),q(''),1,0,0,q('EUR'),'',q(''),'','',q(s.skr),'','',q(''),q('')].join(';');
+ const spalten=['Umsatz (ohne Soll/Haben-Kz)','Soll/Haben-Kennzeichen','WKZ Umsatz','Kurs','Basis-Umsatz','WKZ Basis-Umsatz','Konto','Gegenkonto (ohne BU-Schlüssel)','BU-Schlüssel','Belegdatum','Belegfeld 1','Belegfeld 2','Skonto','Buchungstext'].join(';');
+ const zeile=(betrag,konto,gegen,d,nr,text)=>[geld(betrag),q(betrag<0?'H':'S'),q('EUR'),'','','',konto,gegen,q(''),tag(d),q(String(nr).replace(/[^A-Za-z0-9$&%*+\-\/]/g,'').slice(0,36)),q(''),'',q(String(text).slice(0,60))].join(';');
+ const L=[kopf,spalten];
+ D.A.forEach(x=>L.push(zeile(x.brutto,exKonto(s,'deb'),exKonto(s,x.p13b?'erl13b':'erl'),x.d,x.nr,x.wer||x.b)));
+ D.E.forEach(x=>L.push(zeile(x.brutto,exKonto(s,{0:'auf0',7:'auf7'}[exSatz(x)]||'auf'),exKonto(s,'kred'),x.d,x.nr,x.wer)));
+ return exAnsi(L.join('\r\n')+'\r\n')}
+
+// ---------- 2) Belege als ZIP (ohne Verdichtung, Dateinamen in UTF-8) ----------
+let EX_CRC=null;
+function exCrc(b){if(!EX_CRC){EX_CRC=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;EX_CRC[n]=c>>>0}}let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=EX_CRC[(c^b[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+function exZip(F){const te=new TextEncoder(),teile=[],mitte=[];let pos=0;const d=new Date(),zeit=(d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1),datum=((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate();
+ for(const f of F){const n=te.encode(f.name),crc=exCrc(f.bytes),g=f.bytes.length,k=new DataView(new ArrayBuffer(30));
+  k.setUint32(0,0x04034b50,true);k.setUint16(4,20,true);k.setUint16(6,0x0800,true);k.setUint16(8,0,true);k.setUint16(10,zeit,true);k.setUint16(12,datum,true);k.setUint32(14,crc,true);k.setUint32(18,g,true);k.setUint32(22,g,true);k.setUint16(26,n.length,true);k.setUint16(28,0,true);
+  const m=new DataView(new ArrayBuffer(46));m.setUint32(0,0x02014b50,true);m.setUint16(4,20,true);m.setUint16(6,20,true);m.setUint16(8,0x0800,true);m.setUint16(10,0,true);m.setUint16(12,zeit,true);m.setUint16(14,datum,true);m.setUint32(16,crc,true);m.setUint32(20,g,true);m.setUint32(24,g,true);m.setUint16(28,n.length,true);m.setUint32(42,pos,true);
+  teile.push(new Uint8Array(k.buffer),n,f.bytes);mitte.push(new Uint8Array(m.buffer),n);pos+=30+n.length+g}
+ const ml=mitte.reduce((s,x)=>s+x.length,0),e=new DataView(new ArrayBuffer(22));e.setUint32(0,0x06054b50,true);e.setUint16(8,F.length,true);e.setUint16(10,F.length,true);e.setUint32(12,ml,true);e.setUint32(16,pos,true);
+ return new Blob([...teile,...mitte,new Uint8Array(e.buffer)],{type:'application/zip'})}
+function exDruckRegeln(){let css='';for(const sh of document.styleSheets){let R;try{R=sh.cssRules}catch(e){continue}for(const r of R)if(r.media&&/print/.test(r.media.mediaText))for(const x of r.cssRules)if(x.type===1)css+=x.cssText+'\n'}return css}
+// Ein Blatt (#bpdruck) als Text-PDF, ohne zu drucken
+async function exPdf(d,titel){if(!window.onTextPdf||!window.PDFLib)throw new Error('PDF-Baustein fehlt');druckSeite(d);const st=document.createElement('style');st.textContent=exDruckRegeln();document.head.appendChild(st);document.body.classList.add('bpdruckt');
+ try{const bl=await window.onTextPdf(d,{titel});return new Uint8Array(await bl.arrayBuffer())}finally{st.remove();document.body.classList.remove('bpdruckt');d.className='';d.innerHTML=''}}
+async function exBelege(D,stand){const F=[],fehlt=[],sauber=t=>String(t||'').replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').trim().slice(0,80),te=new TextEncoder();let i=0;
+ for(const x of D.A){stand(++i+'/'+(D.A.length+D.E.length));F.push({name:'Ausgangsrechnungen/'+sauber(x.nr+' '+(x.wer||x.b))+'.pdf',bytes:await exPdf(arPdfBlatt(x.r),'Rechnung '+x.nr)})}
+ for(const x of D.E){stand(++i+'/'+(D.A.length+D.E.length));const xml=await lesen(EG_ORD+'/'+x.e.datei+'.xml');if(xml)F.push({name:'Eingangsrechnungen/'+sauber(x.d+' '+x.wer+' '+x.nr)+'.xml',bytes:te.encode(xml)});else fehlt.push(x.wer||x.nr)}
+ stand('…');F.push({name:'Übersicht '+D.Z.kurz+'.pdf',bytes:await exPdf(exUebersicht(D),'Übersicht '+D.Z.name)});
+ F.push({name:'EXTF_Buchungsstapel_'+D.Z.kurz+'.csv',bytes:exDatev(D,exStand())});
+ return {bytes:exZip(F),fehlt}}
+
+// ---------- 3) Übersicht zum Ausdrucken (gleiches Blatt wie Angebot und Rechnung) ----------
+function exUebersicht(D){const F=auFirma(),d=druckBlatt('angebot'),s=exStand();
+ const tab=(K,L,z,su)=>`<table><tr>${K.map((k,i)=>`<th${i>=K.length-3?' class="aur"':''}>${k}</th>`).join('')}</tr>${L.map(z).join('')}<tr>${su.map((v,i)=>`<td${i>=su.length-3?' class="aur"':''}><b>${v}</b></td>`).join('')}</tr></table>`;
+ d.innerHTML=`<section>${auBriefKopf(F)}<h1>Übersicht für das Steuerbüro · ${esc(D.Z.name)}</h1>
+  <p>Zeitraum ${auDat(D.Z.von)} – ${auDat(D.Z.bis)} · Kontenrahmen SKR ${s.skr}${s.berater?' · Berater '+esc(s.berater):''}${s.mandant?' · Mandant '+esc(s.mandant):''} · erstellt am ${auDat(tbIso(new Date()))}</p>
+  <p><b>Ausgangsrechnungen</b></p>${D.A.length?tab(['Nr.','Datum','Kunde','Netto','USt.','Brutto'],D.A,x=>`<tr><td>${esc(x.nr)}</td><td>${auDat(x.d)}</td><td>${esc(x.wer)}${x.p13b?' (§ 13b)':''}</td><td class="aur">${auEur(x.netto)}</td><td class="aur">${x.p13b?'–':auEur(x.steuer)}</td><td class="aur">${auEur(x.brutto)}</td></tr>`,['Summe','','',auEur(D.an),auEur(D.as),auEur(D.ab)]):'<p>Keine.</p>'}
+  <p><b>Eingangsrechnungen</b></p>${D.E.length?tab(['Nr.','Datum','Lieferant','Netto','Vorsteuer','Brutto'],D.E,x=>`<tr><td>${esc(x.nr)}</td><td>${auDat(x.d)}</td><td>${esc(x.wer)}</td><td class="aur">${auEur(x.netto)}</td><td class="aur">${auEur(x.steuer)}</td><td class="aur">${auEur(x.brutto)}</td></tr>`,['Summe','','',auEur(D.en),auEur(D.es),auEur(D.eb)]):'<p>Keine.</p>'}
+  ${D.ZA.length?`<p><b>Zahlungseingänge</b></p><table><tr><th>Datum</th><th>Zu Rechnung</th><th>Kunde</th><th class="aur">Betrag</th></tr>${D.ZA.map(z=>`<tr><td>${auDat(z.d)}</td><td>${esc(z.nr)}</td><td>${esc(z.wer)}</td><td class="aur">${auEur(z.b)}</td></tr>`).join('')}<tr><td><b>Summe</b></td><td></td><td></td><td class="aur"><b>${auEur(D.zb)}</b></td></tr></table>`:''}
+  <div class="su"><div><span>Umsatzsteuer aus Rechnungen</span><span>${auEur(D.as)}</span></div><div><span>Vorsteuer aus Eingangsrechnungen</span><span>− ${auEur(D.es)}</span></div><div class="ge"><span>Differenz (ohne Gewähr)</span><span>${auEur(D.as-D.es)}</span></div></div>
+  <p>Diese Übersicht ist eine Zusammenstellung der Belege, keine Steuererklärung.</p>${auFuss(F)}</section>`;return d}
 
 // ===== Handwerk · Funktion 1: Baustellen-Tagebuch =====
 // Gedächtnis/Persönlich/Arbeit/Bautagebuch/Bautagebuch JJJJ-MM.md – ein Abschnitt pro Tag und Baustelle, jederzeit bearbeitbar; Übersicht Bautagebuch.md.
@@ -4542,7 +4780,7 @@ function kuMalen(inh){
   inh.querySelectorAll('[data-kt]').forEach(b=>b.onclick=()=>{KU_V.tab=b.dataset.kt;KU_SEL=null;GL.ku=null;kuMalen(inh)});kuKonBinden(inh,inh.querySelector('.kukonl'),letzte,true);
   inh.querySelector('.kusb').onclick=()=>{KU_V.such=!KU_V.such;if(!KU_V.such)KU_V.q='';KU_SEL=null;kuMalen(inh);const x=document.querySelector('#am .kusuch');if(x)x.focus()};
   {const x=inh.querySelector('.kusuch');if(x){x.oninput=()=>{KU_V.q=x.value;const pos=x.selectionStart;KU_SEL=null;kuMalen(inh);const y=document.querySelector('#am .kusuch');if(y){y.focus();try{y.setSelectionRange(pos,pos)}catch(e){}}};x.onkeydown=e=>{if(e.key==='Escape'){KU_V.such=false;KU_V.q='';KU_SEL=null;kuMalen(inh)}}}}return}
- if(KU_SEL&&BST[KU_SEL]&&!KU_V.ed){const b=BST[KU_SEL],n=b.name,E=Object.values(TB).flat().filter(e=>e&&e.b===n),std=E.reduce((s,e)=>s+(typeof peDauer==='function'?peDauer(e.z)*Math.max(1,peListe(e.p).length):0),0),an=typeof AU_A!=='undefined'?AU_A.filter(a=>a.b===n).length:0,ar=typeof AU_R!=='undefined'?AU_R.filter(r=>r.b===n).length:0,mo=typeof mgAlle==='function'?mgAlle().filter(m=>m.b===n&&mgOffen(m)).length:0,pl=(typeof BPL!=='undefined'?BPL:[]).find(p=>p.baustelle===n),bau=document.body.classList.contains('on-baustelle'),ohne='<i class="ohne">—</i>';
+ if(KU_SEL&&BST[KU_SEL]&&!KU_V.ed){const b=BST[KU_SEL],n=b.name,E=Object.values(TB).flat().filter(e=>e&&e.b===n),std=E.reduce((s,e)=>s+(typeof peDauer==='function'?peDauer(e.z)*Math.max(1,peListe(e.p).length):0),0),an=typeof AU_A!=='undefined'?AU_A.filter(a=>a.b===n).length:0,ar=typeof AU_R!=='undefined'?AU_R.filter(r=>r.b===n).length:0,mo=typeof mgAlle==='function'?mgAlle().filter(m=>m.b===n&&mgOffen(m)).length:0,pl=(typeof BPL!=='undefined'?BPL:[]).find(p=>p.baustelle===n),bau=typeof syGeld==='function'&&!syGeld(),ohne='<i class="ohne">—</i>';
   const AN=typeof AU_A!=='undefined'?AU_A.filter(a=>a.b===n&&a.st==='angenommen'):[],asum=AN.reduce((x,a)=>x+auNetto(a),0),auf=b.summe?esc(b.summe):AN.length?esc(AN.map(a=>a.t).filter(Boolean).join(' · ')||'Auftrag')+' · '+auEur(asum)+' netto':'',lnk=(h,t)=>`<a href="${h}">${esc(t)}</a>`;
   const F=[['ANSPRECHPARTNER',esc(b.kontakt||'')],['TELEFON',b.tel?lnk('tel:'+b.tel.replace(/[^+\d]/g,''),b.tel):''],['E-MAIL',b.mail?lnk('mailto:'+encodeURIComponent(b.mail).replace(/%40/g,'@'),b.mail):'']].concat(bau?[]:[['AUFTRAG',auf]]).concat([['STANDORT',esc(b.ort||'')],['EINZUG',b.einzug?esc(kuDatum(b.einzug)):''],['ZUGANG',esc(b.zugang||'')],['BESONDERHEITEN',esc(b.besonders||'')]]).concat(b.rname?[['RECHNUNG AN',esc([b.rname,b.rstr,b.rort,b.rmail].filter(Boolean).join(' · '))]]:[]);
   inh.innerHTML=`<div class="gldk"><div><small><span class="ambadge" style="color:${b.c}">${esc(b.k)}</span>${b.ort?' · '+esc(b.ort.split(',')[0].toUpperCase()):''}${b.status==='abgeschlossen'?' · ABGESCHLOSSEN':b.status==='interessent'?' · INTERESSENT':''}</small><h3>${esc(n)}</h3></div><div class="mgakt"><button type="button" class="kuzur">‹ Liste</button>${b.tel?`<a class="glanruf" href="tel:${esc(b.tel.replace(/[^+\d]/g,''))}">${KU_I.tel}Anrufen</a>`:''}<button type="button" class="kued">${KU_I.stift}Bearbeiten</button></div></div>
@@ -7292,7 +7530,14 @@ const sySetLS=(k,v)=>{try{if(v==null)localStorage.removeItem(k);else localStorag
 // Fest eingebauter Server (nur Adresse und ÖFFENTLICHER Schlüssel, beim Bauen aus server/server.json eingesetzt). Der geheime Schlüssel kommt nie hierher.
 const ON_SERVER_FEST={"u": "https://qagenkrtkpqpljntnglg.supabase.co", "k": "sb_publishable_1i_hyeYBex5wbeTVGOtHAg_CeClOefd", "handy": "https://2ronaar1.github.io/Onstand/onstand.html"};
 let SY_SERVER=syLS('onstandServer',null)||(ON_SERVER_FEST&&ON_SERVER_FEST.u?{u:ON_SERVER_FEST.u,k:ON_SERVER_FEST.k}:null),SY_SITZ=syLS('onstandSitzung',null),SY_KONTO=syLS('onstandKonto',null);
-const SY_ROLLEN={chef:'Chef',buero:'Büro',baustelle:'Baustelle'};
+const SY_ROLLEN={chef:'Chef',buero:'Büro',bauleiter:'Bauleiter',baustelle:'Mitarbeiter'};
+// Rollen & Rechte: welche Bereiche eine Rolle NICHT sieht. Der Chef sieht alles. Das Firmen-Wiki sieht nur der Chef.
+const SY_ZU={buero:['brain'],bauleiter:['auftraege','brain'],baustelle:['auftraege','personal','kunden','brain']};
+const SY_ROLLE_TXT={chef:'alles, auch Firmen-Wiki und Konto',buero:'alles außer Firmen-Wiki und Konto',bauleiter:'Baustellen, Kunden, Personal – ohne Aufträge und Preise',baustelle:'Tagebuch, Termine, Mängel, Bauplan'};
+const syRolle=()=>(SY_KONTO&&SY_KONTO.rolle)||'chef';
+function syDarf(id){return !(SY_ZU[syRolle()]||[]).includes(id)}
+// Geld (Angebote, Rechnungen, Preise) sehen nur Chef und Büro
+const syGeld=()=>['chef','buero'].includes(syRolle());
 
 // ---------- kleiner Speicher für den Abgleich (Versionen, offene Änderungen) ----------
 let SY_DB=null;
@@ -7316,8 +7561,8 @@ async function syLege(r,t){if(t==null){try{await SY_ENTFERNEN('@/'+r)}catch(e){}
 async function syAlleDateien(dir,pre,out){for await(const [n,h] of dir.entries()){if(h.kind==='directory'){if(n.startsWith('.')&&!(pre===''&&n==='.papierkorb'))continue;await syAlleDateien(h,pre+n+'/',out)}else if(sySyncbar(pre+n))out.push(pre+n)}return out}
 async function syAllesMerken(){if(!GED)return 0;const L=await syAlleDateien(GED,'',[]);const t=Date.now();await syIdb('d','readwrite',st=>{for(const r of L)st.put(t,r)});return L.length}
 // Angebote, Rechnungen und Preise sieht nur Chef und Büro
-const SY_GELD=/(^|\/)(Angebote|Rechnungen|Eingangsrechnungen|Firmen-Brain)\/|(^|\/)Preisliste\.md$/;
-function syBereich(r,t){if(SY_GELD.test(r))return 'geld';if(r.startsWith('.papierkorb/')&&t&&/(Angebote|Rechnungen|Eingangsrechnungen)\/|Preisliste\.md/.test(t))return 'geld';return 'alle'}
+const SY_GELD=/(^|\/)(Angebote|Rechnungen|Eingangsrechnungen|Steuerberater)\/|(^|\/)Preisliste\.md$/,SY_CHEF=/(^|\/)Firmen-Brain\//;
+function syBereich(r,t){if(SY_CHEF.test(r))return 'chef';if(SY_GELD.test(r))return 'geld';if(r.startsWith('.papierkorb/')&&t&&/(Angebote|Rechnungen|Eingangsrechnungen)\/|Preisliste\.md/.test(t))return 'geld';return 'alle'}
 
 // ---------- Verbindung zum Server ----------
 const syBasis=()=>SY_SERVER&&SY_SERVER.u?SY_SERVER.u.replace(/\/+$/,''):'';
@@ -7354,10 +7599,10 @@ function syFehlerText(e){const m=String(e&&e.message||e||'');
 function syKontoSetzen(k){SY_KONTO=k;sySetLS('onstandKonto',k);syRolleZeigen();
  if(k){profilSetzen({name:ON_PROFIL.name||k.name||'',firma:k.firmaName||ON_PROFIL.firma});try{const F=JSON.parse(localStorage.getItem('onstandFirma')||'{}');if(k.firmaName&&!F.name){F.name=k.firmaName;localStorage.setItem('onstandFirma',JSON.stringify(F))}}catch(e){}}
  try{if(AM_EL)onLogo()}catch(e){}}
-function syRolleZeigen(){document.body.classList.toggle('on-baustelle',!!(SY_KONTO&&SY_KONTO.rolle==='baustelle'));try{if(AM_EL)amSchiene()}catch(e){}}
+function syRolleZeigen(){document.body.classList.toggle('on-baustelle',!!(SY_KONTO&&SY_KONTO.rolle==='baustelle'));document.body.dataset.rolle=syRolle();try{if(AM_EL)amSchiene()}catch(e){}}
 // Baustelle: Aufträge (Geld) und Personal sind ausgeblendet
 const SY_AMF=amFunktion;
-amFunktion=function(id,opt){if(SY_KONTO&&SY_KONTO.rolle==='baustelle'&&(id==='auftraege'||id==='personal'||id==='brain')){id='tagebuch';try{onToast('Aufträge, Personal und Firmen-Brain sieht nur das Büro')}catch(e){}}return SY_AMF(id,opt)};
+amFunktion=function(id,opt){if(!syDarf(id)){const n=ON_NAMEN[id]||id;id='tagebuch';try{onToast(n==='Firmen-Brain'||n==='Firmen-Wiki'?'Das Firmen-Wiki sieht nur der Chef':n+' ist für deine Rolle ('+SY_ROLLEN[syRolle()]+') nicht freigegeben')}catch(e){}}return SY_AMF(id,opt)};
 async function syVerbunden(k,erst){syKontoSetzen({firma:k.firma_id,firmaName:k.firma,rolle:k.rolle,name:k.name});
  await syLeeren('v');await syLeeren('m');await syLeeren('d');SY.voll=0;
  if(erst)await syAllesMerken();syStatus('laeuft');syWsZu();syWsAuf();await syLauf();try{await syRpc('bin_da',{p_firma:SY_KONTO.firma,p_geraet:syGeraet()})}catch(e){}}
@@ -7401,8 +7646,10 @@ async function syEinspielen(z){const r=z.pfad;if(!sySyncbar(r)||SY.fragen.some(q
 async function syPush(){const L=(await syKeys('d')).filter(r=>!SY.fragen.some(q=>q.r===r));let i=0;const arbeiter=async()=>{while(i<L.length){const r=L[i++];await syEinePush(r);if(L.length>8&&i%8===0)syZaehlen()}};await Promise.all([arbeiter(),arbeiter(),arbeiter(),arbeiter()])}
 async function syEinePush(r){for(let n=0;n<4;n++){const lokal=await syLies(r),m=(await syGet('v',r))||{v:0,b:null};
   if(lokal===m.b||(lokal==null&&!m.v)){await syDel('d',r);return}
-  const ber=syBereich(r,lokal);if(ber==='geld'&&SY_KONTO.rolle==='baustelle'){await syDel('d',r);return}
-  const x=await syRpc('datei_setzen',{p_firma:SY_KONTO.firma,p_pfad:r,p_inhalt:lokal,p_geloescht:lokal==null,p_basis:m.v,p_bereich:ber});
+  let ber=syBereich(r,lokal);if((ber==='geld'&&!syGeld())||(ber==='chef'&&syRolle()!=='chef')){await syDel('d',r);return}
+  if(ber==='chef'&&SY.altServer)ber='geld';
+  let x;try{x=await syRpc('datei_setzen',{p_firma:SY_KONTO.firma,p_pfad:r,p_inhalt:lokal,p_geloescht:lokal==null,p_basis:m.v,p_bereich:ber})}
+  catch(e){if(ber==='chef'&&/bereich/.test(String(e&&e.message||e))){SY.altServer=true;continue}throw e}
   if(x&&x.ok){await syPut('v',r,{v:x.version,b:lokal});if((await syLies(r))===lokal)await syDel('d',r);return}
   const fern=x.geloescht?null:x.inhalt,e=syMischen(m.b,lokal,fern,r);
   if(e.frage){syFrage({r,basis:m.b,lokal,fern,v:x.version,von:x.von,e});return}
@@ -7570,9 +7817,10 @@ async function syGeraeteDialog(){const chef=SY_KONTO.rolle==='chef',darf=chef||S
   <p class="systat ${s[0]}"><i></i>${esc(s[1])}${SY.letzt?` · zuletzt ${esc(syZuletzt(SY.letzt))}`:''}</p>
   <p class="kl">Dieses Gerät: ${esc(SY_KONTO.name||ON_PROFIL.name||'')} · ${esc(SY_ROLLEN[SY_KONTO.rolle])}${SY_SITZ&&SY_SITZ.email?' · '+esc(SY_SITZ.email):''}</p>
   <div class="syliste"><small>GERÄTE &amp; MITARBEITER</small><div data-l><p class="kl">Lade …</p></div></div>
+  <details class="syneu syrechte"><summary>WER DARF WAS?</summary><table><tr><th></th>${Object.values(SY_ROLLEN).map(n=>`<th>${esc(n)}</th>`).join('')}</tr>${[['Tagebuch, Kalender, Mängel, Bauplan',''],['Kunden','kunden'],['Personal','personal'],['Aufträge, Rechnungen, Preise','auftraege'],['Firmen-Brain (Wiki)','brain']].map(([t,id])=>`<tr><td>${t}</td>${Object.keys(SY_ROLLEN).map(r=>`<td>${(SY_ZU[r]||[]).includes(id)?'–':'✓'}</td>`).join('')}</tr>`).join('')}<tr><td>Rollen vergeben, Konto</td><td>✓</td><td>–</td><td>–</td><td>–</td></tr></table></details>
   ${darf?`<details class="syneu"><summary>+ GERÄT VERBINDEN</summary>
    <label>NAME<input data-n="name" placeholder="z. B. Krzysztof"></label>
-   <label>ROLLE<select data-n="rolle"><option value="baustelle">Baustelle – Tagebuch, Termine, Mängel</option><option value="buero">Büro – alles außer Konto</option>${chef?'<option value="chef">Chef – alles</option>':''}</select></label>
+   <label>ROLLE<select data-n="rolle"><option value="baustelle">Mitarbeiter – ${SY_ROLLE_TXT.baustelle}</option><option value="bauleiter">Bauleiter – ${SY_ROLLE_TXT.bauleiter}</option><option value="buero">Büro – ${SY_ROLLE_TXT.buero}</option>${chef?'<option value="chef">Chef – alles</option>':''}</select></label>
    ${syHandyAdresse()?'':`<label>ADRESSE VON ONSTAND FÜRS HANDY<input data-n="adr" placeholder="z. B. https://deinname.github.io/onstand/"></label><p class="kl">Damit der QR-Code das Handy direkt zu Onstand bringt. Einmal eintragen, wird gemerkt.</p>`}
    <button type="button" class="sybtn" data-code>CODE ERSTELLEN</button><div data-qr></div></details>`:''}
   <p class="syfehl"></p>`,[['ABMELDEN','ab'],['JETZT ABGLEICHEN','sync'],['SCHLIESSEN','']],
@@ -7721,7 +7969,7 @@ function asHinweis(){if(!AM_EL)return;const n=asPunkte().filter(p=>p.stufe===1).
 // ---------- Einsprechen (Spracherkennung des Browsers, kostenlos) ----------
 function asHoeren(){if(!AS.offen)asAuf();const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
  if(!SR){const i=AM_EL.querySelector('.aseing textarea');asMeldung('Dieser Browser kann nicht selbst zuhören. Tippe auf das Mikrofon deiner Tastatur und diktiere – oder schreib einfach, was heute los war.');if(i)i.focus();return}
- if(AS.hoert)return;const r=new SR();r.lang='de-DE';r.continuous=true;r.interimResults=true;AS.rec=r;AS.txt='';AS.zwischen='';AS.hoert=true;
+ if(AS.hoert)return;const r=new SR();r.lang=typeof spLocale==='function'?spLocale():'de-DE';r.continuous=true;r.interimResults=true;AS.rec=r;AS.txt='';AS.zwischen='';AS.hoert=true;
  r.onresult=ev=>{let fin='',zw='';for(let k=ev.resultIndex;k<ev.results.length;k++){const x=ev.results[k];if(x.isFinal)fin+=x[0].transcript+' ';else zw+=x[0].transcript}if(fin)AS.txt=(AS.txt+' '+fin).replace(/\s+/g,' ').trim();AS.zwischen=zw;const s=AM_EL.querySelector('.aserz small');if(s)s.textContent=(AS.txt+' '+AS.zwischen).trim();asLinieWort()};
  r.onerror=ev=>{if(ev.error==='not-allowed'||ev.error==='service-not-allowed')asMeldung('Das Mikrofon ist nicht freigegeben. Bitte im Browser erlauben – oder einfach tippen.');AS.hoert=false;asMalen()};
  r.onend=()=>{if(AS.hoert){AS.hoert=false;asFertig()}};try{r.start()}catch(e){AS.hoert=false}asMalen()}
@@ -7825,13 +8073,13 @@ function kiArt(t,tb,gesprochen){const s=String(t||'').trim().toLowerCase();if(!s
  const fw=KI_FW.test(s),fz=!gesprochen&&/\?\s*$/.test(s),merk=(f.z?2:0)+((KI_TAT.test(s)||f.m||f.x)?2:0);
  if(merk>=2)return 'tagebuch';if(fw)return 'frage';if(fz)return 'unklar';return 'tagebuch'}
 // Kurze Zusammenfassung der Firmendaten (nur was diese Rolle sehen darf)
-function kiKontext(frage){const H=HEUTE(),f=String(frage||'').toLowerCase(),rolle=(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.rolle)||'chef',geld=rolle!=='baustelle';
+function kiKontext(frage){const H=HEUTE(),f=String(frage||'').toLowerCase(),rolle=(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.rolle)||'chef',geld=['chef','buero'].includes(rolle),wiki=rolle==='chef';
  const plus=(iso,n)=>{const d=new Date(iso+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
  const B=Object.values(typeof BST!=='undefined'?BST:{}),fokus=B.filter(b=>f.includes(b.name.toLowerCase())||f.includes(b.name.toLowerCase().split(' ')[0])||(b.k&&new RegExp('\\b'+b.k.toLowerCase()+'\\b').test(f))).map(b=>b.name);
  const teile=[],abschnitt=(titel,zeilen,max)=>{if(!zeilen.length)return;let s='',n=0;for(const z of zeilen){if((s+z).length>max){s+=`(… ${zeilen.length-n} weitere)\n`;break}s+=z+'\n';n++}teile.push('## '+titel+'\n'+s)};
  teile.push(`Heute: ${new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long',year:'numeric'})} (${H})\nFirma: ${onInitialen().firma} · Fragt: ${ON_PROFIL.name||''} (${rolle})${fokus.length?'\nFrage betrifft vermutlich: '+fokus.join(', '):''}`);
  // Firmen-Brain: bei Fragen zum Wiki, zu Kunden oder Partnern gleich nach vorn, damit nichts abgeschnitten wird
- let bkSpaet='';if(geld){try{const bk=typeof brKontext==='function'?brKontext(frage):'';if(bk){if(/wiki|brain|firmenwissen|kunde|kunden|baustelle|lieferant|partner|subunternehm|architekt|händler|wer ist|wer war/.test(f)||(typeof BR!=='undefined'&&Object.keys(BR.seiten||{}).some(t=>t.length>3&&f.includes(t.toLowerCase()))))teile.push(bk);else bkSpaet=bk}}catch(e){}}
+ let bkSpaet='';if(wiki){try{const bk=typeof brKontext==='function'?brKontext(frage):'';if(bk){if(/wiki|brain|firmenwissen|kunde|kunden|baustelle|lieferant|partner|subunternehm|architekt|händler|wer ist|wer war/.test(f)||(typeof BR!=='undefined'&&Object.keys(BR.seiten||{}).some(t=>t.length>3&&f.includes(t.toLowerCase()))))teile.push(bk);else bkSpaet=bk}}catch(e){}}
  abschnitt('Baustellen',B.sort((a,b)=>(a.status==='abgeschlossen')-(b.status==='abgeschlossen')).map(b=>`- ${b.name} (${b.k}) · ${b.status||'offen'}${b.ort?' · '+b.ort:''}${b.kontakt?' · Kontakt '+b.kontakt:''}${b.einzug?' · Einzug '+b.einzug:''}${b.besonders?' · '+b.besonders.replace(/\s+/g,' ').slice(0,120):''}`),2000);
  const tbAb=plus(H,fokus.length?-60:-21),TBX=typeof TB!=='undefined'?TB:{};
  abschnitt('Bautagebuch'+(fokus.length?' (60 Tage, betroffene Baustelle zuerst)':' (21 Tage)'),Object.keys(TBX).filter(d=>d>=tbAb&&d<=H).sort().reverse().flatMap(d=>(TBX[d]||[]).map(e=>({d,e}))).sort((x,y)=>(fokus.includes(y.e.b)-fokus.includes(x.e.b))).map(({d,e})=>`- ${d} · ${e.b||'?'}${e.z?' · '+e.z:''}${e.p?' · '+e.p:''}${e.l?' · '+e.l:''}${e.m?' · Lieferung: '+e.m:''}${e.x?' · Behinderung: '+e.x:''}${e.a?' · Absprache: '+e.a:''}`.replace(/\s+/g,' ')),5500);
@@ -7853,7 +8101,7 @@ const kiHtml=t=>esc(String(t||'')).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').split('
 
 async function kiFragen(t,ohneDu){if(!ohneDu)AS.fluss.push({typ:'du',t});const m={typ:'as',h:'<span class="asdenkt"><i></i><i></i><i></i>denkt nach …</span>'};AS.fluss.push(m);AS.scrollUnten=true;asMalen();
  const fertig=(h,kn)=>{m.h=h;if(kn)m.kn=kn;AS.scrollUnten=true;asMalen()};
- try{await Promise.all([typeof brLaden==='function'&&SY_KONTO.rolle!=='baustelle'?brLaden():null,typeof kalLaden==='function'&&typeof KAL!=='undefined'&&!KAL.ok?kalLaden():null,typeof egLaden==='function'&&typeof EG_OK!=='undefined'&&!EG_OK&&SY_KONTO.rolle!=='baustelle'?egLaden():null].filter(Boolean))}catch(e){}
+ try{await Promise.all([typeof brLaden==='function'&&SY_KONTO.rolle==='chef'?brLaden():null,typeof kalLaden==='function'&&typeof KAL!=='undefined'&&!KAL.ok?kalLaden():null,typeof egLaden==='function'&&typeof EG_OK!=='undefined'&&!EG_OK&&syGeld()?egLaden():null].filter(Boolean))}catch(e){}
  let x;try{const tok=await syToken();
   const r=await fetch(syBasis()+'/functions/v1/onstand-ki',{method:'POST',headers:{Authorization:'Bearer '+tok,apikey:SY_SERVER.k,'Content-Type':'application/json'},body:JSON.stringify({firma:SY_KONTO.firma,frage:t,kontext:kiKontext(t),verlauf:KI.verlauf.slice(-6)})});
   x=await r.json().catch(()=>({fehler:'server'}));if(!r.ok&&!x.fehler)x.fehler='server'}
@@ -7916,7 +8164,7 @@ function kihTreffer(e,b){if(!b)return true;if(e.art==='einzug')return e.name===b
  return t.includes(n)||b.name.split(' ').some(w=>w.length>=4&&t.includes(w.toLowerCase()))||(b.k&&new RegExp('\\b'+b.k.toLowerCase()+'\\b').test(t))}
 const kihTm=iso=>String(iso).slice(8,10)+'.'+String(iso).slice(5,7)+'.';
 const kihWt=iso=>{try{return tbAusIso(iso).toLocaleDateString('de-DE',{weekday:'short'}).replace('.','')}catch(e){return iso}};
-async function kihGratis(t,b){const s=t.toLowerCase(),geld=kihRolle()!=='baustelle',Z=[],kn=[];let thema='allg';
+async function kihGratis(t,b){const s=t.toLowerCase(),geld=['chef','buero'].includes(kihRolle()),Z=[],kn=[];let thema='allg';
  if(geld&&/rechnung|überfällig|ueberfaellig|offen|bezahlt|zahl|mahn|schuld|geld|forderung/.test(s)){thema='geld';
   try{const L=opListe().map(r=>({r,g:opLage(r)})),ue=L.filter(x=>x.g.ue>0).sort((a,c)=>c.g.ue-a.g.ue),zeig=(ue.length?ue:L).slice(0,3);
    for(const {r,g} of zeig)Z.push([`${esc(r.nr)} · ${esc(r.b)}`,`${auEur(opOffen(r))}${g.ue>0?`<span class="rot">${g.ue} Tag${g.ue>1?'e':''}</span>`:''}`]);
@@ -8046,7 +8294,7 @@ function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK
  <div class="hylab">FIRMA</div><div class="hygrp">${Z('firma','Firma &amp; Preise','Logo, Steuernummer, IBAN, Preisliste')}${Z('personal','Mitarbeiter','Team, Stunden, Urlaub')}${Z('mahn','Mahnwesen','Mahnstufen und Fristen')}</div>
  <div class="hylab">DATEN &amp; KONTO</div><div class="hygrp">${Z('pk','Papierkorb',pk?pk+(pk===1?' Eintrag':' Einträge')+' · 30 Tage zurückholbar':'30 Tage zurückholbar')}${Z('si','Sicherung',si||'jeden Morgen automatisch')}${Z('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}${Z('ordner','Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'))}</div>
  <div class="hylab">DESIGN</div><div class="hygrp hydes">${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}"><i style="background:linear-gradient(135deg,${d.f[0]} 50%,${d.f[1]} 50%)"></i>${d.name}</button>`).join('')}</div>
- <div class="hylab">APP</div><div class="hygrp">${Z('abo','Abo &amp; KI-Paket',typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht')}${typeof APP!=='undefined'&&APP.standalone?'':Z('app','Als App installieren','auf den Home-Bildschirm')}${Z('rundgang','Rundgang','noch einmal zeigen')}${Z('ueber','Über Onstand','Version '+ON_VER)}</div>
+ <div class="hylab">APP</div><div class="hygrp">${Z('abo','Abo &amp; KI-Paket',typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht')}${typeof APP!=='undefined'&&APP.standalone?'':Z('app','Als App installieren','auf den Home-Bildschirm')}${typeof spName==='function'?Z('sprache','Sprache',spName(spAkt())):''}${Z('rundgang','Rundgang','noch einmal zeigen')}${Z('ueber','Über Onstand','Version '+ON_VER)}</div>
  <p class="hyfuss">Onstand ${ON_VER} · Deine Daten liegen in deinem Datenordner</p>`;
  inh.querySelector('.hyzur').onclick=()=>amFunktion('mehr');
  inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}});
@@ -8061,6 +8309,408 @@ function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK
  onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();amFunktion.lauf=(amFunktion.lauf||0)+1;
  const inh=amFrisch();if(!RM){inh.classList.add('glneu');clearTimeout(amFunktion.gl);amFunktion.gl=setTimeout(()=>{const x=AM_EL.querySelector('.aminhalt');if(x)x.classList.remove('glneu')},900)}if(opt&&opt.seite==='einst')hyEinst(inh);else hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
 addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
+// ===== Onstand · Wörterbuch der Oberfläche =====
+// Eine Zeile je Text: deutsch|polnisch|rumänisch|albanisch|kroatisch|bulgarisch. Serbisch entsteht aus Kroatisch (siehe SP_SR in sprache.js).
+// Der deutsche Text ist der Schlüssel (Groß/Klein egal). Fehlt ein Text hier, bleibt er deutsch.
+// Die Übersetzungen sind von der KI erstellt und noch nicht von Muttersprachlern gegengelesen.
+const SP_WORT=`cockpit|Kokpit|Panou|Paneli|Pregled|Табло
+aufträge|Zlecenia|Comenzi|Porositë|Nalozi|Поръчки
+tagebuch|Dziennik|Jurnal|Ditari|Dnevnik|Дневник
+bautagebuch|Dziennik budowy|Jurnal de șantier|Ditari i ndërtimit|Građevinski dnevnik|Строителен дневник
+kalender|Kalendarz|Calendar|Kalendari|Kalendar|Календар
+kunden|Klienci|Clienți|Klientët|Kupci|Клиенти
+personal|Personel|Personal|Personeli|Osoblje|Персонал
+firmen-brain|Wiki firmy|Wiki firmă|Wiki e firmës|Wiki tvrtke|Фирмено уики
+mängel|Usterki|Defecte|Defektet|Nedostaci|Дефекти
+mängel & abnahme|Usterki i odbiór|Defecte și recepție|Defektet dhe pranimi|Nedostaci i primopredaja|Дефекти и приемане
+bauplan|Plan budowy|Plan|Plani|Nacrt|План
+papierkorb|Kosz|Coș|Koshi|Koš za smeće|Кошче
+mehr|Więcej|Mai mult|Më shumë|Više|Още
+einstellungen|Ustawienia|Setări|Cilësimet|Postavke|Настройки
+arbeit|Praca|Lucru|Puna|Posao|Работа
+kontakte|Kontakty|Contacte|Kontaktet|Kontakti|Контакти
+baustelle|Budowa|Șantier|Kantieri|Gradilište|Обект
+sprechen|Mów|Vorbește|Fol|Govori|Говори
+allgemein|Ogólne|General|Të përgjithshme|Općenito|Общи
+sprache|Język|Limbă|Gjuha|Jezik|Език
+abbrechen|Anuluj|Anulează|Anulo|Odustani|Отказ
+speichern|Zapisz|Salvează|Ruaj|Spremi|Запази
+bearbeiten|Edytuj|Editează|Ndrysho|Uredi|Редактирай
+löschen|Usuń|Șterge|Fshi|Izbriši|Изтрий
+wirklich löschen?|Na pewno usunąć?|Sigur ștergi?|Ta fshij vërtet?|Stvarno izbrisati?|Наистина ли да изтрия?
+schliessen|Zamknij|Închide|Mbyll|Zatvori|Затвори
+schließen|Zamknij|Închide|Mbyll|Zatvori|Затвори
+zurück|Wstecz|Înapoi|Prapa|Natrag|Назад
+weiter|Dalej|Înainte|Vazhdo|Dalje|Напред
+heute|Dziś|Azi|Sot|Danas|Днес
+woche|Tydzień|Săptămână|Java|Tjedan|Седмица
+30 tage|30 dni|30 de zile|30 ditë|30 dana|30 дни
+monat|Miesiąc|Lună|Muaji|Mjesec|Месец
+quartal|Kwartał|Trimestru|Tremujori|Kvartal|Тримесечие
+jahr|Rok|An|Viti|Godina|Година
+liste|Lista|Listă|Lista|Popis|Списък
+suchen|Szukaj|Caută|Kërko|Traži|Търси
+suchen …|Szukaj …|Caută …|Kërko …|Traži …|Търси …
+filter|Filtr|Filtru|Filtri|Filtar|Филтър
+alle|Wszystkie|Toate|Të gjitha|Sve|Всички
+drucken|Drukuj|Tipărește|Printo|Ispiši|Печат
+laden|Pobierz|Descarcă|Shkarko|Preuzmi|Изтегли
+öffnen|Otwórz|Deschide|Hap|Otvori|Отвори
+später|Później|Mai târziu|Më vonë|Kasnije|По-късно
+früher|Wcześniej|Mai devreme|Më herët|Ranije|По-рано
+senden|Wyślij|Trimite|Dërgo|Pošalji|Изпрати
+sagen|Powiedz|Spune|Thuaj|Reci|Кажи
+rückgängig|Cofnij|Anulează|Zhbëj|Poništi|Отмени
+anmelden|Zaloguj|Autentificare|Hyr|Prijava|Вход
+abmelden|Wyloguj|Deconectare|Dil|Odjava|Изход
+gespeichert|Zapisano|Salvat|U ruajt|Spremljeno|Запазено
+passt so|W porządku|E în regulă|Në rregull|U redu|Добре е
+eintragen|Wpisz|Adaugă|Shto|Upiši|Въведи
+eintrag|Wpis|Înregistrare|Shënim|Unos|Запис
+eintrag anlegen|Dodaj wpis|Adaugă înregistrare|Shto shënim|Dodaj unos|Добави запис
+eintragen an diesem tag|Wpisz w tym dniu|Adaugă în această zi|Shto në këtë ditë|Upiši na ovaj dan|Въведи за този ден
+lieferschein|Dowód dostawy|Aviz de livrare|Fletëdorëzim|Otpremnica|Стокова разписка
+foto|Zdjęcie|Foto|Foto|Fotografija|Снимка
+kein eintrag|Brak wpisu|Nicio înregistrare|Asnjë shënim|Nema unosa|Няма запис
+für diesen tag gibt es noch keinen eintrag.|Na ten dzień nie ma jeszcze wpisu.|Pentru această zi nu există încă nicio înregistrare.|Për këtë ditë nuk ka ende shënim.|Za ovaj dan još nema unosa.|За този ден още няма запис.
+neuer eintrag|Nowy wpis|Înregistrare nouă|Shënim i ri|Novi unos|Нов запис
+zeit & team|Czas i ekipa|Timp și echipă|Koha dhe ekipi|Vrijeme i ekipa|Време и екип
+ausgeführt|Wykonano|Executat|E kryer|Izvedeno|Извършено
+lieferung|Dostawa|Livrare|Dorëzim|Isporuka|Доставка
+behinderung|Utrudnienie|Impediment|Pengesë|Smetnja|Пречка
+absprache|Ustalenia|Înțelegere|Marrëveshje|Dogovor|Уговорка
+was wurde gemacht?|Co zostało zrobione?|Ce s-a făcut?|Çfarë u bë?|Što je napravljeno?|Какво е направено?
+wer war da?|Kto był?|Cine a fost?|Kush ishte?|Tko je bio?|Кой беше?
+keine|brak|niciuna|asnjë|nema|няма
+nichts eingetragen|nic nie wpisano|nimic introdus|asgjë e shënuar|ništa upisano|нищо въведено
+nicht eingetragen|nie wpisano|neintrodus|e pashënuar|nije upisano|не е въведено
+baustelle wählen oder neu eintippen|Wybierz budowę lub wpisz nową|Alege șantierul sau scrie unul nou|Zgjidh kantierin ose shkruaj të ri|Odaberi gradilište ili upiši novo|Избери обект или въведи нов
+arbeitszeit|Czas pracy|Program de lucru|Orari i punës|Radno vrijeme|Работно време
+verlauf|Historia|Istoric|Historiku|Povijest|История
+eingabe geprüft|Wpis sprawdzony|Verificat|E kontrolluar|Provjereno|Проверено
+erzähl mir deinen tag|Opowiedz mi swój dzień|Povestește-mi ziua ta|Më trego ditën tënde|Ispričaj mi svoj dan|Разкажи ми деня си
+tagebuch heute fehlt noch.|Brakuje dzisiejszego wpisu w dzienniku.|Jurnalul de azi lipsește.|Ditari i sotëm mungon.|Današnji dnevnik još nedostaje.|Днешният дневник още липсва.
+schreib oder frag mich etwas …|Napisz lub zapytaj mnie o coś …|Scrie sau întreabă-mă ceva …|Shkruaj ose më pyet diçka …|Napiši ili me pitaj nešto …|Напиши или ме попитай нещо …
+tagebuch per stimme|Dziennik głosem|Jurnal prin voce|Ditar me zë|Dnevnik glasom|Дневник с глас
+assistent|Asystent|Asistent|Asistenti|Asistent|Асистент
+mangel|Usterka|Defect|Defekt|Nedostatak|Дефект
+mangel melden|Zgłoś usterkę|Raportează defect|Raporto defekt|Prijavi nedostatak|Съобщи дефект
+neuer mangel|Nowa usterka|Defect nou|Defekt i ri|Novi nedostatak|Нов дефект
+offen|Otwarte|Deschis|Hapur|Otvoreno|Отворено
+in arbeit|W toku|În lucru|Në punë|U tijeku|В процес
+behoben|Usunięte|Remediat|E rregulluar|Otklonjeno|Отстранен
+erledigt|Zrobione|Rezolvat|E kryer|Riješeno|Готово
+geprüft|Sprawdzone|Verificat|E kontrolluar|Provjereno|Проверено
+zu prüfen|Do sprawdzenia|De verificat|Për kontroll|Za provjeru|За проверка
+frist|Termin|Termen|Afati|Rok|Срок
+zuständig|Odpowiedzialny|Responsabil|Përgjegjës|Odgovoran|Отговорник
+raum|Pomieszczenie|Cameră|Dhoma|Prostorija|Помещение
+raum / stelle|Pomieszczenie / miejsce|Cameră / loc|Dhoma / vendi|Prostorija / mjesto|Помещение / място
+was ist los?|Co się stało?|Ce s-a întâmplat?|Çfarë ka ndodhur?|Što se dogodilo?|Какво се случи?
+vorher|Przed|Înainte|Para|Prije|Преди
+nachher|Po|După|Pas|Poslije|След
+notiz|Notatka|Notă|Shënim|Bilješka|Бележка
+einstufung|Klasyfikacja|Clasificare|Klasifikimi|Kategorija|Категория
+wesentlich|istotna|esențial|thelbësor|bitan|съществен
+unwesentlich|nieistotna|neesențial|jo thelbësor|nebitan|несъществен
+abnahme|Odbiór|Recepție|Pranimi|Primopredaja|Приемане
+überfällig|Po terminie|Întârziat|Me vonesë|Zakašnjelo|Просрочено
+noch keine mängel.|Brak usterek.|Niciun defect încă.|Ende asnjë defekt.|Još nema nedostataka.|Още няма дефекти.
+keine offenen mängel – gut so.|Brak otwartych usterek – dobrze.|Niciun defect deschis – bine.|Asnjë defekt i hapur – mirë.|Nema otvorenih nedostataka – dobro.|Няма отворени дефекти – добре.
+mängel offen|Otwarte usterki|Defecte deschise|Defekte të hapura|Otvoreni nedostaci|Отворени дефекти
+termine|Terminy|Programări|Takimet|Termini|Срещи
+fristen|Terminy końcowe|Termene|Afatet|Rokovi|Срокове
+urlaub|Urlop|Concediu|Pushime|Godišnji odmor|Отпуск
+geburtstage|Urodziny|Zile de naștere|Ditëlindjet|Rođendani|Рождени дни
+feiertage|Święta|Sărbători|Festat|Praznici|Празници
+nächste termine|Najbliższe terminy|Următoarele programări|Takimet e ardhshme|Sljedeći termini|Следващи срещи
+nichts geplant|nic nie zaplanowano|nimic planificat|asgjë e planifikuar|ništa planirano|нищо планирано
+frei|wolne|liber|i lirë|slobodno|свободно
+januar|Styczeń|Ianuarie|Janar|Siječanj|Януари
+februar|Luty|Februarie|Shkurt|Veljača|Февруари
+märz|Marzec|Martie|Mars|Ožujak|Март
+april|Kwiecień|Aprilie|Prill|Travanj|Април
+mai|Maj|Mai|Maj|Svibanj|Май
+juni|Czerwiec|Iunie|Qershor|Lipanj|Юни
+juli|Lipiec|Iulie|Korrik|Srpanj|Юли
+august|Sierpień|August|Gusht|Kolovoz|Август
+september|Wrzesień|Septembrie|Shtator|Rujan|Септември
+oktober|Październik|Octombrie|Tetor|Listopad|Октомври
+november|Listopad|Noiembrie|Nëntor|Studeni|Ноември
+dezember|Grudzień|Decembrie|Dhjetor|Prosinac|Декември
+montag|Poniedziałek|Luni|E hënë|Ponedjeljak|Понеделник
+dienstag|Wtorek|Marți|E martë|Utorak|Вторник
+mittwoch|Środa|Miercuri|E mërkurë|Srijeda|Сряда
+donnerstag|Czwartek|Joi|E enjte|Četvrtak|Четвъртък
+freitag|Piątek|Vineri|E premte|Petak|Петък
+samstag|Sobota|Sâmbătă|E shtunë|Subota|Събота
+sonntag|Niedziela|Duminică|E diel|Nedjelja|Неделя
+mo|Pn|Lu|Hë|Po|Пн
+di|Wt|Ma|Ma|Ut|Вт
+mi|Śr|Mi|Më|Sr|Ср
+do|Cz|Jo|En|Če|Чт
+fr|Pt|Vi|Pr|Pe|Пт
+sa|Sb|Sâ|Sh|Su|Сб
+so|Nd|Du|Di|Ne|Нд
+benachrichtigungen|Powiadomienia|Notificări|Njoftimet|Obavijesti|Известия
+lagebild|Sytuacja|Situație|Gjendja|Stanje|Състояние
+team auf der baustelle|Ekipa na budowie|Echipa pe șantier|Ekipi në kantier|Ekipa na gradilištu|Екип на обекта
+letzte 7 tage auf der baustelle|Ostatnie 7 dni na budowie|Ultimele 7 zile pe șantier|7 ditët e fundit në kantier|Zadnjih 7 dana na gradilištu|Последните 7 дни на обекта
+heute ist alles im plan.|Dziś wszystko zgodnie z planem.|Azi totul e conform planului.|Sot gjithçka sipas planit.|Danas je sve po planu.|Днес всичко е по план.
+kundenbericht|Raport dla klienta|Raport client|Raport për klientin|Izvješće za kupca|Отчет за клиента
+kunde öffnen|Otwórz klienta|Deschide clientul|Hap klientin|Otvori kupca|Отвори клиента
+ausführung|Wykonanie|Execuție|Zbatimi|Izvedba|Изпълнение
+angebot|Oferta|Ofertă|Oferta|Ponuda|Оферта
+auftrag|Zlecenie|Comandă|Porosi|Nalog|Поръчка
+schlussrechnung|Faktura końcowa|Factură finală|Fatura përfundimtare|Završni račun|Окончателна фактура
+einzug|Wprowadzenie|Mutare|Hyrja|Useljenje|Нанасяне
+stunden|Godziny|Ore|Orë|Sati|Часове
+gesamt|razem|total|gjithsej|ukupno|общо
+diese woche nicht da|w tym tygodniu nieobecny|absent săptămâna aceasta|mungon këtë javë|ovaj tjedan odsutan|отсъства тази седмица
+noch keine baustellen.|Brak budów.|Niciun șantier încă.|Ende asnjë kantier.|Još nema gradilišta.|Още няма обекти.
+angebote|Oferty|Oferte|Ofertat|Ponude|Оферти
+rechnungen|Faktury|Facturi|Faturat|Računi|Фактури
+rechnung|Faktura|Factură|Fatura|Račun|Фактура
+eingang|Przychodzące|Primite|Hyrëse|Ulazni|Входящи
+export|Eksport|Export|Eksport|Izvoz|Експорт
+offene posten|Nierozliczone|Neachitate|Të papaguara|Otvorene stavke|Неплатени
+entwurf|Szkic|Ciornă|Draft|Skica|Чернова
+verschickt|Wysłano|Trimis|Dërguar|Poslano|Изпратено
+angenommen|Przyjęto|Acceptat|Pranuar|Prihvaćeno|Прието
+abgelehnt|Odrzucono|Respins|Refuzuar|Odbijeno|Отхвърлено
+gestellt|Wystawiono|Emisă|Lëshuar|Izdano|Издадена
+bezahlt|Zapłacono|Plătit|Paguar|Plaćeno|Платено
+firma & preise|Firma i ceny|Firmă și prețuri|Firma dhe çmimet|Tvrtka i cijene|Фирма и цени
+neues angebot|Nowa oferta|Ofertă nouă|Ofertë e re|Nova ponuda|Нова оферта
+noch kein angebot.|Brak ofert.|Nicio ofertă încă.|Ende asnjë ofertë.|Još nema ponuda.|Още няма оферти.
+noch keine rechnung.|Brak faktur.|Nicio factură încă.|Ende asnjë faturë.|Još nema računa.|Още няма фактури.
+keine offenen posten.|Brak nierozliczonych.|Nimic neachitat.|Asgjë e papaguar.|Nema otvorenih stavki.|Няма неплатени.
+umsatzsteuer|VAT należny|TVA colectată|TVSH e mbledhur|PDV obveza|ДДС за внасяне
+vorsteuer|VAT naliczony|TVA deductibilă|TVSH e zbritshme|Pretporez|ДДС за приспадане
+prüfung|Kontrola|Verificare|Kontrolli|Provjera|Проверка
+übersicht|Zestawienie|Sumar|Përmbledhje|Pregled|Обзор
+belege|Dokumenty|Documente|Dokumentet|Dokumenti|Документи
+kunde|Klient|Client|Klienti|Kupac|Клиент
+titel|Tytuł|Titlu|Titulli|Naslov|Заглавие
+alle baustellen|Wszystkie budowy|Toate șantierele|Të gjithë kantieret|Sva gradilišta|Всички обекти
+abgeschlossen|Zakończone|Finalizat|Përfunduar|Završeno|Приключен
+aktiv|Aktywne|Activ|Aktiv|Aktivno|Активен
+interessenten|Zainteresowani|Interesați|Të interesuar|Zainteresirani|Заинтересовани
+ansprechpartner|Osoba kontaktowa|Persoană de contact|Personi i kontaktit|Kontakt osoba|Лице за контакт
+besonderheiten|Uwagi|Particularități|Veçoritë|Posebnosti|Особености
+kontakt notieren|Zanotuj kontakt|Notează contactul|Shëno kontaktin|Zabilježi kontakt|Запиши контакт
+letzte kontakte|Ostatnie kontakty|Ultimele contacte|Kontaktet e fundit|Zadnji kontakti|Последни контакти
+team|Ekipa|Echipă|Ekipi|Ekipa|Екип
+subunternehmer|Podwykonawca|Subcontractor|Nënkontraktor|Podizvođač|Подизпълнител
+ohne stunden|Bez godzin|Fără ore|Pa orë|Bez sati|Без часове
+stundenzettel|Karta godzin|Fișă de ore|Fleta e orëve|Evidencija sati|Часова карта
+mitarbeiter|Pracownicy|Angajați|Punonjësit|Zaposlenici|Служители
+abrechnen|Rozlicz|Decontează|Llogarit|Obračunaj|Отчети
+name|Imię|Nume|Emri|Ime|Име
+rolle|Rola|Rol|Roli|Uloga|Роля
+telefon|Telefon|Telefon|Telefoni|Telefon|Телефон
+geselle|Czeladnik|Calfă|Kallfë|Kalfa|Калфа
+bauleiter|Kierownik budowy|Șef de șantier|Drejtues kantieri|Voditelj gradilišta|Ръководител на обекта
+chef|Szef|Șef|Shefi|Šef|Шеф
+büro|Biuro|Birou|Zyra|Ured|Офис
+neuer bauplan|Nowy plan|Plan nou|Plan i ri|Novi nacrt|Нов план
+noch kein bauplan.|Brak planu.|Niciun plan încă.|Ende asnjë plan.|Još nema nacrta.|Още няма план.
+etage|Piętro|Etaj|Kati|Kat|Етаж
+räume|Pomieszczenia|Camere|Dhomat|Prostorije|Помещения
+fläche|Powierzchnia|Suprafață|Sipërfaqja|Površina|Площ
+wände|Ściany|Pereți|Muret|Zidovi|Стени
+decke|Sufit|Tavan|Tavani|Strop|Таван
+boden|Podłoga|Podea|Dyshemeja|Pod|Под
+tür|Drzwi|Ușă|Dera|Vrata|Врата
+fenster|Okno|Fereastră|Dritarja|Prozor|Прозорец
+küche|Kuchnia|Bucătărie|Kuzhina|Kuhinja|Кухня
+dusche|Prysznic|Duș|Dushi|Tuš|Душ
+wanne|Wanna|Cadă|Vaska|Kada|Вана
+drehen|Obróć|Rotește|Rrotullo|Okreni|Завърти
+duplizieren|Duplikuj|Duplică|Dyfisho|Dupliciraj|Дублирай
+entfernen|Usuń|Elimină|Hiq|Ukloni|Премахни
+mängel im plan zeigen|Pokaż usterki na planie|Arată defectele în plan|Shfaq defektet në plan|Prikaži nedostatke na nacrtu|Покажи дефектите в плана
+im bauplan setzen|Zaznacz na planie|Marchează în plan|Vendos në plan|Označi na nacrtu|Отбележи в плана
+profil|Profil|Profil|Profili|Profil|Профил
+sicherung|Kopia zapasowa|Copie de siguranță|Kopje rezervë|Sigurnosna kopija|Резервно копие
+konto & geräte|Konto i urządzenia|Cont și dispozitive|Llogaria dhe pajisjet|Račun i uređaji|Акаунт и устройства
+datenordner|Folder danych|Dosar de date|Dosja e të dhënave|Mapa podataka|Папка с данни
+design|Wygląd|Aspect|Pamja|Izgled|Изглед
+schrift|Czcionka|Font|Shkronja|Font|Шрифт
+hell|Jasny|Luminos|E çelët|Svijetlo|Светъл
+kupfer|Miedź|Cupru|Bakër|Bakar|Мед
+nachtblau|Granat|Albastru închis|Blu e errët|Tamnoplavo|Тъмносин
+rundgang|Przewodnik|Tur|Udhëzues|Vodič|Обиколка
+über onstand|O Onstand|Despre Onstand|Rreth Onstand|O Onstandu|За Onstand
+als app installieren|Zainstaluj jako aplikację|Instalează ca aplicație|Instalo si aplikacion|Instaliraj kao aplikaciju|Инсталирай като приложение
+mahnwesen|Upomnienia|Somații|Kujtesat|Opomene|Напомняния
+abo & ki-paket|Abonament i pakiet AI|Abonament și pachet AI|Abonimi dhe paketa AI|Pretplata i AI paket|Абонамент и AI пакет
+firmenkonto|Konto firmy|Cont firmă|Llogaria e firmës|Račun tvrtke|Фирмен акаунт
+gelöschtes wiederherstellen|Przywróć usunięte|Restaurează ce s-a șters|Rikthe të fshirat|Vrati izbrisano|Възстанови изтритото
+der papierkorb ist leer.|Kosz jest pusty.|Coșul e gol.|Koshi është bosh.|Koš je prazan.|Кошчето е празно.
+jetzt abgleichen|Synchronizuj teraz|Sincronizează acum|Sinkronizo tani|Sinkroniziraj sada|Синхронизирай сега
+wer darf was?|Kto co może?|Cine ce are voie?|Kush çfarë lejohet?|Tko što smije?|Кой какво може?
+dein name|Twoje imię|Numele tău|Emri yt|Tvoje ime|Твоето име
+firma|Firma|Firmă|Firma|Tvrtka|Фирма
+daten & konto|Dane i konto|Date și cont|Të dhënat dhe llogaria|Podaci i račun|Данни и акаунт
+verbunden|połączono|conectat|i lidhur|povezano|свързано
+einrichten|skonfiguruj|configurează|konfiguro|postavi|настрой
+lieferant|Dostawca|Furnizor|Furnitori|Dobavljač|Доставчик
+positionen|Pozycje|Poziții|Pozicionet|Stavke|Позиции
+nummer|Numer|Număr|Numri|Broj|Номер
+datum|Data|Dată|Data|Datum|Дата
+ins tagebuch|Do dziennika|În jurnal|Në ditar|U dnevnik|В дневника
+neu aufnehmen|Zrób ponownie|Fotografiază din nou|Fotografo përsëri|Snimi ponovno|Снимай отново
+lieferschein fotografieren|Sfotografuj dowód dostawy|Fotografiază avizul|Fotografo fletëdorëzimin|Fotografiraj otpremnicu|Снимай разписката
+onstand liest den lieferschein …|Onstand czyta dokument …|Onstand citește avizul …|Onstand po lexon fletën …|Onstand čita otpremnicu …|Onstand чете разписката …
+zeilen mit „?“ bitte prüfen.|Wiersze z „?” proszę sprawdzić.|Te rog verifică rândurile cu „?”.|Të lutem kontrollo rreshtat me „?”.|Molim provjeri retke s „?”.|Моля провери редовете с „?“.
+übersetzt|przetłumaczone|tradus|përkthyer|prevedeno|преведено
+original zeigen|Pokaż oryginał|Arată originalul|Shfaq origjinalin|Prikaži izvornik|Покажи оригинала
+übersetzung zeigen|Pokaż tłumaczenie|Arată traducerea|Shfaq përkthimin|Prikaži prijevod|Покажи превода
+übersetzen|Przetłumacz|Tradu|Përkthe|Prevedi|Преведи
+sprache wählen|Wybierz język|Alege limba|Zgjidh gjuhën|Odaberi jezik|Избери език`;
+// ===== Onstand · Mehrsprachig =====
+// Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
+// 1) Oberfläche: Texte werden beim Anzeigen über das Wörterbuch (kern/woerter.js) ersetzt. Was dort fehlt, bleibt deutsch.
+//    Dokumente an Kunden (Angebot, Rechnung, Druck) und alles, was jemand eingetippt hat, bleiben unverändert.
+// 2) Einträge im Tagebuch: mit KI-Paket übersetzt Onstand sie beim Ansehen in die Sprache des Lesers (einmal je Gerät, dann gemerkt);
+//    das Original bleibt gespeichert und ist mit einem Tipp sichtbar.
+// 3) Sprechen: Die Spracherkennung hört in der gewählten Sprache; mit KI-Paket wird das Gesagte vor dem Auswerten ins Deutsche übersetzt.
+const SP_LISTE=[['de','Deutsch','Deutsch','de-DE'],['pl','Polski','Polnisch','pl-PL'],['ro','Română','Rumänisch','ro-RO'],['sq','Shqip','Albanisch','sq-AL'],['hr','Hrvatski','Kroatisch','hr-HR'],['bg','Български','Bulgarisch','bg-BG'],['sr','Srpski','Serbisch','sr-RS']];
+const spAkt=()=>{try{const s=localStorage.getItem('onstandSprache');return SP_LISTE.some(x=>x[0]===s)?s:'de'}catch(e){return 'de'}};
+const spLocale=()=>(SP_LISTE.find(x=>x[0]===spAkt())||SP_LISTE[0])[3];
+const spName=k=>(SP_LISTE.find(x=>x[0]===k)||SP_LISTE[0])[1];
+// Fahnen: liegendes Rechteck 3:2, als kleine Zeichnung (kein Bild von außen nötig)
+function spFahne(k){const B=(a,b,c)=>`<rect width="24" height="5.34" fill="${a}"/><rect y="5.33" width="24" height="5.34" fill="${b}"/><rect y="10.66" width="24" height="5.34" fill="${c}"/>`,
+ V=(a,b,c)=>`<rect width="8" height="16" fill="${a}"/><rect x="8" width="8" height="16" fill="${b}"/><rect x="16" width="8" height="16" fill="${c}"/>`;
+ const F={de:B('#000','#DD0000','#FFCE00'),pl:'<rect width="24" height="8" fill="#fff"/><rect y="8" width="24" height="8" fill="#DC143C"/>',ro:V('#002B7F','#FCD116','#CE1126'),
+  sq:'<rect width="24" height="16" fill="#E41E20"/><path fill="#000" d="M12 3.1l.9 1.4 1.7-1-.5 1.7 2.5-.4-1.7 1.6 2.6.6-2.4 1 2 1.5-2.6-.2.9 2.1-2.2-1.2-.2 2.5-1-1.7-1 1.7-.2-2.5-2.2 1.2.9-2.1-2.6.2 2-1.5-2.4-1 2.6-.6-1.7-1.6 2.5.4-.5-1.7 1.7 1z"/>',
+  hr:B('#FF0000','#fff','#171796')+'<path d="M9.6 4.6h4.8v4.2a2.4 2.4 0 0 1-4.8 0z" fill="#fff" stroke="#FF0000" stroke-width=".5"/><path fill="#FF0000" d="M9.6 4.6h1.2v1.2H9.6zm2.4 0h1.2v1.2H12zm-1.2 1.2H12V7h-1.2zm2.4 0h1.2V7h-1.2zM9.6 7h1.2v1.2H9.6zM12 7h1.2v1.2H12zm-1.2 1.2H12v1.2h-1.2zm2.4 0h1.1v1.1h-1.1z"/>',
+  bg:B('#fff','#00966E','#D62612'),sr:B('#C6363C','#0C4076','#fff')};
+ return `<svg class="spf" viewBox="0 0 24 16" aria-hidden="true"><clipPath id="spc${k}"><rect width="24" height="16" rx="2"/></clipPath><g clip-path="url(#spc${k})">${F[k]||F.de}</g><rect x=".3" y=".3" width="23.4" height="15.4" rx="1.8" fill="none" stroke="rgba(128,128,128,.45)" stroke-width=".6"/></svg>`}
+
+// ---------- Wörterbuch ----------
+// Serbisch (lateinisch) aus Kroatisch: die Stellen, an denen sich beide unterscheiden
+const SP_SR=[['Siječanj','Januar'],['Veljača','Februar'],['Ožujak','Mart'],['Travanj','April'],['Svibanj','Maj'],['Lipanj','Jun'],['Srpanj','Jul'],['Kolovoz','Avgust'],['Rujan','Septembar'],['Listopad','Oktobar'],['Studeni','Novembar'],['Prosinac','Decembar'],
+ ['Ponedjeljak','Ponedeljak'],['Srijeda','Sreda'],['Nedjelja','Nedelja'],['Tjedan','Nedelja'],['tjedan','nedelja'],['Mjesec','Mesec'],['Tko','Ko'],['Što','Šta'],['Vrijeme','Vreme'],['vrijeme','vreme'],['Tvrtka','Firma'],['tvrtke','firme'],
+ ['Spremljeno','Sačuvano'],['Spremi','Sačuvaj'],['Uredi','Izmeni'],['Ispiši','Štampaj'],['Izbriši','Obriši'],['izbrisati','obrisati'],['izbrisano','obrisano'],['Provjer','Prover'],['provjer','prover'],['mjesto','mesto'],['Bilješka','Beleška'],['Zabilježi','Zabeleži'],
+ ['Riješeno','Rešeno'],['Prije','Pre'],['Poslije','Posle'],['Općenito','Opšte'],['Postavke','Podešavanja'],['Obavijesti','Obaveštenja'],['Povijest','Istorija'],['Izvješće','Izveštaj'],['Zaposlenici','Zaposleni'],['kupca','klijenta'],['Kupci','Klijenti'],['Kupac','Klijent'],
+ ['Kat','Sprat'],['Strop','Plafon'],['Ured','Kancelarija'],['Nacrt','Plan'],['nacrtu','planu'],['nacrta','plana'],['nacrt','plan'],['cijene','cene'],['Svijetlo','Svetlo'],['Sljedeći','Sledeći'],['Zadnjih','Poslednjih'],['Zadnji','Poslednji'],['Tuš','Tuš'],['retke','redove'],['prijevod','prevod'],['izvornik','original'],['Preuzmi','Preuzmi'],['uređaji','uređaji'],['Mapa','Fascikla'],['Računi','Računi'],['Fotografiraj','Fotografiši'],['ponovno','ponovo'],['Dupliciraj','Dupliraj'],['Sinkroniziraj','Sinhronizuj'],['Instaliraj','Instaliraj']];
+let SP_W=null;const SP_DATUM=new Set();
+function spWoerter(){if(SP_W)return SP_W;SP_W=new Map();const k=spAkt(),sp={pl:1,ro:2,sq:3,hr:4,bg:5,sr:4}[k];if(!sp)return SP_W;
+ SP_WORT.split('\n').forEach((z,i)=>{const t=z.split('|');if(t.length<6)return;let w=t[sp];if(k==='sr')for(const [a,b] of SP_SR)w=w.split(a).join(b);SP_W.set(t[0],w)});
+ // Monate und Wochentage dürfen auch mitten in einem Datum stehen („MO 16. NOV 2026“); Kürzel der Monate = die ersten drei Buchstaben
+ ['januar','februar','märz','april','mai','juni','juli','august','september','oktober','november','dezember'].forEach(m=>{SP_DATUM.add(m);const kz=m.slice(0,3);if(!SP_W.has(kz)){SP_W.set(kz,SP_W.get(m).slice(0,3))}SP_DATUM.add(kz)});
+ ['montag','dienstag','mittwoch','donnerstag','freitag','samstag','sonntag','mo','di','mi','do','fr','sa','so','heute'].forEach(x=>SP_DATUM.add(x));return SP_W}
+const spGross=s=>s===s.toUpperCase()&&/[A-ZÄÖÜ]/.test(s);
+function spEins(s){const W=spWoerter(),w=W.get(s.toLowerCase());if(w==null)return null;return spGross(s)&&s.length>1?w.toUpperCase():w}
+// Übersetzt einen ganzen Text (ein Textstück der Oberfläche) oder gibt null zurück
+function spT(t){if(!t||t.length>90)return null;let w=spEins(t);if(w!=null)return w;
+ const m=t.match(/^(\+\s?|‹\s?|\d+\s)?(.*?)(\s?[›→]|\s?…|:)?$/);if(m&&(m[1]||m[3])&&m[2]){w=spEins(m[2]);if(w!=null)return (m[1]||'')+w+(m[3]||'')}
+ if(t.includes(' · ')){let n=0;const T=t.split(' · ').map(x=>{const y=spT(x);if(y!=null){n++;return y}return x});if(n)return T.join(' · ')}
+ if(/\d/.test(t)){const T=t.split(/([A-Za-zÄÖÜäöüß]+)/);let n=0,ok=true;const R=T.map((x,i)=>{if(i%2===0)return x;const l=x.toLowerCase();if(l==='kw'||l==='uhr')return x;if(!SP_DATUM.has(l)){ok=false;return x}n++;return spEins(x)});if(ok&&n)return R.join('')}
+ return null}
+const SP_GESETZT=new WeakMap(),SP_ATTR=['placeholder','title','aria-label'];
+const spAussen=el=>!!(el&&el.closest&&el.closest('#bpdruck,.blatt,[contenteditable],textarea,script,style,.spnicht,.asb.du'));
+function spKnoten(n){const v=n.nodeValue;if(!v||SP_GESETZT.get(n)===v)return;const t=v.trim();if(t.length<2||!/[A-Za-zÄÖÜäöü]/.test(t))return;if(spAussen(n.parentElement))return;
+ const w=spT(t.replace(/\s+/g,' '));if(w==null||w===t)return;const neu=v.replace(t,w);SP_GESETZT.set(n,neu);n.nodeValue=neu}
+function spElement(el){if(el.nodeType===3){spKnoten(el);return}if(el.nodeType!==1||spAussen(el))return;
+ const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;const L=[];while(n=w.nextNode())L.push(n);L.forEach(spKnoten);
+ const A=el.querySelectorAll?[el,...el.querySelectorAll('[placeholder],[title],[aria-label]')]:[el];for(const e of A)for(const a of SP_ATTR){const v=e.getAttribute&&e.getAttribute(a);if(!v)continue;const m=SP_GESETZT.get(e)||{};if(m[a]===v)continue;if(spAussen(e))continue;const x=spT(v.trim());if(x!=null&&x!==v){m[a]=x;SP_GESETZT.set(e,m);e.setAttribute(a,x)}}}
+function spStart(){const k=spAkt();try{document.documentElement.lang=k}catch(e){}if(k==='de')return;spWoerter();spElement(document.body);
+ new MutationObserver(M=>{for(const m of M){if(m.type==='characterData')spKnoten(m.target);else if(m.type==='attributes')spElement(m.target);else m.addedNodes.forEach(spElement)}}).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:SP_ATTR})}
+
+// ---------- Sprache wählen ----------
+function spSetzen(k){try{if(k==='de')localStorage.removeItem('onstandSprache');else localStorage.setItem('onstandSprache',k)}catch(e){}location.reload()}
+const spZeilen=()=>SP_LISTE.map(([k,n,de])=>`<button type="button" class="sprow spnicht${k===spAkt()?' an':''}" data-sp="${k}">${spFahne(k)}<b>${n}</b><small>${de}</small></button>`).join('');
+function spDialog(){const d=onDialog(`<h3>Sprache · ${esc(spName(spAkt()))}</h3><div class="spliste">${spZeilen()}</div><p class="kl">Gilt für dieses Gerät. Menüs und Knöpfe erscheinen in deiner Sprache; Angebote und Rechnungen bleiben in der Sprache der Firma. Tagebuch-Einträge übersetzt das KI-Paket.</p>`,[['ABBRECHEN','']]);
+ d.querySelectorAll('[data-sp]').forEach(b=>b.onclick=()=>{if(b.dataset.sp!==spAkt())spSetzen(b.dataset.sp);else d.classList.remove('an')});return d}
+// Menü (PC) und Einstellungen (Handy): die Zeile „Sprache“ bekommt statt eines Symbols die Fahne
+{const altA=onMenuAktion;onMenuAktion=function(a){if(a==='sprache'){spDialog();return}return altA(a)};
+ const altM=onMenu;onMenu=function(){const r=altM.apply(this,arguments);try{const i=AM_EL.querySelector('.onmenu [data-m="sprache"] .mzi');if(i)i.outerHTML=spFahne(spAkt())}catch(e){}return r};
+ if(typeof hyEinst==='function'){const altE=hyEinst;hyEinst=function(inh){const r=altE.apply(this,arguments);try{const i=inh.querySelector('[data-m="sprache"] .hyri');if(i){i.classList.remove('hysq');i.innerHTML=spFahne(spAkt())}}catch(e){}return r}}}
+// Startbild: Fahne oben rechts, damit man die Sprache auch ohne Deutsch findet
+function spStartFahne(){const s=document.body;if(document.querySelector('.spstart'))return;const b=document.createElement('button');b.type='button';b.className='spstart spnicht';b.setAttribute('aria-label','Sprache · Language');b.innerHTML=spFahne(spAkt())+'<span>'+esc(spName(spAkt()))+'</span>';
+ const l=document.createElement('div');l.className='spstartl';l.hidden=true;l.innerHTML=spZeilen();b.onclick=()=>{l.hidden=!l.hidden};l.querySelectorAll('[data-sp]').forEach(x=>x.onclick=()=>{if(x.dataset.sp!==spAkt())spSetzen(x.dataset.sp);else l.hidden=true});s.appendChild(b);s.appendChild(l)}
+
+// ---------- Übersetzen mit dem KI-Paket ----------
+const spKiDa=()=>typeof KI!=='undefined'&&KI.aktiv&&typeof syAktiv==='function'&&syAktiv();
+async function spKi(texte,nach){const tok=await syToken(),r=await fetch(syBasis()+'/functions/v1/onstand-ki',{method:'POST',headers:{Authorization:'Bearer '+tok,apikey:SY_SERVER.k,'Content-Type':'application/json'},body:JSON.stringify({modus:'uebersetzen',firma:SY_KONTO.firma,texte,nach})});
+ const j=await r.json().catch(()=>({}));if(!r.ok||j.fehler||!Array.isArray(j.texte))throw new Error(j.fehler||'ki_fehler');return j.texte.map(String)}
+const spFremd=t=>/[ąćęłńśźżăâîșțşţëçčđšžа-яА-Я]/.test(String(t||''));
+const spHash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)+s.length.toString(36)};
+function spMerk(){try{return JSON.parse(localStorage.getItem('onstandUeb')||'{}')||{}}catch(e){return {}}}
+function spMerken(k,v){const M=spMerk();M[k]=v;const K=Object.keys(M);if(K.length>400)for(const x of K.slice(0,K.length-400))delete M[x];try{localStorage.setItem('onstandUeb',JSON.stringify(M))}catch(e){}}
+const SPV={orig:{},lauf:{}};
+// Tagebuch-Eintrag in der Sprache des Lesers zeigen
+function spTagebuch(inh){const n=inh.querySelector('.amnotiz');if(!n||n.classList.contains('tbedit')||!TBV.sel)return;const s=tbIso(TBV.sel),e=(TB[s]||[])[TBV.idx];if(!e)return;
+ const ziel=spAkt(),F=['l','m','x','a'].filter(f=>e[f]);if(!F.length)return;if(ziel==='de'&&!F.some(f=>spFremd(e[f])))return;
+ const M=spMerk(),K=F.map(f=>ziel+':'+spHash(e[f])),id=K.join(','),leiste=n.querySelector('.tbverlauf');
+ if(K.every(k=>M[k]!=null)){if(F.every((f,i)=>M[K[i]]===e[f]))return;const o=!!SPV.orig[id];
+  if(!o)F.forEach((f,i)=>{const el=n.querySelector(`.tbfelder [data-ed="${f}"]`);if(!el)return;[...el.childNodes].forEach(c=>{if(c.nodeType===3||(c.tagName==='I'&&c.classList.contains('ohne')))c.remove()});el.insertBefore(document.createTextNode(M[K[i]].replace(/;\s+/g,'\n')),el.firstChild)});
+  if(leiste){const b=document.createElement('button');b.type='button';b.className='spueb';b.innerHTML=spFahne(ziel)+'<span>'+(o?'Übersetzung zeigen':'übersetzt · Original zeigen')+'</span>';b.onclick=()=>{SPV.orig[id]=!o;tbNotiz(inh)};leiste.appendChild(b)}return}
+ if(!spKiDa()||SPV.lauf[id])return;SPV.lauf[id]=1;
+ spKi(F.map(f=>e[f]),ziel).then(T=>{F.forEach((f,i)=>spMerken(K[i],T[i]!=null?T[i]:e[f]));if(n.isConnected)tbNotiz(inh)}).catch(()=>{}).finally(()=>{setTimeout(()=>{delete SPV.lauf[id]},30000)})}
+if(typeof tbNotiz==='function'){const alt=tbNotiz;tbNotiz=function(inh){const r=alt.apply(this,arguments);try{spTagebuch(inh)}catch(e){}return r}}
+// Assistent: Gesagtes oder Getipptes in der eigenen Sprache wird vor dem Auswerten ins Deutsche übersetzt
+if(typeof asBefehl==='function'){const alt=asBefehl;asBefehl=async function(t,vomKnopf,gesprochen){if(spAkt()!=='de'&&!vomKnopf&&spKiDa()&&String(t||'').trim().length>3){try{const [d]=await spKi([t],'de');if(d&&d.trim()&&d.trim()!==String(t).trim()){AS.fluss.push({typ:'du',t});t=d}}catch(e){}}return alt.call(this,t,vomKnopf,gesprochen)}}
+try{spStartFahne()}catch(e){}
+try{spStart()}catch(e){}
+// ===== Onstand · Tagebuch · Lieferschein fotografieren =====
+// Knopf „Lieferschein“ im Tagebuch: Foto aufnehmen oder wählen → mit KI-Paket liest Onstand Lieferant, Nummer, Datum und Positionen →
+// im Dialog prüfen und ändern → „Ins Tagebuch“ schreibt die Lieferung in den Eintrag des Tages (Feld Lieferung).
+// Ohne KI-Paket bleibt der Dialog leer zum Selbst-Ausfüllen; das Foto wird trotzdem abgelegt.
+// Ablage: Persönlich/Arbeit/Lieferscheine/ – Liste in Lieferscheine.md (wird abgeglichen), Fotos als .jpg (bleiben auf dem Gerät, das sie aufgenommen hat).
+const LS_ORD='@/Persönlich/Arbeit/Lieferscheine';
+let LS_LISTE=null;
+const LS_ICO='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.5-2.5h7L17 8.5h3v10H4z"/><circle cx="12" cy="13" r="3.2"/></svg>';
+async function lsLaden(){if(LS_LISTE)return LS_LISTE;const t=String(await lesen(LS_ORD+'/Lieferscheine.md')||''),L=[];
+ for(const z of t.split('\n')){const m=z.match(/^- (\d{4}-\d\d-\d\d) · (.*?) · LS (.*?) · \[\[(.*?)\]\] · Foto: (.*)$/);if(m)L.push({d:m[1],von:m[2],nr:m[3],b:m[4],foto:m[5].trim()})}return LS_LISTE=L}
+async function lsSchreiben(){const L=LS_LISTE||[];await schreiben(LS_ORD+'/Lieferscheine.md',kopfMeta('lieferscheine','persönlich','Onstand','hoch')+'# Lieferscheine\n\nFotografierte Lieferscheine. Teil von [[Arbeit]].\n\n'+L.map(x=>`- ${x.d} · ${x.von} · LS ${x.nr} · [[${x.b}]] · Foto: ${x.foto}`).join('\n')+'\n')}
+const lsB64=blob=>new Promise((ok,nein)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]||'');r.onerror=nein;r.readAsDataURL(blob)});
+const lsKiDa=()=>typeof KI!=='undefined'&&KI.aktiv&&typeof syAktiv==='function'&&syAktiv();
+async function lsLesen(blob){const tok=await syToken(),r=await fetch(syBasis()+'/functions/v1/onstand-ki',{method:'POST',headers:{Authorization:'Bearer '+tok,apikey:SY_SERVER.k,'Content-Type':'application/json'},
+  body:JSON.stringify({modus:'lieferschein',firma:SY_KONTO.firma,bild:await lsB64(blob),baustellen:Object.values(BST).filter(b=>b.status!=='abgeschlossen').map(b=>b.name).slice(0,40)})});
+ const j=await r.json().catch(()=>({}));if(typeof j.rest==='number'&&typeof KI!=='undefined')KI.rest=j.rest;
+ if(j.fehler){const e=new Error({limit:'Die Denk-Fragen für heute sind aufgebraucht. Bitte selbst ausfüllen.',bremse:'Die Kostenbremse für diesen Monat ist erreicht. Bitte selbst ausfüllen.',kein_paket:'Das Lesen gehört zum KI-Paket. Bitte selbst ausfüllen.',eingabe:'Der Server kennt das Lieferschein-Lesen noch nicht (KI-Funktion neu einspielen). Bitte selbst ausfüllen.'}[j.fehler]||'Das Lesen ging gerade nicht. Bitte selbst ausfüllen.');throw e}
+ return j.lieferschein||{}}
+// Baustelle vorschlagen: die von der KI erkannte, sonst die vom Tagebuch dieses Tages, sonst die im Cockpit gewählte
+function lsVorschlag(tag,ki){const L=Object.values(BST).filter(b=>b.status!=='abgeschlossen'),f=n=>n&&L.find(b=>b.name===n);
+ const t=(TB[tag]||[]).map(e=>e.b).find(f);return (f(ki)||f(t)||f(typeof CPV!=='undefined'&&CPV.b)||L[0]||{}).name||''}
+const lsZeile=p=>((p.unsicher?'? ':'')+[String(p.menge||'').trim(),String(p.einheit||'').trim(),String(p.t||'').trim()].filter(Boolean).join(' ')).trim();
+function lsStart(inh){const f=document.createElement('input');f.type='file';f.accept='image/*';f.setAttribute('capture','environment');f.hidden=true;document.body.appendChild(f);
+ f.onchange=async()=>{const d=f.files&&f.files[0];f.remove();if(!d)return;const blob=await mgFotoKlein(d);lsDialog(inh,blob)};f.click()}
+function lsDialog(inh,blob){const tag=tbIso(TBV.sel||new Date()),url=URL.createObjectURL(blob),ki=lsKiDa(),B=Object.values(BST).filter(b=>b.status!=='abgeschlossen');let bst=lsVorschlag(tag,''),fertig=false;
+ const d=onDialog(`<h3>Lieferschein</h3><div class="lsd"><img class="lsbild" src="${url}" alt="Foto des Lieferscheins"><div class="lsf">
+   <p class="lsstat${ki?' liest':''}"><i></i><span>${ki?'Onstand liest den Lieferschein …':'Ohne KI-Paket: bitte selbst ausfüllen. Das Foto wird abgelegt.'}</span></p>
+   <label>LIEFERANT<input data-l="von" placeholder="z. B. Baustoff Weber" autocomplete="off"></label>
+   <div class="ls2"><label>NUMMER<input data-l="nr" autocomplete="off"></label><label>DATUM<input data-l="d" type="date" value="${tag}"></label></div>
+   <label>POSITIONEN<textarea data-l="pos" rows="4" placeholder="Eine Zeile je Position, z. B. 3 Sack Flexkleber"></textarea></label>
+   <small>BAUSTELLE</small><div class="mgchips lsb">${B.length?B.map(b=>`<button type="button" data-lb="${esc(b.name)}" class="spnicht${b.name===bst?' an':''}" style="--cc:${b.c}">${esc(b.k)} <small>${esc(b.name)}</small></button>`).join(''):'<span class="kl">Noch keine Baustelle angelegt.</span>'}</div>
+  </div></div><p class="syfehl"></p>`,[['ABBRECHEN',''],['NEU AUFNEHMEN','neu'],['INS TAGEBUCH','ok']],{neu:()=>{setTimeout(()=>lsStart(inh),60)},ok:async(dd,b)=>{
+   const v=k=>dd.querySelector(`[data-l="${k}"]`).value.trim(),von=v('von'),nr=v('nr'),dat=/^\d{4}-\d\d-\d\d$/.test(v('d'))?v('d'):tag,P=v('pos').split('\n').map(z=>z.replace(/^\?\s*/,'').trim()).filter(Boolean),fe=dd.querySelector('.syfehl');
+   if(!von&&!P.length){fe.textContent='Bitte Lieferant oder mindestens eine Position eintragen.';return false}if(!bst){fe.textContent='Bitte eine Baustelle wählen.';return false}
+   if(/^\?/m.test(v('pos'))&&b.dataset.ok!=='1'){b.dataset.ok='1';fe.textContent='Zeilen mit „?“ sind unsicher gelesen. Stimmen sie? Dann noch einmal auf „Ins Tagebuch“.';return false}
+   b.disabled=true;const sauber=t=>String(t||'').replace(/[\\/:*?"<>|\[\]·]+/g,' ').replace(/\s+/g,' ').trim().slice(0,50),foto=['Lieferschein',dat,sauber(von),sauber(nr)].filter(Boolean).join(' ')+'.jpg';
+   try{await mgBildSpeichern(LS_ORD,foto,blob);await lsLaden();LS_LISTE=LS_LISTE.filter(x=>x.foto!==foto);LS_LISTE.push({d:tag,von:sauber(von)||'Lieferant unbekannt',nr:sauber(nr)||'ohne Nummer',b:bst,foto});LS_LISTE.sort((a,b)=>a.d.localeCompare(b.d));await lsSchreiben();
+    await tbEintragen(tag,{b:bst,m:(von||'Lieferung')+(nr?' (LS '+nr+')':'')+(P.length?': '+P.join(', '):'')});fertig=true;try{onToast('Lieferung steht im Tagebuch')}catch(e){}if(AM_AKT==='tagebuch'){const i=(TB[tag]||[]).findIndex(e=>e.b===bst);if(i>=0)TBV.idx=i;tbMalen(AM_EL.querySelector('.aminhalt'))}}
+   catch(e){b.disabled=false;fe.textContent='Speichern ging nicht: '+(e&&e.message||e);return false}}});
+ d.querySelector('.ondk').classList.add('lsdk');
+ d.querySelectorAll('[data-lb]').forEach(x=>x.onclick=()=>{bst=x.dataset.lb;d.querySelectorAll('[data-lb]').forEach(y=>y.classList.toggle('an',y===x))});
+ const stat=d.querySelector('.lsstat'),setz=(k,w)=>{const el=d.querySelector(`[data-l="${k}"]`);if(el&&w&&!el.value.trim())el.value=w};
+ if(ki)lsLesen(blob).then(L=>{if(!stat.isConnected)return;setz('von',L.lieferant);setz('nr',L.nummer);if(/^\d{4}-\d\d-\d\d$/.test(L.datum||'')){d.querySelector('[data-l="d"]').value=L.datum}
+   const P=(Array.isArray(L.positionen)?L.positionen:[]).map(lsZeile).filter(Boolean);setz('pos',P.join('\n'));const ta=d.querySelector('[data-l="pos"]');ta.rows=Math.min(9,Math.max(4,P.length+1));
+   const vb=lsVorschlag(tag,L.baustelle);if(vb&&L.baustelle&&vb===L.baustelle){bst=vb;d.querySelectorAll('[data-lb]').forEach(y=>y.classList.toggle('an',y.dataset.lb===bst))}
+   const un=P.filter(z=>z.startsWith('?')).length;stat.className='lsstat '+(un?'gelb':'gruen');stat.querySelector('span').textContent=P.length||L.lieferant?(un?'Zeilen mit „?“ bitte prüfen.':'Gelesen. Bitte kurz prüfen.'):'Nichts Lesbares gefunden. Bitte selbst ausfüllen.'})
+  .catch(e=>{if(!stat.isConnected)return;stat.className='lsstat gelb';stat.querySelector('span').textContent=e.message||'Das Lesen ging gerade nicht.'});
+ return d}
+// Foto zu einer Lieferung ansehen
+async function lsZeigen(x){const u=await mgBild(LS_ORD,x.foto);if(!u){onToast('Das Foto liegt nur auf dem Gerät, das es aufgenommen hat.');return}
+ onDialog(`<h3>Lieferschein ${esc(x.nr)}</h3><p class="kl">${esc(x.von)} · ${esc(x.b)}</p><img class="lsgross" src="${u}" alt="Foto des Lieferscheins">`,[['SCHLIESSEN','']]).querySelector('.ondk').classList.add('lsdk')}
+// Einhängen ins Tagebuch: Knopf im Kopf und Verweise auf die Fotos am Eintrag
+{const reg=onFunktionen().find(x=>x.id==='tagebuch');if(reg){const alt=reg.zeigen;reg.zeigen=function(inh){const r=alt.apply(this,arguments);try{const k=inh.querySelector('.tbk .mgakt');if(k&&!k.querySelector('.tbls')){const b=document.createElement('button');b.type='button';b.className='tbls';b.title='Lieferschein fotografieren';b.innerHTML=LS_ICO+'<span>Lieferschein</span>';b.onclick=()=>lsStart(inh);k.insertBefore(b,k.querySelector('.tr')||null)}}catch(e){}return r}}}
+if(typeof tbNotiz==='function'){const alt=tbNotiz;tbNotiz=function(inh){const r=alt.apply(this,arguments);try{const n=inh.querySelector('.amnotiz');if(n&&!n.classList.contains('tbedit')&&TBV.sel){const s=tbIso(TBV.sel),e=(TB[s]||[])[TBV.idx];
+   if(e&&e.m)lsLaden().then(L=>{const el=n.querySelector('.tbfelder [data-ed="m"]');if(!el||!el.isConnected||el.querySelector('.lsfoto'))return;L.filter(x=>x.d===s&&x.b===e.b).forEach(x=>{const b=document.createElement('button');b.type='button';b.className='lsfoto';b.innerHTML=LS_ICO+'<span class="spnicht">LS '+esc(x.nr)+'</span>';b.onclick=ev=>{ev.stopPropagation();lsZeigen(x)};el.appendChild(b)})}).catch(()=>{})}}catch(e){}return r}}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Wirkt nur bis 760 px Breite. Der PC bleibt, wie er ist: dort stehen die Knöpfe weiter in Großbuchstaben an ihrem Platz.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -8069,7 +8719,7 @@ addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{h
 const FR_NOMEN=['PDF','KI','IBAN','BIC','QR','E-Rechnung','Angebot','Angebote','Auftrag','Aufträge','Rechnung','Rechnungen','Entwurf','Abschlag','Schlussrechnung','Stornorechnung','Bauplan','Mangel','Mängel','Abnahme','Arbeit','Konto','Firma','Code','Ordner','Datei','Dateien','Mahnung','Serie','Tag','Tage','Woche','Wochen','Monat','Jahr','Liste','Eintrag','Werkstatt','Protokoll','Posten','Kunden-Menü','Bautagebuch','Mail','Foto','Leistung','Preisliste','Position','Frage','Wiki','Termin','Kalender','Baustelle','Gerät','Geräte','Vorbehalt','Assistent','Passwort','Sicherung','Papierkorb','Zahlung','Kunde','Leistungsstand','Prozent','Tagebuch','Regie','Nachher-Foto','Onstand','Einstellungen','Mahnwesen','Drucken'];
 const FR_FEST={'OK':'OK','ALS PDF / DRUCKEN':'Als PDF / Drucken','ANGENOMMEN → AUFTRAG':'Angenommen','ZURÜCK AUF ENTWURF':'Zurück auf Entwurf','GEPRÜFT ✓':'Geprüft ✓','IN ARBEIT':'In Arbeit','‹ ZURÜCK':'‹ Zurück','E-RECHNUNG?':'E-Rechnung?','PASST SO':'Passt so','NACH PROZENT':'Nach Prozent','NACH LEISTUNGSSTAND':'Nach Leistungsstand','REGIE AUS TAGEBUCH':'Regie aus Tagebuch','FREIE RECHNUNG':'Freie Rechnung','IN DER WERKSTATT ÖFFNEN ›':'In der Werkstatt öffnen','+ NEUER BAUPLAN':'+ Bauplan','ALLE ZEIGEN':'Alle zeigen'};
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
-function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^a-zäöü]*)([a-zäöü])/,(m,a,b)=>a+b.toLocaleUpperCase('de'));
+function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
 const FR_AUS='.onleiste,[role=tab],.autabs,.glreiter,.brreiter,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
