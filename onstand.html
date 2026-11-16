@@ -3524,13 +3524,33 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .pbz{padding:11px 16px;min-height:52px}
  #am .pbz>b,#am .pbz span b,#am .pbz em{font-size:15px}#am .pbz span small{font-size:13px}
 }
+/* Kunden neben der Liste: rechte Spalte scrollt statt zu quetschen (Verknüpft wurde abgeschnitten); Letzte Kontakte nur links */
+#am .glr>*{flex-shrink:0}
+#am .glr :is(.kukonlab,.kukf,.kukonl){display:none!important}
+#am .glr .kukonform{margin:0 18px 12px}
+#am .glr .gldk .mgakt .kukneu{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font-size:12.5px;font-weight:600;text-transform:none;letter-spacing:0}
+#am .glr .gldk .mgakt .kukneu svg{width:15px;height:15px}
+#am .glr>.gldk{position:sticky;top:0;z-index:3;background:var(--k-b1)}
+/* Firmen-Wiki (Probe): Frage oben als Karte mit Knopf „Fragen“, „+ Dateien“ als Kupferknopf, ruhige Gruppen */
+#am .mgakt label.brdat.haupt{background:var(--k-akz)!important;color:var(--k-auf)!important;border:1px solid var(--k-akz)!important;border-radius:4px;height:32px;padding:0 14px;font-size:13px;font-weight:600;letter-spacing:0}
+#am .mgakt label.brdat.haupt svg{stroke:currentColor}
+#am .brx>.brfrage button span{display:none}
+#am .aminhalt:has(.brx) :is(.brgr>small,.brlab,.brfakten span){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none;color:var(--k-sub)}
+#am .brreiter .brlauf span{font-size:12px;letter-spacing:0}
+@media (min-width:761px){
+ #am .brx>.brfrage{margin:4px 0 2px;border-radius:8px;box-shadow:none;border-color:var(--k-lin);background:var(--k-b1);padding:6px 6px 6px 14px}
+ #am .brx>.brfrage button{width:auto;padding:0 16px;gap:6px;display:inline-flex;align-items:center;border-radius:4px;background:var(--k-akz);color:var(--k-auf);font-size:13px;font-weight:600;box-shadow:none}
+ #am .brx>.brfrage button span{display:inline}
+ #am .brx>.brfrage button svg{display:none}
+}
+@media (max-width:760px){#am .aminhalt>.mgk label.brdat.haupt{background:none!important;color:var(--k-akz)!important;border:0!important;padding:0 8px}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.58';
+const ON_VER='0.10.60';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -9656,14 +9676,16 @@ if(typeof GE_WISCH!=='undefined')GE_WISCH.push(['#am .tbbz[data-d]',el=>{if(type
  return [['Bearbeiten','akz',()=>{hin();TBV.edit=true;tbMalen(inh)}],['Lieferschein','sub',()=>{hin();TBV.edit=false;tbMalen(inh);if(typeof lsStart==='function')lsStart(inh)}]]}]);
 // ===== Kunden im Büro-Design (Probe „Kunden“) =====
 // Kürzel im Kreis statt Farbstreifen, Bezeichnungen in normaler Schreibweise, am Handy ist die Suche immer offen.
-const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung'};
+const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung','KUNDEN & BAUSTELLEN':'Kunden & Baustellen','PARTNER & LIEFERANTEN':'Partner & Lieferanten','FIRMA & WISSEN':'Firma & Wissen','DATEIEN ZU DIESER SEITE':'Dateien zu dieser Seite','WARTET AUF DEN SORTIER-LAUF':'Wartet auf den Sortier-Lauf','HIER ORDNEST DU SELBST ZU':'Hier ordnest du selbst zu','NICHT ZUGEORDNET':'Nicht zugeordnet','FACH NEU':'Fach Neu'};
 const kbText=k=>KB_FEST[k]||frSatz(k).replace(/\bkw\b/gi,'KW');
 function kbSchreib(a,S){a.querySelectorAll(S).forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=kbText(k)})}
 const KB_MAL=kuMalen;
 kuMalen=function(inh){if(W<=760&&KU_SEL===null&&!KU_V.such)KU_V.such=true;const r=KB_MAL.apply(this,arguments);try{kbFein()}catch(e){}return r};
 function kbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.kuneu,.kuzur,.kusp'))return;
  a.querySelectorAll('.kurow').forEach(z=>{const b=BST[z.dataset.n],s=z.querySelector('.kust');if(b&&s&&!s.textContent)s.textContent=b.k||''});
- kbSchreib(a,'.tbfelder>span,.gllab')}
+ kbSchreib(a,'.tbfelder>span,.gllab');
+ // Neben der Liste: „Letzte Kontakte“ stehen schon links – rechts nur noch der Knopf „Kontakt notieren“ oben neben „Bearbeiten“
+ const r=a.querySelector('.glr'),k=r&&r.querySelector('.kukneu'),m=r&&r.querySelector('.gldk .mgakt');if(k&&m&&!m.contains(k)){m.insertBefore(k,m.querySelector('.kued'));k.lastChild.textContent='Kontakt'}}
 // ===== Personal im Büro-Design (Probe „Personal“) =====
 // Detail: statt Balken die Tage der Woche als Zeilen (Tag · Arbeitszeit · Baustelle · Stunden). Liste: am Handy Rolle und Baustelle unter dem Namen.
 const PB_MAL=peMalen;
@@ -9675,6 +9697,15 @@ function pbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.quer
   const Z=[];for(let i=0;i<tage;i++){const tag=tbIso(tbPlus(mo,i)),E=(TB[tag]||[]).filter(e=>peListe(e.p).some(x=>x===n||p.alias.includes(x)));
    Z.push(`<div class="pbz${E.length?'':' leer'}${tag===heute?' heute':''}"><b>${TB_WT[i].charAt(0)+TB_WT[i].charAt(1).toLowerCase()}</b><span><b>${E.length?E.map(e=>esc(e.z||'ohne Zeit')).join(', '):'—'}</b>${E.length?`<small>${[...new Set(E.map(e=>e.b).filter(Boolean))].map(esc).join(' · ')||'ohne Baustelle'}</small>`:''}</span><em>${w[i]?peH(w[i])+' h':''}</em></div>`)}
   bal.outerHTML=`<div class="pbtage">${Z.join('')}</div>`}}
+// ===== Firmen-Wiki im Büro-Design (Probe „Firmen-Wiki“) =====
+// Am PC steht „Frag das Firmenwissen“ oben über Liste und Seite; Bezeichnungen in normaler Schreibweise.
+const BW_MAL=brMalen;
+brMalen=function(inh){const r=BW_MAL.apply(this,arguments);try{bwFein(inh)}catch(e){}return r};
+function bwFein(inh){if(!inh||!inh.querySelector('.brx'))return;
+ kbSchreib(inh,'.brgr>small,.brlab,.brfakten span,.aukh>b');
+ const l=inh.querySelector('.brlauf>span');if(l&&!l.querySelector('b')){const t=l.textContent;if(t===t.toUpperCase())l.textContent=t.toLowerCase().replace(/^./,c=>c.toUpperCase()).replace(/\b(mo|di|mi|do|fr|sa|so)\./g,m=>m[0].toUpperCase()+m.slice(1)).replace('nächster lauf sonntag','nächster Lauf Sonntag')}
+ const f=inh.querySelector('.brx>.brfrage'),w=inh.querySelector('.brx>.brwiki');if(W>760&&f&&w&&f.nextElementSibling!==w)w.before(f);
+ const b=f&&f.querySelector('button[type=submit]');if(b&&!b.querySelector('span'))b.insertAdjacentHTML('beforeend','<span>Fragen</span>')}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -9685,7 +9716,7 @@ const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','AN
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
+const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentElement!==b&&n.parentElement.closest(FR_AUS))continue;const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
