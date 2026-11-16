@@ -3370,13 +3370,76 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .aupzh>span:nth-child(3),#am .aupzh>span:nth-child(4){text-align:right}
  #am .aupz{border-top-color:var(--k-lin)}
 }
+/* Baustellen-Cockpit Variante A (PC) */
+@media (min-width:761px){
+ #am .cpgrid.cpa{grid-template-columns:minmax(0,1fr)!important}
+ #am .cpzwei{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start}
+ #am .cpspalte{display:grid;gap:14px;min-width:0}
+ #am .cpspalte .cpmeld{position:static}
+ #am .cpx .cpkarte{border-radius:8px;border-color:var(--k-lin);background:var(--k-b1)}
+ #am .cpwahl{gap:6px}
+ #am .cpwahl button{border-radius:16px;padding:4px 11px;font-size:12px;border-color:var(--k-lin);background:var(--k-b1);color:var(--k-t)}
+ #am .cpwahl button small{font-size:12px;color:var(--k-sub)}
+ #am .cpwahl button.an{border-color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 10%,var(--k-b1));color:var(--k-akz);font-weight:600}
+ /* Einzug: Zahl statt Ring */
+ #am .cpring{width:auto;height:auto;min-width:120px;border-left:1px solid var(--k-lin);padding-left:18px;text-align:center}
+ #am .cpring svg{display:none}
+ #am .cpring>div{position:static;transform:none;display:block}
+ #am .cpring b{display:block;font-size:30px;font-weight:600;line-height:1.1}
+ #am .cpring small{font-size:12px;color:var(--k-sub)}#am .cpring small br{display:none}
+ /* Phasen als Schritte */
+ #am .cpphasen{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;border:0;border-radius:0;overflow:visible;padding:4px 0 2px}
+ #am .cpphasen:before,#am .cpphasen:after{content:'';position:absolute;top:14px;left:10%;height:2px;border-radius:2px}
+ #am .cpphasen:before{right:10%;background:var(--k-lin)}
+ #am .cpphasen:after{width:calc(80% * var(--ph,0) / 4);background:var(--k-akz)}
+ #am .cpphasen span{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--k-sub)!important;font-size:12px;font-weight:400!important}
+ #am .cpphasen span:before{content:'';width:22px;height:22px;border-radius:50%;box-sizing:border-box;border:2px solid var(--k-lin);background:var(--k-b1)}
+ #am .cpphasen span.f:before{border-color:var(--k-akz);background:var(--k-akz) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+ #am .cpphasen span.j{color:var(--k-t)!important;font-weight:600!important}
+ #am .cpphasen span.j:before{border-color:var(--k-akz);box-shadow:0 0 0 4px color-mix(in srgb,var(--k-akz) 18%,transparent)}
+ #am .cpphasen svg{display:none}
+ /* Lagebild als schmale Leiste */
+ #am .cplage{border-radius:8px;padding:10px 14px;background:color-mix(in srgb,var(--lc) 9%,var(--k-b1));border:1px solid color-mix(in srgb,var(--lc) 35%,transparent)}
+ #am .cplage small{display:none}
+ /* Kennzahlen: Beschriftung oben, Zahl darunter */
+ #am .cpzahlen{gap:12px}
+ #am .cpzahlen button{flex-direction:column-reverse;justify-content:flex-end;align-items:flex-start;border-radius:8px;border:1px solid var(--k-lin);background:var(--k-b1);padding:11px 14px;gap:2px}
+ #am .cpzahlen button b{font-size:22px;font-weight:600}
+ #am .cpzahlen button small{font-size:12px!important;font-weight:400!important;letter-spacing:0!important;color:var(--k-sub)!important;text-transform:none}
+ #am .cpzahlen button small br{display:none}
+ /* Zeilen in den Karten */
+ #am .cpwoche button{grid-template-columns:96px minmax(0,1fr) auto 64px;border-top-color:var(--k-lin);padding:9px 14px;font-size:12.5px}
+ #am .cpkh{padding:12px 14px 6px;margin:0}
+ #am .cpml{border-top:1px solid var(--k-lin)}
+ #am .cpml button,#am .cpkontakt .mgakt button{border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font-size:12.5px;font-weight:600;padding:5px 10px;text-transform:none}
+}
+/* Tagebuch (PC): Tage als ruhige weiße Karten, gewählter Tag mit Kupfer-Rahmen; Felder als Zeilen */
+@media (min-width:761px){
+ #am .amtag{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:6px}
+ #am .amtag.sel{background:var(--k-b1);border-color:var(--k-akz);box-shadow:inset 0 0 0 1px var(--k-akz)}
+ #am .amtag.sel b{color:var(--k-akz)}
+ #am .tbfelder>span{font-size:12px!important;letter-spacing:0!important;text-transform:none;font-weight:600}
+ #am .tbfelder>span:first-letter{text-transform:uppercase}
+}
+/* Tagebuch: „Diese Woche“ */
+#am .tbbwoche{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;margin-top:14px;flex:none}
+#am .tbbk{display:flex;justify-content:space-between;align-items:center;padding:12px 14px 8px}#am .tbbk b{font-size:13.5px;font-weight:600}#am .tbbk span{font-size:12px;color:var(--k-sub)}
+#am .tbbz{display:grid;grid-template-columns:9px minmax(0,1fr) auto 64px;gap:12px;align-items:center;width:100%;padding:9px 14px;border:0;border-top:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);text-align:left;font:inherit;cursor:pointer;text-transform:none}
+#am .tbbz:hover{background:color-mix(in srgb,var(--k-t) 4%,var(--k-b1))}#am .tbbz.an{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))}
+#am .tbbz>i{width:9px;height:9px;border-radius:50%}
+#am .tbbt{min-width:0}#am .tbbt b{display:block;font-size:13px;font-weight:600}#am .tbbt small{display:block;font-size:12px;color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .tbbz em{font-style:normal;font-size:12px;color:var(--k-sub);white-space:nowrap}#am .tbbz strong{font-size:12.5px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:760px){#am .tbbwoche{border:0;border-radius:20px;margin-bottom:90px}#am .tbbz{grid-template-columns:10px minmax(0,1fr) auto;min-height:56px;padding:10px 16px;touch-action:pan-y;transition:transform .28s cubic-bezier(.32,.72,0,1);position:relative;z-index:1}#am .tbbz em{display:none}}
+/* Aufträge: gefilterte Zeilen wirklich ausblenden */
+#am .ausplit .aual>.auar.fiweg,#am .ausplit .aual>.auar[hidden]{display:none!important}
+#am .aminhalt:has(.tbbwoche) .amnotiz:not(.tbedit){flex:none;max-height:none;overflow:visible}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.51';
+const ON_VER='0.10.53';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6608,7 +6671,7 @@ setTimeout(()=>{try{brLaden().catch(()=>{})}catch(e){}},4000);
 // dort führt „‹ Übersicht“ zurück. Keine eigenen Daten: alles aus BST, TB, MG, AU_A/AU_R und dem Kalender.
 const CPU_ALT=cpMalen,CPU_PH=['Angebot','Auftrag','Ausführung','Abnahme','Schlussrechnung'];
 cpMalen=function(inh,wechsel){if(!CPV.b||!cpListe().length)return cpListe().length?cpUebersicht(inh):CPU_ALT.call(this,inh,wechsel);
- const out=CPU_ALT.call(this,inh,wechsel);const a=inh.querySelector('.mgakt');if(a&&!a.querySelector('.cpuzur')){const z=document.createElement('button');z.type='button';z.className='cpuzur';z.innerHTML='‹ Übersicht';z.onclick=()=>{CPV.b=null;cpMalen(inh)};a.prepend(z)}return out};
+ const out=CPU_ALT.call(this,inh,wechsel);cpuSpalten(inh);const a=inh.querySelector('.mgakt');if(a&&!a.querySelector('.cpuzur')){const z=document.createElement('button');z.type='button';z.className='cpuzur';z.innerHTML='‹ Übersicht';z.onclick=()=>{CPV.b=null;cpMalen(inh)};a.prepend(z)}return out};
 function cpuPhase(b){let ph=0;try{if((typeof AU_A!=='undefined'?AU_A:[]).some(a=>a.b===b.name&&a.st==='angenommen'))ph=1;if(Object.values(TB).some(l=>l.some(e=>e.b===b.name)))ph=2;if(typeof AB!=='undefined'&&AB[b.name])ph=3;if((typeof AU_R!=='undefined'?AU_R:[]).some(r=>r.b===b.name&&/schluss/i.test(r.t||'')&&r.st!=='entwurf'))ph=4}catch(e){}return ph}
 function cpUebersicht(inh){const L=cpListe(),heute=tbIso(new Date()),mo=tbIso(tbMo(new Date())),geld=typeof reRecht!=='function'||reRecht('auftraege')==='alles',jetzt=new Date().toTimeString().slice(0,5);
  let h=0;const leute=new Set();Object.entries(TB).forEach(([t,l])=>{if(t<mo||t>heute)return;l.forEach(e=>{const n=peListe(e.p);h+=(peDauer(e.z)||0)*Math.max(1,n.length);n.forEach(x=>leute.add(x))})});
@@ -6633,6 +6696,13 @@ function cpUebersicht(inh){const L=cpListe(),heute=tbIso(new Date()),mo=tbIso(tb
  inh.querySelectorAll('[data-cpb]').forEach(x=>x.onclick=()=>{CPV.b=x.dataset.cpb;cpMalen(inh)});
  inh.querySelectorAll('[data-cpu]').forEach(x=>x.onclick=()=>amFunktion(x.dataset.cpu));
  try{if(typeof eiErsteSchritte==='function')eiErsteSchritte(inh)}catch(e){}}
+
+// Baustellen-Cockpit, Variante A der Probe (PC): oben Baustelle, Lagebild und Kennzahlen über die ganze Breite,
+// darunter links die Arbeit (letzte 7 Tage, Team), rechts Benachrichtigungen, Termine, Mängel & Abnahme und Bauplan.
+function cpuSpalten(inh){try{if(innerWidth<=760)return;const cin=inh.querySelector('.cpin'),meld=inh.querySelector('.cpmeld');if(!cin||cin.querySelector('.cpzwei'))return;
+ const K=[...cin.querySelectorAll(':scope>.cpkarte:not(.cpprojekt)')];if(K.length<5)return;
+ const z=document.createElement('div'),l=document.createElement('div'),r=document.createElement('div');z.className='cpzwei';l.className=r.className='cpspalte';
+ l.append(K[0],K[1]);if(meld)r.append(meld);r.append(K[4],K[2],K[3]);z.append(l,r);cin.append(z);const g=inh.querySelector('.cpgrid');if(g)g.classList.add('cpa');inh.querySelectorAll('.cpzahlen small br,.cpring small br').forEach(x=>x.replaceWith(' '));const j=inh.querySelector('.cpphasen .j'),k=inh.querySelector('.mgk .amtt');if(j&&k)k.textContent='BAUSTELLE · '+j.textContent.trim().toUpperCase()}catch(e){}}
 // QR-Code-Erzeuger: QRCode for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT-Lizenz (aus qrcode-terminal). Für Onstand im Browser verpackt.
 const ON_QR=(()=>{const M={},C={};function req(n){n=n.replace("./","");if(C[n])return C[n].exports;const m=C[n]={exports:{}};M[n](m,m.exports,req);return m.exports}
 M['QR8bitByte']=function(module,exports,require){var QRMode = require('./QRMode');
@@ -9476,6 +9546,23 @@ async function lsMatDazu(x){await lsMatLaden();LS_MAT=LS_MAT.filter(y=>!(y.nr===
  await schreiben(LS_MAT_DATEI,kopfMeta('materialkosten','persönlich','Onstand','hoch')+'# Materialkosten\n\nEinkaufspreise netto von fotografierten Lieferscheinen, je Baustelle. Teil von [[Arbeit]].\n\n'+LS_MAT.map(y=>`- ${y.d} · ${y.von} · LS ${y.nr} · [[${y.b}]] · ${auZ(y.netto).replace(/\./g,'')} € netto${y.foto?' · Foto: '+y.foto:''}`).join('\n')+'\n')}
 function lsMatText(b){if(!lsGeld()||!LS_MAT)return '';const L=LS_MAT.filter(x=>x.b===b);if(!L.length)return '';const s=L.reduce((a,x)=>a+x.netto,0);return esc(auEur(s)+' netto · '+L.length+(L.length===1?' Lieferschein':' Lieferscheine'))}
 {const alt=onLos;onLos=function(){const r=alt.apply(this,arguments);setTimeout(()=>{lsMatLaden().catch(()=>{})},1500);return r}}
+// ===== Tagebuch im Büro-Design (Design-Probe): Hauptknopf „+ Eintrag“ oben rechts in der Kopfleiste.
+// Er öffnet einen neuen Eintrag für den gewählten Tag – wie „+ Eintrag anlegen“ in der Tageskarte. Logik bleibt in bautagebuch.js.
+const TBB_MALEN=tbMalen;
+tbMalen=function(inh){const o=TBB_MALEN.apply(this,arguments);try{const a=inh.querySelector(':scope>.mgk .mgakt');if(a&&!a.querySelector('.tbbneu')&&!TBV.edit){const b=document.createElement('button');b.type='button';b.className='haupt tbbneu';
+ b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Eintrag';b.onclick=()=>{const s=tbIso(TBV.sel||new Date());TBV.edit=true;TBV.idx=(TB[s]||[]).length;tbNotiz(inh)};a.appendChild(b)}}catch(e){}return o};
+// „Diese Woche“: alle Einträge der gewählten Woche als Liste unter der Tageskarte (wie in der Probe).
+// Antippen öffnet den Tag; am Handy nach links wischen: Bearbeiten oder Lieferschein.
+const TBB_MALEN2=tbMalen;
+tbMalen=function(inh){const o=TBB_MALEN2.apply(this,arguments);try{inh.querySelectorAll('.tbbwoche').forEach(x=>x.remove());if(TBV.ans!==5)return o;
+ const mo=tbMo(TBV.sel),sI=tbIso(TBV.sel),Z=[];for(let i=0;i<7;i++){const d=tbPlus(mo,i),s=tbIso(d);(TB[s]||[]).forEach((e,j)=>Z.push({d,s,e,j}))}if(!Z.length)return o;
+ const h=e=>{const x=peDauer(e.z)||0;return x?peH(x*Math.max(1,peListe(e.p).length))+' h':''};
+ const w=document.createElement('section');w.className='tbbwoche';w.innerHTML=`<div class="tbbk"><b>Diese Woche</b><span>${Z.length} ${Z.length===1?'Eintrag':'Einträge'}</span></div>`+Z.map(z=>{const b=typeof bstFinde==='function'?bstFinde(z.e.b):null;
+  return `<button type="button" class="tbbz${z.s===sI&&z.j===TBV.idx?' an':''}" data-d="${z.s}" data-j="${z.j}"><i style="background:${b&&b.c||'var(--k-akz)'}"></i><span class="tbbt"><b>${esc(z.e.b||'Ohne Baustelle')}</b><small>${TB_WT[(z.d.getDay()+6)%7]} ${z.d.getDate()}.${z.d.getMonth()+1}. · ${esc(String(z.e.l||z.e.m||'Eintrag').split('\n')[0])}${z.e.x?' · '+esc(z.e.x):''}</small></span><em>${esc(peListe(z.e.p).join(', '))}</em><strong>${h(z.e)}</strong></button>`}).join('');
+ const n=inh.querySelector('.amnotiz');(n&&n.parentElement===inh.querySelector('.amnotiz').parentElement?n:inh.lastElementChild).after(w);
+ w.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{TBV.sel=tbAusIso(b.dataset.d);TBV.idx=+b.dataset.j;TBV.edit=false;TBV.loesch=0;tbMalen(inh);const k=inh.querySelector('.amnotiz');if(k)k.scrollIntoView({block:'start',behavior:RM?'auto':'smooth'})})}catch(e){}return o};
+if(typeof GE_WISCH!=='undefined')GE_WISCH.push(['#am .tbbz[data-d]',el=>{if(typeof reRecht==='function'&&['lesen','kein'].includes(reRecht('tagebuch')))return [];const inh=el.closest('.aminhalt'),hin=()=>{TBV.sel=tbAusIso(el.dataset.d);TBV.idx=+el.dataset.j;TBV.loesch=0};
+ return [['Bearbeiten','akz',()=>{hin();TBV.edit=true;tbMalen(inh)}],['Lieferschein','sub',()=>{hin();TBV.edit=false;tbMalen(inh);if(typeof lsStart==='function')lsStart(inh)}]]}]);
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
