@@ -3285,13 +3285,47 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .tbk~.amnotiz.tbedit{position:fixed!important;top:0;right:0;bottom:0;left:auto;width:min(440px,100%);z-index:30;overflow:hidden auto!important;margin:0;border-radius:0!important;border:0!important;border-left:1px solid var(--k-lin)!important;background:var(--k-b1);box-shadow:-12px 0 30px -18px color-mix(in srgb,black 40%,transparent);animation:berein .22s cubic-bezier(.2,.8,.2,1)}
  @keyframes berein{from{transform:translateX(30px);opacity:0}}
 }
+
+/* ===== Büro-Oberfläche wie in der Probe (v0.10.49) =====
+   Kein Sperrsatz mehr, kleine Überschriften ruhig in Grau, Kopf jedes Bereichs als weiße Leiste mit Titel und Knöpfen,
+   Knöpfe wie in Office (Rahmen, Hauptknopf in Kupfer gefüllt), Reiter mit Unterstrich. */
+#am .aminhalt *:not(svg):not(svg *),#kal *:not(svg):not(svg *),.gemenue *{letter-spacing:0!important}
+#am :is(.cpkh b,.gllab,.tbfelder>span,.petk>span,.mglab,.mgfl>span,.mgbox h4,.cpstat,.mgpill,em.offen),#kal :is(.kwd,.kmk>span,.kwt){font-size:11px!important;font-weight:600!important;letter-spacing:.4px!important;color:var(--k-sub)}
+#am .amtt,#kal .ktitel small{font-size:11.5px!important;font-weight:600!important;letter-spacing:.4px!important;color:var(--k-akz)}
+#am .mgh{font-size:22px!important;font-weight:600!important;letter-spacing:-.2px!important;line-height:1.25}
+#am .cpkh button{font-size:12.5px;font-weight:600;color:var(--k-akz)}
+/* Reiter mit Unterstrich */
+#am :is(.autabs,.glreiter,.brreiter){gap:2px;border-bottom:1px solid var(--k-lin)}
+#am :is(.autabs,.glreiter,.brreiter)>button{font-size:13px!important;font-weight:500;color:var(--k-sub);border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:8px 12px 9px;margin-bottom:-1px;text-transform:none}
+#am :is(.autabs,.glreiter,.brreiter)>button.an{color:var(--k-akz);border-bottom-color:var(--k-akz);font-weight:600;background:none}
+#am :is(.autabs,.glreiter,.brreiter)>button :is(i,em){font-style:normal;font-size:11px;background:color-mix(in srgb,var(--k-sub) 14%,transparent);color:var(--k-sub);border-radius:8px;padding:0 6px;margin-left:5px}
+@media (min-width:761px){
+ #am .aminhalt{padding:0 24px 20px}
+ /* Kopf: weiße Leiste über die ganze Breite */
+ #am .aminhalt>:is(.mgk,.amkopf,.mgekopf){margin:0 -24px 6px;padding:12px 24px;background:var(--k-b1);border-bottom:1px solid var(--k-lin);align-items:center;position:sticky;top:0;z-index:6;min-height:64px}
+ #am .aminhalt>.mgk>div:first-child{display:flex;flex-direction:column;gap:1px}
+ #am .mgk .mgh:after,#am .mgk:after{display:none}
+ /* Knöpfe im Kopf wie Office */
+ #am .mgakt{gap:8px;align-items:center}
+ #am .mgakt>.tr{display:none}
+ #am .mgakt>button:not(.ampf):not(.amans button),#am .mgakt>a{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font-size:13px!important;font-weight:600;text-transform:none}
+ #am .mgakt>button:not(.ampf):hover{background:color-mix(in srgb,var(--k-t) 5%,var(--k-b1))}
+ #am .mgakt>button.haupt{background:var(--k-akz)!important;border-color:var(--k-akz)!important;color:var(--k-auf)!important}
+ #am .mgakt>button.haupt:hover{background:var(--k-akzd)!important;border-color:var(--k-akzd)!important}
+ #am .mgakt>button svg{width:15px;height:15px}
+ /* Knöpfe in Karten und Listen */
+ #am :is(.amaktion,.auknoepfe) button,#am .amneu{border-radius:4px!important;font-size:13px!important;font-weight:600;text-transform:none}
+ /* Kalender-Kopf ebenso als weiße Leiste */
+ #kal .kkopf{background:var(--k-b1);border-bottom:1px solid var(--k-lin);padding:12px 24px;margin:0 0 10px}
+ #kal :is(.kseg,.knav) button,#kal .kplus{font-size:13px!important;text-transform:none}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.48';
+const ON_VER='0.10.49';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -9350,21 +9384,21 @@ async function lsMatDazu(x){await lsMatLaden();LS_MAT=LS_MAT.filter(y=>!(y.nr===
 function lsMatText(b){if(!lsGeld()||!LS_MAT)return '';const L=LS_MAT.filter(x=>x.b===b);if(!L.length)return '';const s=L.reduce((a,x)=>a+x.netto,0);return esc(auEur(s)+' netto · '+L.length+(L.length===1?' Lieferschein':' Lieferscheine'))}
 {const alt=onLos;onLos=function(){const r=alt.apply(this,arguments);setTimeout(()=>{lsMatLaden().catch(()=>{})},1500);return r}}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
-// Wirkt nur bis 760 px Breite. Der PC bleibt, wie er ist: dort stehen die Knöpfe weiter in Großbuchstaben an ihrem Platz.
+// Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
 // 2) Fußzeile: ein Hauptknopf und ein Nebenknopf fest unten, alles Seltene hinter „···“ (Angebot, Auftrag, Rechnung, Mangel).
 // 3) Preisliste in „Firma & Preise“: Zeilen zum Antippen, die Felder klappen erst beim Antippen auf.
-const FR_NOMEN=['PDF','KI','IBAN','BIC','QR','E-Rechnung','Angebot','Angebote','Auftrag','Aufträge','Rechnung','Rechnungen','Entwurf','Abschlag','Schlussrechnung','Stornorechnung','Bauplan','Mangel','Mängel','Abnahme','Arbeit','Konto','Firma','Code','Ordner','Datei','Dateien','Mahnung','Serie','Tag','Tage','Woche','Wochen','Monat','Jahr','Liste','Eintrag','Werkstatt','Protokoll','Posten','Kunden-Menü','Bautagebuch','Mail','Foto','Leistung','Preisliste','Position','Frage','Wiki','Termin','Kalender','Baustelle','Gerät','Geräte','Vorbehalt','Assistent','Passwort','Sicherung','Papierkorb','Zahlung','Kunde','Leistungsstand','Prozent','Tagebuch','Regie','Nachher-Foto','Onstand','Einstellungen','Mahnwesen','Drucken'];
+const FR_NOMEN=['Kunden','Kunde','Baustelle','Baustellen','PDF','KI','IBAN','BIC','QR','E-Rechnung','Angebot','Angebote','Auftrag','Aufträge','Rechnung','Rechnungen','Entwurf','Abschlag','Schlussrechnung','Stornorechnung','Bauplan','Mangel','Mängel','Abnahme','Arbeit','Konto','Firma','Code','Ordner','Datei','Dateien','Mahnung','Serie','Tag','Tage','Woche','Wochen','Monat','Jahr','Liste','Eintrag','Werkstatt','Protokoll','Posten','Kunden-Menü','Bautagebuch','Mail','Foto','Leistung','Preisliste','Position','Frage','Wiki','Termin','Kalender','Baustelle','Gerät','Geräte','Vorbehalt','Assistent','Passwort','Sicherung','Papierkorb','Zahlung','Kunde','Leistungsstand','Prozent','Tagebuch','Regie','Nachher-Foto','Onstand','Einstellungen','Mahnwesen','Drucken'];
 const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','ANGENOMMEN → AUFTRAG':'Angenommen','ZURÜCK AUF ENTWURF':'Zurück auf Entwurf','GEPRÜFT ✓':'Geprüft ✓','IN ARBEIT':'In Arbeit','‹ ZURÜCK':'‹ Zurück','E-RECHNUNG?':'E-Rechnung?','PASST SO':'Passt so','NACH PROZENT':'Nach Prozent','NACH LEISTUNGSSTAND':'Nach Leistungsstand','REGIE AUS TAGEBUCH':'Regie aus Tagebuch','FREIE RECHNUNG':'Freie Rechnung','IN DER WERKSTATT ÖFFNEN ›':'In der Werkstatt öffnen','+ NEUER BAUPLAN':'+ Bauplan','ALLE ZEIGEN':'Alle zeigen'};
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.onleiste,[role=tab],.autabs,.glreiter,.brreiter,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
+const FR_AUS='.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
-{let wart=new Set(),raf=0;const lauf=()=>{raf=0;const L=[...wart];wart=new Set();if(W>760)return;L.forEach(n=>{try{frSchreib(n.nodeType===3?n.parentElement:n)}catch(e){}})};
- new MutationObserver(M=>{if(W>760)return;for(const m of M){if(m.type==='characterData')wart.add(m.target);else m.addedNodes.forEach(n=>{if(n.nodeType===1||n.nodeType===3)wart.add(n)})}if(wart.size&&!raf)raf=requestAnimationFrame(lauf)}).observe(document.documentElement,{childList:true,subtree:true,characterData:true})}
+{let wart=new Set(),raf=0;const lauf=()=>{raf=0;const L=[...wart];wart=new Set();L.forEach(n=>{try{frSchreib(n.nodeType===3?n.parentElement:n)}catch(e){}})};
+ new MutationObserver(M=>{for(const m of M){if(m.type==='characterData')wart.add(m.target);else m.addedNodes.forEach(n=>{if(n.nodeType===1||n.nodeType===3)wart.add(n)})}if(wart.size&&!raf)raf=requestAnimationFrame(lauf)}).observe(document.documentElement,{childList:true,subtree:true,characterData:true})}
 // ---------- Fußzeile ----------
 function frFussWeg(){if(AM_EL)AM_EL.querySelectorAll('.hyfuss').forEach(x=>x.remove());const i=AM_EL&&AM_EL.querySelector('.aminhalt');if(i)i.classList.remove('hatfuss')}
 function frFuss(inh,B,opt){opt=opt||{};frFussWeg();B=B.filter(b=>b&&!b.hidden);if(!B.length)return;
