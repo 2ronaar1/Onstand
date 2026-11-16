@@ -3479,7 +3479,7 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 #am .gll .kurow.sel{background-color:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));box-shadow:none}
 #am .glr .kuzur{display:none!important}
 #am .aminhalt:has(.kuneu,.kuzur,.kusp) :is(.tbfelder>span,.gllab,.gldk small){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none}
-#am .aminhalt:has(.kuzur) .tbfelder>div{font-size:13.5px}
+#am .aminhalt:is(:has(.kuzur),:has(.pezur)) .tbfelder>div{font-size:13.5px}
 #am .glreiter:has([data-kt]) button{text-transform:none!important;letter-spacing:0!important;font-size:13px}
 @media (max-width:760px){
  #am .aminhalt:has(.kuneu)>.mgk{position:relative;padding-right:60px}
@@ -3493,19 +3493,44 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .gltab .kust{width:40px;height:40px;font-size:12.5px}
  #am .aminhalt:has(.kuneu,.kuzur) .gltab .kurow b{font-size:15.5px}
  #am .gltab .kurow small{font-size:13px}
- #am .aminhalt:has(.kuzur) .tbfelder{display:grid;grid-template-columns:minmax(0,1fr)!important;background:var(--k-b1);border-radius:20px;padding:4px 0;margin-top:10px}
- #am .aminhalt:has(.kuzur) .tbfelder>span{border:0!important;padding:10px 16px 0!important}
- #am .aminhalt:has(.kuzur) .tbfelder>div{border:0!important;border-bottom:.5px solid var(--k-lin)!important;margin-left:16px;padding:1px 16px 10px 0!important;font-size:15.5px}
- #am .aminhalt:has(.kuzur) .tbfelder>div:last-child{border-bottom:0!important}
+ #am .aminhalt:is(:has(.kuzur),:has(.pezur)) .tbfelder{display:grid;grid-template-columns:minmax(0,1fr)!important;background:var(--k-b1);border-radius:20px;padding:4px 0;margin-top:10px}
+ #am .aminhalt:is(:has(.kuzur),:has(.pezur)) .tbfelder>span{border:0!important;padding:10px 16px 0!important}
+ #am .aminhalt:is(:has(.kuzur),:has(.pezur)) .tbfelder>div{border:0!important;border-bottom:.5px solid var(--k-lin)!important;margin-left:16px;padding:1px 16px 10px 0!important;font-size:15.5px}
+ #am .aminhalt:is(:has(.kuzur),:has(.pezur)) .tbfelder>div:last-child{border-bottom:0!important}
 }
 [data-design="dunkel"] #kal .kz.kaus{background:color-mix(in srgb,var(--k-b0) 50%,#000);border-color:transparent}
+/* Personal (Probe): Kürzel grau im Kreis, gewählte Person hell kupfer, Woche als Tageszeilen */
+#am .petab .peava,#am .peava.gross{background:color-mix(in srgb,var(--k-sub) 13%,var(--k-b1));border:0;color:var(--k-sub)}
+#am .gll .perow.sel{background-color:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));box-shadow:none}
+#am .glr .pezur{display:none!important}
+#am .pesub{display:none}
+#am .aminhalt:has(.peneu,.pezur) :is(.tbfelder>span,.gllab,.petk>span){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none}
+#am .pbtage{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;margin:10px 0 4px;flex:none}
+#am .glr .pbtage{margin:10px 18px 4px}
+#am .pbz{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 14px;border-top:1px solid var(--k-lin)}
+#am .pbz:first-child{border-top:0}
+#am .pbz>b{font-size:13px;font-weight:600}
+#am .pbz span b{display:block;font-size:13px;font-weight:500}#am .pbz span small{display:block;font-size:12px;color:var(--k-sub)}
+#am .pbz em{font-style:normal;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+#am .pbz.leer span b,#am .pbz.leer>b{color:var(--k-sub);font-weight:400}
+#am .pbz.heute>b{color:var(--k-akz)}
+@media (max-width:760px){
+ #am .aminhalt:has(.peneu)>.mgk{position:relative;padding-right:60px}
+ #am .aminhalt>.mgk .peneu{position:absolute!important;top:14px;right:16px;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border-radius:22px!important;font-size:0!important;display:grid!important;place-items:center;background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important}
+ #am .aminhalt>.mgk .peneu svg{width:20px;height:20px;margin:0!important;stroke:currentColor}
+ #am .pesub{display:block;font-size:13px;font-weight:400;color:var(--k-sub);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #am .petab .perow>b{display:block;min-width:0}
+ #am .pbtage{border:0;border-radius:20px}
+ #am .pbz{padding:11px 16px;min-height:52px}
+ #am .pbz>b,#am .pbz span b,#am .pbz em{font-size:15px}#am .pbz span small{font-size:13px}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.57';
+const ON_VER='0.10.58';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -9631,12 +9656,25 @@ if(typeof GE_WISCH!=='undefined')GE_WISCH.push(['#am .tbbz[data-d]',el=>{if(type
  return [['Bearbeiten','akz',()=>{hin();TBV.edit=true;tbMalen(inh)}],['Lieferschein','sub',()=>{hin();TBV.edit=false;tbMalen(inh);if(typeof lsStart==='function')lsStart(inh)}]]}]);
 // ===== Kunden im Büro-Design (Probe „Kunden“) =====
 // Kürzel im Kreis statt Farbstreifen, Bezeichnungen in normaler Schreibweise, am Handy ist die Suche immer offen.
-const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an'};
+const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung'};
+const kbText=k=>KB_FEST[k]||frSatz(k).replace(/\bkw\b/gi,'KW');
+function kbSchreib(a,S){a.querySelectorAll(S).forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=kbText(k)})}
 const KB_MAL=kuMalen;
 kuMalen=function(inh){if(W<=760&&KU_SEL===null&&!KU_V.such)KU_V.such=true;const r=KB_MAL.apply(this,arguments);try{kbFein()}catch(e){}return r};
 function kbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.kuneu,.kuzur,.kusp'))return;
  a.querySelectorAll('.kurow').forEach(z=>{const b=BST[z.dataset.n],s=z.querySelector('.kust');if(b&&s&&!s.textContent)s.textContent=b.k||''});
- a.querySelectorAll('.tbfelder>span,.gllab').forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=KB_FEST[k]||frSatz(k)})}
+ kbSchreib(a,'.tbfelder>span,.gllab')}
+// ===== Personal im Büro-Design (Probe „Personal“) =====
+// Detail: statt Balken die Tage der Woche als Zeilen (Tag · Arbeitszeit · Baustelle · Stunden). Liste: am Handy Rolle und Baustelle unter dem Namen.
+const PB_MAL=peMalen;
+peMalen=function(inh){const r=PB_MAL.apply(this,arguments);try{pbFein()}catch(e){}return r};
+function pbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.peneu,.pezur,.petab'))return;const bez=PE_BEZ||TBV.sel||new Date(),mo=tbMo(bez);
+ kbSchreib(a,'.tbfelder>span,.gllab,.petk>span');
+ a.querySelectorAll('.perow').forEach(z=>{const b=z.querySelector(':scope>b'),S=z.querySelectorAll(':scope>span');if(!b||b.querySelector('.pesub')||S.length<3)return;const t=[S[1].textContent,S[2].textContent].filter(x=>x&&x!=='—').join(' · ');if(t)b.insertAdjacentHTML('beforeend',`<small class="pesub">${esc(t)}</small>`)});
+ const bal=a.querySelector('.pebalken');if(bal&&PE_SEL&&PER[PE_SEL]){const p=PER[PE_SEL],n=p.name,w=peWoche(n,bez),tage=w[5]||w[6]?7:5,heute=tbIso(new Date());
+  const Z=[];for(let i=0;i<tage;i++){const tag=tbIso(tbPlus(mo,i)),E=(TB[tag]||[]).filter(e=>peListe(e.p).some(x=>x===n||p.alias.includes(x)));
+   Z.push(`<div class="pbz${E.length?'':' leer'}${tag===heute?' heute':''}"><b>${TB_WT[i].charAt(0)+TB_WT[i].charAt(1).toLowerCase()}</b><span><b>${E.length?E.map(e=>esc(e.z||'ohne Zeit')).join(', '):'—'}</b>${E.length?`<small>${[...new Set(E.map(e=>e.b).filter(Boolean))].map(esc).join(' · ')||'ohne Baustelle'}</small>`:''}</span><em>${w[i]?peH(w[i])+' h':''}</em></div>`)}
+  bal.outerHTML=`<div class="pbtage">${Z.join('')}</div>`}}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -9647,8 +9685,8 @@ const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','AN
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.kutx>b,.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
-function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
+const FR_AUS='.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
+function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentElement!==b&&n.parentElement.closest(FR_AUS))continue;const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
 {let wart=new Set(),raf=0;const lauf=()=>{raf=0;const L=[...wart];wart=new Set();L.forEach(n=>{try{frSchreib(n.nodeType===3?n.parentElement:n)}catch(e){}})};
