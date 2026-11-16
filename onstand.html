@@ -3342,13 +3342,41 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 @media (max-width:760px){#am .cpukpi{grid-template-columns:1fr 1fr;gap:10px}#am .cpuk{border-radius:20px;border:0}#am .cpukarte{border-radius:20px;border:0}#am .cpuz{min-height:52px}#am .cpubar{width:56px}}
 #am .onseite *:not(svg):not(svg *){letter-spacing:0!important}
 @media (min-width:761px){#am.onstand .aminhalt{padding:0 24px 20px!important;scrollbar-gutter:auto}}
+/* Aufträge: Liste als Tabelle, Vorschau daneben; Bearbeiten mit Live-Vorschau (module/auftraege/buero.js) */
+@media (min-width:761px){
+ #am .ausplit{grid-template-columns:minmax(0,1.45fr) minmax(330px,1fr);gap:16px}
+ #am .ausplit .aual{border-radius:8px;border-color:var(--k-lin);background:var(--k-b1)}
+ #am .authd{display:grid;grid-template-columns:4px minmax(0,1fr) 160px 120px;column-gap:14px;padding:9px 14px 9px 0;border-bottom:1px solid var(--k-lin);font-size:12px;font-weight:600;color:var(--k-sub);position:sticky;top:0;z-index:2;background:var(--k-b1)}
+ #am .authd>span:last-child{text-align:right}
+ #am .ausplit .aual>.auar{display:grid!important;grid-template-columns:4px minmax(0,1fr) 160px 120px;grid-template-rows:auto auto;column-gap:14px;row-gap:1px;align-items:center;border:0;border-bottom:1px solid var(--k-lin);border-radius:0;padding:10px 14px 10px 0;background:var(--k-b1)}
+ #am .ausplit .aual>.auar:hover{background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
+ #am .ausplit .aual>.auar.sel{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))}
+ #am .ausplit .auar>i{grid-column:1;grid-row:1/3;align-self:stretch;width:4px}
+ #am .ausplit .auar>span:not(.aur){display:contents}
+ #am .ausplit .auar>span>b{grid-column:2;grid-row:1;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #am .ausplit .auar>span>small{grid-column:2;grid-row:2;font-size:12px;color:var(--k-sub)}
+ #am .ausplit .auar .aust{grid-column:3;grid-row:1/3;justify-self:start;margin:0}
+ #am .ausplit .auar .aur{grid-column:4;grid-row:1/3;text-align:right}
+ #am .ausplit .auar .aur strong{font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+ #am .auvor{border-radius:8px;border-color:var(--k-lin);background:var(--k-b1)}
+ #am .auvs{background:color-mix(in srgb,var(--k-sub) 8%,var(--k-b0))}
+ #am .aulive{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(330px,1fr);gap:16px;align-items:start;padding-top:12px}
+ #am .aulive>.aux{min-width:0}
+ #am .aulivev{position:sticky;top:76px;max-height:calc(100vh - 100px);display:flex}
+ #am .aulivev .auvor{flex:1;max-height:100%}
+}
+@media (min-width:761px){
+ #am .aupzh{display:grid;grid-template-columns:18px minmax(0,1fr) 84px 92px 22px;gap:8px;padding:0 0 6px;border-bottom:1px solid var(--k-lin);font-size:12px;font-weight:600;color:var(--k-sub)}
+ #am .aupzh>span:nth-child(3),#am .aupzh>span:nth-child(4){text-align:right}
+ #am .aupz{border-top-color:var(--k-lin)}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.50';
+const ON_VER='0.10.51';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -4914,6 +4942,18 @@ async function lvMalen(inh){inh.innerHTML=`<div class="mgk"><div><span class="am
  box.innerHTML=L.map(a=>{const bs=BST[a.b];return `<details class="lvk"${a.st==='angenommen'?' open':''} style="--bc:${bs?bs.c:'var(--aj)'}"><summary><i></i><span><b>${esc(a.t||'ohne Titel')}</b><small>${esc(a.nr)} · ${bs?esc(bs.k)+' ':''}${esc(a.b||'')} · ${auDat(a.d)}</small></span><span class="aust" style="--sc:${(AU_ST[a.st]||['','#9AABBB'])[1]}">${esc(LV_ST[a.st]||a.st)}</span></summary>
   <table class="lvt"><tr><th>Pos.</th><th>Leistung</th><th>Menge</th></tr>${(a.pos||[]).map((p,j)=>`<tr><td>${j+1}</td><td>${esc(p.n)}</td><td>${esc(auZ(p.m)+' '+(p.e||''))}</td></tr>`).join('')||'<tr><td></td><td>Noch keine Leistungen.</td><td></td></tr>'}</table></details>`}).join('')}
 {const f=onFunktionen().find(x=>x.id==='auftraege');if(f){const alt=f.zeigen;f.zeigen=function(inh){if(SY_KONTO&&typeof reRecht==='function'&&reRecht('auftraege')==='preise'){try{bstLaden().then(()=>lvMalen(inh))}catch(e){lvMalen(inh)}return}return alt.apply(this,arguments)}}}
+// ===== Aufträge im Büro-Design (Design-Probe): Liste als Tabelle mit Kopfzeile, Vorschau rechts daneben;
+// Angebot und Rechnung bearbeiten mit Live-Vorschau rechts (aktualisiert sich beim Tippen). Logik bleibt in auftraege.js.
+const AUB_MALEN=auMalen,AUB_DOK=auDokMalen,AUB_AR=arMalen;
+const aubBreit=inh=>(inh.clientWidth||innerWidth)>=980;
+auMalen=function(inh){const o=AUB_MALEN.apply(this,arguments);try{if(!AUV.op&&!AUV.firma&&!AUV.rech&&!AUV.rechNeu&&!AUV.neu&&!AUV.offen&&(AUV.tab==='ang'||AUV.tab==='rech')){const l=inh.querySelector('.ausplit .aual');
+ if(l&&!l.querySelector('.authd'))l.insertAdjacentHTML('afterbegin',`<div class="authd"><span></span><span>${AUV.tab==='ang'?'Angebot':'Rechnung'}</span><span>Status</span><span>Brutto</span></div>`)}}catch(e){}return o};
+function aubLive(inh,obj,vor,pdf){if(!aubBreit(inh)||!obj)return;const x=inh.querySelector(':scope>.aux');if(!x||x.parentElement.classList.contains('aulive'))return;
+ const w=document.createElement('div');w.className='aulive';x.before(w);w.appendChild(x);const r=document.createElement('div');r.className='aulivev';w.appendChild(r);
+ const neu=()=>{if(!r.isConnected)return;r.innerHTML=vor(obj);r.querySelectorAll('[data-vo]').forEach(b=>b.remove());r.querySelectorAll('.tr').forEach(b=>b.remove());r.querySelectorAll('[data-vpdf]').forEach(b=>b.onclick=()=>{try{pdf(obj)}catch(e){}});const k=r.querySelector('.auvk>span');if(k)k.textContent='Vorschau · A4'};
+ neu();let t=0;const spaeter=ms=>{clearTimeout(t);t=setTimeout(neu,ms)};x.addEventListener('input',()=>spaeter(180));x.addEventListener('change',()=>spaeter(60));x.addEventListener('click',()=>spaeter(250))}
+auDokMalen=function(inh,a){const o=AUB_DOK.apply(this,arguments);const p=inh.querySelector('.aupos');if(p&&aubBreit(inh)&&a.pos.length)p.insertAdjacentHTML('afterbegin','<div class="aupzh"><span>Pos.</span><span>Leistung</span><span>Menge</span><span>Gesamt · Einzelpreis</span><span></span></div>');aubLive(inh,a,auVorschau,auPdf);return o};
+arMalen=function(inh){const o=AUB_AR.apply(this,arguments);aubLive(inh,AUV.rech,arVorschau,arPdf);return o};
 
 // ===== Handwerk · Funktion 1: Baustellen-Tagebuch =====
 // Gedächtnis/Persönlich/Arbeit/Bautagebuch/Bautagebuch JJJJ-MM.md – ein Abschnitt pro Tag und Baustelle, jederzeit bearbeitbar; Übersicht Bautagebuch.md.
