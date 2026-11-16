@@ -5,11 +5,11 @@
    Diese Datei setzt nur die Farbwerte. bauen.py ersetzt beim Bauen alle festen Farben in den übrigen CSS-Teilen
    durch diese Werte (dunkel → Flächen, hell → Text, Orange → Akzent). Grün, Gelb, Rot bleiben Markierungen. */
 :root{--k-b0:#0A0C0F;--k-b1:#1B2028;--k-sub:#A29D97;--k-t:#F3EFEA;--k-akz:#D19A6A;--k-akzd:#A8703F;--k-auf:#1C1207;
- --k-rot:#FF4D6D;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;color-scheme:dark}
+ --k-rot:#FF4D6D;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-kup:var(--k-akz);color-scheme:dark}
 :root[data-design="nachtblau"]{--k-b0:#010205;--k-b1:#0B1220;--k-sub:#9AABBB;--k-t:#FFFFFF;--k-akz:#8FB8FF;--k-akzd:#4C7DD8;--k-auf:#06101F;
  --k-info:#7FDBFF;--k-blau:#8FB8FF}
-:root[data-design="hell"]{--k-b0:#F2F4F7;--k-b1:#FFFFFF;--k-sub:#5F6B7E;--k-t:#121821;--k-akz:#2F5BEA;--k-akzd:#2448C0;--k-auf:#FFFFFF;
- --k-rot:#D92D4F;--k-gelb:#C98A00;--k-gruen:#2E9E4F;--k-info:#1C7FB0;--k-blau:#2F5BEA;color-scheme:light}
+:root[data-design="hell"]{--k-b0:#F4F5F7;--k-b1:#FFFFFF;--k-sub:#667080;--k-t:#14171C;--k-akz:#14171C;--k-akzd:#2A2F37;--k-auf:#FFFFFF;
+ --k-rot:#B3263A;--k-gelb:#9A6A00;--k-gruen:#22794A;--k-info:#1C6F96;--k-blau:#2F5D9A;--k-kup:#A9692F;color-scheme:light}
 html.dwechsel,html.dwechsel *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
 /* ===== Onstand · Grundstil und Rahmen (Konzept D) ===== */
 :root{--j:var(--k-akz);--d:var(--k-akzd);--aj:var(--k-akz);--ad:var(--k-akzd);--bg:color-mix(in srgb,var(--k-b1) 25%,var(--k-b0));--txt:var(--k-t);--sub:var(--k-sub);--row:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));--rot:var(--k-rot);--gelb:var(--k-gelb);--gruen:var(--k-gruen);--blau:var(--k-blau);--ok:var(--k-gruen);--warn:var(--k-gelb);--bad:var(--k-rot);--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);--seite:232px}
@@ -3002,13 +3002,26 @@ html.onnativ :is(input,textarea,[contenteditable="true"]){-webkit-user-select:te
 .frsb{display:flex;gap:10px;width:100%}
 .frsb button{flex:1;height:50px;border-radius:14px;border:1px solid color-mix(in srgb,var(--k-t) 51%,var(--k-sub));background:var(--k-t);color:color-mix(in srgb,var(--k-sub) 11%,var(--k-b1));font:700 16px "Manrope",Arial,sans-serif;cursor:pointer}
 .frsb button.p{background:#D19A6A;border-color:#D19A6A;color:color-mix(in srgb,var(--k-b1) 85%,var(--k-b0))}
+/* ===== Design „Hell“ = Konzept „Kreide“ (Hell-Probe): kühles Weiß, Graphit für Knöpfe und Auswahl,
+   Kupfer nur für kleine Überschriften und Verweise, feine Linien statt Schatten. Wirkt nur im hellen Design. ===== */
+:root[data-design="hell"] #am.onstand{--gl:transparent;--gs:none}
+:root[data-design="hell"] #am.onstand .amlade{background:var(--k-b0)}
+:root[data-design="hell"] #am .onlicht{display:none}
+:root[data-design="hell"] #am .onni.an{background:var(--k-t);color:var(--k-auf);box-shadow:none}
+:root[data-design="hell"] #am .onni.an::before{display:none}
+:root[data-design="hell"] #am .amtt,:root[data-design="hell"] #am .cpkh button,:root[data-design="hell"] #am .kukneu,:root[data-design="hell"] #am .mgbox h4,:root[data-design="hell"] #am .fileer .fialle,:root[data-design="hell"] #am .kukmehr,:root[data-design="hell"] #am .brfragq small,:root[data-design="hell"] #am .brfragq i{color:var(--k-kup)}
+:root[data-design="hell"] #am .fileer .fialle{border-color:color-mix(in srgb,var(--k-kup) 45%,transparent)}
+:root[data-design="hell"] #am .mgpill{color:color-mix(in srgb,var(--pc) 55%,black);border-color:color-mix(in srgb,var(--pc) 70%,black)}
+:root[data-design="hell"] #am .mgstep .jetzt i{color:color-mix(in srgb,var(--pc) 55%,black);border-color:color-mix(in srgb,var(--pc) 70%,black);box-shadow:none}
+:root[data-design="hell"] #am .mgstep .jetzt{color:var(--k-t)}
+:root[data-design="hell"] #am .aust{color:color-mix(in srgb,var(--sc) 55%,black);border-color:color-mix(in srgb,var(--sc) 70%,black)}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.32';
+const ON_VER='0.10.33';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -3138,7 +3151,7 @@ const amOffen=()=>true;
 function onToast(t){const e=AM_EL&&AM_EL.querySelector('.ontoast');if(!e)return;e.textContent=t;e.classList.add('an');clearTimeout(onToast.t);onToast.t=setTimeout(()=>e.classList.remove('an'),3600)}
 function say(t){if(!t)return;if(typeof asMeldung==='function'&&asOffen())asMeldung(String(t));else onToast(String(t))}
 // ---------- Design: Kupfer (Standard), Nachtblau, Hell – pro Gerät gespeichert ----------
-const ON_DESIGNS=[{id:'kupfer',name:'Kupfer',f:['#0F1318','#D19A6A'],meta:'#0A0C0F'},{id:'nachtblau',name:'Nachtblau',f:['#060B16','#8FB8FF'],meta:'#03060C'},{id:'hell',name:'Hell',f:['#FFFFFF','#2F5BEA'],meta:'#E8ECF1'}];
+const ON_DESIGNS=[{id:'kupfer',name:'Kupfer',f:['#0F1318','#D19A6A'],meta:'#0A0C0F'},{id:'nachtblau',name:'Nachtblau',f:['#060B16','#8FB8FF'],meta:'#03060C'},{id:'hell',name:'Hell',f:['#FFFFFF','#14171C'],meta:'#F4F5F7'}];
 function onDesignAkt(){let d='kupfer';try{d=localStorage.getItem('onstandDesign')||'kupfer'}catch(e){}return ON_DESIGNS.some(x=>x.id===d)?d:'kupfer'}
 function onDesign(id,weich){const D=ON_DESIGNS.find(x=>x.id===id)||ON_DESIGNS[0],h=document.documentElement;
  if(weich&&!RM){h.classList.add('dwechsel');clearTimeout(onDesign.t);onDesign.t=setTimeout(()=>h.classList.remove('dwechsel'),450)}
