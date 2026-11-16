@@ -3433,13 +3433,32 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 /* Aufträge: gefilterte Zeilen wirklich ausblenden */
 #am .ausplit .aual>.auar.fiweg,#am .ausplit .aual>.auar[hidden]{display:none!important}
 #am .aminhalt:has(.tbbwoche) .amnotiz:not(.tbedit){flex:none;max-height:none;overflow:visible}
+/* Kalender nach der Probe: links Titel, darunter ‹ Heute ›; rechts Ansicht, Suche, Filter und ganz rechts „+ Eintragen“ */
+#kal .ktitel .knav{margin-top:6px;gap:4px;order:0}
+#kal .kplus{order:9;background:var(--k-akz);color:var(--k-auf);border:1px solid var(--k-akz);font-weight:600;text-transform:none}
+@media (min-width:761px){
+ #kal .kkopf{align-items:center;gap:8px}
+ #kal .ktitel{margin-right:auto}
+ #kal .ktitel .knav button{height:26px;min-height:26px;font-size:12.5px!important;padding:0 10px;border-radius:4px}
+ #kal .ktitel .knav .krund{width:26px;padding:0}
+ #kal .kseg{border-radius:4px}#kal .kseg button{border-radius:0;padding:5px 11px}
+ #kal .kplus{height:32px;padding:0 14px;border-radius:4px;font-size:13px!important;letter-spacing:0!important}
+}
+@media (max-width:760px){
+ #kal .kkopf{position:relative}
+ #kal .ktitel{flex:1 1 100%!important;padding-right:56px!important}
+ #kal .ktitel .knav{display:flex}
+ #kal .kplus{position:absolute;top:0;right:0;width:44px;height:44px;min-width:44px;border-radius:22px!important}
+ #kal .kseg{flex:1 1 auto}
+}
+#kal .kpill,#kal .kseg button{text-transform:none!important;letter-spacing:0!important}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.53';
+const ON_VER='0.10.55';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5058,7 +5077,7 @@ async function tbEintragen(tag,e,idx){await tbBereit();const l=TB[tag]=TB[tag]||
 function tbMark(e){const b=e&&bstFinde(e.b);if(!b)return '<span class="amkz"></span>';return `<span class="amkz" style="color:${b.c}">${esc(b.k)}</span><span class="amfb" style="--bc:${b.c}"></span>`}
 function tbTagMark(s){const l=TB[s]||[];if(!l.length)return '<span class="amkz"></span>';return tbMark(l[0])+(l.length>1?`<span class="ammehr">+${l.length-1}</span>`:'')}
 function tbLegende(){const n=[...new Set(Object.values(TB).flat().map(e=>e.b).filter(Boolean))].map(bstFinde).filter(Boolean);return n.length?`<div class="amleg">${n.map(b=>`<span style="--bc:${b.c}"><i></i>${esc(b.k)}</span>`).join('')}</div>`:''}
-function tbZeigen(inh){if(!TBV.sel)TBV.sel=new Date();inh.innerHTML=`<div class="mgk tbk"><div><span class="amtt">BAUTAGEBUCH</span><h2 class="mgh"><span class="amkw"></span> · <span class="ammon"></span></h2></div><div class="mgakt"><button type="button" class="ampf" data-n="-1" aria-label="zurück">‹</button><button type="button" class="tbheute">Heute</button><button type="button" class="ampf" data-n="1" aria-label="weiter">›</button><span class="tr"></span><div class="amans" role="tablist"><button type="button" data-a="5">Woche</button><button type="button" data-a="30">30 Tage</button></div></div></div>
+function tbZeigen(inh){if(!TBV.sel)TBV.sel=new Date();inh.innerHTML=`<div class="mgk tbk"><div><span class="amtt">BAUTAGEBUCH</span><h2 class="mgh"><span class="amkw"></span><span class="amsep"> · </span><span class="ammon"></span></h2></div><div class="mgakt"><button type="button" class="ampf" data-n="-1" aria-label="zurück">‹</button><button type="button" class="tbheute">Heute</button><button type="button" class="ampf" data-n="1" aria-label="weiter">›</button><span class="tr"></span><div class="amans" role="tablist"><button type="button" data-a="5">Woche</button><button type="button" data-a="30">30 Tage</button></div></div></div>
  <div class="amkal"></div><div class="amnotiz" aria-live="polite"></div>`;if(TBV.ans===365)TBV.ans=30;
  inh.querySelector('.tbheute').onclick=()=>{TBV.sel=new Date();TBV.edit=false;TBV.idx=0;tbMalen(inh)};
  inh.querySelectorAll('.ampf').forEach(b=>b.onclick=()=>{const n=+b.dataset.n,s=TBV.sel;TBV.sel=TBV.ans===30?tbNeu(s.getFullYear(),s.getMonth()+n,1):tbPlus(s,7*n);TBV.edit=false;TBV.idx=0;tbMalen(inh)});
@@ -5066,7 +5085,7 @@ function tbZeigen(inh){if(!TBV.sel)TBV.sel=new Date();inh.innerHTML=`<div class=
  {const k=inh.querySelector('.amkal');let z=null;k.addEventListener('touchstart',e=>{z=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
   k.addEventListener('touchend',e=>{if(!z||TBV.ans!==5)return;const dx=e.changedTouches[0].clientX-z.x,dy=e.changedTouches[0].clientY-z.y;z=null;if(Math.abs(dx)<50||Math.abs(dx)<Math.abs(dy)*1.5)return;const n=dx<0?1:-1;TBV.sel=tbPlus(TBV.sel,7*n);TBV.edit=false;TBV.idx=0;tbMalen(inh);const w=k.firstElementChild;if(w&&w.animate&&!RM)w.animate([{transform:`translateX(${n*48}px)`,opacity:0},{transform:'none',opacity:1}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'})},{passive:true})}
  tbMalen(inh);Promise.all([tbLaden(),bstLaden(),peLaden()]).then(()=>{if(inh.isConnected&&!TBV.edit)tbMalen(inh)}).catch(()=>{})}
-function tbMalen(inh){const S=TBV.sel,sI=tbIso(S),hI=tbIso(new Date());inh.querySelector('.amkw').textContent='KW '+tbKw(S);inh.querySelector('.ammon').textContent=TB_MONL[S.getMonth()];
+function tbMalen(inh){const S=TBV.sel,sI=tbIso(S),hI=tbIso(new Date());{const A=TBV.ans;inh.querySelector('.amkw').textContent=A===5?'KW '+tbKw(S):A===30?TB_MONL[S.getMonth()]:String(S.getFullYear());inh.querySelector('.amsep').textContent=A===5?' · ':A===30?' ':'';inh.querySelector('.ammon').textContent=A===5?TB_MONL[S.getMonth()]:A===30?String(S.getFullYear()):''}
  inh.querySelectorAll('.ampf').forEach(b=>b.disabled=TBV.ans===365);inh.querySelectorAll('.amans button').forEach(b=>b.classList.toggle('an',+b.dataset.a===TBV.ans));
  const k=inh.querySelector('.amkal');
  if(TBV.ans===5){const mo=tbMo(S);k.innerHTML=`<div class="amt5 amt7">${[0,1,2,3,4,5,6].map(i=>{const d=tbPlus(mo,i),s=tbIso(d);return `<button type="button" class="amtag${i>4?' we':''}${s===sI?' sel':''}${s===hI?' heute':''}" data-d="${s}">${TB_WT[i]}<b>${d.getDate()}</b>${tbTagMark(s)}</button>`}).join('')}</div>`}
@@ -6185,8 +6204,8 @@ const kCol=e=>e.kat&&KKAT[e.kat]?KKAT[e.kat].c:e.c&&e.art!=='einzug'?e.c:kFarbe[
 const KAL_ICO='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>';
 const kalBtn=(()=>{const b=document.createElement('button');b.type='button';b.id='kalbtn';b.setAttribute('aria-label','Kalender öffnen');b.title='Kalender';b.innerHTML=KAL_ICO;b.onclick=e=>{e.stopPropagation();if(KAL.pz>0)kalZu();else kalAuf()};document.body.appendChild(b);return b})();
 function kalBau(){if(KAL.el)return;const k=document.createElement('div');k.id='kal';k.setAttribute('aria-hidden','true');k.innerHTML=`<div class="kin">
- <div class="kkopf"><div class="ktitel"><small id="kklein">KALENDER</small><b id="kmon"></b></div>
-  <div class="knav"><button type="button" class="krund" data-k="-1" aria-label="zurück">‹</button><button type="button" class="kpill" data-k="0">Heute</button><button type="button" class="krund" data-k="1" aria-label="weiter">›</button></div>
+ <div class="kkopf"><div class="ktitel"><small id="kklein">KALENDER</small><b id="kmon"></b>
+  <div class="knav"><button type="button" class="krund" data-k="-1" aria-label="zurück">‹</button><button type="button" class="kpill" data-k="0">Heute</button><button type="button" class="krund" data-k="1" aria-label="weiter">›</button></div></div>
   <div class="kseg" id="kans">${[['tag','TAG'],['woche','WOCHE'],['monat','MONAT'],['jahr','JAHR'],['liste','LISTE']].map(([a,n])=>`<button type="button" data-a="${a}">${n}</button>`).join('')}</div>
   <span class="kmobil"><button type="button" class="krund klupe" id="klupe" aria-label="Suchen" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></button><button type="button" class="kpill kfiltbtn" id="kfiltbtn" aria-expanded="false" aria-label="Filter">FILTER</button></span>
   <input class="ksuche" id="ksuche" type="search" placeholder="Suchen …" aria-label="Kalender durchsuchen" autocomplete="off">
@@ -6225,10 +6244,10 @@ function kalPinch(h){let z=null;const lab=()=>W<=760?52:64;
 addEventListener('resize',()=>{clearTimeout(kalHw.t);kalHw.t=setTimeout(()=>{if(KAL.pz>0)try{kalZeichnen()}catch(e){}},150)});
 function kalSchritt(n){const s=KAL.sel||kIso(new Date());if(KAL.ans==='monat'){const d=kD(s);KAL.sel=kIso(new Date(d.getFullYear(),d.getMonth()+n,1,12))}else if(KAL.ans==='jahr'){const d=kD(s);KAL.sel=kIso(new Date(d.getFullYear()+n,d.getMonth(),1,12))}else KAL.sel=kPlus(s,n*(KAL.ans==='woche'?7:KAL.ans==='tag'?1:14));kalZeichnen(n)}
 function kalTitel(){const s=KAL.sel,d=kD(s),k=document.getElementById('kmon'),kl=document.getElementById('kklein');
- if(KAL.ans==='monat'){k.textContent=KMON[d.getMonth()]+' '+d.getFullYear();kl.textContent=KAL.ok?'KALENDER':'KALENDER · GEDÄCHTNIS NICHT VERBUNDEN'}
+ if(KAL.ans==='monat'){k.textContent=KMONL[d.getMonth()]+' '+d.getFullYear();kl.textContent=KAL.ok?'KALENDER':'KALENDER · GEDÄCHTNIS NICHT VERBUNDEN'}
  else if(KAL.ans==='tag'){k.textContent=KTAGL[kWt(s)]+', '+d.getDate()+'. '+KMONL[d.getMonth()];kl.textContent='TAG · KW '+kKw(s)}
  else if(KAL.ans==='woche'&&W>=980){const mo=kMo(s),so=kPlus(mo,6),a=kD(mo),b=kD(so);k.textContent=a.getDate()+'. '+(a.getMonth()!==b.getMonth()?KMONL[a.getMonth()]+' ':'')+'– '+b.getDate()+'. '+KMONL[b.getMonth()]+' '+b.getFullYear();kl.textContent='KALENDER · KW '+kKw(s)}
- else if(KAL.ans==='woche'){const mo=kMo(s),so=kPlus(mo,6);k.textContent='KW '+kKw(s)+' · '+kD(mo).getDate()+'.–'+kD(so).getDate()+'. '+KMON[kD(so).getMonth()].slice(0,3);kl.textContent='WOCHE'}
+ else if(KAL.ans==='woche'){const mo=kMo(s),so=kPlus(mo,6);k.textContent='KW '+kKw(s)+' · '+kD(mo).getDate()+'.–'+kD(so).getDate()+'. '+KMONL[kD(so).getMonth()].slice(0,3);kl.textContent='WOCHE'}
  else if(KAL.ans==='jahr'){k.textContent=String(d.getFullYear());kl.textContent='JAHR'}
  else{k.textContent='DEMNÄCHST';kl.textContent='LISTE · AB '+d.getDate()+'. '+KMONL[d.getMonth()].toUpperCase()}}
 const kChip=e=>`<i class="kc${kNeben(e)?' kneben':''}${e.ganz?' kganz':''}" style="--c:${kCol(e)}">${e.von&&!e.ganz?esc(e.von)+' ':''}${esc(e.t)}</i>`;
@@ -9574,7 +9593,7 @@ const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
 const FR_AUS='.onleiste,.ambadge,.peava,.kwb,.kc,#bp,.blatt,#bpdruck,.aueh';
-function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
+function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
 {let wart=new Set(),raf=0;const lauf=()=>{raf=0;const L=[...wart];wart=new Set();L.forEach(n=>{try{frSchreib(n.nodeType===3?n.parentElement:n)}catch(e){}})};
