@@ -3319,13 +3319,36 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #kal .kkopf{background:var(--k-b1);border-bottom:1px solid var(--k-lin);padding:12px 24px;margin:0 0 10px}
  #kal :is(.kseg,.knav) button,#kal .kplus{font-size:13px!important;text-transform:none}
 }
+/* Cockpit-Übersicht (module/cockpit/uebersicht.js) */
+#am .cpu{display:grid;gap:14px;padding-top:12px}
+#am .cpukpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+#am .cpuk{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:12px 14px;box-shadow:var(--gs)}
+#am .cpuk small{display:block;font-size:12px;color:var(--k-sub)}#am .cpuk b{display:block;font-size:22px;font-weight:600;margin:2px 0;font-variant-numeric:tabular-nums}#am .cpuk span{font-size:11.5px;color:var(--k-sub)}
+#am .cpuzwei{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start}
+#am .cpukarte{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;box-shadow:var(--gs);overflow:hidden}
+#am .cpukk{display:flex;justify-content:space-between;align-items:center;padding:12px 14px 8px}#am .cpukk b{font-size:13.5px;font-weight:600}
+#am .cpukk button{background:none;border:0;color:var(--k-akz);font-size:12.5px;font-weight:600;padding:0;cursor:pointer;text-transform:none}
+#am .cpuz{display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;border:0;border-top:1px solid var(--k-lin);background:none;color:var(--k-t);text-align:left;cursor:pointer;font:inherit;text-transform:none}
+#am .cpuz:hover{background:color-mix(in srgb,var(--k-t) 4%,transparent)}
+#am .cput{flex:1;min-width:0}#am .cput b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#am .cput small{display:block;font-size:11.5px;color:var(--k-sub)}
+#am .cpud{width:9px;height:9px;border-radius:50%;flex:none}
+#am .cpubar{width:90px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--k-sub) 18%,transparent);overflow:hidden;flex:none}#am .cpubar i{display:block;height:100%}
+#am .cpuproz{width:38px;text-align:right;font-size:12px;font-variant-numeric:tabular-nums;color:var(--k-sub)}
+#am .cpup{font-size:11px;font-weight:600;border-radius:20px;padding:2px 8px;white-space:nowrap;flex:none}
+#am .cpup.b{background:color-mix(in srgb,var(--k-akz) 14%,transparent);color:var(--k-akz)}#am .cpup.y{background:color-mix(in srgb,var(--k-gelb) 16%,transparent);color:var(--k-gelb)}#am .cpup.r{background:color-mix(in srgb,var(--k-rot) 14%,transparent);color:var(--k-rot)}
+#am .cpuleer{margin:0;padding:12px 14px 16px;color:var(--k-sub);font-size:13px;border-top:1px solid var(--k-lin)}
+#am .mgakt .cpuzur{order:-1}
+@media (max-width:980px){#am .cpuzwei{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){#am .cpukpi{grid-template-columns:1fr 1fr;gap:10px}#am .cpuk{border-radius:20px;border:0}#am .cpukarte{border-radius:20px;border:0}#am .cpuz{min-height:52px}#am .cpubar{width:56px}}
+#am .onseite *:not(svg):not(svg *){letter-spacing:0!important}
+@media (min-width:761px){#am.onstand .aminhalt{padding:0 24px 20px!important;scrollbar-gutter:auto}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.49';
+const ON_VER='0.10.50';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6540,6 +6563,36 @@ function brKontext(frage){if(!BR.ok||!Object.keys(BR.seiten).length)return '';co
  const detail=wahl.map(p=>`### ${p.titel} (${p.gruppe}${p.unter?' · '+p.unter:''})\n${p.intro}\n${p.fakten.map(([a,b])=>`- ${a}: ${b}`).join('\n')}\n${p.notizen.slice(0,5).map(z=>'- '+z).join('\n')}`).join('\n').slice(0,4200);
  return '## Firmen-Brain (Wiki der Firma)\nAlle Seiten nach Bereich – wer unter „Kunden & Baustellen“ steht, ist Kunde bzw. Baustelle der Firma:\n'+index+(detail?'\n\n## Firmen-Brain · Details zu passenden Seiten\n'+detail:'')}
 setTimeout(()=>{try{brLaden().catch(()=>{})}catch(e){}},4000);
+// ===== Cockpit-Übersicht (Design-Probe „Büro-Design“): Kennzahlen der Firma, Baustellen mit Fortschritt, Heute =====
+// Erscheint, solange keine Baustelle gewählt ist. Klick auf eine Baustelle öffnet das bisherige Baustellen-Cockpit,
+// dort führt „‹ Übersicht“ zurück. Keine eigenen Daten: alles aus BST, TB, MG, AU_A/AU_R und dem Kalender.
+const CPU_ALT=cpMalen,CPU_PH=['Angebot','Auftrag','Ausführung','Abnahme','Schlussrechnung'];
+cpMalen=function(inh,wechsel){if(!CPV.b||!cpListe().length)return cpListe().length?cpUebersicht(inh):CPU_ALT.call(this,inh,wechsel);
+ const out=CPU_ALT.call(this,inh,wechsel);const a=inh.querySelector('.mgakt');if(a&&!a.querySelector('.cpuzur')){const z=document.createElement('button');z.type='button';z.className='cpuzur';z.innerHTML='‹ Übersicht';z.onclick=()=>{CPV.b=null;cpMalen(inh)};a.prepend(z)}return out};
+function cpuPhase(b){let ph=0;try{if((typeof AU_A!=='undefined'?AU_A:[]).some(a=>a.b===b.name&&a.st==='angenommen'))ph=1;if(Object.values(TB).some(l=>l.some(e=>e.b===b.name)))ph=2;if(typeof AB!=='undefined'&&AB[b.name])ph=3;if((typeof AU_R!=='undefined'?AU_R:[]).some(r=>r.b===b.name&&/schluss/i.test(r.t||'')&&r.st!=='entwurf'))ph=4}catch(e){}return ph}
+function cpUebersicht(inh){const L=cpListe(),heute=tbIso(new Date()),mo=tbIso(tbMo(new Date())),geld=typeof reRecht!=='function'||reRecht('auftraege')==='alles',jetzt=new Date().toTimeString().slice(0,5);
+ let h=0;const leute=new Set();Object.entries(TB).forEach(([t,l])=>{if(t<mo||t>heute)return;l.forEach(e=>{const n=peListe(e.p);h+=(peDauer(e.z)||0)*Math.max(1,n.length);n.forEach(x=>leute.add(x))})});
+ let offen=0;const faellig=[];try{(typeof AU_R!=='undefined'?AU_R:[]).forEach(r=>{const o=opOffen(r);if(o>0){offen+=o;if(arFaellig(r)<heute)faellig.push([r,o])}})}catch(e){}
+ const M=Object.values(typeof MG!=='undefined'?MG:{}).flat(),mOff=M.filter(mgOffen),mUe=M.filter(mgUeber);
+ let naechst=null;try{for(let i=0;i<30&&!naechst;i++){const s=tbIso(tbPlus(new Date(),i));naechst=(kalAm(s)||[]).filter(e=>e.art==='termin'&&e.von&&(i||e.von>=jetzt)).map(e=>({s,e}))[0]||null}}catch(e){}
+ let heuteL=[];try{heuteL=(kalAm(heute)||[]).filter(e=>!['feiertag','tb'].includes(e.art))}catch(e){}
+ const ezT=b=>/^\d{4}-\d\d-\d\d$/.test(b.einzug||'')?Math.round((tbAusIso(b.einzug)-tbAusIso(heute))/864e5):null,eur=x=>typeof auEur==='function'?auEur(x):x.toFixed(2)+' €';
+ const kz=(t,w,s)=>`<div class="cpuk"><small>${t}</small><b>${w}</b><span>${s}</span></div>`;
+ const zeile=(pill,k,t,s,attr)=>`<button type="button" class="cpuz"${attr||''}><span class="cpup ${k}">${esc(pill)}</span><span class="cput"><b>${esc(t)}</b><small>${esc(s)}</small></span></button>`;
+ const H=[...heuteL.map(e=>zeile(e.von&&!e.ganz?e.von:'Ganztägig','b',e.t,[kArtName?kArtName(e):'',e.ort].filter(Boolean).join(' · '),' data-cpu="kalender"')),
+  ...mUe.slice(0,3).map(m=>zeile('Frist','y',m.nr+' · '+m.t,[m.b,m.z].filter(Boolean).join(' · '),' data-cpu="maengel"')),
+  ...(geld?faellig.slice(0,3).map(([r,o])=>zeile('Fällig','r',r.nr+' · '+r.b,eur(o),' data-cpu="auftraege"')):[])];
+ const d=new Date();
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">${['SONNTAG','MONTAG','DIENSTAG','MITTWOCH','DONNERSTAG','FREITAG','SAMSTAG'][d.getDay()]}, ${d.getDate()}. ${d.toLocaleDateString('de-DE',{month:'long'}).toUpperCase()}</span><h2 class="mgh">Cockpit</h2></div><div class="mgakt"><button type="button" data-cpu="kunden">+ Kunde</button><button type="button" class="haupt" data-cpu="tagebuch">+ Eintrag</button></div></div>
+ <div class="cpu">
+  <div class="cpukpi">${kz('Stunden diese Woche',(Math.round(h*10)/10).toLocaleString('de-DE')+' h',leute.size+(leute.size===1?' Person':' Personen'))}${geld?kz('Offene Rechnungen',eur(offen),faellig.length?faellig.length+' überfällig':'nichts überfällig'):''}${kz('Offene Mängel',mOff.length,mUe.length?mUe.length+' überfällig':'keiner überfällig')}${kz('Nächster Termin',naechst?(naechst.s===heute?naechst.e.von:tbAusIso(naechst.s).toLocaleDateString('de-DE',{weekday:'short',day:'numeric',month:'numeric'})):'—',naechst?naechst.e.t:'nichts geplant')}</div>
+  <div class="cpuzwei">
+   <section class="cpukarte"><div class="cpukk"><b>Baustellen</b><button type="button" data-cpu="kunden">Alle anzeigen</button></div>${L.map(b=>{const ph=cpuPhase(b),ez=ezT(b);return `<button type="button" class="cpuz" data-cpb="${esc(b.name)}"><span class="cpud" style="background:${b.c||'var(--k-akz)'}"></span><span class="cput"><b>${esc(b.name)}</b><small>${CPU_PH[ph]}${ez!=null&&ez>=0?' · Einzug in '+ez+(ez===1?' Tag':' Tagen'):''}</small></span><span class="cpubar"><i style="width:${(ph+1)*20}%;background:${b.c||'var(--k-akz)'}"></i></span><span class="cpuproz">${(ph+1)*20} %</span></button>`}).join('')}</section>
+   <section class="cpukarte"><div class="cpukk"><b>Heute</b><button type="button" data-cpu="kalender">Kalender</button></div>${H.length?H.join(''):'<p class="cpuleer">Heute steht nichts an.</p>'}</section>
+  </div></div>`;
+ inh.querySelectorAll('[data-cpb]').forEach(x=>x.onclick=()=>{CPV.b=x.dataset.cpb;cpMalen(inh)});
+ inh.querySelectorAll('[data-cpu]').forEach(x=>x.onclick=()=>amFunktion(x.dataset.cpu));
+ try{if(typeof eiErsteSchritte==='function')eiErsteSchritte(inh)}catch(e){}}
 // QR-Code-Erzeuger: QRCode for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT-Lizenz (aus qrcode-terminal). Für Onstand im Browser verpackt.
 const ON_QR=(()=>{const M={},C={};function req(n){n=n.replace("./","");if(C[n])return C[n].exports;const m=C[n]={exports:{}};M[n](m,m.exports,req);return m.exports}
 M['QR8bitByte']=function(module,exports,require){var QRMode = require('./QRMode');
