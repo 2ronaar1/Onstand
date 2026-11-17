@@ -3607,13 +3607,76 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 @media (max-width:760px){#am .mbstep .mgstep{width:100%}#am .mbstep .mgstep button{flex:1 1 0;padding:5px 2px;font-size:12px!important;min-width:0;overflow:hidden;text-overflow:ellipsis}#am .mbfeld{grid-template-columns:88px minmax(0,1fr)}}
 #am .mbfeld .mgfrist{white-space:normal!important}
 #am .mbkn .tr{display:none}#am .mbkn [data-a=weg]{margin-left:auto;padding:0 6px}
+/* Abnahmen wie Mängel: Tabelle + Karte; Abnahme-Seite als ruhige Karte mit Feldzeilen */
+#am .mbablinks{display:flex;flex-direction:column;gap:12px;min-width:0}
+#am .mbablinks>.mgbox{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;margin:0}
+#am .mgliste.mbab{gap:0}
+#am .mbabsplit .mgliste .mgrow.mb.sel{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))!important}
+#am .mgbox h4{text-transform:none}
+@media (max-width:760px){#am .mgliste.mbab{background:none}#am .mgliste.mbab>.mgbox{margin-top:14px;border-radius:20px;border:0;background:var(--k-b1)}}
+#am .aminhalt:has(.mbkab) .mgscroll{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:14px 18px;max-width:980px}
+#am .aminhalt:has(.mbkab) .mgscroll>:is(.amfeld,.mgzz,.mgbox,.mgunters){border:0;border-top:1px solid var(--k-lin);border-radius:0;background:none;margin:0;padding:12px 0;box-shadow:none}
+#am .aminhalt:has(.mbkab) .mgscroll>.mbk+*{border-top:0}
+#am .aminhalt:has(.mbkab) :is(.amfeld>small,.mgbox>h4){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;color:var(--k-sub)!important;text-transform:none;margin-bottom:6px;display:block}
+#am .aminhalt:has(.mbkab) .mgpad{font-size:12px;letter-spacing:0;color:var(--k-sub);text-transform:none}
+#am .aminhalt:has(.mbkab) .mgerg button,#am .aminhalt:has(.mbkab) .mgchips button{border-radius:4px;text-transform:none;letter-spacing:0;font-size:12.5px}
+#am .aminhalt:has(.mbkab) .mghinw{margin:0 0 10px}
+@media (max-width:760px){#am .aminhalt:has(.mbkab) .mgscroll{border:0;border-radius:20px;padding:12px 16px}}
+/* Kunden – Abgleich mit der Probe: Kürzel grau, keine Zeile „letzter Kontakt“ in der Liste, Karte rechts nur Name + Knöpfe */
+#am .gltab .kust{background:color-mix(in srgb,var(--k-sub) 14%,var(--k-b1))!important;color:var(--k-sub)!important}
+#am .kurow .kulk{display:none!important}
+#am .glr>.gldk small{display:none}
+#am .glr>.gldk h3{font-size:15px!important;font-weight:600!important;margin:0}
+#am .kbhint{margin:2px 4px 6px;font-size:13px;color:var(--k-sub)}
+@media (max-width:760px){#am .gltab .kust{background:linear-gradient(180deg,color-mix(in srgb,var(--k-t) 8%,var(--k-sub)),color-mix(in srgb,var(--k-sub) 85%,var(--k-b1)))!important;color:var(--k-t)!important}
+ :root[data-design="dunkel"] #am .gltab .kust{background:linear-gradient(180deg,color-mix(in srgb,var(--k-sub) 51%,var(--k-b1)),color-mix(in srgb,var(--k-sub) 33%,var(--k-b1)))!important}}
+/* Personal – Abgleich mit der Probe */
+#am .petab .petk,#am .petab .perow,#am .petab .petf{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 80px 80px!important}
+#am .petab .peava,#am .petab .perow>span:nth-of-type(2){display:none!important}
+#am .petab .pbr{text-align:right}
+#am .pesub{display:block!important;font-size:12px;font-weight:400;color:var(--k-sub);margin-top:1px}
+#am .petab .perow>b{display:block;min-width:0;font-weight:600}
+#am .pbur{text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+#am .petk .pbur{font-size:12px}
+#am .pestd small{display:none}
+#am .glr>.gldk:has(.pbkopf)>.peava,#am .glr>.gldk:has(.pbkopf)>div:not(.mgakt){display:none}
+#am .pbkopf{font-size:14px;font-weight:600;flex:1}
+#am .glr .pekwbox{display:none}
+#am .aminhalt:has(.petab) .fichips{border-bottom:1px solid var(--k-lin);gap:4px;border-radius:0;background:none}
+#am .aminhalt:has(.petab) .fichips button{border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;background:none!important;padding:8px 12px;font-size:13.5px;color:var(--k-sub);margin-bottom:-1px}
+#am .aminhalt:has(.petab) .fichips button.an{color:var(--k-akz);border-bottom-color:var(--k-akz)!important;font-weight:600}
+#am .pbmeine{display:none}
+@media (max-width:760px){
+ #am .petab .petk{display:none!important}
+ #am .petab .perow{grid-template-columns:40px minmax(0,1fr) auto!important}
+ #am .petab .peava{display:grid!important;background:linear-gradient(180deg,color-mix(in srgb,var(--k-t) 8%,var(--k-sub)),color-mix(in srgb,var(--k-sub) 85%,var(--k-b1)))!important;color:var(--k-t)!important;border:0}
+ :root[data-design="dunkel"] #am .petab .peava{background:linear-gradient(180deg,color-mix(in srgb,var(--k-sub) 51%,var(--k-b1)),color-mix(in srgb,var(--k-sub) 33%,var(--k-b1)))!important}
+ #am .petab .perow>span:nth-of-type(3),#am .petab .perow .pbur,#am .petab .petf .pbur{display:none!important}
+ #am .petab .petf{grid-template-columns:minmax(0,1fr) auto!important}#am .petab .petf .pbleer{display:none}
+ #am .pestd{text-align:right;font-weight:600}#am .pestd small{display:block;font-size:12px;font-weight:400;color:var(--k-sub)}
+ #am .aminhalt:has(.petab) .fichips{border:0;background:color-mix(in srgb,var(--k-sub) 13%,transparent);border-radius:20px!important;padding:3px;gap:2px;display:flex;overflow-x:auto}
+ #am .aminhalt:has(.petab) .fichips button{border:0!important;border-radius:17px!important;padding:6px 12px;margin:0;flex:1 0 auto}
+ #am .aminhalt:has(.petab) .fichips button.an{background:var(--k-b1)!important;color:var(--k-t);box-shadow:0 2px 6px -1px rgba(0,0,0,.14)}
+ #am .pbmeine{display:block;width:100%;margin:14px 0 8px;height:48px;border:0;border-radius:24px;background:color-mix(in srgb,var(--k-akz) 14%,var(--k-b1));color:var(--k-akz);font-size:16px;font-weight:600}
+}
+/* Firmen-Wiki – Abgleich mit der Probe */
+#am .brreiter.bweins>[data-brtab]{visibility:hidden;width:0;padding:0;margin:0;overflow:hidden}
+#am .brx>.brfrage .bwlupe{width:17px;height:17px;fill:none;stroke:var(--k-akz);stroke-width:1.9;flex:none}
+#am .brseite h4{font-size:17px!important;font-weight:600!important}
+#am .brliste .brgr>small{display:block;padding:10px 14px 6px;background:none}
+#am .brliste .brgr button{border-top:1px solid var(--k-lin)}
+#am .petab :is(.petf,.petk) .pbr{display:block!important}
+#am .petab .petf>span{grid-column:auto!important}
+#am .petab .pbr{text-align:right!important}
+#am .mbgrp{background:var(--k-b1);border-radius:20px;overflow:hidden}
+#am .mbgrp>.mgrow.mb{border-radius:0!important}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.62';
+const ON_VER='0.10.63';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -9739,7 +9802,7 @@ if(typeof GE_WISCH!=='undefined')GE_WISCH.push(['#am .tbbz[data-d]',el=>{if(type
  return [['Bearbeiten','akz',()=>{hin();TBV.edit=true;tbMalen(inh)}],['Lieferschein','sub',()=>{hin();TBV.edit=false;tbMalen(inh);if(typeof lsStart==='function')lsStart(inh)}]]}]);
 // ===== Kunden im Büro-Design (Probe „Kunden“) =====
 // Kürzel im Kreis statt Farbstreifen, Bezeichnungen in normaler Schreibweise, am Handy ist die Suche immer offen.
-const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung','KUNDEN & BAUSTELLEN':'Kunden & Baustellen','PARTNER & LIEFERANTEN':'Partner & Lieferanten','FIRMA & WISSEN':'Firma & Wissen','DATEIEN ZU DIESER SEITE':'Dateien zu dieser Seite','WARTET AUF DEN SORTIER-LAUF':'Wartet auf den Sortier-Lauf','HIER ORDNEST DU SELBST ZU':'Hier ordnest du selbst zu','NICHT ZUGEORDNET':'Nicht zugeordnet','FACH NEU':'Fach Neu','NACHHER-FOTO':'Nachher-Foto'};
+const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung','KUNDEN & BAUSTELLEN':'Kunden & Baustellen','PARTNER & LIEFERANTEN':'Partner & Lieferanten','FIRMA & WISSEN':'Firma & Wissen','DATEIEN ZU DIESER SEITE':'Dateien zu dieser Seite','WARTET AUF DEN SORTIER-LAUF':'Wartet auf den Sortier-Lauf','HIER ORDNEST DU SELBST ZU':'Hier ordnest du selbst zu','NICHT ZUGEORDNET':'Nicht zugeordnet','FACH NEU':'Fach Neu','NACHHER-FOTO':'Nachher-Foto','OFFENE MÄNGEL · ALS VORBEHALT INS PROTOKOLL':'Offene Mängel · als Vorbehalt ins Protokoll','GEWÄHRLEISTUNG AB ABNAHME':'Gewährleistung ab Abnahme','ABNAHME PLANEN':'Abnahme planen'};
 const kbText=k=>KB_FEST[k]||frSatz(k).replace(/\bkw\b/gi,'KW');
 function kbSchreib(a,S){a.querySelectorAll(S).forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=n.nodeValue.replace(k,kbText(k))})}
 const KB_MAL=kuMalen;
@@ -9747,6 +9810,8 @@ kuMalen=function(inh){if(W<=760&&KU_SEL===null&&!KU_V.such)KU_V.such=true;const 
 function kbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.kuneu,.kuzur,.kusp'))return;
  a.querySelectorAll('.kurow').forEach(z=>{const b=BST[z.dataset.n],s=z.querySelector('.kust');if(b&&s&&!s.textContent)s.textContent=b.k||''});
  kbSchreib(a,'.tbfelder>span,.gllab');
+ // Probe am Handy: Hinweis „Lange drücken für mehr“ über der Liste
+ if(W<=760&&KU_SEL===null&&a.querySelector('.kurow')&&!a.querySelector('.kbhint')){const l=a.querySelector('.kuliste');if(l)l.insertAdjacentHTML('beforebegin','<p class="kbhint">Lange drücken für mehr</p>')}
  // Neben der Liste: „Letzte Kontakte“ stehen schon links – rechts nur noch der Knopf „Kontakt notieren“ oben neben „Bearbeiten“
  const r=a.querySelector('.glr'),k=r&&r.querySelector('.kukneu'),m=r&&r.querySelector('.gldk .mgakt');if(k&&m&&!m.contains(k)){m.insertBefore(k,m.querySelector('.kued'));k.lastChild.textContent='Kontakt'}}
 // ===== Personal im Büro-Design (Probe „Personal“) =====
@@ -9760,6 +9825,18 @@ function pbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.quer
   const Z=[];for(let i=0;i<tage;i++){const tag=tbIso(tbPlus(mo,i)),E=(TB[tag]||[]).filter(e=>peListe(e.p).some(x=>x===n||p.alias.includes(x)));
    Z.push(`<div class="pbz${E.length?'':' leer'}${tag===heute?' heute':''}"><b>${TB_WT[i].charAt(0)+TB_WT[i].charAt(1).toLowerCase()}</b><span><b>${E.length?E.map(e=>esc(e.z||'ohne Zeit')).join(', '):'—'}</b>${E.length?`<small>${[...new Set(E.map(e=>e.b).filter(Boolean))].map(esc).join(' · ')||'ohne Baustelle'}</small>`:''}</span><em>${w[i]?peH(w[i])+' h':''}</em></div>`)}
   bal.outerHTML=`<div class="pbtage">${Z.join('')}</div>`}}
+// Abgleich mit der Probe: Tabelle Name | Eingesetzt | Woche | Urlaub, Karte „Name · KW“ mit „Stundenzettel PDF“, am Handy Segment und „Meine Stunden eintragen“
+function pbRest(name){const p=PER[name];if(!p)return null;const an=parseFloat(p.urlaub)||0;if(!an)return null;const j=new Date().getFullYear(),gen=peAbwesend(name).filter(a=>/urlaub/i.test(a.grund)).reduce((s,a)=>s+peWerktage(a.von,a.bis,j),0);return Math.max(0,an-gen)}
+{const alt=pbFein;pbFein=function(){alt.apply(this,arguments);const a=document.querySelector('#am .aminhalt');if(!a)return;const bez=PE_BEZ||TBV.sel||new Date();
+ const k=a.querySelector('.petk');if(k&&!k.dataset.pb){k.dataset.pb=1;const S=k.querySelectorAll('span');k.innerHTML=`<span>Name</span><span>${S[3]?S[3].textContent:'Eingesetzt'}</span><span class="pbr">${S[4]?S[4].textContent:'Woche'}</span><span class="pbur">Urlaub</span>`}
+ {const h=a.querySelector(':scope>.mgk .mgh'),t=a.querySelector(':scope>.mgk .amtt'),n=a.querySelector(':scope>.mgk .peneu');if(h&&h.textContent==='Team'){h.textContent='Personal';if(t)t.textContent='TEAM'}if(n&&n.lastChild&&n.lastChild.nodeType===3)n.lastChild.textContent='Person'}
+ a.querySelectorAll('.perow').forEach(z=>{if(z.querySelector('.pbur'))return;const r=pbRest(z.dataset.n);z.insertAdjacentHTML('beforeend',`<span class="pbur">${r==null?'<i class="ohne">—</i>':r+(r===1?' Tag':' Tage')}</span>`);
+  const st=z.querySelector('.pestd');if(st&&r!=null&&!st.querySelector('small'))st.insertAdjacentHTML('beforeend',`<small class="pbursm">${r} ${r===1?'Tag':'Tage'} Urlaub</small>`)});
+ const f=a.querySelector('.petf');if(f&&!f.dataset.pb){f.dataset.pb=1;const S=f.querySelectorAll('span');f.innerHTML=`<span>${S[1]?S[1].textContent:''}</span><span class="pbleer"></span><span class="pbr">${S[4]?S[4].textContent:''}</span><span class="pbur"></span>`}
+ const r=a.querySelector('.glr'),g=r&&r.querySelector(':scope>.gldk');
+ if(g&&PE_SEL&&PER[PE_SEL]&&!g.querySelector('.pbkopf')){g.insertAdjacentHTML('afterbegin',`<b class="pbkopf">${esc(PE_SEL)} · KW ${tbKw(bez)}</b>`);const m=g.querySelector('.mgakt'),stz=a.querySelector('.mgk .pestz');if(m&&stz){stz.lastChild.textContent='Stundenzettel PDF';m.prepend(stz)}}
+ if(W<=760&&PE_SEL===null&&a.querySelector('.petab')&&!a.querySelector('.pbmeine')){const t=a.querySelector('.petipp')||a.querySelector('.petab');t.insertAdjacentHTML('beforebegin','<button type="button" class="pbmeine">Meine Stunden eintragen</button>');
+  a.querySelector('.pbmeine').onclick=()=>{TBV.sel=new Date();amFunktion('tagebuch');setTimeout(()=>{const b=document.querySelector('#am .tbbneu');if(b)b.click()},RM?60:450)}}}}
 // ===== Firmen-Wiki im Büro-Design (Probe „Firmen-Wiki“) =====
 // Am PC steht „Frag das Firmenwissen“ oben über Liste und Seite; Bezeichnungen in normaler Schreibweise.
 const BW_MAL=brMalen;
@@ -9773,6 +9850,13 @@ function bwFein(inh){if(!inh||!inh.querySelector('.brx'))return;
  const l=inh.querySelector('.brlauf>span');if(l&&!l.querySelector('b')){const t=l.textContent;if(t===t.toUpperCase())l.textContent=t.toLowerCase().replace(/^./,c=>c.toUpperCase()).replace(/\b(mo|di|mi|do|fr|sa|so)\./g,m=>m[0].toUpperCase()+m.slice(1)).replace('nächster lauf sonntag','nächster Lauf Sonntag')}
  const f=inh.querySelector('.brx>.brfrage'),w=inh.querySelector('.brx>.brwiki');if(W>760&&f&&w&&f.nextElementSibling!==w)w.before(f);
  const b=f&&f.querySelector('button[type=submit]');if(b&&!b.querySelector('span'))b.insertAdjacentHTML('beforeend','<span>Fragen</span>')}
+// Name wie in der Probe: „Firmen-Wiki“
+{const f=AM_FUNK.find(x=>x.id==='brain');if(f)f.name='FIRMEN-WIKI';ON_NAMEN.brain='Firmen-Wiki'}
+{const alt=bwFein;bwFein=function(inh){alt.apply(this,arguments);const k=inh.querySelector(':scope>.mgk');if(k){const h=k.querySelector('.mgh'),t=k.querySelector('.amtt');if(h&&h.textContent==='Firmenwissen')h.textContent='Firmen-Wiki';if(t&&t.textContent==='FIRMEN-BRAIN')t.textContent='FIRMENWISSEN'}
+ const r=inh.querySelector('.brreiter');if(r){const T=r.querySelectorAll('[data-brtab]');r.classList.toggle('bweins',T.length===1)}
+ const f=inh.querySelector('.brx>.brfrage');if(f&&!f.querySelector('.bwlupe'))f.insertAdjacentHTML('afterbegin','<svg class="bwlupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>');
+ const i=f&&f.querySelector('input');if(i)i.placeholder='Frag das Firmen-Wiki … z. B. „Was nehmen wir für Q3 spachteln pro m²?“';
+ const st=inh.querySelector('.brseite .brlab');if(st&&BR.stand&&BR.stand.letzterLauf&&!st.dataset.bw){st.dataset.bw=1;st.textContent+=' · zuletzt sortiert '+new Date(BR.stand.letzterLauf).toLocaleDateString('de-DE',{day:'numeric',month:'numeric'})}}}
 // ===== Mängel nach der Onstand-Design-Probe =====
 // Titel „Mängel“, Baustelle als Auswahl oben rechts, EINE Reiterzeile (Offen · Überfällig · Zu prüfen · Erledigt · Abnahmen),
 // Liste als Tabelle Mangel | Frist | Status, rechts Karte: Kopf mit Pille, Foto, Feldzeilen, Knöpfe „Als behoben markieren“ / „Abnahme starten“.
@@ -9794,7 +9878,7 @@ function mbFein(inh){if(!inh||!inh.isConnected||MGV.formAktiv)return;const a=inh
   const T=[['offen','Offen',L.filter(mgOffen).length],['ueber','Überfällig',L.filter(mgUeber).length],['behoben','Zu prüfen',L.filter(m=>m.st==='behoben').length],['erledigt','Erledigt',L.filter(m=>m.st==='geprueft').length],['abn','Abnahmen',abn]],an=MGV.tab==='abnahme'?'abn':MGV.f;
   const d=document.createElement('div');d.className='mbtabs';d.setAttribute('role','tablist');
   d.innerHTML=T.map(([k,n,z])=>`<button type="button" role="tab" data-mb="${k}" class="${k===an?'an':''}${k==='ueber'&&z?' rot':''}" aria-selected="${k===an}">${n}<em>${z}</em></button>`).join('');
-  tabs.before(d);d.querySelectorAll('[data-mb]').forEach(b=>b.onclick=()=>{const x=b.dataset.mb;MGV.sel=null;MGV.abn=null;if(x==='abn')MGV.tab='abnahme';else{MGV.tab='maengel';MGV.f=x}mgMalen(inh)})}
+  tabs.before(d);{const x=d.querySelector('.an');if(x)requestAnimationFrame(()=>{d.scrollLeft=Math.max(0,x.offsetLeft-d.clientWidth/2+x.offsetWidth/2)})}d.querySelectorAll('[data-mb]').forEach(b=>b.onclick=()=>{const x=b.dataset.mb;MGV.sel=null;MGV.abn=null;if(x==='abn')MGV.tab='abnahme';else{MGV.tab='maengel';MGV.f=x}mgMalen(inh)})}
  const breit=!!a.querySelector('.mgsplit');
  a.querySelectorAll('.mgrow').forEach(r=>{const m=mgFind(r.dataset.id);if(!m||r.classList.contains('mb'))return;r.classList.add('mb');
   const unter=breit?[m.b,m.z||'niemand zuständig']:[m.nr,m.b].concat(m.frist?['bis '+mbDat(m.frist)]:[]);
@@ -9819,6 +9903,32 @@ function mbDetail(inh,pane,id){const root=pane||inh,m=mgFind(id||MGV.sel),sc=roo
   ab.onclick=()=>{MGV.sel=null;MGV.tab='abnahme';MGV.b=m.b;MGV.abn=AB[m.b]?m.b:null;mgMalen(inh)};kn.appendChild(ab);
   const sp=document.createElement('span');sp.className='tr';kn.appendChild(sp);['bea','weg'].forEach(x=>{const b=ak&&ak.querySelector(`[data-a=${x}]`);if(b)kn.appendChild(b)});
   box.after(kn);if(ak)ak.remove()}}
+// ---------- Abnahmen im selben Aufbau wie Mängel: Tabelle Baustelle | Termin | Ergebnis, rechts Karte mit Feldzeilen ----------
+const MB_ERG={'':['Geplant','#D97706'],ok:['Abgenommen','#16A34A'],vor:['Mit Vorbehalt','#B45309'],nein:['Verweigert','#C42B1C']};
+let MB_AB=null;
+{const alt=mgMalen;mgMalen=function(inh){const r=alt.apply(this,arguments);try{if(MGV.tab==='abnahme'&&!MGV.abn&&!MGV.formAktiv)mbAbListe(inh);if(MGV.abn&&!MGV.formAktiv)mbAbSeite(inh)}catch(e){console.error(e)}return r}}
+function mbAbListe(inh){const li=inh.querySelector(':scope>.mgliste');if(!li||li.classList.contains('mbab'))return;li.classList.add('mbab');
+ const R=[...li.querySelectorAll('.mgrow.mgab')];
+ R.forEach(r=>{const k=r.dataset.k,a=AB[k];if(!a)return;const off=(MG[k]||[]).filter(mgOffen),w=off.filter(m=>m.schwer).length,e=MB_ERG[a.erg]||MB_ERG[''];r.classList.add('mb');
+  r.innerHTML=`<span class="mbt"><b>${esc(k)}</b><small>${off.length} offene Mängel${w?` · <span class="mgrot">${w} wesentlich</span>`:''}${W<=760?' · '+mbDat(a.datum)+(a.zeit?' · '+esc(a.zeit)+' Uhr':''):''}</small></span><span class="mbf">${mbDat(a.datum)}</span><span class="mbp" style="--pc:${e[1]}">${e[0]}</span>`});
+ kbSchreib(li,'.mgbox h4');
+ if(W<=760&&R.length){const g=document.createElement('div');g.className='mbgrp';R[0].before(g);R.forEach(r=>g.appendChild(r))}
+ if(W<=760||!R.length)return;
+ if(!R.some(r=>r.dataset.k===MB_AB))MB_AB=R[0].dataset.k;
+ const sp=document.createElement('div');sp.className='mgsplit mbabsplit';li.before(sp);const tab=document.createElement('div');tab.className='mgliste';tab.innerHTML='<div class="mbkopf"><span>Baustelle</span><span>Termin</span><span>Ergebnis</span></div>';
+ R.forEach(r=>{tab.appendChild(r);r.onclick=()=>{MB_AB=r.dataset.k;mbAbKarte(inh,pane,R)}});const links=document.createElement('div');links.className='mbablinks';links.appendChild(tab);const plan=li.querySelector('.mgbox');if(plan)links.appendChild(plan);
+ const pane=document.createElement('div');pane.className='mgpane';sp.append(links,pane);li.remove();mbAbKarte(inh,pane,R)}
+function mbAbKarte(inh,pane,R){const k=MB_AB,a=AB[k];R.forEach(r=>r.classList.toggle('sel',r.dataset.k===k));if(!a){pane.innerHTML='';return}
+ const off=(MG[k]||[]).filter(mgOffen),e=MB_ERG[a.erg]||MB_ERG[''],b=mgB(k);
+ const Z=[['Termin',mgLang(a.datum)+(a.zeit?' · '+esc(a.zeit)+' Uhr':'')],['Teilnehmer',[b.kontakt?esc(b.kontakt)+' <small>Kunde</small>':''].concat((a.teil||[]).map(esc)).filter(Boolean).join(', ')||'–'],
+  ['Offene Mängel',off.length?off.map(m=>`${esc(m.nr)} · ${esc(m.t)}${m.schwer?' <span class="mgrot">wesentlich</span>':''}`).join('<br>'):'keine'],['Gewährleistung',(a.jahre===4?'VOB/B · 4 Jahre':'BGB · 5 Jahre')+(a.erg==='ok'||a.erg==='vor'?' · Ende '+tbAusIso(abEnde(a)).toLocaleDateString('de-DE'):'')],['Ergebnis',e[0]]];
+ pane.innerHTML=`<div class="mgscroll"><div class="mbk"><b>Abnahme · ${esc(k)}</b><span class="mbp" style="--pc:${e[1]}">${e[0]}</span></div><div class="mbfelder">${Z.map(([l,v])=>`<div class="mbfeld"><small>${l}</small><span>${v}</span></div>`).join('')}</div>
+  <div class="mbkn"><button type="button" data-a="weiter" class="mbauf">Abnahme öffnen</button><button type="button" class="mbmg">Mängel ansehen</button></div></div>`;
+ pane.querySelector('.mbauf').onclick=()=>{MGV.abn=k;mgMalen(inh)};pane.querySelector('.mbmg').onclick=()=>{MGV.tab='maengel';MGV.b=k;MGV.f='offen';MGV.sel=null;mgMalen(inh)}}
+function mbAbSeite(inh){const sc=inh.querySelector('.mgscroll');if(!sc||sc.querySelector('.mbk'))return;const k=MGV.abn,a=AB[k];if(!a)return;const e=MB_ERG[a.erg]||MB_ERG[''];
+ sc.insertAdjacentHTML('afterbegin',`<div class="mbk mbkab"><b>Abnahme · ${esc(k)}</b><span class="mbp" style="--pc:${e[1]}">${e[0]}</span></div>`);
+ kbSchreib(inh,'.amfeld>small,.mgbox>h4');inh.querySelectorAll('.mgpad').forEach(p=>{const n=p.firstChild;if(n&&n.nodeType===3)n.nodeValue=n.nodeValue.replace('UNTERSCHRIFT KUNDE','Unterschrift Kunde').replace('UNTERSCHRIFT AUFTRAGNEHMER','Unterschrift Auftragnehmer')});
+}
 // ===== Kalender · Büro-Design =====
 // ---------- Kalender öffnen: ruhiger Aufbau wie bei den anderen Seiten (vorher sprang das Raster sofort hinein, der Rest blitzte hinterher) ----------
 const KB_AUF=kalAuf;
