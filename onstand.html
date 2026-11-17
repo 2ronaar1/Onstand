@@ -4287,13 +4287,24 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #bpdruck .lkdok table td,#bpdruck .lkdok .su>div:not(.ge) span{color:#1b2230!important}
 #bpdruck.bericht .lkbk{display:flex;justify-content:space-between;gap:10mm;padding-bottom:3mm;margin-bottom:6mm;border-bottom:1.6pt solid #1b2230;font-size:8pt}
 #bpdruck.bericht .lkbk b{font-size:13pt}
+/* Neukunden-Code: Hinweis im Cockpit, Abo-Dialog */
+#am .nkban{display:flex;align-items:center;gap:14px;padding:12px 16px;margin:0 0 14px;border-radius:8px;background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1));border:1px solid color-mix(in srgb,var(--k-gelb) 35%,var(--k-lin))}
+#am .nkban>div{flex:1;min-width:0}#am .nkban b{display:block;font-size:13.5px}#am .nkban span{font-size:12.5px;color:var(--k-sub)}
+#am .nkban button{height:34px;padding:0 14px;border:0;border-radius:6px;background:var(--k-akz);color:var(--k-auf);font:600 13px var(--k-ui);cursor:pointer;white-space:nowrap}
+#am .nkbox{border-top:1px solid var(--k-lin);padding-top:10px;margin-top:6px}
+#am .nklink{border:0;background:none;padding:0;color:var(--k-akz);font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+#am .ondlg .nkcode{font-family:ui-monospace,Consolas,monospace!important;letter-spacing:1.5px;text-transform:uppercase;font-size:16px!important}
+@media (max-width:760px){#am .nkban{flex-direction:column;align-items:stretch}#am .nkban button{height:42px;border-radius:21px}}
+/* Startformular: Felder bleiben in der Breite (FIRMA ragte rechts heraus), Code-Platzhalter normal geschrieben */
+#onstart .oszz>label{min-width:0}#onstart .osf input{width:100%;min-width:0;box-sizing:border-box}
+#onstart #einkcode::placeholder{text-transform:none}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.75';
+const ON_VER='0.10.76';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11323,6 +11334,49 @@ function vwDokBinden(inh){const neu=()=>vwMalen(inh),vor=()=>{const f=inh.queryS
    if(a==='set'){let v=b.dataset.v;if(v==='true')v=true;else if(v==='false')v=false;D[b.dataset.k]=v;vwLkGeaendert();return neu()}
    if(a==='hoch'||a==='runter'){const i=+b.dataset.i,j=a==='hoch'?i-1:i+1;[D.fuss[i],D.fuss[j]]=[D.fuss[j],D.fuss[i]];vwLkGeaendert();return neu()}
    if(a==='zurueck'){D.tx[VW.dokArt]=Object.assign({},LK_DOK_TX[VW.dokArt]);vwLkGeaendert();return neu()}}})}
+// ===== Neukunden-Code einlösen (Schritt 4) =====
+// Wo: beim Anlegen einer neuen Firma (Feld „Persönlicher Code“) und unter Einstellungen → „Abo & KI-Paket“ → „Code einlösen“.
+// Nur der Chef löst ein. Der Server prüft den Code und schaltet für 30 Tage Grundpaket, KI-Paket und Firmen-Look frei
+// (Funktion nk_code_einloesen). Danach endet das geschenkte KI-Paket automatisch, der Firmen-Look bleibt.
+// 7 Tage vor dem Ende: Hinweis im Cockpit mit „KI-Paket behalten“ (bis das Abo mit Stripe steht: per E-Mail an Onstand).
+const NK={stand:null};
+try{NK.stand=JSON.parse(localStorage.getItem('onstandTestmonat')||'null')}catch(e){}
+const nkDat=d=>d?new Date(d).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}):'';
+const nkRest=()=>{const s=NK.stand;if(!s||!s.test_bis||!s.geschenkt)return null;const r=Math.ceil((new Date(s.test_bis).getTime()-Date.now())/864e5);return r>=0?r:null};
+async function nkPruefen(){if(typeof syAktiv!=='function'||!syAktiv())return;
+ try{const s=await syRpc('nk_testmonat',{p_firma:SY_KONTO.firma});const altKi=NK.stand&&NK.stand.ki;NK.stand=s||null;
+  try{if(s)localStorage.setItem('onstandTestmonat',JSON.stringify(s));else localStorage.removeItem('onstandTestmonat')}catch(e){}
+  if(s&&altKi!==s.ki&&typeof kiStand==='function')kiStand();nkErinnern()}catch(e){}}
+setTimeout(nkPruefen,3500);setInterval(nkPruefen,30*6e4);
+const NK_FEHLER={nur_chef:'Nur der Chef kann einen Code einlösen.',zu_viele:'Zu viele falsche Versuche. Bitte in 10 Minuten noch einmal.',unbekannt:'Diesen Code gibt es nicht. Bitte genau so eingeben, wie er in der Nachricht steht (z. B. BRANDT-7K4M).',gesperrt:'Dieser Code ist nicht mehr gültig.',verbraucht:'Dieser Code wurde schon von einer anderen Firma eingelöst.',schon_eingeloest:'Diesen Code habt ihr schon eingelöst.',abgelaufen:'Dieser Code ist abgelaufen (30 Tage einlösbar).',firma_hat_schon:'Eure Firma hat schon einen Code eingelöst.'};
+const nkNorm=c=>String(c||'').toUpperCase().replace(/\s+/g,'').replace(/[–—_]/g,'-');
+async function nkEinloesen(code,stumm){const c=nkNorm(code);if(!/^[A-Z]{2,9}-[A-Z0-9]{4}$/.test(c))throw new Error('Der Code hat die Form FIRMA-XXXX, z. B. BRANDT-7K4M.');
+ if(typeof syAktiv!=='function'||!syAktiv())throw new Error('Zuerst ein Firmenkonto anlegen oder anmelden.');
+ let r;try{r=await syRpc('nk_code_einloesen',{p_code:c,p_firma:SY_KONTO.firma})}catch(e){throw new Error(/Could not find the function|PGRST202/.test(e.message)?'Einlösen ist auf dem Server noch nicht eingerichtet.':(typeof syFehlerText==='function'?syFehlerText(e):e.message))}
+ if(!r||r.fehler)throw new Error(NK_FEHLER[r&&r.fehler]||'Das ging gerade nicht. Bitte später noch einmal.');
+ await nkPruefen();try{localStorage.removeItem('onstandLook')}catch(e){}if(typeof lkHolen==='function')await lkHolen();if(typeof kiStand==='function')try{await kiStand()}catch(e){}
+ const zeigen=()=>onDialog(`<h3>Willkommen bei Onstand${LK&&LK.d&&LK.d.firma?` × <span class="lkname">${esc(LK.d.firma)}</span>`:''}</h3><p>Euer persönlicher Code ist eingelöst. Bis <b>${nkDat(r.test_bis)}</b> sind frei:</p><p>✓ Onstand (Grundpaket)<br>✓ KI-Paket – der Assistent beantwortet eure Fragen<br>${r.look?'✓ Euer Firmen-Look – bleibt auch danach':'✓ Firmen-Look folgt in Kürze'}</p><p class="kl">Danach läuft Onstand normal weiter. Wir erinnern euch eine Woche vorher.</p>`,[["LOS GEHT'S",'']]);
+ if(LK&&LK.d&&LK.d.an&&LK.d.an.start&&typeof lkSplash==='function'){try{localStorage.removeItem('onstandLookSplash:'+(LK.d.id||'x'))}catch(e){}lkSplash(false);setTimeout(()=>{const b=document.getElementById('lkbrief');if(b){const k=b.querySelector('button');if(k)k.addEventListener('click',()=>setTimeout(zeigen,320))}else zeigen()},3000)}else setTimeout(zeigen,120);
+ return r}
+function nkDialog(){if(typeof syAktiv!=='function'||!syAktiv()){onDialog('<h3>Code einlösen</h3><p>Zuerst ein Firmenkonto anlegen oder anmelden (Einstellungen → Konto &amp; Geräte). Danach den Code hier eingeben.</p>',[['OK','']]);return}
+ if(typeof syRolle==='function'&&syRolle()!=='chef'){onDialog('<h3>Code einlösen</h3><p>Den persönlichen Code löst der Chef der Firma ein – auf seinem Gerät unter Einstellungen → Abo &amp; KI-Paket.</p>',[['OK','']]);return}
+ onDialog(`<h3>Code einlösen</h3><p>Ihr habt einen persönlichen Code von Onstand bekommen? Hier eingeben – Firmen-Look und Geschenk werden sofort freigeschaltet, auf allen Geräten eurer Firma.</p><label>PERSÖNLICHER CODE<input data-nk="code" class="nkcode" placeholder="z. B. BRANDT-7K4M" autocomplete="off" autocapitalize="characters" spellcheck="false"></label><p class="syfehl nkfehl"></p>`,[['ABBRECHEN',''],['EINLÖSEN','ja']],
+ {ja:async(d,b)=>{const i=d.querySelector('[data-nk=code]'),f=d.querySelector('.nkfehl');b.disabled=true;const alt=b.textContent;b.textContent='EINEN MOMENT …';
+  try{await nkEinloesen(i.value)}catch(e){f.textContent=e.message;b.disabled=false;b.textContent=alt;return false}}});
+ const i=document.querySelector('#am .ondlg [data-nk=code]');if(i)i.oninput=()=>{const p=i.selectionStart;i.value=i.value.toUpperCase();try{i.setSelectionRange(p,p)}catch(e){}}}
+// „Abo & KI-Paket“: Testmonat anzeigen + „Code einlösen“
+if(typeof kiAboDialog==='function'){const alt=kiAboDialog;kiAboDialog=function(){const ret=alt.apply(this,arguments);Promise.resolve(ret).then(()=>{try{const d=AM_EL.querySelector('.ondlg .ondk');if(!d)return;const r=nkRest(),s=NK.stand;
+ const box=document.createElement('div');box.className='nkbox';
+ box.innerHTML=r!=null?`<p><b>Geschenkter Testmonat</b> bis ${nkDat(s.test_bis)} (noch ${r} ${r===1?'Tag':'Tage'}): Grundpaket, KI-Paket und euer Firmen-Look sind frei. Der Firmen-Look bleibt danach.</p>`:s&&s.code?`<p class="kl">Persönlicher Code eingelöst (${esc(s.code)}).</p>`:`<p class="kl">Ihr habt einen persönlichen Code von Onstand? <button type="button" class="nklink">Code einlösen</button></p>`;
+ const kn=d.querySelector('.ondkn');d.insertBefore(box,kn);const l=box.querySelector('.nklink');if(l)l.onclick=()=>setTimeout(nkDialog,60)}catch(e){}});return ret}}
+// Erinnerung 7 Tage vorher: einmal am Tag ein Hinweis + Kasten im Cockpit (Chef und Büro)
+function nkErinnern(){const r=nkRest();if(r==null||r>7)return;if(typeof syRolle==='function'&&!['chef','buero'].includes(syRolle()))return;
+ const k='onstandTestmonatHinweis:'+new Date().toISOString().slice(0,10);try{if(localStorage.getItem(k))return;localStorage.setItem(k,'1')}catch(e){}
+ try{onToast(r===0?'Euer geschenktes KI-Paket endet heute.':`Euer geschenktes KI-Paket endet in ${r} ${r===1?'Tag':'Tagen'}.`)}catch(e){}}
+function nkBehalten(){onDialog(`<h3>KI-Paket behalten</h3><p>Das Weiterbuchen direkt in Onstand kommt mit dem Abo. Bis dahin reicht eine kurze Nachricht – dann bleibt das KI-Paket ohne Unterbrechung an.</p><p><b>info@onstand.de</b></p><p class="kl">Grundpaket und Firmen-Look laufen sowieso weiter.</p>`,[['SPÄTER',''],['E-MAIL SCHREIBEN','mail']],{mail:()=>{try{location.href='mailto:info@onstand.de?subject='+encodeURIComponent('KI-Paket behalten')+'&body='+encodeURIComponent('Hallo, wir möchten das KI-Paket nach dem Testmonat behalten.\nFirma: '+((LK&&LK.d&&LK.d.firma)||(SY_KONTO&&SY_KONTO.firmaName)||''))}catch(e){}}})}
+if(typeof cpUebersicht==='function'){const alt=cpUebersicht;cpUebersicht=function(inh){const out=alt.apply(this,arguments);try{const r=nkRest();if(r!=null&&r<=7&&(typeof syRolle!=='function'||['chef','buero'].includes(syRolle()))&&!inh.querySelector('.nkban')){
+ const b=document.createElement('div');b.className='nkban';b.innerHTML=`<div><b>${r===0?'Euer geschenktes KI-Paket endet heute':`Euer geschenktes KI-Paket endet in ${r} ${r===1?'Tag':'Tagen'}`} (${nkDat(NK.stand.test_bis)})</b><span>Danach schaltet es sich ab – Onstand, euer Firmen-Look und alle Daten bleiben.</span></div><button type="button">KI-Paket behalten</button>`;
+ b.querySelector('button').onclick=nkBehalten;const k=inh.querySelector(':scope>.lkh,:scope>.mgk');if(k)k.after(b);else inh.prepend(b)}}catch(e){}return out}}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -11333,7 +11387,7 @@ const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','AN
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bpdruck,.aueh,.vwcode,.lkname,.lkh,#lksplash,#lkbrief,#lkband,.lv,.lvsplash,.vwlk b';
+const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bpdruck,.aueh,.vwcode,.lkname,.lkh,#lksplash,#lkbrief,#lkband,.lv,.lvsplash,.vwlk b,.nkfehl,.nkbox,.nkban';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentElement!==b&&n.parentElement.closest(FR_AUS))continue;const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
@@ -11619,7 +11673,7 @@ function onStartNeu(){const s=eiStartEl();
  s.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=b.dataset.w;if(w==='ordner'){s.classList.remove('os2');onStartBild('neu');return}eiFormular(w)})}
 function eiFormular(w){const s=eiStartEl(),F=onInitialen().firma;
  const felder=w==='neu'?`<div class="oszz"><label>DEIN NAME<input id="einame" value="${esc(ON_PROFIL.name||'')}" autocomplete="name"></label><label>FIRMA<input id="eifirma" value="${esc(F==='Onstand'?'':F)}" placeholder="z. B. Muster Bau GmbH"></label></div>
-   <label>E-MAIL<input id="eimail" type="email" autocomplete="username"></label><label>PASSWORT (MIND. 8 ZEICHEN)<input id="eipw" type="password" autocomplete="new-password"></label>`
+   <label>E-MAIL<input id="eimail" type="email" autocomplete="username"></label><label>PASSWORT (MIND. 8 ZEICHEN)<input id="eipw" type="password" autocomplete="new-password"></label><label>PERSÖNLICHER CODE (FALLS VORHANDEN)<input id="einkcode" placeholder="z. B. BRANDT-7K4M" autocomplete="off" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase"></label>`
   :w==='an'?`<label>E-MAIL<input id="eimail" type="email" autocomplete="username"></label><label>PASSWORT<input id="eipw" type="password" autocomplete="current-password"></label>`
   :`<p class="osp">Am PC deines Chefs: Logo → Konto &amp; Geräte → <b>GERÄT VERBINDEN</b>. Den QR-Code mit der Kamera scannen oder den Code hier eingeben.</p><label>DEIN NAME<input id="einame" value="${esc(ON_PROFIL.name||'')}" autocomplete="name"></label><label>CODE<input id="eicode" inputmode="numeric" maxlength="7" placeholder="6 Ziffern" autocomplete="one-time-code"></label>`;
  s.innerHTML=`<div class="osf"><svg class="oszs klein" viewBox="0 0 100 100" aria-hidden="true">${ON_LOGO.replace(/^<svg[^>]*>|<\/svg>$/g,'')}</svg><h2>${w==='neu'?'NEUE FIRMA':w==='an'?'ANMELDEN':'MIT FIRMA VERBINDEN'}</h2>
@@ -11631,11 +11685,11 @@ function eiFormular(w){const s=eiStartEl(),F=onInitialen().firma;
   try{if(!GED)GED=await handyGed();
    if(w==='neu'){if(!v('eifirma'))throw new Error('Bitte den Firmennamen eintragen.');if(!/.+@.+\..+/.test(v('eimail')))throw new Error('Bitte eine gültige E-Mail eintragen.');if(v('eipw').length<8)throw new Error('Das Passwort braucht mindestens 8 Zeichen.');
     profilSetzen({name:v('einame'),firma:v('eifirma')});try{const f=JSON.parse(localStorage.getItem('onstandFirma')||'{}');if(!f.name){f.name=v('eifirma');localStorage.setItem('onstandFirma',JSON.stringify(f))}}catch(e){}
-    sySetLS('onstandAnlegen',{firma:v('eifirma'),name:v('einame')});const j=await syAuth('signup',{email:v('eimail'),password:v('eipw')});
+    sySetLS('onstandAnlegen',{firma:v('eifirma'),name:v('einame'),code:v('einkcode')});const j=await syAuth('signup',{email:v('eimail'),password:v('eipw')});
     if(!j.access_token){bal.style.width='0';kn.disabled=false;kn.textContent=alt;fehl('');s.querySelector('#eiform').insertAdjacentHTML('beforebegin','<p class="osp"><b>Fast fertig:</b> Bestätige die E-Mail in deinem Postfach. Danach hier auf ZURÜCK → ANMELDEN, die Firma wird dann angelegt.</p>');return}
-    sySitzung(j);const k=await syRpc('firma_anlegen',{p_name:v('eifirma'),p_mein_name:v('einame')||'',p_geraet:syGeraet()});sySetLS('onstandAnlegen',null);await syVerbunden(k,true)}
+    sySitzung(j);const k=await syRpc('firma_anlegen',{p_name:v('eifirma'),p_mein_name:v('einame')||'',p_geraet:syGeraet()});sySetLS('onstandAnlegen',null);await syVerbunden(k,true);if(v('einkcode')&&typeof nkEinloesen==='function'){const c=v('einkcode');setTimeout(()=>{nkEinloesen(c).catch(e=>{try{onDialog('<h3>Code einlösen</h3><p>'+esc(e.message)+'</p><p class="kl">Du kannst ihn später unter Einstellungen → Abo &amp; KI-Paket noch einmal eingeben.</p>',[['OK','']])}catch(x){}})},1800)}}
    else if(w==='an'){sySitzung(await syAuth('token?grant_type=password',{email:v('eimail'),password:v('eipw')}));let L=await syRpc('meine_firmen')||[];
-    if(!L.length){const p=syLS('onstandAnlegen',null);if(p&&p.firma){L=[await syRpc('firma_anlegen',{p_name:p.firma,p_mein_name:p.name||'',p_geraet:syGeraet()})];sySetLS('onstandAnlegen',null)}}
+    if(!L.length){const p=syLS('onstandAnlegen',null);if(p&&p.firma){L=[await syRpc('firma_anlegen',{p_name:p.firma,p_mein_name:p.name||'',p_geraet:syGeraet()})];sySetLS('onstandAnlegen',null);if(p.code&&typeof nkEinloesen==='function')setTimeout(()=>{nkEinloesen(p.code).catch(()=>{})},2500)}}
     if(!L.length){sySitzung(null);throw new Error('Mit diesem Konto ist noch keine Firma verbunden. Nimm „Neue Firma anlegen“.')}
     if(!ON_PROFIL.name&&L[0].name)profilSetzen({name:L[0].name});await syVerbunden(L[0],true)}
    else{const c=v('eicode').replace(/\s/g,'');if(!/^\d{6}$/.test(c))throw new Error('Der Code hat 6 Ziffern.');if(v('einame'))profilSetzen({name:v('einame')});await syCodeEinloesen(c)}
