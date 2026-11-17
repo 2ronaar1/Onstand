@@ -3544,29 +3544,76 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .brx>.brfrage button svg{display:none}
 }
 @media (max-width:760px){#am .aminhalt>.mgk label.brdat.haupt{background:none!important;color:var(--k-akz)!important;border:0!important;padding:0 8px}}
-/* Mängel (Probe): Status als gefüllte Pille, gewählter Mangel hell kupfer, Foto-Schild lesbar, Feldnamen ruhig */
-#am .mgpill,:root:not([data-design="dunkel"]) #am .mgpill{font-size:11.5px!important;font-weight:600!important;letter-spacing:0!important;text-transform:none;border:0;border-radius:20px;padding:3px 10px;background:color-mix(in srgb,var(--pc) 20%,transparent);color:color-mix(in srgb,var(--pc) 55%,var(--k-t))!important}
-#am .mgsplit .mgrow.sel{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))!important;box-shadow:none}
-#am .mgsplit .mgrow.sel>i{background:var(--bc)}
-#am .mgfbox .mglab{background:var(--k-b1)!important;color:var(--k-sub)!important;border:1px solid var(--k-lin);font-size:11.5px!important;letter-spacing:0!important;font-weight:600!important;border-radius:20px;padding:2px 9px}
-#am .aminhalt:has(.mgsplit,.mgekopf) :is(.mgfelder span,.mgbox h4){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none;color:var(--k-sub)}
-#am .mgfl>span{font-size:12px!important;letter-spacing:0!important;text-transform:none}
+/* Mängel nach der Probe: eine Reiterzeile, Tabelle Mangel | Frist | Status, Karte rechts mit Feldzeilen und Knöpfen */
+#am .aminhalt:has(.mbtabs)>:is(.autabs,.mgbst),#am .aminhalt:has(.mbtabs) .mgzaehler{display:none!important}
+#am .mbtabs{display:flex;gap:4px;border-bottom:1px solid var(--k-lin);margin:4px 0 12px;overflow-x:auto;scrollbar-width:none;flex:none}
+#am .mbtabs button{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:9px 12px;font-size:13.5px;font-weight:500;color:var(--k-sub);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;margin-bottom:-1px;text-transform:none;letter-spacing:0}
+#am .mbtabs button.an{color:var(--k-akz);border-bottom-color:var(--k-akz);font-weight:600}
+#am .mbtabs em{font-style:normal;font-size:11px;font-weight:600;background:color-mix(in srgb,var(--k-sub) 14%,transparent);color:var(--k-sub);border-radius:9px;padding:0 6px;line-height:17px}
+#am .mbtabs button.an em{background:color-mix(in srgb,var(--k-akz) 14%,transparent);color:var(--k-akz)}#am .mbtabs button.rot em{background:color-mix(in srgb,var(--k-rot) 14%,transparent);color:var(--k-rot)}
+#am .mbsel{height:32px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font-size:13px;padding:0 8px;max-width:220px}
+#am .mbp{display:inline-block;font-size:11.5px;font-weight:600;border-radius:20px;padding:2px 9px;white-space:nowrap;background:color-mix(in srgb,var(--pc) 14%,transparent);color:color-mix(in srgb,var(--pc) 80%,var(--k-t))}
+:root[data-design="dunkel"] #am .mbp{background:color-mix(in srgb,var(--pc) 22%,transparent);color:color-mix(in srgb,var(--pc) 55%,white)}
+#am .mgrow.mb{display:grid!important;grid-template-columns:minmax(0,1fr) 64px 104px;gap:10px;align-items:center;text-align:left;width:100%;color:var(--k-t);box-shadow:none!important}
+#am .mbt{min-width:0}#am .mbt b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#am .mbt small{display:block;font-size:12px;color:var(--k-sub);margin-top:1px}
+#am .mbf{font-size:13px;font-variant-numeric:tabular-nums}#am .mbf.ueber{color:var(--k-rot);font-weight:600}
+#am .mgsplit .mgliste{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden auto;gap:0!important;padding:0}
+#am .mbkopf{display:grid;grid-template-columns:minmax(0,1fr) 64px 104px;gap:10px;padding:9px 14px;border-bottom:1px solid var(--k-lin);font-size:12px;font-weight:600;color:var(--k-sub);position:sticky;top:0;background:var(--k-b1);z-index:1}
+#am .mgsplit .mgrow.mb{padding:9px 14px!important;border:0!important;border-bottom:1px solid var(--k-lin)!important;border-radius:0!important;background:none}
+#am .mgsplit .mgrow.mb.sel{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))!important}
+#am .mgsplit .mgpane{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px}
+#am .mbk{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 0 10px}#am .mbk b{font-size:15px;font-weight:600}
+#am .mgscroll:has(.mbk) .mgfotos{margin:0 0 6px}
+#am .mbfelder{display:flex;flex-direction:column;margin:6px 0}
+#am .mbfeld{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;padding:9px 0;border-top:1px solid var(--k-lin);font-size:13px;align-items:center}
+#am .mbfeld small{font-size:12px;color:var(--k-sub)}#am .mbfeld span small{font-size:12px;color:var(--k-sub)}
+#am .mbstep .mgstep{display:flex;gap:0;margin:0;padding:0;border:1px solid var(--k-lin);border-radius:4px;overflow:hidden;width:max-content;max-width:100%}
+#am .mbstep .mgstep::before,#am .mbstep .mgstep::after{display:none}
+#am .mbstep .mgstep button{flex:none;flex-direction:row;background:var(--k-b1);border:0;border-left:1px solid var(--k-lin);border-radius:0;padding:4px 10px;font-size:12px!important;letter-spacing:0!important;color:var(--k-sub);min-height:0;text-transform:none}
+#am .mbstep .mgstep button:first-child{border-left:0}#am .mbstep .mgstep button i{display:none}
+#am .mbstep .mgstep button.jetzt{background:var(--k-akz);color:var(--k-auf);font-weight:600}
+#am .mbkn{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0 4px;border-top:1px solid var(--k-lin)}
+#am .mbkn .tr{flex:1}
+#am .mbkn button{height:32px;padding:0 12px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font-size:12.5px;font-weight:600;text-transform:none;letter-spacing:0}
+#am .mbkn [data-a=weiter]{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}
+#am .mbkn [data-a=weg]{color:var(--k-rot)}
+#am .mbabn{display:block;width:100%;margin:14px 0 6px;height:48px;border:0;border-radius:24px;background:var(--k-akz);color:var(--k-auf);font-size:16px;font-weight:600}
+@media (min-width:761px){#am .mbabn{display:none}}
 @media (max-width:760px){
  #am .aminhalt:has([data-akt="neu"])>.mgk{position:relative;padding-right:60px}
  #am .aminhalt>.mgk [data-akt="neu"]{position:absolute!important;top:14px;right:16px;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border-radius:22px!important;font-size:0!important;display:grid!important;place-items:center;background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important}
  #am .aminhalt>.mgk [data-akt="neu"] svg{width:20px;height:20px;margin:0!important;stroke:currentColor}
- #am .mgliste{gap:0!important;background:var(--k-b1);border-radius:20px;overflow:hidden;flex:none}
- #am .mgliste>.mgrow{border:0!important;border-radius:0!important;border-top:.5px solid var(--k-lin)!important;background:none!important;box-shadow:none!important}
- #am .mgliste>.mgrow:first-child{border-top:0!important}
- #am .mgliste>.mgrow>i{visibility:hidden}
+ #am .mbsel{height:34px;border-radius:17px;padding:0 12px}
+ #am .mbtabs{border:0;background:color-mix(in srgb,var(--k-sub) 13%,transparent);border-radius:20px;padding:3px;gap:2px}
+ #am .mbtabs button{border:0;border-radius:17px;padding:6px 11px;font-size:13px;margin:0}
+ #am .mbtabs button.an{background:var(--k-b1);color:var(--k-t);box-shadow:0 2px 6px -1px rgba(0,0,0,.14)}
+ #am .mbtabs em{background:none!important;padding:0}
+ #am .mgeins .mgliste{gap:0!important;background:var(--k-b1);border-radius:20px;overflow:hidden}
+ #am .mgrow.mb{grid-template-columns:minmax(0,1fr) auto;padding:12px 16px!important;border:0!important;border-top:.5px solid var(--k-lin)!important;border-radius:0!important;background:none!important;min-height:58px}
+ #am .mgrow.mb:first-child{border-top:0!important}
+ #am .mgrow.mb .mbf{display:none}
+ #am .mbt b{font-size:16px;white-space:normal}#am .mbt small{font-size:13px}#am .mbp{font-size:12.5px}
+ #am .mbfelder{background:var(--k-b1);border-radius:20px;padding:0 16px}#am .mbfeld:first-child{border-top:0}#am .mbfeld{font-size:15px;grid-template-columns:100px minmax(0,1fr)}
+ #am .mbk b{font-size:20px}
 }
+/* Kalender öffnen: während des Aufbaus nur die ruhige Einblendung, nicht die schnelle CSS-Überblendung */
+#kal.kbein .kin>*{transition:none!important;opacity:1;transform:none}
+#am .mbstep .mgstep *::before,#am .mbstep .mgstep *::after,#am .mbstep .mgstep button::before,#am .mbstep .mgstep button::after{display:none!important}
+#am .mbstep .mgstep{background:none!important}
+#am .mbfeld .mgfrist{font-size:inherit!important;letter-spacing:0!important}
+#am .mgfbox .mglab{background:var(--k-b1)!important;color:var(--k-sub)!important;border:1px solid var(--k-lin);font-size:11.5px!important;letter-spacing:0!important;font-weight:600!important;border-radius:20px;padding:2px 9px}
+#am .mgsplit .mgfbox{min-height:0;height:120px;aspect-ratio:auto}
+#am .mbkn [data-a=weg]{border:0;background:none}
+@media (max-width:760px){#am .mbstep .mgstep{width:100%}#am .mbstep .mgstep button{flex:1 1 0;padding:5px 2px;font-size:12px!important;min-width:0;overflow:hidden;text-overflow:ellipsis}#am .mbfeld{grid-template-columns:88px minmax(0,1fr)}}
+#am .mbfeld .mgfrist{white-space:normal!important}
+#am .mbkn .tr{display:none}#am .mbkn [data-a=weg]{margin-left:auto;padding:0 6px}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.61';
+const ON_VER='0.10.62';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -9726,10 +9773,59 @@ function bwFein(inh){if(!inh||!inh.querySelector('.brx'))return;
  const l=inh.querySelector('.brlauf>span');if(l&&!l.querySelector('b')){const t=l.textContent;if(t===t.toUpperCase())l.textContent=t.toLowerCase().replace(/^./,c=>c.toUpperCase()).replace(/\b(mo|di|mi|do|fr|sa|so)\./g,m=>m[0].toUpperCase()+m.slice(1)).replace('nächster lauf sonntag','nächster Lauf Sonntag')}
  const f=inh.querySelector('.brx>.brfrage'),w=inh.querySelector('.brx>.brwiki');if(W>760&&f&&w&&f.nextElementSibling!==w)w.before(f);
  const b=f&&f.querySelector('button[type=submit]');if(b&&!b.querySelector('span'))b.insertAdjacentHTML('beforeend','<span>Fragen</span>')}
-// ===== Mängel im Büro-Design (Probe „Mängel“) =====
-// Feldnamen in normaler Schreibweise; Rest über buero.css (Status als Pille, ruhige Liste, am Handy „+“ rund oben rechts).
+// ===== Mängel nach der Onstand-Design-Probe =====
+// Titel „Mängel“, Baustelle als Auswahl oben rechts, EINE Reiterzeile (Offen · Überfällig · Zu prüfen · Erledigt · Abnahmen),
+// Liste als Tabelle Mangel | Frist | Status, rechts Karte: Kopf mit Pille, Foto, Feldzeilen, Knöpfe „Als behoben markieren“ / „Abnahme starten“.
+// Am Handy: eine runde Gruppe mit Pillen, darunter „Abnahme starten“. Alle Funktionen bleiben (Status-Schritte stehen als Feld „Status“).
+const MB_ST={offen:['Offen','#D97706'],arbeit:['In Arbeit','#2F6FD6'],behoben:['Behoben','#0E9AA7'],geprueft:['Geprüft','#16A34A']};
+const mbPill=m=>{const s=m.schwer&&mgOffen(m)?['Wesentlich','#C42B1C']:(MB_ST[m.st]||MB_ST.offen);return `<span class="mbp" style="--pc:${s[1]}">${s[0]}</span>`};
+const mbDat=s=>{const d=tbAusIso(s);return d.getDate()+'.'+(d.getMonth()+1)+'.'};
 const MB_MAL=mgMalen;
-mgMalen=function(inh){const r=MB_MAL.apply(this,arguments);try{const a=document.querySelector('#am .aminhalt');if(a)kbSchreib(a,'.mglab,.mgfelder span,.mgbox h4,.mgfl>span')}catch(e){}return r};
+mgMalen=function(inh){const r=MB_MAL.apply(this,arguments);try{mbFein(inh)}catch(e){console.error(e)}return r};
+function mbFein(inh){if(!inh||!inh.isConnected||MGV.formAktiv)return;const a=inh;kbSchreib(a,'.mglab,.mgfl>span,.mgbox h4');
+ const k=a.querySelector(':scope>.mgk');if(!k)return;
+ {const h=k.querySelector('.mgh'),t=k.querySelector('.amtt');if(h)h.textContent='Mängel';if(t)t.textContent=MGV.b==='alle'?'ALLE BAUSTELLEN':String(MGV.b).toUpperCase()}
+ const akt=k.querySelector('.mgakt'),bs=[...a.querySelectorAll('.mgbst [data-b]')];
+ if(akt&&bs.length>1&&!akt.querySelector('.mbsel')){const s=document.createElement('select');s.className='mbsel';s.setAttribute('aria-label','Baustelle');
+  s.innerHTML=bs.map(b=>`<option value="${esc(b.dataset.b)}"${b.dataset.b===MGV.b?' selected':''}>${b.dataset.b==='alle'?'Alle Baustellen':esc(b.dataset.b)}</option>`).join('');
+  s.onchange=()=>{MGV.b=s.value;MGV.sel=null;MGV.abn=null;mgMalen(inh)};akt.prepend(s)}
+ const tabs=a.querySelector(':scope>.autabs');
+ if(tabs&&!a.querySelector('.mbtabs')){const L=mgAlle().filter(m=>MGV.b==='alle'||m.b===MGV.b),abn=Object.keys(AB).filter(b=>MGV.b==='alle'||b===MGV.b).length;
+  const T=[['offen','Offen',L.filter(mgOffen).length],['ueber','Überfällig',L.filter(mgUeber).length],['behoben','Zu prüfen',L.filter(m=>m.st==='behoben').length],['erledigt','Erledigt',L.filter(m=>m.st==='geprueft').length],['abn','Abnahmen',abn]],an=MGV.tab==='abnahme'?'abn':MGV.f;
+  const d=document.createElement('div');d.className='mbtabs';d.setAttribute('role','tablist');
+  d.innerHTML=T.map(([k,n,z])=>`<button type="button" role="tab" data-mb="${k}" class="${k===an?'an':''}${k==='ueber'&&z?' rot':''}" aria-selected="${k===an}">${n}<em>${z}</em></button>`).join('');
+  tabs.before(d);d.querySelectorAll('[data-mb]').forEach(b=>b.onclick=()=>{const x=b.dataset.mb;MGV.sel=null;MGV.abn=null;if(x==='abn')MGV.tab='abnahme';else{MGV.tab='maengel';MGV.f=x}mgMalen(inh)})}
+ const breit=!!a.querySelector('.mgsplit');
+ a.querySelectorAll('.mgrow').forEach(r=>{const m=mgFind(r.dataset.id);if(!m||r.classList.contains('mb'))return;r.classList.add('mb');
+  const unter=breit?[m.b,m.z||'niemand zuständig']:[m.nr,m.b].concat(m.frist?['bis '+mbDat(m.frist)]:[]);
+  r.innerHTML=`<span class="mbt"><b>${breit?esc(m.nr)+' · ':''}${esc(m.t)}</b><small>${m.iris?'<em class="mgiris">Vom Assistenten · prüfen</em> ':''}${unter.map(esc).join(' · ')}</small></span><span class="mbf${mgUeber(m)?' ueber':''}">${m.frist?mbDat(m.frist):'–'}</span>${mbPill(m)}`});
+ const li=a.querySelector('.mgsplit .mgliste');if(li&&li.querySelector('.mgrow')&&!li.querySelector('.mbkopf'))li.insertAdjacentHTML('afterbegin','<div class="mbkopf"><span>Mangel</span><span>Frist</span><span>Status</span></div>');
+ if(!breit&&MGV.tab==='maengel'&&!a.querySelector('.mbabn')){const e=a.querySelector('.mgeins:not([hidden])')||a.querySelector('.mgnix');if(e){e.insertAdjacentHTML('afterend','<button type="button" class="mbabn">Abnahme starten</button>');
+  a.querySelector('.mbabn').onclick=()=>{MGV.tab='abnahme';MGV.sel=null;MGV.abn=MGV.b!=='alle'&&AB[MGV.b]?MGV.b:null;mgMalen(inh)}}}}
+// Karte eines Mangels (rechts am PC, ganze Seite am Handy)
+const MB_DET=mgDetail;
+mgDetail=function(inh,pane,id){const r=MB_DET.apply(this,arguments);try{mbDetail(inh,pane,id)}catch(e){console.error(e)}return r};
+function mbDetail(inh,pane,id){const root=pane||inh,m=mgFind(id||MGV.sel),sc=root.querySelector('.mgscroll');if(!m||!sc||sc.querySelector('.mbk'))return;
+ const kopf=root.querySelector('.mgekopf'),t=sc.querySelector('.mgtitel'),step=sc.querySelector('.mgstep'),fel=sc.querySelector('.mgfelder'),p=mgPers(m.z),f=mgFrist(m);
+ if(kopf){if(pane)kopf.remove();else{const tt=kopf.querySelector('.amtt');if(tt)tt.textContent=String(m.b).toUpperCase()}}
+ if(t)t.remove();sc.insertAdjacentHTML('afterbegin',`<div class="mbk"><b>${esc(m.nr)} · ${esc(m.t)}</b>${mbPill(m)}</div>`);
+ const Z=[['Baustelle',esc(m.b)+(m.raum?' · '+esc(m.raum):'')],['Zuständig',esc(m.z||'–')+(p?` <small>${esc(p.du?'du':p.rolle||'')}</small>`:'')],
+  ['Frist',`<span class="mgfrist ${f.k}">${m.frist?mgLang(m.frist):'ohne Frist'}${f.k==='ueber'?' · '+f.t:''}</span>`],['Einstufung',m.schwer?'<span class="mgrot">wesentlich</span> · zählt bei der Abnahme':'unwesentlich']].concat(m.notiz?[['Notiz',esc(m.notiz)]]:[]);
+ const box=document.createElement('div');box.className='mbfelder';box.innerHTML=Z.map(([l,v])=>`<div class="mbfeld"><small>${l}</small><span>${v}</span></div>`).join('')+'<div class="mbfeld"><small>Status</small><span class="mbstep"></span></div>';
+ if(step)box.querySelector('.mbstep').appendChild(step);if(fel)fel.replaceWith(box);else sc.appendChild(box);
+ if(pane){const ak=root.querySelector('.amaktion'),kn=document.createElement('div');kn.className='mbkn';const w=ak&&ak.querySelector('[data-a=weiter]');
+  if(w){w.textContent={offen:'In Arbeit nehmen',arbeit:'Als behoben markieren',behoben:'Als geprüft markieren'}[m.st]||w.textContent;kn.appendChild(w)}
+  const ab=document.createElement('button');ab.type='button';ab.className='mbab';ab.textContent=AB[m.b]?'Abnahme öffnen':'Abnahme starten';
+  ab.onclick=()=>{MGV.sel=null;MGV.tab='abnahme';MGV.b=m.b;MGV.abn=AB[m.b]?m.b:null;mgMalen(inh)};kn.appendChild(ab);
+  const sp=document.createElement('span');sp.className='tr';kn.appendChild(sp);['bea','weg'].forEach(x=>{const b=ak&&ak.querySelector(`[data-a=${x}]`);if(b)kn.appendChild(b)});
+  box.after(kn);if(ak)ak.remove()}}
+// ===== Kalender · Büro-Design =====
+// ---------- Kalender öffnen: ruhiger Aufbau wie bei den anderen Seiten (vorher sprang das Raster sofort hinein, der Rest blitzte hinterher) ----------
+const KB_AUF=kalAuf;
+kalAuf=function(){const zu=!(KAL.pz>0),r=KB_AUF.apply(this,arguments);if(zu&&!RM)try{kbEin()}catch(e){}return r};
+function kbEin(){const k=KAL.el;if(!k||!k.animate)return;k.classList.add('kbein');clearTimeout(kbEin.t);const hy=W<=760;
+ [...k.querySelectorAll('.kin>*')].flatMap(e=>getComputedStyle(e).display==='contents'?[...e.children]:[e]).forEach((e,i)=>e.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:hy?400:560,delay:i*(hy?50:80),easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
+ kbEin.t=setTimeout(()=>k.classList.remove('kbein'),1100)}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
