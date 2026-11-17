@@ -3341,6 +3341,7 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 #am .cpup{font-size:11px;font-weight:600;border-radius:20px;padding:2px 8px;white-space:nowrap;flex:none}
 #am .cpup.b{background:color-mix(in srgb,var(--k-akz) 14%,transparent);color:var(--k-akz)}#am .cpup.y{background:color-mix(in srgb,var(--k-gelb) 16%,transparent);color:var(--k-gelb)}#am .cpup.r{background:color-mix(in srgb,var(--k-rot) 14%,transparent);color:var(--k-rot)}
 #am .cpuleer{margin:0;padding:12px 14px 16px;color:var(--k-sub);font-size:13px;border-top:1px solid var(--k-lin)}
+#am .cpuleer span{display:block;margin-bottom:10px}#am .cpuleer button{border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
 #am .mgakt .cpuzur{order:-1}
 @media (max-width:980px){#am .cpuzwei{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:760px){#am .cpukpi{grid-template-columns:1fr 1fr;gap:10px}#am .cpuk{border-radius:20px;border:0}#am .cpukarte{border-radius:20px;border:0}#am .cpuz{min-height:52px}#am .cpubar{width:56px}}
@@ -4304,7 +4305,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.76';
+const ON_VER='0.10.77';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7540,7 +7541,7 @@ setTimeout(()=>{try{brLaden().catch(()=>{})}catch(e){}},4000);
 // Erscheint, solange keine Baustelle gewählt ist. Klick auf eine Baustelle öffnet das bisherige Baustellen-Cockpit,
 // dort führt „‹ Übersicht“ zurück. Keine eigenen Daten: alles aus BST, TB, MG, AU_A/AU_R und dem Kalender.
 const CPU_ALT=cpMalen,CPU_PH=['Angebot','Auftrag','Ausführung','Abnahme','Schlussrechnung'];
-cpMalen=function(inh,wechsel){if(!CPV.b||!cpListe().length)return cpListe().length?cpUebersicht(inh):CPU_ALT.call(this,inh,wechsel);
+cpMalen=function(inh,wechsel){if(!CPV.b||!cpListe().length){CPV.b=null;return cpUebersicht(inh)}
  const out=CPU_ALT.call(this,inh,wechsel);cpuSpalten(inh);const a=inh.querySelector('.mgakt');if(a&&!a.querySelector('.cpuzur')){const z=document.createElement('button');z.type='button';z.className='cpuzur';z.innerHTML='‹ Übersicht';z.onclick=()=>{CPV.b=null;cpMalen(inh)};a.prepend(z)}return out};
 function cpuPhase(b){let ph=0;try{if((typeof AU_A!=='undefined'?AU_A:[]).some(a=>a.b===b.name&&a.st==='angenommen'))ph=1;if(Object.values(TB).some(l=>l.some(e=>e.b===b.name)))ph=2;if(typeof AB!=='undefined'&&AB[b.name])ph=3;if((typeof AU_R!=='undefined'?AU_R:[]).some(r=>r.b===b.name&&/schluss/i.test(r.t||'')&&r.st!=='entwurf'))ph=4}catch(e){}return ph}
 function cpUebersicht(inh){const L=cpListe(),heute=tbIso(new Date()),mo=tbIso(tbMo(new Date())),geld=typeof reRecht!=='function'||reRecht('auftraege')==='alles',jetzt=new Date().toTimeString().slice(0,5);
@@ -7560,7 +7561,7 @@ function cpUebersicht(inh){const L=cpListe(),heute=tbIso(new Date()),mo=tbIso(tb
  <div class="cpu">
   <div class="cpukpi">${kz('Stunden diese Woche',(Math.round(h*10)/10).toLocaleString('de-DE')+' h',leute.size+(leute.size===1?' Person':' Personen'))}${geld?kz('Offene Rechnungen',eur(offen),faellig.length?faellig.length+' überfällig':'nichts überfällig'):''}${kz('Offene Mängel',mOff.length,mUe.length?mUe.length+' überfällig':'keiner überfällig')}${kz('Nächster Termin',naechst?(naechst.s===heute?naechst.e.von:tbAusIso(naechst.s).toLocaleDateString('de-DE',{weekday:'short',day:'numeric',month:'numeric'})):'—',naechst?naechst.e.t:'nichts geplant')}</div>
   <div class="cpuzwei">
-   <section class="cpukarte"><div class="cpukk"><b>Baustellen</b><button type="button" data-cpu="kunden">Alle anzeigen</button></div>${L.map(b=>{const ph=cpuPhase(b),ez=ezT(b);return `<button type="button" class="cpuz" data-cpb="${esc(b.name)}"><span class="cpud" style="background:${b.c||'var(--k-akz)'}"></span><span class="cput"><b>${esc(b.name)}</b><small>${CPU_PH[ph]}${ez!=null&&ez>=0?' · Einzug in '+ez+(ez===1?' Tag':' Tagen'):''}</small></span><span class="cpubar"><i style="width:${(ph+1)*20}%;background:${b.c||'var(--k-akz)'}"></i></span><span class="cpuproz">${(ph+1)*20} %</span></button>`}).join('')}</section>
+   <section class="cpukarte"><div class="cpukk"><b>Baustellen</b><button type="button" data-cpu="kunden">Alle anzeigen</button></div>${L.length?'':`<div class="cpuleer"><span>Noch keine offene Baustelle. Leg eine im Kunden-Menü an oder erzähl dem Assistenten, wo du heute warst.</span><button type="button" data-cpu="kunden">Zu den Kunden</button></div>`}${L.map(b=>{const ph=cpuPhase(b),ez=ezT(b);return `<button type="button" class="cpuz" data-cpb="${esc(b.name)}"><span class="cpud" style="background:${b.c||'var(--k-akz)'}"></span><span class="cput"><b>${esc(b.name)}</b><small>${CPU_PH[ph]}${ez!=null&&ez>=0?' · Einzug in '+ez+(ez===1?' Tag':' Tagen'):''}</small></span><span class="cpubar"><i style="width:${(ph+1)*20}%;background:${b.c||'var(--k-akz)'}"></i></span><span class="cpuproz">${(ph+1)*20} %</span></button>`}).join('')}</section>
    <section class="cpukarte"><div class="cpukk"><b>Heute</b><button type="button" data-cpu="kalender">Kalender</button></div>${H.length?H.join(''):'<p class="cpuleer">Heute steht nichts an.</p>'}</section>
   </div></div>`;
  inh.querySelectorAll('[data-cpb]').forEach(x=>x.onclick=()=>{CPV.b=x.dataset.cpb;cpMalen(inh)});
