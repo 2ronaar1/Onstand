@@ -1435,6 +1435,9 @@ html:has(body.bpdruckt),body.bpdruckt{height:auto!important;min-height:0!importa
 #bpdruck.angebot.pttext .seite>thead,#bpdruck.angebot.pttext .seite>tfoot,#bpdruck.angebot.pttext .falz{display:none}
 #bpdruck.angebot.pttext .seite>tbody>tr>td{padding:0}
 #bpdruck.angebot section{font:9.5pt/1.45 Arial,Helvetica,sans-serif;min-height:270mm;page-break-after:auto;break-after:auto}
+/* Höhe des Blatts aus der tatsächlichen Seitenhöhe (100vh = Seitenbereich im Druck) statt fest 270 mm: Setzt der Browser selbst einen Rand,
+   rutschte die Fußzeile sonst halb auf Seite 2. 21 mm = Kopf- und Fußabstand der Seiten-Tabelle. Die Fußzeile bricht nie mehr mittendrin um. */
+@media print{#bpdruck.angebot section{min-height:calc(100vh - 22mm)}#bpdruck.angebot .fz,#bpdruck.angebot .ons{break-inside:avoid;page-break-inside:avoid}}
 #bpdruck.angebot .bk{height:19mm;align-items:flex-end;gap:10mm;border-bottom:1.6pt solid #1b2230;padding-bottom:3mm;margin-bottom:0}
 #bpdruck.angebot .bk b{display:block;font-size:17pt;letter-spacing:.2pt;line-height:1.15}
 #bpdruck.angebot .bk small{display:block;font-size:7.5pt;color:#5c6675;letter-spacing:1.2pt;text-transform:uppercase;margin-top:1mm}
@@ -4281,6 +4284,8 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #bpdruck .lkdok.lkstreif:before{content:'';position:absolute;left:-9mm;top:0;bottom:0;width:3.5mm;background:linear-gradient(var(--lkf2),var(--lkf));-webkit-print-color-adjust:exact;print-color-adjust:exact}
 /* Im Druck sitzt der Streifen am Blattrand (nicht 13 mm eingerückt neben dem Text) und läuft auf jeder Seite von oben bis unten.
    position:fixed wiederholt ihn pro Seite; Bezug ist der Seitenbereich innerhalb des @page-Rands, darum beim Stundenzettel/Bericht um den Rand nach außen. */
+/* Mit Farbstreifen keine Falz-/Lochmarken daneben */
+#bpdruck.lkmitstreif .falz{display:none!important}
 @media print{#bpdruck .lkdok.lkstreif:before{position:fixed;left:0;top:0;bottom:0;width:4mm}
 }
 #bpdruck .lkdok>.bk{height:auto!important;min-height:19mm;align-items:flex-end;gap:8mm}
@@ -4321,7 +4326,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.82';
+const ON_VER='0.10.83';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11000,7 +11005,7 @@ const lkTextHtml=(t,V)=>esc(String(t||'').replace(/\{(\w+)\}/g,(m,k)=>V[k]!=null
 function lkDokKopf(D,F){const d=LK.d,img=d.voll?`<img class="lkdlogo" src="${esc(d.voll)}" alt="" style="width:${Math.round(D.groesse*.404)}mm">`:'';return img}
 function lkDok(d){if(!LK.d||!d)return;const sec=d.querySelector('section');if(!sec||sec.classList.contains('lkdok'))return;const D=lkDoks(LK.d),art=LK_DART||(d.classList.contains('bericht')?'bericht':'');
  let F={};try{F=auFirma()}catch(e){}
- sec.classList.add('lkdok','lkp-'+D.pos);sec.classList.toggle('lkstreif',!!D.streifen);sec.classList.toggle('lkohnelinie',!D.linie);sec.classList.toggle('lktfarbe',!!D.titelFarbe);sec.classList.toggle('lktserif',!!D.titelSerif);
+ sec.classList.add('lkdok','lkp-'+D.pos);sec.classList.toggle('lkstreif',!!D.streifen);d.classList.toggle('lkmitstreif',!!D.streifen);sec.classList.toggle('lkohnelinie',!D.linie);sec.classList.toggle('lktfarbe',!!D.titelFarbe);sec.classList.toggle('lktserif',!!D.titelSerif);
  sec.style.setProperty('--lkf',LK.d.farbe);sec.style.setProperty('--lkf2',lkMisch(LK.d.farbe,'#ffffff',.35));
  const img=lkDokKopf(D,F);let bk=sec.querySelector(':scope>.bk');
  if(!bk&&img){bk=document.createElement('div');bk.className='bk lkdkopf';bk.innerHTML=`<div><b class="lkname">${esc(F.name||LK.d.firma||'')}</b></div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||'')].filter(Boolean).join('<br>')}</span>`;sec.prepend(bk)}
