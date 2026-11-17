@@ -3485,7 +3485,9 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .aminhalt:has(.kuneu)>.mgk{position:relative;padding-right:60px}
  #am .aminhalt>.mgk .kuneu{position:absolute!important;top:14px;right:16px;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border-radius:22px!important;font-size:0!important;display:grid!important;place-items:center;background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important}
  #am .aminhalt>.mgk .kuneu svg{width:20px;height:20px;margin:0!important;stroke:currentColor}
- #am .mgk .kusb{display:none!important}
+ #am .aminhalt>.mgk .kusb{position:absolute!important;top:14px;right:68px;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border-radius:22px!important;font-size:0!important;display:flex!important;align-items:center;justify-content:center;line-height:0;background:var(--k-b1)!important;color:var(--k-t)!important;border:0!important;box-shadow:0 2px 10px -4px rgba(0,0,0,.25)}
+ #am .aminhalt>.mgk .kusb svg{width:19px;height:19px;margin:0!important;display:block}
+ #am .aminhalt:has(.kuneu)>.mgk{padding-right:120px!important}
  #am .mgk:has(.kusuch) .mgakt{flex:1 1 100%;order:3;width:100%}
  #am .mgk .kusuch{flex:1 1 100%;max-width:none!important;width:100%!important;height:38px;border:0!important;border-radius:12px!important;background:color-mix(in srgb,var(--k-sub) 13%,transparent)!important;font-size:16px;padding:0 12px}
  #am .kuliste.glkarte{border:0;border-radius:20px;overflow:hidden}
@@ -3677,6 +3679,69 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  /* Mängel: Eingabefeld klebt nicht mehr über „Abnahme starten“, sondern steht darunter */
  #am .aminhalt:has(.mbtabs) .mgunten{position:static!important}
 }
+/* Einstellungen (PC) */
+#am .esgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;max-width:1100px}
+#am .esspalte{display:flex;flex-direction:column;gap:16px;min-width:0}
+#am .esk{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden}
+#am .eskk{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--k-lin)}
+#am .eskk b{font-size:14px;font-weight:600}
+#am .esz{display:grid;grid-template-columns:130px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid var(--k-lin);font-size:13px}
+#am .eskk+.esz{border-top:0}
+#am .esz>small{font-size:12px;color:var(--k-sub)}
+#am :is(.esbtn,.esk2){height:30px;padding:0 12px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font-size:12.5px;font-weight:600;text-transform:none;letter-spacing:0}
+#am .esk2{height:28px;font-weight:500;color:var(--k-akz);border-color:transparent}
+#am .esk2:hover{border-color:var(--k-lin)}
+#am .espill{font-size:11.5px;font-weight:600;border-radius:20px;padding:2px 9px}#am .espill.g{background:color-mix(in srgb,var(--k-gruen) 14%,transparent);color:var(--k-gruen)}#am .espill.n{background:color-mix(in srgb,var(--k-sub) 14%,transparent);color:var(--k-sub)}
+#am .esseg{display:inline-flex;border:1px solid var(--k-lin);border-radius:4px;overflow:hidden;width:max-content}
+#am .esseg button{border:0;border-left:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);padding:0 14px;height:30px;font-size:13px;text-transform:none;letter-spacing:0}
+#am .esseg button:first-child{border-left:0}#am .esseg button.an{background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));color:var(--k-akz);font-weight:600}
+#am .esver{font-size:12px;color:var(--k-sub);margin:0 4px}
+@media (max-width:1000px){#am .esgrid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){#am .oneinst{display:none!important}}
+/* Personal-Reiter Stunden · Urlaub · Rollen */
+#am .pbtab{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:auto}
+#am :is(.pbtk,.pbtz){display:grid;grid-template-columns:minmax(150px,1.6fr) repeat(var(--n),minmax(44px,.6fr)) 80px 70px;gap:8px;align-items:center;padding:9px 14px;border-top:1px solid var(--k-lin);font-size:13px;width:100%;text-align:left;background:none;border-left:0;border-right:0;border-bottom:0;color:var(--k-t);border-radius:0}
+#am .pbtk{border-top:0;font-size:12px;font-weight:600;color:var(--k-sub)}
+#am .pbtf{border-top:1px solid var(--k-lin);background:color-mix(in srgb,var(--k-sub) 5%,var(--k-b1));color:var(--k-t)}
+#am .pbtz:hover{background:color-mix(in srgb,var(--k-sub) 6%,var(--k-b1))}
+#am :is(.pbtz,.pbuz) b{display:block;font-weight:600}#am :is(.pbtz,.pbuz) small{display:block;font-size:12px;color:var(--k-sub)}
+#am .pbtab .r{text-align:right;font-variant-numeric:tabular-nums}#am .pbtz .leer{color:var(--k-sub)}#am .pbtz .wenig{color:var(--k-gelb)}
+#am :is(.pbuk,.pbuz){display:grid;grid-template-columns:minmax(140px,1.2fr) 80px 90px 70px minmax(0,1.6fr) 96px;gap:10px;align-items:center;padding:9px 14px;border-top:1px solid var(--k-lin);font-size:13px}
+#am .pbuk{border-top:0;font-size:12px;font-weight:600;color:var(--k-sub)}
+#am .pbgep{font-size:12.5px;color:var(--k-t);min-width:0}
+#am .pbein{height:28px;padding:0 10px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-akz);font-size:12.5px;font-weight:600}
+#am .pbrol{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:auto}
+#am .pbrk{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--k-lin)}#am .pbrk b{font-size:14px;font-weight:600}
+#am .pbrol .retab{padding:4px 8px 10px;overflow:auto}#am .pbrol table{border-collapse:collapse;font-size:12.5px;width:100%}
+#am .pbrol th{font-size:12px;font-weight:600;color:var(--k-sub);text-align:left;padding:8px;border-bottom:1px solid var(--k-lin);white-space:nowrap}
+#am .pbrol td{padding:7px 8px;border-bottom:1px solid var(--k-lin);white-space:nowrap}
+#am .pbrol td i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
+#am .pbsicht{display:flex;flex-direction:column;gap:10px;min-height:0;overflow:auto}
+@media (max-width:760px){
+ #am .pbtab{border:0;border-radius:20px}
+ #am :is(.pbtk,.pbtz){grid-template-columns:minmax(96px,1fr) repeat(var(--n),30px) 54px;gap:4px;padding:10px 12px;font-size:12.5px}
+ #am :is(.pbtk,.pbtz,.pbtf)>span:last-child{display:none}
+ #am :is(.pbuk,.pbuz){grid-template-columns:minmax(0,1fr) 64px 84px;gap:6px;padding:11px 14px;font-size:14px}
+ #am .pbuk>span:nth-child(2),#am .pbuk>span:nth-child(3),#am .pbuk>span:nth-child(5),#am .pbuz>span:nth-child(2),#am .pbuz>span:nth-child(3){display:none}
+ #am .pbuz .pbgep{grid-column:1/-1;order:9;font-size:13px;color:var(--k-sub)}
+ #am .pbrol{border:0;border-radius:20px}
+}
+/* Firmen-Wiki: Bearbeiten / neue Seite */
+#am .bwkopf{display:flex;align-items:flex-start;gap:10px}#am .bwkopf>h4{flex:1}#am .bwkopf>.brlab{flex:1 1 100%}#am .bwkopf{flex-wrap:wrap}#am .bwkopf .bwbea{margin-left:auto;order:-1}
+#am .bwkopf{display:grid;grid-template-columns:minmax(0,1fr) auto}#am .bwkopf>.bwbea{grid-row:1/3;grid-column:2;align-self:start;order:0}
+#am .bwform{display:flex;flex-direction:column;gap:12px}
+#am .bwfk b{font-size:16px;font-weight:600}
+#am .bwform label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--k-sub);font-weight:500}
+#am .bwform :is(input,select,textarea){font:inherit;font-size:13.5px;color:var(--k-t);background:var(--k-b1);border:1px solid var(--k-lin);border-radius:4px;padding:8px 10px;resize:vertical}
+#am .bwform :is(input,select,textarea):focus{outline:0;border-color:var(--k-akz)}
+#am .bwz{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#am .bwkn{display:flex;gap:8px;align-items:center;padding-top:4px}#am .bwkn .tr{flex:1}
+#am .bwkn .haupt{height:32px;padding:0 14px;border-radius:4px}
+#am .bwweg{color:var(--k-rot)!important;border-color:transparent!important}
+#am .bwneu{display:inline-flex;align-items:center;gap:5px}#am .bwneu svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+@media (max-width:760px){#am .bwz{grid-template-columns:1fr}#am .bwform :is(input,select,textarea){font-size:16px}}
+@media (max-width:760px){#am .pbd{display:none}#am .aminhalt>.mgk:has(.kusuch) .kusuch{flex:1 1 100%!important;width:calc(100% + 104px)!important;max-width:none!important}#am .aminhalt>.mgk:has(.kusuch) .mgakt{margin-right:-104px}}
+#am .bwkn .bwsp{height:32px;padding:0 16px;border-radius:4px;border:1px solid var(--k-akz)!important;background:var(--k-akz)!important;color:var(--k-auf)!important;font-size:13px;font-weight:600;font-family:inherit}
 /* ===== Bauplan nach der Bauplan-Probe (hell, Kupfer; PC: Kopf- und Fußleiste, Leisten rechts; Handy: Glasknöpfe, schwebende Leiste) ===== */
 #bp{background:var(--k-b0)!important;color:var(--k-t);font-family:inherit;overflow:clip!important}
 #bp .ansicht{overflow:clip}
@@ -3857,7 +3922,7 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.65';
+const ON_VER='0.10.66';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -3943,7 +4008,7 @@ const ON_LOGO=onLogoSvg('var(--k-t)','#D19A6A',4.5,'aria-label="Onstand"');
 function onInitialen(){const F=(()=>{try{return JSON.parse(localStorage.getItem('onstandFirma')||'{}')}catch(e){return {}}})(),n=F.name||ON_PROFIL.firma||'Onstand';return {firma:n,ini:n.replace(/\b(gmbh|ag|kg|ug|e\.?\s?k\.?|ohg|gbr|mbh)\b/ig,'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'ON',logo:F.logo||''}}
 function onBau(){if(AM_EL)return AM_EL;const e=document.createElement('div');e.id='am';e.className='auf onstand';
  e.innerHTML=`<div class="amlade"><aside class="onseite"><button type="button" class="onlogo" data-menu aria-label="Firma und Einstellungen"></button><nav class="onnav" aria-label="Funktionen"></nav>
-  <div class="onunten"><button type="button" class="onni onas" data-as><svg viewBox="0 0 20 20"><rect x="7" y="2.5" width="6" height="10" rx="3"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5"/></svg><span class="nu">ASSISTENT</span><span class="nk">Assistent</span></button><button type="button" class="onni" data-pk><svg viewBox="0 0 20 20">${ON_ICO_PK}</svg><span class="nu">PAPIERKORB</span><span class="nk">Papierkorb</span></button></div></aside>
+  <div class="onunten"><button type="button" class="onni onas" data-as><svg viewBox="0 0 20 20"><rect x="7" y="2.5" width="6" height="10" rx="3"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5"/></svg><span class="nu">ASSISTENT</span><span class="nk">Assistent</span></button><button type="button" class="onni" data-pk><svg viewBox="0 0 20 20">${ON_ICO_PK}</svg><span class="nu">PAPIERKORB</span><span class="nk">Papierkorb</span></button><button type="button" class="onni oneinst" data-einst><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6"/></svg><span class="nu">EINSTELLUNGEN</span><span class="nk">Einstellungen</span></button></div></aside>
   <div class="onseitedimm" data-klappzu></div><main class="aminhalt"></main>
   <button type="button" class="ongriff" data-as aria-label="Assistent öffnen"><svg viewBox="0 0 20 20"><rect x="7" y="2.5" width="6" height="10" rx="3"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5"/></svg><i class="ongpg" aria-hidden="true"><b></b><b></b><b></b></i><span>SPRECHEN</span></button>
   <div class="ondimm" data-aszu></div><div class="oneinschub" role="dialog" aria-label="Assistent"></div>
@@ -9318,12 +9383,12 @@ function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK
 // bestehende Funktionen erweitern
 {const _bau=onBau;onBau=function(){const e=_bau.apply(this,arguments);try{hyBau()}catch(x){}return e}}
 {const _sch=amSchiene;amSchiene=function(){_sch.apply(this,arguments);hyLeiste()}}
-{const _af=amFunktion;amFunktion=function(id,opt){if(id==='mehr'&&!hyHandy())id='cockpit';
+{const _af=amFunktion;amFunktion=function(id,opt){if(id==='mehr'&&!hyHandy()&&!(opt&&opt.seite==='einst'))id='cockpit';
  const inh0=AM_EL&&AM_EL.querySelector('.aminhalt');
  if(id!=='mehr'){const r=_af.call(this,id,opt);if(inh0&&id!=='kalender')setTimeout(()=>{inh0.scrollTop=0;hyKopf()},RM?0:125);else hyKopf();return r}
  onBau();try{if(typeof KAL!=='undefined'&&KAL.pz>0)kalZu()}catch(e){}try{onMenuZu()}catch(e){}AM_AKT='mehr';amSchiene();amFunktion.lauf=(amFunktion.lauf||0)+1;
  const inh=amFrisch();if(!RM){inh.classList.add('glneu');clearTimeout(amFunktion.gl);amFunktion.gl=setTimeout(()=>{const x=AM_EL.querySelector('.aminhalt');if(x)x.classList.remove('glneu')},900)}if(opt&&opt.seite==='einst')hyEinst(inh);else hyMehr(inh);inh.scrollTop=0;hyKopf();try{localStorage.setItem('onstandAnsicht','mehr')}catch(e){}}}
-addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy())amFunktion('cockpit')},200)});
+addEventListener('resize',()=>{clearTimeout(hyKopf.t);hyKopf.t=setTimeout(()=>{hyKopf();hyKreis.x=null;hyLeiste(true);if(AM_AKT==='mehr'&&!hyHandy()&&!(AM_EL&&AM_EL.querySelector('.esk')))amFunktion('cockpit')},200)});
 
 // Glaslinse wie bei WhatsApp: Drücken hebt sofort eine leicht vergrößerte Glaslinse unter den Finger, Ziehen schiebt sie über die
 // Symbole (das Symbol darunter wird größer), Loslassen nach dem Ziehen wechselt in den Bereich darunter. Tippen bleibt ein normaler Klick.
@@ -9992,7 +10057,7 @@ const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR
 const kbText=k=>KB_FEST[k]||frSatz(k).replace(/\bkw\b/gi,'KW');
 function kbSchreib(a,S){a.querySelectorAll(S).forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=n.nodeValue.replace(k,kbText(k))})}
 const KB_MAL=kuMalen;
-kuMalen=function(inh){if(W<=760&&KU_SEL===null&&!KU_V.such)KU_V.such=true;const r=KB_MAL.apply(this,arguments);try{kbFein()}catch(e){}return r};
+kuMalen=function(inh){const r=KB_MAL.apply(this,arguments);try{kbFein()}catch(e){}return r};
 function kbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.kuneu,.kuzur,.kusp'))return;
  a.querySelectorAll('.kurow').forEach(z=>{const b=BST[z.dataset.n],s=z.querySelector('.kust');if(b&&s&&!s.textContent)s.textContent=b.k||''});
  kbSchreib(a,'.tbfelder>span,.gllab');
@@ -10023,6 +10088,32 @@ function pbRest(name){const p=PER[name];if(!p)return null;const an=parseFloat(p.
  if(g&&PE_SEL&&PER[PE_SEL]&&!g.querySelector('.pbkopf')){g.insertAdjacentHTML('afterbegin',`<b class="pbkopf">${esc(PE_SEL)} · KW ${tbKw(bez)}</b>`);const m=g.querySelector('.mgakt'),stz=a.querySelector('.mgk .pestz');if(m&&stz){stz.lastChild.textContent='Stundenzettel PDF';m.prepend(stz)}}
  if(W<=760&&PE_SEL===null&&a.querySelector('.petab')&&!a.querySelector('.pbmeine')){const t=a.querySelector('.petipp')||a.querySelector('.petab');t.insertAdjacentHTML('beforebegin','<button type="button" class="pbmeine">Meine Stunden eintragen</button>');
   a.querySelector('.pbmeine').onclick=()=>{TBV.sel=new Date();amFunktion('tagebuch');setTimeout(()=>{const b=document.querySelector('#am .tbbneu');if(b)b.click()},RM?60:450)}}}}
+// ---------- Reiter wie in der Probe: Mitarbeiter · Stunden · Urlaub · Rollen ----------
+let PB_TAB='team';
+{const alt=peMalen;peMalen=function(inh){if(PE_SEL!==null&&PB_TAB!=='team')PB_TAB='team';const r=alt.apply(this,arguments);try{pbReiter()}catch(e){console.error(e)}return r}}
+function pbReiter(){const a=document.querySelector('#am .aminhalt');if(!a)return;const k=a.querySelector(':scope>.mgk');if(!k||!a.querySelector('.peneu')||a.querySelector('.pbtabs'))return;
+ const L=Object.values(PER).filter(p=>p.status==='aktiv'&&!p.neu),T=[['team','Mitarbeiter',L.length],['stunden','Stunden'],['urlaub','Urlaub'],['rollen','Rollen']];
+ const d=document.createElement('div');d.className='mbtabs pbtabs';d.setAttribute('role','tablist');d.innerHTML=T.map(([x,n,z])=>`<button type="button" role="tab" data-pbt="${x}" class="${x===PB_TAB?'an':''}" aria-selected="${x===PB_TAB}">${n}${z!=null?`<em>${z}</em>`:''}</button>`).join('');k.after(d);
+ d.querySelectorAll('[data-pbt]').forEach(b=>b.onclick=()=>{PB_TAB=b.dataset.pbt;PE_SEL=null;peMalen(a)});
+ if(PB_TAB==='team')return;
+ [...a.children].forEach(c=>{if(c!==k&&c!==d)c.remove()});const v=document.createElement('div');v.className='pbsicht';d.after(v);
+ const bez=PE_BEZ||TBV.sel||new Date(),mo=tbMo(bez),w=L.map(p=>[p,peWoche(p.name,bez)]),tage=w.some(([,x])=>x[5]||x[6])?7:5;
+ if(PB_TAB==='stunden'){let ges=0,soll=0;
+  v.innerHTML=`<div class="pbtab"><div class="pbtk" style="--n:${tage}"><span>Name</span>${TB_WT.slice(0,tage).map((t,i)=>`<span class="r">${t.charAt(0)+t.charAt(1).toLowerCase()}<span class="pbd"> ${tbPlus(mo,i).getDate()}.</span></span>`).join('')}<span class="r">Woche</span><span class="r">Soll</span></div>
+   ${w.map(([p,x])=>{const s=x.reduce((q,y)=>q+y,0);ges+=s;soll+=peSoll(p);return `<button type="button" class="pbtz" data-n="${esc(p.name)}" style="--n:${tage}"><span><b>${esc(p.name)}</b><small>${esc(p.rolle||'')}</small></span>${x.slice(0,tage).map(h=>`<span class="r${h?'':' leer'}">${h?peH(h):'–'}</span>`).join('')}<span class="r"><b>${peH(s)} h</b></span><span class="r${peSoll(p)&&s<peSoll(p)?' wenig':''}">${peSoll(p)?peH(peSoll(p))+' h':'–'}</span></button>`}).join('')}
+   <div class="pbtk pbtf" style="--n:${tage}"><span>${L.length} ${L.length===1?'Person':'Personen'}</span>${'<span></span>'.repeat(tage)}<span class="r"><b>${peH(ges)} h</b></span><span class="r">${peH(soll)} h</span></div></div>
+   <p class="petipp">KW ${tbKw(bez)} · Stunden kommen aus Arbeitszeit und Personal im Tagebuch. Oben die Woche wechseln, „Stundenzettel“ druckt den Monat.</p>`;
+  v.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{PB_TAB='team';PE_SEL=b.dataset.n;peMalen(a)})}
+ if(PB_TAB==='urlaub'){const heute=tbIso(new Date()),j=new Date().getFullYear();
+  v.innerHTML=`<div class="pbtab"><div class="pbuk"><span>Name</span><span class="r">Anspruch</span><span class="r">Eingetragen</span><span class="r">Rest</span><span>Geplant</span><span></span></div>
+   ${L.map(p=>{const A=peAbwesend(p.name),gen=A.filter(x=>/urlaub/i.test(x.grund)).reduce((s,x)=>s+peWerktage(x.von,x.bis,j),0),an=parseFloat(p.urlaub)||0,kommt=A.filter(x=>x.bis>=heute).slice(0,2);
+    return `<div class="pbuz"><span><b>${esc(p.name)}</b><small>${esc(p.rolle||'')}</small></span><span class="r">${an?an+' Tage':'–'}</span><span class="r">${gen} ${gen===1?'Tag':'Tage'}</span><span class="r"><b>${an?Math.max(0,an-gen)+' Tage':'–'}</b></span><span class="pbgep">${kommt.length?kommt.map(x=>esc(peZeitraum(x)+' '+x.grund)+(x.von<=heute?' (jetzt)':'')).join(' · '):'<i class="ohne">nichts geplant</i>'}</span><span class="r"><button type="button" class="pbein" data-n="${esc(p.name)}">Eintragen</button></span></div>`}).join('')}</div>
+   <p class="petipp">Urlaub und Abwesenheit stehen im Kalender. Den Anspruch trägst du bei der Person unter „Bearbeiten“ ein.</p>`;
+  v.querySelectorAll('.pbein').forEach(b=>b.onclick=async()=>{const n=b.dataset.n;try{amFunktion('kalender');await new Promise(r=>setTimeout(r,RM?60:450));kalFormular(null,kIso(new Date()),'','url');setTimeout(()=>{const f=document.querySelector('#kal .kform [name=wer]');if(f){f.value=n;f.dispatchEvent(new Event('input',{bubbles:true}))}},RM?30:380)}catch(e){amFunktion('kalender')}})}
+ if(PB_TAB==='rollen'){const chef=typeof reRolleId!=='function'||reRolleId()==='chef',konto=typeof syAktiv==='function'&&syAktiv();
+  v.innerHTML=`<div class="pbrol"><div class="pbrk"><b>Rollen &amp; Rechte</b>${chef&&konto?'<button type="button" class="esbtn pbred">Rollen bearbeiten</button>':''}</div>${typeof reUebersicht==='function'?reUebersicht():''}</div>
+   <p class="petipp">${konto?'Wer welche Rolle hat, legst du unter Einstellungen → Konto &amp; Geräte fest.':'Rollen gelten, sobald das Firmenkonto verbunden ist (Einstellungen → Konto &amp; Geräte).'}</p>`;
+  const e=v.querySelector('.pbred');if(e)e.onclick=()=>{try{reEditor()}catch(x){}}}}
 // ===== Firmen-Wiki im Büro-Design (Probe „Firmen-Wiki“) =====
 // Am PC steht „Frag das Firmenwissen“ oben über Liste und Seite; Bezeichnungen in normaler Schreibweise.
 const BW_MAL=brMalen;
@@ -10043,6 +10134,33 @@ function bwFein(inh){if(!inh||!inh.querySelector('.brx'))return;
  const f=inh.querySelector('.brx>.brfrage');if(f&&!f.querySelector('.bwlupe'))f.insertAdjacentHTML('afterbegin','<svg class="bwlupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>');
  const i=f&&f.querySelector('input');if(i)i.placeholder='Frag das Firmen-Wiki … z. B. „Was nehmen wir für Q3 spachteln pro m²?“';
  const st=inh.querySelector('.brseite .brlab');if(st&&BR.stand&&BR.stand.letzterLauf&&!st.dataset.bw){st.dataset.bw=1;st.textContent+=' · zuletzt sortiert '+new Date(BR.stand.letzterLauf).toLocaleDateString('de-DE',{day:'numeric',month:'numeric'})}}}
+// ---------- Seiten von Hand bearbeiten und neu anlegen (Probe: „Bearbeiten“, „+ Seite“) ----------
+let BW_ED=null;// null | Titel der Seite | '' = neue Seite
+{const alt=bwFein;bwFein=function(inh){alt.apply(this,arguments);try{bwEdit(inh)}catch(e){console.error(e)}}}
+function bwEdit(inh){const se=inh.querySelector('.brseite'),akt=inh.querySelector(':scope>.mgk .mgakt');if(!se)return;
+ if(akt&&!akt.querySelector('.bwneu')){const b=document.createElement('button');b.type='button';b.className='bwneu esbtn';b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Seite';b.onclick=()=>{BW_ED='';BR.tab='wiki';brMalen(inh)};akt.insertBefore(b,akt.querySelector('.tr')||null)}
+ const P=Object.values(BR.seiten),sel=BR.sel||(P.find(p=>p.titel==='Firmenprofil')||P[0]||{}).titel;
+ if(BW_ED===null){const kopf=se.querySelector(':scope>div');if(BR.tab==='wiki'&&sel&&BR.seiten[sel]&&kopf&&!se.querySelector('.bwbea')){kopf.classList.add('bwkopf');kopf.insertAdjacentHTML('beforeend','<button type="button" class="bwbea esbtn">Bearbeiten</button>');kopf.querySelector('.bwbea').onclick=()=>{BW_ED=sel;brMalen(inh)}}return}
+ const neu=BW_ED==='',p=neu?{titel:'',gruppe:'Firma & Wissen',unter:'',intro:'',fakten:[],notizen:[],quellen:[]}:BR.seiten[BW_ED];if(!p){BW_ED=null;return}
+ [...se.children].forEach(c=>{if(!c.classList.contains('brzur'))c.remove()});
+ se.insertAdjacentHTML('beforeend',`<div class="bwform"><div class="bwfk"><b>${neu?'Neue Seite':'Seite bearbeiten'}</b></div>
+  <label>Titel<input data-bw="titel" value="${esc(p.titel)}" placeholder="z. B. Badsanierung von A bis Z"></label>
+  <div class="bwz"><label>Bereich<select data-bw="gruppe">${BR_GRUPPEN.map(g=>`<option${g===p.gruppe?' selected':''}>${g}</option>`).join('')}</select></label><label>Art<input data-bw="unter" value="${esc(p.unter||'')}" placeholder="z. B. Ablauf, Lieferant, Kunde"></label></div>
+  <label>Beschreibung<textarea data-bw="intro" rows="3" placeholder="Worum geht es? Verweise mit [[Seitenname]].">${esc(p.intro||'')}</textarea></label>
+  <label>Fakten · eine pro Zeile, „Name: Wert“<textarea data-bw="fakten" rows="4" placeholder="Telefon: 069 123 456">${esc(p.fakten.map(([a,b])=>a+(b?': '+b:'')).join('\n'))}</textarea></label>
+  <label>Notizen · eine pro Zeile<textarea data-bw="notizen" rows="5" placeholder="z. B. Abschlag 30 % bei Auftrag">${esc(p.notizen.join('\n'))}</textarea></label>
+  <div class="bwkn">${neu?'':'<button type="button" class="esbtn bwweg">Seite löschen</button>'}<span class="tr"></span><button type="button" class="esbtn bwab">Abbrechen</button><button type="button" class="haupt bwsp">Speichern</button></div></div>`);
+ const q=k=>se.querySelector(`[data-bw="${k}"]`);if(neu)setTimeout(()=>q('titel').focus(),50);
+ se.querySelector('.bwab').onclick=()=>{BW_ED=null;brMalen(inh)};
+ se.querySelector('.bwsp').onclick=async()=>{const t=brNotiz(q('titel').value.trim());if(!q('titel').value.trim()){q('titel').focus();return}
+  if(t!==p.titel&&BR.seiten[t]){mgToast(inh,'Eine Seite „'+t+'“ gibt es schon.');return}
+  const n={titel:t,gruppe:q('gruppe').value,unter:q('unter').value.trim(),intro:q('intro').value.trim(),
+   fakten:q('fakten').value.split('\n').map(z=>z.trim()).filter(Boolean).map(z=>{const i=z.indexOf(':');return i>0?[z.slice(0,i).trim(),z.slice(i+1).trim()]:[z,'']}),
+   notizen:q('notizen').value.split('\n').map(z=>z.trim()).filter(Boolean),quellen:p.quellen||[]};
+  try{await schreiben(brPfad(n.gruppe,n.titel),brText(n));if(!neu&&(p.titel!==n.titel||p.gruppe!==n.gruppe)){try{await entfernen(brPfad(p.gruppe,p.titel))}catch(e){}delete BR.seiten[p.titel]}
+   BR.seiten[n.titel]=n;await brIndex();BR.sel=n.titel;BW_ED=null;brMalen(inh);mgToast(inh,neu?'Seite angelegt':'Gespeichert')}catch(e){mgToast(inh,'Speichern ging nicht: '+(e.message||e))}};
+ const w=se.querySelector('.bwweg');if(w){let s2=0;w.onclick=async()=>{if(!s2){s2=1;w.textContent='Wirklich löschen?';setTimeout(()=>{if(w.isConnected){s2=0;w.textContent='Seite löschen'}},4000);return}
+  try{await entfernen(brPfad(p.gruppe,p.titel))}catch(e){}delete BR.seiten[p.titel];await brIndex();BR.sel=null;BW_ED=null;brMalen(inh);mgToast(inh,'Seite gelöscht')}}}
 // ===== Mängel nach der Onstand-Design-Probe =====
 // Titel „Mängel“, Baustelle als Auswahl oben rechts, EINE Reiterzeile (Offen · Überfällig · Zu prüfen · Erledigt · Abnahmen),
 // Liste als Tabelle Mangel | Frist | Status, rechts Karte: Kopf mit Pille, Foto, Feldzeilen, Knöpfe „Als behoben markieren“ / „Abnahme starten“.
@@ -10128,6 +10246,30 @@ document.addEventListener('click',ev=>{if(!document.body.classList.contains('bpa
  const bp=document.getElementById('bp'),q=s=>bp&&bp.querySelector(s);if(q('#vWeiter.an')){const z=q('#wZur');z&&z.click()}const x=q('#vStart.an')?q('#sZu'):q('#eZur');if(x)x.click()},true);
 // Überschriften, die die Werkstatt in GROSSBUCHSTABEN setzt (z. B. „NEUER RAUM“), in normaler Schreibweise
 {const bp=document.getElementById('bp');if(bp)new MutationObserver(()=>{bp.querySelectorAll('#bTitel,.menue h4,.mpkarte h4,.bkopf>b').forEach(e=>{const n=e.firstChild;if(n&&n.nodeType===3){const k=n.nodeValue.trim();if(k.length>3&&k===k.toUpperCase()&&/[A-ZÄÖÜ]/.test(k))n.nodeValue=n.nodeValue.replace(k,frSatz(k))}})}).observe(bp,{subtree:true,childList:true,characterData:true})}
+// ===== Einstellungen am PC als eigene Seite (Probe „Einstellungen“) =====
+// Links in der Seitenleiste unter Papierkorb. Zwei Spalten mit Karten: Firma & Preise, Konto & Abgleich, Team · Mahnwesen | Darstellung, Daten, App.
+// Alle Knöpfe führen die bekannten Menüpunkte aus (onMenuAktion). Am Handy bleibt die Einstellungen-Liste unter „Mehr“.
+document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('#am [data-einst]');if(!b)return;ev.preventDefault();amFunktion('mehr',{seite:'einst'})});
+{const alt=amFunktion;amFunktion=function(id,opt){try{AM_EL&&AM_EL.querySelectorAll('[data-einst]').forEach(x=>x.classList.toggle('an',id==='mehr'&&!!(opt&&opt.seite==='einst')))}catch(e){}return alt.apply(this,arguments)}}
+{const alt=hyEinst;hyEinst=function(inh){if(hyHandy())return alt.apply(this,arguments);try{esSeite(inh)}catch(e){console.error(e);return alt.apply(this,arguments)}}}
+function esSeite(inh){const F=typeof auFirma==='function'?auFirma():{},{firma,logo}=onInitialen(),an=typeof syAktiv==='function'&&syAktiv(),ki=typeof KI!=='undefined'&&KI.aktiv;
+ let pk=0,si='';try{pk=(PK_CACHE||[]).length}catch(e){}try{const z=localStorage.getItem('onstandSiLetzt');if(z)si=new Date(z).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})}catch(e){}
+ const leer='<i class="ohne">—</i>',Z=(l,v,k,t)=>`<div class="esz"><small>${l}</small><span>${v||leer}</span>${k?`<button type="button" class="esk2" data-m="${k}">${t||'Öffnen'}</button>`:''}</div>`;
+ const K=(t,kopf,inhalt)=>`<section class="esk"><div class="eskk"><b>${t}</b>${kopf||''}</div>${inhalt}</section>`;
+ const rolle=an?({chef:'Chef',buero:'Büro',bauleiter:'Bauleiter',baustelle:'Mitarbeiter',sub:'Subunternehmer'})[syRolle()]||syRolle():'';
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">ONSTAND</span><h2 class="mgh">Einstellungen</h2></div></div>
+ <div class="esgrid"><div class="esspalte">
+  ${K('Firma &amp; Preise','<button type="button" class="esbtn" data-m="firma">Bearbeiten</button>',Z('Firma',esc(F.name||firma))+Z('Steuernummer',esc(F.stnr||F.ust||''))+Z('Bank',esc([F.bank,F.iban].filter(Boolean).join(' · ')))+Z('Preisliste','Leistungen und Preise','firma','Öffnen'))}
+  ${K('Konto &amp; Abgleich',`<span class="espill ${an?'g':'n'}">${an?'Verbunden':'Nicht verbunden'}</span>`,Z('Profil',esc([ON_PROFIL.name,ON_PROFIL.rolle].filter(Boolean).join(' · ')),'profil','Bearbeiten')+Z('Konto & Geräte',an?'Firmenkonto · '+esc(rolle):'noch nicht eingerichtet','konto',an?'Öffnen':'Einrichten')+Z('Rollen & Rechte','wer was sehen und ändern darf',an?'konto':'','Öffnen'))}
+  ${K('Team &amp; Mahnwesen','',Z('Mitarbeiter','Team, Stunden, Urlaub','personal')+Z('Mahnwesen','Mahnstufen und Fristen','mahn'))}
+ </div><div class="esspalte">
+  ${K('Darstellung','',`<div class="esz"><small>Design</small><span class="esseg">${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}">${d.name}</button>`).join('')}</span></div>`+(typeof spName==='function'?Z('Sprache',esc(spName(spAkt())),'sprache','Ändern'):''))}
+  ${K('Daten','',Z('Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'),'ordner','Ändern')+Z('Sicherung',si?'zuletzt '+si:'jeden Morgen automatisch','si','Öffnen')+Z('Papierkorb',pk?pk+(pk===1?' Eintrag':' Einträge')+' · 30 Tage zurückholbar':'leer · 30 Tage zurückholbar','pk','Öffnen'))}
+  ${K('App','',Z('Abo &amp; KI-Paket',ki?'KI aktiv':'KI nicht gebucht','abo','Öffnen')+(typeof APP!=='undefined'&&APP.standalone?'':Z('Als App installieren','PC und Handy','app','Installieren'))+Z('Rundgang','noch einmal zeigen','rundgang','Starten')+Z('Über Onstand','Version '+ON_VER,'ueber','Öffnen'))}
+  <p class="esver">Onstand ${ON_VER} · Deine Daten liegen in deinem Datenordner</p>
+ </div></div>`;
+ inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}});
+ inh.querySelectorAll('[data-design]').forEach(b=>b.onclick=()=>{onDesign(b.dataset.design,true);inh.querySelectorAll('[data-design]').forEach(x=>{const a=x===b;x.classList.toggle('an',a);x.setAttribute('aria-pressed',a)})})}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
