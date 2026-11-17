@@ -4279,6 +4279,10 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* ===== Dokument-Vorlagen der Edition (Druck und PDF) ===== */
 #bpdruck .lkdok{position:relative}
 #bpdruck .lkdok.lkstreif:before{content:'';position:absolute;left:-9mm;top:0;bottom:0;width:3.5mm;background:linear-gradient(var(--lkf2),var(--lkf));-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* Im Druck sitzt der Streifen am Blattrand (nicht 13 mm eingerückt neben dem Text) und läuft auf jeder Seite von oben bis unten.
+   position:fixed wiederholt ihn pro Seite; Bezug ist der Seitenbereich innerhalb des @page-Rands, darum beim Stundenzettel/Bericht um den Rand nach außen. */
+@media print{#bpdruck .lkdok.lkstreif:before{position:fixed;left:0;top:0;bottom:0;width:4mm}
+}
 #bpdruck .lkdok>.bk{height:auto!important;min-height:19mm;align-items:flex-end;gap:8mm}
 #bpdruck .lkdok .lkdlogo{display:block;height:auto;max-height:26mm;object-fit:contain;flex:none}
 #bpdruck .lkdok.lkp-mitte>.bk{flex-direction:column;align-items:center;text-align:center;gap:3mm}
@@ -4308,16 +4312,16 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #onstart #einkcode::placeholder{text-transform:none}
 /* Seitenränder für Stundenzettel und Baustellenbericht: @page hoch hat seit der Briefvorlage keinen Rand mehr (die Ränder macht dort die Seiten-Tabelle).
    Der Stundenzettel klebte dadurch am Blattrand, das Logo wurde oben abgeschnitten. Der Bericht kam im Querformat (globale Bauplan-Seite). */
-@page stz{size:A4 portrait;margin:12mm 14mm}
-@page bericht{size:A4 portrait;margin:12mm 14mm}
-@media print{#bpdruck.stz{page:stz}#bpdruck.bericht{page:bericht}#bpdruck.bericht section{padding:0!important}}
+@page stz{size:A4 portrait;margin:12mm 14mm 12mm 0}
+@page bericht{size:A4 portrait;margin:12mm 14mm 12mm 0}
+@media print{#bpdruck.stz{page:stz}#bpdruck.bericht{page:bericht}#bpdruck.stz section,#bpdruck.bericht section{padding:0 0 0 14mm!important}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.79';
+const ON_VER='0.10.81';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5695,7 +5699,9 @@ async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});el.classList.add(
  let D;try{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));D=ptSammeln(el)}finally{el.setAttribute('style',alt);el.classList.remove('pttext')}
  const hoch=(PH-rt-rb)/PT_K,S=ptSeiten(D,hoch),asc=905/1117,bilder=new Map();
  for(const it of D.I)bilder.set(it,await ptBild(doc,it));
+ const STR=(()=>{const sec=el.querySelector('section.lkstreif');if(!sec)return null;const hx=v=>{const m=String(v||'').trim().match(/^#?([0-9a-f]{6})$/i);return m?[0,2,4].map(i=>parseInt(m[1].substr(i,2),16)/255):null};const a=hx(sec.style.getPropertyValue('--lkf2')),b=hx(sec.style.getPropertyValue('--lkf'));return a&&b?[a,b]:null})();
  for(const [s,e] of S){const pg=doc.addPage([PW,PH]);pg.node.setFontDictionary(L.PDFName.of('F1'),FN);pg.node.setFontDictionary(L.PDFName.of('F2'),FB);
+  if(STR){const n=48,bh=PH/n;for(let i=0;i<n;i++){const t=i/(n-1),c=STR[0].map((v,k)=>v+(STR[1][k]-v)*t);pg.drawRectangle({x:0,y:PH-(i+1)*bh,width:mm(4),height:bh+.5,color:L.rgb(c[0],c[1],c[2])})}}
   const X=x=>rl+x*PT_K,Y=y=>PH-rt-(y-s)*PT_K,inn=(y,h)=>y<e&&y+h>s;
   pg.pushOperators(L.pushGraphicsState(),L.rectangle(rl-1,PH-rt-(e-s)*PT_K,PW-rl-rr+2,(e-s)*PT_K+1),L.clip(),L.endPath());
   for(const b of D.B){if(!inn(b.y,b.h))continue;const x=X(b.x),y=Y(b.y),w=b.w*PT_K,h=b.h*PT_K,rad=b.rad*PT_K;
@@ -10909,7 +10915,12 @@ async function lkHolen(){if(LK.vorschau||typeof syAktiv!=='function'||!syAktiv()
  try{const d=await syRpc('mein_look',{p_firma:SY_KONTO.firma});const alt=localStorage.getItem('onstandLook');
   if(!d){if(alt){localStorage.removeItem('onstandLook');lkLaden();lkAnwenden()}return}
   const neu=JSON.stringify(d);if(neu!==alt){localStorage.setItem('onstandLook',neu);lkLaden();lkAnwenden();lkBriefPruefen()}}catch(e){}}
-setTimeout(lkHolen,2500);setInterval(lkHolen,30*6e4);
+// Beim Start holen – falls die Anmeldung noch nicht steht, bis zu 10× im Abstand von 3 s erneut versuchen
+{let n=0;const los=()=>{if(typeof syAktiv==='function'&&syAktiv())lkHolen();else if(++n<10)setTimeout(los,3000)};setTimeout(los,2500)}setInterval(lkHolen,30*6e4);
+// An- und Abmelden ohne Neustart: Look gehört zur Firma, nicht zum Gerät. Wechselt das Konto (Abmelden, andere Firma),
+// wird der alte Look sofort entfernt und der Look der neuen Firma direkt vom Server geholt (vorher erst nach bis zu 30 Minuten).
+if(typeof syKontoSetzen==='function'){const alt=syKontoSetzen;syKontoSetzen=function(k){const vor=SY_KONTO&&SY_KONTO.firma,neu=k&&k.firma;const r=alt.apply(this,arguments);
+ if(vor!==neu){try{localStorage.removeItem('onstandLook')}catch(e){}if(!LK.vorschau){lkLaden();lkAnwenden()}if(neu){setTimeout(lkHolen,300);setTimeout(lkHolen,3000)}}return r}}
 
 // Vorschau eines Looks auf diesem Gerät (nur aus der Verwaltung)
 function lkVorschauStart(d){try{localStorage.setItem('onstandLookVorschau',JSON.stringify(d))}catch(e){onToast('Logo zu groß für die Vorschau auf diesem Gerät.');return}lkLaden();lkAnwenden();try{localStorage.removeItem('onstandLookSplash:vorschau');localStorage.removeItem('onstandLookBrief:vorschau')}catch(e){}lkSplash(true)}
@@ -11360,7 +11371,10 @@ async function nkPruefen(){if(typeof syAktiv!=='function'||!syAktiv())return;
  try{const s=await syRpc('nk_testmonat',{p_firma:SY_KONTO.firma});const altKi=NK.stand&&NK.stand.ki;NK.stand=s||null;
   try{if(s)localStorage.setItem('onstandTestmonat',JSON.stringify(s));else localStorage.removeItem('onstandTestmonat')}catch(e){}
   if(s&&altKi!==s.ki&&typeof kiStand==='function')kiStand();nkErinnern()}catch(e){}}
-setTimeout(nkPruefen,3500);setInterval(nkPruefen,30*6e4);
+{let n=0;const los=()=>{if(typeof syAktiv==='function'&&syAktiv())nkPruefen();else if(++n<10)setTimeout(los,3000)};setTimeout(los,3500)}setInterval(nkPruefen,30*6e4);
+// Firmenwechsel / Abmelden: Testmonat der alten Firma vergessen, den der neuen sofort abfragen
+if(typeof syKontoSetzen==='function'){const alt=syKontoSetzen;syKontoSetzen=function(k){const vor=SY_KONTO&&SY_KONTO.firma,neu=k&&k.firma;const r=alt.apply(this,arguments);
+ if(vor!==neu){NK.stand=null;try{localStorage.removeItem('onstandTestmonat')}catch(e){}if(neu)setTimeout(nkPruefen,600)}return r}}
 const NK_FEHLER={nur_chef:'Nur der Chef kann einen Code einlösen.',zu_viele:'Zu viele falsche Versuche. Bitte in 10 Minuten noch einmal.',unbekannt:'Diesen Code gibt es nicht. Bitte genau so eingeben, wie er in der Nachricht steht (z. B. BRANDT-7K4M).',gesperrt:'Dieser Code ist nicht mehr gültig.',verbraucht:'Dieser Code wurde schon von einer anderen Firma eingelöst.',schon_eingeloest:'Diesen Code habt ihr schon eingelöst.',abgelaufen:'Dieser Code ist abgelaufen (30 Tage einlösbar).',firma_hat_schon:'Eure Firma hat schon einen Code eingelöst.'};
 const nkNorm=c=>String(c||'').toUpperCase().replace(/\s+/g,'').replace(/[–—_]/g,'-');
 async function nkEinloesen(code,stumm){const c=nkNorm(code);if(!/^[A-Z]{2,9}-[A-Z0-9]{4}$/.test(c))throw new Error('Der Code hat die Form FIRMA-XXXX, z. B. BRANDT-7K4M.');
