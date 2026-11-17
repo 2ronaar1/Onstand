@@ -4317,16 +4317,18 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #onstart #einkcode::placeholder{text-transform:none}
 /* Seitenränder für Stundenzettel und Baustellenbericht: @page hoch hat seit der Briefvorlage keinen Rand mehr (die Ränder macht dort die Seiten-Tabelle).
    Der Stundenzettel klebte dadurch am Blattrand, das Logo wurde oben abgeschnitten. Der Bericht kam im Querformat (globale Bauplan-Seite). */
-@page stz{size:A4 portrait;margin:12mm 14mm 12mm 0}
-@page bericht{size:A4 portrait;margin:12mm 14mm 12mm 0}
-@media print{#bpdruck.stz{page:stz}#bpdruck.bericht{page:bericht}#bpdruck.stz section,#bpdruck.bericht section{padding:0 0 0 14mm!important}}
+/* Rand kommt aus dem Blatt selbst (Innenabstand), nicht aus @page: Bei Rand „Keine“ im Druckdialog fehlte sonst der rechte Rand
+   und die Tabelle ragte bis an die Blattkante. clone = Abstand oben/unten auch auf Folgeseiten. */
+@page stz{size:A4 portrait;margin:0}
+@page bericht{size:A4 portrait;margin:0}
+@media print{#bpdruck.stz{page:stz}#bpdruck.bericht{page:bericht}#bpdruck.stz section,#bpdruck.bericht section{padding:12mm 14mm!important;box-sizing:border-box;-webkit-box-decoration-break:clone;box-decoration-break:clone}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.83';
+const ON_VER='0.10.84';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -4393,7 +4395,7 @@ function druckBlatt(kl){let d=document.getElementById('bpdruck');if(!d){d=docume
 // Seitenformat und Rand für das Blatt zusätzlich als allgemeine @page-Regel setzen (zuletzt geladen, gilt also vor der Bauplan-Seite quer/8 mm).
 // Grund: Manche Browser (Edge/Chrome-Druckdialog, Ränder „Standard“) nehmen den Rand nur aus der allgemeinen @page-Regel, nicht aus @page hoch –
 // dann rückte alles 8 mm ein und der Farbstreifen saß nicht am Blattrand.
-const DRUCK_SEITE={angebot:'size:A4 portrait;margin:0',stz:'size:A4 portrait;margin:12mm 14mm 12mm 0',bericht:'size:A4 portrait;margin:12mm 14mm 12mm 0'};
+const DRUCK_SEITE={angebot:'size:A4 portrait;margin:0',stz:'size:A4 portrait;margin:0',bericht:'size:A4 portrait;margin:0'};
 function druckSeitenRegel(d){let st=document.getElementById('druckseite');const k=d&&Object.keys(DRUCK_SEITE).find(x=>d.classList.contains(x));
  if(!k){if(st)st.remove();return}if(!st){st=document.createElement('style');st.id='druckseite'}st.textContent='@page{'+DRUCK_SEITE[k]+'}';document.head.appendChild(st)}
 function druckStart(d){druckSeite(d);druckSeitenRegel(d);document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');const st=document.getElementById('druckseite');if(st)st.remove();if(d)d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
