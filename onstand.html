@@ -4251,7 +4251,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.73';
+const ON_VER='0.10.74';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10855,7 +10855,7 @@ function lkVorschauBand(){let b=document.getElementById('lkband');if(!LK.vorscha
 // ---------- Firmen-Kopf im Cockpit ----------
 const lkGruss=()=>{const s=new Date().getHours();return s<11?'Guten Morgen':s<17?'Guten Tag':'Guten Abend'};
 function lkHero(inh){if(!LK.d||!LK.d.an.kopf||!inh)return;const d=LK.d,k=inh.querySelector(':scope>.mgk');if(!k||inh.querySelector('.lkh'))return;
- const datum=(k.querySelector('.amtt')||{}).textContent||'',wer=d.anrede||(ON_PROFIL&&ON_PROFIL.name)||'';
+ const datum=(k.querySelector('.amtt')||{}).textContent||'',wer=lkPerson().n==='Profil'?'':lkPerson().n;
  const h=document.createElement('div');h.className='lkh';
  h.innerHTML=`<div class="lkht"><small><span class="lkname">${esc(d.firma||'')}</span>${datum?' · '+esc(datum):''}</small><h2>${lkGruss()}${wer?`, <em class="lkname">${esc(wer)}</em>`:''}</h2>${d.spruch?`<p class="lkname">${esc(d.spruch)}</p>`:''}</div><div class="lkhk"></div>${d.voll?`<img class="lkhlogo" src="${esc(d.voll)}" alt="">`:''}`;
  const akt=k.querySelector('.mgakt');if(akt)h.querySelector('.lkhk').appendChild(akt);k.replaceWith(h);
@@ -10876,7 +10876,7 @@ function lkBriefPruefen(){const d=LK.d;if(!d||!d.an.brief||!d.gruss)return;if(do
  const key='onstandLookBrief:'+(LK.vorschau?'vorschau':(d.id||'x'));try{if(localStorage.getItem(key))return;localStorage.setItem(key,'1')}catch(e){}
  const b=document.createElement('div');b.id='lkbrief';
  b.innerHTML=`<div class="lkbk"><div class="lkbkopf"><div class="lksl"><span class="lkom">${LK_OM}</span><span class="lkx">×</span>${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:''}</div><b>Willkommen in eurer <em>Onstand-Edition</em></b><small>Onstand × <span class="lkname">${esc(d.firma||'')}</span>${d.an.nr&&d.nr?' · Edition Nr. '+esc(d.nr):''}</small></div>
- <div class="lkbi">${d.gruss.split(/\n+/).map(z=>`<p>${esc(z)}</p>`).join('')}<span class="lkunter">Aaron</span><small class="lkwer">Aaron Bezubik · Gründer von Onstand</small></div>
+ <div class="lkbi">${d.gruss.replace(/\{name\}/gi,lkPerson().n==='Profil'?'zusammen':lkPerson().n).split(/\n+/).map(z=>`<p>${esc(z)}</p>`).join('')}<span class="lkunter">Aaron</span><small class="lkwer">Aaron Bezubik · Gründer von Onstand</small></div>
  <div class="lkbf"><button type="button">Los geht's</button></div></div>`;
  document.body.appendChild(b);requestAnimationFrame(()=>b.classList.add('an'));b.querySelector('button').onclick=()=>{b.classList.remove('an');setTimeout(()=>b.remove(),250)}}
 // beim Start zeigen, sobald Onstand offen ist
@@ -11049,13 +11049,13 @@ const vwLkGeaendert=()=>{if(VW.lk){VW.lk.dirty=true;vwLkSichern()}};
 const vwLook=id=>(VW.looks||[]).find(l=>l.id===id);
 function vwLkNeu(){const nr=String(Math.max(0,...(VW.looks||[]).map(l=>parseInt(l.daten&&l.daten.nr)||0))+1).padStart(2,'0');
  return {id:null,name:'',daten:lkVoll({nr,anrede:'',gruss:'',muster:'linien'})}}
-function vwLkGruss(d){return `Hallo ${d.anrede||'zusammen'},\nich habe Onstand für euch eingerichtet – mit eurem Logo, euren Farben und eurem Briefkopf.${d.an.nr&&d.nr?` Ihr seid Edition Nr. ${d.nr}.`:''} Wenn etwas fehlt oder anders sein soll, schreibt mir direkt.`}
+function vwLkGruss(d){return `Hallo {name},\nich habe Onstand für euch eingerichtet – mit eurem Logo, euren Farben und eurem Briefkopf.${d.an.nr&&d.nr?` Ihr seid Edition Nr. ${d.nr}.`:''} Wenn etwas fehlt oder anders sein soll, schreibt mir direkt.`}
 
 // ---------- Vorschau (eigene Farben, unabhängig vom Design dieses Geräts) ----------
 function vwLkVorschau(d,art,dk){d=lkVoll(d);const W=lkWerte(d,dk),k=lkKopf(d,dk);
  const t=dk?{b0:'#161618',b1:'#232326',t:'#F2F2F4',sub:'#A1A1AA',lin:'#36363B',nav:'#1C1C1E'}:{b0:W['--k-b0']||'#F6F6F7',b1:W['--k-b1']||'#FFFFFF',t:W['--k-t']||'#1B1F24',sub:W['--k-sub']||'#5C6470',lin:W['--k-lin']||'#E1E3E6',nav:W['--k-nav']||'#F0F1F3'};
  const st=`--v-akz:${W['--k-akz']};--v-auf:${W['--k-auf']};--v-b0:${t.b0};--v-b1:${t.b1};--v-t:${t.t};--v-sub:${t.sub};--v-lin:${t.lin};--v-nav:${t.nav};--v-kopf:${k.bg};--v-kopft:${k.t};--v-k2:${k.k2};--v-k2t:${k.k2t};--v-muster:${lkMuster(d.muster)};--v-rot:${dk?'#FF6B7F':'#C42B1C'};--v-gruen:${dk?'#7FD68A':'#107C41'};--v-gelb:${dk?'#FFC857':'#9A6700'};--v-sch:${!dk&&d.grund==='papier'?'0 1px 6px -2px rgba(80,60,30,.16)':'none'}`;
- const name=esc(d.firma||'Firma'),wer=esc(d.anrede||'Tobias'),gr=d.serif?`Guten Morgen, <em>${wer}</em>`:`Guten Morgen, ${wer}`,zeichen=d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i>${name.slice(0,1)}</i>`;
+ const name=esc(d.firma||'Firma'),wer='Tobias',gr=d.serif?`Guten Morgen, <em>${wer}</em>`:`Guten Morgen, ${wer}`,zeichen=d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i>${name.slice(0,1)}</i>`;
  const pills=`<span class="lvp" style="--c:var(--v-rot)">Überfällig</span><span class="lvp" style="--c:var(--v-gelb)">Offen</span><span class="lvp" style="--c:var(--v-gruen)">Erledigt</span>`;
  if(art==='hy')return `<div class="lv lvhy ${d.serif?'serif':''} ${d.rund?'rund':''}" style="${st}"><div class="lvhkopf"${d.an.kopf?'':' data-aus'}><div class="lvz">${zeichen}<span>${name}</span></div><b>${gr}</b></div><div class="lvhin"><div class="lvgrp"><div><span>Kessler Miami</span><b>72 %</b></div><div><span>Praxis Lindner</span><b>35 %</b></div></div><div class="lvgrp lvpills">${pills}</div><div class="lvknopf">+ Eintrag</div></div><div class="lvbar"><span><i></i><i></i><i></i><i></i></span><em></em></div></div>`;
  return `<div class="lv lvpc ${d.serif?'serif':''} ${d.rund?'rund':''}" style="${st}"><div class="lvnav"><div class="lvz">${zeichen}<span>${name}</span></div><span class="an">Cockpit</span><span>Aufträge</span><span>Tagebuch</span><span>Kalender</span><span>Kunden</span><span>Mängel</span></div>
@@ -11095,9 +11095,9 @@ function vwLkForm(){const lk=VW.lk,d=lk.daten,sig=lkSignal(d.farbe),knopf=lkKnop
  </div></div>
  <div class="vwbox"><div class="vwbk"><b>Edition</b><span>Onstand × ${esc(lk.name||'Firma')}</span></div><div class="vwbi">
   <label class="vwfeld">Spruch / Unterzeile<input class="vwin lkname" data-lkf="spruch" value="${esc(d.spruch)}" placeholder="z. B. Raumdesign & Innenausbau" autocomplete="off"></label>
-  <div class="vwzwei"><label class="vwfeld">Anrede im Cockpit<input class="vwin" data-lkf="anrede" value="${esc(d.anrede)}" placeholder="leer = Name der Person" autocomplete="off"></label><label class="vwfeld">Edition Nr.<input class="vwin" data-lkf="nr" value="${esc(d.nr)}" inputmode="numeric" autocomplete="off"></label></div>
+  <label class="vwfeld">Edition Nr.<input class="vwin" style="max-width:120px" data-lkf="nr" value="${esc(d.nr)}" inputmode="numeric" autocomplete="off"><span class="vwnorm vwhin">Im Cockpit sieht jeder seinen eigenen Namen („Guten Morgen, Jaczek“).</span></label>
   <div class="vwfeld">Muster im Kopf<div class="vwmuster">${Object.entries(LK_MUSTER).map(([k,[n]])=>`<button type="button" class="${d.muster===k?'an':''}" data-lk="set" data-k="muster" data-v="${k}" style="--m:${lkMuster(k)};background-color:${esc(lkKopf(d,false).bg)}"><small>${n}</small></button>`).join('')}</div></div>
-  <label class="vwfeld">Willkommensbrief <span class="vwnorm">· erscheint einmal beim ersten Start</span><textarea class="vwin vwtext" rows="5" data-lkf="gruss">${esc(d.gruss||vwLkGruss(d))}</textarea></label>
+  <label class="vwfeld">Willkommensbrief <span class="vwnorm">· einmal beim ersten Start · {name} = Name der Person</span><textarea class="vwin vwtext" rows="5" data-lkf="gruss">${esc(d.gruss||vwLkGruss(d))}</textarea></label>
   <div class="vwschalter">${sch('start','Startbildschirm „Onstand × Firma“','voll beim ersten Start, danach 0,6 s')}${sch('brief','Willkommensbrief','einmal pro Gerät')}${sch('kopf','Firmen-Kopf im Cockpit','schrumpft beim Scrollen')}${sch('nr','Edition-Nummer','auf Startbildschirm und Brief')}</div>
  </div></div>
  <div class="vwbox"><div class="vwbi">
@@ -11133,7 +11133,7 @@ function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLad
  inh.querySelectorAll('[data-lkf]').forEach(el=>{const k=el.dataset.lkf;el.oninput=()=>{const lk=VW.lk;if(!lk)return;vwLkGeaendert();if(k==='name')lk.name=el.value;else lk.daten[k]=el.value;
   if(k==='farbe'||k==='farbe2'){if(k==='farbe'&&!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;const hx=el.parentElement.querySelector('.vwcode');if(hx)hx.textContent=el.value.toUpperCase();el.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('an'));
    cancelAnimationFrame(vwLooksBinden.rf);vwLooksBinden.rf=requestAnimationFrame(vorschauNeu);if(!el.onchange)el.onchange=()=>neuMalen();return}
-  if(k==='anrede'||k==='nr'){const ta=inh.querySelector('[data-lkf=gruss]');if(ta&&!lk.grussEigen){lk.daten.gruss=vwLkGruss(lk.daten);ta.value=lk.daten.gruss}}
+  if(k==='nr'){const ta=inh.querySelector('[data-lkf=gruss]');if(ta&&!lk.grussEigen){lk.daten.gruss=vwLkGruss(lk.daten);ta.value=lk.daten.gruss}}
   if(k==='gruss')lk.grussEigen=true;vorschauNeu()}});
  inh.querySelectorAll('[data-lkan]').forEach(el=>el.onchange=()=>{vwLkGeaendert();VW.lk.daten.an[el.dataset.lkan]=el.checked;if(el.dataset.lkan==='nr'&&!VW.lk.grussEigen)VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen()});
  inh.querySelectorAll('[data-lk]').forEach(b=>b.onclick=async()=>{const a=b.dataset.lk,lk=VW.lk;
