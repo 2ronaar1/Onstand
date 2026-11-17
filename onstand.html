@@ -1443,6 +1443,8 @@ html:has(body.bpdruckt),body.bpdruckt{height:auto!important;min-height:0!importa
 #bpdruck.angebot .abs{margin-bottom:3mm;font-size:6.5pt}
 #bpdruck.angebot .emp{font-size:10pt}
 #bpdruck.angebot .info b{font-size:15pt;letter-spacing:1.6pt;margin-bottom:2mm}
+/* Lange Titel (Abschlagsrechnung, Zahlungserinnerung …) brachen am Ende um („ABSCHLAGSRECHNUN / G“) */
+#bpdruck.angebot .info b.lang{font-size:12pt;letter-spacing:1pt;white-space:nowrap}
 #bpdruck.angebot .info dl{gap:0 4mm}
 #bpdruck.angebot .info dt,#bpdruck.angebot .info dd{padding:.9mm 0}
 #bpdruck.angebot h1{font-size:12pt;margin:3mm 0 2mm}
@@ -4286,8 +4288,13 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #bpdruck .lkdok.lktfarbe>h1{color:var(--lkf)!important}
 #bpdruck .lkdok.lktserif>h1{font-family:Georgia,"Times New Roman",serif!important;font-weight:500!important}
 #bpdruck .lkdok table td,#bpdruck .lkdok .su>div:not(.ge) span{color:#1b2230!important}
-#bpdruck.bericht .lkbk{display:flex;justify-content:space-between;gap:10mm;padding-bottom:3mm;margin-bottom:6mm;border-bottom:1.6pt solid #1b2230;font-size:8pt}
-#bpdruck.bericht .lkbk b{font-size:13pt}
+/* Kopf mit Logo für Blätter ohne eigenen Briefkopf (Stundenzettel, Baustellenbericht) – eigene Klasse, nicht .lkbk (das ist der Willkommensbrief) */
+#bpdruck .lkdkopf{display:flex;justify-content:flex-start;align-items:flex-end;gap:8mm;padding:0 0 3mm;margin:0 0 6mm;border-bottom:1.6pt solid #1b2230;font:8pt/1.45 Arial,Helvetica,sans-serif;color:#1b2230;background:none;box-shadow:none;border-radius:0;width:auto;max-height:none;overflow:visible}
+#bpdruck .lkdkopf b{display:block;font-size:13pt;letter-spacing:.2pt}
+#bpdruck .lkdkopf>span{margin-left:auto;text-align:right;color:#5c6675}
+#bpdruck .lkdok.lkp-mitte>.lkdkopf{flex-direction:column;align-items:center;text-align:center;gap:2mm}#bpdruck .lkdok.lkp-mitte>.lkdkopf>span{margin-left:0;text-align:center}
+#bpdruck .lkdok.lkp-rechts>.lkdkopf{flex-direction:row-reverse}#bpdruck .lkdok.lkp-rechts>.lkdkopf>span{margin-left:0;margin-right:auto;text-align:left}
+#bpdruck.stz .lkdkopf{border-bottom:0!important;margin-bottom:5mm}
 /* Neukunden-Code: Hinweis im Cockpit, Abo-Dialog */
 #am .nkban{display:flex;align-items:center;gap:14px;padding:12px 16px;margin:0 0 14px;border-radius:8px;background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1));border:1px solid color-mix(in srgb,var(--k-gelb) 35%,var(--k-lin))}
 #am .nkban>div{flex:1;min-width:0}#am .nkban b{display:block;font-size:13.5px}#am .nkban span{font-size:12.5px;color:var(--k-sub)}
@@ -4299,13 +4306,18 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* Startformular: Felder bleiben in der Breite (FIRMA ragte rechts heraus), Code-Platzhalter normal geschrieben */
 #onstart .oszz>label{min-width:0}#onstart .osf input{width:100%;min-width:0;box-sizing:border-box}
 #onstart #einkcode::placeholder{text-transform:none}
+/* Seitenränder für Stundenzettel und Baustellenbericht: @page hoch hat seit der Briefvorlage keinen Rand mehr (die Ränder macht dort die Seiten-Tabelle).
+   Der Stundenzettel klebte dadurch am Blattrand, das Logo wurde oben abgeschnitten. Der Bericht kam im Querformat (globale Bauplan-Seite). */
+@page stz{size:A4 portrait;margin:12mm 14mm}
+@page bericht{size:A4 portrait;margin:12mm 14mm}
+@media print{#bpdruck.stz{page:stz}#bpdruck.bericht{page:bericht}#bpdruck.bericht section{padding:0!important}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.77';
+const ON_VER='0.10.79';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5019,7 +5031,7 @@ function auPdf(a){const F=auFirma(),b=BST[a.b]||{},n=auNetto(a),g=+F.gueltig||30
   <div class="emp">${esc(b.kontakt||a.b)}<br>${esc(b.ort||'')}</div>${auInfo('Angebot',[['Nr.',esc(a.nr)],['Datum',auDat(a.d)],['Gültig bis',auDat(bis)],['Bauvorhaben',esc(a.b)]])}</div>
   <h1>${esc(a.t)}</h1><p>Sehr geehrte Damen und Herren,<br>vielen Dank für Ihre Anfrage. Gerne bieten wir Ihnen folgende Leistungen an:</p>
   <table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Menge</th><th class="aur">Einzelpreis</th><th class="aur">Gesamt</th></tr>${a.pos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}${p.her?'<br><span class="gr">'+esc(p.her.replace('aus Bauplan · ',''))+'</span>':''}</td><td class="aur">${auZ(p.m)} ${esc(p.e)}</td><td class="aur">${auEur(p.p)}</td><td class="aur">${auEur(p.p*p.m)}</td></tr>`).join('')}</table>
-  <div class="su"><div><span>Summe netto</span><span>${auEur(n)}</span></div><div><span>zzgl. 19 % MwSt.</span><span>${auEur(n*.19)}</span></div><div class="ge"><span>Angebotssumme</span><span>${auEur(n*1.19)}</span></div><div class="gr"><span>darin Lohnkosten (brutto)</span><span>${auEur(auLohn(a)*1.19)}</span></div></div>
+  <div class="su"><div><span>Summe netto</span><span>${auEur(n)}</span></div><div><span>zzgl. 19 % MwSt.</span><span>${auEur(n*.19)}</span></div><div class="ge"><span>Angebotssumme</span><span>${auEur(n*1.19)}</span></div>${auLohn(a)>0?`<div class="gr"><span>darin Lohnkosten (brutto)</span><span>${auEur(auLohn(a)*1.19)}</span></div>`:''}</div>
   <p>Wir freuen uns auf Ihren Auftrag.</p><p>Mit freundlichen Grüßen<br>${esc(F.inhaber||F.name||'')}</p>
   ${auFuss(F)}</section>`;
  druckStart(d)}
@@ -5171,7 +5183,7 @@ function auEinheit(btn,akt,cb){document.querySelectorAll('.auehpop').forEach(x=>
 function auBriefKopf(F){return `<div class="bk"><div><b>${esc(F.name||'')}</b>${F.zusatz?`<small>${esc(F.zusatz)}</small>`:''}</div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||''),esc(F.web||'')].filter(Boolean).join('<br>')}</span></div>`}
 // Fußzeile (drei Spalten) + Onstand-Hinweis, gleich für alle Briefe
 function auFuss(F){const z=a=>a.filter(Boolean).join('<br>');return `<div class="fz"><div>${z([F.name?'<b>'+esc(F.name)+'</b>':'',esc(F.str||''),esc(F.ort||''),F.inhaber?'Geschäftsführer/Inhaber: '+esc(F.inhaber):''])}</div><div>${z([F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||''),F.stnr?'St.-Nr. '+esc(F.stnr):'',F.ust?'USt-IdNr. '+esc(F.ust):''])}</div><div>${z([esc(F.bank||''),F.iban?'IBAN '+esc(F.iban):'',F.bic?'BIC '+esc(F.bic):'',esc(F.hr||'')])}</div></div>${ON_MARKE}`}
-function auInfo(titel,Z){return `<div class="info"><b>${esc(titel)}</b><dl>${Z.filter(z=>z&&z[1]).map(([l,v])=>`<dt>${l}</dt><dd>${v}</dd>`).join('')}</dl></div>`}
+function auInfo(titel,Z){return `<div class="info"><b${String(titel||'').length>13?' class="lang"':''}>${esc(titel)}</b><dl>${Z.filter(z=>z&&z[1]).map(([l,v])=>`<dt>${l}</dt><dd>${v}</dd>`).join('')}</dl></div>`}
 
 // ---------- Onstand-Hinweis auf Angebot, Rechnung, Mahnschreiben, Stundenzettel: kleines Logo + Name, unten rechts unter der Fußzeile ----------
 const ON_MARKE_SVG=onLogoSvg('#1b2230','#C88A52',5.5,'aria-hidden="true"');
@@ -6171,7 +6183,7 @@ function peStundenzettel(namen,bez){const y=bez.getFullYear(),m=bez.getMonth(),n
  d.innerHTML=namen.map(name=>{const p=PER[name];if(!p)return '';let ges=0,tage=0,zl='',wsum=0;const A=peAbwesend(name);
   for(let t=1;t<=n;t++){const dt=tbNeu(y,m,t),iso=tbIso(dt),E=(TB[iso]||[]).filter(e=>peListe(e.p).some(x=>x===name||p.alias.includes(x))),ab=A.find(a=>a.von<=iso&&a.bis>=iso),we=tbWt(dt)>4;
    const h=E.reduce((s,e)=>s+peDauer(e.z),0);ges+=h;wsum+=h;if(h)tage++;
-   zl+=`<tr class="${we?'we':''}"><td>${TB_WT[tbWt(dt)].charAt(0)+TB_WT[tbWt(dt)].charAt(1).toLowerCase()}</td><td>${t}.${m+1}.</td><td>${E.map(e=>esc(e.z||'')).filter(Boolean).join('<br>')}</td><td>${E.map(e=>esc(e.b||'')).join('<br>')||(ab?esc(ab.grund):'')}</td><td>${E.map(e=>esc(String(e.l||'').split(/;|\n/)[0])).join('<br>')}</td><td class="r">${h?peH(h):''}</td></tr>`;
+   zl+=`<tr class="${we?'we':''}"><td>${TB_WT[tbWt(dt)].charAt(0)+TB_WT[tbWt(dt)].charAt(1).toLowerCase()}</td><td>${t}.${m+1}.</td><td>${E.map(e=>esc(e.z||'')).filter(Boolean).join('<br>')}</td><td>${E.map(e=>esc(e.b||'')).join('<br>')||(ab&&!we&&!peFei(iso)?esc(ab.grund):'')}</td><td>${E.map(e=>esc(String(e.l||'').split(/;|\n/)[0])).join('<br>')}</td><td class="r">${h?peH(h):''}</td></tr>`;
    if(tbWt(dt)===6||t===n){zl+=`<tr class="ws"><td colspan="5">KW ${tbKw(dt)}</td><td class="r">${peH(wsum)}</td></tr>`;wsum=0}}
   let frei=0;for(let t=1;t<=n;t++){const dt=tbNeu(y,m,t),iso=tbIso(dt);if(tbWt(dt)<5&&!peFei(iso)&&A.some(a=>a.von<=iso&&a.bis>=iso))frei++}
   const soll=peSoll(p),wt=peWerktage(tbIso(tbNeu(y,m,1)),tbIso(tbNeu(y,m,n)),y)-frei,ms=Math.round(soll/5*wt*10)/10;
@@ -10974,7 +10986,7 @@ function lkDok(d){if(!LK.d||!d)return;const sec=d.querySelector('section');if(!s
  sec.classList.add('lkdok','lkp-'+D.pos);sec.classList.toggle('lkstreif',!!D.streifen);sec.classList.toggle('lkohnelinie',!D.linie);sec.classList.toggle('lktfarbe',!!D.titelFarbe);sec.classList.toggle('lktserif',!!D.titelSerif);
  sec.style.setProperty('--lkf',LK.d.farbe);sec.style.setProperty('--lkf2',lkMisch(LK.d.farbe,'#ffffff',.35));
  const img=lkDokKopf(D,F);let bk=sec.querySelector(':scope>.bk');
- if(!bk&&img){bk=document.createElement('div');bk.className='bk lkbk';bk.innerHTML=`<div><b class="lkname">${esc(F.name||LK.d.firma||'')}</b></div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||'')].filter(Boolean).join('<br>')}</span>`;sec.prepend(bk)}
+ if(!bk&&img){bk=document.createElement('div');bk.className='bk lkdkopf';bk.innerHTML=`<div><b class="lkname">${esc(F.name||LK.d.firma||'')}</b></div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||'')].filter(Boolean).join('<br>')}</span>`;sec.prepend(bk)}
  if(bk&&img){if(D.firmblock)bk.insertAdjacentHTML('afterbegin',img);else bk.innerHTML=img}
  const V={inhaber:esc(F.inhaber||F.name||''),firma:esc(F.name||LK.d.firma||'')};const P=[...sec.querySelectorAll(':scope>p')],T=D.tx[art];
  if(T){const h1=sec.querySelector(':scope>h1');
@@ -11809,7 +11821,7 @@ function eiErsteSchritte(inh){try{if(!inh||!inh.isConnected||inh.querySelector('
  const L=eiStand(),n=L.filter(x=>x.ok).length;if(n===L.length){if(!fertig){try{localStorage.setItem('onstandErsteFertig',HEUTE())}catch(e){}}else if(fertig<HEUTE())return}
  const k=document.createElement('div');k.className='eies';k.innerHTML=`<div class="eik"><b>ERSTE SCHRITTE</b><span>${n} VON ${L.length}</span><button type="button" class="eiaus" aria-label="Erste Schritte ausblenden">×</button></div><div class="eibal"><i style="width:${Math.round(n/L.length*100)}%"></i></div>
   <div class="eil">${L.map(x=>`<div class="eiz${x.ok?' ok':''}"><i>${x.ok?'✓':''}</i><span>${esc(x.n)}</span>${x.ok?'':`<button type="button" data-h="${x.id}">Zeig mir’s ›</button>`}</div>`).join('')}</div>${n===L.length?'<p class="eialles">Alles erledigt – die Liste verschwindet morgen von selbst.</p>':''}`;
- const roll=inh.querySelector('.cpx'),kopf=inh.querySelector('.amkopf');if(roll)roll.prepend(k);else if(kopf)kopf.after(k);else inh.prepend(k);
+ const roll=inh.querySelector('.cpx'),kopf=inh.querySelector(':scope>.lkh,:scope>.mgk,.amkopf'),cpu=inh.querySelector(':scope>.cpu');if(roll)roll.prepend(k);else if(cpu)cpu.before(k);else if(kopf)kopf.after(k);else inh.prepend(k);
  k.querySelector('.eiaus').onclick=()=>{try{localStorage.setItem('onstandErsteAus','1')}catch(e){}k.remove();onToast('Ausgeblendet. Den Rundgang findest du am Logo.')};
  k.querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>eiStarthilfe(b.dataset.h))}catch(e){}}
 if(typeof cpMalen==='function'){const EI_CPM=cpMalen;cpMalen=function(inh,w){const r=EI_CPM(inh,w);eiErsteSchritte(inh);return r}}
