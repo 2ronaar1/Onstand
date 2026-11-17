@@ -4156,6 +4156,34 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 @media (min-width:761px){#am .aminhalt:has(.vwtabs){overflow-y:auto!important;overflow-x:hidden}}
 #am .vwungesp{font-size:12px!important;font-weight:600;color:var(--k-gelb)!important}
 #am .vwweiter{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;margin-bottom:10px;width:100%;text-align:left;font:inherit;color:var(--k-t);cursor:pointer;border-color:color-mix(in srgb,var(--k-akz) 50%,var(--k-lin))}#am .vwweiter span{font-size:12.5px;color:var(--k-sub)}
+/* ===== Verwaltung · Dokument-Vorlagen (Schritt 3) – Vorschau-Blatt (Farben bleiben wie auf Papier) ===== */
+#am .vwdgrid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:14px;align-items:start}
+#am .vwdlinks{display:flex;flex-direction:column;gap:12px;min-width:0}
+#am .vwdrechts{position:sticky;top:0;min-width:0;display:flex;flex-direction:column;gap:10px}
+#am .vwdbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#am .vwdflach{background:color-mix(in srgb,var(--k-sub) 18%,var(--k-b0));border-radius:8px;padding:16px;display:flex;justify-content:center;overflow:auto}
+#am .vwfuss{display:flex;flex-direction:column;border:1px solid var(--k-lin);border-radius:6px}#am .vwfuss div{display:flex;align-items:center;gap:8px;padding:6px 8px;border-top:1px solid var(--k-lin);font-size:13px}#am .vwfuss div:first-child{border-top:0}#am .vwfuss span{flex:1}
+#am .vwfuss button{border:1px solid var(--k-lin);background:var(--k-b1);border-radius:4px;width:26px;height:24px;cursor:pointer;color:var(--k-sub);font-size:11px;padding:0}#am .vwfuss button:disabled{opacity:.35}
+#am .vwfest{background:color-mix(in srgb,var(--k-akz) 6%,var(--k-b1));border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--k-sub)}#am .vwfest b{color:var(--k-t);display:block;margin-bottom:4px}#am .vwfest ul{margin:0;padding-left:16px}
+#am .vwrange{display:flex;align-items:center;gap:8px}#am .vwrange input{accent-color:var(--k-akz);width:150px}
+.vwblatt{--f:#A97A3F;--f2:#D9A56A;width:520px;max-width:100%;flex:none;aspect-ratio:1/1.414;background:#fff;color:#1B1F24;box-shadow:0 10px 30px -12px rgba(0,0,0,.35);padding:34px 40px 26px;position:relative;font:9px/1.45 Arial,Helvetica,sans-serif;display:flex;flex-direction:column;gap:9px;overflow:hidden}
+.vwblatt.streif:before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--f2),var(--f))}
+.vwblatt .dkopf{display:flex;align-items:flex-end;gap:12px;padding-bottom:6px}.vwblatt .dkopf.mitte{flex-direction:column;align-items:center;text-align:center;gap:5px}.vwblatt .dkopf.rechts{flex-direction:row-reverse}
+.vwblatt .dkopf img{display:block;max-height:70px;object-fit:contain}.vwblatt .dkopf .fb{flex:1;text-align:right;font-size:8px;color:#5C6470}.vwblatt .dkopf.rechts .fb{text-align:left}.vwblatt .dkopf.mitte .fb{text-align:center}.vwblatt .dkopf .fb b{display:block;font-size:11px;color:#1B1F24}
+.vwblatt .dkopf .ohne{font-size:15px;font-weight:700;color:#1B1F24}
+.vwblatt .dlinie{height:1.5px;background:#1B1F24;margin-top:-6px}.vwblatt .dlinie.farbe{background:var(--f)}
+.vwblatt .adr{display:grid;grid-template-columns:1fr 170px;gap:12px}.vwblatt .abs{font-size:6.5px;color:#8A8F98;border-bottom:.5px solid #ccc;padding-bottom:2px;margin-bottom:4px}
+.vwblatt .meta{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;font-size:8px}.vwblatt .meta span{color:#6B7280}.vwblatt .meta b{font-weight:600;text-align:right}
+.vwblatt .dtitel{margin:4px 0 0;font-size:15px;font-weight:700;color:#1B1F24}.vwblatt .dtitel.serif{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:17px}.vwblatt .dtitel.farbe{color:var(--f)}
+.vwblatt .dtx{margin:0;white-space:pre-line}
+.vwblatt table{width:100%;border-collapse:collapse;font-size:8.5px}.vwblatt th{text-align:left;font-size:7.5px;font-weight:700;color:#1B1F24;padding:5px 6px;border-bottom:1px solid #1B1F24;background:#F5F5F5}.vwblatt td{padding:5px 6px;border-bottom:.5px solid #E5E5E5;vertical-align:top;color:#1B1F24}.vwblatt .r{text-align:right;white-space:nowrap}
+.vwblatt .dsum{margin-left:auto;width:48%;display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:8.5px;color:#1B1F24}.vwblatt .dsum .g{font-weight:700;border-top:1px solid #1B1F24;padding-top:3px;font-size:9.5px}
+.vwblatt .dfuss{margin-top:auto;border-top:.5px solid #D5D5D5;padding-top:7px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-size:6.6px;color:#6B7280}.vwblatt .dfuss b{display:block;color:#1B1F24}
+.vwblatt .donst{font-size:6px;color:#9CA3AF;text-align:center;margin-top:-4px}
+.vwblatt .unt{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:14px}.vwblatt .unt div{border-top:.5px solid #1B1F24;padding-top:3px;font-size:7.5px;color:#6B7280}
+.vwblatt .tbe{border-left:2px solid #E5E0D6;padding-left:8px;display:flex;flex-direction:column;gap:1px}.vwblatt .tbe b{font-size:8.5px}
+@media (max-width:1180px){#am .vwdgrid{grid-template-columns:minmax(0,1fr)}#am .vwdrechts{position:static;order:-1}}
+@media (max-width:760px){.vwblatt{width:100%;padding:18px 18px 14px;font-size:7px}#am .vwdflach{padding:8px}}
 /* ===== Firmen-Look + Edition (nur aktiv, wenn eine Firma einen Look hat: html.lk) ===== */
 /* Firmen-Kopf im Cockpit: volle Breite, klebt oben, schrumpft beim Scrollen */
 #am .lkh{position:sticky;top:0;z-index:5;margin:0 -24px 16px;padding:16px 24px;min-height:92px;display:flex;align-items:center;gap:16px;background:var(--lk-kopf);color:var(--lk-kopft);overflow:hidden;transition:min-height .25s,padding .25s}
@@ -4245,13 +4273,27 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .lkhywer .lkini{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--k-akz) 16%,var(--k-b1));font-size:13px;flex:none}
 #am .lkhywer>span:nth-child(2){flex:1;min-width:0}#am .lkhywer b{display:block;font-size:15.5px;font-weight:600}#am .lkhywer small{display:block;font-size:12.5px;color:var(--k-sub)}
 #am .lkhywer svg{width:18px;height:18px;fill:none;stroke:var(--k-sub);stroke-width:2;stroke-linecap:round}
+/* ===== Dokument-Vorlagen der Edition (Druck und PDF) ===== */
+#bpdruck .lkdok{position:relative}
+#bpdruck .lkdok.lkstreif:before{content:'';position:absolute;left:-9mm;top:0;bottom:0;width:3.5mm;background:linear-gradient(var(--lkf2),var(--lkf));-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#bpdruck .lkdok>.bk{height:auto!important;min-height:19mm;align-items:flex-end;gap:8mm}
+#bpdruck .lkdok .lkdlogo{display:block;height:auto;max-height:26mm;object-fit:contain;flex:none}
+#bpdruck .lkdok.lkp-mitte>.bk{flex-direction:column;align-items:center;text-align:center;gap:3mm}
+#bpdruck .lkdok.lkp-rechts>.bk{flex-direction:row-reverse}
+#bpdruck .lkdok.lkohnelinie>.bk{border-bottom:0!important}
+#bpdruck .lkdok.lktfarbe>.bk{border-bottom-color:var(--lkf)!important}
+#bpdruck .lkdok.lktfarbe>h1{color:var(--lkf)!important}
+#bpdruck .lkdok.lktserif>h1{font-family:Georgia,"Times New Roman",serif!important;font-weight:500!important}
+#bpdruck .lkdok table td,#bpdruck .lkdok .su>div:not(.ge) span{color:#1b2230!important}
+#bpdruck.bericht .lkbk{display:flex;justify-content:space-between;gap:10mm;padding-bottom:3mm;margin-bottom:6mm;border-bottom:1.6pt solid #1b2230;font-size:8pt}
+#bpdruck.bericht .lkbk b{font-size:13pt}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.74';
+const ON_VER='0.10.75';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10901,6 +10943,50 @@ function lkKopfLinks(){if(!AM_EL)return;const sei=AM_EL.querySelector('.onseite'
 if(typeof hyMehr==='function'){const alt=hyMehr;hyMehr=function(inh){const r=alt.apply(this,arguments);try{if(LK.d){const d=LK.d,P=lkPerson(),k=inh.querySelector('.mgk');const box=document.createElement('div');box.className='lkhymehr';
  box.innerHTML=`<div class="lkhylock"><span class="lkzr"><span class="lkzn">${LK_OM}</span><span class="lkx">×</span><span class="lkzn">${lkZeichenHtml(d)}</span></span><span class="lkt">Onstand × <em class="lkname">${esc(d.firma||'')}</em></span></div><button type="button" class="lkhywer"><span class="lkini">${esc(P.ini)}</span><span><b class="lkname">${esc(P.n)}</b><small>${esc([P.r,d.firma].filter(Boolean).join(' · '))}</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>`;
  if(k)k.after(box);else inh.prepend(box);box.querySelector('.lkhywer').onclick=()=>amFunktion('mehr',{seite:'einst'})}}catch(e){console.error(e)}return r}}
+
+// ===== Schritt 3: Dokument-Vorlagen (Angebot, Rechnung, Bericht, Abnahmeprotokoll) =====
+// Ändert nur das Aussehen und die freien Texte. Zahlen und Beträge bleiben schwarz, Pflichtangaben und die E-Rechnung (XML) bleiben unberührt.
+// Zahlungsziel und Fälligkeit kommen weiter aus „Firma & Preise“; im Text steht dafür {faellig}.
+const LK_DOK_TX={
+ angebot:{ein:'Sehr geehrte Damen und Herren,\nvielen Dank für Ihre Anfrage. Gerne bieten wir Ihnen folgende Leistungen an:',schluss:'Wir freuen uns auf Ihren Auftrag.',gruss:'Mit freundlichen Grüßen\n{inhaber}'},
+ rechnung:{ein:'Sehr geehrte Damen und Herren,\nfür die ausgeführten Leistungen berechnen wir Ihnen:',schluss:'Bitte überweisen Sie den Betrag bis zum {faellig} ohne Abzug unter Angabe der Rechnungsnummer {nr}.',gruss:'Mit freundlichen Grüßen\n{inhaber}'},
+ bericht:{ein:'',schluss:'',gruss:''},
+ abnahme:{ein:'',schluss:'',gruss:''}};
+function lkDoks(d){const s=(d&&d.doks)||{};const o=Object.assign({pos:'links',groesse:170,firmblock:true,streifen:false,linie:true,titelFarbe:false,titelSerif:!!(d&&d.serif),onst:true,fuss:['firma','kontakt','bank']},s);
+ o.tx={};for(const k of Object.keys(LK_DOK_TX))o.tx[k]=Object.assign({},LK_DOK_TX[k],(s.tx||{})[k]||{});return o}
+let LK_DART='';
+const lkTextHtml=(t,V)=>esc(String(t||'').replace(/\{(\w+)\}/g,(m,k)=>V[k]!=null?V[k]:m)).replace(/\n/g,'<br>');
+function lkDokKopf(D,F){const d=LK.d,img=d.voll?`<img class="lkdlogo" src="${esc(d.voll)}" alt="" style="width:${Math.round(D.groesse*.404)}mm">`:'';return img}
+function lkDok(d){if(!LK.d||!d)return;const sec=d.querySelector('section');if(!sec||sec.classList.contains('lkdok'))return;const D=lkDoks(LK.d),art=LK_DART||(d.classList.contains('bericht')?'bericht':'');
+ let F={};try{F=auFirma()}catch(e){}
+ sec.classList.add('lkdok','lkp-'+D.pos);sec.classList.toggle('lkstreif',!!D.streifen);sec.classList.toggle('lkohnelinie',!D.linie);sec.classList.toggle('lktfarbe',!!D.titelFarbe);sec.classList.toggle('lktserif',!!D.titelSerif);
+ sec.style.setProperty('--lkf',LK.d.farbe);sec.style.setProperty('--lkf2',lkMisch(LK.d.farbe,'#ffffff',.35));
+ const img=lkDokKopf(D,F);let bk=sec.querySelector(':scope>.bk');
+ if(!bk&&img){bk=document.createElement('div');bk.className='bk lkbk';bk.innerHTML=`<div><b class="lkname">${esc(F.name||LK.d.firma||'')}</b></div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||'')].filter(Boolean).join('<br>')}</span>`;sec.prepend(bk)}
+ if(bk&&img){if(D.firmblock)bk.insertAdjacentHTML('afterbegin',img);else bk.innerHTML=img}
+ const V={inhaber:esc(F.inhaber||F.name||''),firma:esc(F.name||LK.d.firma||'')};const P=[...sec.querySelectorAll(':scope>p')],T=D.tx[art];
+ if(T){const h1=sec.querySelector(':scope>h1');
+  if(art==='angebot'){const p=P.find(x=>/^Sehr geehrte/.test(x.textContent));if(p&&T.ein)p.innerHTML=lkTextHtml(T.ein,V);const s=P.find(x=>x.textContent.trim()==='Wir freuen uns auf Ihren Auftrag.');if(s){if(T.schluss)s.innerHTML=lkTextHtml(T.schluss,V);else s.remove()}}
+  if(art==='rechnung'){const p=P.find(x=>/für die ausgeführten Leistungen/.test(x.textContent));if(p&&T.ein)p.innerHTML=lkTextHtml(T.ein,V);
+   const s=P.find(x=>/^Bitte überweisen Sie den Betrag/.test(x.textContent));if(s&&T.schluss){const m=s.textContent.match(/(\d{1,2}\.\d{1,2}\.\d{4})/),n=s.textContent.match(/Rechnungsnummer\s+(\S+?)\.?$/);V.faellig=m?m[1]:'';V.nr=n?esc(n[1]):'';let t=T.schluss;if(!V.nr)t=t.replace(/\s*unter Angabe der Rechnungsnummer \{nr\}/,'');s.innerHTML=lkTextHtml(t,V)}}
+  if(art==='bericht'){const erst=P[0];if(T.ein&&erst)erst.insertAdjacentHTML('afterend',`<p class="lktx">${lkTextHtml(T.ein,V)}</p>`);if(T.schluss)sec.insertAdjacentHTML('beforeend',`<p class="lktx">${lkTextHtml(T.schluss,V)}</p>`);if(T.gruss)sec.insertAdjacentHTML('beforeend',`<p class="lktx">${lkTextHtml(T.gruss,V)}</p>`)}
+  else{const g=P.find(x=>/^Mit freundlichen Grüßen/.test(x.textContent));if(g&&T.gruss)g.innerHTML=lkTextHtml(T.gruss,V)}}
+ // Fußzeile: Reihenfolge der drei Spalten, „Onstand × Firma“
+ const fz=sec.querySelector('.fz');if(fz&&fz.children.length===3){const K=['firma','kontakt','bank'],C=[...fz.children];D.fuss.filter(k=>K.includes(k)).forEach(k=>fz.appendChild(C[K.indexOf(k)]))}
+ const ons=sec.querySelector('.ons');if(ons&&D.onst){const s=ons.querySelector('span');if(s)s.innerHTML=`<b>Onstand × <span class="lkname">${esc(LK.d.firma||F.name||'')}</span></b>`}}
+// Vor dem Druck / dem Text-PDF anwenden (auch für den sichtbaren Teil der E-Rechnung)
+{const alt=druckSeite;druckSeite=function(d){try{lkDok(d)}catch(e){console.error(e)}return alt.apply(this,arguments)}}
+for(const [fn,art] of [['auPdf','angebot'],['arPdfBlatt','rechnung'],['opBriefPdf','mahnung'],['cpBericht','bericht'],['exUebersicht','export']]){try{const alt=window[fn];if(typeof alt!=='function')continue;
+ window[fn]=function(){const vor=LK_DART;LK_DART=art;try{const r=alt.apply(this,arguments);if(r&&r.nodeType===1){try{lkDok(r)}catch(e){}}return r}finally{LK_DART=vor}}}catch(e){}}
+// Abnahmeprotokoll (eigenes Druckfenster): Kopf mit Logo, Titel, Texte, „Onstand × Firma“
+if(typeof abDrucken==='function'){const alt=abDrucken;abDrucken=function(k,html){try{if(LK.d){const D=lkDoks(LK.d),T=D.tx.abnahme;let F={};try{F=auFirma()}catch(e){}const V={inhaber:esc(F.inhaber||F.name||''),firma:esc(F.name||LK.d.firma||'')};
+ const pos=D.pos==='mitte'?'center':D.pos==='rechts'?'flex-end':'flex-start';
+ const kopf=`<div style="display:flex;flex-direction:${D.pos==='rechts'?'row-reverse':D.pos==='mitte'?'column':'row'};align-items:${D.pos==='mitte'?'center':'flex-end'};gap:12px;justify-content:space-between;padding-bottom:8px;margin-bottom:14px;${D.linie?'border-bottom:1.6pt solid '+(D.titelFarbe?LK.d.farbe:'#1b2230')+';':''}">${LK.d.voll?`<img src="${esc(LK.d.voll)}" alt="" style="width:${Math.round(D.groesse*.404)}mm;height:auto">`:''}${D.firmblock?`<div style="text-align:${D.pos==='mitte'?'center':D.pos==='rechts'?'left':'right'};font-size:9pt;color:#5c6675"><b style="display:block;color:#1b2230;font-size:11pt">${esc(F.name||LK.d.firma||'')}</b>${[esc(F.str||''),esc(F.ort||''),F.tel?'Tel. '+esc(F.tel):''].filter(Boolean).join(' · ')}</div>`:''}</div>`;
+ const tstil=`${D.titelFarbe?'color:'+LK.d.farbe+';':''}${D.titelSerif?'font-family:Georgia,serif;font-weight:500;':''}`;
+ let h=html;if(tstil)h=h.replace('<h3>',`<h3 style="${tstil}">`);if(T.ein)h=h.replace(/(<div class="meta">[\s\S]*?<\/div>)/,`$1<p>${lkTextHtml(T.ein,V)}</p>`);
+ const ende=`${T.schluss?`<p>${lkTextHtml(T.schluss,V)}</p>`:''}${T.gruss?`<p>${lkTextHtml(T.gruss,V)}</p>`:''}`;if(ende)h=h.includes('<div class="sig">')?h.replace('<div class="sig">',ende+'<div class="sig">'):h+ende;
+ h=(D.streifen?`<div style="position:fixed;left:0;top:0;bottom:0;width:4mm;background:linear-gradient(${lkMisch(LK.d.farbe,'#ffffff',.35)},${LK.d.farbe})"></div>`:'')+kopf+h+(D.onst?`<p style="margin-top:24px;font-size:7pt;color:#8a8f98;text-align:center">Onstand × ${esc(LK.d.firma||F.name||'')} · onstand.de</p>`:'');
+ return alt.call(this,k,h)}}catch(e){console.error(e)}return alt.apply(this,arguments)}}
 // ===== Onstand-Verwaltung (nur für den Onstand-Admin) · Schritt 1: Zugang + Neukunden-Codes =====
 // Zugang: Einstellungen → „Über Onstand“ → 5× auf die Überschrift „Onstand v…“ tippen → mit dem Admin-Konto anmelden.
 // Die Admin-Anmeldung ist eine EIGENE Sitzung (localStorage „onstandAdmin“) und ändert nichts am Firmenkonto dieses Geräts.
@@ -11067,6 +11153,7 @@ function vwLkSplash(d){d=lkVoll(d);const k=lkKopf(d,false);return `<div class="l
 
 // ---------- Seite ----------
 function vwLooksSeite(){const H=hyHandy(),L=VW.looks||[];
+ if(VW.lk&&VW.lkDok&&!VW.lkZu&&!VW.lookFehler)return vwDokSeite();
  if(VW.lookFehler)return `<div class="vwbox vwfehlbox"><b>Firmen-Looks sind auf dem Server noch nicht eingerichtet.</b><p>${esc(VW.lookFehler)}</p><p>Bitte die neue server/verwaltung.sql im Supabase SQL-Editor noch einmal ausführen.</p></div>`;
  const liste=`<div class="vwllist">${L.map(l=>{const d=lkVoll(l.daten),codes=(VW.codes||[]).filter(c=>c.look_id===l.id).length,firmen=(VW.firmen||[]).filter(f=>f.look_id===l.id).length;return `<button type="button" class="vwlk ${VW.lk&&VW.lk.id===l.id?'an':''}" data-lk="waehle" data-id="${esc(l.id)}">${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i style="background:${esc(d.farbe)}"></i>`}<span><b class="lkname">${esc(l.name)}</b><small>${d.grund==='papier'?'Papier':'Hell'} · ${codes} ${codes===1?'Code':'Codes'}${firmen?` · ${firmen===1?'1 Firma':firmen+' Firmen'}`:''}</small></span><em style="background:${esc(d.farbe)}"></em></button>`}).join('')}<button type="button" class="vwlk neu" data-lk="neu">+ Neuer Look</button></div>`;
  if(H&&(!VW.lk||VW.lkZu))return (VW.lk&&VW.lk.dirty?`<button type="button" class="vwbox vwweiter" data-lk="weiter"><b>Entwurf fortsetzen</b><span class="lkname">${esc(VW.lk.name||'Neuer Look')} · noch nicht gespeichert</span></button>`:'')+(L.length?liste:vwLkLeer());
@@ -11100,6 +11187,7 @@ function vwLkForm(){const lk=VW.lk,d=lk.daten,sig=lkSignal(d.farbe),knopf=lkKnop
   <label class="vwfeld">Willkommensbrief <span class="vwnorm">· einmal beim ersten Start · {name} = Name der Person</span><textarea class="vwin vwtext" rows="5" data-lkf="gruss">${esc(d.gruss||vwLkGruss(d))}</textarea></label>
   <div class="vwschalter">${sch('start','Startbildschirm „Onstand × Firma“','voll beim ersten Start, danach 0,6 s')}${sch('brief','Willkommensbrief','einmal pro Gerät')}${sch('kopf','Firmen-Kopf im Cockpit','schrumpft beim Scrollen')}${sch('nr','Edition-Nummer','auf Startbildschirm und Brief')}</div>
  </div></div>
+ <div class="vwbox"><div class="vwbk"><b>Dokumente</b><span>Angebot · Rechnung · Bericht · Abnahme</span></div><div class="vwbi"><p class="vwhin" style="font-weight:400">Briefkopf mit Logo, Farbstreifen, Überschrift, eigene Texte und Fußzeile – mit Live-Vorschau auf A4.</p><div class="vwknr"><button type="button" class="vwbtn" data-lk="dok">Dokument-Vorlagen bearbeiten</button></div></div></div>
  <div class="vwbox"><div class="vwbi">
   ${lk.id?`<div class="vwhin">${firmen.length?`Aktiv bei: <b>${firmen.map(f=>esc(f.name)).join(', ')}</b>`:'Noch keiner Firma zugewiesen.'}</div>`:''}
   <p class="vwfehltext">${esc(lk.fehler||'')}</p>
@@ -11127,7 +11215,7 @@ function vwDatei(fn){const i=document.createElement('input');i.type='file';i.acc
 
 // ---------- Knöpfe ----------
 async function vwFirmenLaden(){if(VW.firmen)return VW.firmen;try{VW.firmen=await vwRpc('nk_firmen_liste')||[]}catch(e){VW.firmen=[]}return VW.firmen}
-function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLaden().then(()=>{if(inh.isConnected&&VW.tab==='looks')vwMalen(inh)})}
+function vwLooksBinden(inh){if(VW.lkDok&&VW.lk)vwDokBinden(inh);if(VW.firmen===null){VW.firmen=undefined;vwFirmenLaden().then(()=>{if(inh.isConnected&&VW.tab==='looks')vwMalen(inh)})}
  const neuMalen=()=>vwMalen(inh);
  const vorschauNeu=()=>{const v=inh.querySelector('.vwlvor');if(v){const d=Object.assign({},VW.lk.daten,{firma:VW.lk.name});v.innerHTML=VW.lkVor==='start'?vwLkSplash(d):vwLkVorschau(d,VW.lkVor,VW.lkDk)}};
  inh.querySelectorAll('[data-lkf]').forEach(el=>{const k=el.dataset.lkf;el.oninput=()=>{const lk=VW.lk;if(!lk)return;vwLkGeaendert();if(k==='name')lk.name=el.value;else lk.daten[k]=el.value;
@@ -11139,11 +11227,12 @@ function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLad
  inh.querySelectorAll('[data-lk]').forEach(b=>b.onclick=async()=>{const a=b.dataset.lk,lk=VW.lk;
   if((a==='neu'||a==='waehle')&&lk&&lk.dirty&&!(a==='waehle'&&lk.id===b.dataset.id)&&!b.dataset.ok){onDialog(`<h3>Änderungen verwerfen?</h3><p>Der Look „${esc(lk.name||'ohne Namen')}“ ist noch nicht gespeichert.</p>`,[['ABBRECHEN',''],['VERWERFEN','ja']],{ja:()=>{lk.dirty=false;vwLkSichern();b.dataset.ok='1';setTimeout(()=>{b.click();delete b.dataset.ok},30)}});return}
   if(a==='waehle'&&lk&&lk.id===b.dataset.id)return;
-  VW.lkZu=false;
+  if(a==='neu'||a==='waehle'||a==='weiter'){VW.lkZu=false;VW.lkDok=false}
   if(a==='neu'){VW.tab='looks';VW.lk=vwLkNeu();VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen();setTimeout(()=>{const i=inh.querySelector('[data-lkf=name]');if(i)i.focus()},40);return}
   if(a==='waehle'){const l=vwLook(b.dataset.id);if(l){VW.lk={id:l.id,name:l.name,geaendert:l.geaendert,daten:lkVoll(JSON.parse(JSON.stringify(l.daten||{}))),grussEigen:true,f2fest:true}}neuMalen();inh.scrollTop=0;return}
   if(a==='zur'){if(lk&&lk.dirty){VW.lkZu=true}else VW.lk=null;return neuMalen()}
   if(a==='weiter'){VW.lkZu=false;return neuMalen()}
+  if(a==='dok'){VW.lkDok=true;neuMalen();inh.scrollTop=0;return}
   if(a==='vor'){VW.lkVor=b.dataset.v;return neuMalen()}
   if(a==='dk'){VW.lkDk=b.dataset.v==='1';return neuMalen()}
   if(!lk)return;
@@ -11166,6 +11255,74 @@ function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLad
    {ja:async d=>{const r=d.querySelector('input[name=vwfw]:checked');if(!r)return false;try{await vwRpc('nk_look_zuweisen',{p_firma:r.value,p_look:lk.id});const f=F.find(x=>x.id===r.value);f.look_id=lk.id;onToast('„'+lk.name+'“ gilt jetzt für '+f.name);if(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.firma===r.value)setTimeout(lkHolen,300)}catch(e){onToast(vwFehlerText(e))}neuMalen()},
     weg:async d=>{const r=d.querySelector('input[name=vwfw]:checked');if(!r)return false;try{await vwRpc('nk_look_zuweisen',{p_firma:r.value,p_look:null});const f=F.find(x=>x.id===r.value);f.look_id=null;onToast(f.name+' sieht wieder normal aus');if(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.firma===r.value)setTimeout(lkHolen,300)}catch(e){onToast(vwFehlerText(e))}neuMalen()}});return}
  })}
+// ===== Onstand-Verwaltung · Schritt 3: Dokument-Vorlagen eines Firmen-Looks (Probe „ESTETA-Vorlagen“) =====
+// Links: Kopf, Farbe & Schrift, Texte je Dokument, Fußzeile. Rechts: Live-Vorschau A4 (Angebot, Rechnung, Bericht, Abnahmeprotokoll).
+// Gespeichert wird mit dem Look (daten.doks). Fest: Zahlen schwarz, Pflichtangaben, E-Rechnung; Zahlungsziel aus „Firma & Preise“.
+VW.dokArt='rechnung';VW.dokPflicht=false;
+const VW_DOKS=[['angebot','Angebot'],['rechnung','Rechnung'],['bericht','Bericht'],['abnahme','Abnahmeprotokoll']];
+const VW_FUSS={firma:'Firma & Adresse',kontakt:'Kontakt & Steuer',bank:'Bank & Register'};
+const VW_BSP={str:'Beispielstraße 12',ort:'60311 Frankfurt am Main',tel:'069 123 456 78',mail:'info@firma-beispiel.de',stnr:'045 123 45678',ust:'DE123456789',bank:'Frankfurter Volksbank',iban:'DE12 5019 0000 0123 4567 89',bic:'FFVBDEFFXXX',hr:'HRB 123456 · AG Frankfurt',inhaber:'Max Beispiel'};
+function vwDok(){const lk=VW.lk;lk.daten.doks=lkDoks(lk.daten);return lk.daten.doks}
+function vwDokBlatt(){const lk=VW.lk,d=lkVoll(lk.daten),D=lkDoks(d),art=VW.dokArt,T=D.tx[art],B=VW_BSP,firma=lk.name||'Firma';
+ const V={inhaber:B.inhaber,firma,faellig:'01.12.2026',nr:'R-2026-118'},tx=t=>t?`<p class="dtx">${lkTextHtml(t,V)}</p>`:'';
+ const pf=x=>VW.dokPflicht&&art==='rechnung'?` style="outline:1px dashed #C08A3E;background:rgba(192,138,62,.08)"`:'';
+ const kopf=`<div class="dkopf ${D.pos}">${d.voll?`<img src="${esc(d.voll)}" style="width:${D.groesse}px" alt="">`:`<span class="ohne">${esc(firma)}</span>`}${D.firmblock?`<div class="fb"><b>${esc(firma)}</b>${B.str} · ${B.ort}<br>${B.tel} · ${B.mail}</div>`:''}</div>${D.linie?`<div class="dlinie ${D.titelFarbe?'farbe':''}"></div>`:''}`;
+ const meta={angebot:[['Angebots-Nr.','A-2026-041'],['Datum','17.11.2026'],['Gültig bis','17.12.2026'],['Bauvorhaben','Kessler Miami']],rechnung:[['Rechnungs-Nr.','R-2026-118',1],['Datum','17.11.2026',1],['Leistungszeitraum','03.–14.11.2026',1],['Bauvorhaben','Kessler Miami']],bericht:[['Baustelle','Kessler Miami'],['Stand','17.11.2026']],abnahme:[['Baustelle','Kessler Miami'],['Datum','17.11.2026']]}[art];
+ const adr=art==='bericht'?`<div class="meta" style="max-width:220px">${meta.map(([a,b])=>`<span>${a}</span><b>${b}</b>`).join('')}</div>`:`<div class="adr"><div><div class="abs">${esc(firma)} · ${B.str} · ${B.ort}</div><div${pf()}>Familie Kessler<br>Bahnhofstraße 4<br>61348 Bad Homburg</div></div><div class="meta">${meta.map(([a,b,p])=>`<span${p?pf():''}>${a}</span><b${p?pf():''}>${b}</b>`).join('')}</div></div>`;
+ const titel={angebot:'Badsanierung Obergeschoss',rechnung:'Badsanierung Obergeschoss',bericht:'Baustellenbericht · Kessler Miami',abnahme:'Abnahmeprotokoll · Kessler Miami'}[art];
+ let mitte='';
+ if(art==='angebot'||art==='rechnung')mitte=`<table><tr><th>Pos.</th><th>Leistung</th><th class="r">Menge</th><th class="r">Einzelpreis</th><th class="r">Gesamt</th></tr>${[['Trockenbau Vorwandinstallation WC','1 Stk','1.240,00 €','1.240,00 €'],['Wandfliesen 30×60 cm, verlegt','24 m²','90,00 €','2.160,00 €'],['Spachteln Q3 und Anstrich','18 m²','34,00 €','612,00 €']].map((p,i)=>`<tr><td>${i+1}</td><td>${p[0]}</td><td class="r">${p[1]}</td><td class="r">${p[2]}</td><td class="r">${p[3]}</td></tr>`).join('')}</table>
+  <div class="dsum"><span>Summe netto</span><span class="r">4.012,00 €</span><span${pf()}>zzgl. 19 % MwSt.</span><span class="r"${pf()}>762,28 €</span><span class="g">${art==='angebot'?'Angebotssumme':'Rechnungsbetrag'}</span><span class="g r">4.774,28 €</span></div>`;
+ else if(art==='bericht')mitte=[['Mo, 16.11.','Vorwand WC gestellt, Leitungen angeschlossen','Jaczek, Krzysztof · 16 Std.'],['Di, 17.11.','Beplankung und erste Spachtelung','Jaczek, Pavek · 15 Std.'],['Mi, 18.11.','Abdichtung Dusche','Krzysztof · 6 Std.']].map(([a,b,c])=>`<div class="tbe"><b>${a}</b><span>${b}</span><span style="color:#6B7280">${c}</span></div>`).join('');
+ else mitte=`<table><tr><th>Nr.</th><th>Stelle</th><th>Mangel</th><th>Frist</th></tr><tr><td>1</td><td>Bad OG</td><td>Silikonfuge Dusche nacharbeiten</td><td>24.11.2026</td></tr><tr><td>2</td><td>Flur</td><td>Kratzer Türzarge</td><td>24.11.2026</td></tr></table><div class="unt"><div>Auftraggeber</div><div>Auftragnehmer</div></div>`;
+ const spalten={firma:`<div><b>${esc(firma)}</b>${B.str}<br>${B.ort}<br>Inhaber: ${B.inhaber}</div>`,kontakt:`<div${pf()}><b>Kontakt</b>Tel. ${B.tel}<br>${B.mail}<br>St.-Nr. ${B.stnr}<br>USt-IdNr. ${B.ust}</div>`,bank:`<div${pf()}><b>Bank</b>${B.bank}<br>IBAN ${B.iban}<br>BIC ${B.bic}<br>${B.hr}</div>`};
+ const fuss=art==='angebot'||art==='rechnung'?`<div class="dfuss">${D.fuss.map(k=>spalten[k]).join('')}</div>`:'';
+ const ons=`<div class="donst">${D.onst?`Onstand × ${esc(firma)}`:'Erstellt mit Onstand'} · onstand.de</div>`;
+ const schluss=art==='rechnung'&&T.schluss?`<p class="dtx">${lkTextHtml(T.schluss,V)}</p>`:tx(T.schluss);
+ return `<div class="vwblatt ${D.streifen?'streif':''}" style="--f:${esc(d.farbe)};--f2:${esc(lkMisch(d.farbe,'#ffffff',.35))}">${kopf}${adr}<h3 class="dtitel ${D.titelSerif?'serif':''} ${D.titelFarbe?'farbe':''}">${titel}</h3>${tx(T.ein)}${mitte}${schluss}${tx(T.gruss)}${fuss||'<div style="margin-top:auto"></div>'}${ons}</div>`}
+function vwDokSeite(){const lk=VW.lk,D=vwDok(),dn=VW_DOKS.find(x=>x[0]===VW.dokArt)[1],T=D.tx[VW.dokArt];
+ const seg=(k,opt)=>`<span class="vwseg">${opt.map(([v,n])=>`<button type="button" class="${String(D[k])===String(v)?'an':''}" data-dk="set" data-k="${k}" data-v="${v}">${n}</button>`).join('')}</span>`;
+ const sch=(k,t)=>`<label class="vwsch"><span>${t}</span><input type="checkbox" data-dka="${k}" ${D[k]?'checked':''}></label>`;
+ const hint={angebot:'{inhaber} = Inhaber/Firma',rechnung:'{faellig} = Fälligkeitsdatum · {nr} = Rechnungsnummer · {inhaber} = Inhaber/Firma',bericht:'{inhaber} = Inhaber/Firma',abnahme:'{inhaber} = Inhaber/Firma'}[VW.dokArt];
+ return `<div class="vwknr" style="margin-bottom:12px"><button type="button" class="vwbtn" data-dk="zur">‹ Zurück zum Look „<span class="lkname">${esc(lk.name||'Neuer Look')}</span>“</button></div>
+ <div class="vwdgrid"><div class="vwdlinks">
+  <div class="vwbox"><div class="vwbk"><b>Dokumente</b>${lk.dirty?'<span class="vwungesp">Nicht gespeicherte Änderungen</span>':'<span>wird mit dem Look gespeichert</span>'}</div><div class="vwbi">
+   <div class="vwzz"><span>Logo</span>${seg('pos',[['links','Links'],['mitte','Mitte'],['rechts','Rechts']])}</div>
+   <div class="vwzz"><span>Größe</span><span class="vwrange"><input type="range" min="110" max="260" value="${D.groesse}" data-dkr="groesse"></span></div>
+   <div class="vwschalter">${sch('firmblock','Firmenblock neben dem Logo')}</div>
+  </div></div>
+  <div class="vwbox"><div class="vwbk"><b>Farbe &amp; Schrift</b></div><div class="vwbi">
+   <div class="vwschalter">${sch('streifen','Farbstreifen am Rand')}${sch('linie','Linie unter dem Kopf')}</div>
+   <div class="vwzz"><span>Überschrift</span>${seg('titelFarbe',[[false,'Schwarz'],[true,'Firmenfarbe']])}</div>
+   <div class="vwzz"><span>Schrift der Überschrift</span>${seg('titelSerif',[[false,'Normal'],[true,'Serif']])}</div>
+   <div class="vwzz"><span>Zahlen und Beträge</span><span>immer Schwarz</span></div>
+  </div></div>
+  <div class="vwbox"><div class="vwbk"><b>Texte · ${dn}</b><span>nur für ${dn}</span></div><div class="vwbi">
+   <label class="vwfeld">Einleitung<textarea class="vwin vwtext" rows="3" data-dkt="ein">${esc(T.ein)}</textarea></label>
+   <label class="vwfeld">Schlusstext<textarea class="vwin vwtext" rows="2" data-dkt="schluss">${esc(T.schluss)}</textarea></label>
+   <label class="vwfeld">Grußformel<textarea class="vwin vwtext" rows="2" data-dkt="gruss">${esc(T.gruss)}</textarea></label>
+   <span class="vwhin">${hint}${VW.dokArt==='rechnung'?' · Das Zahlungsziel selbst stellst du unter „Firma &amp; Preise“ ein.':''}</span>
+  </div></div>
+  <div class="vwbox"><div class="vwbk"><b>Fußzeile</b><span>Angebot und Rechnung</span></div><div class="vwbi">
+   <div class="vwfuss">${D.fuss.map((k,i)=>`<div><span>${VW_FUSS[k]}</span><button type="button" data-dk="hoch" data-i="${i}" ${i===0?'disabled':''}>▲</button><button type="button" data-dk="runter" data-i="${i}" ${i===D.fuss.length-1?'disabled':''}>▼</button></div>`).join('')}</div>
+   <span class="vwhin">Die Angaben kommen aus „Firma &amp; Preise“ der jeweiligen Firma.</span>
+   <div class="vwschalter">${sch('onst','„Onstand × Firma“ unten statt „Erstellt mit Onstand“')}</div>
+  </div></div>
+  <div class="vwfest"><b>Bleibt immer fest</b><ul><li>Zahlen und Beträge in Schwarz</li><li>Pflichtangaben der Rechnung: Nummer, Datum, Leistungszeitraum, Adresse, Steuernummer, MwSt., Bank</li><li>E-Rechnung (XRechnung/ZUGFeRD) – nur das Aussehen ändert sich</li></ul><label class="vwsch" style="padding:8px 0 0"><span>Pflichtangaben markieren</span><input type="checkbox" data-dk="pflicht" ${VW.dokPflicht?'checked':''}></label></div>
+  <div class="vwknr"><button type="button" class="vwbtn p" data-lk="speichern">Look speichern</button><button type="button" class="vwbtn" data-dk="zurueck">Texte zurücksetzen</button></div>
+ </div>
+ <div class="vwdrechts"><div class="vwdbar"><span class="vwseg">${VW_DOKS.map(([k,n])=>`<button type="button" class="${VW.dokArt===k?'an':''}" data-dk="art" data-v="${k}">${n}</button>`).join('')}</span></div><div class="vwdflach">${vwDokBlatt()}</div></div></div>`}
+function vwDokBinden(inh){const neu=()=>vwMalen(inh),vor=()=>{const f=inh.querySelector('.vwdflach');if(f)f.innerHTML=vwDokBlatt()};
+ inh.querySelectorAll('[data-dkt]').forEach(t=>t.oninput=()=>{vwDok().tx[VW.dokArt][t.dataset.dkt]=t.value;vwLkGeaendert();vor()});
+ inh.querySelectorAll('[data-dkr]').forEach(r=>r.oninput=()=>{vwDok()[r.dataset.dkr]=+r.value;vwLkGeaendert();vor()});
+ inh.querySelectorAll('[data-dka]').forEach(c=>c.onchange=()=>{vwDok()[c.dataset.dka]=c.checked;vwLkGeaendert();neu()});
+ inh.querySelectorAll('[data-dk]').forEach(b=>{const a=b.dataset.dk;if(a==='pflicht'){b.onchange=()=>{VW.dokPflicht=b.checked;vor()};return}
+  b.onclick=()=>{const D=vwDok();
+   if(a==='zur'){VW.lkDok=false;return neu()}
+   if(a==='art'){VW.dokArt=b.dataset.v;return neu()}
+   if(a==='set'){let v=b.dataset.v;if(v==='true')v=true;else if(v==='false')v=false;D[b.dataset.k]=v;vwLkGeaendert();return neu()}
+   if(a==='hoch'||a==='runter'){const i=+b.dataset.i,j=a==='hoch'?i-1:i+1;[D.fuss[i],D.fuss[j]]=[D.fuss[j],D.fuss[i]];vwLkGeaendert();return neu()}
+   if(a==='zurueck'){D.tx[VW.dokArt]=Object.assign({},LK_DOK_TX[VW.dokArt]);vwLkGeaendert();return neu()}}})}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
