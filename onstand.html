@@ -4003,13 +4003,87 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 #bp .form .pill,#bp #vNeu .pill{height:32px;font-size:12.5px}
 #bp .vorschau{background:var(--k-b1)!important;border:1px solid var(--k-lin)!important;border-radius:6px!important}
 #bp #druckAlle{justify-content:center}
+/* ===== Onstand-Verwaltung (nur Admin) · Probe „Onstand-Verwaltung“ ===== */
+#am .vwk{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+#am .vwkr{display:flex;gap:8px}
+#am .vwbtn{height:34px;padding:0 14px;border:1px solid var(--k-lin);border-radius:5px;background:var(--k-b1);color:var(--k-t);font:600 13px var(--k-ui);display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}
+#am .vwbtn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+#am .vwbtn.p{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf,var(--k-t))}
+#am .vwbtn.rot{color:var(--k-rot)}
+#am .vwbtn:disabled{opacity:.55;cursor:default}
+#am .vwtabs{display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--k-lin);margin:4px 0 14px}
+#am .vwtabs>button{border:0;background:none;font:inherit;font-size:13.5px;color:var(--k-sub);padding:8px 0 9px;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;display:flex;gap:6px;align-items:center}
+#am .vwtabs>button.an{color:var(--k-t);font-weight:600;border-color:var(--k-akz)}
+#am .vwtabs>button em{font-style:normal;font-size:11px;background:var(--k-b0);border:1px solid var(--k-lin);border-radius:9px;padding:0 6px;color:var(--k-sub)}
+#am .vwwer{margin-left:auto;font-size:12px;color:var(--k-sub)}#am .vwwer button{border:0;background:none;color:var(--k-akz);font:inherit;cursor:pointer;padding:0}
+#am .vwgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+#am .vwlinks{display:flex;flex-direction:column;gap:12px;min-width:0}
+#am .vwrechts{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;position:sticky;top:0}
+#am .vwbox{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden}
+#am .vwbk{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--k-lin)}#am .vwbk b{font-size:13.5px}#am .vwbk span{font-size:12px;color:var(--k-sub)}
+#am .vwbi{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+#am .vwtab{width:100%;border-collapse:collapse;font-size:13px}
+#am .vwtab th{text-align:left;font-size:12px;color:var(--k-sub);font-weight:600;padding:8px 14px;border-bottom:1px solid var(--k-lin);white-space:nowrap}
+#am .vwtab td{padding:9px 14px;border-bottom:1px solid var(--k-lin);vertical-align:middle}
+#am .vwtab tr:last-child td{border-bottom:0}
+#am .vwtab td small{display:block;color:var(--k-sub);font-size:12px}
+#am .vwtab tbody tr{cursor:pointer}#am .vwtab tbody tr:hover td{background:color-mix(in srgb,var(--k-akz) 4%,var(--k-b1))}#am .vwtab tr.sel td{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))}
+#am .vwcode{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace!important;letter-spacing:.6px;white-space:nowrap}
+#am .vwgross{font-size:21px;font-weight:700;letter-spacing:2px}
+#am .vwpill{display:inline-block;font-size:12px;font-weight:600;border-radius:20px;padding:1px 9px;white-space:nowrap;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}
+#am .vwchips{display:flex;gap:6px;flex-wrap:wrap}#am .vwchips span{font-size:12px;border-radius:14px;padding:3px 10px;background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));color:var(--k-akz);font-weight:600}
+#am .vwhin{font-size:12.5px;color:var(--k-sub);margin:0}
+#am .vwpk{padding:16px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--k-lin)}#am .vwpk:last-child{border-bottom:0}
+#am .vwpk h3{margin:0;font-size:17px;font-weight:600}
+#am .vwo{font-size:12px;font-weight:600;color:var(--k-sub)}
+#am .vwfeld{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--k-sub);font-weight:600}
+#am .vwin{height:34px;border:1px solid var(--k-lin);border-radius:5px;padding:0 10px;font:400 13.5px var(--k-ui);background:var(--k-b1);color:var(--k-t);width:100%}
+#am .vwin:focus{outline:2px solid color-mix(in srgb,var(--k-akz) 45%,transparent);outline-offset:0;border-color:var(--k-akz)}
+#am .vwwert{font-size:13.5px;color:var(--k-t);font-weight:400}#am .vwwert small{color:var(--k-sub)}
+#am .vwcodebox{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1));border:1px solid color-mix(in srgb,var(--k-akz) 25%,var(--k-lin))}#am .vwcodebox .vwcode{flex:1}
+#am .vwknr{display:flex;gap:8px;flex-wrap:wrap}
+#am .vwfehltext:empty{display:none}#am .vwfehltext{margin:0;font-size:12.5px;color:var(--k-rot)}
+#am .vwfirma{display:flex;align-items:center;gap:10px;justify-content:space-between}#am .vwfirma b{font-size:14.5px}#am .vwfirma small{display:block;font-size:12px;color:var(--k-sub)}
+#am .vwzeit{display:flex;flex-direction:column}
+#am .vwzeit div{position:relative;padding:6px 0 8px 22px;font-size:13px}
+#am .vwzeit div:before{content:'';position:absolute;left:0;top:10px;width:10px;height:10px;border-radius:50%;background:var(--c)}
+#am .vwzeit div:not(:last-child):after{content:'';position:absolute;left:4.5px;top:24px;bottom:-4px;width:1px;background:var(--k-lin)}
+#am .vwzeit b{font-weight:600;display:block}#am .vwzeit small{display:block;color:var(--k-sub);font-size:12px}
+#am .vwhinbox{margin:0;padding:10px 12px;border-radius:8px;background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1));font-size:12.5px}
+#am .vwbald{display:flex;justify-content:space-between;gap:10px;width:100%;border:0;border-top:1px solid var(--k-lin);background:none;padding:9px 0;font:inherit;font-size:13px;color:var(--k-t);cursor:pointer;text-align:left}#am .vwpk .vwbald:first-of-type{border-top:0}#am .vwbald span{color:var(--k-sub);font-size:12px}
+#am .vwbaldl{padding:0 14px}
+#am .vwleerkarte{padding:22px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}#am .vwleerkarte b{font-size:15px}#am .vwleerkarte p{margin:0;color:var(--k-sub);font-size:13px;max-width:56ch}
+#am .vwfehlbox{padding:18px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}#am .vwfehlbox p{margin:0;color:var(--k-sub)}
+#am .vwleer{padding:30px;color:var(--k-sub)}
+#am .vwkz{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+#am .vwkz div{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:12px 14px}#am .vwkz small{display:block;font-size:12px;color:var(--k-sub)}#am .vwkz b{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}#am .vwkz em{display:block;font-style:normal;font-size:12px;color:var(--k-sub)}
+#am .vwug{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12px;align-items:start}
+#am .vwtr{padding:12px 14px;display:flex;flex-direction:column;gap:9px}#am .vwtr div{display:grid;grid-template-columns:130px minmax(0,1fr) 34px;gap:10px;align-items:center;font-size:13px}#am .vwtr i{height:14px;border-radius:3px;background:var(--k-lin);overflow:hidden}#am .vwtr u{display:block;height:100%;background:var(--k-akz);border-radius:3px}#am .vwtr b{text-align:right;font-variant-numeric:tabular-nums}
+/* Handy */
+@media (max-width:760px){
+ #am .aminhalt>.mgk.vwk{flex-direction:row!important;align-items:flex-end!important;justify-content:space-between!important;text-align:left!important}#am .vwk>div:first-child{text-align:left}
+ #am .vwk .vwbtn span{display:none}#am .vwk .vwbtn.p{width:40px;height:40px;border-radius:50%;padding:0;justify-content:center}
+ #am .vwtabs{gap:0;background:color-mix(in srgb,color-mix(in srgb,var(--k-sub) 67%,var(--k-b1)) 12%,transparent);border:0;border-radius:9px;padding:2px;flex-wrap:wrap}
+ #am .vwtabs>button{flex:1;justify-content:center;border:0;border-radius:7px;padding:6px 0;margin:0}#am .vwtabs>button.an{background:var(--k-b1);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+ #am .vwwer{flex-basis:100%;text-align:center;padding:6px 0 2px}
+ #am .vwgrp{background:var(--k-b1);border-radius:16px;overflow:hidden}
+ #am .vwz{display:flex;align-items:center;gap:10px;width:100%;padding:12px 14px;border:0;border-top:.5px solid var(--k-lin);background:none;font:inherit;color:var(--k-t);text-align:left;cursor:pointer}#am .vwz:first-child{border-top:0}
+ #am .vwzt{flex:1;min-width:0}#am .vwzt b{font-size:15px;display:block}#am .vwzt small{display:block;font-size:12.5px;color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #am .vwpk.vwhy{background:var(--k-b1);border-radius:16px;border:0;margin-bottom:10px}
+ #am .vwhy+.vwpk{background:var(--k-b1);border-radius:16px;border:0}
+ #am .vwin{height:44px;font-size:16px;border-radius:10px}
+ #am .vwbtn{height:44px;border-radius:22px;font-size:15px;padding:0 18px}
+ #am .vwkz{grid-template-columns:1fr 1fr}#am .vwug{grid-template-columns:minmax(0,1fr)}
+ #am .vwtr div{grid-template-columns:110px minmax(0,1fr) 28px}
+}
+#am .vwbaldl .vwbald:first-child{border-top:0}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.67';
+const ON_VER='0.10.68';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10545,6 +10619,136 @@ function fmStop(senden){clearTimeout(FM.t);const r=FM.rec;FM.rec=null;const t=(F
 {const alt=asMalen;asMalen=function(){const r=alt.apply(this,arguments);try{fmZeigen()}catch(e){}return r}}
 // Schließen des Assistenten beendet das Zuhören
 {const alt=typeof asZu==='function'?asZu:null;if(alt)asZu=function(){if(FM.an)fmStop(false);return alt.apply(this,arguments)}}
+// ===== Onstand-Verwaltung (nur für den Onstand-Admin) · Schritt 1: Zugang + Neukunden-Codes =====
+// Zugang: Einstellungen → „Über Onstand“ → 5× auf die Überschrift „Onstand v…“ tippen → mit dem Admin-Konto anmelden.
+// Die Admin-Anmeldung ist eine EIGENE Sitzung (localStorage „onstandAdmin“) und ändert nichts am Firmenkonto dieses Geräts.
+// Ob das Konto Admin ist, entscheidet nur der Server (Tabelle admins, Funktion bin_admin). Jede Code-Funktion prüft das selbst.
+// Danach erscheint links in der Seitenleiste (Handy: unter „Mehr“) der Punkt „Verwaltung“.
+const VW={admin:false,sitz:null,codes:null,tab:'codes',sel:null,neu:null,laedt:false,fehler:''};
+try{VW.sitz=JSON.parse(localStorage.getItem('onstandAdmin')||'null');VW.admin=!!VW.sitz}catch(e){}
+const VW_ZEICHEN='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const VW_TAGE=864e5;
+function vwSitzSetzen(j){if(!j){VW.sitz=null;VW.admin=false;try{localStorage.removeItem('onstandAdmin')}catch(e){}return}
+ VW.sitz={at:j.access_token,rt:j.refresh_token,exp:j.expires_at||Math.floor(Date.now()/1000)+(j.expires_in||3600),email:j.user&&j.user.email||(VW.sitz&&VW.sitz.email)||''};
+ try{localStorage.setItem('onstandAdmin',JSON.stringify(VW.sitz))}catch(e){}}
+async function vwToken(){if(!VW.sitz)return null;if(Date.now()/1000>VW.sitz.exp-60){try{vwSitzSetzen(await syAuth('token?grant_type=refresh_token',{refresh_token:VW.sitz.rt}))}catch(e){if(e.status>=400&&e.status<500){vwSitzSetzen(null);vwNav()}throw e}}return VW.sitz&&VW.sitz.at}
+async function vwRpc(n,a){if(!SY_SERVER||!SY_SERVER.u)throw new Error('Kein Server eingestellt.');const t=await vwToken();if(!t)throw new Error('Nicht angemeldet.');
+ const r=await fetch(syBasis()+'/rest/v1/rpc/'+n,{method:'POST',headers:{apikey:SY_SERVER.k,Authorization:'Bearer '+t,'Content-Type':'application/json'},body:JSON.stringify(a||{})});
+ const tx=await r.text();let j=null;try{j=tx?JSON.parse(tx):null}catch(e){}
+ if(!r.ok){const m=(j&&(j.message||j.hint))||('Fehler '+r.status);const e=new Error(m);e.status=r.status;throw e}return j}
+function vwFehlerText(e){const m=String(e&&e.message||e||'');
+ if(/nur_admin/.test(m))return 'Dieses Konto ist kein Admin-Konto.';if(/code_vergeben/.test(m))return 'Diesen Code gibt es schon – bitte noch einmal versuchen.';
+ if(/code_form/.test(m))return 'Der Code hat nicht die Form FIRMA-XXXX.';if(/firma_fehlt/.test(m))return 'Bitte den Firmennamen eintragen.';
+ if(/Could not find the function|PGRST202|does not exist/.test(m))return 'Auf dem Server fehlt noch die Verwaltung. Bitte server/verwaltung.sql im Supabase SQL-Editor ausführen.';
+ if(e instanceof TypeError)return 'Keine Verbindung zum Server.';return typeof syFehlerText==='function'?syFehlerText(e):m}
+
+// ---------- Prüfen, ob dieses Gerät eine Admin-Sitzung hat ----------
+async function vwPruefen(){if(!VW.sitz){VW.admin=false;vwNav();return false}
+ try{VW.admin=!!(await vwRpc('bin_admin'))}catch(e){if(e.status===401||e.status===403){vwSitzSetzen(null)}VW.admin=VW.admin&&!(e.status>=400&&e.status<500)}
+ vwNav();return VW.admin}
+function vwNav(){try{if(AM_EL&&AM_EL.querySelector('.onnav'))amSchiene()}catch(e){}if(!VW.admin&&AM_AKT==='verwaltung'){try{amFunktion('cockpit')}catch(e){}}}
+
+// ---------- Versteckter Zugang: 5× auf „Onstand v…“ im Dialog „Über Onstand“ ----------
+{let n=0,t=0;document.addEventListener('click',ev=>{const h=ev.target.closest&&ev.target.closest('.ondlg h3');if(!h||!/^Onstand v/.test(h.textContent.trim()))return;
+ const jetzt=Date.now();n=jetzt-t<1500?n+1:1;t=jetzt;if(n>=5){n=0;vwAnmeldeDialog()}})}
+function vwAnmeldeDialog(){if(VW.admin){onDialog(`<h3>Onstand-Verwaltung</h3><p>Angemeldet als <b>${esc(VW.sitz&&VW.sitz.email||'')}</b>.</p>`,[['ABMELDEN','raus'],['ÖFFNEN','auf']],{raus:()=>{vwAbmelden()},auf:()=>{setTimeout(()=>amFunktion('verwaltung'),60)}});return}
+ if(!SY_SERVER||!SY_SERVER.u){onDialog('<h3>Onstand-Verwaltung</h3><p>Auf diesem Gerät ist kein Server eingestellt.</p>',[['OK','']]);return}
+ onDialog(`<h3>Onstand-Verwaltung</h3><p class="kl">Nur für das Onstand-Admin-Konto. Das Firmenkonto dieses Geräts bleibt unverändert.</p><label>E-MAIL<input data-v="mail" type="email" autocomplete="username" spellcheck="false"></label><label>PASSWORT<input data-v="pw" type="password" autocomplete="current-password"></label><p class="syfehl vwfehl"></p>`,[['ABBRECHEN',''],['ANMELDEN','los']],
+ {los:async(d,b)=>{const v=k=>d.querySelector(`[data-v=${k}]`).value.trim(),f=d.querySelector('.vwfehl');b.disabled=true;const alt=b.textContent;b.textContent='EINEN MOMENT …';
+  try{vwSitzSetzen(await syAuth('token?grant_type=password',{email:v('mail'),password:d.querySelector('[data-v=pw]').value}));
+   if(!(await vwPruefen())){vwSitzSetzen(null);throw new Error('nur_admin')}
+   onToast('Verwaltung freigeschaltet');setTimeout(()=>amFunktion('verwaltung'),80)}
+  catch(e){f.textContent=/Invalid login|invalid_credentials/i.test(e.message)?'E-Mail oder Passwort stimmt nicht.':vwFehlerText(e);b.disabled=false;b.textContent=alt;return false}}})}
+function vwAbmelden(){vwSitzSetzen(null);VW.codes=null;vwNav();onToast('Aus der Verwaltung abgemeldet')}
+
+// ---------- Codes: Form, Status ----------
+function vwNeuerCode(firma){const p=(String(firma||'').trim().split(/\s+/)[0]||'FIRMA').toUpperCase().replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE').replace(/ß/g,'SS').replace(/[^A-Z]/g,'').slice(0,9);
+ let z='';const a=new Uint32Array(4);crypto.getRandomValues(a);for(const x of a)z+=VW_ZEICHEN[x%VW_ZEICHEN.length];return (p.length>=2?p:'FIRMA')+'-'+z}
+function vwStatus(c){const n=Date.now();if(c.gesperrt)return {k:'gesperrt',t:'Gesperrt',f:'rot',z:'nicht mehr einlösbar'};
+ if(c.eingeloest_am){const tb=c.test_bis?new Date(c.test_bis).getTime():0;if(tb>n){const r=Math.ceil((tb-n)/VW_TAGE);return {k:'test',t:'Testmonat',f:'info',z:'bis '+vwDatum(c.test_bis)+(r<=7?` · endet in ${r} ${r===1?'Tag':'Tagen'}`:''),rest:r}}
+  return {k:'vorbei',t:'Testmonat vorbei',f:'gruen',z:'seit '+vwDatum(c.test_bis||c.eingeloest_am)}}
+ if(new Date(c.einloesbar_bis).getTime()<n)return {k:'abgelaufen',t:'Abgelaufen',f:'sub',z:'nicht eingelöst bis '+vwDatum(c.einloesbar_bis)};
+ return {k:'offen',t:'Offen',f:'gelb',z:'einlösbar bis '+vwDatum(c.einloesbar_bis)}}
+const vwDatum=d=>d?new Date(d).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}):'–';
+const vwPill=s=>`<span class="vwpill" style="--c:var(--k-${s.f==='sub'?'sub':s.f})">${s.t}</span>`;
+function vwTeilenText(c){return `Hallo ${c.firma_name}, Ihr persönlicher Onstand-Code: ${c.code} – Onstand herunterladen, Code eingeben, und Sie bekommen Onstand mit Ihrem eigenen Firmen-Look 1 Monat gratis, inklusive KI-Paket. Einlösbar bis ${vwDatum(c.einloesbar_bis)}. onstand.de`}
+async function vwKopieren(t,msg){try{await navigator.clipboard.writeText(t);onToast(msg)}catch(e){onDialog(`<h3>Zum Kopieren</h3><p class="vwcode" style="user-select:all;word-break:break-word">${esc(t)}</p>`,[['OK','']])}}
+async function vwTeilen(c){const t=vwTeilenText(c);if(navigator.share&&hyHandy()){try{await navigator.share({text:t});return}catch(e){if(e&&e.name==='AbortError')return}}vwKopieren(t,'Nachricht mit Code kopiert')}
+
+// ---------- Seite ----------
+async function vwLaden(neu){if(VW.laedt)return;if(VW.codes&&!neu)return;VW.laedt=true;VW.fehler='';
+ try{VW.codes=await vwRpc('nk_codes_liste')||[]}catch(e){VW.fehler=vwFehlerText(e);if(e.status===401||/nur_admin/.test(e.message)){VW.admin=false;vwNav()}}
+ VW.laedt=false}
+async function vwZeigen(inh){if(!VW.admin){inh.innerHTML='<div class="amleer">Nur für das Onstand-Admin-Konto.</div>';return}
+ if(!VW.codes){inh.innerHTML=vwKopf()+'<div class="vwleer">Lade Codes …</div>';vwKnoepfe(inh);await vwLaden();if(!inh.isConnected)return}
+ vwMalen(inh)}
+const vwKopf=()=>`<div class="mgk vwk"><div><span class="amtt">Onstand · nur für dich</span><h2 class="mgh">Verwaltung</h2></div><div class="vwkr">${VW.tab==='codes'?`<button type="button" class="vwbtn p" data-vw="neu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Neuer Code</span></button>`:''}</div></div>
+ <div class="vwtabs" role="tablist">${[['codes','Codes',VW.codes?VW.codes.length:''],['ueber','Übersicht','']].map(([k,n,z])=>`<button type="button" role="tab" class="${VW.tab===k?'an':''}" aria-selected="${VW.tab===k}" data-tab="${k}">${n}${z!==''?`<em>${z}</em>`:''}</button>`).join('')}<span class="vwwer">${esc(VW.sitz&&VW.sitz.email||'')} · <button type="button" data-vw="raus">Abmelden</button></span></div>`;
+function vwMalen(inh){const H=hyHandy();let body='';
+ if(VW.fehler)body=`<div class="vwbox vwfehlbox"><b>Das ging gerade nicht.</b><p>${esc(VW.fehler)}</p><button type="button" class="vwbtn" data-vw="nochmal">Noch einmal</button></div>`;
+ else if(VW.tab==='ueber')body=vwUebersicht();
+ else if(H)body=VW.neu?vwNeuForm(true):VW.sel?vwDetail(vwCode(VW.sel),true):vwListe(true);
+ else body=`<div class="vwgrid"><div class="vwlinks">${vwListe(false)}${vwEnthaelt()}</div><aside class="vwrechts">${VW.neu?vwNeuForm(false):VW.sel&&vwCode(VW.sel)?vwDetail(vwCode(VW.sel),false):vwLeerRechts()}</aside></div>`;
+ inh.innerHTML=(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?`<button type="button" class="hyzur" data-vw="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Codes</button>`:'')+(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?'':vwKopf())+body;
+ vwKnoepfe(inh)}
+const vwCode=k=>(VW.codes||[]).find(c=>c.code===k);
+function vwListe(H){const L=VW.codes||[];
+ if(!L.length)return `<div class="vwbox vwleerkarte"><b>Noch keine Codes</b><p>Erstelle für eine Firma, die du gewinnen willst, einen persönlichen Code. Er ist 30 Tage einlösbar und schenkt einen Monat Grundpaket, KI-Paket und Firmen-Look.</p><button type="button" class="vwbtn p" data-vw="neu">Ersten Code erstellen</button></div>`;
+ if(H)return `<div class="vwgrp">${L.map(c=>{const s=vwStatus(c);return `<button type="button" class="vwz" data-code="${esc(c.code)}"><span class="vwzt"><b class="vwcode">${esc(c.code)}</b><small>${esc(c.firma_name)} · ${esc(s.z)}</small></span>${vwPill(s)}</button>`}).join('')}</div>`;
+ return `<div class="vwbox"><div class="vwbk"><b>Alle Codes</b><span>${L.filter(c=>c.eingeloest_am).length} von ${L.length} eingelöst</span></div><table class="vwtab"><thead><tr><th>Code</th><th>Firma</th><th>Status</th><th>Erstellt</th></tr></thead><tbody>${L.map(c=>{const s=vwStatus(c);return `<tr data-code="${esc(c.code)}" class="${VW.sel===c.code?'sel':''}"><td class="vwcode">${esc(c.code)}</td><td>${esc(c.firma_name)}${c.notiz?`<small>${esc(c.notiz)}</small>`:''}</td><td>${vwPill(s)}<small>${esc(s.z)}</small></td><td>${vwDatum(c.erstellt)}</td></tr>`}).join('')}</tbody></table></div>`}
+const vwEnthaelt=()=>`<div class="vwbox"><div class="vwbk"><b>Was ein Code enthält</b><span>gleich für jede Firma</span></div><div class="vwbi"><div class="vwchips"><span>Grundpaket</span><span>KI-Paket</span><span>Firmen-Look</span><span>1 Monat gratis</span></div><p class="vwhin">30 Tage einlösbar · gilt für genau eine Firma · danach läuft das Grundpaket weiter, das KI-Paket endet, der Firmen-Look bleibt.</p></div></div>`;
+function vwLeerRechts(){const L=VW.codes||[],bald=L.map(c=>[c,vwStatus(c)]).filter(([,s])=>s.k==='test'&&s.rest<=7);
+ return `<div class="vwpk"><small class="vwo">Codes</small><h3>Code auswählen</h3><p class="vwhin">Klick links auf einen Code für Verlauf, Kopieren, Teilen und Sperren – oder erstelle einen neuen.</p><button type="button" class="vwbtn p" data-vw="neu">Neuer Code</button></div>${bald.length?`<div class="vwpk"><small class="vwo">Testmonat endet bald</small>${bald.map(([c,s])=>`<button type="button" class="vwbald" data-code="${esc(c.code)}"><b>${esc(c.firma_name)}</b><span>${esc(s.z)}</span></button>`).join('')}</div>`:''}`}
+function vwNeuForm(H){const n=VW.neu;return `<div class="vwpk${H?' vwhy':''}"><small class="vwo">Neuer Code</small><h3>Code für eine Firma</h3>
+ <label class="vwfeld">Firma<input class="vwin" data-n="firma" value="${esc(n.firma)}" placeholder="z. B. Brandt Innenausbau" autocomplete="off"></label>
+ <label class="vwfeld">Notiz (nur für dich)<input class="vwin" data-n="notiz" value="${esc(n.notiz)}" placeholder="z. B. über Instagram, Architekt Weber" autocomplete="off"></label>
+ <div class="vwfeld">Enthält<div class="vwchips"><span>Grundpaket</span><span>KI-Paket</span><span>Firmen-Look</span><span>1 Monat</span></div></div>
+ <div class="vwfeld">Einlösbar bis<div class="vwwert">${vwDatum(Date.now()+30*VW_TAGE)} <small>(30 Tage)</small></div></div>
+ <div class="vwcodebox"><span class="vwcode vwgross">${esc(n.code)}</span><button type="button" class="vwbtn" data-vw="wuerfeln" title="Anderer Code" aria-label="Anderer Code">↻</button></div>
+ <p class="vwfehltext">${esc(n.fehler||'')}</p>
+ <div class="vwknr"><button type="button" class="vwbtn p" data-vw="erstellen">Code erstellen</button><button type="button" class="vwbtn" data-vw="abbr">Abbrechen</button></div></div>`}
+function vwDetail(c,H){if(!c)return vwLeerRechts();const s=vwStatus(c);const Z=[[`Erstellt am ${vwDatum(c.erstellt)}`,'von dir','sub']];
+ if(c.eingeloest_am){Z.push([`Eingelöst am ${vwDatum(c.eingeloest_am)}`,'Grundpaket, KI-Paket und Firmen-Look frei','info']);Z.push([`Testmonat ${s.k==='test'?'endet':'endete'} ${vwDatum(c.test_bis)}`,'danach Grundpaket 79,99 € · KI endet, wenn nicht gebucht · Look bleibt',s.k==='test'?'gelb':'gruen'])}
+ else if(s.k==='offen')Z.push([`Einlösbar bis ${vwDatum(c.einloesbar_bis)}`,'noch nicht eingelöst','gelb']);
+ else if(s.k==='gesperrt')Z.push(['Gesperrt','kann nicht eingelöst werden','rot']);
+ else Z.push([`Abgelaufen am ${vwDatum(c.einloesbar_bis)}`,'nicht eingelöst','sub']);
+ const offen=!c.eingeloest_am;
+ return `<div class="vwpk${H?' vwhy':''}"><small class="vwo">Code</small><div class="vwcodebox"><span class="vwcode vwgross">${esc(c.code)}</span></div>
+  <div class="vwfirma"><div><b>${esc(c.firma_name)}</b>${c.notiz?`<small>${esc(c.notiz)}</small>`:''}</div>${vwPill(s)}</div>
+  <div class="vwknr"><button type="button" class="vwbtn p" data-vw="kopie">Kopieren</button>${s.k==='offen'?`<button type="button" class="vwbtn" data-vw="teilen">Teilen</button>`:''}${offen?(c.gesperrt?`<button type="button" class="vwbtn" data-vw="frei">Entsperren</button>`:`<button type="button" class="vwbtn rot" data-vw="sperren">Sperren</button>`):''}</div></div>
+  <div class="vwpk"><small class="vwo">Verlauf</small><div class="vwzeit">${Z.map(([a,b,f])=>`<div style="--c:var(--k-${f})"><b>${esc(a)}</b><small>${esc(b)}</small></div>`).join('')}</div>${s.k==='test'&&s.rest<=7?`<p class="vwhinbox">Der Testmonat endet in ${s.rest} ${s.rest===1?'Tag':'Tagen'}.</p>`:''}</div>`}
+function vwUebersicht(){const L=VW.codes||[],S=L.map(vwStatus),n=k=>S.filter(s=>s.k===k).length,ein=L.filter(c=>c.eingeloest_am).length,max=L.length||1;
+ const bald=L.map((c,i)=>[c,S[i]]).filter(([,s])=>s.k==='test').sort((a,b)=>a[1].rest-b[1].rest);
+ return `<div class="vwkz"><div><small>Codes erstellt</small><b>${L.length}</b></div><div><small>Eingelöst</small><b>${ein}</b><em>${L.length?Math.round(ein/L.length*100):0} % der Codes</em></div><div><small>Im Testmonat</small><b>${n('test')}</b><em>läuft gerade</em></div><div><small>Offen</small><b>${n('offen')}</b><em>noch einlösbar</em></div></div>
+ <div class="vwug"><div class="vwbox"><div class="vwbk"><b>Vom Code zum Kunden</b><span>alle Codes</span></div><div class="vwtr">${[['Erstellt',L.length],['Eingelöst',ein],['Testmonat vorbei',n('vorbei')]].map(([t,v])=>`<div><span>${t}</span><i><u style="width:${v/max*100}%"></u></i><b>${v}</b></div>`).join('')}</div><p class="vwhin" style="padding:0 14px 12px">„Zahlt weiter“ kommt dazu, sobald das Abo mit Stripe steht.</p></div>
+ <div class="vwbox"><div class="vwbk"><b>Testmonat endet bald</b><span>${bald.length}</span></div>${bald.length?`<div class="vwbaldl">${bald.map(([c,s])=>`<button type="button" class="vwbald" data-code="${esc(c.code)}"><b>${esc(c.firma_name)}</b><span>${esc(s.z)}</span></button>`).join('')}</div>`:'<p class="vwhin" style="padding:12px 14px">Gerade läuft bei keiner Firma ein Testmonat.</p>'}</div></div>`}
+function vwKnoepfe(inh){const neu=()=>{VW.neu={firma:'',notiz:'',code:vwNeuerCode('')};VW.sel=null;VW.tab='codes';vwMalen(inh);setTimeout(()=>{const i=inh.querySelector('[data-n=firma]');if(i)i.focus()},40)};
+ inh.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{VW.tab=b.dataset.tab;VW.neu=null;vwMalen(inh)});
+ inh.querySelectorAll('[data-code]').forEach(b=>b.onclick=()=>{VW.sel=b.dataset.code;VW.neu=null;VW.tab='codes';vwMalen(inh)});
+ inh.querySelectorAll('[data-n]').forEach(i=>i.oninput=()=>{VW.neu[i.dataset.n]=i.value;if(i.dataset.n==='firma'){VW.neu.code=vwNeuerCode(i.value);const c=inh.querySelector('.vwneu .vwgross,.vwpk .vwgross');if(c)c.textContent=VW.neu.code}});
+ inh.querySelectorAll('[data-n=firma]').forEach(i=>i.onkeydown=ev=>{if(ev.key==='Enter'){ev.preventDefault();const b=inh.querySelector('[data-vw=erstellen]');if(b)b.click()}});
+ inh.querySelectorAll('[data-vw]').forEach(b=>b.onclick=async()=>{const a=b.dataset.vw,c=vwCode(VW.sel);
+  if(a==='neu')return neu();
+  if(a==='raus'){vwAbmelden();return}
+  if(a==='nochmal'){VW.codes=null;VW.fehler='';return vwZeigen(inh)}
+  if(a==='abbr'||a==='zur'){VW.neu=null;if(a==='zur')VW.sel=null;return vwMalen(inh)}
+  if(a==='wuerfeln'){VW.neu.code=vwNeuerCode(VW.neu.firma);return vwMalen(inh)}
+  if(a==='erstellen'){const n=VW.neu;if(!n.firma.trim()){n.fehler='Bitte den Firmennamen eintragen.';return vwMalen(inh)}b.disabled=true;
+   for(let v=0;v<3;v++){try{const r=await vwRpc('nk_code_erstellen',{p_code:n.code,p_firma:n.firma.trim(),p_notiz:n.notiz.trim()});const row=Array.isArray(r)?r[0]:r;VW.codes=[row].concat((VW.codes||[]).filter(x=>x.code!==row.code));VW.sel=row.code;VW.neu=null;onToast('Code '+row.code+' erstellt – einlösbar bis '+vwDatum(row.einloesbar_bis));return vwMalen(inh)}
+    catch(e){if(/code_vergeben/.test(e.message)){n.code=vwNeuerCode(n.firma);continue}n.fehler=vwFehlerText(e);break}}
+   return vwMalen(inh)}
+  if(!c)return;
+  if(a==='kopie')return vwKopieren(c.code,'Kopiert: '+c.code);
+  if(a==='teilen')return vwTeilen(c);
+  if(a==='sperren'||a==='frei'){const los=async()=>{try{const r=await vwRpc('nk_code_sperren',{p_code:c.code,p_gesperrt:a==='sperren'});const row=Array.isArray(r)?r[0]:r;if(row)Object.assign(c,row);onToast(a==='sperren'?c.code+' gesperrt':c.code+' wieder einlösbar')}catch(e){onToast(vwFehlerText(e))}vwMalen(inh)};
+   if(a==='sperren')onDialog(`<h3>Code sperren?</h3><p><b>${esc(c.code)}</b> für ${esc(c.firma_name)} kann danach nicht mehr eingelöst werden. Du kannst ihn später wieder entsperren.</p>`,[['ABBRECHEN',''],['SPERREN','ja']],{ja:()=>{los()}});else los()}})}
+
+// ---------- Eintrag in der Seitenleiste / unter „Mehr“ – nur für den Admin ----------
+AM_FUNK.push({beruf:'handwerk',id:'verwaltung',name:'VERWALTUNG',ico:'<path d="M10 2.5 16.5 5v4.6c0 3.9-2.7 6.7-6.5 7.9-3.8-1.2-6.5-4-6.5-7.9V5z"/><path d="M7.4 10.2 9.2 12l3.6-3.7"/>',zeigen:vwZeigen});
+ON_NAMEN.verwaltung='Verwaltung';ON_GRUPPEN.push(['ONSTAND',['verwaltung']]);
+{const alt=onFunktionen;onFunktionen=function(){const L=alt.apply(this,arguments);return VW.admin?L:L.filter(x=>x.id!=='verwaltung')}}
+// beim Start (und alle 30 Minuten) prüfen, ob die Admin-Sitzung noch gilt
+setTimeout(()=>{vwPruefen()},1500);setInterval(()=>{if(VW.sitz)vwPruefen()},30*6e4);
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -10555,7 +10759,7 @@ const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','AN
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bpdruck,.aueh';
+const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bpdruck,.aueh,.vwcode';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentElement!==b&&n.parentElement.closest(FR_AUS))continue;const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
