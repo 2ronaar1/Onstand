@@ -3544,13 +3544,29 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .brx>.brfrage button svg{display:none}
 }
 @media (max-width:760px){#am .aminhalt>.mgk label.brdat.haupt{background:none!important;color:var(--k-akz)!important;border:0!important;padding:0 8px}}
+/* Mängel (Probe): Status als gefüllte Pille, gewählter Mangel hell kupfer, Foto-Schild lesbar, Feldnamen ruhig */
+#am .mgpill,:root:not([data-design="dunkel"]) #am .mgpill{font-size:11.5px!important;font-weight:600!important;letter-spacing:0!important;text-transform:none;border:0;border-radius:20px;padding:3px 10px;background:color-mix(in srgb,var(--pc) 20%,transparent);color:color-mix(in srgb,var(--pc) 55%,var(--k-t))!important}
+#am .mgsplit .mgrow.sel{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1))!important;box-shadow:none}
+#am .mgsplit .mgrow.sel>i{background:var(--bc)}
+#am .mgfbox .mglab{background:var(--k-b1)!important;color:var(--k-sub)!important;border:1px solid var(--k-lin);font-size:11.5px!important;letter-spacing:0!important;font-weight:600!important;border-radius:20px;padding:2px 9px}
+#am .aminhalt:has(.mgsplit,.mgekopf) :is(.mgfelder span,.mgbox h4){font-size:12px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none;color:var(--k-sub)}
+#am .mgfl>span{font-size:12px!important;letter-spacing:0!important;text-transform:none}
+@media (max-width:760px){
+ #am .aminhalt:has([data-akt="neu"])>.mgk{position:relative;padding-right:60px}
+ #am .aminhalt>.mgk [data-akt="neu"]{position:absolute!important;top:14px;right:16px;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border-radius:22px!important;font-size:0!important;display:grid!important;place-items:center;background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important}
+ #am .aminhalt>.mgk [data-akt="neu"] svg{width:20px;height:20px;margin:0!important;stroke:currentColor}
+ #am .mgliste{gap:0!important;background:var(--k-b1);border-radius:20px;overflow:hidden;flex:none}
+ #am .mgliste>.mgrow{border:0!important;border-radius:0!important;border-top:.5px solid var(--k-lin)!important;background:none!important;box-shadow:none!important}
+ #am .mgliste>.mgrow:first-child{border-top:0!important}
+ #am .mgliste>.mgrow>i{visibility:hidden}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.60';
+const ON_VER='0.10.61';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -9676,9 +9692,9 @@ if(typeof GE_WISCH!=='undefined')GE_WISCH.push(['#am .tbbz[data-d]',el=>{if(type
  return [['Bearbeiten','akz',()=>{hin();TBV.edit=true;tbMalen(inh)}],['Lieferschein','sub',()=>{hin();TBV.edit=false;tbMalen(inh);if(typeof lsStart==='function')lsStart(inh)}]]}]);
 // ===== Kunden im Büro-Design (Probe „Kunden“) =====
 // Kürzel im Kreis statt Farbstreifen, Bezeichnungen in normaler Schreibweise, am Handy ist die Suche immer offen.
-const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung','KUNDEN & BAUSTELLEN':'Kunden & Baustellen','PARTNER & LIEFERANTEN':'Partner & Lieferanten','FIRMA & WISSEN':'Firma & Wissen','DATEIEN ZU DIESER SEITE':'Dateien zu dieser Seite','WARTET AUF DEN SORTIER-LAUF':'Wartet auf den Sortier-Lauf','HIER ORDNEST DU SELBST ZU':'Hier ordnest du selbst zu','NICHT ZUGEORDNET':'Nicht zugeordnet','FACH NEU':'Fach Neu'};
+const KB_FEST={'E-MAIL':'E-Mail','RECHNUNGS-E-MAIL':'Rechnungs-E-Mail','UST-IDNR.':'USt-IdNr.','LEITWEG-ID':'Leitweg-ID','PLZ ORT':'PLZ Ort','LETZTE KONTAKTE':'Letzte Kontakte','RECHNUNG AN':'Rechnung an','SEIT ABRECHNUNG':'Seit Abrechnung','KUNDEN & BAUSTELLEN':'Kunden & Baustellen','PARTNER & LIEFERANTEN':'Partner & Lieferanten','FIRMA & WISSEN':'Firma & Wissen','DATEIEN ZU DIESER SEITE':'Dateien zu dieser Seite','WARTET AUF DEN SORTIER-LAUF':'Wartet auf den Sortier-Lauf','HIER ORDNEST DU SELBST ZU':'Hier ordnest du selbst zu','NICHT ZUGEORDNET':'Nicht zugeordnet','FACH NEU':'Fach Neu','NACHHER-FOTO':'Nachher-Foto'};
 const kbText=k=>KB_FEST[k]||frSatz(k).replace(/\bkw\b/gi,'KW');
-function kbSchreib(a,S){a.querySelectorAll(S).forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=kbText(k)})}
+function kbSchreib(a,S){a.querySelectorAll(S).forEach(x=>{const n=x.firstChild;if(!n||n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length<2||/[a-zäöüß]/.test(k))return;n.nodeValue=n.nodeValue.replace(k,kbText(k))})}
 const KB_MAL=kuMalen;
 kuMalen=function(inh){if(W<=760&&KU_SEL===null&&!KU_V.such)KU_V.such=true;const r=KB_MAL.apply(this,arguments);try{kbFein()}catch(e){}return r};
 function kbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.querySelector('.kuneu,.kuzur,.kusp'))return;
@@ -9700,12 +9716,20 @@ function pbFein(){const a=document.querySelector('#am .aminhalt');if(!a||!a.quer
 // ===== Firmen-Wiki im Büro-Design (Probe „Firmen-Wiki“) =====
 // Am PC steht „Frag das Firmenwissen“ oben über Liste und Seite; Bezeichnungen in normaler Schreibweise.
 const BW_MAL=brMalen;
-brMalen=function(inh){const r=BW_MAL.apply(this,arguments);try{bwFein(inh)}catch(e){}return r};
+brMalen=function(inh){
+ // Nach dem Neuladen ist der KI-Stand noch nicht abgefragt: erst kurz „Lade …“, dann neu zeichnen (vorher erschien fälschlich „Teil des KI-Pakets“)
+ if(typeof syAktiv==='function'&&syAktiv()&&!KI.aktiv&&!KI.geladen&&!bwFein.warte&&Date.now()-(bwFein.nach||0)>5000&&typeof kiStand==='function'){bwFein.warte=1;inh.innerHTML='<div class="amleer"><span>Lade Firmen-Brain …</span></div>';kiStand().catch(()=>{}).then(()=>{bwFein.nach=Date.now();bwFein.warte=0;if(inh.isConnected&&AM_AKT==='brain')brMalen(inh)});return}
+ if(bwFein.warte){inh.innerHTML='<div class="amleer"><span>Lade Firmen-Brain …</span></div>';return}
+ const r=BW_MAL.apply(this,arguments);try{bwFein(inh)}catch(e){}return r};
 function bwFein(inh){if(!inh||!inh.querySelector('.brx'))return;
  kbSchreib(inh,'.brgr>small,.brlab,.brfakten span,.aukh>b');
  const l=inh.querySelector('.brlauf>span');if(l&&!l.querySelector('b')){const t=l.textContent;if(t===t.toUpperCase())l.textContent=t.toLowerCase().replace(/^./,c=>c.toUpperCase()).replace(/\b(mo|di|mi|do|fr|sa|so)\./g,m=>m[0].toUpperCase()+m.slice(1)).replace('nächster lauf sonntag','nächster Lauf Sonntag')}
  const f=inh.querySelector('.brx>.brfrage'),w=inh.querySelector('.brx>.brwiki');if(W>760&&f&&w&&f.nextElementSibling!==w)w.before(f);
  const b=f&&f.querySelector('button[type=submit]');if(b&&!b.querySelector('span'))b.insertAdjacentHTML('beforeend','<span>Fragen</span>')}
+// ===== Mängel im Büro-Design (Probe „Mängel“) =====
+// Feldnamen in normaler Schreibweise; Rest über buero.css (Status als Pille, ruhige Liste, am Handy „+“ rund oben rechts).
+const MB_MAL=mgMalen;
+mgMalen=function(inh){const r=MB_MAL.apply(this,arguments);try{const a=document.querySelector('#am .aminhalt');if(a)kbSchreib(a,'.mglab,.mgfelder span,.mgbox h4,.mgfl>span')}catch(e){}return r};
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
