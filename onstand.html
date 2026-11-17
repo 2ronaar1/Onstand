@@ -4152,6 +4152,10 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 .lvsplash p{margin:0;font-size:12px;opacity:.85;font-style:italic}
 @media (max-width:1180px){#am .vwled{grid-template-columns:minmax(0,1fr)}#am .vwlvorsp{position:static;order:-1}}
 @media (max-width:760px){#am .vwlvor{padding:10px}#am .vwzz{flex-wrap:wrap}#am .vwbk{flex-wrap:wrap}#am .vwseg button{padding:7px 11px;font-size:13.5px}#am .vwlogos{grid-template-columns:minmax(0,1fr) 96px}}
+/* Verwaltung scrollt am PC als ganze Seite (andere Bereiche haben eigene Listen) */
+@media (min-width:761px){#am .aminhalt:has(.vwtabs){overflow-y:auto!important;overflow-x:hidden}}
+#am .vwungesp{font-size:12px!important;font-weight:600;color:var(--k-gelb)!important}
+#am .vwweiter{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;margin-bottom:10px;width:100%;text-align:left;font:inherit;color:var(--k-t);cursor:pointer;border-color:color-mix(in srgb,var(--k-akz) 50%,var(--k-lin))}#am .vwweiter span{font-size:12.5px;color:var(--k-sub)}
 /* ===== Firmen-Look + Edition (nur aktiv, wenn eine Firma einen Look hat: html.lk) ===== */
 /* Firmen-Kopf im Cockpit: volle Breite, klebt oben, schrumpft beim Scrollen */
 #am .lkh{position:sticky;top:0;z-index:5;margin:0 -24px 16px;padding:16px 24px;min-height:92px;display:flex;align-items:center;gap:16px;background:var(--lk-kopf);color:var(--lk-kopft);overflow:hidden;transition:min-height .25s,padding .25s}
@@ -4219,7 +4223,7 @@ html.lkserif .lkbkopf b{font-family:"Playfair Display",Georgia,serif;font-weight
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.70';
+const ON_VER='0.10.71';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10770,7 +10774,7 @@ function lkVonHsl(H,S,L){const k=n=>(n+H/30)%12,a=S*Math.min(L,1-L),f=n=>L-a*Mat
 function lkLum(h){const l=x=>{x/=255;return x<=.03928?x/12.92:((x+.055)/1.055)**2.4};const [r,g,b]=lkRgb(h);return .2126*l(r)+.7152*l(g)+.0722*l(b)}
 const lkMisch=(a,b,t)=>{const A=lkRgb(a),B=lkRgb(b);return lkHex(A.map((v,i)=>v*(1-t)+B[i]*t))};
 function lkSignal(h){const [H,S]=lkHsl(h);if(S<.3)return null;if(H<16||H>344)return 'rot';if(H>=95&&H<=160)return 'gruen';return null}
-function lkKnopfFarbe(h){const [H,S,L]=lkHsl(h),s=lkSignal(h);if(!s)return h;return s==='rot'?lkVonHsl(334,S,Math.min(L,.42)):lkVonHsl(H<128?78:178,S,L)}
+function lkKnopfFarbe(h){const [H,S,L]=lkHsl(h),s=lkSignal(h);if(!s)return h;return s==='rot'?lkVonHsl(316,Math.min(S,.6),Math.min(L,.4)):lkVonHsl(H<128?78:178,S,L)}
 const lkAufText=h=>lkLum(h)>.45?'#1B1F24':'#FFFFFF';
 const LK_MUSTER={
  linien:['Linien','repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 14px),linear-gradient(120deg,transparent 55%,rgba(0,0,0,.14))'],
@@ -10784,7 +10788,7 @@ function lkVoll(d){d=Object.assign({farbe:'#AE5A27',farbe2:'',grund:'hell',kopf:
 // Kopf-Farben eines Looks (für App und Vorschau)
 function lkKopf(d,dk){const k=d.kopf==='dunkel'?'#1E1A16':d.kopf==='hell'?(dk?'#232326':d.grund==='papier'?'#FFFDF9':'#FFFFFF'):(dk?lkMisch(d.farbe,'#000000',.25):d.farbe);return {bg:k,t:lkAufText(k),k2:d.farbe2,k2t:lkAufText(d.farbe2)}}
 // Werte für die App-Farben (--k-…) im Design Hell bzw. Dunkel
-function lkWerte(d,dk){d=lkVoll(d);let akz=lkKnopfFarbe(d.farbe);if(dk)akz=lkMisch(akz,'#ffffff',.25);const W={'--k-akz':akz,'--k-akzd':lkMisch(akz,'#000000',.2),'--k-auf':dk?(lkLum(akz)>.45?'#1A0F07':'#FFFFFF'):lkAufText(akz)};
+function lkWerte(d,dk){d=lkVoll(d);let akz=lkKnopfFarbe(d.farbe);if(dk)akz=lkMisch(akz,'#ffffff',lkSignal(d.farbe)?.18:.25);const W={'--k-akz':akz,'--k-akzd':lkMisch(akz,'#000000',.2),'--k-auf':dk?(lkLum(akz)>.45?'#1A0F07':'#FFFFFF'):lkAufText(akz)};
  if(!dk){if(d.grund==='papier')Object.assign(W,{'--k-b0':'#F7F3EC','--k-b1':'#FFFDF9','--k-t':'#2A241E','--k-sub':'#6E655A','--k-lin':'#E8E1D6','--k-nav':'#F1EBE1'});else W['--k-nav']=lkMisch('#F0F1F3',d.farbe,.04)}
  return W}
 const lkCss=W=>Object.entries(W).map(([k,v])=>`${k}:${v}`).join(';');
@@ -10908,9 +10912,10 @@ async function vwTeilen(c){const t=vwTeilenText(c);if(navigator.share&&hyHandy()
 async function vwLaden(neu){if(VW.laedt)return;if(VW.codes&&!neu)return;VW.laedt=true;VW.fehler='';
  try{VW.codes=await vwRpc('nk_codes_liste')||[];try{VW.looks=await vwRpc('nk_looks_liste')||[];VW.lookFehler=''}catch(e){VW.looks=[];VW.lookFehler=vwFehlerText(e)}}catch(e){VW.fehler=vwFehlerText(e);if(e.status===401||/nur_admin/.test(e.message)){VW.admin=false;vwNav()}}
  VW.laedt=false}
+VW.scroll={};
 async function vwZeigen(inh){if(!VW.admin){inh.innerHTML='<div class="amleer">Nur für das Onstand-Admin-Konto.</div>';return}
  if(!VW.codes){inh.innerHTML=vwKopf()+'<div class="vwleer">Lade Codes …</div>';vwKnoepfe(inh);await vwLaden();if(!inh.isConnected)return}
- vwMalen(inh)}
+ vwMalen(inh);requestAnimationFrame(()=>{inh.scrollTop=VW.scroll[VW.tab]||0})}
 const vwKopf=()=>`<div class="mgk vwk"><div><span class="amtt">Onstand · nur für dich</span><h2 class="mgh">Verwaltung</h2></div><div class="vwkr">${VW.tab==='codes'?`<button type="button" class="vwbtn p" data-vw="neu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Neuer Code</span></button>`:VW.tab==='looks'?`<button type="button" class="vwbtn p" data-lk="neu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Neuer Look</span></button>`:''}</div></div>
  <div class="vwtabs" role="tablist">${[['codes','Codes',VW.codes?VW.codes.length:''],['looks','Firmen-Looks',VW.looks?VW.looks.length:''],['ueber','Übersicht','']].map(([k,n,z])=>`<button type="button" role="tab" class="${VW.tab===k?'an':''}" aria-selected="${VW.tab===k}" data-tab="${k}">${n}${z!==''?`<em>${z}</em>`:''}</button>`).join('')}<span class="vwwer">${esc(VW.sitz&&VW.sitz.email||'')} · <button type="button" data-vw="raus">Abmelden</button></span></div>`;
 function vwMalen(inh){const H=hyHandy();let body='';
@@ -10919,7 +10924,7 @@ function vwMalen(inh){const H=hyHandy();let body='';
  else if(VW.tab==='looks')body=vwLooksSeite();
  else if(H)body=VW.neu?vwNeuForm(true):VW.sel?vwDetail(vwCode(VW.sel),true):vwListe(true);
  else body=`<div class="vwgrid"><div class="vwlinks">${vwListe(false)}${vwEnthaelt()}</div><aside class="vwrechts">${VW.neu?vwNeuForm(false):VW.sel&&vwCode(VW.sel)?vwDetail(vwCode(VW.sel),false):vwLeerRechts()}</aside></div>`;
- inh.innerHTML=(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?`<button type="button" class="hyzur" data-vw="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Codes</button>`:'')+(H&&(VW.neu||VW.sel)&&VW.tab==='codes'||H&&VW.tab==='looks'&&VW.lk?'':vwKopf())+body;
+ inh.innerHTML=(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?`<button type="button" class="hyzur" data-vw="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Codes</button>`:'')+(H&&(VW.neu||VW.sel)&&VW.tab==='codes'||H&&VW.tab==='looks'&&VW.lk&&!VW.lkZu?'':vwKopf())+body;
  vwKnoepfe(inh);if(VW.tab==='looks')vwLooksBinden(inh)}
 const vwCode=k=>(VW.codes||[]).find(c=>c.code===k);
 function vwListe(H){const L=VW.codes||[];
@@ -10955,7 +10960,8 @@ function vwUebersicht(){const L=VW.codes||[],S=L.map(vwStatus),n=k=>S.filter(s=>
  <div class="vwug"><div class="vwbox"><div class="vwbk"><b>Vom Code zum Kunden</b><span>alle Codes</span></div><div class="vwtr">${[['Erstellt',L.length],['Eingelöst',ein],['Testmonat vorbei',n('vorbei')]].map(([t,v])=>`<div><span>${t}</span><i><u style="width:${v/max*100}%"></u></i><b>${v}</b></div>`).join('')}</div><p class="vwhin" style="padding:0 14px 12px">„Zahlt weiter“ kommt dazu, sobald das Abo mit Stripe steht.</p></div>
  <div class="vwbox"><div class="vwbk"><b>Testmonat endet bald</b><span>${bald.length}</span></div>${bald.length?`<div class="vwbaldl">${bald.map(([c,s])=>`<button type="button" class="vwbald" data-code="${esc(c.code)}"><b>${esc(c.firma_name)}</b><span>${esc(s.z)}</span></button>`).join('')}</div>`:'<p class="vwhin" style="padding:12px 14px">Gerade läuft bei keiner Firma ein Testmonat.</p>'}</div></div>`}
 function vwKnoepfe(inh){const neu=()=>{VW.neu={firma:'',notiz:'',look:'',code:vwNeuerCode('')};VW.sel=null;VW.tab='codes';vwMalen(inh);setTimeout(()=>{const i=inh.querySelector('[data-n=firma]');if(i)i.focus()},40)};
- inh.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{VW.tab=b.dataset.tab;VW.neu=null;if(b.dataset.tab!=='looks')VW.lk=null;vwMalen(inh)});
+ inh.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{VW.scroll[VW.tab]=inh.scrollTop;VW.tab=b.dataset.tab;vwMalen(inh);inh.scrollTop=VW.scroll[VW.tab]||0});
+ inh.addEventListener('scroll',()=>{VW.scroll[VW.tab]=inh.scrollTop},{passive:true});
  inh.querySelectorAll('[data-code]').forEach(b=>b.onclick=()=>{VW.sel=b.dataset.code;VW.neu=null;VW.tab='codes';vwMalen(inh)});
  inh.querySelectorAll('[data-n]').forEach(i=>i.oninput=()=>{VW.neu[i.dataset.n]=i.value;if(i.dataset.n==='firma'){VW.neu.code=vwNeuerCode(i.value);const c=inh.querySelector('.vwneu .vwgross,.vwpk .vwgross');if(c)c.textContent=VW.neu.code}});
  inh.querySelectorAll('[data-codelook]').forEach(sel=>sel.onchange=async()=>{const c=vwCode(sel.dataset.codelook);try{const r=await vwRpc('nk_code_look',{p_code:c.code,p_look:sel.value||null});const row=Array.isArray(r)?r[0]:r;if(row)Object.assign(c,row);onToast('Look für '+c.code+' gespeichert')}catch(e){onToast(vwFehlerText(e))}});
@@ -10987,6 +10993,10 @@ setTimeout(()=>{vwPruefen()},1500);setInterval(()=>{if(VW.sitz)vwPruefen()},30*6
 // „Auf diesem Gerät ansehen“ legt den Look nur hier über Onstand (Band oben mit „Beenden“). „Einer Firma zuweisen“ gilt sofort
 // auf allen Geräten dieser Firma. Ein Code kann einen Look mitbringen (kommt beim Einlösen dazu, Schritt 4).
 VW.lk=null;VW.lkVor='pc';VW.lkDk=false;VW.firmen=null;
+// Angefangener Look bleibt erhalten – beim Wechsel in andere Menüs und auch nach dem Neuladen (Entwurf auf diesem Gerät)
+try{const e=JSON.parse(localStorage.getItem('onstandVwEntwurf')||'null');if(e&&e.daten){e.daten=lkVoll(e.daten);VW.lk=e}}catch(e){}
+function vwLkSichern(){clearTimeout(vwLkSichern.t);vwLkSichern.t=setTimeout(()=>{try{if(VW.lk&&VW.lk.dirty)localStorage.setItem('onstandVwEntwurf',JSON.stringify(VW.lk));else localStorage.removeItem('onstandVwEntwurf')}catch(e){}},250)}
+const vwLkGeaendert=()=>{if(VW.lk){VW.lk.dirty=true;vwLkSichern()}};
 const vwLook=id=>(VW.looks||[]).find(l=>l.id===id);
 function vwLkNeu(){const nr=String(Math.max(0,...(VW.looks||[]).map(l=>parseInt(l.daten&&l.daten.nr)||0))+1).padStart(2,'0');
  return {id:null,name:'',daten:lkVoll({nr,anrede:'',gruss:'',muster:'linien'})}}
@@ -11010,7 +11020,7 @@ function vwLkSplash(d){d=lkVoll(d);const k=lkKopf(d,false);return `<div class="l
 function vwLooksSeite(){const H=hyHandy(),L=VW.looks||[];
  if(VW.lookFehler)return `<div class="vwbox vwfehlbox"><b>Firmen-Looks sind auf dem Server noch nicht eingerichtet.</b><p>${esc(VW.lookFehler)}</p><p>Bitte die neue server/verwaltung.sql im Supabase SQL-Editor noch einmal ausführen.</p></div>`;
  const liste=`<div class="vwllist">${L.map(l=>{const d=lkVoll(l.daten),codes=(VW.codes||[]).filter(c=>c.look_id===l.id).length,firmen=(VW.firmen||[]).filter(f=>f.look_id===l.id).length;return `<button type="button" class="vwlk ${VW.lk&&VW.lk.id===l.id?'an':''}" data-lk="waehle" data-id="${esc(l.id)}">${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i style="background:${esc(d.farbe)}"></i>`}<span><b class="lkname">${esc(l.name)}</b><small>${d.grund==='papier'?'Papier':'Hell'} · ${codes} ${codes===1?'Code':'Codes'}${firmen?` · ${firmen===1?'1 Firma':firmen+' Firmen'}`:''}</small></span><em style="background:${esc(d.farbe)}"></em></button>`}).join('')}<button type="button" class="vwlk neu" data-lk="neu">+ Neuer Look</button></div>`;
- if(H&&!VW.lk)return L.length?liste:vwLkLeer();
+ if(H&&(!VW.lk||VW.lkZu))return (VW.lk&&VW.lk.dirty?`<button type="button" class="vwbox vwweiter" data-lk="weiter"><b>Entwurf fortsetzen</b><span class="lkname">${esc(VW.lk.name||'Neuer Look')} · noch nicht gespeichert</span></button>`:'')+(L.length?liste:vwLkLeer());
  if(H)return `<button type="button" class="hyzur" data-lk="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Firmen-Looks</button><div class="vwlhy">${vwLkVorBox()}${vwLkForm()}</div>`;
  return `<div class="vwlgrid">${liste}${VW.lk?`<div class="vwled"><div class="vwlform">${vwLkForm()}</div><div class="vwlvorsp">${vwLkVorBox()}</div></div>`:vwLkLeer()}</div>`}
 const vwLkLeer=()=>`<div class="vwbox vwleerkarte"><b>${(VW.looks||[]).length?'Look auswählen':'Noch keine Firmen-Looks'}</b><p>Ein Look ist das Aussehen einer Firma in Onstand: Logo, Farben, Firmen-Kopf im Cockpit, Startbildschirm „Onstand × Firma“, Willkommensbrief und Edition-Nummer.</p><button type="button" class="vwbtn p" data-lk="neu">Neuen Look anlegen</button></div>`;
@@ -11021,7 +11031,7 @@ function vwLkForm(){const lk=VW.lk,d=lk.daten,sig=lkSignal(d.farbe),knopf=lkKnop
  const seg=(k,opt)=>`<span class="vwseg">${opt.map(([v,n])=>`<button type="button" class="${String(d[k])===String(v)?'an':''}" data-lk="set" data-k="${k}" data-v="${v}">${n}</button>`).join('')}</span>`;
  const sch=(k,t,s)=>`<label class="vwsch"><span>${t}${s?`<small>${s}</small>`:''}</span><input type="checkbox" data-lkan="${k}" ${d.an[k]?'checked':''}></label>`;
  const firmen=lk.id?(VW.firmen||[]).filter(f=>f.look_id===lk.id):[];
- return `<div class="vwbox"><div class="vwbk"><b>${lk.id?'Look bearbeiten':'Neuer Look'}</b><span>${lk.id?'zuletzt geändert '+vwDatum(lk.geaendert):'noch nicht gespeichert'}</span></div><div class="vwbi">
+ return `<div class="vwbox"><div class="vwbk"><b>${lk.id?'Look bearbeiten':'Neuer Look'}</b>${lk.dirty?'<span class="vwungesp">Nicht gespeicherte Änderungen</span>':`<span>${lk.id?'zuletzt geändert '+vwDatum(lk.geaendert):'noch nicht gespeichert'}</span>`}</div><div class="vwbi">
   <label class="vwfeld">Firma<input class="vwin lkname" data-lkf="name" value="${esc(lk.name)}" placeholder="z. B. Brandt Innenausbau" autocomplete="off"></label>
   <div class="vwfeld">Logo<div class="vwlogos"><button type="button" class="vwdrop" data-lk="logo">${d.voll?`<img src="${esc(d.voll)}" alt="">`:'<span>Logo hochladen</span>'}<small>Volles Logo · Kopf und Dokumente</small></button><button type="button" class="vwdrop klein" data-lk="zeichen">${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:'<span>Zeichen</span>'}<small>Zeichen · Seitenleiste</small></button></div><span class="vwhin" style="font-weight:400">Das Zeichen schneidet Onstand aus dem Logo aus (linker Teil). Antippen, um ein eigenes hochzuladen.</span></div>
  </div></div>
@@ -11071,27 +11081,32 @@ async function vwFirmenLaden(){if(VW.firmen)return VW.firmen;try{VW.firmen=await
 function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLaden().then(()=>{if(inh.isConnected&&VW.tab==='looks')vwMalen(inh)})}
  const neuMalen=()=>vwMalen(inh);
  const vorschauNeu=()=>{const v=inh.querySelector('.vwlvor');if(v){const d=Object.assign({},VW.lk.daten,{firma:VW.lk.name});v.innerHTML=VW.lkVor==='start'?vwLkSplash(d):vwLkVorschau(d,VW.lkVor,VW.lkDk)}};
- inh.querySelectorAll('[data-lkf]').forEach(el=>{const k=el.dataset.lkf;el.oninput=()=>{const lk=VW.lk;if(!lk)return;if(k==='name')lk.name=el.value;else lk.daten[k]=el.value;
+ inh.querySelectorAll('[data-lkf]').forEach(el=>{const k=el.dataset.lkf;el.oninput=()=>{const lk=VW.lk;if(!lk)return;vwLkGeaendert();if(k==='name')lk.name=el.value;else lk.daten[k]=el.value;
   if(k==='farbe'||k==='farbe2'){if(k==='farbe'&&!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;clearTimeout(vwLooksBinden.t);vwLooksBinden.t=setTimeout(neuMalen,120);return}
   if(k==='anrede'||k==='nr'){const ta=inh.querySelector('[data-lkf=gruss]');if(ta&&!lk.grussEigen){lk.daten.gruss=vwLkGruss(lk.daten);ta.value=lk.daten.gruss}}
   if(k==='gruss')lk.grussEigen=true;vorschauNeu()}});
- inh.querySelectorAll('[data-lkan]').forEach(el=>el.onchange=()=>{VW.lk.daten.an[el.dataset.lkan]=el.checked;if(el.dataset.lkan==='nr'&&!VW.lk.grussEigen)VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen()});
+ inh.querySelectorAll('[data-lkan]').forEach(el=>el.onchange=()=>{vwLkGeaendert();VW.lk.daten.an[el.dataset.lkan]=el.checked;if(el.dataset.lkan==='nr'&&!VW.lk.grussEigen)VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen()});
  inh.querySelectorAll('[data-lk]').forEach(b=>b.onclick=async()=>{const a=b.dataset.lk,lk=VW.lk;
+  if((a==='neu'||a==='waehle')&&lk&&lk.dirty&&!(a==='waehle'&&lk.id===b.dataset.id)&&!b.dataset.ok){onDialog(`<h3>Änderungen verwerfen?</h3><p>Der Look „${esc(lk.name||'ohne Namen')}“ ist noch nicht gespeichert.</p>`,[['ABBRECHEN',''],['VERWERFEN','ja']],{ja:()=>{lk.dirty=false;vwLkSichern();b.dataset.ok='1';setTimeout(()=>{b.click();delete b.dataset.ok},30)}});return}
+  if(a==='waehle'&&lk&&lk.id===b.dataset.id)return;
+  VW.lkZu=false;
   if(a==='neu'){VW.tab='looks';VW.lk=vwLkNeu();VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen();setTimeout(()=>{const i=inh.querySelector('[data-lkf=name]');if(i)i.focus()},40);return}
   if(a==='waehle'){const l=vwLook(b.dataset.id);if(l){VW.lk={id:l.id,name:l.name,geaendert:l.geaendert,daten:lkVoll(JSON.parse(JSON.stringify(l.daten||{}))),grussEigen:true,f2fest:true}}neuMalen();inh.scrollTop=0;return}
-  if(a==='zur'){VW.lk=null;return neuMalen()}
+  if(a==='zur'){if(lk&&lk.dirty){VW.lkZu=true}else VW.lk=null;return neuMalen()}
+  if(a==='weiter'){VW.lkZu=false;return neuMalen()}
   if(a==='vor'){VW.lkVor=b.dataset.v;return neuMalen()}
   if(a==='dk'){VW.lkDk=b.dataset.v==='1';return neuMalen()}
   if(!lk)return;
+  if(a==='set'||a==='farbe'||a==='farbe2')vwLkGeaendert();
   if(a==='set'){let v=b.dataset.v;if(v==='true')v=true;else if(v==='false')v=false;lk.daten[b.dataset.k]=v;return neuMalen()}
   if(a==='farbe'){lk.daten.farbe=b.dataset.f;if(!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;return neuMalen()}
   if(a==='farbe2'){lk.daten.farbe2=b.dataset.f;lk.f2fest=true;return neuMalen()}
   if(a==='logo')return vwDatei((img,f)=>{lk.daten.voll=vwVoll(img);if(!lk.zeichenEigen)lk.daten.zeichen=vwZeichen(img);const v=vwFarbenAus(img);if(v.length){lk.daten.vor=v;lk.daten.farbe=v[0];if(!lk.f2fest)lk.daten.farbe2=v[1]||lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2}
-   if(!lk.name){lk.name=f.name.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').replace(/\b(logo|rgb|cmyk|verlauf|\d+dpi)\b/gi,'').replace(/\s+/g,' ').trim()}onToast(v.length?`Logo geladen – ${v.length===1?'1 Farbe':v.length+' Farben'} erkannt`:'Logo geladen – bitte die Farbe selbst wählen');neuMalen()});
-  if(a==='zeichen')return vwDatei(img=>{lk.daten.zeichen=vwZeichen(img);lk.zeichenEigen=true;neuMalen()});
+   vwLkGeaendert();if(!lk.name){lk.name=f.name.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').replace(/\b(logo|rgb|cmyk|verlauf|\d+dpi)\b/gi,'').replace(/\s+/g,' ').trim()}onToast(v.length?`Logo geladen – ${v.length===1?'1 Farbe':v.length+' Farben'} erkannt`:'Logo geladen – bitte die Farbe selbst wählen');neuMalen()});
+  if(a==='zeichen')return vwDatei(img=>{lk.daten.zeichen=vwZeichen(img);lk.zeichenEigen=true;vwLkGeaendert();neuMalen()});
   if(a==='speichern'){if(!lk.name.trim()){lk.fehler='Bitte den Firmennamen eintragen.';return neuMalen()}b.disabled=true;
    const daten=Object.assign({},lk.daten,{firma:lk.name.trim()});if(!daten.gruss)daten.gruss=vwLkGruss(daten);
-   try{const r=await vwRpc('nk_look_speichern',{p_id:lk.id,p_name:lk.name.trim(),p_daten:daten});const row=Array.isArray(r)?r[0]:r;VW.looks=[row].concat((VW.looks||[]).filter(x=>x.id!==row.id));lk.id=row.id;lk.geaendert=row.geaendert;lk.fehler='';
+   try{const r=await vwRpc('nk_look_speichern',{p_id:lk.id,p_name:lk.name.trim(),p_daten:daten});const row=Array.isArray(r)?r[0]:r;VW.looks=[row].concat((VW.looks||[]).filter(x=>x.id!==row.id));lk.id=row.id;lk.geaendert=row.geaendert;lk.fehler='';lk.dirty=false;vwLkSichern();
     if(LK.vorschau&&LK.d&&LK.d.firma===daten.firma)lkVorschauStart(daten);onToast('Look „'+row.name+'“ gespeichert')}catch(e){lk.fehler=/too large|payload|413/i.test(e.message)?'Das Logo ist zu groß. Bitte ein kleineres Bild nehmen.':vwFehlerText(e)}return neuMalen()}
   if(a==='vorschau'){lkVorschauStart(Object.assign({},lk.daten,{firma:lk.name||'Firma'}));return setTimeout(neuMalen,50)}
   if(a==='vorschauende'){lkVorschauEnde();return neuMalen()}
