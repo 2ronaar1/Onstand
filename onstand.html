@@ -10,6 +10,10 @@
 :root[data-design="dunkel"]{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#E39459;--k-akzd:#C07440;--k-auf:#1A0F07;
  --k-rot:#FF6B7F;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-lin:#36363B;--k-nav:#1C1C1E;color-scheme:dark}
 html.dwechsel,html.dwechsel *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
+/* Start- und Anmelde-Bildschirm immer dunkel – auch wenn das Design auf „Hell“ steht */
+#onstart,.spstart,.spstartl{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#E39459;--k-akzd:#C07440;--k-auf:#1A0F07;
+ --k-rot:#FF6B7F;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-lin:#36363B;--k-nav:#1C1C1E;color-scheme:dark;
+ --ad:var(--k-akzd);--aj:var(--k-akz);--bad:var(--k-rot);--bg:color-mix(in srgb,var(--k-b1) 25%,var(--k-b0));--blau:var(--k-blau);--d:var(--k-akzd);--gelb:var(--k-gelb);--gruen:var(--k-gruen);--j:var(--k-akz);--lin:color-mix(in srgb,var(--k-sub) 18%,transparent);--ok:var(--k-gruen);--plan:var(--k-info);--rot:var(--k-rot);--row:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));--sub:var(--k-sub);--txt:var(--k-t);--warn:var(--k-gelb)}
 /* ===== Onstand · Grundstil und Rahmen (Konzept D) ===== */
 :root{--j:var(--k-akz);--d:var(--k-akzd);--aj:var(--k-akz);--ad:var(--k-akzd);--bg:color-mix(in srgb,var(--k-b1) 25%,var(--k-b0));--txt:var(--k-t);--sub:var(--k-sub);--row:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));--rot:var(--k-rot);--gelb:var(--k-gelb);--gruen:var(--k-gruen);--blau:var(--k-blau);--ok:var(--k-gruen);--warn:var(--k-gelb);--bad:var(--k-rot);--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);--seite:232px}
 *{box-sizing:border-box}
@@ -4077,13 +4081,145 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
  #am .vwtr div{grid-template-columns:110px minmax(0,1fr) 28px}
 }
 #am .vwbaldl .vwbald:first-child{border-top:0}
+/* ===== Verwaltung · Firmen-Looks (Schritt 2) ===== */
+#am .vwlgrid{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:start}
+#am .vwllist{display:flex;flex-direction:column;gap:6px;position:sticky;top:0}
+#am .vwlk{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);font:inherit;text-align:left;cursor:pointer}
+#am .vwlk.an{border-color:var(--k-akz);box-shadow:inset 0 0 0 1px var(--k-akz)}
+#am .vwlk img,#am .vwlk>i{width:34px;height:34px;border-radius:8px;object-fit:contain;background:rgb(255 255 255);border:1px solid var(--k-lin);flex:none}
+#am .vwlk span{flex:1;min-width:0}#am .vwlk b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#am .vwlk small{font-size:11.5px;color:var(--k-sub)}
+#am .vwlk>em{width:10px;height:10px;border-radius:50%;flex:none}
+#am .vwlk.neu{justify-content:center;color:var(--k-akz);font-weight:600;border-style:dashed}
+#am .vwled{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:14px;align-items:start}
+#am .vwlform{display:flex;flex-direction:column;gap:12px;min-width:0}
+#am .vwlvorsp{position:sticky;top:0;min-width:0}
+#am .vwlhy{display:flex;flex-direction:column;gap:12px}
+#am .vwnorm{font-weight:400}
+#am .vwlogos{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:8px}
+#am .vwdrop{border:1.5px dashed var(--k-lin);border-radius:8px;background:var(--k-b1);min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;cursor:pointer;font:inherit;color:var(--k-sub)}
+#am .vwdrop:hover{border-color:var(--k-akz)}#am .vwdrop img{max-width:100%;max-height:56px;object-fit:contain;background:rgb(255 255 255);border-radius:4px}#am .vwdrop.klein img{width:52px;height:52px;border-radius:10px;border:1px solid var(--k-lin)}
+#am .vwdrop span{font-weight:600;color:var(--k-akz);font-size:13px}#am .vwdrop small{font-size:11px;font-weight:400}
+#am .vwfarben{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#am .vwfarben button{width:28px;height:28px;border-radius:50%;border:2px solid var(--k-b1);box-shadow:0 0 0 1px var(--k-lin);cursor:pointer;padding:0}#am .vwfarben button.an{box-shadow:0 0 0 2px var(--k-t)}
+#am .vwfarben input[type=color]{width:34px;height:30px;border:1px solid var(--k-lin);border-radius:6px;padding:1px;background:var(--k-b1);cursor:pointer}
+#am .vwklein{font-size:12px;color:var(--k-sub);font-weight:400}
+#am .vwwarn{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:400;color:var(--k-t);background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1));border-radius:8px;padding:8px 10px;margin-top:4px}#am .vwwarn i{width:18px;height:18px;border-radius:50%;flex:none}
+#am .vwzz{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px}#am .vwzz>span:first-child{color:var(--k-sub)}
+#am .vwseg{display:inline-flex;border:1px solid var(--k-lin);border-radius:6px;overflow:hidden;background:var(--k-b1);flex:none}
+#am .vwseg button{border:0;background:none;font:inherit;font-size:12.5px;padding:5px 10px;cursor:pointer;color:var(--k-sub)}#am .vwseg button+button{border-left:1px solid var(--k-lin)}#am .vwseg button.an{background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));color:var(--k-akz);font-weight:600}
+#am .vwbk .vwseg{margin-left:auto}#am .vwbk .vwseg+.vwseg{margin-left:6px}
+#am .vwzwei{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:10px}
+#am .vwmuster{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+#am .vwmuster button{height:40px;border-radius:6px;border:1px solid var(--k-lin);position:relative;overflow:hidden;cursor:pointer;padding:0}#am .vwmuster button:before{content:'';position:absolute;inset:0;background:var(--m)}#am .vwmuster button.an{outline:2px solid var(--k-t);outline-offset:1px}#am .vwmuster small{position:absolute;left:5px;bottom:2px;color:rgb(255 255 255);font-size:10px;font-weight:600;text-shadow:0 1px 2px rgb(0 0 0 / .4)}
+#am .vwtext{height:auto;padding:8px 10px;line-height:1.45;resize:vertical;font-size:13px}
+#am .vwschalter{display:flex;flex-direction:column;border:1px solid var(--k-lin);border-radius:8px}
+#am .vwsch{display:flex;align-items:center;gap:10px;padding:8px 12px;border-top:1px solid var(--k-lin);font-size:13px;cursor:pointer;color:var(--k-t);font-weight:400}#am .vwsch:first-child{border-top:0}#am .vwsch span{flex:1}#am .vwsch small{display:block;font-size:11.5px;color:var(--k-sub)}#am .vwsch input{width:17px;height:17px;accent-color:var(--k-akz)}
+#am .vwlvor{padding:12px;display:flex;justify-content:center}
+#am .ondlg .vwfirmenwahl{display:flex;flex-direction:column;gap:6px;max-height:50vh;overflow:auto;margin-top:8px}
+#am .ondlg .vwfirmenwahl label{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--k-lin);border-radius:8px;cursor:pointer;letter-spacing:0!important;font-size:13px!important;text-transform:none!important}
+#am .ondlg .vwfirmenwahl label small{display:block;font-size:11.5px;color:var(--k-sub)}#am .ondlg .vwfirmenwahl input{width:auto!important;accent-color:var(--k-akz)}
+/* Mini-Vorschau eines Looks */
+.lv{color:var(--v-t);background:var(--v-b0);border-radius:8px;overflow:hidden;border:1px solid var(--k-lin);font-family:var(--k-ui);width:100%}
+.lv b,.lv span,.lv small{font-family:inherit}
+.lvpc{display:grid;grid-template-columns:118px minmax(0,1fr);min-height:300px;font-size:11px}
+.lvnav{background:var(--v-nav);border-right:1px solid var(--v-lin);padding:10px 7px;display:flex;flex-direction:column;gap:2px}
+.lvz{display:flex;align-items:center;gap:6px;padding:0 3px 10px;min-width:0}.lvz img,.lvz i{width:24px;height:24px;border-radius:6px;background:rgb(255 255 255);object-fit:contain;flex:none;display:grid;place-items:center;font-style:normal;font-weight:700;color:var(--v-akz);border:1px solid var(--v-lin)}.lvz span{font-size:10px;font-weight:600;line-height:1.15;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.lvnav>span{height:21px;display:flex;align-items:center;gap:6px;padding:0 6px;border-radius:4px;font-size:10.5px}.lvnav>span:before{content:'';width:9px;height:9px;border-radius:3px;border:1.5px solid currentColor;opacity:.55}.lvnav>span.an{background:var(--v-b1);color:var(--v-akz);font-weight:600;box-shadow:var(--v-sch)}
+.lvmain{display:flex;flex-direction:column;gap:8px;min-width:0;padding-bottom:10px}
+.lvkopf{position:relative;background:var(--v-kopf);color:var(--v-kopft);padding:10px 12px;display:flex;align-items:center;gap:10px;overflow:hidden}.lvkopf:before{content:'';position:absolute;inset:0;background:var(--v-muster)}.lvkopf>*{position:relative}
+.lvkopf>div{flex:1;min-width:0}.lvkopf small{display:block;font-size:8.5px;letter-spacing:1px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lvkopf b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lvkopf p{margin:1px 0 0;font-size:9.5px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lvkopf img{height:28px;max-width:90px;object-fit:contain}
+.lvkopfaus{background:var(--v-b1);color:var(--v-t);border-bottom:1px solid var(--v-lin)}.lvkopfaus:before{display:none}
+.lv.serif .lvkopf b,.lv.serif .lvhkopf b{font-family:Georgia,"Times New Roman",serif;font-weight:500}.lv.serif .lvkopf b em,.lv.serif .lvhkopf b em{color:var(--v-k2)}.lv em{font-style:normal}.lv.serif em{font-style:italic}
+.lvk2,.lvk1{background:var(--v-k2);color:var(--v-k2t);border-radius:4px;padding:4px 8px;font-weight:600;font-size:9.5px;white-space:nowrap}.lvk1{background:var(--v-akz);color:var(--v-auf)}.lvk1.klein{font-size:8.5px;padding:2px 6px}
+.lv.rund .lvk2{border-radius:12px}
+.lvkz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:0 12px}.lvkz div{background:var(--v-b1);border:1px solid var(--v-lin);border-radius:6px;padding:6px 8px;box-shadow:var(--v-sch)}.lvkz small{display:block;font-size:8.5px;color:var(--v-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lvkz b{font-size:14px}
+.lvkt{margin:0 12px;background:var(--v-b1);border:1px solid var(--v-lin);border-radius:6px;box-shadow:var(--v-sch)}.lvkt>div{display:flex;justify-content:space-between;align-items:center;padding:5px 8px;border-top:1px solid var(--v-lin);font-size:10px}.lvkt>div:first-child{border-top:0}
+.lvkk b{font-size:10.5px}.lvbal{display:inline-block;width:46px;height:5px;border-radius:3px;background:var(--v-lin);margin-right:5px;vertical-align:middle;overflow:hidden}.lvbal u{display:block;height:100%;background:var(--v-akz)}
+.lvpills{display:flex!important;gap:5px;flex-wrap:wrap;padding:7px 8px!important;justify-content:flex-start!important}
+.lvp{font-size:9px;font-weight:600;border-radius:10px;padding:1px 7px;background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--c)}
+.lvhy{width:190px;min-height:340px;border-radius:26px;border:6px solid rgb(20 21 24);display:flex;flex-direction:column;position:relative;font-size:10.5px;background:var(--v-b0)}
+.lvhkopf{position:relative;background:var(--v-kopf);color:var(--v-kopft);padding:22px 12px 12px;overflow:hidden}.lvhkopf:before{content:'';position:absolute;inset:0;background:var(--v-muster)}.lvhkopf>*{position:relative}.lvhkopf .lvz{padding:0 0 6px}.lvhkopf .lvz span{font-size:9.5px}.lvhkopf b{font-size:17px;line-height:1.15;display:block}
+.lvhkopf[data-aus]{background:var(--v-b0);color:var(--v-t)}.lvhkopf[data-aus]:before{display:none}
+.lvhin{padding:8px;display:flex;flex-direction:column;gap:7px}
+.lvgrp{background:var(--v-b1);border-radius:10px;overflow:hidden}.lvgrp>div{display:flex;justify-content:space-between;padding:6px 9px;border-top:.5px solid var(--v-lin)}.lvgrp>div:first-child{border-top:0}
+.lvknopf{background:var(--v-akz);color:var(--v-auf);border-radius:14px;text-align:center;padding:7px;font-weight:600}
+.lvbar{position:absolute;left:7px;right:7px;bottom:8px;display:flex;gap:5px}.lvbar span{flex:1;height:30px;border-radius:16px;background:color-mix(in srgb,var(--v-b1) 90%,transparent);box-shadow:0 3px 10px -4px rgb(0 0 0 / .35);display:flex;justify-content:space-around;align-items:center}.lvbar i{width:9px;height:9px;border-radius:3px;border:1.5px solid var(--v-sub)}.lvbar i:first-child{border-color:var(--v-akz)}.lvbar em{width:30px;height:30px;border-radius:50%;background:var(--v-akz)}
+.lvsplash{position:relative;width:100%;min-height:260px;border-radius:8px;overflow:hidden;background:var(--v-kopf);color:var(--v-kopft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:var(--k-ui)}
+.lvsplash:before{content:'';position:absolute;inset:0;background:var(--v-muster)}.lvsplash>*{position:relative}
+.lvsplash .lksl .lkom,.lvsplash .lksl img{width:48px;height:48px;border-radius:12px}.lvsplash .lkx{font-size:22px}
+.lvsplash>b{font-size:20px;text-align:center;padding:0 12px}.lvsplash>b span{opacity:.7;font-weight:400}.lvsplash>b em{font-style:normal}.lvsplash.serif>b{font-family:Georgia,serif;font-weight:500}.lvsplash.serif>b em{font-style:italic;color:var(--v-k2)}
+.lvsplash p{margin:0;font-size:12px;opacity:.85;font-style:italic}
+@media (max-width:1180px){#am .vwled{grid-template-columns:minmax(0,1fr)}#am .vwlvorsp{position:static;order:-1}}
+@media (max-width:760px){#am .vwlvor{padding:10px}#am .vwzz{flex-wrap:wrap}#am .vwbk{flex-wrap:wrap}#am .vwseg button{padding:7px 11px;font-size:13.5px}#am .vwlogos{grid-template-columns:minmax(0,1fr) 96px}}
+/* ===== Firmen-Look + Edition (nur aktiv, wenn eine Firma einen Look hat: html.lk) ===== */
+/* Firmen-Kopf im Cockpit: volle Breite, klebt oben, schrumpft beim Scrollen */
+#am .lkh{position:sticky;top:0;z-index:5;margin:0 -24px 16px;padding:16px 24px;min-height:92px;display:flex;align-items:center;gap:16px;background:var(--lk-kopf);color:var(--lk-kopft);overflow:hidden;transition:min-height .25s,padding .25s}
+#am .lkh:before{content:'';position:absolute;inset:0;background:var(--lk-muster);pointer-events:none}
+#am .lkh>*{position:relative}
+#am .lkht{flex:1;min-width:0}
+#am .lkh small{display:block;font-size:11px;letter-spacing:1.2px;font-weight:600;opacity:.78;height:16px;overflow:hidden;transition:height .2s,opacity .2s;white-space:nowrap;text-overflow:ellipsis}
+#am .lkh h2{margin:0;font-size:22px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:font-size .25s;color:inherit}
+#am .lkh h2 em{font-style:normal}
+html.lkserif #am#am .lkh h2{font-family:"Playfair Display",Georgia,serif!important;font-weight:500}
+html.lkserif #am .lkh h2 em{font-style:italic;color:var(--lk-k2)}
+#am .lkh p{margin:2px 0 0;font-size:12.5px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .2s,height .2s;height:18px}
+#am .lkhk{display:flex;gap:8px;align-items:center}#am .lkhk .mgakt{display:flex;gap:8px;margin:0}
+#am .lkhk button{background:transparent!important;color:var(--lk-kopft)!important;border:1px solid color-mix(in srgb,var(--lk-kopft) 45%,transparent)!important;box-shadow:none!important}
+#am .lkhk button.haupt{background:var(--lk-k2)!important;border-color:var(--lk-k2)!important;color:var(--lk-k2t)!important}
+html.lkrund #am .lkhk button{border-radius:20px!important}
+#am .lkhlogo{height:48px;max-width:190px;object-fit:contain;transition:height .25s;flex:none}
+#am .lkh.klein{min-height:52px;padding-top:8px;padding-bottom:8px}#am .lkh.klein small,#am .lkh.klein p{height:0;opacity:0;margin:0}#am .lkh.klein h2{font-size:16px}#am .lkh.klein .lkhlogo{height:28px}
+@media (max-width:760px){
+ #am .lkh{margin:calc(-12px - var(--st,0px)) -16px 12px;padding:calc(12px + var(--st,0px)) 18px 16px;min-height:0;flex-wrap:wrap;align-items:flex-end}
+ #am .lkh h2{font-size:26px;font-weight:700}html.lkserif #am#am .lkh h2{font-size:28px}
+ #am .lkhlogo{display:none}
+ #am .lkh.klein{padding-top:calc(6px + var(--st,0px));padding-bottom:8px}#am .lkh.klein h2{font-size:17px}
+ #am .lkht{flex-basis:100%}
+ #am .lkhk{margin-left:auto}
+ #am .lkh.klein{flex-wrap:nowrap;align-items:center}#am .lkh.klein .lkht{flex-basis:auto}
+}
+/* Startbildschirm „Onstand × Firma“ */
+#lksplash{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--lk-kopf,rgb(30 26 22));color:var(--lk-kopft,rgb(255 255 255));font-family:var(--k-ui);cursor:pointer;transition:opacity .3s}
+#lksplash:before{content:'';position:absolute;inset:0;background:var(--lk-muster);pointer-events:none}
+#lksplash>*{position:relative}
+#lksplash.weg{opacity:0}
+.lksl{display:flex;align-items:center;gap:16px}
+.lksl .lkom,.lksl img{width:62px;height:62px;border-radius:15px;background:rgb(255 255 255);padding:9px;display:grid;place-items:center;object-fit:contain;box-shadow:0 8px 24px -10px rgba(0,0,0,.4)}
+.lksl img{padding:4px}.lksl .lkom svg{width:100%;height:100%}
+.lksl .lkx{font-size:28px;font-weight:300;opacity:.8}
+#lksplash h3{margin:0;font-size:28px;font-weight:600;text-align:center;padding:0 20px}#lksplash h3 span{opacity:.7;font-weight:400}#lksplash h3 em{font-style:normal}
+html.lkserif #lksplash h3{font-family:"Playfair Display",Georgia,serif;font-weight:500}html.lkserif #lksplash h3 em{font-style:italic;color:var(--lk-k2)}
+#lksplash p{margin:0;font-size:14px;opacity:.85;font-style:italic;text-align:center;padding:0 20px}
+.lknr{font-size:11px;letter-spacing:2px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid color-mix(in srgb,currentColor 35%,transparent)}
+#lksplash.erst .lksl .lkom{animation:lklinks .9s cubic-bezier(.2,.8,.2,1) both}#lksplash.erst .lksl img{animation:lkrechts .9s cubic-bezier(.2,.8,.2,1) both}#lksplash.erst .lkx{animation:lkauf .45s .55s both}
+#lksplash.erst h3,#lksplash.erst p,#lksplash.erst .lknr{animation:lkhoch .55s both}#lksplash.erst h3{animation-delay:.7s}#lksplash.erst p{animation-delay:.9s}#lksplash.erst .lknr{animation-delay:1.1s}
+@keyframes lklinks{from{transform:translateX(-80px);opacity:0}}@keyframes lkrechts{from{transform:translateX(80px);opacity:0}}@keyframes lkauf{from{opacity:0;transform:scale(.4) rotate(-45deg)}}@keyframes lkhoch{from{opacity:0;transform:translateY(10px)}}
+/* Willkommensbrief */
+#lkbrief{position:fixed;inset:0;z-index:190;background:rgb(15 16 20 / .5);display:grid;place-items:center;padding:16px;opacity:0;transition:opacity .25s;font-family:var(--k-ui)}
+#lkbrief.an{opacity:1}
+.lkbk{width:min(520px,100%);max-height:calc(100% - 20px);overflow:auto;background:var(--k-b1);color:var(--k-t);border-radius:14px;box-shadow:0 24px 60px -20px rgba(0,0,0,.5)}
+.lkbkopf{position:relative;background:var(--lk-kopf);color:var(--lk-kopft);padding:18px 22px;overflow:hidden}.lkbkopf:before{content:'';position:absolute;inset:0;background:var(--lk-muster)}.lkbkopf>*{position:relative}
+.lkbkopf .lksl{gap:10px}.lkbkopf .lksl .lkom,.lkbkopf .lksl img{width:38px;height:38px;border-radius:9px;padding:5px}.lkbkopf .lksl img{padding:2px}.lkbkopf .lkx{font-size:18px}
+.lkbkopf b{display:block;font-size:19px;margin-top:10px}.lkbkopf b em{font-style:normal}.lkbkopf small{opacity:.8;font-size:12px}
+html.lkserif .lkbkopf b{font-family:"Playfair Display",Georgia,serif;font-weight:500}html.lkserif .lkbkopf b em{font-style:italic;color:var(--lk-k2)}
+.lkbi{padding:16px 22px;font-size:14px;line-height:1.55;display:flex;flex-direction:column;gap:10px}.lkbi p{margin:0}
+.lkunter{font-family:"Segoe Script","Brush Script MT",cursive;font-size:22px;color:var(--k-akz);margin-top:4px}
+.lkwer{margin-top:-8px;font-size:12px;color:var(--k-sub)}
+.lkbf{padding:0 22px 18px;display:flex;justify-content:flex-end}
+.lkbf button{height:38px;padding:0 18px;border:0;border-radius:6px;background:var(--k-akz);color:var(--k-auf);font:600 14px var(--k-ui);cursor:pointer}html.lkrund .lkbf button{border-radius:20px}
+/* Band „Vorschau auf diesem Gerät“ */
+#lkband{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:150;display:flex;align-items:center;gap:12px;background:rgb(27 31 36);color:rgb(255 255 255);border-radius:22px;padding:6px 8px 6px 16px;font:13px var(--k-ui);box-shadow:0 8px 24px -10px rgba(0,0,0,.5);max-width:calc(100vw - 24px)}
+#lkband button{border:0;border-radius:16px;background:rgb(255 255 255);color:rgb(27 31 36);font:600 12.5px var(--k-ui);padding:6px 12px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){#lksplash *,#lkbrief{animation:none!important;transition:none!important}}
+@media (max-width:760px){#lkband{top:auto;bottom:calc(96px + env(safe-area-inset-bottom,0px));font-size:12.5px;white-space:nowrap;padding:5px 6px 5px 14px}#lkband>span{overflow:hidden;text-overflow:ellipsis}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.68';
+const ON_VER='0.10.70';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10619,6 +10755,99 @@ function fmStop(senden){clearTimeout(FM.t);const r=FM.rec;FM.rec=null;const t=(F
 {const alt=asMalen;asMalen=function(){const r=alt.apply(this,arguments);try{fmZeigen()}catch(e){}return r}}
 // Schließen des Assistenten beendet das Zuhören
 {const alt=typeof asZu==='function'?asZu:null;if(alt)asZu=function(){if(FM.an)fmStop(false);return alt.apply(this,arguments)}}
+// ===== Firmen-Look + Edition (Probe „Firmen-Look ohne Nebenwirkungen“) =====
+// Der Look kommt vom Server (Funktion mein_look, gesetzt in der Onstand-Verwaltung) und liegt zusätzlich auf dem Gerät
+// (localStorage „onstandLook“), damit er schon beim Start sitzt – auch offline, ohne kurz Kupfer aufblitzen zu lassen.
+// Regeln: Signalfarben (Rot/Grün/Gelb) bleiben immer gleich; zu nahe Firmenfarben bekommen für Knöpfe einen Ton daneben.
+// Helle Farben bekommen dunkle Schrift. Firmen-Kopf nur im Cockpit, schrumpft beim Scrollen. Startbildschirm voll nur beim
+// ersten Start, danach 0,6 s, Tippen überspringt. Firmenname bleibt so geschrieben, wie er eingetragen ist.
+const LK={d:null,vorschau:false};
+// ---------- Farbregeln (auch von der Verwaltung benutzt) ----------
+const lkRgb=h=>{h=String(h||'#AE5A27').replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return [n>>16&255,n>>8&255,n&255]};
+const lkHex=a=>'#'+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join('');
+function lkHsl(h){let [r,g,b]=lkRgb(h).map(v=>v/255);const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let H=0,S=0,L=(mx+mn)/2;if(mx!==mn){const d=mx-mn;S=L>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;H*=60}return [H,S,L]}
+function lkVonHsl(H,S,L){const k=n=>(n+H/30)%12,a=S*Math.min(L,1-L),f=n=>L-a*Math.max(-1,Math.min(k(n)-3,9-k(n),1));return lkHex([f(0)*255,f(8)*255,f(4)*255])}
+function lkLum(h){const l=x=>{x/=255;return x<=.03928?x/12.92:((x+.055)/1.055)**2.4};const [r,g,b]=lkRgb(h);return .2126*l(r)+.7152*l(g)+.0722*l(b)}
+const lkMisch=(a,b,t)=>{const A=lkRgb(a),B=lkRgb(b);return lkHex(A.map((v,i)=>v*(1-t)+B[i]*t))};
+function lkSignal(h){const [H,S]=lkHsl(h);if(S<.3)return null;if(H<16||H>344)return 'rot';if(H>=95&&H<=160)return 'gruen';return null}
+function lkKnopfFarbe(h){const [H,S,L]=lkHsl(h),s=lkSignal(h);if(!s)return h;return s==='rot'?lkVonHsl(334,S,Math.min(L,.42)):lkVonHsl(H<128?78:178,S,L)}
+const lkAufText=h=>lkLum(h)>.45?'#1B1F24':'#FFFFFF';
+const LK_MUSTER={
+ linien:['Linien','repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 14px),linear-gradient(120deg,transparent 55%,rgba(0,0,0,.14))'],
+ raster:['Raster','linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px) 0 0/18px 18px,linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px) 0 0/18px 18px'],
+ klammer:['Klammern',()=>`url(data:image/svg+xml;base64,${btoa('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><g fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="1.2"><path d="M6 18V6h12M62 6h12v12M74 62v12H62M18 74H6V62"/></g></svg>')}) 0 0/80px 80px,radial-gradient(circle at 85% 0%,rgba(255,255,255,.12),transparent 50%)`],
+ ruhig:['Ruhig','linear-gradient(160deg,rgba(255,255,255,.06),rgba(0,0,0,.2))']};
+const lkMuster=k=>{const m=(LK_MUSTER[k]||LK_MUSTER.linien)[1];return typeof m==='function'?m():m};
+// Standardwerte eines Looks
+function lkVoll(d){d=Object.assign({farbe:'#AE5A27',farbe2:'',grund:'hell',kopf:'farbe',serif:false,rund:false,muster:'linien',spruch:'',anrede:'',nr:'',gruss:'',voll:'',zeichen:'',firma:''},d||{});
+ d.an=Object.assign({start:true,brief:true,kopf:true,nr:true},d.an||{});if(!d.farbe2)d.farbe2=lkLum(d.farbe)>.45?'#1B1F24':lkMisch(d.farbe,'#ffffff',.55);return d}
+// Kopf-Farben eines Looks (für App und Vorschau)
+function lkKopf(d,dk){const k=d.kopf==='dunkel'?'#1E1A16':d.kopf==='hell'?(dk?'#232326':d.grund==='papier'?'#FFFDF9':'#FFFFFF'):(dk?lkMisch(d.farbe,'#000000',.25):d.farbe);return {bg:k,t:lkAufText(k),k2:d.farbe2,k2t:lkAufText(d.farbe2)}}
+// Werte für die App-Farben (--k-…) im Design Hell bzw. Dunkel
+function lkWerte(d,dk){d=lkVoll(d);let akz=lkKnopfFarbe(d.farbe);if(dk)akz=lkMisch(akz,'#ffffff',.25);const W={'--k-akz':akz,'--k-akzd':lkMisch(akz,'#000000',.2),'--k-auf':dk?(lkLum(akz)>.45?'#1A0F07':'#FFFFFF'):lkAufText(akz)};
+ if(!dk){if(d.grund==='papier')Object.assign(W,{'--k-b0':'#F7F3EC','--k-b1':'#FFFDF9','--k-t':'#2A241E','--k-sub':'#6E655A','--k-lin':'#E8E1D6','--k-nav':'#F1EBE1'});else W['--k-nav']=lkMisch('#F0F1F3',d.farbe,.04)}
+ return W}
+const lkCss=W=>Object.entries(W).map(([k,v])=>`${k}:${v}`).join(';');
+
+// ---------- Laden + Anwenden ----------
+function lkLaden(){LK.vorschau=false;try{const v=JSON.parse(localStorage.getItem('onstandLookVorschau')||'null');if(v){LK.d=lkVoll(v);LK.vorschau=true;return}const d=JSON.parse(localStorage.getItem('onstandLook')||'null');LK.d=d?lkVoll(d):null}catch(e){LK.d=null}}
+function lkAnwenden(){let st=document.getElementById('lkstil');const d=LK.d,h=document.documentElement;
+ if(!d){if(st)st.remove();h.classList.remove('lk','lkserif','lkrund','lkpapier');try{if(AM_EL)onLogo()}catch(e){}lkVorschauBand();return}
+ if(!st){st=document.createElement('style');st.id='lkstil';document.head.appendChild(st)}
+ const k=lkKopf(d,false),kd=lkKopf(d,true);
+ st.textContent=`:root{${lkCss(lkWerte(d,false))};--lk-kopf:${k.bg};--lk-kopft:${k.t};--lk-k2:${k.k2};--lk-k2t:${k.k2t};--lk-muster:${lkMuster(d.muster)}}
+:root[data-design="dunkel"]{${lkCss(lkWerte(d,true))};--lk-kopf:${kd.bg};--lk-kopft:${kd.t}}`;
+ h.classList.add('lk');h.classList.toggle('lkserif',!!d.serif);h.classList.toggle('lkrund',!!d.rund);h.classList.toggle('lkpapier',d.grund==='papier');
+ try{if(AM_EL)onLogo()}catch(e){}lkVorschauBand();
+ try{if(AM_EL&&AM_AKT==='cockpit'){const inh=AM_EL.querySelector('.aminhalt');if(inh&&inh.querySelector('.mgk,.lkh')&&typeof cpMalen==='function'&&!CPV.b)cpMalen(inh)}}catch(e){}}
+lkLaden();lkAnwenden();
+// Logo oben links: das Zeichen des Looks
+{const alt=onInitialen;onInitialen=function(){const r=alt.apply(this,arguments);if(LK.d&&LK.d.zeichen)r.logo=LK.d.zeichen;return r}}
+
+// Vom Server holen (nach dem Verbinden und alle 30 Minuten)
+async function lkHolen(){if(LK.vorschau||typeof syAktiv!=='function'||!syAktiv())return;
+ try{const d=await syRpc('mein_look',{p_firma:SY_KONTO.firma});const alt=localStorage.getItem('onstandLook');
+  if(!d){if(alt){localStorage.removeItem('onstandLook');lkLaden();lkAnwenden()}return}
+  const neu=JSON.stringify(d);if(neu!==alt){localStorage.setItem('onstandLook',neu);lkLaden();lkAnwenden();lkBriefPruefen()}}catch(e){}}
+setTimeout(lkHolen,2500);setInterval(lkHolen,30*6e4);
+
+// Vorschau eines Looks auf diesem Gerät (nur aus der Verwaltung)
+function lkVorschauStart(d){try{localStorage.setItem('onstandLookVorschau',JSON.stringify(d))}catch(e){onToast('Logo zu groß für die Vorschau auf diesem Gerät.');return}lkLaden();lkAnwenden();try{localStorage.removeItem('onstandLookSplash:vorschau');localStorage.removeItem('onstandLookBrief:vorschau')}catch(e){}lkSplash(true)}
+function lkVorschauEnde(){try{localStorage.removeItem('onstandLookVorschau')}catch(e){}lkLaden();lkAnwenden();onToast('Vorschau beendet')}
+function lkVorschauBand(){let b=document.getElementById('lkband');if(!LK.vorschau){if(b)b.remove();return}
+ if(!b){b=document.createElement('div');b.id='lkband';document.body.appendChild(b)}
+ b.innerHTML=`<span>Vorschau: <b class="lkname">${esc(LK.d.firma||'Firmen-Look')}</b> · nur auf diesem Gerät</span><button type="button">Beenden</button>`;b.querySelector('button').onclick=lkVorschauEnde}
+
+// ---------- Firmen-Kopf im Cockpit ----------
+const lkGruss=()=>{const s=new Date().getHours();return s<11?'Guten Morgen':s<17?'Guten Tag':'Guten Abend'};
+function lkHero(inh){if(!LK.d||!LK.d.an.kopf||!inh)return;const d=LK.d,k=inh.querySelector(':scope>.mgk');if(!k||inh.querySelector('.lkh'))return;
+ const datum=(k.querySelector('.amtt')||{}).textContent||'',wer=d.anrede||(ON_PROFIL&&ON_PROFIL.name)||'';
+ const h=document.createElement('div');h.className='lkh';
+ h.innerHTML=`<div class="lkht"><small><span class="lkname">${esc(d.firma||'')}</span>${datum?' · '+esc(datum):''}</small><h2>${lkGruss()}${wer?`, <em class="lkname">${esc(wer)}</em>`:''}</h2>${d.spruch?`<p class="lkname">${esc(d.spruch)}</p>`:''}</div><div class="lkhk"></div>${d.voll?`<img class="lkhlogo" src="${esc(d.voll)}" alt="">`:''}`;
+ const akt=k.querySelector('.mgakt');if(akt)h.querySelector('.lkhk').appendChild(akt);k.replaceWith(h);
+ const sc=()=>h.classList.toggle('klein',inh.scrollTop>24);inh.addEventListener('scroll',sc,{passive:true});sc()}
+if(typeof cpUebersicht==='function'){const alt=cpUebersicht;cpUebersicht=function(inh){const r=alt.apply(this,arguments);try{lkHero(inh)}catch(e){console.error(e)}return r}}
+
+// ---------- Startbildschirm „Onstand × Firma“ ----------
+const LK_OM='<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke-width="5" stroke-linecap="square"><path d="M13 6h14" stroke="#D19A6A"/><path d="M27 6l7 7v14M34 27l-7 7H13M13 34l-7-7V13M6 13l7-7" stroke="#1B1F24"/></g></svg>';
+function lkSplash(vorschau){const d=LK.d;if(!d||!d.an.start)return lkBriefPruefen();if(/[?&]sprechen\b/.test(location.search))return;
+ if(!vorschau&&(typeof syAktiv!=='function'||!syAktiv()))return;if(document.querySelector('#onstart.an'))return;
+ const key='onstandLookSplash:'+(LK.vorschau?'vorschau':(d.id||'x'));let erst=true;try{erst=!localStorage.getItem(key);localStorage.setItem(key,'1')}catch(e){}
+ const dauer=RM?(erst?900:300):(erst?2300:600);const s=document.createElement('div');s.id='lksplash';s.className=erst?'erst':'kurz';
+ s.innerHTML=`<div class="lksl"><span class="lkom">${LK_OM}</span><span class="lkx">×</span>${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:''}</div><h3>Onstand <span>×</span> <em class="lkname">${esc(d.firma||'')}</em></h3>${d.spruch?`<p class="lkname">${esc(d.spruch)}</p>`:''}${d.an.nr&&d.nr?`<span class="lknr">EDITION NR. ${esc(d.nr)}</span>`:''}`;
+ document.body.appendChild(s);let weg=false;const zu=()=>{if(weg)return;weg=true;s.classList.add('weg');setTimeout(()=>{s.remove();lkBriefPruefen()},RM?0:320)};s.onclick=zu;setTimeout(zu,dauer)}
+
+// ---------- Willkommensbrief (einmal pro Gerät und Look) ----------
+function lkBriefPruefen(){const d=LK.d;if(!d||!d.an.brief||!d.gruss)return;if(document.querySelector('#onstart.an,#lksplash,#lkbrief'))return;
+ if(!LK.vorschau&&(typeof syAktiv!=='function'||!syAktiv()))return;
+ const key='onstandLookBrief:'+(LK.vorschau?'vorschau':(d.id||'x'));try{if(localStorage.getItem(key))return;localStorage.setItem(key,'1')}catch(e){}
+ const b=document.createElement('div');b.id='lkbrief';
+ b.innerHTML=`<div class="lkbk"><div class="lkbkopf"><div class="lksl"><span class="lkom">${LK_OM}</span><span class="lkx">×</span>${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:''}</div><b>Willkommen in eurer <em>Onstand-Edition</em></b><small>Onstand × <span class="lkname">${esc(d.firma||'')}</span>${d.an.nr&&d.nr?' · Edition Nr. '+esc(d.nr):''}</small></div>
+ <div class="lkbi">${d.gruss.split(/\n+/).map(z=>`<p>${esc(z)}</p>`).join('')}<span class="lkunter">Aaron</span><small class="lkwer">Aaron Bezubik · Gründer von Onstand</small></div>
+ <div class="lkbf"><button type="button">Los geht's</button></div></div>`;
+ document.body.appendChild(b);requestAnimationFrame(()=>b.classList.add('an'));b.querySelector('button').onclick=()=>{b.classList.remove('an');setTimeout(()=>b.remove(),250)}}
+// beim Start zeigen, sobald Onstand offen ist
+setTimeout(()=>{try{lkSplash(false)}catch(e){}},30);
 // ===== Onstand-Verwaltung (nur für den Onstand-Admin) · Schritt 1: Zugang + Neukunden-Codes =====
 // Zugang: Einstellungen → „Über Onstand“ → 5× auf die Überschrift „Onstand v…“ tippen → mit dem Admin-Konto anmelden.
 // Die Admin-Anmeldung ist eine EIGENE Sitzung (localStorage „onstandAdmin“) und ändert nichts am Firmenkonto dieses Geräts.
@@ -10677,20 +10906,21 @@ async function vwTeilen(c){const t=vwTeilenText(c);if(navigator.share&&hyHandy()
 
 // ---------- Seite ----------
 async function vwLaden(neu){if(VW.laedt)return;if(VW.codes&&!neu)return;VW.laedt=true;VW.fehler='';
- try{VW.codes=await vwRpc('nk_codes_liste')||[]}catch(e){VW.fehler=vwFehlerText(e);if(e.status===401||/nur_admin/.test(e.message)){VW.admin=false;vwNav()}}
+ try{VW.codes=await vwRpc('nk_codes_liste')||[];try{VW.looks=await vwRpc('nk_looks_liste')||[];VW.lookFehler=''}catch(e){VW.looks=[];VW.lookFehler=vwFehlerText(e)}}catch(e){VW.fehler=vwFehlerText(e);if(e.status===401||/nur_admin/.test(e.message)){VW.admin=false;vwNav()}}
  VW.laedt=false}
 async function vwZeigen(inh){if(!VW.admin){inh.innerHTML='<div class="amleer">Nur für das Onstand-Admin-Konto.</div>';return}
  if(!VW.codes){inh.innerHTML=vwKopf()+'<div class="vwleer">Lade Codes …</div>';vwKnoepfe(inh);await vwLaden();if(!inh.isConnected)return}
  vwMalen(inh)}
-const vwKopf=()=>`<div class="mgk vwk"><div><span class="amtt">Onstand · nur für dich</span><h2 class="mgh">Verwaltung</h2></div><div class="vwkr">${VW.tab==='codes'?`<button type="button" class="vwbtn p" data-vw="neu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Neuer Code</span></button>`:''}</div></div>
- <div class="vwtabs" role="tablist">${[['codes','Codes',VW.codes?VW.codes.length:''],['ueber','Übersicht','']].map(([k,n,z])=>`<button type="button" role="tab" class="${VW.tab===k?'an':''}" aria-selected="${VW.tab===k}" data-tab="${k}">${n}${z!==''?`<em>${z}</em>`:''}</button>`).join('')}<span class="vwwer">${esc(VW.sitz&&VW.sitz.email||'')} · <button type="button" data-vw="raus">Abmelden</button></span></div>`;
+const vwKopf=()=>`<div class="mgk vwk"><div><span class="amtt">Onstand · nur für dich</span><h2 class="mgh">Verwaltung</h2></div><div class="vwkr">${VW.tab==='codes'?`<button type="button" class="vwbtn p" data-vw="neu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Neuer Code</span></button>`:VW.tab==='looks'?`<button type="button" class="vwbtn p" data-lk="neu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Neuer Look</span></button>`:''}</div></div>
+ <div class="vwtabs" role="tablist">${[['codes','Codes',VW.codes?VW.codes.length:''],['looks','Firmen-Looks',VW.looks?VW.looks.length:''],['ueber','Übersicht','']].map(([k,n,z])=>`<button type="button" role="tab" class="${VW.tab===k?'an':''}" aria-selected="${VW.tab===k}" data-tab="${k}">${n}${z!==''?`<em>${z}</em>`:''}</button>`).join('')}<span class="vwwer">${esc(VW.sitz&&VW.sitz.email||'')} · <button type="button" data-vw="raus">Abmelden</button></span></div>`;
 function vwMalen(inh){const H=hyHandy();let body='';
  if(VW.fehler)body=`<div class="vwbox vwfehlbox"><b>Das ging gerade nicht.</b><p>${esc(VW.fehler)}</p><button type="button" class="vwbtn" data-vw="nochmal">Noch einmal</button></div>`;
  else if(VW.tab==='ueber')body=vwUebersicht();
+ else if(VW.tab==='looks')body=vwLooksSeite();
  else if(H)body=VW.neu?vwNeuForm(true):VW.sel?vwDetail(vwCode(VW.sel),true):vwListe(true);
  else body=`<div class="vwgrid"><div class="vwlinks">${vwListe(false)}${vwEnthaelt()}</div><aside class="vwrechts">${VW.neu?vwNeuForm(false):VW.sel&&vwCode(VW.sel)?vwDetail(vwCode(VW.sel),false):vwLeerRechts()}</aside></div>`;
- inh.innerHTML=(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?`<button type="button" class="hyzur" data-vw="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Codes</button>`:'')+(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?'':vwKopf())+body;
- vwKnoepfe(inh)}
+ inh.innerHTML=(H&&(VW.neu||VW.sel)&&VW.tab==='codes'?`<button type="button" class="hyzur" data-vw="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Codes</button>`:'')+(H&&(VW.neu||VW.sel)&&VW.tab==='codes'||H&&VW.tab==='looks'&&VW.lk?'':vwKopf())+body;
+ vwKnoepfe(inh);if(VW.tab==='looks')vwLooksBinden(inh)}
 const vwCode=k=>(VW.codes||[]).find(c=>c.code===k);
 function vwListe(H){const L=VW.codes||[];
  if(!L.length)return `<div class="vwbox vwleerkarte"><b>Noch keine Codes</b><p>Erstelle für eine Firma, die du gewinnen willst, einen persönlichen Code. Er ist 30 Tage einlösbar und schenkt einen Monat Grundpaket, KI-Paket und Firmen-Look.</p><button type="button" class="vwbtn p" data-vw="neu">Ersten Code erstellen</button></div>`;
@@ -10702,6 +10932,7 @@ function vwLeerRechts(){const L=VW.codes||[],bald=L.map(c=>[c,vwStatus(c)]).filt
 function vwNeuForm(H){const n=VW.neu;return `<div class="vwpk${H?' vwhy':''}"><small class="vwo">Neuer Code</small><h3>Code für eine Firma</h3>
  <label class="vwfeld">Firma<input class="vwin" data-n="firma" value="${esc(n.firma)}" placeholder="z. B. Brandt Innenausbau" autocomplete="off"></label>
  <label class="vwfeld">Notiz (nur für dich)<input class="vwin" data-n="notiz" value="${esc(n.notiz)}" placeholder="z. B. über Instagram, Architekt Weber" autocomplete="off"></label>
+ <label class="vwfeld">Firmen-Look<select class="vwin" data-n="look"><option value="">– noch keiner –</option>${(VW.looks||[]).map(l=>`<option value="${esc(l.id)}" ${n.look===l.id?'selected':''}>${esc(l.name)}</option>`).join('')}</select>${(VW.looks||[]).length?'':'<span class="vwhin" style="font-weight:400">Looks legst du im Reiter „Firmen-Looks“ an.</span>'}</label>
  <div class="vwfeld">Enthält<div class="vwchips"><span>Grundpaket</span><span>KI-Paket</span><span>Firmen-Look</span><span>1 Monat</span></div></div>
  <div class="vwfeld">Einlösbar bis<div class="vwwert">${vwDatum(Date.now()+30*VW_TAGE)} <small>(30 Tage)</small></div></div>
  <div class="vwcodebox"><span class="vwcode vwgross">${esc(n.code)}</span><button type="button" class="vwbtn" data-vw="wuerfeln" title="Anderer Code" aria-label="Anderer Code">↻</button></div>
@@ -10715,6 +10946,7 @@ function vwDetail(c,H){if(!c)return vwLeerRechts();const s=vwStatus(c);const Z=[
  const offen=!c.eingeloest_am;
  return `<div class="vwpk${H?' vwhy':''}"><small class="vwo">Code</small><div class="vwcodebox"><span class="vwcode vwgross">${esc(c.code)}</span></div>
   <div class="vwfirma"><div><b>${esc(c.firma_name)}</b>${c.notiz?`<small>${esc(c.notiz)}</small>`:''}</div>${vwPill(s)}</div>
+  <label class="vwfeld">Firmen-Look<select class="vwin" data-codelook="${esc(c.code)}"><option value="">– keiner –</option>${(VW.looks||[]).map(l=>`<option value="${esc(l.id)}" ${c.look_id===l.id?'selected':''}>${esc(l.name)}</option>`).join('')}</select></label>
   <div class="vwknr"><button type="button" class="vwbtn p" data-vw="kopie">Kopieren</button>${s.k==='offen'?`<button type="button" class="vwbtn" data-vw="teilen">Teilen</button>`:''}${offen?(c.gesperrt?`<button type="button" class="vwbtn" data-vw="frei">Entsperren</button>`:`<button type="button" class="vwbtn rot" data-vw="sperren">Sperren</button>`):''}</div></div>
   <div class="vwpk"><small class="vwo">Verlauf</small><div class="vwzeit">${Z.map(([a,b,f])=>`<div style="--c:var(--k-${f})"><b>${esc(a)}</b><small>${esc(b)}</small></div>`).join('')}</div>${s.k==='test'&&s.rest<=7?`<p class="vwhinbox">Der Testmonat endet in ${s.rest} ${s.rest===1?'Tag':'Tagen'}.</p>`:''}</div>`}
 function vwUebersicht(){const L=VW.codes||[],S=L.map(vwStatus),n=k=>S.filter(s=>s.k===k).length,ein=L.filter(c=>c.eingeloest_am).length,max=L.length||1;
@@ -10722,10 +10954,11 @@ function vwUebersicht(){const L=VW.codes||[],S=L.map(vwStatus),n=k=>S.filter(s=>
  return `<div class="vwkz"><div><small>Codes erstellt</small><b>${L.length}</b></div><div><small>Eingelöst</small><b>${ein}</b><em>${L.length?Math.round(ein/L.length*100):0} % der Codes</em></div><div><small>Im Testmonat</small><b>${n('test')}</b><em>läuft gerade</em></div><div><small>Offen</small><b>${n('offen')}</b><em>noch einlösbar</em></div></div>
  <div class="vwug"><div class="vwbox"><div class="vwbk"><b>Vom Code zum Kunden</b><span>alle Codes</span></div><div class="vwtr">${[['Erstellt',L.length],['Eingelöst',ein],['Testmonat vorbei',n('vorbei')]].map(([t,v])=>`<div><span>${t}</span><i><u style="width:${v/max*100}%"></u></i><b>${v}</b></div>`).join('')}</div><p class="vwhin" style="padding:0 14px 12px">„Zahlt weiter“ kommt dazu, sobald das Abo mit Stripe steht.</p></div>
  <div class="vwbox"><div class="vwbk"><b>Testmonat endet bald</b><span>${bald.length}</span></div>${bald.length?`<div class="vwbaldl">${bald.map(([c,s])=>`<button type="button" class="vwbald" data-code="${esc(c.code)}"><b>${esc(c.firma_name)}</b><span>${esc(s.z)}</span></button>`).join('')}</div>`:'<p class="vwhin" style="padding:12px 14px">Gerade läuft bei keiner Firma ein Testmonat.</p>'}</div></div>`}
-function vwKnoepfe(inh){const neu=()=>{VW.neu={firma:'',notiz:'',code:vwNeuerCode('')};VW.sel=null;VW.tab='codes';vwMalen(inh);setTimeout(()=>{const i=inh.querySelector('[data-n=firma]');if(i)i.focus()},40)};
- inh.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{VW.tab=b.dataset.tab;VW.neu=null;vwMalen(inh)});
+function vwKnoepfe(inh){const neu=()=>{VW.neu={firma:'',notiz:'',look:'',code:vwNeuerCode('')};VW.sel=null;VW.tab='codes';vwMalen(inh);setTimeout(()=>{const i=inh.querySelector('[data-n=firma]');if(i)i.focus()},40)};
+ inh.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{VW.tab=b.dataset.tab;VW.neu=null;if(b.dataset.tab!=='looks')VW.lk=null;vwMalen(inh)});
  inh.querySelectorAll('[data-code]').forEach(b=>b.onclick=()=>{VW.sel=b.dataset.code;VW.neu=null;VW.tab='codes';vwMalen(inh)});
  inh.querySelectorAll('[data-n]').forEach(i=>i.oninput=()=>{VW.neu[i.dataset.n]=i.value;if(i.dataset.n==='firma'){VW.neu.code=vwNeuerCode(i.value);const c=inh.querySelector('.vwneu .vwgross,.vwpk .vwgross');if(c)c.textContent=VW.neu.code}});
+ inh.querySelectorAll('[data-codelook]').forEach(sel=>sel.onchange=async()=>{const c=vwCode(sel.dataset.codelook);try{const r=await vwRpc('nk_code_look',{p_code:c.code,p_look:sel.value||null});const row=Array.isArray(r)?r[0]:r;if(row)Object.assign(c,row);onToast('Look für '+c.code+' gespeichert')}catch(e){onToast(vwFehlerText(e))}});
  inh.querySelectorAll('[data-n=firma]').forEach(i=>i.onkeydown=ev=>{if(ev.key==='Enter'){ev.preventDefault();const b=inh.querySelector('[data-vw=erstellen]');if(b)b.click()}});
  inh.querySelectorAll('[data-vw]').forEach(b=>b.onclick=async()=>{const a=b.dataset.vw,c=vwCode(VW.sel);
   if(a==='neu')return neu();
@@ -10734,7 +10967,7 @@ function vwKnoepfe(inh){const neu=()=>{VW.neu={firma:'',notiz:'',code:vwNeuerCod
   if(a==='abbr'||a==='zur'){VW.neu=null;if(a==='zur')VW.sel=null;return vwMalen(inh)}
   if(a==='wuerfeln'){VW.neu.code=vwNeuerCode(VW.neu.firma);return vwMalen(inh)}
   if(a==='erstellen'){const n=VW.neu;if(!n.firma.trim()){n.fehler='Bitte den Firmennamen eintragen.';return vwMalen(inh)}b.disabled=true;
-   for(let v=0;v<3;v++){try{const r=await vwRpc('nk_code_erstellen',{p_code:n.code,p_firma:n.firma.trim(),p_notiz:n.notiz.trim()});const row=Array.isArray(r)?r[0]:r;VW.codes=[row].concat((VW.codes||[]).filter(x=>x.code!==row.code));VW.sel=row.code;VW.neu=null;onToast('Code '+row.code+' erstellt – einlösbar bis '+vwDatum(row.einloesbar_bis));return vwMalen(inh)}
+   for(let v=0;v<3;v++){try{const r=await vwRpc('nk_code_erstellen',{p_code:n.code,p_firma:n.firma.trim(),p_notiz:n.notiz.trim()});let row=Array.isArray(r)?r[0]:r;if(n.look){try{const r2=await vwRpc('nk_code_look',{p_code:row.code,p_look:n.look});row=Array.isArray(r2)?r2[0]:r2||row}catch(e){}}VW.codes=[row].concat((VW.codes||[]).filter(x=>x.code!==row.code));VW.sel=row.code;VW.neu=null;onToast('Code '+row.code+' erstellt – einlösbar bis '+vwDatum(row.einloesbar_bis));return vwMalen(inh)}
     catch(e){if(/code_vergeben/.test(e.message)){n.code=vwNeuerCode(n.firma);continue}n.fehler=vwFehlerText(e);break}}
    return vwMalen(inh)}
   if(!c)return;
@@ -10749,6 +10982,125 @@ ON_NAMEN.verwaltung='Verwaltung';ON_GRUPPEN.push(['ONSTAND',['verwaltung']]);
 {const alt=onFunktionen;onFunktionen=function(){const L=alt.apply(this,arguments);return VW.admin?L:L.filter(x=>x.id!=='verwaltung')}}
 // beim Start (und alle 30 Minuten) prüfen, ob die Admin-Sitzung noch gilt
 setTimeout(()=>{vwPruefen()},1500);setInterval(()=>{if(VW.sitz)vwPruefen()},30*6e4);
+// ===== Onstand-Verwaltung · Schritt 2: Firmen-Looks + Edition =====
+// Reiter „Firmen-Looks“: links die Looks, rechts der Editor (Logo, Farben & Stil, Edition) mit Live-Vorschau PC/Handy, Hell/Dunkel.
+// „Auf diesem Gerät ansehen“ legt den Look nur hier über Onstand (Band oben mit „Beenden“). „Einer Firma zuweisen“ gilt sofort
+// auf allen Geräten dieser Firma. Ein Code kann einen Look mitbringen (kommt beim Einlösen dazu, Schritt 4).
+VW.lk=null;VW.lkVor='pc';VW.lkDk=false;VW.firmen=null;
+const vwLook=id=>(VW.looks||[]).find(l=>l.id===id);
+function vwLkNeu(){const nr=String(Math.max(0,...(VW.looks||[]).map(l=>parseInt(l.daten&&l.daten.nr)||0))+1).padStart(2,'0');
+ return {id:null,name:'',daten:lkVoll({nr,anrede:'',gruss:'',muster:'linien'})}}
+function vwLkGruss(d){return `Hallo ${d.anrede||'zusammen'},\nich habe Onstand für euch eingerichtet – mit eurem Logo, euren Farben und eurem Briefkopf.${d.an.nr&&d.nr?` Ihr seid Edition Nr. ${d.nr}.`:''} Wenn etwas fehlt oder anders sein soll, schreibt mir direkt.`}
+
+// ---------- Vorschau (eigene Farben, unabhängig vom Design dieses Geräts) ----------
+function vwLkVorschau(d,art,dk){d=lkVoll(d);const W=lkWerte(d,dk),k=lkKopf(d,dk);
+ const t=dk?{b0:'#161618',b1:'#232326',t:'#F2F2F4',sub:'#A1A1AA',lin:'#36363B',nav:'#1C1C1E'}:{b0:W['--k-b0']||'#F6F6F7',b1:W['--k-b1']||'#FFFFFF',t:W['--k-t']||'#1B1F24',sub:W['--k-sub']||'#5C6470',lin:W['--k-lin']||'#E1E3E6',nav:W['--k-nav']||'#F0F1F3'};
+ const st=`--v-akz:${W['--k-akz']};--v-auf:${W['--k-auf']};--v-b0:${t.b0};--v-b1:${t.b1};--v-t:${t.t};--v-sub:${t.sub};--v-lin:${t.lin};--v-nav:${t.nav};--v-kopf:${k.bg};--v-kopft:${k.t};--v-k2:${k.k2};--v-k2t:${k.k2t};--v-muster:${lkMuster(d.muster)};--v-rot:${dk?'#FF6B7F':'#C42B1C'};--v-gruen:${dk?'#7FD68A':'#107C41'};--v-gelb:${dk?'#FFC857':'#9A6700'};--v-sch:${!dk&&d.grund==='papier'?'0 1px 6px -2px rgba(80,60,30,.16)':'none'}`;
+ const name=esc(d.firma||'Firma'),wer=esc(d.anrede||'Tobias'),gr=d.serif?`Guten Morgen, <em>${wer}</em>`:`Guten Morgen, ${wer}`,zeichen=d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i>${name.slice(0,1)}</i>`;
+ const pills=`<span class="lvp" style="--c:var(--v-rot)">Überfällig</span><span class="lvp" style="--c:var(--v-gelb)">Offen</span><span class="lvp" style="--c:var(--v-gruen)">Erledigt</span>`;
+ if(art==='hy')return `<div class="lv lvhy ${d.serif?'serif':''} ${d.rund?'rund':''}" style="${st}"><div class="lvhkopf"${d.an.kopf?'':' data-aus'}><div class="lvz">${zeichen}<span>${name}</span></div><b>${gr}</b></div><div class="lvhin"><div class="lvgrp"><div><span>Kessler Miami</span><b>72 %</b></div><div><span>Praxis Lindner</span><b>35 %</b></div></div><div class="lvgrp lvpills">${pills}</div><div class="lvknopf">+ Eintrag</div></div><div class="lvbar"><span><i></i><i></i><i></i><i></i></span><em></em></div></div>`;
+ return `<div class="lv lvpc ${d.serif?'serif':''} ${d.rund?'rund':''}" style="${st}"><div class="lvnav"><div class="lvz">${zeichen}<span>${name}</span></div><span class="an">Cockpit</span><span>Aufträge</span><span>Tagebuch</span><span>Kalender</span><span>Kunden</span><span>Mängel</span></div>
+ <div class="lvmain">${d.an.kopf?`<div class="lvkopf"><div><small>${name.toUpperCase()} · DIENSTAG, 17. NOVEMBER</small><b>${gr}</b>${d.spruch?`<p>${esc(d.spruch)}</p>`:''}</div><span class="lvk2">+ Eintrag</span>${d.voll?`<img src="${esc(d.voll)}" alt="">`:''}</div>`:`<div class="lvkopf lvkopfaus"><div><small>DIENSTAG, 17. NOVEMBER</small><b>Cockpit</b></div><span class="lvk1">+ Eintrag</span></div>`}
+ <div class="lvkz"><div><small>Offene Angebote</small><b>4</b></div><div><small>Stunden diese Woche</small><b>112</b></div><div><small>Offene Mängel</small><b>3</b></div></div>
+ <div class="lvkt"><div class="lvkk"><b>Baustellen</b><span class="lvk1 klein">+ Baustelle</span></div><div><span>Kessler Miami</span><span><i class="lvbal"><u style="width:72%"></u></i>72 %</span></div><div><span>Praxis Lindner</span><span><i class="lvbal"><u style="width:35%"></u></i>35 %</span></div></div>
+ <div class="lvkt lvpills">${pills}</div></div></div>`}
+function vwLkSplash(d){d=lkVoll(d);const k=lkKopf(d,false);return `<div class="lvsplash ${d.serif?'serif':''}" style="--v-kopf:${k.bg};--v-kopft:${k.t};--v-k2:${k.k2};--v-muster:${lkMuster(d.muster)}"><div class="lksl"><span class="lkom">${LK_OM}</span><span class="lkx">×</span>${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:''}</div><b>Onstand <span>×</span> <em>${esc(d.firma||'Firma')}</em></b>${d.spruch?`<p>${esc(d.spruch)}</p>`:''}${d.an.nr&&d.nr?`<span class="lknr">EDITION NR. ${esc(d.nr)}</span>`:''}</div>`}
+
+// ---------- Seite ----------
+function vwLooksSeite(){const H=hyHandy(),L=VW.looks||[];
+ if(VW.lookFehler)return `<div class="vwbox vwfehlbox"><b>Firmen-Looks sind auf dem Server noch nicht eingerichtet.</b><p>${esc(VW.lookFehler)}</p><p>Bitte die neue server/verwaltung.sql im Supabase SQL-Editor noch einmal ausführen.</p></div>`;
+ const liste=`<div class="vwllist">${L.map(l=>{const d=lkVoll(l.daten),codes=(VW.codes||[]).filter(c=>c.look_id===l.id).length,firmen=(VW.firmen||[]).filter(f=>f.look_id===l.id).length;return `<button type="button" class="vwlk ${VW.lk&&VW.lk.id===l.id?'an':''}" data-lk="waehle" data-id="${esc(l.id)}">${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i style="background:${esc(d.farbe)}"></i>`}<span><b class="lkname">${esc(l.name)}</b><small>${d.grund==='papier'?'Papier':'Hell'} · ${codes} ${codes===1?'Code':'Codes'}${firmen?` · ${firmen===1?'1 Firma':firmen+' Firmen'}`:''}</small></span><em style="background:${esc(d.farbe)}"></em></button>`}).join('')}<button type="button" class="vwlk neu" data-lk="neu">+ Neuer Look</button></div>`;
+ if(H&&!VW.lk)return L.length?liste:vwLkLeer();
+ if(H)return `<button type="button" class="hyzur" data-lk="zur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Firmen-Looks</button><div class="vwlhy">${vwLkVorBox()}${vwLkForm()}</div>`;
+ return `<div class="vwlgrid">${liste}${VW.lk?`<div class="vwled"><div class="vwlform">${vwLkForm()}</div><div class="vwlvorsp">${vwLkVorBox()}</div></div>`:vwLkLeer()}</div>`}
+const vwLkLeer=()=>`<div class="vwbox vwleerkarte"><b>${(VW.looks||[]).length?'Look auswählen':'Noch keine Firmen-Looks'}</b><p>Ein Look ist das Aussehen einer Firma in Onstand: Logo, Farben, Firmen-Kopf im Cockpit, Startbildschirm „Onstand × Firma“, Willkommensbrief und Edition-Nummer.</p><button type="button" class="vwbtn p" data-lk="neu">Neuen Look anlegen</button></div>`;
+function vwLkVorBox(){const d=Object.assign({},VW.lk.daten,{firma:VW.lk.name});
+ return `<div class="vwbox vwlvbox"><div class="vwbk"><b>Live-Vorschau</b><span class="vwseg">${[['pc','PC'],['hy','Handy'],['start','Start']].map(([k,n])=>`<button type="button" class="${VW.lkVor===k?'an':''}" data-lk="vor" data-v="${k}">${n}</button>`).join('')}</span><span class="vwseg">${[[0,'Hell'],[1,'Dunkel']].map(([k,n])=>`<button type="button" class="${+VW.lkDk===k?'an':''}" data-lk="dk" data-v="${k}">${n}</button>`).join('')}</span></div>
+ <div class="vwlvor">${VW.lkVor==='start'?vwLkSplash(d):vwLkVorschau(d,VW.lkVor,VW.lkDk)}</div><p class="vwhin" style="padding:0 14px 12px">So sieht die Firma Onstand – auf allen Geräten. Rot, Gelb und Grün bleiben immer gleich.</p></div>`}
+function vwLkForm(){const lk=VW.lk,d=lk.daten,sig=lkSignal(d.farbe),knopf=lkKnopfFarbe(d.farbe),hell=lkLum(knopf)>.45;
+ const seg=(k,opt)=>`<span class="vwseg">${opt.map(([v,n])=>`<button type="button" class="${String(d[k])===String(v)?'an':''}" data-lk="set" data-k="${k}" data-v="${v}">${n}</button>`).join('')}</span>`;
+ const sch=(k,t,s)=>`<label class="vwsch"><span>${t}${s?`<small>${s}</small>`:''}</span><input type="checkbox" data-lkan="${k}" ${d.an[k]?'checked':''}></label>`;
+ const firmen=lk.id?(VW.firmen||[]).filter(f=>f.look_id===lk.id):[];
+ return `<div class="vwbox"><div class="vwbk"><b>${lk.id?'Look bearbeiten':'Neuer Look'}</b><span>${lk.id?'zuletzt geändert '+vwDatum(lk.geaendert):'noch nicht gespeichert'}</span></div><div class="vwbi">
+  <label class="vwfeld">Firma<input class="vwin lkname" data-lkf="name" value="${esc(lk.name)}" placeholder="z. B. Brandt Innenausbau" autocomplete="off"></label>
+  <div class="vwfeld">Logo<div class="vwlogos"><button type="button" class="vwdrop" data-lk="logo">${d.voll?`<img src="${esc(d.voll)}" alt="">`:'<span>Logo hochladen</span>'}<small>Volles Logo · Kopf und Dokumente</small></button><button type="button" class="vwdrop klein" data-lk="zeichen">${d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:'<span>Zeichen</span>'}<small>Zeichen · Seitenleiste</small></button></div><span class="vwhin" style="font-weight:400">Das Zeichen schneidet Onstand aus dem Logo aus (linker Teil). Antippen, um ein eigenes hochzuladen.</span></div>
+ </div></div>
+ <div class="vwbox"><div class="vwbk"><b>Farben &amp; Stil</b></div><div class="vwbi">
+  <div class="vwfeld">Firmenfarbe <span class="vwnorm">· aus dem Logo erkannt</span><div class="vwfarben">${(d.vor||[]).map(f=>`<button type="button" style="background:${esc(f)}" class="${f.toLowerCase()===d.farbe.toLowerCase()?'an':''}" data-lk="farbe" data-f="${esc(f)}" title="${esc(f)}"></button>`).join('')}<input type="color" data-lkf="farbe" value="${esc(d.farbe)}" title="Eigene Farbe"><span class="vwcode vwklein">${esc(d.farbe.toUpperCase())}</span></div>
+   ${sig?`<div class="vwwarn"><i style="background:${esc(d.farbe)}"></i>→<i style="background:${esc(knopf)}"></i><span>Zu nah an ${sig==='rot'?'Rot („Überfällig“)':'Grün („Erledigt“)'} – Knöpfe bekommen ${esc(knopf.toUpperCase())}, Logo und Kopf behalten die echte Farbe.</span></div>`:''}${hell?'<div class="vwwarn hell"><span>Helle Farbe – Schrift auf Knöpfen wird automatisch dunkel.</span></div>':''}</div>
+  <div class="vwfeld">Zweite Farbe <span class="vwnorm">· Hauptknopf im Firmen-Kopf, Kursive</span><div class="vwfarben">${[...new Set([...(d.vor||[]).filter(f=>f.toLowerCase()!==d.farbe.toLowerCase()),'#1B1F24','#FFFFFF'])].slice(0,4).map(f=>`<button type="button" style="background:${esc(f)}" class="${f.toLowerCase()===d.farbe2.toLowerCase()?'an':''}" data-lk="farbe2" data-f="${esc(f)}"></button>`).join('')}<input type="color" data-lkf="farbe2" value="${esc(d.farbe2)}"></div></div>
+  <div class="vwzz"><span>Grundlage</span>${seg('grund',[['hell','Hell'],['papier','Papier']])}</div>
+  <div class="vwzz"><span>Firmen-Kopf</span>${seg('kopf',[['farbe','Firmenfarbe'],['dunkel','Dunkel'],['hell','Hell']])}</div>
+  <div class="vwzz"><span>Überschriften</span>${seg('serif',[[false,'Normal'],[true,'Serif']])}</div>
+  <div class="vwzz"><span>Knöpfe im Kopf</span>${seg('rund',[[false,'Eckig'],[true,'Rund']])}</div>
+ </div></div>
+ <div class="vwbox"><div class="vwbk"><b>Edition</b><span>Onstand × ${esc(lk.name||'Firma')}</span></div><div class="vwbi">
+  <label class="vwfeld">Spruch / Unterzeile<input class="vwin lkname" data-lkf="spruch" value="${esc(d.spruch)}" placeholder="z. B. Raumdesign & Innenausbau" autocomplete="off"></label>
+  <div class="vwzwei"><label class="vwfeld">Anrede im Cockpit<input class="vwin" data-lkf="anrede" value="${esc(d.anrede)}" placeholder="leer = Name der Person" autocomplete="off"></label><label class="vwfeld">Edition Nr.<input class="vwin" data-lkf="nr" value="${esc(d.nr)}" inputmode="numeric" autocomplete="off"></label></div>
+  <div class="vwfeld">Muster im Kopf<div class="vwmuster">${Object.entries(LK_MUSTER).map(([k,[n]])=>`<button type="button" class="${d.muster===k?'an':''}" data-lk="set" data-k="muster" data-v="${k}" style="--m:${lkMuster(k)};background-color:${esc(lkKopf(d,false).bg)}"><small>${n}</small></button>`).join('')}</div></div>
+  <label class="vwfeld">Willkommensbrief <span class="vwnorm">· erscheint einmal beim ersten Start</span><textarea class="vwin vwtext" rows="5" data-lkf="gruss">${esc(d.gruss||vwLkGruss(d))}</textarea></label>
+  <div class="vwschalter">${sch('start','Startbildschirm „Onstand × Firma“','voll beim ersten Start, danach 0,6 s')}${sch('brief','Willkommensbrief','einmal pro Gerät')}${sch('kopf','Firmen-Kopf im Cockpit','schrumpft beim Scrollen')}${sch('nr','Edition-Nummer','auf Startbildschirm und Brief')}</div>
+ </div></div>
+ <div class="vwbox"><div class="vwbi">
+  ${lk.id?`<div class="vwhin">${firmen.length?`Aktiv bei: <b>${firmen.map(f=>esc(f.name)).join(', ')}</b>`:'Noch keiner Firma zugewiesen.'}</div>`:''}
+  <p class="vwfehltext">${esc(lk.fehler||'')}</p>
+  <div class="vwknr"><button type="button" class="vwbtn p" data-lk="speichern">Look speichern</button>${LK.vorschau?`<button type="button" class="vwbtn" data-lk="vorschauende">Vorschau beenden</button>`:`<button type="button" class="vwbtn" data-lk="vorschau">Auf diesem Gerät ansehen</button>`}${lk.id?`<button type="button" class="vwbtn" data-lk="zuweisen">Einer Firma zuweisen</button><button type="button" class="vwbtn rot" data-lk="loeschen">Löschen</button>`:''}</div>
+ </div></div>`}
+
+// ---------- Bilder: Logo verkleinern, Zeichen ausschneiden, Farben erkennen ----------
+function vwBildLaden(datei){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=r.result};r.onerror=rej;r.readAsDataURL(datei)})}
+function vwRahmen(img){const c=document.createElement('canvas'),w=Math.min(img.naturalWidth,800),h=Math.round(img.naturalHeight*w/img.naturalWidth);c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(img,0,0,w,h);
+ const D=x.getImageData(0,0,w,h).data;let x0=w,y0=h,x1=-1,y1=-1;for(let y=0;y<h;y++)for(let i=0;i<w;i++){const k=(y*w+i)*4;if(D[k+3]<24)continue;if(D[k]>242&&D[k+1]>242&&D[k+2]>242)continue;if(i<x0)x0=i;if(i>x1)x1=i;if(y<y0)y0=y;if(y>y1)y1=y}
+ if(x1<0)return {c,x0:0,y0:0,w,h};return {c,x0,y0,w:x1-x0+1,h:y1-y0+1}}
+function vwPng(src,sx,sy,sw,sh,zw,zh,weiss){const c=document.createElement('canvas');c.width=zw;c.height=zh;const x=c.getContext('2d');if(weiss){x.fillStyle='#fff';x.fillRect(0,0,zw,zh)}
+ const f=Math.min(zw/sw,zh/sh)*(weiss?.82:1),dw=sw*f,dh=sh*f;x.imageSmoothingQuality='high';x.drawImage(src,sx,sy,sw,sh,(zw-dw)/2,(zh-dh)/2,dw,dh);return c.toDataURL('image/png')}
+function vwVoll(img){const r=vwRahmen(img),f=Math.min(1,600/r.w,220/r.h);return vwPng(r.c,r.x0,r.y0,r.w,r.h,Math.round(r.w*f),Math.round(r.h*f),false)}
+function vwZeichen(img){const r=vwRahmen(img);let sx=r.x0,sw=r.w,sy=r.y0,sh=r.h;
+ if(r.w>r.h*1.6){sw=Math.min(r.w,Math.round(r.h*.8))}else if(r.w>r.h){sx=r.x0+Math.round((r.w-r.h)/2);sw=r.h}else{sy=r.y0+Math.round((r.h-r.w)/2);sh=r.w}
+ return vwPng(r.c,sx,sy,sw,sh,160,160,true)}
+function vwFarbenAus(img){const c=document.createElement('canvas'),n=72;c.width=c.height=n;const x=c.getContext('2d');x.drawImage(img,0,0,n,n);let D;try{D=x.getImageData(0,0,n,n).data}catch(e){return[]}
+ const E={};for(let i=0;i<D.length;i+=4){const r=D[i],g=D[i+1],b=D[i+2],a=D[i+3];if(a<128)continue;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);if(mx>235&&mn>220)continue;if(mx<28)continue;if((mx?(mx-mn)/mx:0)<.2)continue;
+  const k=(r>>4)+','+(g>>4)+','+(b>>4);(E[k]=E[k]||{n:0,r:0,g:0,b:0}).n++;E[k].r+=r;E[k].g+=g;E[k].b+=b}
+ const L=Object.values(E).sort((a,b)=>b.n-a.n).map(e=>[e.r/e.n,e.g/e.n,e.b/e.n]),aus=[];
+ for(const f of L){if(aus.every(a=>Math.abs(a[0]-f[0])+Math.abs(a[1]-f[1])+Math.abs(a[2]-f[2])>90))aus.push(f);if(aus.length===3)break}
+ return aus.map(f=>lkHex(f))}
+function vwDatei(fn){const i=document.createElement('input');i.type='file';i.accept='image/png,image/jpeg,image/webp,image/svg+xml';i.onchange=async()=>{const f=i.files[0];if(!f)return;try{fn(await vwBildLaden(f),f)}catch(e){onToast('Dieses Bild kann Onstand nicht lesen.')}};i.click()}
+
+// ---------- Knöpfe ----------
+async function vwFirmenLaden(){if(VW.firmen)return VW.firmen;try{VW.firmen=await vwRpc('nk_firmen_liste')||[]}catch(e){VW.firmen=[]}return VW.firmen}
+function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLaden().then(()=>{if(inh.isConnected&&VW.tab==='looks')vwMalen(inh)})}
+ const neuMalen=()=>vwMalen(inh);
+ const vorschauNeu=()=>{const v=inh.querySelector('.vwlvor');if(v){const d=Object.assign({},VW.lk.daten,{firma:VW.lk.name});v.innerHTML=VW.lkVor==='start'?vwLkSplash(d):vwLkVorschau(d,VW.lkVor,VW.lkDk)}};
+ inh.querySelectorAll('[data-lkf]').forEach(el=>{const k=el.dataset.lkf;el.oninput=()=>{const lk=VW.lk;if(!lk)return;if(k==='name')lk.name=el.value;else lk.daten[k]=el.value;
+  if(k==='farbe'||k==='farbe2'){if(k==='farbe'&&!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;clearTimeout(vwLooksBinden.t);vwLooksBinden.t=setTimeout(neuMalen,120);return}
+  if(k==='anrede'||k==='nr'){const ta=inh.querySelector('[data-lkf=gruss]');if(ta&&!lk.grussEigen){lk.daten.gruss=vwLkGruss(lk.daten);ta.value=lk.daten.gruss}}
+  if(k==='gruss')lk.grussEigen=true;vorschauNeu()}});
+ inh.querySelectorAll('[data-lkan]').forEach(el=>el.onchange=()=>{VW.lk.daten.an[el.dataset.lkan]=el.checked;if(el.dataset.lkan==='nr'&&!VW.lk.grussEigen)VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen()});
+ inh.querySelectorAll('[data-lk]').forEach(b=>b.onclick=async()=>{const a=b.dataset.lk,lk=VW.lk;
+  if(a==='neu'){VW.tab='looks';VW.lk=vwLkNeu();VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen();setTimeout(()=>{const i=inh.querySelector('[data-lkf=name]');if(i)i.focus()},40);return}
+  if(a==='waehle'){const l=vwLook(b.dataset.id);if(l){VW.lk={id:l.id,name:l.name,geaendert:l.geaendert,daten:lkVoll(JSON.parse(JSON.stringify(l.daten||{}))),grussEigen:true,f2fest:true}}neuMalen();inh.scrollTop=0;return}
+  if(a==='zur'){VW.lk=null;return neuMalen()}
+  if(a==='vor'){VW.lkVor=b.dataset.v;return neuMalen()}
+  if(a==='dk'){VW.lkDk=b.dataset.v==='1';return neuMalen()}
+  if(!lk)return;
+  if(a==='set'){let v=b.dataset.v;if(v==='true')v=true;else if(v==='false')v=false;lk.daten[b.dataset.k]=v;return neuMalen()}
+  if(a==='farbe'){lk.daten.farbe=b.dataset.f;if(!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;return neuMalen()}
+  if(a==='farbe2'){lk.daten.farbe2=b.dataset.f;lk.f2fest=true;return neuMalen()}
+  if(a==='logo')return vwDatei((img,f)=>{lk.daten.voll=vwVoll(img);if(!lk.zeichenEigen)lk.daten.zeichen=vwZeichen(img);const v=vwFarbenAus(img);if(v.length){lk.daten.vor=v;lk.daten.farbe=v[0];if(!lk.f2fest)lk.daten.farbe2=v[1]||lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2}
+   if(!lk.name){lk.name=f.name.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').replace(/\b(logo|rgb|cmyk|verlauf|\d+dpi)\b/gi,'').replace(/\s+/g,' ').trim()}onToast(v.length?`Logo geladen – ${v.length===1?'1 Farbe':v.length+' Farben'} erkannt`:'Logo geladen – bitte die Farbe selbst wählen');neuMalen()});
+  if(a==='zeichen')return vwDatei(img=>{lk.daten.zeichen=vwZeichen(img);lk.zeichenEigen=true;neuMalen()});
+  if(a==='speichern'){if(!lk.name.trim()){lk.fehler='Bitte den Firmennamen eintragen.';return neuMalen()}b.disabled=true;
+   const daten=Object.assign({},lk.daten,{firma:lk.name.trim()});if(!daten.gruss)daten.gruss=vwLkGruss(daten);
+   try{const r=await vwRpc('nk_look_speichern',{p_id:lk.id,p_name:lk.name.trim(),p_daten:daten});const row=Array.isArray(r)?r[0]:r;VW.looks=[row].concat((VW.looks||[]).filter(x=>x.id!==row.id));lk.id=row.id;lk.geaendert=row.geaendert;lk.fehler='';
+    if(LK.vorschau&&LK.d&&LK.d.firma===daten.firma)lkVorschauStart(daten);onToast('Look „'+row.name+'“ gespeichert')}catch(e){lk.fehler=/too large|payload|413/i.test(e.message)?'Das Logo ist zu groß. Bitte ein kleineres Bild nehmen.':vwFehlerText(e)}return neuMalen()}
+  if(a==='vorschau'){lkVorschauStart(Object.assign({},lk.daten,{firma:lk.name||'Firma'}));return setTimeout(neuMalen,50)}
+  if(a==='vorschauende'){lkVorschauEnde();return neuMalen()}
+  if(a==='loeschen'){onDialog(`<h3>Look löschen?</h3><p>„${esc(lk.name)}“ wird gelöscht. Firmen und Codes mit diesem Look sehen danach wieder normal aus.</p>`,[['ABBRECHEN',''],['LÖSCHEN','ja']],{ja:async()=>{try{await vwRpc('nk_look_loeschen',{p_id:lk.id});VW.looks=VW.looks.filter(x=>x.id!==lk.id);(VW.firmen||[]).forEach(f=>{if(f.look_id===lk.id)f.look_id=null});VW.lk=null;onToast('Look gelöscht')}catch(e){onToast(vwFehlerText(e))}neuMalen()}});return}
+  if(a==='zuweisen'){VW.firmen=null;const F=await vwFirmenLaden();if(!F.length){onDialog('<h3>Keine Firmen</h3><p>Auf dem Server gibt es noch keine Firma.</p>',[['OK','']]);return}
+   onDialog(`<h3>Einer Firma zuweisen</h3><p class="kl">Gilt sofort auf allen Geräten der Firma (spätestens beim nächsten Öffnen).</p><div class="vwfirmenwahl">${F.map(f=>{const l=f.look_id?vwLook(f.look_id):null;return `<label><input type="radio" name="vwfw" value="${esc(f.id)}" ${f.look_id===lk.id?'checked':''}><span><b class="lkname">${esc(f.name)}</b><small>${l?'Look: '+esc(l.name):'normales Onstand'}</small></span></label>`}).join('')}</div>`,[['ABBRECHEN',''],['ENTFERNEN','weg'],['ZUWEISEN','ja']],
+   {ja:async d=>{const r=d.querySelector('input[name=vwfw]:checked');if(!r)return false;try{await vwRpc('nk_look_zuweisen',{p_firma:r.value,p_look:lk.id});const f=F.find(x=>x.id===r.value);f.look_id=lk.id;onToast('„'+lk.name+'“ gilt jetzt für '+f.name);if(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.firma===r.value)setTimeout(lkHolen,300)}catch(e){onToast(vwFehlerText(e))}neuMalen()},
+    weg:async d=>{const r=d.querySelector('input[name=vwfw]:checked');if(!r)return false;try{await vwRpc('nk_look_zuweisen',{p_firma:r.value,p_look:null});const f=F.find(x=>x.id===r.value);f.look_id=null;onToast(f.name+' sieht wieder normal aus');if(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.firma===r.value)setTimeout(lkHolen,300)}catch(e){onToast(vwFehlerText(e))}neuMalen()}});return}
+ })}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
@@ -10759,7 +11111,7 @@ const FR_FEST={'OK':'OK','TAG':'Tag','ALS PDF / DRUCKEN':'Als PDF / Drucken','AN
 const FR_RE=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+FR_NOMEN.map(n=>n.replace(/[-/]/g,'\\$&')).join('|')+')(?![A-Za-zÄÖÜäöüß])','gi');
 function frSatz(t){const k=t.trim();if(FR_FEST[k])return t.replace(k,FR_FEST[k]);let s=k.toLocaleLowerCase('de');s=s.replace(/^([^\p{L}]*)(\p{L})/u,(m,a,b)=>a+b.toLocaleUpperCase('de'));
  s=s.replace(FR_RE,(m,vor,w)=>vor+(FR_NOMEN.find(n=>n.toLowerCase()===w.toLowerCase())||w));return t.replace(k,s)}
-const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bpdruck,.aueh,.vwcode';
+const FR_AUS='.ln>b,.hyrt>b,.kutx>b,.perow>span,.onleiste,.ambadge,.peava,.kwb,.kc,#bpdruck,.aueh,.vwcode,.lkname,.lkh,#lksplash,#lkbrief,#lkband,.lv,.lvsplash,.vwlk b';
 function frSchreibKnopf(b){if(b.closest(FR_AUS))return;const w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentElement!==b&&n.parentElement.closest(FR_AUS))continue;const t=n.nodeValue,k=t.trim();if(FR_FEST[k]){n.nodeValue=t.replace(k,FR_FEST[k]);continue}if(k.length<4)continue;const bu=k.replace(/[^A-Za-zÄÖÜäöüß]/g,'');
   if(bu.length<4||k!==k.toLocaleUpperCase('de')||/[a-zäöüß]/.test(k))continue;const neu=frSatz(t);if(neu!==t)n.nodeValue=neu}}
 function frSchreib(root){if(!root||root.nodeType!==1)return;const S='button,a.glanruf,label.brdat,summary';if(root.matches&&root.matches(S))frSchreibKnopf(root);else{const o=root.closest&&root.closest(S);if(o)frSchreibKnopf(o)}root.querySelectorAll&&root.querySelectorAll(S).forEach(frSchreibKnopf)}
