@@ -3742,6 +3742,93 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 @media (max-width:760px){#am .bwz{grid-template-columns:1fr}#am .bwform :is(input,select,textarea){font-size:16px}}
 @media (max-width:760px){#am .pbd{display:none}#am .aminhalt>.mgk:has(.kusuch) .kusuch{flex:1 1 100%!important;width:calc(100% + 104px)!important;max-width:none!important}#am .aminhalt>.mgk:has(.kusuch) .mgakt{margin-right:-104px}}
 #am .bwkn .bwsp{height:32px;padding:0 16px;border-radius:4px;border:1px solid var(--k-akz)!important;background:var(--k-akz)!important;color:var(--k-auf)!important;font-size:13px;font-weight:600;font-family:inherit}
+/* Meine Stunden */
+#am .msbox{display:flex;flex-direction:column;gap:12px;max-width:760px}
+#am .mshin{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;background:color-mix(in srgb,var(--k-gelb) 14%,var(--k-b1));border:1px solid color-mix(in srgb,var(--k-gelb) 40%,var(--k-lin));border-radius:8px;padding:10px 14px;font-size:13px}
+#am .mshin b{flex:1 1 100%}#am .mshin span{flex:1;color:var(--k-sub)}
+#am .mshin button,#am .msknopf button,#am .msneu2{height:34px;padding:0 14px;border-radius:4px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:inherit;font-size:13px;font-weight:600}
+#am .msuhr{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"k k" "z kn" "b kn";gap:4px 16px;align-items:center}
+#am .msuk{grid-area:k;display:flex;align-items:center;gap:8px;font-size:13px}#am .msuk b{font-weight:600}
+#am .mspkt{width:8px;height:8px;border-radius:50%;background:var(--k-gruen);animation:mspuls 1.6s infinite}@keyframes mspuls{50%{opacity:.3}}
+#am .mszeit{grid-area:z;font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.5px;line-height:1.15}
+#am .msbst{grid-area:b}#am .msb{height:30px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font:inherit;font-size:13px;padding:0 8px;max-width:100%}
+#am .msknopf{grid-area:kn;display:flex;gap:8px}
+#am .msein{background:var(--k-akz)!important;border-color:var(--k-akz)!important;color:var(--k-auf)!important}
+#am .msaus,#am .mshin .msfei2{color:var(--k-rot)!important}
+#am .mswo{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden}
+#am .mswk{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--k-lin)}#am .mswk b{font-size:13.5px}#am .mswk span{font-size:12.5px;color:var(--k-sub)}
+#am .msz{display:grid;grid-template-columns:70px minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--k-lin);padding:9px 14px;color:var(--k-t);font:inherit;font-size:13px;cursor:pointer}
+#am .msz:first-of-type{border-top:0}#am .msz:disabled{cursor:default;opacity:.8}#am .msz:not(:disabled):hover{background:color-mix(in srgb,var(--k-sub) 6%,var(--k-b1))}
+#am .msz small{display:block;font-size:12px;color:var(--k-sub)}#am .msz em{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums}
+#am .msleer{margin:0;padding:12px 14px;font-size:13px;color:var(--k-sub)}
+#am .mstipp{margin:0;font-size:12.5px;color:var(--k-sub)}
+#am .msneu2{align-self:flex-start;color:var(--k-akz)}
+#am .msf{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}#am .msf>label{font-size:12px;color:var(--k-sub);font-weight:500}
+#am .msf input,#am .msf select{height:36px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font:inherit;font-size:14px;padding:0 10px}
+#am .msf2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#am .mschips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#am .mschips button{height:30px;padding:0 11px;border:1px solid var(--k-lin);border-radius:16px;background:var(--k-b1);color:var(--k-t);font:inherit;font-size:13px}
+#am .mschips button.an{border-color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));color:var(--k-akz);font-weight:600}
+#am .mschips .mspz{width:80px;height:30px;border-radius:16px}
+#am .msrund{margin:-4px 0 12px}#am .msrund span{font-size:12px;color:var(--k-sub)}
+#am .mshint{font-size:11.5px;color:var(--k-sub)}
+#am .mssum{font-size:13.5px;background:color-mix(in srgb,var(--k-akz) 10%,var(--k-b1));color:var(--k-t);border-radius:6px;padding:8px 10px;min-height:20px}#am .mssum span{color:var(--k-sub);font-size:12.5px}#am .msfehl{color:var(--k-rot)}
+@media (max-width:760px){
+ #am .msuhr{grid-template-columns:1fr;grid-template-areas:"k" "z" "b" "kn";text-align:center;justify-items:center;border:0;border-radius:20px}
+ #am .mszeit{font-size:44px}#am .msknopf{width:100%}#am .msknopf button{flex:1;height:48px;border-radius:24px!important;font-size:16px;border:0;background:color-mix(in srgb,var(--k-sub) 14%,transparent)}
+ #am .msaus{background:color-mix(in srgb,var(--k-rot) 14%,transparent)!important}
+ #am .mswo{border:0;border-radius:20px}#am .msz{font-size:15px;padding:11px 16px}
+ #am .msneu2{align-self:stretch;height:48px;border-radius:24px;border:0;background:color-mix(in srgb,var(--k-akz) 14%,var(--k-b1))}
+ #am .mshin{border-radius:16px}
+}
+#am .ondk:has(.msf)>h3{font-size:18px!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-t)!important;font-weight:600}
+#am .msf>label,#am .msf2 label{letter-spacing:0!important;text-transform:none!important}
+/* GAEB */
+#am .gaein{display:flex;align-items:center;gap:12px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:12px 14px;margin:2px 0 4px}
+#am .gaic svg{width:26px;height:26px;fill:none;stroke:var(--k-akz);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#am .gatx{flex:1;min-width:0}#am .gatx b{display:block;font-size:13.5px}#am .gatx small{display:block;font-size:12px;color:var(--k-sub)}
+#am .gaein button,#am .gaende,#am .gazur,#am .ganeu,#am .gaz button,#am .gakn button{height:32px;padding:0 13px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font:inherit;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+#am .gakn button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}
+#am .gabox{display:flex;flex-direction:column;gap:12px;min-height:0;flex:1}
+#am .gaschr{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--k-sub)}#am .gaschr b{width:18px;height:1px;background:var(--k-lin)}
+#am .gaschr span{display:flex;align-items:center;gap:6px}#am .gaschr i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--k-lin);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700}
+#am .gaschr span.an{color:var(--k-t);font-weight:600}#am .gaschr span.an i{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}#am .gaschr span.ok i{background:var(--k-gruen);border-color:var(--k-gruen);color:var(--k-t)}
+#am .gadrop{border:1.5px dashed color-mix(in srgb,var(--k-sub) 45%,transparent);border-radius:10px;padding:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--k-b1);cursor:pointer}
+#am .gadrop.ueber{border-color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1))}
+#am .gadrop svg{width:34px;height:34px;fill:none;stroke:var(--k-akz);stroke-width:1.6}#am .gadrop b{font-size:15px}#am .gadrop small{color:var(--k-sub);font-size:12.5px}
+#am .gaknopf{margin-top:6px;height:34px;padding:0 16px;border-radius:4px;background:var(--k-akz);color:var(--k-auf);display:inline-flex;align-items:center;font-size:13px;font-weight:600}
+#am .gafehl{margin:0;color:var(--k-rot);font-size:13px}
+#am .gaalt,#am .gatab{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;overflow:hidden}
+#am .gaak{padding:10px 14px;font-size:13.5px;font-weight:600;border-bottom:1px solid var(--k-lin)}
+#am .gaz{display:flex;align-items:center;gap:12px;padding:9px 14px;border-top:1px solid var(--k-lin)}#am .gaak+.gaz{border-top:0}#am .gaz span{flex:1;min-width:0}#am .gaz b{display:block;font-size:13px}#am .gaz small{display:block;font-size:12px;color:var(--k-sub)}#am .gaz strong{font-size:13px;font-variant-numeric:tabular-nums}
+#am .gakette{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1)}#am .gakette div{padding:9px 14px;border-left:1px solid var(--k-lin);min-width:0}#am .gakette div:first-child{border:0}#am .gakette small{display:block;font-size:11px;color:var(--k-sub)}#am .gakette b{font-size:16px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#am .gabst{display:flex;align-items:center;gap:10px;font-size:13px}#am .gabst label{color:var(--k-sub)}#am .gab{height:32px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font:inherit;font-size:13px;padding:0 8px;max-width:100%}
+#am .gak{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--k-lin)}#am .gak b{font-size:13.5px}#am .gak span{font-size:12px;color:var(--k-sub)}
+#am .gascroll{overflow:auto;max-height:52vh}
+#am .gatab table{width:100%;border-collapse:collapse;font-size:12.5px}#am .gatab th{text-align:left;font-size:11.5px;color:var(--k-sub);font-weight:600;padding:7px 12px;border-bottom:1px solid var(--k-lin);position:sticky;top:0;background:var(--k-b1);white-space:nowrap}
+#am .gatab td{padding:7px 12px;border-bottom:1px solid var(--k-lin);vertical-align:middle}#am .gatab td b{font-weight:500}#am .gatab td small{display:block;color:var(--k-sub);font-size:11.5px}
+#am .gatab .r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}#am .gatab .oz{color:var(--k-sub);white-space:nowrap;font-variant-numeric:tabular-nums}
+#am .gatab tr.gati td{background:color-mix(in srgb,var(--k-sub) 6%,var(--k-b1));font-weight:600}#am .gatab tr.gant td{color:var(--k-sub);font-size:12px}
+#am .gaep{display:inline-flex;align-items:center;gap:6px}#am .gaep input{width:78px;height:28px;border:1px solid var(--k-lin);border-radius:4px;background:var(--k-b1);color:var(--k-t);font:inherit;font-size:12.5px;text-align:right;padding:0 6px}
+#am .gaep input:focus{outline:0;border-color:var(--k-akz)}
+#am .gaep em{font-style:normal;font-size:10.5px;border-radius:10px;padding:0 6px;background:color-mix(in srgb,var(--k-gruen) 14%,transparent);color:var(--k-gruen)}#am .gaep em.of{background:color-mix(in srgb,var(--k-gelb) 16%,transparent);color:var(--k-gelb)}
+#am .gafuss{display:flex;gap:8px}#am .gafuss span{flex:1}#am .gafuss .haupt,#am .gakn .haupt{height:32px;padding:0 14px;border-radius:4px}
+#am .gafertig{background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+#am .gapill{font-size:11.5px;font-weight:600;border-radius:20px;padding:1px 9px;background:color-mix(in srgb,var(--k-gruen) 14%,transparent);color:var(--k-gruen)}
+#am .gafertig>b{font-size:18px}#am .gafertig>span{font-size:13.5px;color:var(--k-sub)}#am .gafertig small{color:var(--k-sub);font-size:12.5px}#am .gakn{display:flex;gap:8px;flex-wrap:wrap}
+#am .ganeu{align-self:flex-start}
+@media (max-width:760px){#am .gakette{grid-template-columns:1fr 1fr}#am .gakette div:nth-child(3){border-left:0}#am .gakette div:nth-child(n+3){border-top:1px solid var(--k-lin)}
+ #am .gak{flex-direction:column}#am .gatab th:nth-child(4),#am .gatab td:nth-child(4){display:none}#am .gascroll{max-height:none}#am .gadrop,#am .gatab,#am .gaalt,#am .gafertig,#am .gaein{border-radius:16px}
+ #am .gaein{flex-wrap:wrap}#am .gaein button{width:100%;justify-content:center;height:40px;border-radius:20px}}
+/* Mikrofon im Assistenten */
+.oneinschub .aseing .asfmic{background:color-mix(in srgb,var(--k-sub) 14%,transparent)!important;color:var(--k-t)!important;position:relative;display:grid;place-items:center}
+.oneinschub .aseing .asfmic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.oneinschub .aseing .asfmic.an{background:var(--k-rot)!important;color:var(--k-t)!important}
+.oneinschub .aseing .asfmic.an:before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--k-rot);opacity:.5;animation:fmring 1.2s infinite}
+@keyframes fmring{to{inset:-11px;opacity:0}}
+.oneinschub .aseing.fmhoert textarea{border-color:var(--k-akz)!important}
+@media (prefers-reduced-motion:reduce){.oneinschub .aseing .asfmic.an:before,#am .mspkt{animation:none}}
+#am .gaweiter,#am .gaauf{height:32px;padding:0 14px;border-radius:4px;border:1px solid var(--k-akz)!important;background:var(--k-akz)!important;color:var(--k-auf)!important;font:inherit;font-size:13px;font-weight:600}
 /* ===== Bauplan nach der Bauplan-Probe (hell, Kupfer; PC: Kopf- und Fußleiste, Leisten rechts; Handy: Glasknöpfe, schwebende Leiste) ===== */
 #bp{background:var(--k-b0)!important;color:var(--k-t);font-family:inherit;overflow:clip!important}
 #bp .ansicht{overflow:clip}
@@ -3922,7 +4009,7 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.66';
+const ON_VER='0.10.67';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10090,7 +10177,7 @@ function pbRest(name){const p=PER[name];if(!p)return null;const an=parseFloat(p.
   a.querySelector('.pbmeine').onclick=()=>{TBV.sel=new Date();amFunktion('tagebuch');setTimeout(()=>{const b=document.querySelector('#am .tbbneu');if(b)b.click()},RM?60:450)}}}}
 // ---------- Reiter wie in der Probe: Mitarbeiter · Stunden · Urlaub · Rollen ----------
 let PB_TAB='team';
-{const alt=peMalen;peMalen=function(inh){if(PE_SEL!==null&&PB_TAB!=='team')PB_TAB='team';const r=alt.apply(this,arguments);try{pbReiter()}catch(e){console.error(e)}return r}}
+{const alt=peMalen;peMalen=function(inh){const r=alt.apply(this,arguments);try{pbReiter()}catch(e){console.error(e)}return r}}
 function pbReiter(){const a=document.querySelector('#am .aminhalt');if(!a)return;const k=a.querySelector(':scope>.mgk');if(!k||!a.querySelector('.peneu')||a.querySelector('.pbtabs'))return;
  const L=Object.values(PER).filter(p=>p.status==='aktiv'&&!p.neu),T=[['team','Mitarbeiter',L.length],['stunden','Stunden'],['urlaub','Urlaub'],['rollen','Rollen']];
  const d=document.createElement('div');d.className='mbtabs pbtabs';d.setAttribute('role','tablist');d.innerHTML=T.map(([x,n,z])=>`<button type="button" role="tab" data-pbt="${x}" class="${x===PB_TAB?'an':''}" aria-selected="${x===PB_TAB}">${n}${z!=null?`<em>${z}</em>`:''}</button>`).join('');k.after(d);
@@ -10270,6 +10357,194 @@ function esSeite(inh){const F=typeof auFirma==='function'?auFirma():{},{firma,lo
  </div></div>`;
  inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}});
  inh.querySelectorAll('[data-design]').forEach(b=>b.onclick=()=>{onDesign(b.dataset.design,true);inh.querySelectorAll('[data-design]').forEach(x=>{const a=x===b;x.classList.toggle('an',a);x.setAttribute('aria-pressed',a)})})}
+// ===== Meine Stunden: einstempeln, Pause, Feierabend; Zeit nachtragen (heute/gestern); Erinnerung um 17 Uhr =====
+// Gespeichert wird als eigener Tagebuch-Eintrag der Person („Arbeitszeit: 07:00–16:00, Pause 30 Min.“) – damit zählen
+// Personal, Stundenzettel und Export automatisch mit. Keine automatische Pause: nur was gedrückt oder eingetragen wurde.
+// Die laufende Stempeluhr liegt auf dem Gerät (localStorage), je Person.
+const MS_I={uhr:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>'};
+const msIch=()=>{try{return reIchName()||ON_PROFIL.name||'Ich'}catch(e){return (typeof ON_PROFIL!=='undefined'&&ON_PROFIL.name)||'Ich'}};
+const msChef=()=>{try{return !SY_KONTO||['chef','buero'].includes(reRolleId())}catch(e){return true}};
+const msKey=()=>'onstandStempel:'+msIch();
+function msLesen(){try{return JSON.parse(localStorage.getItem(msKey())||'null')}catch(e){return null}}
+function msSchreib(s){try{s?localStorage.setItem(msKey(),JSON.stringify(s)):localStorage.removeItem(msKey())}catch(e){}}
+const msHM=d=>String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+const msMin=hm=>{const m=String(hm||'').match(/(\d{1,2}):(\d\d)/);return m?+m[1]*60+ +m[2]:null};
+const msAusMin=n=>{n=((n%1440)+1440)%1440;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')};
+const msUhr=s=>String(Math.floor(s/3600)).padStart(2,'0')+':'+String(Math.floor(s/60)%60).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
+// Pause steht in der Arbeitszeit („…, Pause 30 Min.“) und wird überall von den Stunden abgezogen
+{const alt=peDauer;peDauer=function(z){const h=alt(z),p=String(z||'').match(/Pause\s*(\d{1,3})\s*Min/i);return Math.max(0,h-(p?+p[1]/60:0))}}
+function msLaufzeit(s){if(!s)return 0;const jetzt=Date.now();let pz=(s.pauseMin||0)*60;if(s.pauseSeit)pz+=(jetzt-s.pauseSeit)/1000;return Math.max(0,(jetzt-s.start)/1000-pz)}
+function msBaustellen(){return Object.values(typeof BST!=='undefined'?BST:{}).filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent')}
+function msVorschlag(){const ich=msIch(),T=Object.keys(TB||{}).sort().reverse();for(const t of T)for(const e of TB[t]||[])if(e&&e.b&&peListe(e.p).includes(ich))return e.b;const b=msBaustellen()[0];return b?b.name:''}
+function msEigene(){const ich=msIch(),L=[];for(const [t,l] of Object.entries(TB||{}))(l||[]).forEach((e,i)=>{if(e&&peListe(e.p).includes(ich)&&peDauer(e.z))L.push({t,i,e})});return L.sort((a,b)=>b.t.localeCompare(a.t))}
+// ---------- Ansicht ----------
+let MS_INH=null;
+function msMalen(inh,mitKopf){MS_INH=inh;const st=msLesen(),ich=msIch(),heute=new Date(),hI=tbIso(heute),bez=PE_BEZ||new Date(),mo=tbMo(bez),ein=!!st,spaet=ein&&heute.getHours()>=17;
+ const E=msEigene(),woche=E.filter(x=>x.t>=tbIso(mo)&&x.t<=tbIso(tbPlus(mo,6))),sum=woche.reduce((s,x)=>s+peDauer(x.e.z),0),p=PER&&PER[ich],soll=typeof peSoll==='function'&&p?peSoll(p):0;
+ const B=msBaustellen(),bWahl=st?st.b:(msMalen.b||msVorschlag());
+ const kopf=mitKopf?`<div class="mgk"><div><span class="amtt">PERSONAL</span><h2 class="mgh">Meine Stunden</h2></div><div class="mgakt"><button type="button" class="haupt msneu">${MS_I.plus}Zeit eintragen</button></div></div>`:'';
+ inh.querySelectorAll(':scope>.msbox').forEach(x=>x.remove());
+ const box=document.createElement('div');box.className='msbox';
+ box.innerHTML=`${spaet?`<div class="mshin"><b>Es ist nach 17 Uhr – du bist noch eingestempelt.</b><span>Feierabend eintragen? Die Endzeit kannst du dabei anpassen, falls es zu viel ist.</span><button type="button" class="msfei2">Feierabend eintragen</button></div>`:''}
+  <section class="msuhr"><div class="msuk"><b>${ein?(st.pauseSeit?'Pause läuft':'Eingestempelt seit '+msHM(new Date(st.start))):'Heute · '+heute.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'numeric'})}</b>${ein?'<span class="mspkt"></span>':''}</div>
+   <div class="mszeit" data-msuhr>${msUhr(msLaufzeit(st))}</div>
+   <div class="msbst">${B.length?`<select class="msb" aria-label="Baustelle">${B.map(b=>`<option${b.name===bWahl?' selected':''}>${esc(b.name)}</option>`).join('')}<option value=""${bWahl?'':' selected'}>ohne Baustelle</option></select>`:'<span>ohne Baustelle</span>'}</div>
+   <div class="msknopf">${ein?`<button type="button" class="mspause">${st.pauseSeit?'Weiter':'Pause'}</button><button type="button" class="msaus">Feierabend</button>`:'<button type="button" class="msein">Einstempeln</button>'}</div></section>
+  <section class="mswo"><div class="mswk"><b>KW ${tbKw(bez)}</b><span>${peH(sum)} h${soll?' von '+peH(soll)+' h':''}</span></div>
+   ${woche.length?woche.map(x=>{const d=tbAusIso(x.t),aend=msChef()||x.t===hI||x.t===tbIso(tbPlus(heute,-1));return `<button type="button" class="msz" data-t="${x.t}" data-i="${x.i}"${aend?'':' disabled'}><b>${TB_WT[tbWt(d)].charAt(0)+TB_WT[tbWt(d)].charAt(1).toLowerCase()} ${d.getDate()}.${d.getMonth()+1}.</b><span>${esc(x.e.z)}<small>${esc(x.e.b||'ohne Baustelle')}${x.e.l&&x.e.l!=='Arbeitszeit'?' · '+esc(String(x.e.l).split(/;|\n/)[0]):''}</small></span><em>${peH(peDauer(x.e.z))} h</em></button>`}).join(''):'<p class="msleer">Diese Woche noch keine Stunden.</p>'}</section>
+  <p class="mstipp">Stunden gehen als Arbeitszeit ins Tagebuch – so stehen sie bei Personal und im Stundenzettel. Vergessen? „Zeit eintragen“ geht für heute und gestern${msChef()?' (als Chef für jeden Tag)':''}.</p>
+  ${mitKopf?'':'<button type="button" class="msneu2">+ Zeit eintragen</button>'}`;
+ if(mitKopf){inh.innerHTML=kopf;inh.appendChild(box)}else inh.appendChild(box);
+ const q=s=>inh.querySelector(s);
+ const sb=q('.msb');if(sb)sb.onchange=()=>{msMalen.b=sb.value;const s=msLesen();if(s){s.b=sb.value;msSchreib(s)}};
+ if(q('.msein'))q('.msein').onclick=()=>{msSchreib({start:Date.now(),b:sb?sb.value:'',pauseMin:0,pauseSeit:0,tag:hI});msNeu()};
+ if(q('.mspause'))q('.mspause').onclick=()=>{const s=msLesen();if(!s)return;if(s.pauseSeit){s.pauseMin=(s.pauseMin||0)+(Date.now()-s.pauseSeit)/60000;s.pauseSeit=0}else s.pauseSeit=Date.now();msSchreib(s);msNeu()};
+ [q('.msaus'),q('.msfei2')].filter(Boolean).forEach(b=>b.onclick=()=>msFeierabend());
+ [q('.msneu'),q('.msneu2')].filter(Boolean).forEach(b=>b.onclick=()=>msForm());
+ inh.querySelectorAll('.msz[data-t]').forEach(b=>b.onclick=()=>{const e=(TB[b.dataset.t]||[])[+b.dataset.i];if(e)msForm({t:b.dataset.t,i:+b.dataset.i,e})})}
+function msNeu(){if(MS_INH&&MS_INH.isConnected){if(MS_INH.querySelector(':scope>.mgk .msneu'))msMalen(MS_INH,true);else msMalen(MS_INH,false)}}
+setInterval(()=>{const e=document.querySelector('#am [data-msuhr]');if(e)e.textContent=msUhr(msLaufzeit(msLesen()))},1000);
+// ---------- Feierabend: Zeiten bestätigen und bei Bedarf korrigieren ----------
+function msFeierabend(){const s=msLesen();if(!s)return;let pm=Math.round((s.pauseMin||0)+(s.pauseSeit?(Date.now()-s.pauseSeit)/60000:0));pm=Math.round(pm/5)*5;
+ msForm({neu:true,von:msHM(new Date(s.start)),bis:msHM(new Date()),pause:pm,b:s.b,tag:s.tag||tbIso(new Date(s.start)),stempel:true})}
+// ---------- Formular (Leiste rechts bzw. Blatt) ----------
+function msForm(o){o=o||{};const heute=new Date(),hI=tbIso(heute),gI=tbIso(tbPlus(heute,-1)),chef=msChef(),alt=o.e;
+ const z=alt?String(alt.z||''):'',zm=z.match(/(\d{1,2}[:.]\d\d)\s*[–-]\s*(\d{1,2}[:.]\d\d)/),pm=z.match(/Pause\s*(\d{1,3})\s*Min/i);
+ const v={tag:o.t||o.tag||hI,von:(zm?zm[1].replace('.',':'):o.von)||'07:00',bis:(zm?zm[2].replace('.',':'):o.bis)||'16:00',pause:pm?+pm[1]:(o.pause||0),b:alt?alt.b:(o.b??msVorschlag()),l:alt&&alt.l!=='Arbeitszeit'?alt.l:''};
+ const B=msBaustellen(),spaet=o.stempel&&heute.getHours()>=17;
+ onDialog(`<h3>${o.stempel?'Feierabend':alt?'Stunden ändern':'Zeit eintragen'}</h3>
+  <div class="msf"><label>Tag</label><div class="mschips" data-g="tag">${chef?`<input type="date" class="mstag" value="${v.tag}" max="${hI}">`:[[hI,'Heute'],[gI,'Gestern']].map(([d,n])=>`<button type="button" data-v="${d}" class="${v.tag===d?'an':''}"${o.stempel||alt?' disabled':''}>${n}</button>`).join('')}</div></div>
+  <div class="msf2"><div class="msf"><label>Von</label><input type="time" class="msvon" value="${v.von}" step="300"></div><div class="msf"><label>Bis</label><input type="time" class="msbis" value="${v.bis}" step="300"></div></div>
+  ${o.stempel?`<div class="mschips msrund"><span>Zu viel?</span><button type="button" data-k="-15">−15 Min.</button><button type="button" data-k="-30">−30 Min.</button>${spaet?'<button type="button" data-k="17">Ende 17:00</button>':''}</div>`:''}
+  <div class="msf"><label>Pause</label><div class="mschips" data-g="pause">${[0,15,30,45,60].map(n=>`<button type="button" data-v="${n}" class="${v.pause===n?'an':''}">${n?n+' Min.':'keine'}</button>`).join('')}<input class="mspz" inputmode="numeric" value="${[0,15,30,45,60].includes(v.pause)?'':v.pause}" placeholder="andere" aria-label="Pause in Minuten"></div><small class="mshint">Wird nicht automatisch abgezogen – nur was du hier einträgst.</small></div>
+  <div class="msf"><label>Baustelle</label><select class="msfb">${B.map(b=>`<option${b.name===v.b?' selected':''}>${esc(b.name)}</option>`).join('')}<option value=""${v.b?'':' selected'}>ohne Baustelle</option></select></div>
+  <div class="msf"><label>Was gemacht? (optional)</label><input class="msfl" value="${esc(v.l)}" placeholder="z. B. Spachteln Bad"></div>
+  <div class="mssum"></div>`,
+  alt?[['Löschen','weg'],['Abbrechen',''],['Speichern','ok']]:[['Abbrechen',''],[o.stempel?'Feierabend speichern':'Speichern','ok']],
+  {ok:async d=>{const r=lies(d);if(!r)return false;await msSpeichern(r,alt?{t:o.t,i:o.i}:null);if(o.stempel)msSchreib(null);onToast('Gespeichert: '+peH(r.h)+' h');msNeu()},
+   weg:async(d,b)=>{if(!b.dataset.s){b.dataset.s=1;b.textContent='Wirklich löschen?';return false}const l=TB[o.t]||[];l.splice(o.i,1);if(!l.length)delete TB[o.t];await tbSchreiben(o.t.slice(0,7));onToast('Gelöscht');msNeu()}});
+ const d=AM_EL.querySelector('.ondlg'),q=s=>d.querySelector(s);let pause=v.pause,tag=v.tag;
+ function lies(dd){const von=q('.msvon').value,bis=q('.msbis').value,a=msMin(von),e=msMin(bis);if(a==null||e==null||e<=a){q('.mssum').innerHTML='<b class="msfehl">Ende muss nach dem Beginn liegen.</b>';return null}
+  const h=Math.max(0,(e-a-pause)/60);return {tag:chef&&q('.mstag')?q('.mstag').value||hI:tag,von,bis,pause,b:q('.msfb').value,l:q('.msfl').value.trim(),h}}
+ const sum=()=>{const a=msMin(q('.msvon').value),e=msMin(q('.msbis').value);q('.mssum').innerHTML=a!=null&&e!=null&&e>a?`= <b>${peH(Math.max(0,(e-a-pause)/60))} Stunden</b>${pause?` <span>(${pause} Min. Pause abgezogen)</span>`:''}`:''};
+ d.querySelectorAll('[data-g="tag"] [data-v]').forEach(b=>b.onclick=()=>{tag=b.dataset.v;d.querySelectorAll('[data-g="tag"] [data-v]').forEach(x=>x.classList.toggle('an',x===b))});
+ d.querySelectorAll('[data-g="pause"] [data-v]').forEach(b=>b.onclick=()=>{pause=+b.dataset.v;q('.mspz').value='';d.querySelectorAll('[data-g="pause"] [data-v]').forEach(x=>x.classList.toggle('an',x===b));sum()});
+ q('.mspz').oninput=()=>{pause=Math.max(0,Math.min(600,parseInt(q('.mspz').value)||0));d.querySelectorAll('[data-g="pause"] [data-v]').forEach(x=>x.classList.toggle('an',+x.dataset.v===pause&&!q('.mspz').value));sum()};
+ d.querySelectorAll('.msrund [data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k,e=msMin(q('.msbis').value);q('.msbis').value=k==='17'?'17:00':msAusMin(e+(+k));sum()});
+ q('.msvon').oninput=q('.msbis').oninput=sum;sum()}
+async function msSpeichern(r,alt){await tbBereit();const ich=msIch(),e=alt&&TB[alt.t]&&TB[alt.t][alt.i]?TB[alt.t][alt.i]:{};
+ e.z=r.von+'–'+r.bis+(r.pause?', Pause '+r.pause+' Min.':'');e.b=r.b;e.p=alt?e.p||ich:ich;e.l=r.l||(alt?e.l||'Arbeitszeit':'Arbeitszeit');
+ if(alt&&alt.t!==r.tag){TB[alt.t].splice(alt.i,1);await tbSchreiben(alt.t.slice(0,7))}
+ if(!alt||alt.t!==r.tag)(TB[r.tag]=TB[r.tag]||[]).push(e);await tbSchreiben(r.tag.slice(0,7))}
+// ---------- Erinnerung um 17 Uhr, wenn noch eingestempelt ----------
+setInterval(()=>{const s=msLesen();if(!s)return;const n=new Date(),hI=tbIso(n);if(n.getHours()<17||s.erin===hI)return;s.erin=hI;msSchreib(s);
+ try{onToast('17 Uhr – du bist noch eingestempelt. Feierabend unter Personal → Meine Stunden.')}catch(e){}
+ try{if('Notification' in window&&Notification.permission==='granted')new Notification('Onstand · Meine Stunden',{body:'Du bist noch eingestempelt. Feierabend eintragen?'})}catch(e){}
+ try{if(typeof natLokal==='function')natLokal('Onstand','Du bist noch eingestempelt. Feierabend eintragen?')}catch(e){}msNeu()},30000);
+// ---------- Einbau: Mitarbeiter (Personal „eigen“) sehen direkt „Meine Stunden“; Chef als Reiter ----------
+rePersonalEigen=function(inh){inh.innerHTML='<div class="amleer"><span>Lade …</span></div>';Promise.all([tbBereit(),typeof bstLaden==='function'?bstLaden():0,typeof peLaden==='function'?peLaden():0]).catch(()=>{}).then(()=>{if(inh.isConnected)msMalen(inh,true)})};
+{const alt=pbReiter;pbReiter=function(){const a=document.querySelector('#am .aminhalt');alt.apply(this,arguments);
+ const d=a&&a.querySelector('.pbtabs');if(!d||d.querySelector('[data-pbt="meine"]'))return;const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.dataset.pbt='meine';b.textContent='Meine Stunden';if(PB_TAB==='meine')b.classList.add('an');d.querySelector('[data-pbt="stunden"]').after(b);
+ b.onclick=()=>{PB_TAB='meine';PE_SEL=null;peMalen(a)};if(PB_TAB==='meine'){d.querySelectorAll('button').forEach(x=>x.classList.toggle('an',x===b));const k=a.querySelector(':scope>.mgk');[...a.children].forEach(c=>{if(c!==k&&c!==d)c.remove()});msMalen(a,false)}}}
+// „Meine Stunden eintragen“ (Handy-Liste Personal) öffnet jetzt die Stempeluhr
+document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('#am .pbmeine');if(!b)return;ev.stopImmediatePropagation();ev.preventDefault();PB_TAB='meine';PE_SEL=null;peMalen(document.querySelector('#am .aminhalt'))},true);
+// ===== GAEB einlesen (Standard-Paket): Ausschreibung als GAEB DA XML (.x81–.x86) → Preise eintragen → Angebot + .x84 zurück =====
+// Nur die neuen XML-Formate. Preise werden aus der eigenen Preisliste vorgeschlagen (gleiche Einheit, ähnlicher Text).
+// Die Original-Datei wird beim Angebot gespeichert (Angebote/GAEB A-….xml), damit die .x84 später mit den aktuellen Preisen entsteht.
+const GA_EH={m2:'m²',qm:'m²','m²':'m²',m3:'m³','m³':'m³',m:'m',lfm:'m',st:'Stk',stk:'Stk',stck:'Stk','stück':'Stk',psch:'psch',pausch:'psch',h:'Std',std:'Std',kg:'kg',t:'t',l:'l'};
+const gaEh=u=>{const k=String(u||'').trim().toLowerCase().replace(/\.$/,'');return GA_EH[k]||String(u||'').trim()||'psch'};
+const gaTxt=el=>el?String(el.textContent||'').replace(/\s+/g,' ').trim():'';
+const gaKind=(el,n)=>el?[...el.children].find(c=>c.localName===n):null;
+const gaKinder=(el,n)=>el?[...el.children].filter(c=>c.localName===n):[];
+// ---------- Lesen ----------
+function gaLesen(xml,datei){const doc=new DOMParser().parseFromString(xml,'application/xml');if(doc.querySelector('parsererror')||doc.documentElement.localName!=='GAEB')throw new Error('Das ist keine GAEB-XML-Datei. Bitte die .x83-Datei aus der Ausschreibung wählen (alte .d83-Dateien gehen nicht).');
+ const all=n=>[...doc.getElementsByTagNameNS('*',n)],dp=gaTxt(all('DP')[0]),prj=gaTxt(all('NamePrj')[0])||gaTxt(all('LblPrj')[0])||String(datei||'Ausschreibung').replace(/\.[^.]+$/,''),boq=all('BoQ')[0];
+ if(!boq)throw new Error('In der Datei steht kein Leistungsverzeichnis.');
+ const pos=[];let nr=0;
+ const lauf=(body,oz,tiefe)=>{for(const c of [...(body?body.children:[])]){
+  if(c.localName==='BoQCtgy'){const o=[...oz,c.getAttribute('RNoPart')||''];pos.push({titel:true,oz:o.filter(Boolean).join('.'),n:gaTxt(gaKind(c,'LblTx'))||'Abschnitt',tiefe});lauf(gaKind(c,'BoQBody'),o,tiefe+1)}
+  else if(c.localName==='Itemlist')for(const it of gaKinder(c,'Item')){const o=[...oz,it.getAttribute('RNoPart')||''].filter(Boolean).join('.'),d=gaKind(it,'Description'),ct=gaKind(d,'CompleteText'),ot=gaKind(ct,'OutlineText'),dt=gaKind(ct,'DetailTxt');
+   let kurz=gaTxt(ot),lang=gaTxt(dt);if(!kurz)kurz=lang.slice(0,120);const qty=gaTxt(gaKind(it,'Qty')),art=it.getAttribute('ALNSerNo')||'',nurText=!qty&&!gaKind(it,'QU');
+   pos.push({oz:o,n:kurz||'Position '+o,lang:lang&&lang!==kurz?lang:'',m:parseFloat(qty.replace(',','.'))||0,e:gaEh(gaTxt(gaKind(it,'QU'))),nurText,idx:nr++})}
+  else if(c.localName==='BoQBody')lauf(c,oz,tiefe)}};
+ lauf(gaKind(boq,'BoQBody'),[],0);
+ if(!pos.some(p=>!p.titel))throw new Error('Keine Positionen gefunden.');return {xml,datei,dp,prj,pos}}
+// ---------- Preise vorschlagen ----------
+const gaWorte=s=>new Set(String(s).toLowerCase().replace(/[^a-zäöüß0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>=4));
+function gaVorschlag(p){if(typeof AU_P==='undefined'||!AU_P.length)return null;const W=gaWorte(p.n);let best=null,bs=0;
+ for(const x of AU_P){if(gaEh(x.e)!==p.e)continue;const V=gaWorte(x.n);let n=0;V.forEach(w=>{if(W.has(w)||[...W].some(v=>v.startsWith(w.slice(0,6))||w.startsWith(v.slice(0,6))))n++});const s=n/Math.max(1,Math.min(V.size,W.size));if(s>bs){bs=s;best=x}}
+ return bs>=.5?best:null}
+// ---------- .x84 schreiben (Original + Preise) ----------
+function gaX84(xml,preise){const doc=new DOMParser().parseFromString(xml,'application/xml'),ns=doc.documentElement.namespaceURI,mk=(n,t)=>{const e=doc.createElementNS(ns,n);e.textContent=t;return e};
+ const dp=doc.getElementsByTagNameNS('*','DP')[0];if(dp)dp.textContent='84';
+ let i=0;for(const it of [...doc.getElementsByTagNameNS('*','Item')]){const p=preise[i++];if(!p||!(p.p>0))continue;gaKinder(it,'UP').concat(gaKinder(it,'IT')).forEach(x=>x.remove());const q=gaKind(it,'Qty'),m=parseFloat(String(q?q.textContent:'0').replace(',','.'))||0,up=mk('UP',(+p.p).toFixed(2)),gp=mk('IT',(m*p.p).toFixed(2));
+  const nach=gaKind(it,'QU')||q;if(nach){nach.after(up);up.after(gp)}else{it.prepend(gp);it.prepend(up)}}
+ const F=typeof auFirma==='function'?auFirma():{},info=doc.getElementsByTagNameNS('*','Award')[0];
+ if(info&&F.name&&!gaKind(info,'CTR')){const c=doc.createElementNS(ns,'CTR'),a=doc.createElementNS(ns,'Address');a.appendChild(mk('Name1',F.name));if(F.str)a.appendChild(mk('Street',F.str));if(F.ort)a.appendChild(mk('City',F.ort));c.appendChild(a);const boq=gaKind(info,'BoQ');boq?info.insertBefore(c,boq):info.appendChild(c)}
+ return new XMLSerializer().serializeToString(doc).replace(/GAEB_DA_XML\/DA8\d/,'GAEB_DA_XML/DA84')}
+async function gaX84Laden(a){const xml=await lesen(AU_ORD+'/GAEB '+a.nr+'.xml');if(!xml){onToast('Die GAEB-Datei zu diesem Angebot fehlt.');return}const P=[];(a.gaeb.idx||[]).forEach((pi,k)=>{P[k]=pi==null?null:a.pos[pi]||null});
+ const out=gaX84(xml,P);erHerunterladen(out,(a.gaeb.datei||'Angebot').replace(/\.[^.]+$/,'')+'_'+a.nr+'.x84','application/xml')}
+// ---------- Ansicht ----------
+const GA_I={dat:'<svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>'};
+function gaMalen(inh){const G=AUV.gaeb,eur=v=>auEur(v),P=G.lv?G.lv.pos.filter(p=>!p.titel&&!p.nurText):[];
+ const schritte=`<div class="gaschr">${['Datei wählen','Preise eintragen','Angebot fertig'].map((n,i)=>`<span class="${G.s===i+1?'an':G.s>i+1?'ok':''}"><i>${G.s>i+1?'✓':i+1}</i>${n}</span>`).join('<b></b>')}</div>`;
+ let x='';
+ if(G.s===1)x=`${schritte}<label class="gadrop">${GA_I.dat}<b>GAEB-Datei wählen oder hierher ziehen</b><small>Ausschreibung vom Architekten oder Amt als .x83 (auch .x81, .x82, .x86)</small><span class="gaknopf">Datei wählen</span><input type="file" accept=".x81,.x82,.x83,.x84,.x86,.xml" hidden></label>${G.fehler?`<p class="gafehl">${esc(G.fehler)}</p>`:''}
+  ${AU_A.some(a=>a.gaeb)?`<div class="gaalt"><div class="gaak">Aus GAEB erstellt</div>${AU_A.filter(a=>a.gaeb).map(a=>`<div class="gaz"><span><b>${esc(a.t||a.nr)}</b><small>${esc(a.nr)} · ${esc(a.gaeb.datei||'')} · ${a.pos.length} Positionen</small></span><strong>${eur(auNetto(a))}</strong><button type="button" data-x84="${esc(a.nr)}">.x84 speichern</button></div>`).join('')}</div>`:''}`;
+ if(G.s===2){const mit=P.filter(p=>G.preise[p.idx]>0),sum=P.reduce((s,p)=>s+(G.preise[p.idx]||0)*p.m,0),B=Object.values(BST).filter(b=>b.status!=='abgeschlossen');
+  x=`${schritte}<div class="gakette"><div><small>Projekt</small><b>${esc(G.lv.prj)}</b></div><div><small>Positionen</small><b>${P.length}</b></div><div><small>Mit Preis</small><b>${mit.length} von ${P.length}</b></div><div><small>Summe netto</small><b>${eur(sum)}</b></div></div>
+  <div class="gabst"><label>Für welche Baustelle?</label><select class="gab"><option value="">– ohne Baustelle –</option>${B.map(b=>`<option${G.b===b.name?' selected':''}>${esc(b.name)}</option>`).join('')}</select></div>
+  <div class="gatab"><div class="gak"><b>Leistungsverzeichnis · ${esc(G.lv.datei)}</b><span>Preise aus deiner Preisliste vorgeschlagen · Feld anklicken zum Ändern</span></div><div class="gascroll"><table><tr><th>OZ</th><th>Leistung</th><th class="r">Menge</th><th>Einheit</th><th class="r">EP netto</th><th class="r">GP</th></tr>
+   ${G.lv.pos.map(p=>p.titel?`<tr class="gati"><td class="oz">${esc(p.oz)}</td><td colspan="5">${esc(p.n)}</td></tr>`:p.nurText?`<tr class="gant"><td class="oz">${esc(p.oz)}</td><td colspan="5">${esc(p.n)} <small>(Hinweis, ohne Menge)</small></td></tr>`:`<tr><td class="oz">${esc(p.oz)}</td><td><b>${esc(p.n)}</b>${p.lang?`<small>${esc(p.lang.slice(0,180))}${p.lang.length>180?' …':''}</small>`:''}</td><td class="r">${auZ(p.m)}</td><td>${esc(p.e)}</td><td class="r"><span class="gaep"><input data-ep="${p.idx}" inputmode="decimal" value="${G.preise[p.idx]?auZ(G.preise[p.idx]):''}" placeholder="—">${G.quelle[p.idx]==='pl'?'<em>Preisliste</em>':G.preise[p.idx]?'':'<em class="of">offen</em>'}</span></td><td class="r" data-gp="${p.idx}">${G.preise[p.idx]?eur(G.preise[p.idx]*p.m):''}</td></tr>`).join('')}</table></div></div>
+  <div class="gafuss"><button type="button" class="gazur">Andere Datei</button><span></span><button type="button" class="haupt gaweiter">Angebot erstellen</button></div>`}
+ if(G.s===3){const a=AU_A.find(y=>y.nr===G.nr);x=`${schritte}<div class="gafertig"><span class="gapill">Fertig</span><b>Angebot ${esc(G.nr)} · ${esc(a?a.t:'')}</b><span>${a?a.pos.length:0} Positionen · ${eur(a?auNetto(a):0)} netto${G.ohne?` · ${G.ohne} ohne Preis`:''}</span>
+  <div class="gakn"><button type="button" data-x84="${esc(G.nr)}">${GA_I.dat}Als GAEB .x84 speichern</button><button type="button" class="haupt gaauf">Angebot öffnen</button></div><small>Die .x84 schickst du an den Architekten zurück. Ändern sich Preise im Angebot, speichere die .x84 einfach neu – unter Aufträge → Eingang → GAEB.</small></div><button type="button" class="ganeu">Neue Datei einlesen</button>`}
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">AUFTRÄGE · EINGANG</span><h2 class="mgh">GAEB einlesen</h2></div><div class="mgakt"><button type="button" class="gaende">‹ Eingang</button></div></div><div class="gabox">${x}</div>`;
+ const q=s=>inh.querySelector(s);q('.gaende').onclick=()=>{AUV.gaeb=null;auMalen(inh)};
+ inh.querySelectorAll('[data-x84]').forEach(b=>b.onclick=()=>{const a=AU_A.find(y=>y.nr===b.dataset.x84);if(a)gaX84Laden(a).catch(e=>onToast('Speichern ging nicht: '+(e.message||e)))});
+ const fi=q('.gadrop input');if(fi){const lade=async f=>{if(!f)return;try{const t=await f.text(),lv=gaLesen(t,f.name);G.lv=lv;G.preise={};G.quelle={};lv.pos.forEach(p=>{if(p.titel||p.nurText)return;const v=gaVorschlag(p);if(v){G.preise[p.idx]=v.p;G.quelle[p.idx]='pl';G.lohn=G.lohn||{};G.lohn[p.idx]=v.l}});G.fehler='';G.s=2;
+   const pn=lv.prj.toLowerCase();const b=Object.values(BST).find(x=>pn.includes(x.name.toLowerCase())||x.name.toLowerCase().split(/\s+/).some(w=>w.length>3&&pn.includes(w)));G.b=b?b.name:''}catch(e){G.fehler=e.message||String(e)}gaMalen(inh)};
+  fi.onchange=()=>lade(fi.files&&fi.files[0]);const d=q('.gadrop');d.ondragover=e=>{e.preventDefault();d.classList.add('ueber')};d.ondragleave=()=>d.classList.remove('ueber');d.ondrop=e=>{e.preventDefault();d.classList.remove('ueber');lade(e.dataTransfer.files[0])}}
+ inh.querySelectorAll('[data-ep]').forEach(i=>{i.oninput=()=>{const k=+i.dataset.ep,v=auNum(i.value);G.preise[k]=v>0?v:0;G.quelle[k]='hand';const p=G.lv.pos.find(x=>x.idx===k);const td=inh.querySelector(`[data-gp="${k}"]`);if(td)td.textContent=v>0?auEur(v*p.m):'';const em=i.parentElement.querySelector('em');if(em)em.remove();
+  const P2=G.lv.pos.filter(x=>!x.titel&&!x.nurText),k2=inh.querySelectorAll('.gakette b');k2[2].textContent=P2.filter(x=>G.preise[x.idx]>0).length+' von '+P2.length;k2[3].textContent=auEur(P2.reduce((s,x)=>s+(G.preise[x.idx]||0)*x.m,0))};i.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const L=[...inh.querySelectorAll('[data-ep]')],n=L[L.indexOf(i)+1];if(n)n.focus()}}});
+ const gb=q('.gab');if(gb)gb.onchange=()=>G.b=gb.value;
+ if(q('.gazur'))q('.gazur').onclick=()=>{G.s=1;G.lv=null;gaMalen(inh)};
+ if(q('.gaweiter'))q('.gaweiter').onclick=async()=>{const b=q('.gaweiter');b.disabled=true;const P2=G.lv.pos.filter(p=>!p.titel&&!p.nurText),nr=auNeueNr(),idx=[];let ohne=0;
+  const pos=P2.map((p,k)=>{idx[p.idx]=k;if(!(G.preise[p.idx]>0))ohne++;return {n:p.oz+' '+p.n,e:p.e,p:G.preise[p.idx]||0,l:(G.lohn&&G.lohn[p.idx])??50,m:p.m,her:'GAEB '+p.oz}});
+  const allIdx=[];G.lv.pos.filter(p=>!p.titel).forEach(p=>allIdx.push(p.nurText?null:idx[p.idx]));
+  const a={v:1,nr,t:G.lv.prj,b:G.b||'',d:HEUTE(),st:'entwurf',pos,gaeb:{datei:G.lv.datei,dp:G.lv.dp,idx:allIdx}};
+  try{await schreiben(AU_ORD+'/GAEB '+nr+'.xml',G.lv.xml);await auSpeichern(a);AU_A.unshift(a);G.nr=nr;G.ohne=ohne;G.s=3;gaMalen(inh)}catch(e){b.disabled=false;onToast('Speichern ging nicht: '+(e.message||e))}};
+ if(q('.gaauf'))q('.gaauf').onclick=()=>{const a=AU_A.find(y=>y.nr===G.nr);AUV.gaeb=null;AUV.tab='ang';AUV.offen=a||null;auMalen(inh)};
+ if(q('.ganeu'))q('.ganeu').onclick=()=>{AUV.gaeb={s:1,preise:{},quelle:{}};gaMalen(inh)}}
+// ---------- Einbau in Aufträge → Eingang ----------
+{const alt=auMalen;auMalen=function(inh){if(AUV.gaeb&&inh){try{return gaMalen(inh)}catch(e){console.error(e);AUV.gaeb=null}}const r=alt.apply(this,arguments);
+ try{if(AUV.tab==='eing'&&!AUV.offen&&inh&&!inh.querySelector('.gaein')){const k=inh.querySelector('.aux .aukette')||inh.querySelector('.aux');if(k){const n=AU_A.filter(a=>a.gaeb).length;const c=document.createElement('div');c.className='gaein';
+   c.innerHTML=`<span class="gaic">${GA_I.dat}</span><span class="gatx"><b>Ausschreibung einlesen (GAEB)</b><small>Leistungsverzeichnis vom Architekten als .x83 → Preise eintragen → Angebot und .x84 zurück${n?` · ${n} eingelesen`:''}</small></span><button type="button">GAEB einlesen</button>`;
+   k.classList&&k.classList.contains('aukette')?k.after(c):k.prepend(c);c.querySelector('button').onclick=()=>{AUV.gaeb={s:1,preise:{},quelle:{}};auMalen(inh)}}}}catch(e){}return r}}
+// Wechsel auf einen anderen Bereich beendet GAEB
+{const alt=amFunktion;amFunktion=function(){try{AUV.gaeb=null}catch(e){}return alt.apply(this,arguments)}}
+// ===== Mikrofon im Assistenten: Frage sprechen statt tippen =====
+// Knopf neben dem Senden-Pfeil. Antippen → sprechen → Text erscheint live im Feld → nach 1,6 s Sprechpause wird automatisch gesendet.
+// Nochmal tippen bricht ab. Antwort nur als Text (nicht vorgelesen). Der große Mikrofon-Knopf bleibt für das Tagebuch-Diktat.
+const FM={an:false,rec:null,txt:'',zw:'',t:0};
+const FM_I={mic:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>',stop:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>'};
+function fmFeld(){return AM_EL&&AM_EL.querySelector('.oneinschub .aseing textarea')}
+function fmZeigen(){const f=AM_EL&&AM_EL.querySelector('.oneinschub .aseing');if(!f)return;let b=f.querySelector('.asfmic');
+ if(!b){b=document.createElement('button');b.type='button';b.className='asfmic';b.onclick=()=>FM.an?fmStop(false):fmStart();f.insertBefore(b,f.querySelector('button[type=submit]'))}
+ b.classList.toggle('an',FM.an);b.innerHTML=FM.an?FM_I.stop:FM_I.mic;b.setAttribute('aria-label',FM.an?'Zuhören abbrechen':'Frage sprechen');f.classList.toggle('fmhoert',FM.an);
+ const i=fmFeld();if(i){i.placeholder=FM.an?'Ich höre zu …':'Schreib oder frag mich etwas …';if(FM.an){i.value=(FM.txt+' '+FM.zw).trim();try{asWachsen(i)}catch(e){}}}}
+function fmStart(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){try{asMeldung('Dieses Gerät kann hier nicht zuhören. Tippe auf das Mikrofon deiner Tastatur und sprich – oder schreib die Frage.')}catch(e){}const i=fmFeld();if(i)i.focus();return}
+ try{if(AS.hoert&&typeof asStop==='function')asStop(false)}catch(e){}
+ const r=new SR();r.lang=typeof spLocale==='function'?spLocale():'de-DE';r.continuous=true;r.interimResults=true;FM.rec=r;FM.txt='';FM.zw='';FM.an=true;
+ const pause=()=>{clearTimeout(FM.t);FM.t=setTimeout(()=>{if(FM.an&&(FM.txt+FM.zw).trim())fmStop(true)},1600)};
+ r.onresult=ev=>{let fin='',zw='';for(let k=ev.resultIndex;k<ev.results.length;k++){const x=ev.results[k];if(x.isFinal)fin+=x[0].transcript+' ';else zw+=x[0].transcript}if(fin)FM.txt=(FM.txt+' '+fin).replace(/\s+/g,' ').trim();FM.zw=zw;fmZeigen();pause()};
+ r.onerror=ev=>{if(ev.error==='not-allowed'||ev.error==='service-not-allowed'){try{asMeldung('Das Mikrofon ist nicht freigegeben. Bitte erlauben – oder die Frage tippen.')}catch(e){}}FM.an=false;fmZeigen()};
+ r.onend=()=>{if(FM.an)fmStop(true)};try{r.start()}catch(e){FM.an=false}fmZeigen()}
+function fmStop(senden){clearTimeout(FM.t);const r=FM.rec;FM.rec=null;const t=(FM.txt+' '+FM.zw).trim();FM.an=false;FM.txt='';FM.zw='';try{r&&(senden?r.stop():r.abort())}catch(e){}
+ const i=fmFeld();if(i){i.value='';try{asWachsen(i)}catch(e){}}fmZeigen();if(senden&&t){try{asBefehl(t)}catch(e){}}}
+{const alt=asMalen;asMalen=function(){const r=alt.apply(this,arguments);try{fmZeigen()}catch(e){}return r}}
+// Schließen des Assistenten beendet das Zuhören
+{const alt=typeof asZu==='function'?asZu:null;if(alt)asZu=function(){if(FM.an)fmStop(false);return alt.apply(this,arguments)}}
 // ===== Onstand · Auffrischung am Handy (Probe „Änderungen 1–13“) =====
 // Schreibweise der Knöpfe gilt seit v0.10.49 auch am PC; alles andere wirkt nur bis 760 px Breite.
 // 1) Schreibweise: Knöpfe in normaler Schreibweise statt GROSSBUCHSTABEN (Text wird beim Anzeigen umgeschrieben, nicht in den Modulen).
