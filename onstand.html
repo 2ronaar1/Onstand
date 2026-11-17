@@ -4321,7 +4321,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.81';
+const ON_VER='0.10.82';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -4385,7 +4385,13 @@ async function ordnerWaehlen(){const h=await showDirectoryPicker({id:'onstand',m
 // Briefe (Klasse angebot): Inhalt in eine Seiten-Tabelle, deren Kopf/Fuß den Rand auf jeder Seite macht, dazu Falzmarken
 function druckSeite(d){if(!d||!d.classList.contains('angebot')||d.querySelector(':scope>.seite'))return;const s=[...d.children];const t=document.createElement('table');t.className='seite';t.innerHTML='<thead class="drand"><tr><td><i></i></td></tr></thead><tfoot class="drand"><tr><td><i></i></td></tr></tfoot><tbody><tr class="seitez"><td></td></tr></tbody>';const td=t.querySelector('tbody td');s.forEach(x=>td.appendChild(x));d.appendChild(t);d.insertAdjacentHTML('afterbegin','<i class="falz f1"></i><i class="falz f2"></i><i class="falz f3"></i>')}
 function druckBlatt(kl){let d=document.getElementById('bpdruck');if(!d){d=document.createElement('div');d.id='bpdruck';document.body.appendChild(d)}d.className=kl;return d}
-function druckStart(d){druckSeite(d);document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
+// Seitenformat und Rand für das Blatt zusätzlich als allgemeine @page-Regel setzen (zuletzt geladen, gilt also vor der Bauplan-Seite quer/8 mm).
+// Grund: Manche Browser (Edge/Chrome-Druckdialog, Ränder „Standard“) nehmen den Rand nur aus der allgemeinen @page-Regel, nicht aus @page hoch –
+// dann rückte alles 8 mm ein und der Farbstreifen saß nicht am Blattrand.
+const DRUCK_SEITE={angebot:'size:A4 portrait;margin:0',stz:'size:A4 portrait;margin:12mm 14mm 12mm 0',bericht:'size:A4 portrait;margin:12mm 14mm 12mm 0'};
+function druckSeitenRegel(d){let st=document.getElementById('druckseite');const k=d&&Object.keys(DRUCK_SEITE).find(x=>d.classList.contains(x));
+ if(!k){if(st)st.remove();return}if(!st){st=document.createElement('style');st.id='druckseite'}st.textContent='@page{'+DRUCK_SEITE[k]+'}';document.head.appendChild(st)}
+function druckStart(d){druckSeite(d);druckSeitenRegel(d);document.body.classList.add('bpdruckt');const weg=()=>{document.body.classList.remove('bpdruckt');const st=document.getElementById('druckseite');if(st)st.remove();if(d)d.className='';window.removeEventListener('afterprint',weg)};window.addEventListener('afterprint',weg);setTimeout(()=>{try{window.print()}catch(x){}setTimeout(weg,1500)},80)}
 // Onstand-Logo (Variante B, Nov 2026): Achteck mit spitzen Ecken, oben die Kupferkante – an beiden oberen Ecken schräg auf Gehrung geschnitten,
 // damit Kupfer und Linie sich die Ecke genau teilen. Die Kante ist als eigene Fläche gezeichnet (keine Kappe, die übersteht, kein clipPath).
 // d = halbe Linienstärke in Logo-Einheiten (100 × 100). onLogoTeile liefert die Punkte für SVG und PDF.
