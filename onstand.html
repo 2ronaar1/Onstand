@@ -4217,13 +4217,41 @@ html.lkserif .lkbkopf b{font-family:"Playfair Display",Georgia,serif;font-weight
 #lkband button{border:0;border-radius:16px;background:rgb(255 255 255);color:rgb(27 31 36);font:600 12.5px var(--k-ui);padding:6px 12px;cursor:pointer}
 @media (prefers-reduced-motion:reduce){#lksplash *,#lkbrief{animation:none!important;transition:none!important}}
 @media (max-width:760px){#lkband{top:auto;bottom:calc(96px + env(safe-area-inset-bottom,0px));font-size:12.5px;white-space:nowrap;padding:5px 6px 5px 14px}#lkband>span{overflow:hidden;text-overflow:ellipsis}}
+/* Oben links „Onstand × Firma“ (Variante A) – Person unten in der Leiste */
+#am .lklock{display:flex;flex-direction:column;align-items:flex-start;gap:8px;width:100%;padding:4px 6px 12px;margin-bottom:2px;background:none;border:0;border-bottom:1px solid var(--k-lin);border-radius:0;text-align:left;cursor:pointer;color:var(--k-t);font:inherit}
+.lkzr{display:flex;align-items:center;gap:7px}
+.lkzn{width:32px;height:32px;border-radius:8px;background:rgb(255 255 255);border:1px solid var(--k-lin);display:grid;place-items:center;overflow:hidden;flex:none}
+.lkzn svg{width:22px;height:22px}.lkzn img{width:100%;height:100%;object-fit:contain}.lkzn b{font-size:14px;color:var(--k-akz)}
+.lkzr .lkx{color:var(--k-sub);font-size:12px;font-weight:600}
+#am .lklock .lkt{font-size:13px;font-weight:600;line-height:1.25;letter-spacing:0;white-space:normal}#am .lklock .lkt em{font-style:normal;color:var(--k-akz)}
+#am.lkmit .onunten [data-menu]{width:100%;padding:6px;border-radius:8px;margin-bottom:4px;border-top:0}
+#am.lkmit .onunten [data-menu]:hover{background:var(--k-b1)}
+#am.lkmit .onunten [data-menu] .av{width:28px!important;height:28px!important;border-radius:50%!important;border:0!important;box-shadow:none!important;background:color-mix(in srgb,var(--k-akz) 16%,var(--k-b1))}
+.lkini{font-size:11px;font-weight:700;color:var(--k-akz);letter-spacing:0}
+#am.lkmit .onunten [data-menu] .ln b{font-size:12.5px!important;letter-spacing:0!important;font-weight:600!important}
+#am.lkmit .onunten [data-menu] .ln small{font-size:11px!important;letter-spacing:0!important}
+#am.lkmit .onmenu{top:auto!important;bottom:calc(150px + var(--sb,0px))}
+/* schmale Leiste (Bauplan-Werkstatt) und eingeklappte Leiste: nur die beiden Zeichen untereinander */
+body.bpan #am .lklock,#am:not(.seiteauf) .lklock.schmal{align-items:center;padding:2px 0 10px}
+body.bpan #am .lklock .lkzr{flex-direction:column;gap:2px}body.bpan #am .lklock .lkt{display:none}
+body.bpan #am .lklock .lkzn{width:30px;height:30px}
+@media (max-width:760px){#am:not(.seiteauf) .lklock{align-items:center}#am:not(.seiteauf) .lklock .lkzr{flex-direction:column;gap:2px}#am:not(.seiteauf) .lklock .lkt{display:none}}
+/* Handy „Mehr“ */
+#am .lkhymehr{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+#am .lkhylock{background:var(--k-b1);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+#am .lkhylock .lkzn{width:40px;height:40px;border-radius:10px}#am .lkhylock .lkzn svg{width:28px;height:28px}
+#am .lkhylock .lkt{font-size:17px;font-weight:700}#am .lkhylock .lkt em{font-style:normal;color:var(--k-akz)}
+#am .lkhywer{display:flex;align-items:center;gap:10px;background:var(--k-b1);border:0;border-radius:16px;padding:11px 14px;font:inherit;color:var(--k-t);text-align:left;cursor:pointer}
+#am .lkhywer .lkini{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--k-akz) 16%,var(--k-b1));font-size:13px;flex:none}
+#am .lkhywer>span:nth-child(2){flex:1;min-width:0}#am .lkhywer b{display:block;font-size:15.5px;font-weight:600}#am .lkhywer small{display:block;font-size:12.5px;color:var(--k-sub)}
+#am .lkhywer svg{width:18px;height:18px;fill:none;stroke:var(--k-sub);stroke-width:2;stroke-linecap:round}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.71';
+const ON_VER='0.10.73';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -10766,6 +10794,8 @@ function fmStop(senden){clearTimeout(FM.t);const r=FM.rec;FM.rec=null;const t=(F
 // Helle Farben bekommen dunkle Schrift. Firmen-Kopf nur im Cockpit, schrumpft beim Scrollen. Startbildschirm voll nur beim
 // ersten Start, danach 0,6 s, Tippen überspringt. Firmenname bleibt so geschrieben, wie er eingetragen ist.
 const LK={d:null,vorschau:false};
+const LK_OM='<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke-width="5" stroke-linecap="square"><path d="M13 6h14" stroke="#D19A6A"/><path d="M27 6l7 7v14M34 27l-7 7H13M13 34l-7-7V13M6 13l7-7" stroke="#1B1F24"/></g></svg>';
+
 // ---------- Farbregeln (auch von der Verwaltung benutzt) ----------
 const lkRgb=h=>{h=String(h||'#AE5A27').replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return [n>>16&255,n>>8&255,n&255]};
 const lkHex=a=>'#'+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join('');
@@ -10833,7 +10863,6 @@ function lkHero(inh){if(!LK.d||!LK.d.an.kopf||!inh)return;const d=LK.d,k=inh.que
 if(typeof cpUebersicht==='function'){const alt=cpUebersicht;cpUebersicht=function(inh){const r=alt.apply(this,arguments);try{lkHero(inh)}catch(e){console.error(e)}return r}}
 
 // ---------- Startbildschirm „Onstand × Firma“ ----------
-const LK_OM='<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke-width="5" stroke-linecap="square"><path d="M13 6h14" stroke="#D19A6A"/><path d="M27 6l7 7v14M34 27l-7 7H13M13 34l-7-7V13M6 13l7-7" stroke="#1B1F24"/></g></svg>';
 function lkSplash(vorschau){const d=LK.d;if(!d||!d.an.start)return lkBriefPruefen();if(/[?&]sprechen\b/.test(location.search))return;
  if(!vorschau&&(typeof syAktiv!=='function'||!syAktiv()))return;if(document.querySelector('#onstart.an'))return;
  const key='onstandLookSplash:'+(LK.vorschau?'vorschau':(d.id||'x'));let erst=true;try{erst=!localStorage.getItem(key);localStorage.setItem(key,'1')}catch(e){}
@@ -10852,6 +10881,26 @@ function lkBriefPruefen(){const d=LK.d;if(!d||!d.an.brief||!d.gruss)return;if(do
  document.body.appendChild(b);requestAnimationFrame(()=>b.classList.add('an'));b.querySelector('button').onclick=()=>{b.classList.remove('an');setTimeout(()=>b.remove(),250)}}
 // beim Start zeigen, sobald Onstand offen ist
 setTimeout(()=>{try{lkSplash(false)}catch(e){}},30);
+
+// ---------- Oben links „Onstand × Firma“ (Probe Variante A), die Person rutscht nach unten ----------
+function lkPerson(){const n=(typeof ON_PROFIL!=='undefined'&&ON_PROFIL.name)||(typeof SY_KONTO!=='undefined'&&SY_KONTO&&SY_KONTO.name)||'Profil';
+ const r=typeof SY_KONTO!=='undefined'&&SY_KONTO&&typeof SY_ROLLEN!=='undefined'?SY_ROLLEN[SY_KONTO.rolle]:(ON_PROFIL&&ON_PROFIL.rolle)||'';
+ return {n,r,ini:String(n).split(/\s+/).filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase()||'?'}}
+const lkZeichenHtml=d=>d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<b>${esc((d.firma||'F').slice(0,1))}</b>`;
+function lkKopfLinks(){if(!AM_EL)return;const sei=AM_EL.querySelector('.onseite'),m=AM_EL.querySelector('[data-menu]'),u=AM_EL.querySelector('.onunten');if(!sei||!m||!u)return;let l=sei.querySelector('.lklock');
+ if(!LK.d){if(l)l.remove();AM_EL.classList.remove('lkmit');if(m.parentElement===u)sei.insertBefore(m,sei.firstChild);return}
+ if(!l){l=document.createElement('button');l.type='button';l.className='lklock';l.onclick=ev=>{ev.stopPropagation();try{onSeiteKlappen(false)}catch(e){}onMenu()}}
+ if(sei.firstChild!==l)sei.insertBefore(l,sei.firstChild);
+ const d=LK.d;l.setAttribute('aria-label','Onstand × '+(d.firma||''));
+ l.innerHTML=`<span class="lkzr"><span class="lkzn">${LK_OM}</span><span class="lkx">×</span><span class="lkzn">${lkZeichenHtml(d)}</span></span><span class="lkt">Onstand × <em class="lkname">${esc(d.firma||'')}</em></span>`;
+ AM_EL.classList.add('lkmit');if(m.parentElement!==u)u.insertBefore(m,u.firstChild);
+ const P=lkPerson(),av=m.querySelector('.av'),b=m.querySelector('.ln>b'),sm=m.querySelector('.ln>small:not(.sy)');
+ if(av)av.innerHTML=`<span class="lkini">${esc(P.ini)}</span>`;if(b){b.textContent=P.n;b.classList.add('lkname')}if(sm){sm.textContent=[P.r,d.firma].filter(Boolean).join(' · ');sm.classList.add('lkname')}}
+{const alt=onLogo;onLogo=function(){const r=alt.apply(this,arguments);try{lkKopfLinks()}catch(e){console.error(e)}return r}}
+// Handy: unter „Mehr“ oben das Abzeichen „Onstand × Firma“ und darunter die Person
+if(typeof hyMehr==='function'){const alt=hyMehr;hyMehr=function(inh){const r=alt.apply(this,arguments);try{if(LK.d){const d=LK.d,P=lkPerson(),k=inh.querySelector('.mgk');const box=document.createElement('div');box.className='lkhymehr';
+ box.innerHTML=`<div class="lkhylock"><span class="lkzr"><span class="lkzn">${LK_OM}</span><span class="lkx">×</span><span class="lkzn">${lkZeichenHtml(d)}</span></span><span class="lkt">Onstand × <em class="lkname">${esc(d.firma||'')}</em></span></div><button type="button" class="lkhywer"><span class="lkini">${esc(P.ini)}</span><span><b class="lkname">${esc(P.n)}</b><small>${esc([P.r,d.firma].filter(Boolean).join(' · '))}</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>`;
+ if(k)k.after(box);else inh.prepend(box);box.querySelector('.lkhywer').onclick=()=>amFunktion('mehr',{seite:'einst'})}}catch(e){console.error(e)}return r}}
 // ===== Onstand-Verwaltung (nur für den Onstand-Admin) · Schritt 1: Zugang + Neukunden-Codes =====
 // Zugang: Einstellungen → „Über Onstand“ → 5× auf die Überschrift „Onstand v…“ tippen → mit dem Admin-Konto anmelden.
 // Die Admin-Anmeldung ist eine EIGENE Sitzung (localStorage „onstandAdmin“) und ändert nichts am Firmenkonto dieses Geräts.
@@ -11082,7 +11131,8 @@ function vwLooksBinden(inh){if(VW.firmen===null){VW.firmen=undefined;vwFirmenLad
  const neuMalen=()=>vwMalen(inh);
  const vorschauNeu=()=>{const v=inh.querySelector('.vwlvor');if(v){const d=Object.assign({},VW.lk.daten,{firma:VW.lk.name});v.innerHTML=VW.lkVor==='start'?vwLkSplash(d):vwLkVorschau(d,VW.lkVor,VW.lkDk)}};
  inh.querySelectorAll('[data-lkf]').forEach(el=>{const k=el.dataset.lkf;el.oninput=()=>{const lk=VW.lk;if(!lk)return;vwLkGeaendert();if(k==='name')lk.name=el.value;else lk.daten[k]=el.value;
-  if(k==='farbe'||k==='farbe2'){if(k==='farbe'&&!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;clearTimeout(vwLooksBinden.t);vwLooksBinden.t=setTimeout(neuMalen,120);return}
+  if(k==='farbe'||k==='farbe2'){if(k==='farbe'&&!lk.f2fest)lk.daten.farbe2=lkVoll(Object.assign({},lk.daten,{farbe2:''})).farbe2;const hx=el.parentElement.querySelector('.vwcode');if(hx)hx.textContent=el.value.toUpperCase();el.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('an'));
+   cancelAnimationFrame(vwLooksBinden.rf);vwLooksBinden.rf=requestAnimationFrame(vorschauNeu);if(!el.onchange)el.onchange=()=>neuMalen();return}
   if(k==='anrede'||k==='nr'){const ta=inh.querySelector('[data-lkf=gruss]');if(ta&&!lk.grussEigen){lk.daten.gruss=vwLkGruss(lk.daten);ta.value=lk.daten.gruss}}
   if(k==='gruss')lk.grussEigen=true;vorschauNeu()}});
  inh.querySelectorAll('[data-lkan]').forEach(el=>el.onchange=()=>{vwLkGeaendert();VW.lk.daten.an[el.dataset.lkan]=el.checked;if(el.dataset.lkan==='nr'&&!VW.lk.grussEigen)VW.lk.daten.gruss=vwLkGruss(VW.lk.daten);neuMalen()});
