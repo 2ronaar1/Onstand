@@ -4322,13 +4322,18 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 @page stz{size:A4 portrait;margin:0}
 @page bericht{size:A4 portrait;margin:0}
 @media print{#bpdruck.stz{page:stz}#bpdruck.bericht{page:bericht}#bpdruck.stz section,#bpdruck.bericht section{padding:12mm 14mm!important;box-sizing:border-box;-webkit-box-decoration-break:clone;box-decoration-break:clone}}
+
+/* Text-PDF (PDF speichern): Höhe des Angebotsblatts fest (Seite 297 mm − 12 mm oben − 9 mm unten), nicht aus der Fensterhöhe;
+   Stundenzettel/Bericht: Rand oben/unten setzt das PDF selbst, links/rechts der Innenabstand des Blatts (14 mm) */
+#bpdruck.angebot.pttext section{min-height:270mm!important}
+#bpdruck.stz.pttext section,#bpdruck.bericht.pttext section{padding:0 14mm!important;min-height:0!important}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.84';
+const ON_VER='0.10.85';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5666,7 +5671,7 @@ function ptSchrift(ctx,key,tag){const L=PDFLib,meta=ER_SCHRIFT[key],bytes=erB64(
  const desc=ctx.register(ctx.obj({Type:'FontDescriptor',FontName:nm,Flags:32,FontBBox:meta.bbox,ItalicAngle:0,Ascent:meta.asc,Descent:meta.desc,CapHeight:meta.cap,StemV:key==='b'?120:80,FontFile2:ff}));
  return ctx.register(ctx.obj({Type:'Font',Subtype:'TrueType',BaseFont:nm,FirstChar:32,LastChar:255,Widths:meta.w,Encoding:'WinAnsiEncoding',FontDescriptor:desc}))}
 // Seitenrand und Format wie die @page-Regeln der jeweiligen Druckansicht
-function ptFormat(el){const k=' '+(el.className||'')+' ';if(/ angebot /.test(k))return {quer:false,rand:[12,18,9,22]};if(/ stz /.test(k))return {quer:false,rand:[15,16,15,16]};if(/ sw /.test(k))return {quer:true,rand:[8,8,8,8]};return {quer:false,rand:[8,8,8,8]}}
+function ptFormat(el){const k=' '+(el.className||'')+' ';if(/ angebot /.test(k))return {quer:false,rand:[12,18,9,22]};if(/ stz | bericht /.test(k))return {quer:false,rand:[12,0,12,0]};if(/ sw /.test(k))return {quer:true,rand:[8,8,8,8]};return {quer:false,rand:[8,8,8,8]}}
 // Elemente einsammeln: Flächen/Rahmen, Wörter, Bilder – alle Maße in px relativ zur Druckansicht
 function ptSammeln(el){const win=el.ownerDocument.defaultView,R0=el.getBoundingClientRect(),B=[],T=[],I=[],Z=[],F=[];
  const rel=r=>({x:r.left-R0.left,y:r.top-R0.top,w:r.width,h:r.height});
@@ -5714,7 +5719,6 @@ async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});el.classList.add(
  for(const it of D.I)bilder.set(it,await ptBild(doc,it));
  const STR=(()=>{const sec=el.querySelector('section.lkstreif');if(!sec)return null;const hx=v=>{const m=String(v||'').trim().match(/^#?([0-9a-f]{6})$/i);return m?[0,2,4].map(i=>parseInt(m[1].substr(i,2),16)/255):null};const a=hx(sec.style.getPropertyValue('--lkf2')),b=hx(sec.style.getPropertyValue('--lkf'));return a&&b?[a,b]:null})();
  for(const [s,e] of S){const pg=doc.addPage([PW,PH]);pg.node.setFontDictionary(L.PDFName.of('F1'),FN);pg.node.setFontDictionary(L.PDFName.of('F2'),FB);
-  if(STR){const n=48,bh=PH/n;for(let i=0;i<n;i++){const t=i/(n-1),c=STR[0].map((v,k)=>v+(STR[1][k]-v)*t);pg.drawRectangle({x:0,y:PH-(i+1)*bh,width:mm(4),height:bh+.5,color:L.rgb(c[0],c[1],c[2])})}}
   const X=x=>rl+x*PT_K,Y=y=>PH-rt-(y-s)*PT_K,inn=(y,h)=>y<e&&y+h>s;
   pg.pushOperators(L.pushGraphicsState(),L.rectangle(rl-1,PH-rt-(e-s)*PT_K,PW-rl-rr+2,(e-s)*PT_K+1),L.clip(),L.endPath());
   for(const b of D.B){if(!inn(b.y,b.h))continue;const x=X(b.x),y=Y(b.y),w=b.w*PT_K,h=b.h*PT_K,rad=b.rad*PT_K;
@@ -5724,17 +5728,21 @@ async function ptPdf(el,o){o=Object.assign(ptFormat(el),o||{});el.classList.add(
    if(gleich&&rad>0.3){const c=ptMisch(t.f),d=t.w*PT_K;pg.drawSvgPath(pfad(0,0,w-d,h-d,Math.max(0,rad-d/2)),{x:x+d/2,y:y-d/2,borderColor:L.rgb(c.r,c.g,c.b),borderWidth:d,borderDashArray:t.st==='dashed'?[3*d,2*d]:t.st==='dotted'?[d,d]:undefined})}
    else[[t,x,y-(t?t.w*PT_K/2:0),x+w,y-(t?t.w*PT_K/2:0)],[r,x+w-(r?r.w*PT_K/2:0),y,x+w-(r?r.w*PT_K/2:0),y-h],[u,x,y-h+(u?u.w*PT_K/2:0),x+w,y-h+(u?u.w*PT_K/2:0)],[l,x+(l?l.w*PT_K/2:0),y,x+(l?l.w*PT_K/2:0),y-h]].forEach(([z,x1,y1,x2,y2])=>{if(!z)return;const c=ptMisch(z.f),d=z.w*PT_K;
     pg.drawLine({start:{x:x1,y:y1},end:{x:x2,y:y2},thickness:d,color:L.rgb(c.r,c.g,c.b),dashArray:z.st==='dashed'?[3*d,2*d]:z.st==='dotted'?[d,d]:undefined})})}
-  for(const it of D.I){if(!inn(it.y,it.h))continue;const im=bilder.get(it);if(im)pg.drawImage(im,{x:X(it.x),y:Y(it.y)-it.h*PT_K,width:it.w*PT_K,height:it.h*PT_K})}
+  for(const it of D.I){if(!inn(it.y,it.h)||(it.y<s-.5&&it.h<(e-s)*.5))continue;const im=bilder.get(it);if(im)pg.drawImage(im,{x:X(it.x),y:Y(it.y)-it.h*PT_K,width:it.w*PT_K,height:it.h*PT_K})}
   for(const t of D.T){if(t.y<s-.5||t.y>=e)continue;const sz=t.size*PT_K,c=ptMisch(t.f),bl=Y(t.y+t.h*asc),x0=X(t.x);
    const teile=[];let akt='';for(const ch of t.t){if(PT_SYM[ch]){if(akt)teile.push([akt,0]);teile.push([PT_SYM[ch],1]);akt=''}else akt+=ch}if(akt)teile.push([akt,0]);
    let x=x0;for(const [txt,sym] of teile){if(sym){const col=L.rgb(c.r,c.g,c.b),q=sz*.72,d=Math.max(.5,sz*.1),ln=(a,b,c2,e2)=>pg.drawLine({start:{x:x+a*q,y:bl+b*q},end:{x:x+c2*q,y:bl+e2*q},thickness:d,color:col,lineCap:L.LineCapStyle.Round});
      if(txt==='✔'){ln(.05,.42,.38,.1);ln(.38,.1,.95,.82)}else if(txt==='✘'){ln(.1,.08,.9,.82);ln(.1,.82,.9,.08)}else if(txt==='●')pg.drawCircle({x:x+q/2,y:bl+q*.42,size:q*.36,color:col});else pg.drawRectangle({x:x+q*.12,y:bl+q*.06,width:q*.72,height:q*.72,color:col});
      x+=q*1.05+t.ls*PT_K;continue}
     const tx=ptText(txt),hex=L.PDFHexString.of(erCodes(tx).map(n=>n.toString(16).padStart(2,'0')).join(''));
-    pg.pushOperators(L.beginText(),L.setFillingRgbColor(c.r,c.g,c.b),L.setFontAndSize(t.bold?'F2':'F1',sz),L.setCharacterSpacing(t.ls*PT_K),L.moveText(x,bl),L.showText(hex),L.endText());
-    x+=erBreite(tx,t.bold,sz)+tx.length*t.ls*PT_K}
+    // Ist das Wort in der PDF-Schrift breiter als auf dem Blatt (z. B. Serifen-Titel der Firmen-Edition), wird es schmaler gesetzt – sonst laufen Wörter ineinander
+    const wb=erBreite(tx,t.bold,sz)+tx.length*t.ls*PT_K,ziel=teile.length===1?t.w*PT_K:wb,sq=wb>ziel*1.01&&ziel>0?Math.max(70,100*ziel/wb):100;
+    pg.pushOperators(L.beginText(),L.setFillingRgbColor(c.r,c.g,c.b),L.setFontAndSize(t.bold?'F2':'F1',sz),L.setCharacterSpacing(t.ls*PT_K),L.setCharacterSqueeze(sq),L.moveText(x,bl),L.showText(hex),L.endText());
+    x+=wb*sq/100}
    if(t.dec)pg.drawLine({start:{x:x0,y:bl-sz*.12},end:{x:x0+t.w*PT_K,y:bl-sz*.12},thickness:Math.max(.4,sz*.06),color:L.rgb(c.r,c.g,c.b)})}
-  pg.pushOperators(L.popGraphicsState())}
+  pg.pushOperators(L.popGraphicsState());
+  // Farbstreifen zuletzt zeichnen, damit kein weißer Blatt-Hintergrund darüber liegt
+  if(STR){const n=48,bh=PH/n;for(let i=0;i<n;i++){const t=i/(n-1),c=STR[0].map((v,k)=>v+(STR[1][k]-v)*t);pg.drawRectangle({x:0,y:PH-(i+1)*bh,width:mm(4),height:bh+.5,color:L.rgb(c[0],c[1],c[2])})}}}
  if(o.doc)return doc;const bytes=await doc.save();return new Blob([bytes],{type:'application/pdf'})}
 window.onTextPdf=ptPdf;
 // ===== Onstand · Aufträge · Export für den Steuerberater =====
@@ -11005,7 +11013,9 @@ function lkDoks(d){const s=(d&&d.doks)||{};const o=Object.assign({pos:'links',gr
 let LK_DART='';
 const lkTextHtml=(t,V)=>esc(String(t||'').replace(/\{(\w+)\}/g,(m,k)=>V[k]!=null?V[k]:m)).replace(/\n/g,'<br>');
 function lkDokKopf(D,F){const d=LK.d,img=d.voll?`<img class="lkdlogo" src="${esc(d.voll)}" alt="" style="width:${Math.round(D.groesse*.404)}mm">`:'';return img}
-function lkDok(d){if(!LK.d||!d)return;const sec=d.querySelector('section');if(!sec||sec.classList.contains('lkdok'))return;const D=lkDoks(LK.d),art=LK_DART||(d.classList.contains('bericht')?'bericht':'');
+// Mehrere Blätter in einem Druck (z. B. Stundenzettel für mehrere Mitarbeiter): jedes bekommt den Kopf
+function lkDok(d){if(!LK.d||!d)return;const S=[...d.querySelectorAll('section')];if(S.length>1){S.forEach(sec=>lkDokBlatt(d,sec));return}const sec=S[0];lkDokBlatt(d,sec)}
+function lkDokBlatt(d,sec){if(!sec||sec.classList.contains('lkdok'))return;const D=lkDoks(LK.d),art=LK_DART||(d.classList.contains('bericht')?'bericht':'');
  let F={};try{F=auFirma()}catch(e){}
  sec.classList.add('lkdok','lkp-'+D.pos);sec.classList.toggle('lkstreif',!!D.streifen);d.classList.toggle('lkmitstreif',!!D.streifen);sec.classList.toggle('lkohnelinie',!D.linie);sec.classList.toggle('lktfarbe',!!D.titelFarbe);sec.classList.toggle('lktserif',!!D.titelSerif);
  sec.style.setProperty('--lkf',LK.d.farbe);sec.style.setProperty('--lkf2',lkMisch(LK.d.farbe,'#ffffff',.35));
@@ -11689,6 +11699,25 @@ if(NAT.an){
  addEventListener('load',plane);document.addEventListener('visibilitychange',()=>{if(!document.hidden)plane()});
  if(typeof terminNeu==='function'){const tn=terminNeu;terminNeu=function(){const r=tn.apply(this,arguments);plane();return r}}
 }
+// ===== PDF speichern statt Druckfenster =====
+// Angebot, Rechnung, Mahnschreiben, Steuerbüro-Übersicht, Stundenzettel und Baustellenbericht: Der Knopf „PDF“ erzeugt das PDF
+// direkt in Onstand (Text-PDF, wie bei den Belegen fürs Steuerbüro) und lädt es herunter – am Handy über das Teilen-Menü.
+// Kein Druckfenster mehr, also auch keine Rand-Einstellungen: Farbstreifen, Ränder und Fußzeile sitzen immer gleich.
+// Drucken: das heruntergeladene PDF öffnen und dort drucken. Der Bauplan (eigenes Format) und das Abnahmeprotokoll drucken wie bisher.
+const PDF_BLATT=/(^|\s)(angebot|stz|bericht)(\s|$)/;
+function pdfName(d){const t=String(d.textContent||'').replace(/\s+/g,' '),art=(t.match(/(Schlussrechnung|Abschlagsrechnung|Regierechnung|Korrekturrechnung|Rechnung|Angebot|Zahlungserinnerung|Mahnung|Stundenzettel|Baustellenbericht|Übersicht für das Steuerbüro)/i)||[''])[0],nr=(t.match(/[AR]-\d{4}-\d{2,4}(?!\d)/)||[''])[0];
+ let n=art?art.charAt(0).toUpperCase()+art.slice(1).toLowerCase():'Onstand Dokument';if(/steuerbüro/i.test(art))n='Übersicht Steuerbüro';
+ if(/baustellenbericht/i.test(art)){const h=d.querySelector('h1');if(h)n=h.textContent.replace(/\s*·\s*/,' ').trim()}
+ else if(nr)n+=' '+nr;else if(/stundenzettel/i.test(art)){const m=t.match(/(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember) \d{4}/);if(m)n+=' '+m[0];const p=d.querySelector('.sk .r');if(p){const nm=String(p.innerHTML.split('<br>')[1]||'').replace(/<[^>]*>/g,'').split('·')[0].trim();if(nm&&d.querySelectorAll('section').length===1)n+=' '+nm}}
+ return n.replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').trim().slice(0,90)+'.pdf'}
+async function pdfAusgeben(bytes,name){const bl=bytes instanceof Blob?bytes:new Blob([bytes],{type:'application/pdf'});
+ if(typeof window.natTeilen==='function')return window.natTeilen(bl,name);
+ try{const f=new File([bl],name,{type:'application/pdf'});if(matchMedia('(pointer:coarse)').matches&&navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name.replace(/\.pdf$/,'')});return}}catch(e){if(e&&e.name==='AbortError')return}
+ erHerunterladen(bl,name,'application/pdf');onToast('PDF gespeichert: '+name)}
+{const alt=druckStart;druckStart=function(d){if(!d||!d.nodeType||!PDF_BLATT.test(d.className)||!window.onTextPdf||!window.PDFLib||typeof exPdf!=='function'||typeof erHerunterladen!=='function')return alt.apply(this,arguments);
+ const kl=d.className,html=d.innerHTML,name=pdfName(d),self=this;onToast('PDF wird erstellt …');
+ (async()=>{try{const by=await exPdf(d,name.replace(/\.pdf$/,''));await pdfAusgeben(by,name)}
+  catch(e){console.error(e);d.className=kl;d.innerHTML=html;onToast('PDF ging nicht – das Druckfenster öffnet sich.');alt.call(self,d)}})()}}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
