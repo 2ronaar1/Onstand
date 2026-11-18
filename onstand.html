@@ -4368,13 +4368,19 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #bpdruck .ons .pgnr{margin-right:auto;color:#5c6675;font:7.5pt/1 Arial,Helvetica,sans-serif}
 #bpdruck section>.pgnr{display:block;text-align:right;font:7.5pt/1 Arial,Helvetica,sans-serif;color:#5c6675;margin-top:2mm}
 #bpdruck .pgseite>table{flex:none}
+/* Angebot/Rechnung bearbeiten mit Live-Vorschau (breiter Bildschirm): der Inhaltsbereich scrollt, die Vorschau bleibt rechts stehen.
+   Vorher ließ sich bei langen Rechnungen nicht nach unten scrollen. */
+#am .aminhalt:has(>.aulive){overflow-y:auto!important}
+/* Allgemein am PC: Passt eine Seite nicht in die Fensterhöhe, darf der Inhaltsbereich scrollen (vorher wurde er abgeschnitten,
+   z. B. Einstellungen bei kleinem Fenster). Seiten mit eigenem Scrollbereich (Listen, Tagebuch …) passen sowieso – dort ändert sich nichts. */
+@media (min-width:761px){#am .aminhalt{overflow-y:auto!important;overflow-x:hidden!important}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.92';
+const ON_VER='0.10.93';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
