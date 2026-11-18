@@ -4327,13 +4327,16 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
    Stundenzettel/Bericht: Rand oben/unten setzt das PDF selbst, links/rechts der Innenabstand des Blatts (14 mm) */
 #bpdruck.angebot.pttext section{min-height:270mm!important}
 #bpdruck.stz.pttext section,#bpdruck.bericht.pttext section{padding:0 14mm!important;min-height:0!important}
+/* Vorschau = Original-Blatt (blattvorschau.js): ganze A4-Seite in der Fläche, Blättern darunter */
+#am .auvs.bvauvs{display:flex;flex-direction:column;overflow:hidden;padding:14px}
+#am .bvplatz{flex:1;min-height:0;width:100%}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.85';
+const ON_VER='0.10.86';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11718,6 +11721,65 @@ async function pdfAusgeben(bytes,name){const bl=bytes instanceof Blob?bytes:new 
  const kl=d.className,html=d.innerHTML,name=pdfName(d),self=this;onToast('PDF wird erstellt …');
  (async()=>{try{const by=await exPdf(d,name.replace(/\.pdf$/,''));await pdfAusgeben(by,name)}
   catch(e){console.error(e);d.className=kl;d.innerHTML=html;onToast('PDF ging nicht – das Druckfenster öffnet sich.');alt.call(self,d)}})()}}
+// ===== Vorschau = Original-Blatt (Angebot, Rechnung) =====
+// Die Vorschau rechts neben der Liste und die Live-Vorschau beim Bearbeiten zeigen jetzt genau das Blatt, das auch als PDF entsteht:
+// gleicher Aufbau, Firmen-Look (Logo, Farbstreifen, Texte), gleiche Seitenumbrüche. Immer eine ganze DIN-A4-Seite, passend in die Fläche
+// verkleinert. Hat das Blatt mehrere Seiten, steht darunter „‹ Seite 1 von 2 ›“ zum Blättern.
+// Technik: Das Blatt wird wie fürs PDF erzeugt und in einem eigenen Schattenbereich (Shadow DOM) mit den Druckregeln dargestellt –
+// so stört es weder die App noch das eigentliche Druck-/PDF-Blatt. Seitenumbrüche kommen aus derselben Rechnung wie im PDF (ptSeiten).
+const BV={sheet:null,nSheets:-1,objs:new Map(),n:0,seite:new Map()};
+const BV_MM=96/25.4,BV_W=210*BV_MM,BV_H=297*BV_MM;
+// Regeln aus einem Druck-Block, auch verschachtelte @media-Blöcke darin (vorher übersehen – z. B. „Fußzeile nicht umbrechen“)
+function bvDruckRegeln(rs){let c='';for(const x of rs){if(x.type===1)c+=x.cssText+'\n';else if(x.type===4&&x.cssRules&&/print|all|^\s*$/.test(x.media.mediaText))c+=bvDruckRegeln(x.cssRules)}return c}
+// Auch das PDF (Text-PDF) nimmt die Druckregeln jetzt vollständig
+if(typeof exDruckRegeln==='function')exDruckRegeln=function(){let css='';for(const sh of document.styleSheets){let R;try{R=sh.cssRules}catch(e){continue}for(const r of R)if(r.media&&/print/.test(r.media.mediaText))css+=bvDruckRegeln(r.cssRules)}return css};
+function bvSheet(){if(BV.sheet&&BV.nSheets===document.styleSheets.length)return BV.sheet;let a='',p='';
+ for(const sh of document.styleSheets){if(sh.ownerNode&&/(^|\s)(fvstil)(\s|$)/.test(sh.ownerNode.className||''))continue;let R;try{R=sh.cssRules}catch(e){continue}
+  for(const r of R){if(r.type===1)a+=r.cssText+'\n';else if(r.media&&/print/.test(r.media.mediaText))p+=bvDruckRegeln(r.cssRules);else if(r.type===4)a+=r.cssText+'\n'}}
+ const eigen=`#bpdruck{display:block!important;position:absolute!important;left:0;top:0;margin:0!important;color:#000;background:#fff}
+#bpdruck .lkdok.lkstreif:before,#bpdruck .falz,#bpdruck .seite>thead,#bpdruck .seite>tfoot{display:none!important}
+:host{display:block;width:100%;height:100%}
+.bvrahmen{position:relative;margin:0 auto;background:#fff;overflow:hidden;border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.18),0 18px 40px -22px rgba(0,0,0,.5)}
+.bvblatt{position:absolute;left:0;top:0;width:${BV_W}px;height:${BV_H}px;transform-origin:0 0;background:#fff;overflow:hidden}
+.bvstreif{position:absolute;left:0;top:0;bottom:0;width:4mm;display:none}
+.bvinhalt{position:absolute;overflow:hidden}
+.bvnav{display:none;align-items:center;justify-content:center;gap:10px;margin:10px auto 0;font:500 13px/1 var(--k-ui,system-ui,sans-serif);color:var(--k-sub,#666);user-select:none}
+.bvnav.an{display:flex}
+.bvnav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--k-lin,#ccc);background:var(--k-b1,#fff);color:var(--k-t,#222);font:600 16px/1 var(--k-ui,system-ui,sans-serif);cursor:pointer;display:grid;place-items:center;padding:0}
+.bvnav button:disabled{opacity:.35;cursor:default}
+.bvnav span{min-width:96px;text-align:center;font-variant-numeric:tabular-nums}`;
+ const st=new CSSStyleSheet();st.replaceSync(a+p+eigen);BV.sheet=st;BV.nSheets=document.styleSheets.length;return st}
+// Blatt erzeugen wie fürs PDF (inkl. Firmen-Look), Inhalt mitnehmen, Druckblatt wieder leeren
+function bvErzeugen(art,obj){let d=null;
+ if(art==='a'){const alt=druckStart;druckStart=function(x){druckSeite(x);d=x};try{auPdf(obj)}finally{druckStart=alt}}
+ else{d=arPdfBlatt(obj);druckSeite(d)}
+ if(!d)return null;const out={kl:d.className,html:d.innerHTML};d.innerHTML='';d.className='';return out}
+function bvBelegt(){return document.body.classList.contains('bpdruckt')||window.ON_PDF_LAEUFT}
+function bvMontieren(platz){const id=platz.dataset.bv,e=BV.objs.get(id);if(!e)return;
+ if(bvBelegt()){setTimeout(()=>{if(platz.isConnected)bvMontieren(platz)},350);return}
+ BV.objs.delete(id);platz.dataset.bvok='1';let B;try{B=bvErzeugen(e.art,e.obj)}catch(x){console.error(x);return}if(!B)return;
+ const host=document.createElement('div');host.className='bvhost';platz.appendChild(host);const sr=host.attachShadow({mode:'open'});sr.adoptedStyleSheets=[bvSheet()];
+ sr.innerHTML=`<div class="bvrahmen"><div class="bvblatt"><div class="bvstreif"></div><div class="bvinhalt"><div id="bpdruck"></div></div></div></div><div class="bvnav"><button type="button" data-b="-1" aria-label="Vorherige Seite">‹</button><span></span><button type="button" data-b="1" aria-label="Nächste Seite">›</button></div>`;
+ const bp=sr.getElementById('bpdruck'),blatt=sr.querySelector('.bvblatt'),rahmen=sr.querySelector('.bvrahmen'),inh=sr.querySelector('.bvinhalt'),nav=sr.querySelector('.bvnav'),stf=sr.querySelector('.bvstreif');
+ bp.className=B.kl+' pttext';bp.innerHTML=B.html;const f=ptFormat({className:B.kl}),[rt,rr,rb,rl]=f.rand;bp.style.width=((210-rl-rr)*BV_MM)+'px';
+ let S=[[0,BV_H]];try{const D=ptSammeln(bp);S=ptSeiten(D,(297-rt-rb)*BV_MM);if(!S.length)S=[[0,D.H]]}catch(x){console.error(x)}
+ const sec=bp.querySelector('section.lkstreif');if(sec){const a=sec.style.getPropertyValue('--lkf2'),b=sec.style.getPropertyValue('--lkf');stf.style.background=`linear-gradient(${a||b},${b})`;stf.style.display='block'}
+ const schl=e.schl;let n=Math.min(BV.seite.get(schl)||0,S.length-1);
+ const zeigen=()=>{const [s,en]=S[n];inh.style.cssText=`left:${rl*BV_MM}px;top:${rt*BV_MM}px;width:${(210-rl-rr)*BV_MM}px;height:${en-s}px`;bp.style.top=(-s)+'px';
+  nav.classList.toggle('an',S.length>1);nav.querySelector('span').textContent=`Seite ${n+1} von ${S.length}`;nav.querySelector('[data-b="-1"]').disabled=n===0;nav.querySelector('[data-b="1"]').disabled=n===S.length-1;BV.seite.set(schl,n)};
+ const passen=()=>{const box=platz.parentElement||platz,cs=getComputedStyle(box),w=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),h=box.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom)-(S.length>1?40:0);
+  const k=Math.max(.15,Math.min(w/BV_W,(h>80?h:w*1.42)/BV_H));blatt.style.transform=`scale(${k})`;rahmen.style.width=BV_W*k+'px';rahmen.style.height=BV_H*k+'px'};
+ nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{n=Math.max(0,Math.min(S.length-1,n+ +b.dataset.b));zeigen()});
+ zeigen();passen();try{const ro=new ResizeObserver(()=>{if(!host.isConnected){ro.disconnect();return}passen()});ro.observe(platz.parentElement||platz)}catch(x){}}
+// Vorschau-Funktionen: statt des vereinfachten Blatts ein Platz für das Original-Blatt
+function bvPlatz(html,art,obj){const id='bv'+(++BV.n);BV.objs.set(id,{art,obj,schl:art+':'+(obj.nr||obj.id||'neu')});
+ const i=html.indexOf('<div class="auvs">');if(i<0)return html;return html.slice(0,i)+`<div class="auvs bvauvs"><div class="bvplatz" data-bv="${id}"></div></div></div>`}
+if(typeof auVorschau==='function'){const alt=auVorschau;auVorschau=function(a){const h=alt.apply(this,arguments);try{return a&&h?bvPlatz(h,'a',a):h}catch(e){return h}}}
+if(typeof arVorschau==='function'){const alt=arVorschau;arVorschau=function(r){const h=alt.apply(this,arguments);try{return r&&h?bvPlatz(h,'r',r):h}catch(e){return h}}}
+// Sobald ein Platz in der Seite steht: Blatt einsetzen (noch vor dem Zeichnen, also ohne Flackern)
+new MutationObserver(()=>{document.querySelectorAll('.bvplatz[data-bv]:not([data-bvok])').forEach(p=>{try{bvMontieren(p)}catch(e){console.error(e)}})}).observe(document.documentElement,{childList:true,subtree:true});
+// Während ein PDF entsteht, gehört das Druckblatt dem PDF – die Vorschau wartet so lange
+if(typeof exPdf==='function'){const alt=exPdf;exPdf=async function(){window.ON_PDF_LAEUFT=(window.ON_PDF_LAEUFT||0)+1;try{return await alt.apply(this,arguments)}finally{window.ON_PDF_LAEUFT--}}}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
