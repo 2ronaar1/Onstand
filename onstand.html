@@ -4357,13 +4357,24 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .rqseg button{border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);border-radius:8px;padding:8px 12px;font:500 13px var(--k-ui);cursor:pointer}
 #am .rqseg button.an{border-color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));color:var(--k-t);font-weight:600}
 #am .rqseg button:disabled{cursor:default}
+/* Hinweis vor dem PDF (pdfpruefen.js) */
+#am .ondlg .pzliste{margin:4px 0 10px;padding-left:20px;line-height:1.5;font-size:14px}#am .ondlg .pzliste li{margin:2px 0}
+/* Mehrseitige Blätter (seitenbau.js): kleiner Kopf auf Folgeseiten, Seitenzahl links in der Onstand-Zeile */
+#bpdruck .pgfk{display:flex;justify-content:space-between;align-items:flex-end;gap:8mm;border-bottom:.9pt solid #1b2230;padding-bottom:2mm;margin-bottom:5mm;font:8pt/1.3 Arial,Helvetica,sans-serif;color:#1b2230;flex:none}
+#bpdruck .pgfk .pgfklogo{width:36mm;height:auto;display:block}
+#bpdruck .pgfk b{font-size:11pt}
+#bpdruck .pgfk span{color:#5c6675;text-align:right}
+#bpdruck .lkdok.lktfarbe>.pgfk{border-bottom-color:var(--lkf)}
+#bpdruck .ons .pgnr{margin-right:auto;color:#5c6675;font:7.5pt/1 Arial,Helvetica,sans-serif}
+#bpdruck section>.pgnr{display:block;text-align:right;font:7.5pt/1 Arial,Helvetica,sans-serif;color:#5c6675;margin-top:2mm}
+#bpdruck .pgseite>table{flex:none}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.89';
+const ON_VER='0.10.91';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11808,6 +11819,82 @@ async function pdfAusgeben(bytes,name){const bl=bytes instanceof Blob?bytes:new 
  const kl=d.className,html=d.innerHTML,name=pdfName(d),self=this;onToast('PDF wird erstellt …');
  (async()=>{try{const by=await exPdf(d,name.replace(/\.pdf$/,''));await pdfAusgeben(by,name)}
   catch(e){console.error(e);d.className=kl;d.innerHTML=html;onToast('PDF ging nicht – das Druckfenster öffnet sich.');alt.call(self,d)}})()}}
+// ===== Vor dem PDF prüfen: fehlt etwas Wichtiges? =====
+// Angebot, Rechnung, Zahlungserinnerung: Bevor das PDF entsteht, prüft Onstand Firmendaten, Kundenanschrift und Inhalt.
+// Fehlt etwas, kommt ein Hinweis mit Liste – „Trotzdem PDF“, „Firma & Preise“ (zum Ergänzen) oder Abbrechen. Fehlt nichts, geht es direkt weiter.
+function pzLuecken(d){const F=auFirma(),t=String(d.textContent||''),L=[],titel=((d.querySelector('.info b')||{}).textContent||'').trim().toLowerCase();
+ const art=/zahlungserinnerung|mahnung/.test(titel)?'mahnung':/rechnung|storno|korrektur/.test(titel)?'rechnung':/angebot/.test(titel)?'angebot':'';if(!art)return null;
+ const ziff=s=>String(s||'').replace(/\D/g,'').length;
+ if(!String(F.name||'').trim())L.push('Firmenname');
+ if(!String(F.str||'').trim())L.push('Straße eurer Firma');
+ if(!/\b\d{5}\b/.test(F.ort||''))L.push('PLZ und Ort eurer Firma');
+ if(F.tel&&ziff(F.tel)<6)L.push('Telefonnummer unvollständig („'+String(F.tel).trim()+'“)');
+ if(F.mail&&!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(String(F.mail).trim()))L.push('E-Mail-Adresse unvollständig („'+String(F.mail).trim()+'“)');
+ if(!F.tel&&!F.mail)L.push('Telefon oder E-Mail');
+ if(art!=='angebot'&&!String(F.stnr||'').trim()&&!String(F.ust||'').trim())L.push('Steuernummer oder USt-IdNr. (Pflicht auf Rechnungen)');
+ if(art!=='angebot'&&!String(F.iban||'').trim())L.push('IBAN (wohin soll der Kunde überweisen?)');
+ const emp=d.querySelector('.emp');if(emp){const z=emp.innerHTML.split(/<br\s*\/?>/i).map(x=>x.replace(/<[^>]*>/g,'').trim()).filter(Boolean);if(z.length<2||!z.some(x=>/\b\d{5}\b/.test(x)))L.push('Anschrift des Kunden (Straße, PLZ und Ort) – im Kunden-Menü ergänzen')}
+ if(art!=='mahnung'){const tab=[...d.querySelectorAll('section table')].find(x=>/LEISTUNG|Leistung/.test(x.textContent));if(tab&&![...tab.querySelectorAll('tr')].some(r=>r.querySelector('td')))L.push('Positionen – das Dokument ist leer')
+  const ge=d.querySelector('.su .ge');if(ge&&/(^|\s)0,00\s*€/.test(ge.textContent)&&!L.some(x=>x.startsWith('Positionen')))L.push('Betrag – die Summe ist 0,00 €')}
+ return {art,L}}
+{const alt=druckStart;druckStart=function(d){let P=null;try{if(d&&d.nodeType&&/(^|\s)angebot(\s|$)/.test(d.className))P=pzLuecken(d)}catch(e){console.error(e)}
+ if(!P||!P.L.length)return alt.apply(this,arguments);
+ const kl=d.className,html=d.innerHTML,self=this,los=()=>{d.className=kl;d.innerHTML=html;alt.call(self,d)};
+ const name={angebot:'dem Angebot',rechnung:'der Rechnung',mahnung:'der Zahlungserinnerung'}[P.art];
+ onDialog(`<h3>Vor dem PDF: Es fehlt noch etwas</h3><p>In ${name} fehlt:</p><ul class="pzliste">${P.L.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p class="kl">Firmendaten ergänzt ihr unter „Firma &amp; Preise“ – sie gelten danach für alle Dokumente.</p>`,
+  [['ABBRECHEN',''],['FIRMA & PREISE','fi'],['TROTZDEM PDF','ja']],{ja:()=>{setTimeout(los,60)},fi:()=>{setTimeout(()=>{try{if(AM_AKT!=='auftraege')amFunktion('auftraege')}catch(e){}setTimeout(()=>{try{AUV.offen=null;AUV.rech=null;AUV.neu=null;AUV.rechNeu=false;AUV.firma=true;const inh=AM_EL.querySelector('.aminhalt');if(inh)auMalen(inh)}catch(e){}},150)},60)}})}}
+// ===== Mehrseitige Angebote, Rechnungen, Zahlungserinnerungen: Seiten richtig aufbauen =====
+// Passt ein Blatt nicht auf eine Seite, baut Onstand die Seiten selbst (im PDF und in der Vorschau, beides gleich):
+// · Seite 1 mit großem Briefkopf, Folgeseiten mit kleinem Kopf (Logo klein + „Rechnung R-… · Kunde“)
+// · die Positionstabelle läuft über die Seiten weiter, mit Tabellenkopf auf jeder Seite
+// · Fußzeile (Firma, Kontakt, Bank) und „Onstand × Firma“ auf jeder Seite unten, dazu „Seite 1 von 2“
+// · Schlussteil (Summen, Zahlungstext, Zahlungsbox mit IBAN/QR-Code, Gruß) bleibt zusammen auf der letzten Seite;
+//   passt er nicht mehr, wandern die letzten zwei Positionen mit, damit die Summe nicht allein steht.
+// Einseitige Blätter bleiben genau wie bisher.
+const PG_MM=96/25.4;
+function pgArt(d){const t=((d.querySelector('.info b')||{}).textContent||'').trim();if(/zahlungserinnerung|mahnung/i.test(t))return 'Zahlungserinnerung';if(/rechnung|storno|korrektur/i.test(t))return t.charAt(0)+t.slice(1).toLowerCase();if(/angebot/i.test(t))return 'Angebot';return ''}
+function pgFolgekopf(sec,d){const art=pgArt(d),dl=[...sec.querySelectorAll('.info dt')],nr=(()=>{const x=dl.find(x=>/^(nr\.?|rechnung)$/i.test(x.textContent.trim()));return x&&x.nextElementSibling?x.nextElementSibling.textContent.trim():''})();
+ const emp=sec.querySelector('.emp'),kunde=emp?emp.innerHTML.split(/<br\s*\/?>/i)[0].replace(/<[^>]*>/g,'').trim():'';
+ const logo=sec.querySelector('.bk .lkdlogo'),k=document.createElement('div');k.className='pgfk';
+ k.innerHTML=`${logo?`<img class="pgfklogo" src="${logo.getAttribute('src')}" alt="">`:`<b>${esc(((sec.querySelector('.bk b')||{}).textContent||'').trim())}</b>`}<span>${esc([[art,nr].filter(Boolean).join(' '),kunde].filter(Boolean).join(' · '))}</span>`;return k}
+function pgBauen(d,hoch){const S=d.querySelectorAll('section');if(S.length!==1)return false;const sec=S[0];if(!pgArt(d))return false;
+ const H=hoch-3;sec.style.setProperty('min-height','0','important');const R0=sec.getBoundingClientRect();
+ if(sec.scrollHeight<=H){sec.style.removeProperty('min-height');return false}
+ const K=[...sec.children],fzI=K.findIndex(x=>x.classList.contains('fz'));const fuss=fzI>=0?K.slice(fzI):[];const inhalt=fzI>=0?K.slice(0,fzI):K;
+ const tab=inhalt.filter(x=>x.tagName==='TABLE'&&/leistung/i.test(x.textContent)).sort((a,b)=>b.rows.length-a.rows.length)[0];
+ const top=el=>el.getBoundingClientRect().top-R0.top,unten=el=>el.getBoundingClientRect().bottom-R0.top;
+ const fussH=fuss.length?sec.scrollHeight-top(fuss[0])+2:0;
+ // Blöcke mit Höhe (inkl. Abstand bis zum nächsten Block)
+ const hoeheBis=(a,b)=>(b?top(b):(fuss[0]?top(fuss[0]):sec.scrollHeight))-top(a);
+ let kopf,ende,rows=[],thead=null,theadH=0;
+ if(tab){const ti=inhalt.indexOf(tab);kopf=inhalt.slice(0,ti);ende=inhalt.slice(ti+1);const tr=[...tab.rows];thead=tr.find(r=>r.querySelector('th'));rows=tr.filter(r=>r!==thead);theadH=thead?thead.getBoundingClientRect().height:0}
+ else{kopf=[];ende=inhalt}
+ const kopfH=kopf.length?(tab?top(tab):0)-top(kopf[0]):0,tabRest=tab?hoeheBis(tab,ende[0])-tab.getBoundingClientRect().height:0;
+ const rowH=rows.map(r=>r.getBoundingClientRect().height),endeH=ende.length?hoeheBis(ende[0],null):0;
+ // Folgekopf messen
+ const fk=pgFolgekopf(sec,d);sec.insertBefore(fk,sec.firstChild);const fkH=fk.getBoundingClientRect().height+parseFloat(getComputedStyle(fk).marginBottom||0);fk.remove();
+ if(!tab){sec.style.removeProperty('min-height');return false}
+ const platz=H-fussH,seiten=[];let i=0,erste=true;
+ while(true){let frei=platz-(erste?kopfH:fkH);const von=i;if(i<rows.length){frei-=theadH+tabRest;while(i<rows.length&&rowH[i]<=frei){frei-=rowH[i];i++}if(i===von&&i<rows.length){i++}}
+  if(i>=rows.length){if(endeH<=frei||(von===i&&!erste&&rows.length===0)){seiten.push([von,i,true]);break}
+   if(i-von>3&&rows.length-von>2){const zur=Math.min(2,i-von-1);i-=zur;seiten.push([von,i,false]);erste=false;continue}
+   seiten.push([von,i,false]);erste=false;seiten.push([i,i,true]);break}
+  seiten.push([von,i,false]);erste=false;if(seiten.length>40)break}
+ if(seiten.length<2){sec.style.removeProperty('min-height');return false}
+ // Seiten bauen
+ const n=seiten.length,neu=seiten.map(([a,b,letzte],k)=>{const s=document.createElement('section');s.className=sec.className+' pgseite';s.setAttribute('style',sec.getAttribute('style')||'');
+  s.style.setProperty('height',H+'px','important');s.style.setProperty('min-height','0','important');s.style.setProperty('break-after',k<n-1?'page':'auto');
+  if(k===0)kopf.forEach(x=>s.appendChild(x.cloneNode(true)));else s.appendChild(pgFolgekopf(sec,d));
+  if(b>a){const t=tab.cloneNode(false);const tb=document.createElement('tbody');if(thead)tb.appendChild(thead.cloneNode(true));rows.slice(a,b).forEach(r=>tb.appendChild(r.cloneNode(true)));t.appendChild(tb);s.appendChild(t)}
+  if(letzte)ende.forEach(x=>s.appendChild(x.cloneNode(true)));
+  const f=fuss.map(x=>x.cloneNode(true));if(f[0])f[0].classList.add('pgfuss');f.forEach(x=>s.appendChild(x));
+  const ons=s.querySelector(':scope>.ons');const nr=document.createElement('span');nr.className='pgnr';nr.textContent=`Seite ${k+1} von ${n}`;if(ons)ons.insertBefore(nr,ons.firstChild);else s.appendChild(nr);
+  return s});
+ sec.replaceWith(...neu);d.classList.add('pgmehr');return true}
+// PDF: vor dem Erzeugen in der endgültigen Breite messen und die Seiten bauen
+if(typeof window.onTextPdf==='function'){const alt=window.onTextPdf;window.onTextPdf=async function(el,o){try{if(el&&/(^|\s)angebot(\s|$)/.test(el.className)){const f=Object.assign(ptFormat(el),o||{}),[rt,rr,rb,rl]=f.rand,PW=f.quer?841.89:595.28,PH=f.quer?595.28:841.89;
+  const st=el.getAttribute('style')||'';el.classList.add('pttext');el.setAttribute('style',st+`;width:${(PW-rl*72/25.4-rr*72/25.4)/PT_K}px!important;max-width:none!important;position:absolute!important;left:0!important;top:0!important`);
+  try{pgBauen(el,(PH-(rt+rb)*72/25.4)/PT_K)}finally{el.setAttribute('style',st);el.classList.remove('pttext')}}}catch(e){console.error(e)}return alt.apply(this,arguments)}}
 // ===== Vorschau = Original-Blatt (Angebot, Rechnung) =====
 // Die Vorschau rechts neben der Liste und die Live-Vorschau beim Bearbeiten zeigen jetzt genau das Blatt, das auch als PDF entsteht:
 // gleicher Aufbau, Firmen-Look (Logo, Farbstreifen, Texte), gleiche Seitenumbrüche. Immer eine ganze DIN-A4-Seite, passend in die Fläche
@@ -11849,6 +11936,7 @@ function bvMontieren(platz){const id=platz.dataset.bv,e=BV.objs.get(id);if(!e)re
  sr.innerHTML=`<div class="bvrahmen"><div class="bvblatt"><div class="bvstreif"></div><div class="bvinhalt"><div id="bpdruck"></div></div></div></div><div class="bvnav"><button type="button" data-b="-1" aria-label="Vorherige Seite">‹</button><span></span><button type="button" data-b="1" aria-label="Nächste Seite">›</button></div>`;
  const bp=sr.getElementById('bpdruck'),blatt=sr.querySelector('.bvblatt'),rahmen=sr.querySelector('.bvrahmen'),inh=sr.querySelector('.bvinhalt'),nav=sr.querySelector('.bvnav'),stf=sr.querySelector('.bvstreif');
  bp.className=B.kl+' pttext';bp.innerHTML=B.html;const f=ptFormat({className:B.kl}),[rt,rr,rb,rl]=f.rand;bp.style.width=((210-rl-rr)*BV_MM)+'px';
+ try{if(typeof pgBauen==='function'&&/(^|\s)angebot(\s|$)/.test(B.kl))pgBauen(bp,(297-rt-rb)*BV_MM)}catch(x){console.error(x)}
  let S=[[0,BV_H]];try{const D=ptSammeln(bp);S=ptSeiten(D,(297-rt-rb)*BV_MM);if(!S.length)S=[[0,D.H]]}catch(x){console.error(x)}
  const sec=bp.querySelector('section.lkstreif');if(sec){const a=sec.style.getPropertyValue('--lkf2'),b=sec.style.getPropertyValue('--lkf');stf.style.background=`linear-gradient(${a||b},${b})`;stf.style.display='block'}
  const schl=e.schl;let n=Math.min(BV.seite.get(schl)||0,S.length-1);
