@@ -446,6 +446,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #onstart .oszz{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 #onstart .oscodeh{margin:-4px 0 0;font-size:11.5px;line-height:1.5;color:var(--sub);text-align:left}
 #am .ondk.sykonto .sycodeh{margin:-4px 0 4px;font-size:12px;line-height:1.5;color:var(--k-sub,color-mix(in srgb,var(--k-sub) 77%,var(--k-b1)))}
+#onstart .osbox{width:min(400px,100%);box-sizing:border-box;background:color-mix(in srgb,var(--k-t) 4%,transparent);border:1px solid color-mix(in srgb,var(--k-t) 10%,transparent);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:var(--row);text-align:left;margin:0 0 10px}#onstart .osbox b{color:#F0C79C;font-weight:500}
+#onstart .osfn{margin-top:-6px}
 #onstart .osp{width:min(400px,100%);font-size:12.5px;color:var(--row);line-height:1.6;margin:0 0 12px;text-align:center}#onstart .osp b{color:var(--k-t);font-weight:400}
 #onstart .osbalken{height:3px;border-radius:2px;background:color-mix(in srgb,var(--k-sub) 15%,transparent);overflow:hidden}#onstart .osbalken i{display:block;height:100%;width:0;background:var(--aj);transition:width .3s ease}
 #onstart .osfehl{margin:0;min-height:1em;font-size:12px;color:var(--rot)}
@@ -4376,13 +4378,33 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* Allgemein am PC: Passt eine Seite nicht in die Fensterhöhe, darf der Inhaltsbereich scrollen (vorher wurde er abgeschnitten,
    z. B. Einstellungen bei kleinem Fenster). Seiten mit eigenem Scrollbereich (Listen, Tagebuch …) passen sowieso – dort ändert sich nichts. */
 @media (min-width:761px){#am .aminhalt{overflow-y:auto!important;overflow-x:hidden!important}}
+/* Abo & Pakete (Stripe) */
+#am .abdlg{display:flex;flex-direction:column;gap:12px;min-width:min(420px,100%)}
+#am .abkarte{border:1px solid var(--k-lin);border-radius:10px;padding:4px 14px;background:var(--k-b1)}
+#am .abz{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;font-size:13.5px}#am .abz+.abz{border-top:1px solid var(--k-lin)}
+#am .abz span{color:var(--k-sub)}#am .abz b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+#am .abpill{font-style:normal;font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;margin-left:6px;background:color-mix(in srgb,var(--k-akz) 16%,var(--k-b1));color:var(--k-akz)}
+#am .abpill.gruen{background:color-mix(in srgb,var(--k-gruen) 16%,var(--k-b1));color:var(--k-gruen)}#am .abpill.gelb{background:color-mix(in srgb,var(--k-gelb) 20%,var(--k-b1));color:var(--k-t)}
+#am .abpill.rot{background:color-mix(in srgb,var(--k-rot) 14%,var(--k-b1));color:var(--k-rot)}#am .abpill.grau{background:var(--k-b2);color:var(--k-sub)}
+#am .abwarn{margin:0;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.5;background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1));border:1px solid color-mix(in srgb,var(--k-gelb) 35%,var(--k-lin))}
+#am .abwarn.rot{background:color-mix(in srgb,var(--k-rot) 9%,var(--k-b1));border-color:color-mix(in srgb,var(--k-rot) 30%,var(--k-lin))}
+#am .abkn{display:flex;flex-direction:column;gap:8px}
+#am .abkn button,#am .abwahl button{min-height:40px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);font:600 12.5px var(--k-ui);letter-spacing:.4px;cursor:pointer}
+#am .abkn button.abp{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}#am .abkn button.abrot{color:var(--k-rot);border-color:color-mix(in srgb,var(--k-rot) 35%,var(--k-lin))}
+#am .abkn button:disabled{opacity:.5;cursor:default}
+#am .abwahl{display:flex;flex-direction:column;gap:8px}#am .abwahl button{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;letter-spacing:0;text-align:left}#am .abwahl button span{font-weight:400;color:var(--k-sub)}
+#am .abban{display:flex;align-items:center;gap:14px;padding:12px 16px;margin:0 0 14px;border-radius:8px;background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1));border:1px solid color-mix(in srgb,var(--k-gelb) 35%,var(--k-lin))}
+#am .abban.rot{background:color-mix(in srgb,var(--k-rot) 9%,var(--k-b1));border-color:color-mix(in srgb,var(--k-rot) 30%,var(--k-lin))}
+#am .abban p{flex:1;min-width:0;margin:0;font-size:13px;line-height:1.5}
+#am .abban button{height:34px;padding:0 14px;border:0;border-radius:6px;background:var(--k-akz);color:var(--k-auf);font:600 12.5px var(--k-ui);cursor:pointer;white-space:nowrap}
+@media (max-width:760px){#am .abban{flex-direction:column;align-items:stretch}#am .abban button{height:42px;border-radius:21px}}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.94';
+const ON_VER='0.10.95';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -8981,12 +9003,15 @@ async function syRest(pfad,opt={}){const t=await syToken();
 const syRpc=(n,a)=>syRest('rpc/'+n,{method:'POST',body:a||{}});
 // Neue Firma nur mit Code (Paket-Kauf oder Angebot persönliches Design), höchstens 1 Firma pro Konto – geprüft auf dem Server
 const SY_CODE_HINWEIS='Den Code bekommst du beim Kauf eines Pakets oder mit deinem Angebot für das persönliche Design.';
-const SY_FA_FEHLER={hat_schon_firma:'Mit diesem Konto gibt es schon eine Firma. Pro Konto ist eine Firma möglich – nimm ANMELDEN.',code_fehlt:'Bitte den Code eintragen.'};
+const SY_FA_FEHLER={hat_schon_firma:'Mit diesem Konto gibt es schon eine Firma. Pro Konto ist eine Firma möglich – nimm ANMELDEN.',code_fehlt:'Bitte den Code eintragen.',zahlung_fehlt:'Für diesen Code bitte zuerst die Zahlungsart hinterlegen – über „Neue Firma anlegen“ im Startbildschirm.'};
 const syCodeNorm=c=>String(c||'').toUpperCase().replace(/\s+/g,'').replace(/[–—_]/g,'-');
 function syCodePruefen(c){c=syCodeNorm(c);if(!c)throw new Error(SY_FA_FEHLER.code_fehlt);if(!/^[A-Z0-9]{2,12}-[A-Z0-9]{4,8}$/.test(c))throw new Error('Der Code hat die Form NAME-XXXX, z. B. BRANDT-7K4M.');return c}
 async function syFirmaAnlegen(firma,name,code){const k=await syRpc('firma_anlegen',{p_name:firma,p_mein_name:name||'',p_geraet:syGeraet(),p_code:syCodeNorm(code)});
  if(k&&k.fehler){sySitzung(null);const e=new Error(SY_FA_FEHLER[k.fehler]||(typeof NK_FEHLER==='object'&&NK_FEHLER[k.fehler])||'Der Code wurde nicht angenommen.');e.code=k.fehler;throw e}
  if(typeof nkPruefen==='function')setTimeout(nkPruefen,1500);return k}
+// Code vorab prüfen: Kauf-Code → Firma direkt anlegen, Geschenk-Code ohne Zahlungsart → erst zu Stripe
+async function syCodeInfo(code){const i=await syRpc('nk_code_info',{p_code:syCodeNorm(code)});
+ if(i&&i.fehler){sySitzung(null);const e=new Error(SY_FA_FEHLER[i.fehler]||(typeof NK_FEHLER==='object'&&NK_FEHLER[i.fehler])||'Der Code wurde nicht angenommen.');e.code=i.fehler;throw e}return i||{}}
 // Konto anlegen – gibt es die E-Mail schon (z. B. zweiter Versuch nach falschem Code), mit demselben Passwort anmelden
 async function syKontoFuerAnlegen(mail,pw){try{return await syAuth('signup',{email:mail,password:pw})}catch(e){
  if(!/already registered|user_already_exists/i.test(String(e&&e.message||'')))throw e;try{return await syAuth('token?grant_type=password',{email:mail,password:pw})}catch(x){throw e}}}
@@ -12021,6 +12046,75 @@ async function sdVormerken(){try{if(!syAktiv()||!GED||localStorage.getItem('onst
  const L=await syAlleDateien(GED,'',[]),N=[];for(const r of L){if(SD_TYP.test(r))N.push(r);else if(SY_BILD.test(r)){const f=await sdDatei(r);if(f&&f.size>SD_B64)N.push(r)}}
  const t=Date.now();if(N.length)await syIdb('d','readwrite',st=>{for(const r of N)st.put(t,r)});localStorage.setItem('onstandDateiAbgleich:'+SY_KONTO.firma,'1');if(N.length)syAnstoss(800)}catch(e){console.warn('Dateiabgleich vormerken:',e)}}
 {let n=0;const los=()=>{if(typeof syAktiv==='function'&&syAktiv()&&GED)sdVormerken();else if(++n<20)setTimeout(los,3000)};setTimeout(los,4000)}
+// ===== Abo & Pakete (Stripe) =====
+// Gilt für Firmen mit Abo (neu angelegt mit Kauf- oder Geschenk-Code). Bestehende Firmen ohne Abo (z. B. ESTETA) sehen weiter das alte Fenster.
+// · Einstellungen → „Abo & Pakete“: Paket, Testphase/nächste Abbuchung, Paket wechseln, Zahlungsart & Rechnungen, Vertrag hier kündigen
+//   (über das Kundenportal von Stripe – Onstand sieht nie Karten- oder Kontodaten). Nur der Chef kann etwas ändern.
+// · Cockpit (Chef und Büro): 3 Tage vor Ende der Testphase ein Hinweis, bei offener Zahlung eine Warnung,
+//   nach 1 Woche ohne Zahlung oder nach Abo-Ende „nur lesen“: alles ansehen und exportieren, nichts Neues speichern, kein Abgleich.
+// Der Server setzt den Riegel selbst (Abgleich nimmt nichts an) – die App zeigt es nur an und hält lokale Änderungen zurück.
+const ABO={s:null,hinweis:0};
+const AB_PAKET={standard:['Onstand Standard',79.99],ki:['Onstand KI',99.99],gross:['Onstand KI für große Firmen',129.99]};
+const abDat=d=>d?new Date(d).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}):'';
+const abEur=x=>x.toFixed(2).replace('.',',')+' €';
+const abTage=d=>d?Math.ceil((new Date(d).getTime()-Date.now())/864e5):null;
+const abNurLesen=()=>!!(ABO.s&&ABO.s.nur_lesen);
+// Rücksprung nach Stripe: die Adresse, unter der Onstand gerade läuft (ohne alte Rücksprung-Angaben)
+function abZurueck(){const u=location.href.split('#')[0].replace(/([?&])(onstand_zahlung|onstand_abo|sid)=[^&]*/g,'$1').replace(/[?&]+$/,'').replace(/\?&+/,'?');return /^https:/.test(u)?u:'https://2ronaar1.github.io/Onstand/onstand.html'}
+function abAdresseSaeubern(){try{const q=new URLSearchParams(location.search);['onstand_zahlung','onstand_abo','sid'].forEach(k=>q.delete(k));const t=q.toString();history.replaceState(null,'',location.pathname+(t?'?'+t:'')+location.hash)}catch(e){}}
+async function abFn(body,mitAnmeldung){const h={'Content-Type':'application/json',apikey:SY_SERVER.k};if(mitAnmeldung){const t=await syToken();if(t)h.Authorization='Bearer '+t}
+ let r;try{r=await fetch(syBasis()+'/functions/v1/onstand-stripe',{method:'POST',headers:h,body:JSON.stringify(body)})}catch(e){return {fehler:'netz'}}
+ let j={};try{j=await r.json()}catch(e){}if(!r.ok&&!j.fehler)j.fehler='server';return j}
+const AB_FEHLER={netz:'Keine Verbindung zum Server. Prüfe das Internet.',nur_chef:'Das Abo verwaltet der Chef der Firma.',kein_abo:'Für diese Firma ist kein Abo hinterlegt.',stripe_fehlt:'Die Bezahlung ist noch nicht eingerichtet.',server:'Das hat nicht geklappt. Bitte gleich noch einmal versuchen.'};
+const abFehlerText=f=>AB_FEHLER[f]||(typeof NK_FEHLER==='object'&&NK_FEHLER[f])||AB_FEHLER.server;
+async function abWeiter(body){onToast('Einen Moment …');const j=await abFn(body,true);if(j.url){location.href=j.url;return true}onToast(abFehlerText(j.fehler));return false}
+const abPortal=ziel=>abWeiter({aktion:'portal',firma:SY_KONTO.firma,ziel,zurueck_url:abZurueck()});
+const abNeuAbo=paket=>abWeiter({aktion:'neu_abo',firma:SY_KONTO.firma,paket:paket||(ABO.s&&ABO.s.paket)||'standard',zurueck_url:abZurueck()});
+// Stand vom Server holen
+async function abLaden(){if(typeof syAktiv!=='function'||!syAktiv())return;let s=null;try{s=await syRpc('abo_stand',{p_firma:SY_KONTO.firma})}catch(e){return}
+ const vor=JSON.stringify(ABO.s);ABO.s=s||null;document.body.classList.toggle('abonurlesen',abNurLesen());
+ if(vor!==JSON.stringify(ABO.s))try{if(AM_EL&&AM_AKT==='cockpit'){const inh=AM_EL.querySelector('.aminhalt');if(inh&&typeof cpMalen==='function'&&!(typeof CPV!=='undefined'&&CPV.b))cpMalen(inh)}}catch(e){}}
+{let n=0;const los=()=>{if(typeof syAktiv==='function'&&syAktiv())abLaden();else if(++n<10)setTimeout(los,3000)};setTimeout(los,3000)}setInterval(abLaden,15*6e4);
+if(typeof syKontoSetzen==='function'){const alt=syKontoSetzen;syKontoSetzen=function(k){const vor=SY_KONTO&&SY_KONTO.firma,neu=k&&k.firma;const r=alt.apply(this,arguments);
+ if(vor!==neu){ABO.s=null;document.body.classList.remove('abonurlesen');if(neu)setTimeout(abLaden,700)}return r}}
+// Zustand in Worten
+function abZustand(s){if(s.nur_lesen)return ['Nur lesen','rot'];if(s.offen_seit)return ['Zahlung offen','gelb'];if(s.status==='canceled')return ['Beendet','rot'];
+ if(s.kuendigt)return ['Gekündigt','grau'];if(s.status==='trialing')return ['Testphase',''];return ['Aktiv','gruen']}
+// Fenster „Abo & Pakete“
+function abDialog(){const s=ABO.s,p=AB_PAKET[s.paket]||AB_PAKET.standard,[zt,zk]=abZustand(s),chef=s.rolle==='chef',ende=s.status==='canceled'||s.status==='incomplete_expired';
+ const z=(a,b)=>`<div class="abz"><span>${a}</span><b>${b}</b></div>`;
+ const ki=typeof NK!=='undefined'&&typeof nkRest==='function'&&nkRest()!=null&&s.paket==='standard'?z('KI-Paket','geschenkt bis '+abDat(NK.stand.test_bis)):'';
+ const zeilen=z('Paket',`${esc(p[0])} <i class="abpill ${zk}">${zt}</i>`)+(ende?z('Beendet',abDat(s.bis)):s.status==='trialing'&&!s.kuendigt?z('Kostenlos bis',abDat(s.bis))+z('Danach',abEur(p[1])+' + MwSt. / Monat'):s.kuendigt?z('Läuft noch bis',abDat(s.bis)):z('Nächste Abbuchung',abDat(s.bis))+z('Preis',abEur(p[1])+' + MwSt. / Monat'))+ki;
+ const warn=s.nur_lesen?`<p class="abwarn rot"><b>Nur lesen.</b> ${ende?'Euer Abo ist beendet.':'Die Zahlung ist seit über einer Woche offen.'} Ihr könnt alles ansehen und exportieren. Neues speichern und der Abgleich gehen wieder mit einem Paket.</p>`
+  :s.offen_seit?`<p class="abwarn"><b>Die letzte Zahlung hat nicht geklappt.</b> Bitte die Zahlungsart prüfen, sonst ist Onstand ab ${abDat(new Date(new Date(s.offen_seit).getTime()+7*864e5))} nur lesbar.</p>`:'';
+ const kn=!chef?'<p class="kl">Das Abo verwaltet der Chef der Firma.</p>':ende?`<div class="abkn"><button type="button" class="abp" data-ab="neu">PAKET WÄHLEN</button></div>`
+  :`<div class="abkn"><button type="button" class="abp" data-ab="wechseln">PAKET WECHSELN</button><button type="button" data-ab="verwalten">ZAHLUNGSART &amp; RECHNUNGEN</button>${s.kuendigt?'<button type="button" data-ab="verwalten">KÜNDIGUNG ZURÜCKNEHMEN</button>':'<button type="button" class="abrot" data-ab="kuendigen">VERTRAG HIER KÜNDIGEN</button>'}</div>`;
+ const d=onDialog(`<div class="abdlg"><h3>Abo &amp; Pakete</h3><div class="abkarte">${zeilen}</div>${warn}${kn}<p class="kl">Bezahlt wird über Stripe. Onstand sieht keine Karten- oder Kontodaten.${chef&&!ende?' Kündigen geht jederzeit zum Ende des laufenden Abrechnungsmonats.':''}</p></div>`,[['SCHLIESSEN','']]);
+ if(d)d.querySelectorAll('[data-ab]').forEach(b=>b.onclick=()=>{const a=b.dataset.ab;b.disabled=true;(a==='neu'?abNeuPaketWahl():abPortal(a)).then(ok=>{if(!ok)b.disabled=false})});return d}
+// Nach Abo-Ende: Paket auswählen, dann zu Stripe
+function abNeuPaketWahl(){return new Promise(res=>{const d=onDialog(`<div class="abdlg"><h3>Paket wählen</h3><div class="abwahl">${Object.entries(AB_PAKET).map(([k,[n,pr]])=>`<button type="button" data-p="${k}"><b>${esc(n)}</b><span>${abEur(pr)} + MwSt. / Monat</span></button>`).join('')}</div><p class="kl">Weiter zu Stripe. Alle eure Daten sind noch da und sofort wieder bearbeitbar.</p></div>`,[['ABBRECHEN','']]);
+ if(d)d.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{abNeuAbo(b.dataset.p).then(res)})})}
+// Einstellungen → Abo: für Firmen mit Abo das neue Fenster
+if(typeof kiAboDialog==='function'){const alt=kiAboDialog;kiAboDialog=async function(){if(ABO.s&&ABO.s.pflicht)return abDialog();await abLaden();if(ABO.s&&ABO.s.pflicht)return abDialog();return alt.apply(this,arguments)}}
+if(typeof aboKaufen==='function'){const alt=aboKaufen;aboKaufen=function(){if(ABO.s&&ABO.s.pflicht){if(ABO.s.rolle!=='chef'){onToast(AB_FEHLER.nur_chef);return}return ABO.s.status==='canceled'?abNeuPaketWahl():abPortal('wechseln')}return alt.apply(this,arguments)}}
+// Cockpit: Hinweise (Chef und Büro)
+function abBanner(inh){const s=ABO.s;if(!s||!s.pflicht||!['chef','buero'].includes(s.rolle)||inh.querySelector('.abban'))return;const p=AB_PAKET[s.paket]||AB_PAKET.standard,t=abTage(s.bis);let h='',k='',kn='';
+ if(s.nur_lesen){k='rot';h=`<b>Nur lesen.</b> ${s.status==='canceled'?'Euer Abo ist beendet.':'Die Zahlung ist seit über einer Woche offen.'} Ihr könnt alles ansehen und exportieren. Neues speichern und der Abgleich gehen wieder mit einem Paket.`;kn=s.status==='canceled'?'PAKET WÄHLEN':'ZAHLUNG KLÄREN'}
+ else if(s.offen_seit){h=`<b>Die letzte Zahlung hat nicht geklappt.</b> Bitte die Zahlungsart prüfen, sonst ist Onstand ab ${abDat(new Date(new Date(s.offen_seit).getTime()+7*864e5))} nur lesbar.`;kn='ZAHLUNGSART PRÜFEN'}
+ else if(s.status==='trialing'&&!s.kuendigt&&t!=null&&t<=3&&t>=0){h=`Eure Testphase endet ${t===0?'heute':'am <b>'+abDat(s.bis)+'</b>'}. Danach buchen wir ${abEur(p[1])} + MwSt. im Monat ab.`;kn='PAKET ÄNDERN'}
+ else if(s.kuendigt&&t!=null&&t<=7&&t>=0){h=`Euer Abo ist gekündigt und endet am <b>${abDat(s.bis)}</b>. Danach könnt ihr alles ansehen, aber nichts Neues speichern.`;kn='KÜNDIGUNG ZURÜCKNEHMEN'}
+ if(!h)return;const b=document.createElement('div');b.className='abban '+k;b.innerHTML=`<p>${h}</p>${s.rolle==='chef'?`<button type="button">${kn}</button>`:''}`;
+ const bt=b.querySelector('button');if(bt)bt.onclick=()=>{if(s.status==='canceled')abNeuPaketWahl();else if(kn==='PAKET ÄNDERN')abPortal('wechseln');else abPortal('verwalten')};
+ const kk=inh.querySelector(':scope>.lkh,:scope>.mgk');if(kk)kk.after(b);else inh.prepend(b)}
+if(typeof cpUebersicht==='function'){const alt=cpUebersicht;cpUebersicht=function(inh){const out=alt.apply(this,arguments);try{abBanner(inh)}catch(e){console.error(e)}return out}}
+// Nur lesen: nichts Neues in die Firmendaten schreiben (interne Dateien mit „.“ bleiben frei), Abgleich hält Änderungen zurück
+if(typeof schreiben==='function'){const alt=schreiben;schreiben=async function(pfad){if(abNurLesen()&&typeof pfad==='string'&&pfad.startsWith('@/')&&!pfad.slice(2).split('/').some(t=>t.startsWith('.'))){
+  if(Date.now()-ABO.hinweis>4000){ABO.hinweis=Date.now();try{onToast('Nur lesen: Euer Abo ist beendet. Speichern geht wieder mit einem Paket.')}catch(e){}}const e=new Error('Nur lesen: Euer Abo ist beendet.');e.nurLesen=true;throw e}
+ return alt.apply(this,arguments)}}
+if(typeof syEinePush==='function'){const alt=syEinePush;syEinePush=async function(){if(abNurLesen())return;return alt.apply(this,arguments)}}
+// Rückkehr von Stripe mit neuem Abo für die bestehende Firma
+{const q=new URLSearchParams(location.search);if(q.get('onstand_abo')==='ok'&&q.get('sid')){const sid=q.get('sid');abAdresseSaeubern();
+ let n=0;const los=async()=>{if(!(typeof syAktiv==='function'&&syAktiv())){if(++n<15)setTimeout(los,2000);return}const j=await abFn({aktion:'abo_pruefen',sid},true);await abLaden();try{onToast(j.ok?'Abo aktiv – alles wieder bearbeitbar.':'Die Zahlung wird noch bestätigt. Das kann einen Moment dauern.')}catch(e){}};setTimeout(los,2500)}}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
@@ -12059,7 +12153,8 @@ function eiFormular(w){const s=eiStartEl(),F=onInitialen().firma;
     profilSetzen({name:v('einame'),firma:v('eifirma')});try{const f=JSON.parse(localStorage.getItem('onstandFirma')||'{}');if(!f.name){f.name=v('eifirma');localStorage.setItem('onstandFirma',JSON.stringify(f))}}catch(e){}
     sySetLS('onstandAnlegen',{firma:v('eifirma'),name:v('einame'),code});const j=await syKontoFuerAnlegen(v('eimail'),v('eipw'));
     if(!j.access_token){bal.style.width='0';kn.disabled=false;kn.textContent=alt;fehl('');s.querySelector('#eiform').insertAdjacentHTML('beforebegin','<p class="osp"><b>Fast fertig:</b> Bestätige die E-Mail in deinem Postfach. Danach hier auf ZURÜCK → ANMELDEN, die Firma wird dann angelegt.</p>');return}
-    sySitzung(j);const k=await syFirmaAnlegen(v('eifirma'),v('einame')||'',code);sySetLS('onstandAnlegen',null);await syVerbunden(k,true)}
+    sySitzung(j);const info=await syCodeInfo(code);if(info.art==='geschenk'&&!info.bezahlt){eiGeschenk({firma:v('eifirma'),name:v('einame'),code,info});return}
+    const k=await syFirmaAnlegen(v('eifirma'),v('einame')||'',code);sySetLS('onstandAnlegen',null);await syVerbunden(k,true)}
    else if(w==='an'){sySitzung(await syAuth('token?grant_type=password',{email:v('eimail'),password:v('eipw')}));let L=await syRpc('meine_firmen')||[];
     if(!L.length){const p=syLS('onstandAnlegen',null);if(p&&p.firma){try{L=[await syFirmaAnlegen(p.firma,p.name||'',p.code)]}catch(e){sySetLS('onstandAnlegen',null);sySitzung(null);if(e.code)throw new Error(e.message+' Gehe auf ZURÜCK → Neue Firma anlegen, nimm dieselbe E-Mail und gib den Code dort ein.');throw e}sySetLS('onstandAnlegen',null)}}
     if(!L.length){sySitzung(null);throw new Error('Mit diesem Konto ist noch keine Firma verbunden. Nimm „Neue Firma anlegen“.')}
@@ -12069,6 +12164,32 @@ function eiFormular(w){const s=eiStartEl(),F=onInitialen().firma;
    bal.style.width='100%';eiHaken(s,w==='neu'?'FIRMENKONTO STEHT':'VERBUNDEN');
    setTimeout(()=>{if(w==='neu'&&window.showDirectoryPicker)eiSicherungFrage();else eiFertig()},1100)}
   catch(e){bal.style.width='0';kn.disabled=false;kn.textContent=alt;fehl(e.message&&!/^Fehler \d/.test(e.message)&&!(e instanceof TypeError)&&!e.status?e.message:syFehlerText(e))}}}
+// ---------- Geschenk-Code: erst Zahlungsart (Stripe), dann Firma anlegen ----------
+const eiLogo=()=>`<svg class="oszs klein" viewBox="0 0 100 100" aria-hidden="true">${ON_LOGO.replace(/^<svg[^>]*>|<\/svg>$/g,'')}</svg>`;
+function eiGeschenk(d){const s=eiStartEl(),bis=new Date(Date.now()+30*864e5).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}),look=!!(d.info&&d.info.look),fn=(d.info&&d.info.firma)||d.firma;
+ s.innerHTML=`<div class="osf">${eiLogo()}<h2>EUER GESCHENK</h2>${fn?`<p class="osp osfn">für ${esc(fn)}</p>`:''}
+  <div class="osbox"><b>30 Tage kostenlos</b><br>Onstand Standard, KI-Paket${look?' und euer eigener Firmen-Look':''}.</div>
+  <div class="osbox">Danach läuft <b>Onstand Standard</b> für 79,99 € + MwSt. im Monat weiter. Das KI-Paket endet${look?', euer Look bleibt':''}.<br>Erste Abbuchung am <b>${bis}</b>. Vorher jederzeit kündbar.</div>
+  <p class="osfehl" role="alert"></p><div class="osreihe"><button type="button" class="osb2" data-zur>ZURÜCK</button><button type="button" class="osb" data-zahl>ZAHLUNGSART HINTERLEGEN</button></div>
+  <p class="osh">Weiter zu Stripe: Karte oder SEPA-Lastschrift. Danach wird eure Firma angelegt.</p></div>`;
+ s.querySelector('[data-zur]').onclick=()=>eiFormular('neu');
+ const kn=s.querySelector('[data-zahl]');kn.onclick=async()=>{kn.disabled=true;kn.textContent='EINEN MOMENT …';s.querySelector('.osfehl').textContent='';
+  const j=await abFn({aktion:'geschenk',code:d.code,zurueck_url:abZurueck()},true);
+  if(j.url){location.href=j.url;return}if(j.bezahlt){eiNachZahlung(null);return}
+  kn.disabled=false;kn.textContent='ZAHLUNGSART HINTERLEGEN';s.querySelector('.osfehl').textContent=abFehlerText(j.fehler)}}
+// Zurück von Stripe: Zahlung bestätigen, Firma anlegen, weiter wie gewohnt
+async function eiNachZahlung(sid){const s=eiStartEl(),p=syLS('onstandAnlegen',null);
+ s.innerHTML=`<div class="osf">${eiLogo()}<h2>FIRMA WIRD ANGELEGT</h2><p class="osp">Zahlungsart ist hinterlegt. Einen Moment …</p><div class="osbalken"><i style="width:60%"></i></div><p class="osfehl" role="alert"></p><div class="osreihe"></div></div>`;
+ const fehl=t=>{s.querySelector('.osfehl').textContent=t;s.querySelector('.osreihe').innerHTML='<button type="button" class="osb" data-st>ZUM START</button>';s.querySelector('[data-st]').onclick=onStartNeu};
+ if(!SY_SITZ||!p||!p.firma||!p.code){s.querySelector('h2').textContent='ZAHLUNGSART HINTERLEGT';s.querySelector('.osp').innerHTML='Lege jetzt die Firma mit <b>„Neue Firma anlegen“</b> an: dieselbe E-Mail, dasselbe Passwort und derselbe Code. Sie wird dann sofort angelegt.';s.querySelector('.osbalken').remove();fehl('');return}
+ try{if(sid)await abFn({aktion:'geschenk_pruefen',sid},true);let k=null;
+  for(let n=0;n<6;n++){try{k=await syFirmaAnlegen(p.firma,p.name||'',p.code);break}catch(e){if(e.code!=='zahlung_fehlt'||n===5)throw e;await new Promise(r=>setTimeout(r,2500))}}
+  sySetLS('onstandAnlegen',null);if(!GED)GED=await handyGed();await syVerbunden(k,true);eiKontoSetzen();if(SY_KONTO&&SY_KONTO.firmaName&&!ON_PROFIL.firma)profilSetzen({firma:SY_KONTO.firmaName});
+  s.querySelector('.osbalken i').style.width='100%';eiHaken(s,'FIRMENKONTO STEHT');setTimeout(()=>{if(window.showDirectoryPicker)eiSicherungFrage();else eiFertig()},1100)}
+ catch(e){fehl(e.message&&!/^Fehler \d/.test(e.message)&&!(e instanceof TypeError)&&!e.status?e.message:syFehlerText(e))}}
+{const q=new URLSearchParams(location.search),z=q.get('onstand_zahlung');if(z){const sid=q.get('sid');abAdresseSaeubern();
+ setTimeout(()=>{if(z==='ok')eiNachZahlung(sid);else{eiFormular('neu');const p=syLS('onstandAnlegen',null)||{},s=eiStartEl(),f=(id,v)=>{const i=s.querySelector('#'+id);if(i&&v)i.value=v};f('eifirma',p.firma);f('einame',p.name);f('einkcode',p.code);
+  const e=s.querySelector('.osfehl');if(e)e.textContent='Die Zahlungsart wurde nicht hinterlegt. Die Firma ist noch nicht angelegt.'}},1400)}}
 function eiHaken(s,text){const r=s.querySelector('.osreihe');if(!r)return;r.innerHTML=`<div class="oshaken"><svg viewBox="0 0 54 54" fill="none" stroke="#7FD68A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle pathLength="1" cx="27" cy="27" r="24"/><path pathLength="1" d="M16 28l7 7 15-16"/></svg><span>${text}</span></div>`}
 function eiSicherungFrage(){const s=eiStartEl();s.innerHTML=`<div class="osf"><p class="oswolke"><i></i>Firmenkonto steht · alles wird gespeichert</p><h2>SICHERUNG AUF DIESEM PC?</h2>
   <p class="osp">Onstand braucht keinen Ordner. Am Büro-PC empfehlen wir trotzdem einen: Onstand legt dort jeden Tag eine Kopie aller Daten ab, als normale Dateien zum Öffnen, Ausdrucken und fürs Steuerbüro.</p>
