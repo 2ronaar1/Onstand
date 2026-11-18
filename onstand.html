@@ -4330,13 +4330,40 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* Vorschau = Original-Blatt (blattvorschau.js): ganze A4-Seite in der Fläche, Blättern darunter */
 #am .auvs.bvauvs{display:flex;flex-direction:column;overflow:hidden;padding:14px}
 #am .bvplatz{flex:1;min-height:0;width:100%}
+/* Bezahl-QR-Code (rechnungsqr.js) – auf dem Blatt; Farben fest, weil Druck */
+#bpdruck .rqimg{display:block;image-rendering:pixelated;background:#fff}
+#bpdruck.angebot .zb.rqzb{grid-template-columns:.75fr 1.4fr .95fr 25mm}
+#bpdruck.angebot .zb .rqzbq{padding:1mm!important}
+#bpdruck.angebot .zb .rqzbq{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1mm;padding:2mm 1.5mm}
+#bpdruck .rqmittel{width:21mm;height:21mm}
+#bpdruck.angebot .zb .rqzbq span,#bpdruck .rqfzq span,#bpdruck .rqsuq span{font-size:6.5pt;line-height:1.25;color:#5c6675;font-weight:normal;text-align:center}
+#bpdruck .rqsu{display:flex;align-items:flex-end;justify-content:space-between;gap:8mm;margin:1mm 0 5mm;break-inside:avoid;page-break-inside:avoid}
+#bpdruck .rqsu>.su{margin:0!important}
+#bpdruck .rqsuq{display:flex;flex-direction:column;gap:1.5mm;width:30mm;flex:none}
+#bpdruck .rqsuq span{text-align:left;font-size:7pt}
+#bpdruck .rqgross{width:30mm;height:30mm}
+#bpdruck.angebot .fz.rqfz{grid-template-columns:1.05fr 1fr 1.1fr 19mm}
+#bpdruck .rqfzq{display:flex;flex-direction:column;align-items:center;gap:.8mm}
+#bpdruck .rqklein{width:18mm;height:18mm}
+#bpdruck .rqfzq span{font-size:5.5pt}
+/* Einstellung unter „Firma & Preise“ */
+#am .rqkarte{display:flex;flex-direction:column;gap:12px}
+#am .rqsch{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer}
+#am .rqsch b{display:block;font-size:14px;font-weight:600}#am .rqsch small{display:block;color:var(--k-sub);font-size:12.5px;line-height:1.4;margin-top:2px}
+#am .rqsch input{width:20px;height:20px;flex:none;accent-color:var(--k-akz)}
+#am .rqpos{display:flex;flex-direction:column;gap:6px}#am .rqpos>span{font-size:11px;letter-spacing:1px;color:var(--k-sub);text-transform:uppercase}
+#am .rqpos.aus{opacity:.45}
+#am .rqseg{display:flex;flex-wrap:wrap;gap:6px}
+#am .rqseg button{border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);border-radius:8px;padding:8px 12px;font:500 13px var(--k-ui);cursor:pointer}
+#am .rqseg button.an{border-color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));color:var(--k-t);font-weight:600}
+#am .rqseg button:disabled{cursor:default}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.87';
+const ON_VER='0.10.88';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11050,6 +11077,50 @@ if(typeof abDrucken==='function'){const alt=abDrucken;abDrucken=function(k,html)
  const ende=`${T.schluss?`<p>${lkTextHtml(T.schluss,V)}</p>`:''}${T.gruss?`<p>${lkTextHtml(T.gruss,V)}</p>`:''}`;if(ende)h=h.includes('<div class="sig">')?h.replace('<div class="sig">',ende+'<div class="sig">'):h+ende;
  h=(D.streifen?`<div style="position:fixed;left:0;top:0;bottom:0;width:4mm;background:linear-gradient(${lkMisch(LK.d.farbe,'#ffffff',.35)},${LK.d.farbe})"></div>`:'')+kopf+h+(D.onst?`<p style="margin-top:24px;font-size:7pt;color:#8a8f98;text-align:center">Onstand × ${esc(LK.d.firma||F.name||'')} · onstand.de</p>`:'');
  return alt.call(this,k,h)}}catch(e){console.error(e)}return alt.apply(this,arguments)}}
+// ===== Bezahl-QR-Code auf Rechnungen („GiroCode“, EPC-QR der europäischen Banken) =====
+// Einstellung pro Firma unter Aufträge → „Firma & Preise“: an/aus (Standard aus) und Platz auf dem Blatt:
+//   „In der Zahlungsbox“ (vierte Spalte neben IBAN/Verwendungszweck) · „Neben den Summen“ (groß links vom Betrag) · „In der Fußzeile“ (klein unten rechts).
+// Der Kunde scannt den Code mit seiner Banking-App: Empfänger (Firmenname), IBAN, BIC (falls eingetragen), Betrag und Rechnungsnummer sind eingetragen.
+// Erscheint auf Rechnungen (Rechnungsbetrag) und Zahlungserinnerungen (offener Betrag) – nicht bei Entwurf, Storno, Betrag 0 € oder ungültiger IBAN.
+// Gespeichert in den Firmendaten (Firma.json → alle Geräte der Firma). Der Code ist ein PNG im Blatt: gleich in Vorschau, PDF und Druck.
+const RQ_POS=[['box','In der Zahlungsbox'],['summe','Neben den Summen'],['fuss','In der Fußzeile']];
+const rqIban=s=>String(s||'').replace(/\s+/g,'').toUpperCase();
+function rqIbanOk(s){const i=rqIban(s);if(!/^[A-Z]{2}\d{2}[A-Z0-9]{10,30}$/.test(i))return false;const t=(i.slice(4)+i.slice(0,4)).replace(/[A-Z]/g,c=>c.charCodeAt(0)-55);let r=0;for(const ch of t)r=(r*10+ +ch)%97;return r===1}
+const rqUtf8=s=>unescape(encodeURIComponent(s));
+function rqText(F,betrag,zweck){const bic=String(F.bic||'').replace(/\s+/g,'').toUpperCase();
+ return ['BCD','002','1','SCT',/^[A-Z0-9]{8}([A-Z0-9]{3})?$/.test(bic)?bic:'',String(F.name||'').trim().slice(0,70),rqIban(F.iban),'EUR'+(Math.round(betrag*100)/100).toFixed(2),'','',String(zweck||'').slice(0,140),''].join('\n')}
+// mit 4 Modulen weißem Rand (Ruhezone) – ohne ihn erkennen viele Banking-Apps den Code nicht
+function rqPng(text){const m=ON_QR(rqUtf8(text)),n=m.length,s=10,q=4,c=document.createElement('canvas');c.width=c.height=(n+2*q)*s;const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.fillStyle='#000';
+ m.forEach((z,y)=>z.forEach((d,x)=>{if(d)g.fillRect((x+q)*s,(y+q)*s,s,s)}));return c.toDataURL('image/png')}
+function rqAn(F){return !!(F&&F.qr&&F.iban&&rqIbanOk(F.iban)&&String(F.name||'').trim())}
+const rqEur=x=>typeof auEur==='function'?auEur(x):x.toFixed(2).replace('.',',')+' €';
+// Code ins Blatt setzen. art: 'rechnung' | 'mahnung'
+function rqEinsetzen(d,F,betrag,zweck,art){if(!d||!rqAn(F)||!(betrag>0.004))return;const sec=d.querySelector('section');if(!sec||sec.querySelector('.rqimg'))return;
+ const src=rqPng(rqText(F,betrag,zweck)),img=cls=>`<img class="rqimg ${cls}" src="${src}" alt="QR-Code zum Bezahlen">`,pos=RQ_POS.some(p=>p[0]===F.qrPos)?F.qrPos:'box';
+ const ibanTxt=rqIban(F.iban).replace(/(.{4})/g,'$1 ').trim();
+ const neueBox=()=>{const z=document.createElement('div');z.className='zb';z.innerHTML=`<div><small>${art==='mahnung'?'Offener Betrag':'Betrag'}</small>${esc(rqEur(betrag))}</div><div><small>IBAN${F.bank?' · '+esc(F.bank):''}</small>${esc(ibanTxt)}</div><div><small>Verwendungszweck</small>${esc(zweck)}</div>`;
+  const fz=sec.querySelector(':scope>.fz');if(fz)fz.before(z);else sec.appendChild(z);return z};
+ if(pos==='fuss'){const fz=sec.querySelector(':scope>.fz');if(!fz)return;fz.classList.add('rqfz');const q=document.createElement('div');q.className='rqfzq';q.innerHTML=`${img('rqklein')}<span>QR bezahlen</span>`;fz.appendChild(q);return}
+ if(pos==='summe'&&art==='rechnung'){const su=sec.querySelector('.su');if(su){const w=document.createElement('div');w.className='rqsu';su.before(w);w.innerHTML=`<div class="rqsuq">${img('rqgross')}<span>Jetzt bezahlen:<br>mit der Banking-App scannen</span></div>`;w.appendChild(su);return}}
+ let zb=sec.querySelector('.zb');if(!zb)zb=neueBox();zb.classList.add('rqzb');const q=document.createElement('div');q.className='rqzbq';q.innerHTML=`${img('rqmittel')}<span>Mit Banking-App scannen</span>`;zb.appendChild(q)}
+// Rechnung: Blatt kommt aus arPdfBlatt (auch für Vorschau, PDF, Steuerbüro-Belege)
+if(typeof arPdfBlatt==='function'){const alt=arPdfBlatt;arPdfBlatt=function(r){const d=alt.apply(this,arguments);try{if(r&&r.st!=='entwurf'&&r.art!=='storno'&&!(typeof opIstKorr==='function'&&opIstKorr(r)&&arBrutto(r)<=0))rqEinsetzen(d,auFirma(),arBrutto(r),r.nr||'','rechnung')}catch(e){console.error(e)}return d}}
+// Zahlungserinnerung: Blatt entsteht in opBriefPdf und geht direkt in druckStart → beim Vorbereiten des Blatts einsetzen
+const RQ={mahnung:null};
+if(typeof opBriefPdf==='function'){const alt=opBriefPdf;opBriefPdf=function(r){RQ.mahnung=r;try{return alt.apply(this,arguments)}finally{RQ.mahnung=null}}}
+{const alt=druckSeite;druckSeite=function(d){try{const r=RQ.mahnung;if(r&&d&&d.classList.contains('angebot'))rqEinsetzen(d,auFirma(),typeof opOffen==='function'?opOffen(r):arBrutto(r),r.nr||'','mahnung')}catch(e){console.error(e)}return alt.apply(this,arguments)}}
+// Einstellung unter „Firma & Preise“
+function rqKarte(inh){const k=inh.querySelector('.aufm');if(!k||inh.querySelector('.rqkarte'))return;const F=auFirma(),ok=!!(F.iban&&rqIbanOk(F.iban)),an=!!F.qr&&ok,pos=RQ_POS.some(p=>p[0]===F.qrPos)?F.qrPos:'box';
+ const c=document.createElement('div');c.className='aukarte rqkarte';
+ c.innerHTML=`<div class="aukh"><b>QR-CODE ZUM BEZAHLEN</b></div>
+  <label class="rqsch"><span><b>QR-Code auf Rechnungen</b><small>${ok?'Euer Kunde scannt ihn mit seiner Banking-App: Empfänger, IBAN, Betrag und Rechnungsnummer sind sofort eingetragen. Auch auf Zahlungserinnerungen (offener Betrag).':F.iban?'Die IBAN oben scheint nicht zu stimmen – bitte prüfen.':'Erst oben die IBAN eintragen.'}</small></span><input type="checkbox" data-rq="an" ${an?'checked':''} ${ok?'':'disabled'}></label>
+  <div class="rqpos${an?'':' aus'}"><span>Platz auf der Rechnung</span><div class="rqseg" role="radiogroup">${RQ_POS.map(([v,n])=>`<button type="button" role="radio" aria-checked="${v===pos}" class="${v===pos?'an':''}" data-rqp="${v}" ${an?'':'disabled'}>${n}</button>`).join('')}</div></div>`;
+ k.after(c);
+ const spei=f=>{try{localStorage.setItem('onstandFirma',JSON.stringify(f))}catch(e){}if(typeof fiSpeichern==='function')fiSpeichern()};
+ c.querySelector('[data-rq=an]').onchange=e=>{const f=auFirma();if(e.target.checked){f.qr='an';if(!f.qrPos)f.qrPos='box'}else delete f.qr;spei(f);c.remove();rqKarte(inh)};
+ c.querySelectorAll('[data-rqp]').forEach(b=>b.onclick=()=>{const f=auFirma();f.qrPos=b.dataset.rqp;spei(f);c.remove();rqKarte(inh)});
+ const ib=inh.querySelector('[data-k=iban]');if(ib)ib.addEventListener('input',()=>{clearTimeout(rqKarte.t);rqKarte.t=setTimeout(()=>{const alt=inh.querySelector('.rqkarte');if(alt){alt.remove();rqKarte(inh)}},400)})}
+if(typeof auFirmaMalen==='function'){const alt=auFirmaMalen;auFirmaMalen=function(inh){const r=alt.apply(this,arguments);try{rqKarte(inh)}catch(e){console.error(e)}return r}}
 // ===== Onstand-Verwaltung (nur für den Onstand-Admin) · Schritt 1: Zugang + Neukunden-Codes =====
 // Zugang: Einstellungen → „Über Onstand“ → 5× auf die Überschrift „Onstand v…“ tippen → mit dem Admin-Konto anmelden.
 // Die Admin-Anmeldung ist eine EIGENE Sitzung (localStorage „onstandAdmin“) und ändert nichts am Firmenkonto dieses Geräts.
