@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Onstand · Paket wählen</title>
+<!-- Kauf-Seite (Preise + Danke-Seite mit Code). Läuft vorerst auf GitHub Pages neben onstand.html, später auf onstand.de. -->
+<style>
+:root{--bg:#fbfaf8;--fg:#222;--sub:#6f6a63;--lin:#e3dfd9;--kupfer:#b8743f;--karte:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;padding:32px max(16px,env(safe-area-inset-left)) 56px}
+.w{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.kopf{display:flex;justify-content:space-between;align-items:center}.kopf b{letter-spacing:5px;font-weight:500}.kopf span{color:var(--sub);font-size:13px}
+h1{margin:0;font-weight:500;font-size:30px;text-wrap:balance}.lead{margin:-10px 0 0;color:var(--sub)}
+.pakete{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.pk{background:var(--karte);border:1px solid var(--lin);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.pk.beliebt{border-color:var(--kupfer);box-shadow:0 0 0 1px var(--kupfer)}
+.pk h2{margin:0;font-size:18px;font-weight:600;display:flex;align-items:center;gap:8px}.pk h2 i{font-style:normal;font-size:10px;letter-spacing:.8px;text-transform:uppercase;background:var(--kupfer);color:#fff;border-radius:999px;padding:2px 8px}
+.pk .satz{color:#8a5225;margin:-6px 0 0}.pk .preis{font-size:26px;font-weight:600;font-variant-numeric:tabular-nums}.pk .preis small{font-size:13px;font-weight:400;color:var(--sub)}
+.alles{font-weight:600;font-size:13.5px;padding-bottom:8px;border-bottom:1px solid var(--lin)}
+ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;flex:1}li{padding-left:20px;position:relative;font-size:14px;color:#444}li:before{content:'✓';position:absolute;left:0;color:var(--kupfer);font-weight:700}
+button{border:0;border-radius:999px;background:var(--kupfer);color:#fff;font:600 13px/1 inherit;letter-spacing:.5px;padding:13px;cursor:pointer}button:disabled{opacity:.6;cursor:default}
+button:focus-visible{outline:2px solid #222;outline-offset:2px}
+.hint{color:var(--sub);font-size:13px}.fehl{color:#b23b32;font-size:14px;min-height:1em}
+.danke{background:var(--karte);border:1px solid var(--lin);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px;max-width:520px}
+.code{font-size:26px;letter-spacing:3px;text-align:center;padding:14px;border:1px dashed var(--kupfer);border-radius:10px;color:var(--kupfer);font-weight:600;user-select:all}
+a.knopf{display:block;text-align:center;border-radius:999px;background:#26252a;color:#fff;text-decoration:none;padding:13px;font-weight:600;font-size:13px;letter-spacing:.5px}
+.test{background:#fff4e5;border:1px solid #f0d3a8;border-radius:10px;padding:10px 12px;font-size:13px;color:#6b4513}
+</style></head><body><div class="w">
+<div class="kopf"><b>ONSTAND</b><span>Von der Baustelle, für die Baustelle</span></div>
+<div class="test" id="test">Testbetrieb: Es wird kein echtes Geld abgebucht. Testkarte 4242 4242 4242 4242, beliebiges Datum in der Zukunft, beliebige Prüfziffer.</div>
+<div id="preise">
+ <h1>Weniger Büro. Mehr Baustelle.</h1>
+ <p class="lead">Für jedes Gewerk: Maler, Elektriker, Trockenbauer, SHK, Fliesenleger und alle anderen. 14 Tage kostenlos testen, monatlich kündbar.</p>
+ <div class="pakete" style="margin-top:22px">
+  <div class="pk"><h2>Standard</h2><p class="satz">Euer Büro passt in die Hosentasche.</p><div class="preis">79,99 € <small>/ Monat zzgl. MwSt.</small></div>
+   <ul><li>Angebot und Rechnung in Minuten, mit eurem Logo</li><li>Bautagebuch einsprechen statt abends tippen</li><li>Von Bauplan und Kalender bis E-Rechnung und DATEV-Export fürs Steuerbüro</li></ul>
+   <button type="button" data-p="standard">14 TAGE KOSTENLOS TESTEN</button></div>
+  <div class="pk beliebt"><h2>KI <i>Beliebt</i></h2><p class="satz">Euer Assistent für den Papierkram.</p><div class="preis">99,99 € <small>/ Monat zzgl. MwSt.</small></div>
+   <div class="alles">Alles aus Standard</div>
+   <ul><li>Die Onstand-KI denkt mit und packt mit an</li><li>Firmen-Wiki: eure Firma als Bibliothek, mit einer Bibliothekarin, die alles findet</li><li>Lieferschein-Scan und vieles mehr</li></ul>
+   <button type="button" data-p="ki">14 TAGE KOSTENLOS TESTEN</button></div>
+  <div class="pk"><h2>KI für große Firmen</h2><p class="satz">Ein Team, viele Sprachen, ein Stand.</p><div class="preis">129,99 € <small>/ Monat zzgl. MwSt.</small></div>
+   <div class="alles">Alles aus KI, mit mehr Guthaben für den Assistenten</div>
+   <ul><li>Mehrsprachig: Jeder spricht und liest in seiner Sprache</li><li>Für Betriebe mit vielen Leuten auf vielen Baustellen</li></ul>
+   <button type="button" data-p="gross">14 TAGE KOSTENLOS TESTEN</button></div>
+ </div>
+ <p class="fehl" id="fehl" role="alert"></p>
+ <p class="hint">Bezahlt wird sicher über Stripe per Karte oder SEPA-Lastschrift. Abgebucht wird erst nach 14 Tagen.</p>
+</div>
+<div id="danke" hidden>
+ <div class="danke"><h1>Willkommen bei Onstand</h1>
+  <p class="hint" id="dstatus">Einen Moment, dein Code wird erstellt …</p>
+  <div class="code" id="code" hidden></div>
+  <p class="hint" id="dinfo"></p>
+  <a class="knopf" id="los" href="onstand.html" hidden>ONSTAND ÖFFNEN</a>
+  <p class="hint">So geht es weiter: Onstand öffnen → „Neue Firma anlegen“ → Code eintragen. Kündigen geht jederzeit in Onstand unter Einstellungen → Abo &amp; Pakete.</p>
+ </div>
+</div>
+</div>
+<script>
+const FN='https://qagenkrtkpqpljntnglg.supabase.co/functions/v1/onstand-stripe';
+async function fn(body){const r=await fetch(FN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});let j={};try{j=await r.json()}catch(e){}if(!r.ok&&!j.fehler)j.fehler='server';return j}
+const hier=location.href.split('?')[0].split('#')[0];
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=async()=>{document.querySelectorAll('[data-p]').forEach(x=>x.disabled=true);b.textContent='EINEN MOMENT …';document.getElementById('fehl').textContent='';
+ const j=await fn({aktion:'kauf',paket:b.dataset.p,erfolg_url:hier,abbruch_url:hier});
+ if(j.url){location.href=j.url;return}
+ document.getElementById('fehl').textContent=j.fehler==='stripe_fehlt'?'Die Bezahlung ist noch nicht eingerichtet.':'Das hat nicht geklappt. Bitte gleich noch einmal versuchen.';
+ document.querySelectorAll('[data-p]').forEach(x=>{x.disabled=false;x.textContent='14 TAGE KOSTENLOS TESTEN'})});
+const sid=new URLSearchParams(location.search).get('sid');
+if(sid){document.getElementById('preise').hidden=true;document.getElementById('danke').hidden=false;
+ const P={standard:'Onstand Standard',ki:'Onstand KI',gross:'Onstand KI für große Firmen'};
+ (async()=>{for(let n=0;n<8;n++){const j=await fn({aktion:'code',sid});
+   if(j.code){document.getElementById('dstatus').textContent='Dein Code für die neue Firma:';const c=document.getElementById('code');c.textContent=j.code;c.hidden=false;
+    const bis=j.bis?new Date(j.bis).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}):'';
+    document.getElementById('dinfo').textContent=`${P[j.paket]||'Onstand'} · kostenlos bis ${bis}. Notiere dir den Code – du brauchst ihn gleich beim Anlegen der Firma.`;document.getElementById('los').hidden=false;return}
+   await new Promise(r=>setTimeout(r,1500))}
+  document.getElementById('dstatus').textContent='Der Code konnte nicht abgeholt werden. Bitte die Seite neu laden oder an info@onstand.de schreiben.'})()}
+</script>
+</body></html>
