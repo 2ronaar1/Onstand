@@ -4336,7 +4336,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.86';
+const ON_VER='0.10.87';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11011,7 +11011,7 @@ const LK_DOK_TX={
  rechnung:{ein:'Sehr geehrte Damen und Herren,\nfür die ausgeführten Leistungen berechnen wir Ihnen:',schluss:'Bitte überweisen Sie den Betrag bis zum {faellig} ohne Abzug unter Angabe der Rechnungsnummer {nr}.',gruss:'Mit freundlichen Grüßen\n{inhaber}'},
  bericht:{ein:'',schluss:'',gruss:''},
  abnahme:{ein:'',schluss:'',gruss:''}};
-function lkDoks(d){const s=(d&&d.doks)||{};const o=Object.assign({pos:'links',groesse:170,firmblock:true,streifen:false,linie:true,titelFarbe:false,titelSerif:!!(d&&d.serif),onst:true,fuss:['firma','kontakt','bank']},s);
+function lkDoks(d){const s=(d&&d.doks)||{};const o=Object.assign({pos:'links',groesse:170,firmblock:true,firmname:true,streifen:false,linie:true,titelFarbe:false,titelSerif:!!(d&&d.serif),onst:true,fuss:['firma','kontakt','bank']},s);
  o.tx={};for(const k of Object.keys(LK_DOK_TX))o.tx[k]=Object.assign({},LK_DOK_TX[k],(s.tx||{})[k]||{});return o}
 let LK_DART='';
 const lkTextHtml=(t,V)=>esc(String(t||'').replace(/\{(\w+)\}/g,(m,k)=>V[k]!=null?V[k]:m)).replace(/\n/g,'<br>');
@@ -11025,6 +11025,8 @@ function lkDokBlatt(d,sec){if(!sec||sec.classList.contains('lkdok'))return;const
  const img=lkDokKopf(D,F);let bk=sec.querySelector(':scope>.bk');
  if(!bk&&img){bk=document.createElement('div');bk.className='bk lkdkopf';bk.innerHTML=`<div><b class="lkname">${esc(F.name||LK.d.firma||'')}</b></div><span>${[F.tel?'Tel. '+esc(F.tel):'',esc(F.mail||'')].filter(Boolean).join('<br>')}</span>`;sec.prepend(bk)}
  if(bk&&img){if(D.firmblock)bk.insertAdjacentHTML('afterbegin',img);else bk.innerHTML=img}
+ // Firmenname neben dem Logo ausblenden (Einstellung in der Dokument-Vorlage), wenn das Logo den Namen schon enthält – mit Zusatzzeile darunter
+ if(bk&&img&&D.firmblock&&D.firmname===false){const nb=[...bk.children].find(x=>x.tagName==='DIV'&&x.querySelector('b'));if(nb)nb.remove()}
  const V={inhaber:esc(F.inhaber||F.name||''),firma:esc(F.name||LK.d.firma||'')};const P=[...sec.querySelectorAll(':scope>p')],T=D.tx[art];
  if(T){const h1=sec.querySelector(':scope>h1');
   if(art==='angebot'){const p=P.find(x=>/^Sehr geehrte/.test(x.textContent));if(p&&T.ein)p.innerHTML=lkTextHtml(T.ein,V);const s=P.find(x=>x.textContent.trim()==='Wir freuen uns auf Ihren Auftrag.');if(s){if(T.schluss)s.innerHTML=lkTextHtml(T.schluss,V);else s.remove()}}
@@ -11042,7 +11044,7 @@ for(const [fn,art] of [['auPdf','angebot'],['arPdfBlatt','rechnung'],['opBriefPd
 // Abnahmeprotokoll (eigenes Druckfenster): Kopf mit Logo, Titel, Texte, „Onstand × Firma“
 if(typeof abDrucken==='function'){const alt=abDrucken;abDrucken=function(k,html){try{if(LK.d){const D=lkDoks(LK.d),T=D.tx.abnahme;let F={};try{F=auFirma()}catch(e){}const V={inhaber:esc(F.inhaber||F.name||''),firma:esc(F.name||LK.d.firma||'')};
  const pos=D.pos==='mitte'?'center':D.pos==='rechts'?'flex-end':'flex-start';
- const kopf=`<div style="display:flex;flex-direction:${D.pos==='rechts'?'row-reverse':D.pos==='mitte'?'column':'row'};align-items:${D.pos==='mitte'?'center':'flex-end'};gap:12px;justify-content:space-between;padding-bottom:8px;margin-bottom:14px;${D.linie?'border-bottom:1.6pt solid '+(D.titelFarbe?LK.d.farbe:'#1b2230')+';':''}">${LK.d.voll?`<img src="${esc(LK.d.voll)}" alt="" style="width:${Math.round(D.groesse*.404)}mm;height:auto">`:''}${D.firmblock?`<div style="text-align:${D.pos==='mitte'?'center':D.pos==='rechts'?'left':'right'};font-size:9pt;color:#5c6675"><b style="display:block;color:#1b2230;font-size:11pt">${esc(F.name||LK.d.firma||'')}</b>${[esc(F.str||''),esc(F.ort||''),F.tel?'Tel. '+esc(F.tel):''].filter(Boolean).join(' · ')}</div>`:''}</div>`;
+ const kopf=`<div style="display:flex;flex-direction:${D.pos==='rechts'?'row-reverse':D.pos==='mitte'?'column':'row'};align-items:${D.pos==='mitte'?'center':'flex-end'};gap:12px;justify-content:space-between;padding-bottom:8px;margin-bottom:14px;${D.linie?'border-bottom:1.6pt solid '+(D.titelFarbe?LK.d.farbe:'#1b2230')+';':''}">${LK.d.voll?`<img src="${esc(LK.d.voll)}" alt="" style="width:${Math.round(D.groesse*.404)}mm;height:auto">`:''}${D.firmblock?`<div style="text-align:${D.pos==='mitte'?'center':D.pos==='rechts'?'left':'right'};font-size:9pt;color:#5c6675">${D.firmname===false&&LK.d.voll?'':`<b style="display:block;color:#1b2230;font-size:11pt">${esc(F.name||LK.d.firma||'')}</b>`}${[esc(F.str||''),esc(F.ort||''),F.tel?'Tel. '+esc(F.tel):''].filter(Boolean).join(' · ')}</div>`:''}</div>`;
  const tstil=`${D.titelFarbe?'color:'+LK.d.farbe+';':''}${D.titelSerif?'font-family:Georgia,serif;font-weight:500;':''}`;
  let h=html;if(tstil)h=h.replace('<h3>',`<h3 style="${tstil}">`);if(T.ein)h=h.replace(/(<div class="meta">[\s\S]*?<\/div>)/,`$1<p>${lkTextHtml(T.ein,V)}</p>`);
  const ende=`${T.schluss?`<p>${lkTextHtml(T.schluss,V)}</p>`:''}${T.gruss?`<p>${lkTextHtml(T.gruss,V)}</p>`:''}`;if(ende)h=h.includes('<div class="sig">')?h.replace('<div class="sig">',ende+'<div class="sig">'):h+ende;
@@ -11327,7 +11329,7 @@ function vwDok(){const lk=VW.lk;lk.daten.doks=lkDoks(lk.daten);return lk.daten.d
 function vwDokBlatt(){const lk=VW.lk,d=lkVoll(lk.daten),D=lkDoks(d),art=VW.dokArt,T=D.tx[art],B=VW_BSP,firma=lk.name||'Firma';
  const V={inhaber:B.inhaber,firma,faellig:'01.12.2026',nr:'R-2026-118'},tx=t=>t?`<p class="dtx">${lkTextHtml(t,V)}</p>`:'';
  const pf=x=>VW.dokPflicht&&art==='rechnung'?` style="outline:1px dashed #C08A3E;background:rgba(192,138,62,.08)"`:'';
- const kopf=`<div class="dkopf ${D.pos}">${d.voll?`<img src="${esc(d.voll)}" style="width:${D.groesse}px" alt="">`:`<span class="ohne">${esc(firma)}</span>`}${D.firmblock?`<div class="fb"><b>${esc(firma)}</b>${B.str} · ${B.ort}<br>${B.tel} · ${B.mail}</div>`:''}</div>${D.linie?`<div class="dlinie ${D.titelFarbe?'farbe':''}"></div>`:''}`;
+ const kopf=`<div class="dkopf ${D.pos}">${d.voll?`<img src="${esc(d.voll)}" style="width:${D.groesse}px" alt="">`:`<span class="ohne">${esc(firma)}</span>`}${D.firmblock?`<div class="fb">${D.firmname===false&&d.voll?'':`<b>${esc(firma)}</b>`}${B.str} · ${B.ort}<br>${B.tel} · ${B.mail}</div>`:''}</div>${D.linie?`<div class="dlinie ${D.titelFarbe?'farbe':''}"></div>`:''}`;
  const meta={angebot:[['Angebots-Nr.','A-2026-041'],['Datum','17.11.2026'],['Gültig bis','17.12.2026'],['Bauvorhaben','Kessler Miami']],rechnung:[['Rechnungs-Nr.','R-2026-118',1],['Datum','17.11.2026',1],['Leistungszeitraum','03.–14.11.2026',1],['Bauvorhaben','Kessler Miami']],bericht:[['Baustelle','Kessler Miami'],['Stand','17.11.2026']],abnahme:[['Baustelle','Kessler Miami'],['Datum','17.11.2026']]}[art];
  const adr=art==='bericht'?`<div class="meta" style="max-width:220px">${meta.map(([a,b])=>`<span>${a}</span><b>${b}</b>`).join('')}</div>`:`<div class="adr"><div><div class="abs">${esc(firma)} · ${B.str} · ${B.ort}</div><div${pf()}>Familie Kessler<br>Bahnhofstraße 4<br>61348 Bad Homburg</div></div><div class="meta">${meta.map(([a,b,p])=>`<span${p?pf():''}>${a}</span><b${p?pf():''}>${b}</b>`).join('')}</div></div>`;
  const titel={angebot:'Badsanierung Obergeschoss',rechnung:'Badsanierung Obergeschoss',bericht:'Baustellenbericht · Kessler Miami',abnahme:'Abnahmeprotokoll · Kessler Miami'}[art];
@@ -11350,7 +11352,7 @@ function vwDokSeite(){const lk=VW.lk,D=vwDok(),dn=VW_DOKS.find(x=>x[0]===VW.dokA
   <div class="vwbox"><div class="vwbk"><b>Dokumente</b>${lk.dirty?'<span class="vwungesp">Nicht gespeicherte Änderungen</span>':'<span>wird mit dem Look gespeichert</span>'}</div><div class="vwbi">
    <div class="vwzz"><span>Logo</span>${seg('pos',[['links','Links'],['mitte','Mitte'],['rechts','Rechts']])}</div>
    <div class="vwzz"><span>Größe</span><span class="vwrange"><input type="range" min="110" max="260" value="${D.groesse}" data-dkr="groesse"></span></div>
-   <div class="vwschalter">${sch('firmblock','Firmenblock neben dem Logo')}</div>
+   <div class="vwschalter">${sch('firmblock','Firmenblock neben dem Logo')}${D.firmblock?sch('firmname','Firmenname im Firmenblock (aus, wenn das Logo den Namen schon zeigt)'):''}</div>
   </div></div>
   <div class="vwbox"><div class="vwbk"><b>Farbe &amp; Schrift</b></div><div class="vwbi">
    <div class="vwschalter">${sch('streifen','Farbstreifen am Rand')}${sch('linie','Linie unter dem Kopf')}</div>
