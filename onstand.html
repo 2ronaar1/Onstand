@@ -4363,7 +4363,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.88';
+const ON_VER='0.10.89';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11607,6 +11607,20 @@ if(typeof hyKopf==='function'){const alt=hyKopf;hyKopf=function(){const r=alt.ap
   const z=[...inh.querySelectorAll(FR_ZUR)].find(x=>x.getClientRects().length&&!x.closest('.tbedit')),zu=k.classList.contains('zu');let b=k.querySelector('.onkopfzur');
   if(zu&&z){if(!b){b=document.createElement('button');b.type='button';b.className='onkopfzur';b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Zurück';k.appendChild(b)}b.onclick=()=>{const y=[...inh.querySelectorAll(FR_ZUR)].find(x=>x.getClientRects().length);if(y)y.click()};k.removeAttribute('aria-hidden');b.hidden=false}
   else if(b){b.hidden=true;k.setAttribute('aria-hidden','true')}}catch(e){}return r}}
+// ===== Datum eintippen ohne Abbruch =====
+// Beim Tippen eines Datums meldet der Browser nach jeder Ziffer ein „gültiges“ Datum (Jahr 0002, oder ein neuer Monat im schon gefüllten Feld).
+// Viele Masken zeichnen sich bei jeder Änderung neu – das Feld verlor den Fokus und man konnte z. B. das Jahr nie fertig tippen.
+// Jetzt: Solange im Feld per Tastatur getippt wird, wartet die Änderung; sie kommt beim Verlassen des Felds oder mit Enter nach.
+// Auswahl über den Kalender des Browsers (ohne Tippen) wirkt weiter sofort.
+(()=>{const ist=i=>i&&i.tagName==='INPUT'&&i.type==='date';
+ const unfertig=i=>{const m=/^(\d{4,})-/.exec(i.value||'');return !!m&&+m[1]<1900};
+ const nach=i=>{if(!i._datumOffen)return;i._datumOffen=false;if(unfertig(i))return;i._datumLos=true;try{i.dispatchEvent(new Event('input',{bubbles:true}));i.dispatchEvent(new Event('change',{bubbles:true}))}finally{i._datumLos=false}};
+ document.addEventListener('keydown',ev=>{const i=ev.target;if(!ist(i))return;if(ev.key==='Enter'){nach(i);return}if(ev.key.length===1||ev.key==='Backspace'||ev.key==='Delete'||ev.key==='ArrowUp'||ev.key==='ArrowDown')i._taste=Date.now()},true);
+ const halten=ev=>{const i=ev.target;if(!ist(i)||i._datumLos)return;
+  if(i._fokus&&(Date.now()-(i._taste||0)<2500||unfertig(i))){ev.stopImmediatePropagation();i._datumOffen=true}};
+ document.addEventListener('focus',ev=>{if(ist(ev.target))ev.target._fokus=true},true);
+ document.addEventListener('change',halten,true);document.addEventListener('input',halten,true);
+ document.addEventListener('blur',ev=>{if(ist(ev.target)){ev.target._fokus=false;nach(ev.target)}},true)})();
 // ===== Onstand · App: installierbar (Manifest + Service Worker), Startbild, Hinweis „als App“, Update-Hinweis =====
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
