@@ -4374,7 +4374,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.91';
+const ON_VER='0.10.92';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11955,6 +11955,52 @@ if(typeof arVorschau==='function'){const alt=arVorschau;arVorschau=function(r){c
 new MutationObserver(()=>{document.querySelectorAll('.bvplatz[data-bv]:not([data-bvok])').forEach(p=>{try{bvMontieren(p)}catch(e){console.error(e)}})}).observe(document.documentElement,{childList:true,subtree:true});
 // Während ein PDF entsteht, gehört das Druckblatt dem PDF – die Vorschau wartet so lange
 if(typeof exPdf==='function'){const alt=exPdf;exPdf=async function(){window.ON_PDF_LAEUFT=(window.ON_PDF_LAEUFT||0)+1;try{return await alt.apply(this,arguments)}finally{window.ON_PDF_LAEUFT--}}}
+// ===== Abgleich von Fotos in voller Größe, PDFs und Dokumenten (Dateispeicher im Firmenkonto) =====
+// Bisher wurden nur Texte und kleine Fotos (bis ca. 1,2 MB, als Text) zwischen Handy und PC abgeglichen.
+// Jetzt zusätzlich: große Fotos, PDFs, Word/Excel/PowerPoint, Pläne (DWG/DXF), HEIC – bis 50 MB je Datei.
+// So geht es: Die Datei selbst kommt in den Dateispeicher des Firmenkontos (Ordner der Firma, Name = Prüfsumme des Inhalts),
+// im normalen Abgleich steht nur ein kurzer Verweis „st:<prüfsumme>:<größe>“. Andere Geräte laden die Datei dann herunter.
+// Rechte wie bei allen Dateien (Rechnungen/Preise nur Chef und Büro, Firmen-Wiki nur Chef). Gleiche Datei = gleicher Name, nichts wird überschrieben.
+// Kleine Fotos laufen weiter wie bisher (kompatibel mit Geräten, die noch die alte Fassung haben).
+const SD_TYP=/\.(pdf|docx?|xlsx?|pptx?|odt|ods|odp|rtf|csv|heic|heif|dwg|dxf|zip)$/i,SD_B64=1150000,SD_MAX=50*1024*1024,SD_EIMER='firmendateien';
+const SD_MIME={pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',heic:'image/heic',heif:'image/heif',doc:'application/msword',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',xls:'application/vnd.ms-excel',xlsx:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',ppt:'application/vnd.ms-powerpoint',pptx:'application/vnd.openxmlformats-officedocument.presentationml.presentation',csv:'text/csv',zip:'application/zip',rtf:'application/rtf'};
+const sdMime=r=>SD_MIME[String(r).split('.').pop().toLowerCase()]||'application/octet-stream';
+const sdBinaer=r=>SY_BILD.test(r||'')||SD_TYP.test(r||'');
+const sdIst=t=>typeof t==='string'&&t.startsWith('st:');
+const sdHash=new Map(),sdHoch=new Set();
+async function sdPruef(buf){const h=await crypto.subtle.digest('SHA-256',buf);return [...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('')}
+async function sdDatei(r){try{return await (await datei('@/'+r)).getFile()}catch(e){return null}}
+// Verweis einer Datei auf dem Gerät (mit Zwischenspeicher, damit große Dateien nicht bei jedem Abgleich neu gelesen werden)
+async function sdVerweis(r,f){const k=r+'|'+f.size+'|'+f.lastModified;if(sdHash.has(k))return sdHash.get(k);
+ if(f.size>SD_MAX)return 'st:zu:'+f.size;if(!(window.crypto&&crypto.subtle))return 'st:kein:'+f.size;
+ const t='st:'+(await sdPruef(await f.arrayBuffer()))+':'+f.size;sdHash.set(k,t);return t}
+const sdTeile=t=>{const m=/^st:([0-9a-f]{64}):(\d+)$/.exec(t||'');return m?{h:m[1],g:+m[2]}:null};
+const sdUrl=(h,lesen)=>syBasis()+'/storage/v1/object/'+(lesen?'authenticated/':'')+SD_EIMER+'/'+SY_KONTO.firma+'/'+h;
+async function sdHochladen(r,t){const T=sdTeile(t);if(!T||sdHoch.has(T.h))return;const f=await sdDatei(r);if(!f)return;
+ const tok=await syToken();const res=await fetch(sdUrl(T.h),{method:'POST',headers:{apikey:SY_SERVER.k,Authorization:'Bearer '+tok,'Content-Type':sdMime(r),'x-upsert':'false','cache-control':'31536000'},body:f});
+ if(!res.ok){const tx=await res.text().catch(()=>'');if(!(res.status===409||/exists|Duplicate/i.test(tx))){const e=new Error('Datei-Hochladen: '+res.status+' '+tx.slice(0,120));e.status=res.status;throw e}}
+ sdHoch.add(T.h)}
+async function sdHerunterladen(r,t){const T=sdTeile(t);if(!T)return false;const tok=await syToken();
+ const res=await fetch(sdUrl(T.h,true),{headers:{apikey:SY_SERVER.k,Authorization:'Bearer '+tok}});if(!res.ok)throw new Error('Datei-Herunterladen: '+res.status);
+ const bl=await res.blob();await SY_SCHREIBEN('@/'+r,new Blob([bl],{type:sdMime(r)}));const f=await sdDatei(r);if(f)sdHash.set(r+'|'+f.size+'|'+f.lastModified,t);sdHoch.add(T.h);SY.lokalNeu=true;return true}
+// --- in den bestehenden Abgleich einhängen ---
+{const alt=sySyncbar;sySyncbar=function(r){if(alt(r))return true;if(!r||!SD_TYP.test(r))return false;const t=r.split('/');return t.every((x,i)=>!x.startsWith('.')||(i===0&&x==='.papierkorb'&&t.length>1))}}
+{const alt=syLies;syLies=async function(r){if(!sdBinaer(r))return alt(r);const f=await sdDatei(r);if(!f)return null;if(SY_BILD.test(r)&&f.size<=SD_B64)return alt(r);try{return await sdVerweis(r,f)}catch(e){return 'st:kein:'+f.size}}}
+// Herunterladen schlägt fehl (kein Netz, Speicher noch nicht eingerichtet)? Dann merken und beim nächsten Abgleich nachholen –
+// der übrige Abgleich (Texte) läuft weiter.
+const sdOffenKey=()=>'onstandDateiOffen:'+(SY_KONTO&&SY_KONTO.firma);
+const sdOffen=()=>{try{return JSON.parse(localStorage.getItem(sdOffenKey())||'{}')}catch(e){return {}}},sdOffenSetzen=o=>{try{localStorage.setItem(sdOffenKey(),JSON.stringify(o))}catch(e){}};
+{const alt=syLege;syLege=async function(r,t){const o=sdOffen();if(o[r]){delete o[r];sdOffenSetzen(o)}if(!sdIst(t))return alt(r,t);if(!sdTeile(t))return;
+ try{return await sdHerunterladen(r,t)}catch(e){console.warn(e);const o2=sdOffen();o2[r]=t;sdOffenSetzen(o2)}}}
+{const alt=syLauf;syLauf=async function(){try{if(syAktiv()&&!SY.laeuft){const o=sdOffen();for(const [r,t] of Object.entries(o)){const m=await syGet('v',r);if(!m||m.b!==t){delete o[r];continue}try{await sdHerunterladen(r,t);delete o[r]}catch(e){}}sdOffenSetzen(o)}}catch(e){}return alt.apply(this,arguments)}}
+{const alt=syMischen;syMischen=function(b,l,f,r){if(sdIst(l)||sdIst(f)||sdBinaer(r)&&(l==null||f==null||String(l).startsWith('b64:')||String(f).startsWith('b64:'))){if(l===f)return {t:l};if(b===l)return {t:f};if(b===f)return {t:l};return {t:l!=null?l:f}}return alt(b,l,f,r)}}
+// Hochladen schlägt fehl? Datei bleibt vorgemerkt und wird beim nächsten Abgleich erneut versucht; die übrigen Dateien laufen weiter.
+{const alt=syEinePush;syEinePush=async function(r){if(sdBinaer(r)){const l=await syLies(r);if(sdIst(l)){if(!sdTeile(l)){await syDel('d',r);return}try{await sdHochladen(r,l)}catch(e){console.warn(e);return}}}return alt(r)}}
+// Einmalig: vorhandene PDFs, Dokumente und große Fotos zum Abgleich vormerken (die alte Fassung hat sie übersprungen)
+async function sdVormerken(){try{if(!syAktiv()||!GED||localStorage.getItem('onstandDateiAbgleich:'+SY_KONTO.firma))return;
+ const L=await syAlleDateien(GED,'',[]),N=[];for(const r of L){if(SD_TYP.test(r))N.push(r);else if(SY_BILD.test(r)){const f=await sdDatei(r);if(f&&f.size>SD_B64)N.push(r)}}
+ const t=Date.now();if(N.length)await syIdb('d','readwrite',st=>{for(const r of N)st.put(t,r)});localStorage.setItem('onstandDateiAbgleich:'+SY_KONTO.firma,'1');if(N.length)syAnstoss(800)}catch(e){console.warn('Dateiabgleich vormerken:',e)}}
+{let n=0;const los=()=>{if(typeof syAktiv==='function'&&syAktiv()&&GED)sdVormerken();else if(++n<20)setTimeout(los,3000)};setTimeout(los,4000)}
 // ===== Onstand · Einstieg: Start ohne Ordner (Daten im Firmenkonto), Rundgang, Erste Schritte mit Starthilfe, Sicherungsordner =====
 // Neue Firmen und Geräte speichern im Gerät (IndexedDB) und gleichen über das Firmenkonto ab. Ein Ordner am PC ist nur noch Sicherung.
 // Wer schon mit Ordner arbeitet (z. B. ESTETA), arbeitet unverändert weiter.
