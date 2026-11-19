@@ -4404,7 +4404,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.97';
+const ON_VER='0.10.98';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -4794,7 +4794,7 @@ async function siMalen(x){if(!window.showDirectoryPicker||!ROOT){x.innerHTML='<p
   <div class="sibal"><span></span></div>
   <div class="pkkn"><button type="button" class="ja sijetzt"${SI.laeuft?' disabled':''}>JETZT SICHERN</button><button type="button" class="siortb">SPEICHERORT</button></div>
   <p class="pkhin siort" hidden>Gespeichert im Onstand-Ordner unter <b>Sicherungen</b>. Gegen einen kaputten PC hilft das noch nicht: Das löst das Firmenkonto mit einer verschlüsselten Kopie in der Cloud.</p></div>
- <div class="pkkarte"><b class="pkgr">IRIS BEHÄLT</b><div class="siregel"><div><b>14</b><small>TAGE</small></div><div><b>8</b><small>WOCHEN</small></div><div><b>12</b><small>MONATE</small></div></div><p class="pkhin">Jeden Morgen beim ersten Start, bei jedem Update und vor jedem Wiederherstellen. Nur geänderte Dateien kosten Platz.</p></div>
+ <div class="pkkarte"><b class="pkgr">ONSTAND BEHÄLT</b><div class="siregel"><div><b>14</b><small>TAGE</small></div><div><b>8</b><small>WOCHEN</small></div><div><b>12</b><small>MONATE</small></div></div><p class="pkhin">Jeden Morgen beim ersten Start, bei jedem Update und vor jedem Wiederherstellen. Nur geänderte Dateien kosten Platz.</p></div>
  ${L.length?`<div class="pkkarte"><b class="pkgr">ZEITREISE</b><div class="sizr">${L.map((s,i)=>{const heute=new Date().toDateString(),gest=new Date(Date.now()-864e5).toDateString(),d=new Date(s.zeit).toDateString(),tag=d===heute?'Heute':d===gest?'Gestern':new Date(s.zeit).toLocaleDateString('de-DE'),w=keep.get(s.id);
   return `<button type="button" class="sizp${SIV.sel===s.id?' an':''}" data-si="${s.id}"><i></i><span><b>${tag} · ${new Date(s.zeit).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}${w?`<em class="siw">${w}</em>`:''}${s.art==='update'?'<em class="siw">UPDATE</em>':s.art==='vor'?'<em class="siw">VOR WIEDERHERSTELLEN</em>':''}</b><small>${esc(s.label)}</small></span><em class="sigr">${s.n.toLocaleString('de-DE')} Dateien<br>${siMB(s.bytes)}</em></button>${SIV.sel===s.id?'<div class="sidet"><p class="pkhin">Vergleiche mit jetzt …</p></div>':''}`}).join('')}</div></div>`:''}`;
  x.querySelector('.siortb').onclick=()=>{const o=x.querySelector('.siort');o.hidden=!o.hidden};
@@ -10435,7 +10435,614 @@ tage bis|dni do|zile până la|ditë deri|dana do|дни до
 gezahlt|zapłacono|plătit|paguar|plaćeno|платено
 neu laden|Odśwież|Reîncarcă|Ringarko|Ponovno učitaj|Презареди
 materialkosten netto €|Koszty materiałów netto €|Costuri material net €|Kostot e materialit neto €|Troškovi materijala neto €|Разходи за материали нето €
-material|Materiał|Material|Materiali|Materijal|Материали`;
+material|Materiał|Material|Materiali|Materijal|Материали
+Foto oder PDF vom Original-Bauplan – Onstand liest Räume und Maße|Zdjęcie lub PDF oryginalnego planu – Onstand odczyta pomieszczenia i wymiary|Fotografie sau PDF al planului original – Onstand citește camerele și dimensiunile|Foto ose PDF e planit origjinal – Onstand lexon dhomat dhe përmasat|Fotografija ili PDF originalnog nacrta – Onstand očitava prostorije i mjere|Снимка или PDF на оригиналния план – Onstand разчита помещенията и размерите
+Skizze mit Maßen|Szkic z wymiarami|Schiță cu dimensiuni|Skicë me përmasa|Skica s mjerama|Скица с размери
+Handskizze fotografieren – Onstand erkennt Striche und Zahlen|Sfotografuj szkic odręczny – Onstand rozpozna linie i liczby|Fotografiază schița de mână – Onstand recunoaște liniile și cifrele|Fotografo skicën me dorë – Onstand njeh vijat dhe numrat|Fotografiraj skicu rukom – Onstand prepoznaje crte i brojeve|Снимай ръчната скица – Onstand разпознава линиите и числата
+Baupläne|Plany budowy|Planuri|Planet|Nacrti|Планове
+Raum antippen zum Bearbeiten · Wand antippen für die Wandstärke|Dotknij pomieszczenia, aby edytować · dotknij ściany, aby ustawić grubość|Atinge camera pentru editare · atinge peretele pentru grosime|Prek dhomën për ta ndryshuar · prek murin për trashësinë|Dodirni prostoriju za uređivanje · dodirni zid za debljinu|Докосни помещението за редакция · докосни стената за дебелина
+Raum antippen zum Bearbeiten|Dotknij pomieszczenia, aby edytować|Atinge camera pentru editare|Prek dhomën për ta ndryshuar|Dodirni prostoriju za uređivanje|Докосни помещението за редакция
+Wand antippen für die Wandstärke|Dotknij ściany, aby ustawić grubość|Atinge peretele pentru grosime|Prek murin për trashësinë|Dodirni zid za debljinu|Докосни стената за дебелина
+Etage +|Piętro +|Etaj +|Kat +|Etaža +|Етаж +
+Zeichnen|Rysuj|Desenează|Vizato|Crtaj|Чертай
+Mängelplan|Plan usterek|Plan defecte|Plani i defekteve|Plan nedostataka|План на дефектите
+Drucken & speichern|Drukuj i zapisz|Tipărește și salvează|Printo dhe ruaj|Ispiši i spremi|Печат и запис
+Drucken und speichern|Drukuj i zapisz|Tipărește și salvează|Printo dhe ruaj|Ispiši i spremi|Печат и запис
+Hell und farbig, mit Möbeln – so wie in der Werkstatt|Jasny i kolorowy, z meblami – tak jak w warsztacie|Luminos și color, cu mobilier – ca în atelier|E çelët dhe me ngjyra, me mobilie – si në punishte|Svijetlo i u boji, s namještajem – kao u radionici|Светло и цветно, с мебели – както в работилницата
+Als Bild|Jako obraz|Ca imagine|Si figurë|Kao slika|Като изображение
+Als PDF|Jako PDF|Ca PDF|Si PDF|Kao PDF|Като PDF
+Baustelle und Büro an einem Ort|Budowa i biuro w jednym miejscu|Șantier și birou într-un singur loc|Kantieri dhe zyra në një vend|Gradilište i ured na jednom mjestu|Обект и офис на едно място
+Baustelle und Büro an einem Ort.|Budowa i biuro w jednym miejscu.|Șantier și birou într-un singur loc.|Kantieri dhe zyra në një vend.|Gradilište i ured na jednom mjestu.|Обект и офис на едно място.
+Neue Firma anlegen|Załóż nową firmę|Creează o firmă nouă|Krijo një firmë të re|Osnuj novu tvrtku|Създай нова фирма
+Für den Chef. Dauert eine Minute.|Dla szefa. Zajmuje minutę.|Pentru șef. Durează un minut.|Për shefin. Zgjat një minutë.|Za šefa. Traje minutu.|За шефа. Отнема минута.
+Mit meiner Firma verbinden|Połącz z moją firmą|Conectează-te la firma mea|Lidhu me firmën time|Poveži s mojom tvrtkom|Свържи се с моята фирма
+Für Mitarbeiter: QR-Code scannen oder 6-stelligen Code eingeben.|Dla pracowników: zeskanuj kod QR lub wpisz 6-cyfrowy kod.|Pentru angajați: scanează codul QR sau introdu codul din 6 cifre.|Për punonjësit: skano kodin QR ose shkruaj kodin 6-shifror.|Za zaposlenike: skeniraj QR kod ili unesi šesteroznamenkasti kod.|За служители: сканирай QR кода или въведи 6-цифрения код.
+Firma gibt es schon, zum Beispiel am zweiten PC.|Firma już istnieje, np. na drugim komputerze.|Firma există deja, de exemplu pe al doilea PC.|Firma ekziston tashmë, p.sh. në kompjuterin e dytë.|Tvrtka već postoji, npr. na drugom računalu.|Фирмата вече съществува, напр. на втори компютър.
+Mit eigenem Ordner arbeiten|Pracuj z własnym folderem|Lucrează cu propriul dosar|Puno me dosjen tënde|Radi s vlastitom mapom|Работи със собствена папка
+Werkstatt schließen|Zamknij warsztat|Închide atelierul|Mbyll punishten|Zatvori radionicu|Затвори работилницата
+Etage einstellen: Art und Wandstärke|Ustaw piętro: rodzaj i grubość ścian|Setează etajul: tip și grosimea pereților|Cakto katin: lloji dhe trashësia e murit|Postavi etažu: vrsta i debljina zida|Настрой етажа: вид и дебелина на стените
+Magnet: Räume rasten an Ecken und Kanten ein|Magnes: pomieszczenia przyciągają się do narożników i krawędzi|Magnet: camerele se aliniază la colțuri și margini|Magnet: dhomat ngjiten te qoshet dhe skajet|Magnet: prostorije se prilijepe uz kutove i rubove|Магнит: помещенията се залепват за ъгли и ръбове
+Wandstärke|Grubość ściany|Grosimea peretelui|Trashësia e murit|Debljina zida|Дебелина на стената
+Zurück zum Zeichnen|Wróć do rysowania|Înapoi la desen|Kthehu te vizatimi|Natrag na crtanje|Обратно към чертането
+Magnet: Objekt stellt sich bündig an die Wand|Magnes: obiekt ustawia się równo przy ścianie|Magnet: obiectul se lipește de perete|Magnet: objekti vendoset ngjitur me murin|Magnet: predmet se postavlja uz zid|Магнит: предметът застава плътно до стената
+Kalender öffnen|Otwórz kalendarz|Deschide calendarul|Hap kalendarin|Otvori kalendar|Отвори календара
+Wähle einen Ordner für deine Firmendaten, z. B.|Wybierz folder na dane firmy, np.|Alege un dosar pentru datele firmei, de ex.|Zgjidh një dosje për të dhënat e firmës, p.sh.|Odaberi mapu za podatke tvrtke, npr.|Избери папка за данните на фирмата, напр.
+. Darin legt Onstand alles ab und sichert es jeden Morgen.|. Onstand zapisuje tam wszystko i co rano robi kopię.|. Onstand salvează totul acolo și face o copie în fiecare dimineață.|. Onstand ruan gjithçka aty dhe bën kopje çdo mëngjes.|. Onstand tamo sprema sve i svako jutro radi sigurnosnu kopiju.|. Onstand записва всичко там и прави копие всяка сутрин.
+Ordner wählen|Wybierz folder|Alege dosarul|Zgjidh dosjen|Odaberi mapu|Избери папка
+Firmen-Wiki|Wiki firmy|Wiki firmă|Wiki e firmës|Wiki tvrtke|Фирмено уики
+Stunden diese Woche|Godziny w tym tygodniu|Ore săptămâna aceasta|Orë këtë javë|Sati ovaj tjedan|Часове тази седмица
+Offene Rechnungen|Otwarte faktury|Facturi deschise|Fatura të hapura|Otvoreni računi|Неплатени фактури
+nichts überfällig|nic po terminie|nimic restant|asgjë e vonuar|ništa dospjelo|нищо просрочено
+Offene Mängel|Otwarte usterki|Defecte deschise|Defekte të hapura|Otvoreni nedostaci|Открити дефекти
+Nächster Termin|Następny termin|Următoarea programare|Takimi i radhës|Sljedeći termin|Следваща среща
+Baustellen|Budowy|Șantiere|Kantiere|Gradilišta|Обекти
+Alle anzeigen|Pokaż wszystkie|Arată toate|Shfaq të gjitha|Prikaži sve|Покажи всички
+Firma und Einstellungen|Firma i ustawienia|Firma și setări|Firma dhe cilësimet|Tvrtka i postavke|Фирма и настройки
+Funktionen|Funkcje|Funcții|Funksionet|Funkcije|Функции
+Assistent öffnen|Otwórz asystenta|Deschide asistentul|Hap asistentin|Otvori asistenta|Отвори асистента
+Bereiche|Obszary|Zone|Fushat|Područja|Раздели
+Mit dem Assistenten sprechen|Porozmawiaj z asystentem|Vorbește cu asistentul|Fol me asistentin|Razgovaraj s asistentom|Говори с асистента
+Anrufen|Zadzwoń|Sună|Telefono|Nazovi|Обади се
+Anruf|Telefon|Apel|Telefonatë|Poziv|Обаждане
+Besuch|Wizyta|Vizită|Vizitë|Posjet|Посещение
+Name des Kunden oder der Baustelle|Nazwa klienta lub budowy|Numele clientului sau al șantierului|Emri i klientit ose i kantierit|Ime kupca ili gradilišta|Име на клиента или обекта
+Einzugstermin|Termin wprowadzenia|Data mutării|Data e hyrjes|Datum useljenja|Дата на нанасяне
+Straße|Ulica|Strada|Rruga|Ulica|Улица
+Noch nichts abgeschlossen.|Jeszcze nic nie zakończono.|Nimic finalizat încă.|Ende asgjë e përfunduar.|Još ništa nije završeno.|Още нищо не е приключено.
+Stelle den Status einer Baustelle auf „abgeschlossen“, wenn sie fertig ist.|Ustaw status budowy na „zakończona“, gdy będzie gotowa.|Setează starea șantierului pe „finalizat” când e gata.|Vendos statusin e kantierit në „përfunduar” kur të jetë gati.|Postavi status gradilišta na „završeno” kad bude gotovo.|Задай статус „приключен“, когато обектът е готов.
+Noch keine Interessenten.|Jeszcze brak zainteresowanych.|Încă nu există interesați.|Ende asnjë i interesuar.|Još nema zainteresiranih.|Още няма интересуващи се.
+keine offenen|brak otwartych|niciuna deschisă|asnjë e hapur|nema otvorenih|няма открити
+Firmendaten fürs PDF|Dane firmy do PDF|Datele firmei pentru PDF|Të dhënat e firmës për PDF|Podaci tvrtke za PDF|Данни на фирмата за PDF
+QR-Code zum Bezahlen|Kod QR do płatności|Cod QR pentru plată|Kodi QR për pagesë|QR kod za plaćanje|QR код за плащане
+QR-Code auf Rechnungen|Kod QR na fakturach|Cod QR pe facturi|Kodi QR në fatura|QR kod na računima|QR код на фактурите
+Erst oben die IBAN eintragen.|Najpierw wpisz u góry IBAN.|Introdu mai întâi IBAN-ul sus.|Shkruaj fillimisht IBAN-in lart.|Najprije gore upiši IBAN.|Първо въведи IBAN горе.
+Platz auf der Rechnung|Miejsce na fakturze|Poziția pe factură|Vendi në faturë|Mjesto na računu|Място на фактурата
+In der Zahlungsbox|W polu płatności|În caseta de plată|Në kutinë e pagesës|U okviru za plaćanje|В полето за плащане
+Neben den Summen|Obok sum|Lângă totaluri|Pranë shumave|Pokraj iznosa|До сумите
+In der Fußzeile|W stopce|În subsol|Në fund të faqes|U podnožju|В долния колонтитул
+Beispielpreise von Onstand – bitte deine echten Preise eintragen.|Przykładowe ceny Onstand – wpisz swoje prawdziwe ceny.|Prețuri exemplu de la Onstand – introdu prețurile tale reale.|Çmime shembull nga Onstand – shkruaj çmimet e tua të vërteta.|Primjeri cijena iz Onstanda – upiši svoje prave cijene.|Примерни цени от Onstand – въведи истинските си цени.
+Kanten|Krawędzie|Margini|Skajet|Rubovi|Ръбове
+Leistung|Usługa|Lucrare|Shërbim|Usluga|Услуга
+Einheit ändern|Zmień jednostkę|Schimbă unitatea|Ndrysho njësinë|Promijeni jedinicu|Смени единицата
+Leistung löschen|Usuń usługę|Șterge lucrarea|Fshi shërbimin|Obriši uslugu|Изтрий услугата
+Stück|Sztuka|Bucată|Copë|Komad|Брой
+Quadratmeter|Metr kwadratowy|Metru pătrat|Metër katror|Kvadratni metar|Квадратен метър
+Stunde|Godzina|Oră|Orë|Sat|Час
+Meter|Metr|Metru|Metër|Metar|Метър
+Pauschal|Ryczałt|Forfetar|Paushall|Paušalno|Твърда сума
+Eigene Einheit, z. B. lfm|Własna jednostka, np. mb|Unitate proprie, de ex. ml|Njësi e vetë, p.sh. ml|Vlastita jedinica, npr. dm|Собствена единица, напр. л.м.
+Eigene Einheit|Własna jednostka|Unitate proprie|Njësi e vetë|Vlastita jedinica|Собствена единица
+Eigene Einheit übernehmen|Użyj własnej jednostki|Folosește unitatea proprie|Përdor njësinë tënde|Preuzmi vlastitu jedinicu|Използвай собствената единица
+Diese Woche|W tym tygodniu|Săptămâna aceasta|Këtë javë|Ovaj tjedan|Тази седмица
+Weitere Baustelle an diesem Tag|Kolejna budowa tego dnia|Alt șantier în această zi|Kantier tjetër në këtë ditë|Još jedno gradilište tog dana|Още един обект този ден
+Tag|Dzień|Zi|Ditë|Dan|Ден
+Nichts eingetragen. Tippe auf „+ Eintragen“ oder sag es dem Assistenten.|Nic nie wpisano. Dotknij „+ Wpisz” lub powiedz asystentowi.|Nimic introdus. Atinge „+ Adaugă” sau spune-i asistentului.|Asgjë e regjistruar. Prek „+ Shto” ose thuaji asistentit.|Ništa upisano. Dodirni „+ Upiši” ili reci asistentu.|Нищо не е въведено. Докосни „+ Въведи“ или кажи на асистента.
+Datum in Notizen|Data w notatkach|Data din notițe|Data në shënime|Datum u bilješkama|Дата в бележките
+Kalender schließen|Zamknij kalendarz|Închide calendarul|Mbyll kalendarin|Zatvori kalendar|Затвори календара
+Kalender durchsuchen|Przeszukaj kalendarz|Caută în calendar|Kërko në kalendar|Pretraži kalendar|Търси в календара
+Monat zurück|Poprzedni miesiąc|Luna anterioară|Muaji i kaluar|Prethodni mjesec|Предишен месец
+Monat weiter|Następny miesiąc|Luna următoare|Muaji tjetër|Sljedeći mjesec|Следващ месец
+Kalender schließen und mit Onstand sprechen|Zamknij kalendarz i porozmawiaj z Onstand|Închide calendarul și vorbește cu Onstand|Mbyll kalendarin dhe fol me Onstand|Zatvori kalendar i razgovaraj s Onstandom|Затвори календара и говори с Onstand
+Name, Ort, Ansprechpartner|Nazwa, miejscowość, osoba kontaktowa|Nume, localitate, persoană de contact|Emri, vendi, personi i kontaktit|Ime, mjesto, kontakt osoba|Име, място, лице за контакт
+Kunden durchsuchen|Szukaj klientów|Caută clienți|Kërko klientë|Pretraži kupce|Търси клиенти
+Person|Osoba|Persoană|Person|Osoba|Лице
+Meine Stunden|Moje godziny|Orele mele|Orët e mia|Moji sati|Моите часове
+Rollen|Role|Roluri|Rolet|Uloge|Роли
+Eingesetzt|Na budowie|Prezent|I angazhuar|Raspoređen|Нает
+Stundenzettel PDF|Karta godzin PDF|Fișă de ore PDF|Fletë orësh PDF|Evidencija sati PDF|Отчет за часове PDF
+Vorherige Woche|Poprzedni tydzień|Săptămâna anterioară|Java e kaluar|Prethodni tjedan|Предишна седмица
+Nächste Woche|Następny tydzień|Săptămâna viitoare|Java tjetër|Sljedeći tjedan|Следваща седмица
+Suche leeren|Wyczyść wyszukiwanie|Golește căutarea|Pastro kërkimin|Očisti pretragu|Изчисти търсенето
+Zähler auf 0 – der Zeitraum bleibt im Verlauf|Licznik na 0 – okres zostaje w historii|Contor la 0 – perioada rămâne în istoric|Numëruesi në 0 – periudha mbetet në histori|Brojač na 0 – razdoblje ostaje u povijesti|Броячът на 0 – периодът остава в историята
+Wirklich alle abrechnen?|Na pewno rozliczyć wszystkich?|Sigur decontezi tot?|Vërtet t’i llogaris të gjitha?|Stvarno obračunati sve?|Наистина ли да отчета всички?
+Scheine|Karty|Fișe|Fletë|Listići|Бележки
+Enter springt ein Feld weiter, im letzten speichert es · Strg + Enter speichert sofort|Enter przechodzi do następnego pola, w ostatnim zapisuje · Ctrl + Enter zapisuje od razu|Enter trece la câmpul următor, în ultimul salvează · Ctrl + Enter salvează imediat|Enter kalon te fusha tjetër, në të fundit ruan · Ctrl + Enter ruan menjëherë|Enter prelazi na sljedeće polje, u zadnjem sprema · Ctrl + Enter odmah sprema|Enter минава към следващото поле, в последното записва · Ctrl + Enter записва веднага
+Enter springt ein Feld weiter, im letzten speichert es|Enter przechodzi do następnego pola, w ostatnim zapisuje|Enter trece la câmpul următor, în ultimul salvează|Enter kalon te fusha tjetër, në të fundit ruan|Enter prelazi na sljedeće polje, u zadnjem sprema|Enter минава към следващото поле, в последното записва
+Strg + Enter speichert sofort|Ctrl + Enter zapisuje od razu|Ctrl + Enter salvează imediat|Ctrl + Enter ruan menjëherë|Ctrl + Enter odmah sprema|Ctrl + Enter записва веднага
+Weitere Schreibweise|Inna pisownia|Altă scriere|Shkrim tjetër|Drugi način pisanja|Друго изписване
+Einstempeln|Rozpocznij pracę|Pontează intrarea|Fillo punën|Prijavi dolazak|Започни работа
+Diese Woche noch keine Stunden.|W tym tygodniu jeszcze brak godzin.|Încă nicio oră săptămâna aceasta.|Ende asnjë orë këtë javë.|Ovaj tjedan još nema sati.|Тази седмица още няма часове.
+Anspruch|Przysługuje|Drept|E drejtë|Pravo|Право
+Eingetragen|Wpisane|Introdus|Regjistruar|Upisano|Въведено
+Rest|Pozostało|Rest|Mbetja|Ostatak|Остатък
+Geplant|Zaplanowane|Planificat|Planifikuar|Planirano|Планирано
+Rollen & Rechte|Role i uprawnienia|Roluri și drepturi|Rolet dhe të drejtat|Uloge i prava|Роли и права
+Alles|Wszystko|Tot|Gjithçka|Sve|Всичко
+Lesen|Odczyt|Citire|Lexim|Čitanje|Четене
+Kein|Brak|Nimic|Asnjë|Nema|Няма
+Eigenes|Własne|Propriu|Të vetat|Vlastito|Собствено
+Ohne Preise|Bez cen|Fără prețuri|Pa çmime|Bez cijena|Без цени
+Abnahmen|Odbiory|Recepții|Pranimet|Primopredaje|Приемания
+Als behoben markieren|Oznacz jako usunięte|Marchează ca remediat|Shëno si të rregulluar|Označi kao otklonjeno|Отбележи като отстранен
+Abnahme starten|Rozpocznij odbiór|Începe recepția|Fillo pranimin|Pokreni primopredaju|Започни приемане
+Mangel beschreiben|Opisz usterkę|Descrie defectul|Përshkruaj defektin|Opiši nedostatak|Опиши дефекта
+Assistent füllt aus|Asystent uzupełni|Asistentul completează|Asistenti plotëson|Asistent ispunjava|Асистентът попълва
+In Arbeit nehmen|Weź do realizacji|Preia în lucru|Merr në punë|Uzmi u rad|Поеми за работа
+Noch keine Abnahme geplant.|Odbiór jeszcze nie zaplanowany.|Nicio recepție planificată încă.|Ende asnjë pranim i planifikuar.|Još nije planirana primopredaja.|Още няма планирано приемане.
+Oben eine Baustelle wählen und die Abnahme planen.|Wybierz u góry budowę i zaplanuj odbiór.|Alege sus un șantier și planifică recepția.|Zgjidh lart një kantier dhe planifiko pranimin.|Gore odaberi gradilište i planiraj primopredaju.|Избери обект горе и планирай приемането.
+Abnahme planen|Zaplanuj odbiór|Planifică recepția|Planifiko pranimin|Planiraj primopredaju|Планирай приемане
+m² Boden|m² podłogi|m² pardoseală|m² dysheme|m² poda|м² под
+In der Werkstatt öffnen|Otwórz w warsztacie|Deschide în atelier|Hap në punishte|Otvori u radionici|Отвори в работилницата
+Name des Plans|Nazwa planu|Numele planului|Emri i planit|Naziv nacrta|Име на плана
+Werkstatt öffnen|Otwórz warsztat|Deschide atelierul|Hap punishten|Otvori radionicu|Отвори работилницата
+Teil des|Część|Parte din|Pjesë e|Dio|Част от
+KI-Pakets|pakietu AI|pachetului AI|paketës AI|AI paketa|AI пакета
+Der Name steht in der Begrüßung des Assistenten und ist im Personal „Ich“.|Imię pojawia się w powitaniu asystenta i w personelu jako „Ja”.|Numele apare în salutul asistentului și la personal ca „Eu”.|Emri shfaqet në përshëndetjen e asistentit dhe te personeli si „Unë”.|Ime se pojavljuje u pozdravu asistenta i u osoblju kao „Ja”.|Името се показва в поздрава на асистента и в персонала като „Аз“.
+z. B. Inhaber, Bauleiter, Büro|np. właściciel, kierownik budowy, biuro|de ex. proprietar, șef de șantier, birou|p.sh. pronar, drejtues kantieri, zyrë|npr. vlasnik, voditelj gradilišta, ured|напр. собственик, ръководител обект, офис
+fällig|do zapłaty|scadent|për t’u paguar|dospjelo|дължимо
+erinnert|przypomniano|amintit|kujtuar|podsjećeno|напомнено
+Tage|Dni|Zile|Ditë|Dana|Дни
+Mahnbescheid prüfen nach 2. Mahnung|Sprawdź nakaz zapłaty po 2. upomnieniu|Verifică somația de plată după a 2-a notificare|Kontrollo urdhrin e pagesës pas kujtesës së 2-të|Provjeri platni nalog nakon 2. opomene|Провери заповед за плащане след 2-ро напомняне
+Mahngebühr ab 1. Mahnung|Opłata za upomnienie od 1. upomnienia|Taxă de notificare de la prima notificare|Tarifë kujtese nga kujtesa e 1-rë|Naknada za opomenu od 1. opomene|Такса за напомняне от 1-во напомняне
+Gelöschtes bleibt hier 30 Tage, dann räumt Onstand es auf.|Usunięte zostaje tu 30 dni, potem Onstand je sprząta.|Ce ai șters rămâne aici 30 de zile, apoi Onstand curăță.|Të fshirat mbeten këtu 30 ditë, pastaj Onstand i pastron.|Obrisano ostaje ovdje 30 dana, zatim ga Onstand počisti.|Изтритото остава тук 30 дни, после Onstand го почиства.
+Im Papierkorb suchen|Szukaj w koszu|Caută în coș|Kërko në kosh|Traži u košu|Търси в кошчето
+Gespeichert im Onstand-Ordner unter|Zapisano w folderze Onstand w|Salvat în dosarul Onstand la|Ruajtur në dosjen Onstand te|Spremljeno u mapi Onstand pod|Записано в папката на Onstand в
+Onstand behält|Onstand przechowuje|Onstand păstrează|Onstand mban|Onstand čuva|Onstand пази
+Wochen|Tygodnie|Săptămâni|Javë|Tjedni|Седмици
+Monate|Miesiące|Luni|Muaj|Mjeseci|Месеци
+Zeitreise|Podróż w czasie|Călătorie în timp|Udhëtim në kohë|Putovanje kroz vrijeme|Пътуване във времето
+Onstand KI|Onstand AI|Onstand AI|Onstand AI|Onstand AI|Onstand AI
+alles von links, dazu:|wszystko z lewej, a do tego:|tot din stânga, plus:|gjithçka nga e majta, plus:|sve s lijeve strane, uz to:|всичко отляво, плюс:
+Ihr habt einen persönlichen Code von Onstand?|Macie osobisty kod od Onstand?|Aveți un cod personal de la Onstand?|Keni një kod personal nga Onstand?|Imate osobni kod od Onstanda?|Имате личен код от Onstand?
+Code einlösen|Zrealizuj kod|Folosește codul|Përdor kodin|Iskoristi kod|Използвай кода
+Name, Rolle|Imię, rola|Nume, rol|Emri, roli|Ime, uloga|Име, роля
+Logo, Steuernr., IBAN|Logo, NIP, IBAN|Logo, CIF, IBAN|Logo, NIPT, IBAN|Logo, OIB, IBAN|Лого, ЕИК, IBAN
+Dunkel|Ciemny|Întunecat|E errët|Tamno|Тъмно
+PC & Handy|Komputer i telefon|PC și telefon|Kompjuter dhe telefon|Računalo i mobitel|Компютър и телефон
+wiederholen|powtórz|repetă|përsërit|ponovi|повтори
+Für gestern fehlt noch der|Na wczoraj brakuje jeszcze|Pentru ieri lipsește încă|Për dje mungon ende|Za jučer još nedostaje|За вчера още липсва
+Tagebuch-Eintrag|wpis w dzienniku|înregistrarea în jurnal|shënimi në ditar|unos u dnevnik|запис в дневника
+Einsprechen|Nagraj|Dictează|Diktoje|Izdiktiraj|Издиктувай
+Tagebuch erzählen|Opowiedz do dziennika|Povestește în jurnal|Trego për ditarin|Ispričaj dnevnik|Разкажи за дневника
+Frage sprechen|Zadaj pytanie głosem|Pune o întrebare vocal|Bëj pyetje me zë|Postavi pitanje glasom|Задай въпрос с глас
+keiner überfällig|nic po terminie|niciuna restantă|asnjë e vonuar|ništa dospjelo|нищо просрочено
+Heute steht nichts an.|Dziś nic nie zaplanowano.|Azi nu e nimic programat.|Sot nuk ka asgjë në plan.|Danas ništa nije na rasporedu.|Днес няма нищо планирано.
+Neue Leistung|Nowa usługa|Lucrare nouă|Shërbim i ri|Nova usluga|Нова услуга
+Ganzer|Cały|Toată|E gjithë|Cijeli|Цял
+Ganzen Tag zeigen, 0 bis 24 Uhr|Pokaż cały dzień, od 0 do 24|Arată toată ziua, de la 0 la 24|Shfaq gjithë ditën, nga 0 deri në 24|Prikaži cijeli dan, od 0 do 24 sata|Покажи целия ден, от 0 до 24 ч.
+Meine Stunden eintragen|Wpisz moje godziny|Introdu orele mele|Shkruaj orët e mia|Upiši moje sate|Въведи моите часове
+Erzähl es einfach dem Assistenten – was nicht passt, oder tippe auf „+ Mangel“.|Po prostu powiedz asystentowi, co jest nie tak, albo dotknij „+ Usterka”.|Spune-i asistentului ce nu e în regulă sau atinge „+ Defect”.|Thjesht thuaji asistentit çfarë nuk shkon, ose prek „+ Defekt”.|Jednostavno reci asistentu što ne valja ili dodirni „+ Nedostatak”.|Просто кажи на асистента какво не е наред или докосни „+ Дефект“.
+Noch keine Baustellen – erst im Kunden-Menü anlegen oder Onstand davon erzählen.|Jeszcze brak budów – najpierw dodaj w menu klientów albo powiedz o nich Onstand.|Încă nu există șantiere – adaugă-le în meniul Clienți sau spune-i lui Onstand.|Ende asnjë kantier – krijoji te menyja e klientëve ose tregoji Onstand.|Još nema gradilišta – najprije ih dodaj u izborniku kupaca ili reci Onstandu.|Още няма обекти – първо ги добави в менюто с клиенти или разкажи на Onstand.
+Plan einsenden, Skizze fotografieren oder Raum für Raum anlegen.|Wyślij plan, sfotografuj szkic lub dodaj pomieszczenie po pomieszczeniu.|Trimite planul, fotografiază schița sau adaugă cameră cu cameră.|Dërgo planin, fotografo skicën ose shto dhomë pas dhome.|Pošalji nacrt, fotografiraj skicu ili dodaj prostoriju po prostoriju.|Изпрати план, снимай скица или добави помещение по помещение.
+noch einmal zeigen|pokaż jeszcze raz|arată din nou|shfaq përsëri|prikaži ponovno|покажи отново
+Das ging gerade nicht.|Teraz się nie udało.|Nu a mers acum.|Nuk u arrit tani.|To trenutno nije uspjelo.|В момента не стана.
+Verbunden:|Połączono:|Conectat:|Lidhur:|Povezano:|Свързано:
+Darin liegen|Zawiera|Conține|Përmban|Sadrži|Съдържа
+Daten|Dane|Date|Të dhëna|Podaci|Данни
+Los geht’s|Zaczynamy|Să începem|Fillojmë|Krenimo|Да започваме
+Mit Firma verbinden|Połącz z firmą|Conectează la firmă|Lidhu me firmën|Poveži s tvrtkom|Свържи с фирмата
+Onstand braucht wieder Zugriff auf deinen Ordner|Onstand potrzebuje ponownie dostępu do twojego folderu|Onstand are din nou nevoie de acces la dosarul tău|Onstand ka përsëri nevojë për qasje në dosjen tënde|Onstand ponovno treba pristup tvojoj mapi|Onstand отново се нуждае от достъп до папката ти
+Zugriff erlauben|Zezwól na dostęp|Permite accesul|Lejo qasjen|Dopusti pristup|Разреши достъп
+Filter zurücksetzen|Resetuj filtr|Resetează filtrul|Rivendos filtrin|Poništi filter|Нулирай филтъра
+Kein Datenordner verbunden – oben links über das Firmenlogo den Onstand-Ordner wählen.|Brak połączonego folderu danych – wybierz folder Onstand przez logo firmy u góry po lewej.|Niciun dosar de date conectat – alege dosarul Onstand din logo-ul firmei, sus în stânga.|Asnjë dosje të dhënash e lidhur – zgjidh dosjen Onstand nga logoja e firmës lart majtas.|Nije povezana mapa s podacima – gore lijevo preko logotipa tvrtke odaberi mapu Onstand.|Няма свързана папка с данни – избери папката на Onstand от логото на фирмата горе вляво.
+Zurückholen|Przywróć|Recuperează|Rikthe|Vrati|Възстанови
+Endgültig|Na zawsze|Definitiv|Përfundimisht|Trajno|Окончателно
+Leeren|Opróżnij|Golește|Zbraz|Isprazni|Изпразни
+Gelöschtes bleibt 30 Tage zurückholbar. Jeden Morgen sichert Onstand das ganze Gedächtnis.|Usunięte można przywrócić przez 30 dni. Co rano Onstand robi kopię wszystkich danych.|Ce ai șters poate fi recuperat 30 de zile. În fiecare dimineață Onstand salvează toate datele.|Të fshirat mund të rikthehen për 30 ditë. Çdo mëngjes Onstand ruan të gjitha të dhënat.|Obrisano se može vratiti 30 dana. Svako jutro Onstand radi kopiju svih podataka.|Изтритото може да се възстанови 30 дни. Всяка сутрин Onstand архивира всички данни.
+Bitte erst den Onstand-Ordner verbinden – dann sichert Onstand automatisch.|Najpierw połącz folder Onstand – wtedy Onstand będzie robił kopie automatycznie.|Conectează mai întâi dosarul Onstand – apoi Onstand salvează automat.|Lidh fillimisht dosjen Onstand – pastaj Onstand ruan automatikisht.|Najprije poveži mapu Onstand – tada Onstand automatski radi kopije.|Първо свържи папката на Onstand – тогава Onstand архивира автоматично.
+Update|Aktualizacja|Actualizare|Përditësim|Ažuriranje|Обновяване
+Vor Wiederherstellen|Przed przywróceniem|Înainte de restaurare|Para rikthimit|Prije vraćanja|Преди възстановяване
+Vergleiche mit jetzt|Porównaj z obecnym stanem|Compară cu acum|Krahaso me tani|Usporedi sa sadašnjim|Сравни с текущото
+gab es noch nicht|jeszcze nie istniało|nu exista încă|nuk ekzistonte ende|još nije postojalo|още не е съществувало
+Seit dieser Sicherung geändert – Gelöschtes und Geändertes einzeln zurückholen:|Zmienione od tej kopii – przywróć pojedynczo usunięte i zmienione:|Modificat de la această copie – recuperează individual ce s-a șters sau schimbat:|Ndryshuar që nga kjo kopje – rikthe një nga një të fshirat dhe të ndryshuarat:|Promijenjeno od ove kopije – vrati pojedinačno obrisano i promijenjeno:|Променено след това копие – възстанови поотделно изтритото и промененото:
+Ganzen Stand wiederherstellen|Przywróć cały stan|Restaurează tot|Rikthe gjithçka|Vrati cijelo stanje|Възстанови цялото състояние
+Seit dieser Sicherung hat sich nichts geändert.|Od tej kopii nic się nie zmieniło.|De la această copie nu s-a schimbat nimic.|Që nga kjo kopje nuk ka ndryshuar asgjë.|Od ove kopije ništa se nije promijenilo.|След това копие нищо не се е променило.
+Lade Baustellen|Wczytywanie budów|Se încarcă șantierele|Po ngarkohen kantieret|Učitavanje gradilišta|Зареждане на обекти
+Leg eine im Kunden-Menü an oder erzähl dem Assistenten, wo du heute warst.|Dodaj ją w menu klientów albo powiedz asystentowi, gdzie dziś byłeś.|Adaug-o în meniul Clienți sau spune-i asistentului unde ai fost azi.|Krijoje te menyja e klientëve ose tregoji asistentit ku ishe sot.|Dodaj ga u izborniku kupaca ili reci asistentu gdje si danas bio.|Добави го в менюто с клиенти или кажи на асистента къде беше днес.
+seit|od|din|që nga|od|от
+Eingezogen|Wprowadzeni|Mutat|Hyrë|Useljeno|Нанесени
+Arbeits-|Roboczo-|De lucru-|Pune-|Radni-|Работни-
+m² laut|m² wg|m² conform|m² sipas|m² prema|м² по
+Noch kein|Jeszcze brak|Încă nu există|Ende asnjë|Još nema|Още няма
+In den letzten 7 Tagen wurde hier nichts eingetragen.|W ostatnich 7 dniach nic tu nie wpisano.|În ultimele 7 zile nu s-a introdus nimic aici.|Në 7 ditët e fundit nuk është shënuar asgjë këtu.|U zadnjih 7 dana ovdje ništa nije upisano.|През последните 7 дни тук нищо не е въведено.
+Noch keine Stunden – im Tagebuch Personal und Arbeitszeit eintragen.|Jeszcze brak godzin – wpisz w dzienniku personel i czas pracy.|Încă nicio oră – introdu în jurnal personalul și timpul de lucru.|Ende asnjë orë – shkruaj në ditar personelin dhe kohën e punës.|Još nema sati – u dnevnik upiši osoblje i radno vrijeme.|Още няма часове – въведи в дневника персонал и работно време.
+Keine Termine in den nächsten 60 Tagen.|Brak terminów w ciągu najbliższych 60 dni.|Nicio programare în următoarele 60 de zile.|Asnjë takim në 60 ditët e ardhshme.|Nema termina u sljedećih 60 dana.|Няма срещи през следващите 60 дни.
+Keine Einträge in den letzten 30 Tagen.|Brak wpisów w ostatnich 30 dniach.|Nicio înregistrare în ultimele 30 de zile.|Asnjë shënim në 30 ditët e fundit.|Nema unosa u zadnjih 30 dana.|Няма записи през последните 30 дни.
+Stand|Stan|Stadiu|Gjendja|Stanje|Състояние
+Ausgeführte Arbeiten|Wykonane prace|Lucrări executate|Punët e kryera|Izvedeni radovi|Извършени работи
+Baustelle wählen|Wybierz budowę|Alege șantierul|Zgjidh kantierin|Odaberi gradilište|Избери обект
+Lade Angebote|Wczytywanie ofert|Se încarcă ofertele|Po ngarkohen ofertat|Učitavanje ponuda|Зареждане на оферти
+Gültig bis|Ważna do|Valabilă până la|E vlefshme deri më|Vrijedi do|Валидна до
+Bauvorhaben|Inwestycja|Proiect de construcție|Projekti i ndërtimit|Građevinski projekt|Строителен проект
+Pos.|Poz.|Poz.|Poz.|Poz.|Поз.
+Menge|Ilość|Cantitate|Sasia|Količina|Количество
+Noch keine Positionen.|Jeszcze brak pozycji.|Încă nicio poziție.|Ende asnjë pozicion.|Još nema stavki.|Още няма позиции.
+Summe netto|Suma netto|Total net|Shuma neto|Ukupno neto|Сума нето
+zzgl. 19 % MwSt.|plus 19 % VAT|plus TVA 19 %|plus TVSH 19 %|plus 19 % PDV-a|плюс 19 % ДДС
+Angebotssumme|Suma oferty|Valoarea ofertei|Shuma e ofertës|Iznos ponude|Сума на офертата
+Rechnungsbetrag netto|Kwota faktury netto|Valoare factură net|Shuma e faturës neto|Iznos računa neto|Сума на фактурата нето
+Zahlbetrag|Do zapłaty|De plată|Për t’u paguar|Za platiti|За плащане
+Gesamt brutto|Razem brutto|Total brut|Gjithsej bruto|Ukupno bruto|Общо бруто
+Noch keine Positionen. Aus der Preisliste oder direkt aus dem Bauplan hinzufügen.|Jeszcze brak pozycji. Dodaj z cennika lub bezpośrednio z planu budowy.|Încă nicio poziție. Adaugă din lista de prețuri sau direct din plan.|Ende asnjë pozicion. Shto nga lista e çmimeve ose direkt nga plani.|Još nema stavki. Dodaj iz cjenika ili izravno iz nacrta.|Още няма позиции. Добави от ценоразписа или директно от плана.
+Netto|Netto|Net|Neto|Neto|Нето
+MwSt. 19 %|VAT 19 %|TVA 19 %|TVSH 19 %|PDV 19 %|ДДС 19 %
+Brutto|Brutto|Brut|Bruto|Bruto|Бруто
+Aus Bauplan|Z planu budowy|Din plan|Nga plani|Iz nacrta|От плана
+Als verschickt|Jako wysłane|Ca trimisă|Si e dërguar|Kao poslano|Като изпратена
+Angenommen → Auftrag|Przyjęta → zlecenie|Acceptată → comandă|E pranuar → porosi|Prihvaćeno → nalog|Приета → поръчка
+Angebot löschen|Usuń ofertę|Șterge oferta|Fshi ofertën|Obriši ponudu|Изтрий офертата
+Übernehmen|Przejmij|Preia|Merr|Preuzmi|Приеми
+Einzelpreis|Cena jednostkowa|Preț unitar|Çmimi për njësi|Jedinična cijena|Единична цена
+Oben rechts „+ Rechnung“ oder im angenommenen Angebot auf ABSCHLAG / SCHLUSSRECHNUNG.|U góry po prawej „+ Faktura” albo w przyjętej ofercie ZALICZKA / FAKTURA KOŃCOWA.|Sus în dreapta „+ Factură” sau în oferta acceptată AVANS / FACTURĂ FINALĂ.|Lart djathtas „+ Faturë” ose te oferta e pranuar PARADHËNIE / FATURË PËRFUNDIMTARE.|Gore desno „+ Račun” ili u prihvaćenoj ponudi PREDUJAM / KONAČNI RAČUN.|Горе вдясно „+ Фактура“ или в приетата оферта АВАНС / ОКОНЧАТЕЛНА ФАКТУРА.
+noch abzurechnen|do rozliczenia|de facturat|për t’u faturuar|još za obračunati|остава за фактуриране
+Schlussrechnung gestellt – Auftrag abgerechnet.|Wystawiono fakturę końcową – zlecenie rozliczone.|Factura finală emisă – comanda decontată.|Fatura përfundimtare u lëshua – porosia u llogarit.|Konačni račun izdan – nalog obračunat.|Окончателната фактура е издадена – поръчката е отчетена.
+Abschlag|Zaliczka|Avans|Paradhënie|Predujam|Аванс
+Neue Rechnung|Nowa faktura|Factură nouă|Faturë e re|Novi račun|Нова фактура
+Teil eines Auftrags nach Prozent oder Leistungsstand|Część zlecenia wg procentu lub stanu prac|Parte din comandă după procent sau stadiul lucrărilor|Pjesë e porosisë sipas përqindjes ose ecurisë|Dio naloga prema postotku ili stanju radova|Част от поръчката по процент или напредък
+Auftrag nach Aufmaß, abzüglich aller Abschläge|Zlecenie wg obmiaru, minus wszystkie zaliczki|Comanda după măsurători, minus toate avansurile|Porosia sipas matjes, minus të gjitha paradhëniet|Nalog prema izmjeri, umanjen za sve predujmove|Поръчката по измерване, минус всички аванси
+Regie aus Tagebuch|Roboczogodziny z dziennika|Regie din jurnal|Orë pune nga ditari|Režijski sati iz dnevnika|Почасова работа от дневника
+Stunden je Person aus den Tagebuch-Einträgen|Godziny na osobę z wpisów w dzienniku|Ore pe persoană din jurnal|Orë për person nga shënimet e ditarit|Sati po osobi iz unosa u dnevnik|Часове на човек от записите в дневника
+Freie Rechnung|Dowolna faktura|Factură liberă|Faturë e lirë|Slobodni račun|Свободна фактура
+Positionen selbst eintragen|Wpisz pozycje samodzielnie|Introdu singur pozițiile|Shkruaj vetë pozicionet|Sam upiši stavke|Въведи позициите сам
+Zu welchem Auftrag?|Do którego zlecenia?|La ce comandă?|Për cilën porosi?|Za koji nalog?|Към коя поръчка?
+Nach Prozent|Wg procentu|După procent|Sipas përqindjes|Po postotku|По процент
+Nach Leistungsstand|Wg stanu prac|După stadiul lucrărilor|Sipas ecurisë|Po stanju radova|По напредък
+Wie viel vom Auftrag ist|Ile zlecenia jest|Cât din comandă este|Sa nga porosia është|Koliko je naloga|Каква част от поръчката е
+insgesamt|łącznie|în total|gjithsej|ukupno|общо
+erledigt? Bisherige Abschläge zieht Onstand ab.|wykonane? Dotychczasowe zaliczki Onstand odejmie.|gata? Onstand scade avansurile de până acum.|kryer? Onstand zbret paradhëniet e mëparshme.|gotovo? Dosadašnje predujmove Onstand oduzima.|готово? Onstand приспада досегашните аванси.
+Dieser Abschlag netto|Ta zaliczka netto|Acest avans net|Kjo paradhënie neto|Ovaj predujam neto|Този аванс нето
+Schlussrechnung nach Aufmaß|Faktura końcowa wg obmiaru|Factură finală după măsurători|Faturë përfundimtare sipas matjes|Konačni račun prema izmjeri|Окончателна фактура по измерване
+Gesamtleistung netto|Wartość prac netto|Valoarea lucrărilor net|Vlera e punës neto|Ukupni radovi neto|Общо работи нето
+Restbetrag netto|Pozostała kwota netto|Rest de plată net|Shuma e mbetur neto|Preostali iznos neto|Оставаща сума нето
+Keine Tagebuch-Einträge mit Arbeitszeit und Personal für diese Baustelle im Zeitraum.|Brak wpisów z czasem pracy i personelem dla tej budowy w tym okresie.|Nicio înregistrare cu timp de lucru și personal pentru acest șantier în perioadă.|Asnjë shënim me kohë pune dhe personel për këtë kantier në periudhë.|Nema unosa s radnim vremenom i osobljem za ovo gradilište u razdoblju.|Няма записи с работно време и персонал за този обект в периода.
+Rechnungsdatum|Data faktury|Data facturii|Data e faturës|Datum računa|Дата на фактурата
+Leistung von|Usługa od|Lucrare de la|Shërbimi nga|Usluga od|Услуга от
+Leistung bis|Usługa do|Lucrare până la|Shërbimi deri|Usluga do|Услуга до
+Zahlungsziel|Termin płatności|Termen de plată|Afati i pagesës|Rok plaćanja|Срок за плащане
+wenn ihr für einen anderen Baubetrieb arbeitet – dann ohne MwSt. mit Pflichthinweis|gdy pracujecie dla innej firmy budowlanej – wtedy bez VAT z obowiązkową adnotacją|când lucrați pentru altă firmă de construcții – atunci fără TVA, cu mențiune obligatorie|kur punoni për një firmë tjetër ndërtimi – atëherë pa TVSH me shënim të detyrueshëm|kad radite za drugu građevinsku tvrtku – tada bez PDV-a s obveznom napomenom|когато работите за друга строителна фирма – тогава без ДДС със задължителна бележка
+Rechnungsbetrag|Kwota faktury|Valoarea facturii|Shuma e faturës|Iznos računa|Сума на фактурата
+Entwurf löschen|Usuń szkic|Șterge ciorna|Fshi draftin|Obriši nacrt|Изтрий чернова
+Rechnung stellen|Wystaw fakturę|Emite factura|Lësho faturën|Izdaj račun|Издай фактура
+Offener Posten|Otwarta pozycja|Sumă restantă|Detyrim i hapur|Otvorena stavka|Неплатена сума
+Als bezahlt|Jako zapłacone|Ca plătită|Si e paguar|Kao plaćeno|Като платена
+aus der Preisliste|z cennika|din lista de prețuri|nga lista e çmimeve|iz cjenika|от ценоразписа
+eigene|własna|proprie|e vetë|vlastita|собствена
+z. B. Sanierung Bad und Wohnen|np. remont łazienki i salonu|de ex. renovare baie și living|p.sh. rinovim banjoje dhe ndenjeje|npr. obnova kupaonice i dnevnog boravka|напр. ремонт на баня и хол
+Zur Liste|Do listy|La listă|Te lista|Na popis|Към списъка
+Position löschen|Usuń pozycję|Șterge poziția|Fshi pozicionin|Obriši stavku|Изтрий позицията
+Leistungsstand in Prozent|Stan prac w procentach|Stadiul lucrărilor în procente|Ecuria në përqindje|Stanje radova u postocima|Напредък в проценти
+Leistungsstand|Stan prac|Stadiul lucrărilor|Ecuria|Stanje radova|Напредък
+Menge nach Aufmaß|Ilość wg obmiaru|Cantitate după măsurători|Sasia sipas matjes|Količina prema izmjeri|Количество по измерване
+Paragraf 13b|Paragraf 13b|Paragraful 13b|Paragrafi 13b|Paragraf 13b|Параграф 13b
+Noch offen|Jeszcze otwarte|Încă deschis|Ende e hapur|Još otvoreno|Още открито
+Rechnung öffnen|Otwórz fakturę|Deschide factura|Hap faturën|Otvori račun|Отвори фактурата
+Ablauf|Przebieg|Desfășurare|Rrjedha|Tijek|Ход
+heute dran|dziś do zrobienia|de făcut azi|për sot|danas na redu|за днес
+Neuer Entwurf mit den gleichen Positionen|Nowy szkic z tymi samymi pozycjami|Ciornă nouă cu aceleași poziții|Draft i ri me të njëjtat pozicione|Novi nacrt s istim stavkama|Нова чернова със същите позиции
+Schreiben|Napisz|Scrie|Shkruaj|Napiši|Напиши
+Firmenkunde|Klient firmowy|Client firmă|Klient biznesi|Poslovni kupac|Фирмен клиент
+Verzugspauschale Firmenkunde|Ryczałt za zwłokę – klient firmowy|Penalitate de întârziere – client firmă|Paushall vonese – klient biznesi|Paušal za kašnjenje – poslovni kupac|Обезщетение за забава – фирмен клиент
+Text kopieren|Kopiuj tekst|Copiază textul|Kopjo tekstin|Kopiraj tekst|Копирай текста
+Zahlung erfassen|Zarejestruj płatność|Înregistrează plata|Regjistro pagesën|Evidentiraj uplatu|Запиши плащане
+Erfassen|Zarejestruj|Înregistrează|Regjistro|Evidentiraj|Запиши
+Korrigieren|Popraw|Corectează|Korrigjo|Ispravi|Коригирай
+Rechnungskorrektur|Korekta faktury|Corectare factură|Korrigjim fature|Ispravak računa|Корекция на фактура
+Stornorechnung|Faktura korygująca (storno)|Factură de stornare|Faturë anulimi|Storno račun|Сторно фактура
+Erstellen|Utwórz|Creează|Krijo|Izradi|Създай
+Stornorechnung erstellen|Utwórz fakturę storno|Creează factura de stornare|Krijo faturë anulimi|Izradi storno račun|Създай сторно фактура
+Morgen|Jutro|Mâine|Nesër|Sutra|Утре
+Zahlung löschen|Usuń płatność|Șterge plata|Fshi pagesën|Obriši uplatu|Изтрий плащането
+Text|Tekst|Text|Tekst|Tekst|Текст
+Betrag|Kwota|Sumă|Shuma|Iznos|Сума
+Betrag brutto|Kwota brutto|Sumă brută|Shuma bruto|Iznos bruto|Сума бруто
+Grund, z. B. Minderung wegen Mangel M-02|Powód, np. obniżka z powodu usterki M-02|Motiv, de ex. reducere pentru defectul M-02|Arsyeja, p.sh. ulje për defektin M-02|Razlog, npr. umanjenje zbog nedostatka M-02|Причина, напр. намаление заради дефект M-02
+Grund|Powód|Motiv|Arsyeja|Razlog|Причина
+Kundenart ändern|Zmień rodzaj klienta|Schimbă tipul clientului|Ndrysho llojin e klientit|Promijeni vrstu kupca|Смени вида клиент
+Danach richtet sich, welche Rechnung Onstand erstellt.|Od tego zależy, jaką fakturę utworzy Onstand.|De asta depinde ce factură creează Onstand.|Nga kjo varet çfarë fature krijon Onstand.|O tome ovisi koji račun Onstand izrađuje.|От това зависи каква фактура създава Onstand.
+Fertig|Gotowe|Gata|Gati|Gotovo|Готово
+ist heruntergeladen und liegt außerdem im Ordner|został pobrany i jest też w folderze|a fost descărcat și se află și în dosarul|u shkarkua dhe ndodhet gjithashtu në dosjen|je preuzet i nalazi se i u mapi|е изтеглен и се намира и в папката
+Lade|Wczytywanie|Se încarcă|Po ngarkohet|Učitavanje|Зареждане
+Zu zahlen|Do zapłaty|De plată|Për t’u paguar|Za platiti|За плащане
+Diese Rechnung ist schon eingelesen.|Ta faktura jest już wczytana.|Această factură e deja citită.|Kjo faturë është lexuar tashmë.|Ovaj račun je već učitan.|Тази фактура вече е прочетена.
+Keine.|Brak.|Niciuna.|Asnjë.|Nema.|Няма.
+Zahlungseingänge|Wpływy|Încasări|Pagesat e marra|Primljene uplate|Постъпления
+Zu Rechnung|Do faktury|La factura|Te fatura|Na račun|Към фактура
+Summe|Suma|Total|Shuma|Zbroj|Сума
+Umsatzsteuer aus Rechnungen|VAT z faktur|TVA din facturi|TVSH nga faturat|PDV iz računa|ДДС от фактури
+Vorsteuer aus Eingangsrechnungen|VAT naliczony z faktur zakupu|TVA deductibilă din facturi primite|TVSH e zbritshme nga faturat hyrëse|Pretporez iz ulaznih računa|Данъчен кредит от входящи фактури
+Diese Übersicht ist eine Zusammenstellung der Belege, keine Steuererklärung.|To zestawienie dokumentów, a nie deklaracja podatkowa.|Această prezentare e o centralizare a documentelor, nu o declarație fiscală.|Kjo përmbledhje është një listë dokumentesh, jo deklaratë tatimore.|Ovaj pregled je popis dokumenata, a ne porezna prijava.|Този преглед е обобщение на документите, не данъчна декларация.
+Leistungen und Mengen aus den Angeboten des Büros.|Usługi i ilości z ofert biura.|Lucrări și cantități din ofertele biroului.|Shërbimet dhe sasitë nga ofertat e zyrës.|Usluge i količine iz ponuda ureda.|Услуги и количества от офертите на офиса.
+Noch nichts freigegeben.|Jeszcze nic nie udostępniono.|Nimic aprobat încă.|Ende asgjë e miratuar.|Još ništa nije odobreno.|Още нищо не е одобрено.
+Sobald das Büro ein Angebot anlegt, erscheint es hier – ohne Preise.|Gdy biuro utworzy ofertę, pojawi się tutaj – bez cen.|Când biroul creează o ofertă, apare aici – fără prețuri.|Sapo zyra krijon një ofertë, shfaqet këtu – pa çmime.|Čim ured izradi ponudu, pojavit će se ovdje – bez cijena.|Щом офисът създаде оферта, тя се появява тук – без цени.
+Noch keine Leistungen.|Jeszcze brak usług.|Încă nicio lucrare.|Ende asnjë shërbim.|Još nema usluga.|Още няма услуги.
+Kontakt löschen|Usuń kontakt|Șterge contactul|Fshi kontaktin|Obriši kontakt|Изтрий контакта
+Worum ging es? z. B. Fliesen kommen Donnerstag|O co chodziło? np. płytki przyjdą w czwartek|Despre ce a fost? de ex. plăcile vin joi|Për çfarë ishte? p.sh. pllakat vijnë të enjten|O čemu se radilo? npr. pločice stižu u četvrtak|За какво ставаше дума? напр. плочките идват в четвъртък
+Worum ging es|O co chodziło|Despre ce a fost|Për çfarë ishte|O čemu se radilo|За какво ставаше дума
+Zeit|Czas|Timp|Koha|Vrijeme|Време
+Tätigkeit|Czynność|Activitate|Veprimtaria|Djelatnost|Дейност
+Std.|Godz.|Ore|Orë|Sati|Ч.
+Arbeitstage|Dni robocze|Zile lucrătoare|Ditë pune|Radni dani|Работни дни
+Differenz|Różnica|Diferență|Diferenca|Razlika|Разлика
+Neu erkannt|Nowo rozpoznane|Recunoscut nou|E njohur rishtas|Novo prepoznato|Новоразпознато
+Frühere Abrechnungen|Wcześniejsze rozliczenia|Decontări anterioare|Llogaritjet e mëparshme|Raniji obračuni|Предишни отчети
+z. B. 30|np. 30|de ex. 30|p.sh. 30|npr. 30|напр. 30
+Von Assistent|Od asystenta|De la asistent|Nga asistenti|Od asistenta|От асистента
+Prüfen|Sprawdź|Verifică|Kontrollo|Provjeri|Провери
+Links einen Mangel wählen.|Wybierz usterkę po lewej.|Alege un defect în stânga.|Zgjidh një defekt majtas.|Lijevo odaberi nedostatak.|Избери дефект вляво.
+Vom Assistenten eingetragen.|Wpisane przez asystenta.|Introdus de asistent.|Shënuar nga asistenti.|Upisao asistent.|Въведено от асистента.
+Bitte kurz prüfen.|Sprawdź krótko.|Te rog verifică pe scurt.|Të lutem kontrollo shkurt.|Molim kratko provjeri.|Моля, провери набързо.
+Tagebuch-Eintrag öffnen|Otwórz wpis w dzienniku|Deschide înregistrarea din jurnal|Hap shënimin e ditarit|Otvori unos u dnevniku|Отвори записа в дневника
+Der Assistent hat ausgefüllt.|Asystent uzupełnił.|Asistentul a completat.|Asistenti ka plotësuar.|Asistent je ispunio.|Асистентът попълни.
+Bitte kurz prüfen, dann speichern.|Sprawdź krótko, potem zapisz.|Verifică pe scurt, apoi salvează.|Kontrollo shkurt, pastaj ruaj.|Kratko provjeri, zatim spremi.|Провери набързо, после запиши.
+Uhrzeit|Godzina|Ora|Ora|Vrijeme|Час
+Teilnehmer|Uczestnicy|Participanți|Pjesëmarrësit|Sudionici|Участници
+Ansprechpartner des Kunden im Kunden-Menü eintragen, dann steht er hier.|Wpisz osobę kontaktową klienta w menu klientów, wtedy pojawi się tutaj.|Introdu persoana de contact în meniul Clienți și va apărea aici.|Shkruaj personin e kontaktit te menyja e klientëve, pastaj shfaqet këtu.|Upiši kontakt osobu kupca u izborniku kupaca, tada će biti ovdje.|Въведи лицето за контакт в менюто с клиенти и то ще се появи тук.
+Als Vorbehalt ins Protokoll|Jako zastrzeżenie do protokołu|Ca rezervă în proces-verbal|Si rezervë në procesverbal|Kao rezerva u zapisnik|Като резерва в протокола
+Keine offenen Mängel. Gute Voraussetzung.|Brak otwartych usterek. Dobry punkt wyjścia.|Niciun defect deschis. O condiție bună.|Asnjë defekt i hapur. Kusht i mirë.|Nema otvorenih nedostataka. Dobar preduvjet.|Няма открити дефекти. Добра предпоставка.
+Ergebnis|Wynik|Rezultat|Rezultati|Rezultat|Резултат
+Nur unwesentliche Mängel offen. Übliches Ergebnis: Abnahme mit Vorbehalt.|Otwarte tylko nieistotne usterki. Zwykle: odbiór z zastrzeżeniem.|Doar defecte minore deschise. Rezultat obișnuit: recepție cu rezerve.|Vetëm defekte të vogla të hapura. Rezultati i zakonshëm: pranim me rezervë.|Otvoreni samo nebitni nedostaci. Uobičajeno: primopredaja s rezervom.|Открити са само несъществени дефекти. Обичайно: приемане с резерва.
+Gewährleistung ab Abnahme|Rękojmia od odbioru|Garanție de la recepție|Garancia nga pranimi|Jamstvo od primopredaje|Гаранция от приемането
+BGB · 5 Jahre|BGB · 5 lat|BGB · 5 ani|BGB · 5 vjet|BGB · 5 godina|BGB · 5 години
+VOB/B · 4 Jahre|VOB/B · 4 lata|VOB/B · 4 ani|VOB/B · 4 vjet|VOB/B · 4 godine|VOB/B · 4 години
+Ende:|Koniec:|Sfârșit:|Fundi:|Kraj:|Край:
+Unterschrift Kunde|Podpis klienta|Semnătura clientului|Nënshkrimi i klientit|Potpis kupca|Подпис на клиента
+Unterschrift Auftragnehmer|Podpis wykonawcy|Semnătura executantului|Nënshkrimi i kontraktorit|Potpis izvođača|Подпис на изпълнителя
+Protokoll|Protokół|Proces-verbal|Procesverbali|Zapisnik|Протокол
+Als PDF / Drucken|Jako PDF / drukuj|Ca PDF / tipărește|Si PDF / printo|Kao PDF / ispis|Като PDF / печат
+Stelle|Miejsce|Locul|Vendi|Mjesto|Място
+Neuer Raum|Nowe pomieszczenie|Cameră nouă|Dhomë e re|Nova prostorija|Ново помещение
+Zimmername|Nazwa pomieszczenia|Numele camerei|Emri i dhomës|Naziv prostorije|Име на помещението
+Länge|Długość|Lungime|Gjatësia|Duljina|Дължина
+Breite|Szerokość|Lățime|Gjerësia|Širina|Ширина
+Höhe|Wysokość|Înălțime|Lartësia|Visina|Височина
+Oben|Góra|Sus|Lart|Gore|Горе
+Rechts|Prawo|Dreapta|Djathtas|Desno|Вдясно
+Unten|Dół|Jos|Poshtë|Dolje|Долу
+Links|Lewo|Stânga|Majtas|Lijevo|Вляво
+Form anpassen|Dopasuj kształt|Ajustează forma|Përshtat formën|Prilagodi oblik|Промени формата
+Rechteck|Prostokąt|Dreptunghi|Drejtkëndësh|Pravokutnik|Правоъгълник
+Raum setzen|Wstaw pomieszczenie|Plasează camera|Vendos dhomën|Postavi prostoriju|Постави помещението
+Etage wechseln|Zmień piętro|Schimbă etajul|Ndrysho katin|Promijeni etažu|Смени етажа
+Diese Etage ist|To piętro to|Acest etaj este|Ky kat është|Ova etaža je|Този етаж е
+Neue Wände|Nowe ściany|Pereți noi|Mure të reja|Novi zidovi|Нови стени
+Eigene Stärke in cm|Własna grubość w cm|Grosime proprie în cm|Trashësi e vetë në cm|Vlastita debljina u cm|Собствена дебелина в см
+Alle Außenwände so|Wszystkie ściany zewnętrzne tak|Toți pereții exteriori așa|Të gjitha muret e jashtme kështu|Svi vanjski zidovi ovako|Всички външни стени така
+Ändern|Zmień|Schimbă|Ndrysho|Promijeni|Промени
+Rundung|Zaokrąglenie|Rotunjire|Rrumbullakim|Zaobljenje|Заобляне
+Nische / Vorsprung|Wnęka / występ|Nișă / proeminență|Kamare / zgjatim|Niša / izbočina|Ниша / издатина
+Schräge Ecke|Skośny narożnik|Colț teșit|Qoshe e pjerrët|Kosi kut|Скосен ъгъл
+Dachschräge|Skos dachu|Mansardă|Pjerrësia e çatisë|Kosina krova|Скосен таван
+nach außen|na zewnątrz|spre exterior|nga jashtë|prema van|навън
+nach innen|do wewnątrz|spre interior|nga brenda|prema unutra|навътре
+Abstand ab Ecke|Odległość od narożnika|Distanța de la colț|Distanca nga qoshja|Udaljenost od kuta|Разстояние от ъгъла
+Etagen|Piętra|Etaje|Katet|Etaže|Етажи
+Zu welcher Baustelle gehört der Plan?|Do której budowy należy plan?|De ce șantier aparține planul?|Cilit kantier i përket plani?|Kojem gradilištu pripada nacrt?|Към кой обект принадлежи планът?
+Ohne Platz|Bez miejsca|Fără loc|Pa vend|Bez mjesta|Без място
+aus|wył.|oprit|fikur|isključeno|изкл.
+Verschieben|Przesuń|Mută|Zhvendos|Pomakni|Премести
+Im Mängel-Menü|W menu usterek|În meniul Defecte|Te menyja e defekteve|U izborniku nedostataka|В менюто с дефекти
+Was ist kaputt?|Co jest zepsute?|Ce e stricat?|Çfarë është prishur?|Što je pokvareno?|Какво е повредено?
+Kurz beschreiben|Opisz krótko|Descrie pe scurt|Përshkruaj shkurt|Kratko opiši|Опиши накратко
+Mangel setzen|Wstaw usterkę|Plasează defectul|Vendos defektin|Postavi nedostatak|Постави дефекта
+Noch ohne Platz im Plan|Jeszcze bez miejsca na planie|Încă fără loc pe plan|Ende pa vend në plan|Još bez mjesta na nacrtu|Още без място на плана
+Mangel antippen, dann die Stelle im Plan|Dotknij usterki, potem miejsca na planie|Atinge defectul, apoi locul pe plan|Prek defektin, pastaj vendin në plan|Dodirni nedostatak, zatim mjesto na nacrtu|Докосни дефекта, после мястото на плана
+Nr.|Nr|Nr.|Nr.|Br.|№
+nach oben|w górę|în sus|lart|gore|нагоре
+nach unten|w dół|în jos|poshtë|dolje|надолу
+In den nächsten 60 Tagen steht nichts an.|W najbliższych 60 dniach nic nie zaplanowano.|În următoarele 60 de zile nu e nimic programat.|Në 60 ditët e ardhshme nuk ka asgjë në plan.|U sljedećih 60 dana ništa nije na rasporedu.|През следващите 60 дни няма нищо планирано.
+Außerdem|Poza tym|În plus|Përveç kësaj|Osim toga|Освен това
+Erinnerung|Przypomnienie|Memento|Kujtesë|Podsjetnik|Напомняне
+Wiederholung|Powtarzanie|Repetare|Përsëritje|Ponavljanje|Повторение
+Quelle|Źródło|Sursă|Burimi|Izvor|Източник
+Einzugstermin aus dem Kunden-Menü|Termin wprowadzenia z menu klientów|Data mutării din meniul Clienți|Data e hyrjes nga menyja e klientëve|Datum useljenja iz izbornika kupaca|Дата на нанасяне от менюто с клиенти
+Im Kunden-Menü öffnen|Otwórz w menu klientów|Deschide în meniul Clienți|Hap te menyja e klientëve|Otvori u izborniku kupaca|Отвори в менюто с клиенти
+Im Bautagebuch öffnen|Otwórz w dzienniku budowy|Deschide în jurnalul de șantier|Hap në ditarin e ndërtimit|Otvori u građevinskom dnevniku|Отвори в строителния дневник
+In Mängel & Abnahme öffnen|Otwórz w usterkach i odbiorze|Deschide în Defecte și recepție|Hap te defektet dhe pranimi|Otvori u nedostacima i primopredaji|Отвори в дефекти и приемане
+Rechnung aus dem Menü AUFTRÄGE|Faktura z menu ZLECENIA|Factură din meniul COMENZI|Faturë nga menyja POROSITË|Račun iz izbornika NALOZI|Фактура от менюто ПОРЪЧКИ
+Offenen Posten öffnen|Otwórz otwartą pozycję|Deschide suma restantă|Hap detyrimin e hapur|Otvori otvorenu stavku|Отвори неплатената сума
+Was möchtest du eintragen?|Co chcesz wpisać?|Ce vrei să introduci?|Çfarë dëshiron të shënosh?|Što želiš upisati?|Какво искаш да въведеш?
+Aus der Baustelle|Z budowy|De pe șantier|Nga kantieri|S gradilišta|От обекта
+Ganztägig|Cały dzień|Toată ziua|Gjithë ditën|Cijeli dan|Цял ден
+Wessen Geburtstag?|Czyje urodziny?|Ziua cui?|Ditëlindja e kujt?|Čiji rođendan?|Чий рожден ден?
+Kommt jedes Jahr automatisch wieder. Mit Geburtsjahr zeigt Onstand das Alter an.|Powtarza się co roku automatycznie. Z rokiem urodzenia Onstand pokaże wiek.|Revine automat în fiecare an. Cu anul nașterii, Onstand arată vârsta.|Përsëritet automatikisht çdo vit. Me vitin e lindjes Onstand tregon moshën.|Ponavlja se automatski svake godine. S godinom rođenja Onstand prikazuje dob.|Повтаря се автоматично всяка година. С годината на раждане Onstand показва възрастта.
+Wer?|Kto?|Cine?|Kush?|Tko?|Кой?
+Erscheint als Eintrag über alle Tage.|Pojawia się jako wpis na wszystkie dni.|Apare ca înregistrare pe toate zilele.|Shfaqet si shënim në të gjitha ditët.|Prikazuje se kao unos preko svih dana.|Показва се като запис за всички дни.
+Was muss bis wann erledigt sein?|Co trzeba zrobić i do kiedy?|Ce trebuie făcut și până când?|Çfarë duhet kryer dhe deri kur?|Što treba biti gotovo i do kada?|Какво трябва да е готово и до кога?
+Adresse oder Baustelle|Adres lub budowa|Adresă sau șantier|Adresa ose kantieri|Adresa ili gradilište|Адрес или обект
+z. B. 1990|np. 1990|de ex. 1990|p.sh. 1990|npr. 1990|напр. 1990
+z. B. Angebot Halle Ost abgeben|np. złożyć ofertę na halę wschodnią|de ex. predă oferta pentru hala est|p.sh. dorëzo ofertën për sallën lindore|npr. predati ponudu za istočnu halu|напр. предай офертата за халето изток
+z. B. Gerüst abholen lassen|np. zlecić odbiór rusztowania|de ex. comandă ridicarea schelei|p.sh. porosit marrjen e skelës|npr. naručiti odvoz skele|напр. поръчай вдигане на скелето
+Lade Firmen-Brain|Wczytywanie wiki firmy|Se încarcă wiki-ul firmei|Po ngarkohet wiki e firmës|Učitavanje wikija tvrtke|Зареждане на фирменото уики
+Nicht zugeordnet|Nieprzypisane|Neatribuit|Pa caktuar|Nije dodijeljeno|Неразпределено
+Ordner verknüpfen|Połącz folder|Conectează dosarul|Lidh dosjen|Poveži mapu|Свържи папка
+Ordner verknüpfen geht am PC. Am Handy kannst du einzelne Dateien hinzufügen.|Folder połączysz na komputerze. Na telefonie możesz dodać pojedyncze pliki.|Dosarul se conectează pe PC. Pe telefon poți adăuga fișiere individuale.|Dosja lidhet në kompjuter. Në telefon mund të shtosh skedarë të veçantë.|Mapa se povezuje na računalu. Na mobitelu možeš dodati pojedinačne datoteke.|Папката се свързва на компютъра. На телефона можеш да добавяш отделни файлове.
+Wartet auf den Sortier-Lauf|Czeka na sortowanie|Așteaptă sortarea|Pret renditjen|Čeka sortiranje|Чака сортирането
+Hier ordnest du selbst zu|Tutaj przypisujesz sam|Aici atribui singur|Këtu cakton vetë|Ovdje sam dodjeljuješ|Тук разпределяш сам
+Zuordnen|Przypisz|Atribuie|Cakto|Dodijeli|Разпредели
+Ignorieren|Ignoruj|Ignoră|Injoro|Zanemari|Игнорирай
+Beim nächsten Wochenlauf schaut die KI es noch einmal an, wenn du es hier lässt.|Jeśli to zostawisz, AI obejrzy to ponownie przy następnym cotygodniowym sortowaniu.|Dacă îl lași aici, AI se uită din nou la următoarea sortare săptămânală.|Nëse e lë këtu, AI e shikon përsëri në renditjen e ardhshme javore.|Ako ga ostaviš ovdje, AI će ga ponovno pogledati pri sljedećem tjednom sortiranju.|Ако го оставиш тук, AI ще го прегледа отново при следващото седмично сортиране.
+Dateien zu dieser Seite|Pliki do tej strony|Fișiere pentru această pagină|Skedarët e kësaj faqeje|Datoteke uz ovu stranicu|Файлове към тази страница
+Fach Neu|Przegródka Nowe|Sertarul Nou|Sirtari I ri|Pretinac Novo|Отделение Ново
+Noch keine Seiten. Tippe auf JETZT SORTIEREN.|Jeszcze brak stron. Dotknij SORTUJ TERAZ.|Încă nicio pagină. Atinge SORTEAZĂ ACUM.|Ende asnjë faqe. Prek RENDIT TANI.|Još nema stranica. Dodirni SORTIRAJ SADA.|Още няма страници. Докосни СОРТИРАЙ СЕГА.
+Sortiere|Sortowanie|Se sortează|Po renditet|Sortiranje|Сортиране
+Ordner prüfen|Sprawdź folder|Verifică dosarul|Kontrollo dosjen|Provjeri mapu|Провери папката
+Jetzt sortieren|Sortuj teraz|Sortează acum|Rendit tani|Sortiraj sada|Сортирай сега
+zählt als Denk-Frage|liczy się jako pytanie do AI|contează ca întrebare AI|llogaritet si pyetje AI|računa se kao AI pitanje|брои се като въпрос към AI
+Frag das Firmenwissen|Zapytaj wiedzę firmy|Întreabă cunoștințele firmei|Pyet njohuritë e firmës|Pitaj znanje tvrtke|Попитай фирменото знание
+Interview|Wywiad|Interviu|Intervistë|Intervju|Интервю
+Firmenprofil vollständig|Profil firmy kompletny|Profilul firmei complet|Profili i firmës i plotë|Profil tvrtke potpun|Профилът на фирмата е пълен
+Überspringen|Pomiń|Sari peste|Kapërce|Preskoči|Пропусни
+Danke, das reicht fürs Erste. Die Antworten werden jetzt einsortiert.|Dziękuję, na razie wystarczy. Odpowiedzi zostaną teraz posortowane.|Mulțumesc, ajunge deocamdată. Răspunsurile sunt sortate acum.|Faleminderit, mjafton për tani. Përgjigjet po renditen tani.|Hvala, to je za sada dovoljno. Odgovori se sada razvrstavaju.|Благодаря, засега стига. Отговорите се сортират сега.
+Zum Firmen-Wiki|Do wiki firmy|La wiki-ul firmei|Te wiki e firmës|Na wiki tvrtke|Към фирменото уики
+Titel der neuen Seite|Tytuł nowej strony|Titlul paginii noi|Titulli i faqes së re|Naslov nove stranice|Заглавие на новата страница
+Verknüpfter Ordner|Połączony folder|Dosar conectat|Dosja e lidhur|Povezana mapa|Свързана папка
+Im Firmenwissen suchen|Szukaj w wiedzy firmy|Caută în cunoștințele firmei|Kërko në njohuritë e firmës|Traži u znanju tvrtke|Търси във фирменото знание
+Frage an das Firmen-Brain|Pytanie do wiki firmy|Întrebare pentru wiki-ul firmei|Pyetje për wiki e firmës|Pitanje za wiki tvrtke|Въпрос към фирменото уики
+Fragen|Zapytaj|Întreabă|Pyet|Pitaj|Попитай
+Antwort|Odpowiedź|Răspuns|Përgjigje|Odgovor|Отговор
+gleichzeitig an derselben Stelle geändert. Welche Fassung soll gelten?|zmieniono jednocześnie w tym samym miejscu. Która wersja ma obowiązywać?|modificat simultan în același loc. Ce variantă rămâne?|ndryshuar njëkohësisht në të njëjtin vend. Cili version vlen?|istodobno promijenjeno na istom mjestu. Koja verzija vrijedi?|променено едновременно на същото място. Коя версия да остане?
+Von dir|Od ciebie|De la tine|Nga ti|Od tebe|От теб
+Gleichzeitig geändert|Zmienione jednocześnie|Modificat simultan|Ndryshuar njëkohësisht|Istodobno promijenjeno|Променено едновременно
+Alles andere wurde schon zusammengeführt.|Wszystko inne zostało już scalone.|Restul a fost deja combinat.|Gjithçka tjetër është bashkuar tashmë.|Sve ostalo je već spojeno.|Всичко останало вече е обединено.
+Firmenkonto einrichten|Załóż konto firmowe|Configurează contul firmei|Krijo llogarinë e firmës|Postavi račun tvrtke|Създай фирмен акаунт
+Server-Adresse|Adres serwera|Adresa serverului|Adresa e serverit|Adresa poslužitelja|Адрес на сървъра
+Öffentlicher Schlüssel|Klucz publiczny|Cheie publică|Çelësi publik|Javni ključ|Публичен ключ
+Passwort|Hasło|Parolă|Fjalëkalimi|Lozinka|Парола
+Fast fertig:|Prawie gotowe:|Aproape gata:|Pothuajse gati:|Skoro gotovo:|Почти готово:
+Geräte & Mitarbeiter|Urządzenia i pracownicy|Dispozitive și angajați|Pajisjet dhe punonjësit|Uređaji i zaposlenici|Устройства и служители
+Rollen bearbeiten|Edytuj role|Editează rolurile|Ndrysho rolet|Uredi uloge|Редактирай ролите
+Chef – alles|Szef – wszystko|Șef – tot|Shefi – gjithçka|Šef – sve|Шеф – всичко
+Adresse von Onstand fürs Handy|Adres Onstand dla telefonu|Adresa Onstand pentru telefon|Adresa e Onstand për telefonin|Adresa Onstanda za mobitel|Адрес на Onstand за телефона
+Damit der QR-Code das Handy direkt zu Onstand bringt. Einmal eintragen, wird gemerkt.|Aby kod QR prowadził telefon prosto do Onstand. Wpisz raz, zostanie zapamiętany.|Ca codul QR să ducă telefonul direct la Onstand. Introdu o dată, se reține.|Që kodi QR ta çojë telefonin direkt te Onstand. Shkruaje një herë, mbahet mend.|Da QR kod odvede mobitel izravno u Onstand. Upiši jednom, pamti se.|За да води QR кодът телефона направо към Onstand. Въведи веднъж, запомня се.
+Code erstellen|Utwórz kod|Creează cod|Krijo kod|Izradi kod|Създай код
+Abmelden?|Wylogować?|Te deconectezi?|Të dalësh?|Odjaviti se?|Изход?
+Keine Verbindung zum Server.|Brak połączenia z serwerem.|Nicio conexiune la server.|Nuk ka lidhje me serverin.|Nema veze s poslužiteljem.|Няма връзка със сървъра.
+Code abgelaufen. Erstelle einen neuen.|Kod wygasł. Utwórz nowy.|Codul a expirat. Creează unul nou.|Kodi ka skaduar. Krijo një të ri.|Kod je istekao. Izradi novi.|Кодът е изтекъл. Създай нов.
+Verbunden. Das neue Gerät bekommt jetzt alle Daten.|Połączono. Nowe urządzenie otrzymuje teraz wszystkie dane.|Conectat. Dispozitivul nou primește acum toate datele.|U lidh. Pajisja e re po merr tani të gjitha të dhënat.|Povezano. Novi uređaj sada dobiva sve podatke.|Свързано. Новото устройство получава всички данни.
+Verbinde mit deiner Firma|Łączenie z twoją firmą|Se conectează la firma ta|Po lidhet me firmën tënde|Povezivanje s tvojom tvrtkom|Свързване с фирмата ти
+Vorname|Imię|Prenume|Emri|Ime|Име
+Aus der Firma nehmen|Usuń z firmy|Scoate din firmă|Hiq nga firma|Ukloni iz tvrtke|Премахни от фирмата
+Mahnbescheid prüfen|Sprawdź nakaz zapłaty|Verifică somația de plată|Kontrollo urdhrin e pagesës|Provjeri platni nalog|Провери заповедта за плащане
+Ich schaue nach, was heute ansteht|Sprawdzam, co jest dziś do zrobienia|Mă uit ce e programat azi|Po shikoj çfarë ka për sot|Gledam što je danas na rasporedu|Проверявам какво предстои днес
+noch keine Baustelle – im Menü KUNDEN anlegen|jeszcze brak budowy – dodaj w menu KLIENCI|încă niciun șantier – adaugă în meniul CLIENȚI|ende asnjë kantier – krijoje te menyja KLIENTËT|još nema gradilišta – dodaj u izborniku KUPCI|още няма обект – добави в менюто КЛИЕНТИ
+Im Tagebuch öffnen|Otwórz w dzienniku|Deschide în jurnal|Hap në ditar|Otvori u dnevniku|Отвори в дневника
+Verwerfen|Odrzuć|Renunță|Hidh poshtë|Odbaci|Откажи
+KI-Paket|Pakiet AI|Pachet AI|Paketa AI|AI paket|AI пакет
+Nachricht an den Assistenten|Wiadomość do asystenta|Mesaj pentru asistent|Mesazh për asistentin|Poruka asistentu|Съобщение до асистента
+denkt nach|myśli|se gândește|po mendon|razmišlja|мисли
+KI-Paket aktiv.|Pakiet AI aktywny.|Pachet AI activ.|Paketa AI aktive.|AI paket aktivan.|AI пакетът е активен.
+Heute sind noch|Dziś pozostało jeszcze|Azi mai sunt|Sot kanë mbetur ende|Danas je još|Днес остават още
+Denk-Fragen frei.|pytań do AI.|întrebări AI disponibile.|pyetje AI të lira.|AI pitanja slobodno.|въпроса към AI.
+Das weiß ich auch ohne KI|To wiem też bez AI|Asta știu și fără AI|Këtë e di edhe pa AI|To znam i bez AI|Това го знам и без AI
+Mit dem KI-Paket|Z pakietem AI|Cu pachetul AI|Me paketën AI|S AI paketom|С AI пакета
+Das würde die KI dazu sagen|Tak odpowiedziałaby AI|Asta ar spune AI|Kjo do të thoshte AI|Ovo bi rekao AI|Това би казал AI
+Beispiel|Przykład|Exemplu|Shembull|Primjer|Пример
+So klingt eine Antwort|Tak brzmi odpowiedź|Așa sună un răspuns|Kështu tingëllon një përgjigje|Ovako zvuči odgovor|Така звучи един отговор
+Mehr erfahren|Dowiedz się więcej|Află mai multe|Mëso më shumë|Saznaj više|Научи повече
+KI-Paket ansehen|Zobacz pakiet AI|Vezi pachetul AI|Shiko paketën AI|Pogledaj AI paket|Виж AI пакета
+Nicht mehr zeigen|Nie pokazuj więcej|Nu mai arăta|Mos e shfaq më|Ne prikazuj više|Не показвай повече
+Noch keine Baustellen angelegt.|Jeszcze nie dodano budów.|Încă nu s-au adăugat șantiere.|Ende nuk është krijuar asnjë kantier.|Još nisu dodana gradilišta.|Още няма добавени обекти.
+Noch keine Baustelle angelegt.|Jeszcze nie dodano budowy.|Încă nu s-a adăugat niciun șantier.|Ende nuk është krijuar asnjë kantier.|Još nije dodano gradilište.|Още няма добавен обект.
+Dein Name ist im Personal nicht zu finden. Bitte das Büro, dich dort anzulegen.|Nie ma cię w personelu. Poproś biuro, aby cię dodało.|Numele tău nu e în personal. Roagă biroul să te adauge.|Emri yt nuk gjendet te personeli. Kërkoji zyrës të të shtojë.|Tvoje ime nije u osoblju. Zamoli ured da te doda.|Името ти го няма в персонала. Помоли офиса да те добави.
+Aus dem Tagebuch: Einträge, bei denen du unter Personal stehst.|Z dziennika: wpisy, w których jesteś w personelu.|Din jurnal: înregistrările în care apari la personal.|Nga ditari: shënimet ku je te personeli.|Iz dnevnika: unosi u kojima si naveden u osoblju.|От дневника: записите, в които си в персонала.
+Noch keine Stunden im Tagebuch.|Jeszcze brak godzin w dzienniku.|Încă nicio oră în jurnal.|Ende asnjë orë në ditar.|Još nema sati u dnevniku.|Още няма часове в дневника.
+Sichtbar für|Widoczne dla|Vizibil pentru|E dukshme për|Vidljivo za|Видимо за
+Nur mich|Tylko mnie|Doar eu|Vetëm unë|Samo mene|Само мен
+Alle in der Firma|Wszyscy w firmie|Toți din firmă|Të gjithë në firmë|Svi u tvrtki|Всички във фирмата
+Nur für dich sichtbar|Widoczne tylko dla ciebie|Vizibil doar pentru tine|E dukshme vetëm për ty|Vidljivo samo tebi|Видимо само за теб
+Als Vorlage|Jako szablon|Ca șablon|Si model|Kao predložak|Като шаблон
+Eine Zeile je Position, z. B. 3 Sack Flexkleber|Jedna linia na pozycję, np. 3 worki kleju elastycznego|Câte un rând pe poziție, de ex. 3 saci adeziv flexibil|Një rresht për pozicion, p.sh. 3 thasë ngjitës fleksibël|Jedan red po stavci, npr. 3 vreće fleksibilnog ljepila|По един ред на позиция, напр. 3 чувала флекс лепило
+Lange drücken für mehr|Przytrzymaj, aby zobaczyć więcej|Apasă lung pentru mai mult|Shtyp gjatë për më shumë|Dugo pritisni za više|Задръж за още
+Soll|Plan|Țintă|Synimi|Plan|План
+Bereich|Obszar|Zonă|Fusha|Područje|Раздел
+Art|Rodzaj|Tip|Lloji|Vrsta|Вид
+Beschreibung|Opis|Descriere|Përshkrimi|Opis|Описание
+Fakten · eine pro Zeile, „Name: Wert“|Fakty · jeden w linii, „nazwa: wartość”|Fapte · câte unul pe rând, „nume: valoare”|Fakte · një për rresht, „emri: vlera”|Činjenice · jedna po retku, „naziv: vrijednost”|Факти · по един на ред, „име: стойност“
+Notizen · eine pro Zeile|Notatki · jedna w linii|Notițe · câte una pe rând|Shënime · një për rresht|Bilješke · jedna po retku|Бележки · по една на ред
+Seite löschen|Usuń stronę|Șterge pagina|Fshi faqen|Obriši stranicu|Изтрий страницата
+z. B. Ablauf, Lieferant, Kunde|np. procedura, dostawca, klient|de ex. procedură, furnizor, client|p.sh. procedurë, furnitor, klient|npr. postupak, dobavljač, kupac|напр. процедура, доставчик, клиент
+Worum geht es? Verweise mit [[Seitenname]].|O co chodzi? Odnośniki przez [[nazwa strony]].|Despre ce e vorba? Trimiteri cu [[nume pagină]].|Për çfarë bëhet fjalë? Lidhje me [[emri i faqes]].|O čemu se radi? Poveznice s [[naziv stranice]].|За какво става дума? Препратки с [[име на страница]].
+z. B. Abschlag 30 % bei Auftrag|np. zaliczka 30 % przy zleceniu|de ex. avans 30 % la comandă|p.sh. paradhënie 30 % me porosinë|npr. predujam 30 % kod narudžbe|напр. аванс 30 % при поръчка
+Abnahme öffnen|Otwórz odbiór|Deschide recepția|Hap pranimin|Otvori primopredaju|Отвори приемането
+Mängel ansehen|Zobacz usterki|Vezi defectele|Shiko defektet|Pogledaj nedostatke|Виж дефектите
+Es ist nach 17 Uhr – du bist noch eingestempelt.|Jest po 17:00 – nadal jesteś zalogowany do pracy.|E trecut de ora 17 – ești încă pontat.|Ora kaloi 17 – je ende i regjistruar në punë.|Prošlo je 17 sati – još si prijavljen na poslu.|Минава 17 ч. – още си на работа.
+Feierabend eintragen? Die Endzeit kannst du dabei anpassen, falls es zu viel ist.|Wpisać koniec pracy? Możesz przy tym poprawić godzinę zakończenia, jeśli jest za dużo.|Introduci sfârșitul programului? Poți ajusta ora de final dacă e prea mult.|Ta shënosh mbarimin e punës? Mund ta ndryshosh orën e mbarimit nëse është shumë.|Upisati kraj rada? Možeš prilagoditi završno vrijeme ako je previše.|Да въведа край на работа? Можеш да коригираш крайния час, ако е твърде много.
+Feierabend eintragen|Wpisz koniec pracy|Introdu sfârșitul programului|Shëno mbarimin e punës|Upiši kraj rada|Въведи край на работа
+Feierabend|Koniec pracy|Sfârșitul programului|Mbarimi i punës|Kraj rada|Край на работа
+Von|Od|De la|Nga|Od|От
+Bis|Do|Până la|Deri|Do|До
+Zu viel?|Za dużo?|Prea mult?|Shumë?|Previše?|Твърде много?
+Ende 17:00|Koniec 17:00|Sfârșit 17:00|Mbarim 17:00|Kraj 17:00|Край 17:00
+Pause|Przerwa|Pauză|Pushim|Pauza|Почивка
+Wird nicht automatisch abgezogen – nur was du hier einträgst.|Nie jest odejmowana automatycznie – tylko to, co tu wpiszesz.|Nu se scade automat – doar ce introduci aici.|Nuk zbritet automatikisht – vetëm çfarë shënon këtu.|Ne oduzima se automatski – samo ono što ovdje upišeš.|Не се приспада автоматично – само каквото въведеш тук.
+Ende muss nach dem Beginn liegen.|Koniec musi być po rozpoczęciu.|Sfârșitul trebuie să fie după început.|Mbarimi duhet të jetë pas fillimit.|Kraj mora biti nakon početka.|Краят трябва да е след началото.
+andere|inne|altele|të tjera|drugo|друго
+Pause in Minuten|Przerwa w minutach|Pauză în minute|Pushim në minuta|Pauza u minutama|Почивка в минути
+GAEB-Datei wählen oder hierher ziehen|Wybierz plik GAEB lub przeciągnij tutaj|Alege fișierul GAEB sau trage-l aici|Zgjidh skedarin GAEB ose tërhiqe këtu|Odaberi GAEB datoteku ili je povuci ovamo|Избери GAEB файл или го провлачи тук
+Datei wählen|Wybierz plik|Alege fișierul|Zgjidh skedarin|Odaberi datoteku|Избери файл
+Aus GAEB erstellt|Utworzono z GAEB|Creat din GAEB|Krijuar nga GAEB|Izrađeno iz GAEB-a|Създадено от GAEB
+Projekt|Projekt|Proiect|Projekti|Projekt|Проект
+Mit Preis|Z ceną|Cu preț|Me çmim|S cijenom|С цена
+Preise aus deiner Preisliste vorgeschlagen · Feld anklicken zum Ändern|Ceny zaproponowane z twojego cennika · kliknij pole, aby zmienić|Prețuri propuse din lista ta · dă clic pe câmp pentru a schimba|Çmime të propozuara nga lista jote · kliko fushën për ta ndryshuar|Cijene predložene iz tvog cjenika · klikni polje za promjenu|Цени, предложени от ценоразписа ти · кликни полето за промяна
+EP netto|Cena jedn. netto|PU net|ÇN neto|JC neto|Ед. цена нето
+Preisliste|Cennik|Listă de prețuri|Lista e çmimeve|Cjenik|Ценоразпис
+Andere Datei|Inny plik|Alt fișier|Skedar tjetër|Druga datoteka|Друг файл
+Angebot erstellen|Utwórz ofertę|Creează oferta|Krijo ofertën|Izradi ponudu|Създай оферта
+Angebot öffnen|Otwórz ofertę|Deschide oferta|Hap ofertën|Otvori ponudu|Отвори офертата
+Neue Datei einlesen|Wczytaj nowy plik|Citește un fișier nou|Lexo skedar të ri|Učitaj novu datoteku|Прочети нов файл
+GAEB einlesen|Wczytaj GAEB|Citește GAEB|Lexo GAEB|Učitaj GAEB|Прочети GAEB
+Euer persönlicher Code ist eingelöst. Bis|Wasz osobisty kod został zrealizowany. Do|Codul vostru personal a fost folosit. Până la|Kodi juaj personal u përdor. Deri më|Vaš osobni kod je iskorišten. Do|Личният ви код е активиран. До
+sind frei:|bezpłatnie:|sunt gratuite:|janë falas:|besplatno:|са безплатни:
+Danach läuft Onstand normal weiter. Wir erinnern euch eine Woche vorher.|Potem Onstand działa normalnie dalej. Przypomnimy wam tydzień wcześniej.|Apoi Onstand continuă normal. Vă reamintim cu o săptămână înainte.|Pastaj Onstand vazhdon normalisht. Ju kujtojmë një javë më parë.|Zatim Onstand radi normalno dalje. Podsjetit ćemo vas tjedan dana prije.|След това Onstand продължава нормално. Ще ви напомним седмица по-рано.
+Persönlicher Code|Kod osobisty|Cod personal|Kodi personal|Osobni kod|Личен код
+Geschenkter Testmonat|Darmowy miesiąc testowy|Lună de test cadou|Muaj prove dhuratë|Poklonjeni probni mjesec|Подарен пробен месец
+KI-Paket behalten|Zachowaj pakiet AI|Păstrează pachetul AI|Mbaje paketën AI|Zadrži AI paket|Запази AI пакета
+Grundpaket und Firmen-Look laufen sowieso weiter.|Pakiet podstawowy i wygląd firmy działają dalej i tak.|Pachetul de bază și aspectul firmei continuă oricum.|Paketa bazë dhe pamja e firmës vazhdojnë gjithsesi.|Osnovni paket i izgled tvrtke ionako rade dalje.|Основният пакет и фирменият вид продължават така или иначе.
+Danach schaltet es sich ab – Onstand, euer Firmen-Look und alle Daten bleiben.|Potem się wyłącza – Onstand, wygląd firmy i wszystkie dane zostają.|Apoi se oprește – Onstand, aspectul firmei și toate datele rămân.|Pastaj fiket – Onstand, pamja e firmës dhe të gjitha të dhënat mbeten.|Zatim se isključuje – Onstand, izgled tvrtke i svi podaci ostaju.|След това се изключва – Onstand, фирменият вид и всички данни остават.
+Mit dem Finger unterschreiben · quer halten für mehr Platz|Podpisz palcem · obróć poziomo, by mieć więcej miejsca|Semnează cu degetul · ține orizontal pentru mai mult spațiu|Nënshkruaj me gisht · mbaje horizontalisht për më shumë vend|Potpiši prstom · drži vodoravno za više mjesta|Подпиши с пръст · обърни хоризонтално за повече място
+Mit dem Finger unterschreiben|Podpisz palcem|Semnează cu degetul|Nënshkruaj me gisht|Potpiši prstom|Подпиши с пръст
+quer halten für mehr Platz|obróć poziomo, by mieć więcej miejsca|ține orizontal pentru mai mult spațiu|mbaje horizontalisht për më shumë vend|drži vodoravno za više mjesta|обърни хоризонтално за повече място
+Hier unterschreiben|Podpisz tutaj|Semnează aici|Nënshkruaj këtu|Potpiši ovdje|Подпиши тук
+Größer oder kleiner|Większe lub mniejsze|Mai mare sau mai mic|Më e madhe ose më e vogël|Veće ili manje|По-голямо или по-малко
+Onstand als App|Onstand jako aplikacja|Onstand ca aplicație|Onstand si aplikacion|Onstand kao aplikacija|Onstand като приложение
+Du benutzt Onstand bereits als App.|Używasz już Onstand jako aplikacji.|Folosești deja Onstand ca aplicație.|Po e përdor tashmë Onstand si aplikacion.|Već koristiš Onstand kao aplikaciju.|Вече използваш Onstand като приложение.
+So nimmst du alles mit: 1. Hier auf|Tak zabierzesz wszystko: 1. Tutaj dotknij|Așa iei totul cu tine: 1. Aici atinge|Kështu i merr të gjitha: 1. Këtu prek|Ovako sve preneseš: 1. Ovdje dodirni|Така пренасяш всичко: 1. Тук докосни
+Einstellungen kopieren|Kopiuj ustawienia|Copiază setările|Kopjo cilësimet|Kopiraj postavke|Копирай настройките
+Als App aufs iPhone|Jako aplikacja na iPhone|Ca aplicație pe iPhone|Si aplikacion në iPhone|Kao aplikacija na iPhone|Като приложение на iPhone
+wählen und|wybierz i|alege și|zgjidh dhe|odaberi i|избери и
+Hinzufügen|Dodaj|Adaugă|Shto|Dodaj|Добави
+tippen.|dotknij.|atinge.|prek.|dodirni.|докосни.
+In Chrome oder Edge oben rechts in der Adressleiste auf das Symbol|W Chrome lub Edge kliknij u góry po prawej w pasku adresu ikonę|În Chrome sau Edge, sus în dreapta în bara de adrese, dă clic pe simbolul|Në Chrome ose Edge, lart djathtas në shiritin e adresës, kliko simbolin|U Chromeu ili Edgeu gore desno u adresnoj traci klikni simbol|В Chrome или Edge горе вдясно в адресната лента кликни символа
+klicken, am Handy im Menü ⋮ auf|, na telefonie w menu ⋮ dotknij|, pe telefon în meniul ⋮ atinge|, në telefon te menyja ⋮ prek|, na mobitelu u izborniku ⋮ dodirni|, на телефона в менюто ⋮ докосни
+und dann auf|a potem|și apoi|dhe pastaj|i zatim|и после
+Deine Daten bleiben, wie sie sind.|Twoje dane zostają bez zmian.|Datele tale rămân cum sunt.|Të dhënat e tua mbeten siç janë.|Tvoji podaci ostaju kakvi jesu.|Данните ти остават непроменени.
+Code einfügen, beginnt mit ONSTAND1:|Wklej kod, zaczyna się od ONSTAND1:|Lipește codul, începe cu ONSTAND1:|Ngjit kodin, fillon me ONSTAND1:|Zalijepi kod, počinje s ONSTAND1:|Постави кода, започва с ONSTAND1:
+Nur lesen.|Tylko odczyt.|Doar citire.|Vetëm lexim.|Samo čitanje.|Само четене.
+Die letzte Zahlung hat nicht geklappt.|Ostatnia płatność się nie udała.|Ultima plată nu a reușit.|Pagesa e fundit nuk funksionoi.|Zadnje plaćanje nije uspjelo.|Последното плащане не мина.
+Das Abo verwaltet der Chef der Firma.|Subskrypcją zarządza szef firmy.|Abonamentul îl administrează șeful firmei.|Abonimin e menaxhon shefi i firmës.|Pretplatom upravlja šef tvrtke.|Абонамента управлява шефът на фирмата.
+Paket wählen|Wybierz pakiet|Alege pachetul|Zgjidh paketën|Odaberi paket|Избери пакет
+Paket wechseln|Zmień pakiet|Schimbă pachetul|Ndrysho paketën|Promijeni paket|Смени пакета
+Zahlungsart & Rechnungen|Metoda płatności i faktury|Metodă de plată și facturi|Mënyra e pagesës dhe faturat|Način plaćanja i računi|Начин на плащане и фактури
+Kündigung zurücknehmen|Wycofaj wypowiedzenie|Anulează rezilierea|Tërhiq anulimin|Povuci otkaz|Оттегли прекратяването
+Vertrag hier kündigen|Wypowiedz umowę tutaj|Reziliază contractul aici|Anulo kontratën këtu|Otkaži ugovor ovdje|Прекрати договора тук
+Abo & Pakete|Subskrypcja i pakiety|Abonament și pachete|Abonimi dhe paketat|Pretplata i paketi|Абонамент и пакети
+Weiter zu Stripe. Alle eure Daten sind noch da und sofort wieder bearbeitbar.|Dalej do Stripe. Wszystkie wasze dane nadal są i od razu można je edytować.|Mai departe la Stripe. Toate datele voastre sunt încă aici și pot fi editate imediat.|Vazhdo te Stripe. Të gjitha të dhënat tuaja janë ende aty dhe mund të ndryshohen menjëherë.|Dalje na Stripe. Svi vaši podaci su još tu i odmah se mogu uređivati.|Към Stripe. Всички ваши данни са още тук и веднага могат да се редактират.
+Am PC deines Chefs: Logo → Konto & Geräte →|Na komputerze szefa: logo → Konto i urządzenia →|Pe PC-ul șefului: logo → Cont și dispozitive →|Në kompjuterin e shefit: logoja → Llogaria dhe pajisjet →|Na računalu šefa: logo → Račun i uređaji →|На компютъра на шефа: лого → Акаунт и устройства →
+Gerät verbinden|Połącz urządzenie|Conectează dispozitivul|Lidh pajisjen|Poveži uređaj|Свържи устройство
+Euer Geschenk|Wasz prezent|Cadoul vostru|Dhurata juaj|Vaš poklon|Вашият подарък
+Danach läuft|Potem działa|Apoi rulează|Pastaj vazhdon|Zatim radi|След това продължава
+Erste Abbuchung am|Pierwsze obciążenie|Prima debitare la|Tërheqja e parë më|Prvo terećenje|Първо таксуване на
+Zahlungsart hinterlegen|Dodaj metodę płatności|Adaugă metoda de plată|Shto mënyrën e pagesës|Dodaj način plaćanja|Добави начин на плащане
+Weiter zu Stripe: Karte oder SEPA-Lastschrift. Danach wird eure Firma angelegt.|Dalej do Stripe: karta lub polecenie zapłaty SEPA. Potem zostanie założona wasza firma.|Mai departe la Stripe: card sau debit direct SEPA. Apoi firma voastră este creată.|Vazhdo te Stripe: kartë ose debitim SEPA. Pastaj krijohet firma juaj.|Dalje na Stripe: kartica ili SEPA izravno terećenje. Zatim se osniva vaša tvrtka.|Към Stripe: карта или SEPA директен дебит. След това фирмата ви се създава.
+Firma wird angelegt|Firma jest zakładana|Firma se creează|Firma po krijohet|Tvrtka se osniva|Фирмата се създава
+Zahlungsart ist hinterlegt. Einen Moment|Metoda płatności dodana. Chwileczkę|Metoda de plată e salvată. Un moment|Mënyra e pagesës u ruajt. Një moment|Način plaćanja je spremljen. Trenutak|Начинът на плащане е запазен. Момент
+Zum Start|Do startu|La început|Te fillimi|Na početak|Към началото
+Firmenkonto steht|Konto firmowe gotowe|Contul firmei e gata|Llogaria e firmës është gati|Račun tvrtke je spreman|Фирменият акаунт е готов
+alles wird gespeichert|wszystko jest zapisywane|totul se salvează|gjithçka ruhet|sve se sprema|всичко се записва
+Sicherung auf diesem PC?|Kopia na tym komputerze?|Copie de siguranță pe acest PC?|Kopje rezervë në këtë kompjuter?|Sigurnosna kopija na ovom računalu?|Резервно копие на този компютър?
+Später jederzeit unter Logo → Sicherung.|Później w każdej chwili w logo → Kopia.|Mai târziu oricând din logo → Copie de siguranță.|Më vonë në çdo kohë te logoja → Kopja rezervë.|Kasnije bilo kada pod logo → Sigurnosna kopija.|По-късно по всяко време от лого → Архив.
+Erste Schritte|Pierwsze kroki|Primii pași|Hapat e parë|Prvi koraci|Първи стъпки
+Zeig mir’s|Pokaż mi|Arată-mi|Ma trego|Pokaži mi|Покажи ми
+Alles erledigt – die Liste verschwindet morgen von selbst.|Wszystko zrobione – lista zniknie jutro sama.|Totul gata – lista dispare mâine de la sine.|Gjithçka u krye – lista zhduket vetë nesër.|Sve je gotovo – popis sutra sam nestaje.|Всичко е готово – списъкът изчезва сам утре.
+Erste Schritte ausblenden|Ukryj pierwsze kroki|Ascunde primii pași|Fshih hapat e parë|Sakrij prve korake|Скрий първите стъпки
+Einzug in {n} Tagen|Wprowadzenie za {n} dni|Mutare în {n} zile|Hyrja për {n} ditë|Useljenje za {n} dana|Нанасяне след {n} дни
+{n} Tage überfällig|{n} dni po terminie|{n} zile întârziere|{n} ditë vonesë|{n} dana kašnjenja|{n} дни просрочие
+von {n} h|z {n} h|din {n} h|nga {n} h|od {n} h|от {n} ч
+{n} Tagebuch-Einträge|{n} wpisów w dzienniku|{n} înregistrări în jurnal|{n} shënime në ditar|{n} unosa u dnevnik|{n} записа в дневника
+{n} Einträge|{n} wpisów|{n} înregistrări|{n} shënime|{n} unosa|{n} записа
+{n} Personen|{n} osób|{n} persoane|{n} persona|{n} osoba|{n} души
+Hallo, {x}.|Cześć, {x}.|Salut, {x}.|Përshëndetje, {x}.|Bok, {x}.|Здравей, {x}.
+Onstand erinnert am Tag vorher|Onstand przypomni dzień wcześniej|Onstand amintește cu o zi înainte|Onstand të kujton një ditë më parë|Onstand podsjeća dan prije|Onstand напомня ден по-рано
+Stundenzettel für {x} drucken oder als PDF sichern|Wydrukuj kartę godzin za {x} lub zapisz jako PDF|Tipărește fișa de ore pentru {x} sau salvează ca PDF|Printo fletën e orëve për {x} ose ruaje si PDF|Ispiši evidenciju sati za {x} ili spremi kao PDF|Отпечатай отчета за часове за {x} или го запиши като PDF
+Letzte Sicherung {d}|Ostatnia kopia {d}|Ultima copie {d}|Kopja e fundit {d}|Zadnja sigurnosna kopija {d}|Последно архивиране {d}
+Tagebuch {d}|Dziennik {d}|Jurnal {d}|Ditari {d}|Dnevnik {d}|Дневник {d}
+{n} Dateien|{n} plików|{n} fișiere|{n} skedarë|{n} datoteka|{n} файла
+PDF gespeichert: {x}|Zapisano PDF: {x}|PDF salvat: {x}|PDF u ruajt: {x}|PDF spremljen: {x}|PDF записан: {x}
+Einzug {d}|Wprowadzenie {d}|Mutare {d}|Hyrja {d}|Useljenje {d}|Нанасяне {d}
+Drucken & speichern ·|Drukuj i zapisz ·|Tipărește și salvează ·|Printo dhe ruaj ·|Ispiši i spremi ·|Печат и запис ·
+Route|Trasa|Traseu|Itinerari|Ruta|Маршрут
+leer = Summe der angenommenen Angebote|puste = suma przyjętych ofert|gol = suma ofertelor acceptate|bosh = shuma e ofertave të pranuara|prazno = zbroj prihvaćenih ponuda|празно = сума на приетите оферти
+DE123456789 – bei § 13b nötig|DE123456789 – wymagane przy § 13b|DE123456789 – necesar la § 13b|DE123456789 – e nevojshme te § 13b|DE123456789 – potrebno kod § 13b|DE123456789 – нужно при § 13b
+Bleiben nur in diesem Browser gespeichert (wie die Schlüssel) – nicht im Gedächtnis.|Zapisywane tylko w tej przeglądarce (jak klucze) – nie w danych firmy.|Se salvează doar în acest browser (ca cheile) – nu în datele firmei.|Ruhen vetëm në këtë shfletues (si çelësat) – jo në të dhënat e firmës.|Spremaju se samo u ovom pregledniku (kao ključevi) – ne u podacima tvrtke.|Записват се само в този браузър (като ключовете) – не в данните на фирмата.
+z. B. meinbetrieb.de|np. mojafirma.pl|de ex. firmamea.ro|p.sh. firmaime.al|npr. mojatvrtka.hr|напр. моятафирма.bg
+z. B. HRB 12345, AG Frankfurt|np. HRB 12345, AG Frankfurt|de ex. HRB 12345, AG Frankfurt|p.sh. HRB 12345, AG Frankfurt|npr. HRB 12345, AG Frankfurt|напр. HRB 12345, AG Frankfurt
+Stunden kommen aus Arbeitszeit und Personal im Tagebuch (Anwesenheit, ohne Pausenabzug).|Godziny pochodzą z czasu pracy i personelu w dzienniku (obecność, bez odliczania przerw).|Orele vin din timpul de lucru și personalul din jurnal (prezență, fără scăderea pauzelor).|Orët vijnë nga koha e punës dhe personeli në ditar (prania, pa zbritur pushimet).|Sati dolaze iz radnog vremena i osoblja u dnevniku (prisutnost, bez odbitka pauza).|Часовете идват от работното време и персонала в дневника (присъствие, без приспадане на почивки).
+Rollen gelten, sobald das Firmenkonto verbunden ist (Einstellungen → Konto & Geräte).|Role obowiązują po połączeniu konta firmowego (Ustawienia → Konto i urządzenia).|Rolurile se aplică după conectarea contului firmei (Setări → Cont și dispozitive).|Rolet vlejnë sapo të lidhet llogaria e firmës (Cilësimet → Llogaria dhe pajisjet).|Uloge vrijede čim je povezan račun tvrtke (Postavke → Račun i uređaji).|Ролите важат, щом фирменият акаунт е свързан (Настройки → Акаунт и устройства).
+wesentlich (gefährdet die Abnahme)|istotna (zagraża odbiorowi)|esențial (pune în pericol recepția)|thelbësor (rrezikon pranimin)|bitno (ugrožava primopredaju)|съществен (застрашава приемането)
+Dafür braucht es das Firmenkonto (Firmenlogo → Konto & Geräte).|Do tego potrzebne jest konto firmowe (logo firmy → Konto i urządzenia).|Pentru asta e nevoie de contul firmei (logo firmă → Cont și dispozitive).|Për këtë nevojitet llogaria e firmës (logoja e firmës → Llogaria dhe pajisjet).|Za to treba račun tvrtke (logo tvrtke → Račun i uređaji).|За това е нужен фирменият акаунт (лого на фирмата → Акаунт и устройства).
+Basiszinssatz (§ 247 BGB)|Stopa bazowa (§ 247 BGB)|Rata dobânzii de bază (§ 247 BGB)|Norma bazë e interesit (§ 247 BGB)|Osnovna kamatna stopa (§ 247 BGB)|Основен лихвен процент (§ 247 BGB)
+Noch keine offene Baustelle. Leg eine im Kunden-Menü an oder erzähl dem Assistenten, wo du heute warst.|Jeszcze brak otwartej budowy. Dodaj ją w menu klientów albo powiedz asystentowi, gdzie dziś byłeś.|Încă niciun șantier deschis. Adaugă unul în meniul Clienți sau spune-i asistentului unde ai fost azi.|Ende asnjë kantier i hapur. Krijo një te menyja e klientëve ose tregoji asistentit ku ishe sot.|Još nema otvorenog gradilišta. Dodaj ga u izborniku kupaca ili reci asistentu gdje si danas bio.|Още няма отворен обект. Добави го в менюто с клиенти или кажи на асистента къде беше днес.
+`;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
 // 1) Oberfläche: Texte werden beim Anzeigen über das Wörterbuch (kern/woerter.js) ersetzt. Was dort fehlt, bleibt deutsch.
@@ -10463,9 +11070,11 @@ const SP_SR=[['Siječanj','Januar'],['Veljača','Februar'],['Ožujak','Mart'],['
  ['Spremljeno','Sačuvano'],['Spremi','Sačuvaj'],['Uredi','Izmeni'],['Ispiši','Štampaj'],['Izbriši','Obriši'],['izbrisati','obrisati'],['izbrisano','obrisano'],['Provjer','Prover'],['provjer','prover'],['mjesto','mesto'],['Bilješka','Beleška'],['Zabilježi','Zabeleži'],
  ['Riješeno','Rešeno'],['Prije','Pre'],['Poslije','Posle'],['Općenito','Opšte'],['Postavke','Podešavanja'],['Obavijesti','Obaveštenja'],['Povijest','Istorija'],['Izvješće','Izveštaj'],['Zaposlenici','Zaposleni'],['kupca','klijenta'],['Kupci','Klijenti'],['Kupac','Klijent'],
  ['Kat','Sprat'],['Strop','Plafon'],['Ured','Kancelarija'],['Nacrt','Plan'],['nacrtu','planu'],['nacrta','plana'],['nacrt','plan'],['cijene','cene'],['Svijetlo','Svetlo'],['Sljedeći','Sledeći'],['Zadnjih','Poslednjih'],['Zadnji','Poslednji'],['Tuš','Tuš'],['retke','redove'],['prijevod','prevod'],['izvornik','original'],['Preuzmi','Preuzmi'],['uređaji','uređaji'],['Mapa','Fascikla'],['Računi','Računi'],['Fotografiraj','Fotografiši'],['ponovno','ponovo'],['Dupliciraj','Dupliraj'],['Sinkroniziraj','Sinhronizuj'],['Instaliraj','Instaliraj']];
-let SP_W=null;const SP_DATUM=new Set();
+let SP_W=null;const SP_DATUM=new Set(),SP_VORL=[];
 function spWoerter(){if(SP_W)return SP_W;SP_W=new Map();const k=spAkt(),sp={pl:1,ro:2,sq:3,hr:4,bg:5,sr:4}[k];if(!sp)return SP_W;
- SP_WORT.split('\n').forEach((z,i)=>{const t=z.split('|');if(t.length<6)return;let w=t[sp];if(k==='sr')for(const [a,b] of SP_SR)w=w.split(a).join(b);SP_W.set(t[0],w)});
+ SP_WORT.split('\n').forEach((z,i)=>{const t=z.split('|');if(t.length<6)return;let w=t[sp];if(k==='sr')for(const [a,b] of SP_SR)w=w.split(a).join(b);
+  if(/\{[nxd]\}/.test(t[0])){const T=[];const re=t[0].toLowerCase().replace(/[.*+?^$()|[\]\\]/g,'\\$&').replace(/\\?\{([nxd])\\?\}/g,(m,c)=>{T.push(c);return c==='n'?'(\\d+(?:[.,]\\d+)?)':c==='d'?'(.*?\\d.*?)':'(.+?)'});SP_VORL.push({re:new RegExp('^'+re+'$','i'),w});return}
+  SP_W.set(t[0].toLowerCase(),w)});
  // Monate und Wochentage dürfen auch mitten in einem Datum stehen („MO 16. NOV 2026“); Kürzel der Monate = die ersten drei Buchstaben
  ['januar','februar','märz','april','mai','juni','juli','august','september','oktober','november','dezember'].forEach(m=>{SP_DATUM.add(m);const kz=m.slice(0,3);if(!SP_W.has(kz)){SP_W.set(kz,SP_W.get(m).slice(0,3))}SP_DATUM.add(kz)});
  ['montag','dienstag','mittwoch','donnerstag','freitag','samstag','sonntag','mo','di','mi','do','fr','sa','so','heute'].forEach(x=>SP_DATUM.add(x));return SP_W}
@@ -10473,6 +11082,7 @@ const spGross=s=>s===s.toUpperCase()&&/[A-ZÄÖÜ]/.test(s);
 function spEins(s){const W=spWoerter(),w=W.get(s.toLowerCase());if(w==null)return null;return spGross(s)&&s.length>1?w.toUpperCase():w}
 // Übersetzt einen ganzen Text (ein Textstück der Oberfläche) oder gibt null zurück
 function spT(t){if(!t||t.length>90)return null;let w=spEins(t);if(w!=null)return w;
+ for(const v of SP_VORL){const m=v.re.exec(t);if(m){let i=1;const r=v.w.replace(/\{[nxd]\}/g,()=>{const x=m[i++];const y=x&&/[A-Za-zÄÖÜäöü]/.test(x)&&!/\d/.test(x)?x:(x&&spT(x))||x;return y});return spGross(t)&&t.length>1?r.toUpperCase():r}}
  const m=t.match(/^(\+\s?|‹\s?|\d+\s)?(.*?)(\s?[›→]|\s?…|:)?$/);if(m&&(m[1]||m[3])&&m[2]){w=spEins(m[2]);if(w!=null)return (m[1]||'')+w+(m[3]||'')}
  if(t.includes(' · ')){let n=0;const T=t.split(' · ').map(x=>{const y=spT(x);if(y!=null){n++;return y}return x});if(n)return T.join(' · ')}
  if(/\d/.test(t)){const T=t.split(/([A-Za-zÄÖÜäöüß]+)/);let n=0,ok=true;const R=T.map((x,i)=>{if(i%2===0)return x;const l=x.toLowerCase();if(l==='kw'||l==='uhr')return x;if(!SP_DATUM.has(l)){ok=false;return x}n++;return spEins(x)});if(ok&&n)return R.join('')}
