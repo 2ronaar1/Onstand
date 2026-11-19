@@ -4404,7 +4404,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.95';
+const ON_VER='0.10.97';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5151,6 +5151,14 @@ async function arSpeichern(r){if(!(await gedOk()))return false;r.stand=HEUTE();c
  md+='- '+zeileMeta(`Übersicht: ${r.b}, ${r.t}, ${AR_ST[r.st][0].toLowerCase()}, netto ${auEur(r.netto)}, ${r.p13b?'ohne MwSt. (§ 13b)':'brutto '+auEur(arBrutto(r))}, Datum ${auDat(r.d)}${r.st==='gestellt'?', fällig '+auDat(arFaellig(r)):''}${r.bez?', bezahlt '+auDat(r.bez):''}${r.st==='gestellt'&&typeof opOffen==='function'&&!r.bezug?', offen '+auEur(opOffen(r))+(r.mahn&&r.mahn.m2?', 2. Mahnung '+auDat(r.mahn.m2):r.mahn&&r.mahn.m1?', 1. Mahnung '+auDat(r.mahn.m1):r.mahn&&r.mahn.er?', Zahlungserinnerung '+auDat(r.mahn.er):''):''}${r.bezug?', zu Rechnung '+r.bezug:''}${r.storno?', storniert mit '+r.storno:''}`,Q,'hoch')+'\n';
  (r.zahl||[]).forEach(z=>{md+='- '+zeileMeta(`Zahlung: ${auDat(z.d)} – ${auEur(z.b)}`,Q,'hoch')+'\n'});(r.pos||[]).forEach((p,i)=>{md+='- '+zeileMeta(`Pos. ${i+1}: ${p.n} – ${auZ(p.m)} ${p.e} × ${auEur(p.p)}`,Q,'hoch')+'\n'});(r.abz||[]).forEach(x=>{md+='- '+zeileMeta(`abgezogen: ${x.t} (${x.nr}, ${auDat(x.d)}) – netto ${auEur(x.netto)}`,Q,'hoch')+'\n'});
  await schreiben(arDatei(k,'md'),md);await arIndex(null,k);return true}
+// Abschlag: fehlende/alte Angaben ergänzen, damit nie „undefined %“ erscheint
+function arAbFix(r,a){if(!r.ls||typeof r.ls!=='object')r.ls={};
+ if(r.modus!=='proz'&&r.modus!=='ls')r.modus=Object.keys(r.ls).length?'ls':'proz';
+ if(!Number.isFinite(+r.proz)||r.proz===''||r.proz==null){const n=a?auNetto(a):0,m=/\((\d{1,3}) ?%\)/.exec(r.t||'');
+  r.proz=m?+m[1]:(n&&Number.isFinite(+r.kum)?Math.round(+r.kum/n*100):0)}
+ r.proz=Math.max(0,Math.min(100,Math.round(+r.proz)));
+ if(!Number.isFinite(+r.kum)){r.kum=a?(r.modus==='proz'?auNetto(a)*r.proz/100:a.pos.reduce((s,p,i)=>s+p.p*p.m*(+r.ls[i]||0)/100,0)):0}
+ if(!Number.isFinite(+r.netto))r.netto=0}
 function arNeu(art,a,b){const r={v:1,id:'Entwurf-'+Date.now().toString(36),art,a:a?a.nr:'',b:a?a.b:b,d:mgHeute(),von:'',bis:mgHeute(),ziel:14,st:'entwurf',p13b:false,pos:[],netto:0,lohn:0,t:AR_ART[art]};
  if(art==='abschlag'){const L=arAbschlaege(a),vor=L.reduce((s,x)=>s+x.netto,0),n=auNetto(a)||1;r.modus='proz';r.proz=Math.min(100,Math.round(vor/n*100)+20);r.ls={};a.pos.forEach((p,i)=>r.ls[i]=r.proz);r.nrA=L.length+1;r.von=L.length?L[L.length-1].bis:(a.ann||a.d)}
  if(art==='schluss'){r.pos=a.pos.map(p=>({...p}));r.von=a.ann||a.d}
@@ -5158,7 +5166,7 @@ function arNeu(art,a,b){const r={v:1,id:'Entwurf-'+Date.now().toString(36),art,a
  if(art==='frei')r.pos=[];return r}
 function arRegieZeilen(r){const out=[];Object.keys(TB).sort().forEach(t=>{if(t<r.von||t>r.bis)return;(TB[t]||[]).forEach((e,i)=>{if(e.b!==r.b)return;const h=peDauer(e.z)||0;if(!h)return;peListe(e.p).forEach(n=>{const p=typeof peFinde==='function'?peFinde(n):null;out.push({k:t+'|'+i+'|'+(p?p.name:n),t,n:p?p.name:n,h,l:e.l||''})})})});return out}
 function arBerechne(r){const a=arAng(r);
- if(r.art==='abschlag'&&a){const vor=arAbschlaege(a,r).reduce((s,x)=>s+x.netto,0),n=auNetto(a);r.kum=r.modus==='proz'?n*r.proz/100:a.pos.reduce((s,p,i)=>s+p.p*p.m*(r.ls[i]||0)/100,0);r.netto=Math.max(0,Math.round((r.kum-vor)*100)/100);r.lohn=n?r.netto*auLohn(a)/n:0;r.t=r.nrA+'. Abschlagsrechnung'+(r.modus==='proz'?' ('+r.proz+' %)':' (Leistungsstand)')}
+ if(r.art==='abschlag'&&a){arAbFix(r,a);const vor=arAbschlaege(a,r).reduce((s,x)=>s+x.netto,0),n=auNetto(a);r.kum=r.modus==='proz'?n*r.proz/100:a.pos.reduce((s,p,i)=>s+p.p*p.m*(r.ls[i]||0)/100,0);r.netto=Math.max(0,Math.round((r.kum-vor)*100)/100);r.lohn=n?r.netto*auLohn(a)/n:0;r.t=r.nrA+'. Abschlagsrechnung'+(r.modus==='proz'?' ('+r.proz+' %)':' (Leistungsstand)')}
  if(r.art==='schluss'&&a){r.ges=r.pos.reduce((s,p)=>s+p.p*p.m,0);const vor=arAbschlaege(a).reduce((s,x)=>s+x.netto,0);r.netto=Math.max(0,Math.round((r.ges-vor)*100)/100);const lo=r.pos.reduce((s,p)=>s+p.p*p.m*(p.l||0)/100,0);r.lohn=r.ges?lo*r.netto/r.ges:0}
  if(r.art==='regie'){const Z=arRegieZeilen(r).filter(z=>r.wahl[z.k]!==false);r.std=Z.reduce((s,z)=>s+z.h,0);r.stunden=Z.map(z=>({t:z.t,n:z.n,h:z.h}));r.pos=r.std?[{n:r.satz.n+' lt. Stundennachweis',e:'h',p:r.satz.p,l:100,m:Math.round(r.std*100)/100}]:[];r.netto=Math.round(r.std*r.satz.p*100)/100;r.lohn=r.netto}
  if(r.art==='frei'){r.netto=r.pos.reduce((s,p)=>s+p.p*p.m,0);r.lohn=r.pos.reduce((s,p)=>s+p.p*p.m*(p.l||0)/100,0)}}
@@ -5187,7 +5195,7 @@ function arArtMalen(inh){const ANG=AU_A.filter(a=>a.st==='angenommen'),B=Object.
    w.querySelectorAll('[data-b]').forEach(y=>y.onclick=()=>{AUV.rech=arNeu(art,null,y.dataset.b);AUV.rechNeu=false;auMalen(inh)})}})}
 // Rechnung bearbeiten / ansehen
 function arMalen(inh){const r=AUV.rech,a=arAng(r),b=BST[r.b]||{},fest=r.st!=='entwurf';if(!fest)arBerechne(r);let mitte='';
- if(r.art==='abschlag'&&a){const vor=fest?(r.abz||[]):arAbschlaege(a,r);mitte=`<div class="aukarte"><div class="aukh"><b>ABSCHLAG ZU ${esc(a.nr)} · AUFTRAG ${auEur(auNetto(a))} NETTO</b></div>
+ if(r.art==='abschlag'&&a){arAbFix(r,a);const vor=fest?(r.abz||[]):arAbschlaege(a,r);mitte=`<div class="aukarte"><div class="aukh"><b>ABSCHLAG ZU ${esc(a.nr)} · AUFTRAG ${auEur(auNetto(a))} NETTO</b></div>
    ${fest?'':`<div class="auseg"><button type="button" data-mo="proz" class="${r.modus==='proz'?'an':''}">NACH PROZENT</button><button type="button" data-mo="ls" class="${r.modus==='ls'?'an':''}">NACH LEISTUNGSSTAND</button></div>`}
    ${fest?'':r.modus==='proz'?`<p class="auhin">Wie viel vom Auftrag ist <b>insgesamt</b> erledigt? Bisherige Abschläge zieht Onstand ab.</p><div class="auproz"><input type="range" min="5" max="100" step="5" value="${r.proz}" aria-label="Leistungsstand in Prozent"><b>${r.proz} %</b></div><div class="mgchips">${[50,60,70,80,90,100].map(v=>`<button type="button" data-p="${v}" class="${r.proz===v?'an':''}">${v} %</button>`).join('')}</div>`
    :`<div class="auls">${a.pos.map((p,i)=>`<div class="aulz"><span>${esc(p.n)}<small>${auZ(p.m)} ${esc(p.e)} · ${auEur(p.p*p.m)}</small></span><input type="range" min="0" max="100" step="5" value="${r.ls[i]||0}" data-ls="${i}" aria-label="Leistungsstand"><span class="aur">${r.ls[i]||0} %<small>${auEur(p.p*p.m*(r.ls[i]||0)/100)}</small></span></div>`).join('')}</div>`}
@@ -5239,7 +5247,7 @@ function arMalen(inh){const r=AUV.rech,a=arAng(r),b=BST[r.b]||{},fest=r.st!=='en
 function arPdf(r){druckStart(arPdfBlatt(r))}
 function arPdfBlatt(r){const F=auFirma(),b=BST[r.b]||{},a=arAng(r);if(r.st==='entwurf')arBerechne(r);let d=druckBlatt('angebot');
  const zeile=(n,v,k)=>`<div class="${k||''}"><span>${n}</span><span>${v}</span></div>`;let tab='',sum='';
- if(r.art==='abschlag'&&a){tab=r.modus==='ls'?`<table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Auftrag</th><th class="aur">Stand</th><th class="aur">Leistung</th></tr>${a.pos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}</td><td class="aur">${auEur(p.p*p.m)}</td><td class="aur">${r.ls[i]||0} %</td><td class="aur">${auEur(p.p*p.m*(r.ls[i]||0)/100)}</td></tr>`).join('')}</table>`:`<p>Leistungsstand gesamt ${r.proz} % von ${auEur(auNetto(a))} netto (Angebot ${esc(a.nr)}).</p>`;
+ if(r.art==='abschlag'&&a){arAbFix(r,a);tab=r.modus==='ls'?`<table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Auftrag</th><th class="aur">Stand</th><th class="aur">Leistung</th></tr>${a.pos.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}</td><td class="aur">${auEur(p.p*p.m)}</td><td class="aur">${r.ls[i]||0} %</td><td class="aur">${auEur(p.p*p.m*(r.ls[i]||0)/100)}</td></tr>`).join('')}</table>`:`<p>Leistungsstand gesamt ${r.proz} % von ${auEur(auNetto(a))} netto (Angebot ${esc(a.nr)}).</p>`;
   sum=zeile('Leistungsstand gesamt netto',auEur(r.kum))+(r.st==='entwurf'?arAbschlaege(a,r):r.abz||[]).map(x=>zeile('abzgl. '+esc(x.t)+' ('+esc(x.nr)+')','− '+auEur(x.netto),'gr')).join('')+zeile('Abschlag netto',auEur(r.netto),'st')}
  else{const P=r.pos||[];tab=`<table><tr><th>Pos.</th><th>Leistung</th><th class="aur">Menge</th><th class="aur">Einzelpreis</th><th class="aur">Gesamt</th></tr>${P.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.n)}</td><td class="aur">${auZ(p.m)} ${esc(p.e)}</td><td class="aur">${auEur(p.p)}</td><td class="aur">${auEur(p.p*p.m)}</td></tr>`).join('')}</table>`;
   if(r.art==='schluss'){sum=zeile('Gesamtleistung netto',auEur(r.ges))+(r.st==='entwurf'&&a?arAbschlaege(a):r.abz||[]).map(x=>zeile('abzgl. '+esc(x.t)+' ('+esc(x.nr)+', '+auDat(x.d)+')','− '+auEur(x.netto),'gr')).join('')+zeile('Restbetrag netto',auEur(r.netto),'st')}else sum=zeile('Summe netto',auEur(r.netto));
@@ -7527,11 +7535,13 @@ async function brLauf(o={}){if(BR.laeuft)return;if(!syAktiv()||!KI.aktiv){onToas
   for(let i=0;i<jobs.length;i+=10){const teil=jobs.slice(i,i+10);BR.fort=`Lese ${Math.min(i+teil.length,gesamt)} von ${gesamt} …`;brNeuZeichnen();
    const anfrage=[];for(const j of teil){let text='',name=j.name,ordner='',datum=brHeute();
     if(j.art==='q'){text=await brDateiText(j.file,j.name);ordner=j.pfad.split('/').slice(0,-1).join('/');datum=new Date(j.file.lastModified).toISOString().slice(0,10)}
-    else{const t=await lesen(BR_ORD+'/Neu/'+j.name);const m=t.match(/^Quelle: (.+?) · /);name=m?m[1]:j.name;text=t.split('\n').slice(1).join('\n').slice(0,BR_MAX)}
+    else{const t=await lesen(BR_ORD+'/Neu/'+j.name);j.roh=t;const m=t.match(/^Quelle: (.+?) · /);name=m?m[1]:j.name;text=t.split('\n').slice(1).join('\n').slice(0,BR_MAX)}
     j.anzeige=name;anfrage.push({id:j.id,name,ordner,datum,text})}
    const erg=await brKi(anfrage),nachId=new Map(erg.map(e=>[String(e.id),e]));
    for(const j of teil){const e=nachId.get(j.id),quelle=j.art==='q'?(BR.stand.quelle||'Ordner')+'/'+j.pfad:j.anzeige;
-    if(e&&e.seite&&e.seite!=='null'){const t=await brSeiteMerge(e,quelle);BR.frisch.push(t);zu++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:t,d:brHeute(),name:j.anzeige}}
+    const kz=j.art==='n'&&j.name.startsWith('Kontakt ')?/^Seite: (.+)$/m.exec(j.roh||''):null;
+    if(kz){const t=await brSeiteMerge({seite:kz[1].trim(),gruppe:'Kunden & Baustellen',kurz:'',fakten:(e&&e.fakten)||[],links:[]},'');BR.frisch.push(t);zu++;BR.stand.dateien[j.id]={sig:'',seite:t,d:brHeute(),name:j.anzeige}}
+    else if(e&&e.seite&&e.seite!=='null'){const t=await brSeiteMerge(e,quelle);BR.frisch.push(t);zu++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:t,d:brHeute(),name:j.anzeige}}
     else{nz++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:null,d:brHeute(),name:j.anzeige,text:(anfrage.find(a=>a.id===j.id)||{}).text?.slice(0,300)||''}}
     if(j.art==='n'){try{await entfernen(BR_ORD+'/Neu/'+j.name)}catch(x){}}}
    await brStandSpeichern()}
@@ -7647,6 +7657,42 @@ function brKontext(frage){if(!BR.ok||!Object.keys(BR.seiten).length)return '';co
  const detail=wahl.map(p=>`### ${p.titel} (${p.gruppe}${p.unter?' · '+p.unter:''})\n${p.intro}\n${p.fakten.map(([a,b])=>`- ${a}: ${b}`).join('\n')}\n${p.notizen.slice(0,5).map(z=>'- '+z).join('\n')}`).join('\n').slice(0,4200);
  return '## Firmen-Brain (Wiki der Firma)\nAlle Seiten nach Bereich – wer unter „Kunden & Baustellen“ steht, ist Kunde bzw. Baustelle der Firma:\n'+index+(detail?'\n\n## Firmen-Brain · Details zu passenden Seiten\n'+detail:'')}
 setTimeout(()=>{try{brLaden().catch(()=>{})}catch(e){}},4000);
+// ===== Firmen-Brain · Kundenkontakte ins Wiki (v0.10.97) =====
+// A: Jeder Eintrag aus „Kontakt notieren“ (auch von Mitarbeitern) steht sofort als Notiz auf der Wiki-Seite des Kunden.
+// B: Zusätzlich landet er im Fach „Neu“ – der Sonntags-Lauf zieht daraus nur Fakten für dieselbe Kundenseite (keine doppelte Notiz).
+// Läuft nur am Gerät des Chefs (nur er hat das Wiki), mit KI-Paket. Bereits übernommene Kontakte merkt sich _stand.json (kontakte).
+const BR_KON_PRE='Kontakt ';
+const brKonSchl=(n,k)=>[n,k.d,k.z||'',String(k.t||'').slice(0,60)].join('|');
+const brKonDarf=()=>{try{return syAktiv()&&KI.aktiv&&SY_KONTO&&SY_KONTO.rolle==='chef'}catch(e){return false}};
+let BR_KON_LAEUFT=false;
+async function brKontakteAbgleich(){if(BR_KON_LAEUFT||!brKonDarf()||typeof BST==='undefined')return 0;BR_KON_LAEUFT=true;let n=0;
+ try{await brLaden();
+  if(!BR.stand)BR.stand={quelle:'',angelegt:brHeute(),letzterLauf:null,dateien:{},ignoriert:[],interview:{}};
+  const alt=new Set(BR.stand.kontakte||[]),neu=[];
+  for(const b of Object.values(BST)){const L=(b.kon||[]).filter(k=>k&&k.t&&!alt.has(brKonSchl(b.name,k)));if(L.length)neu.push([b,L])}
+  if(!neu.length)return 0;
+  for(const [b,L] of neu){
+   const titel=Object.keys(BR.seiten).find(t=>t.toLowerCase()===brNotiz(b.name).toLowerCase())||brNotiz(b.name),seite=BR.seiten[titel];
+   const gruppe=seite?seite.gruppe:'Kunden & Baustellen';
+   const p=seite?{...seite,fakten:[...seite.fakten],notizen:[...seite.notizen],quellen:[...seite.quellen]}:{titel,gruppe,unter:'Kunde'+(b.ort?' · '+b.ort:''),intro:'',fakten:[],notizen:[],quellen:[]};
+   if(!seite&&b.kontakt)p.fakten.push(['Ansprechpartner',b.kontakt]);if(!seite&&b.tel)p.fakten.push(['Telefon',b.tel]);
+   const sort=[...L].sort((x,y)=>(x.d+(x.z||'')).localeCompare(y.d+(y.z||'')));
+   for(const k of sort)p.notizen.unshift(`${k.d}${k.z?' '+k.z:''} · ${k.art}: ${String(k.t).replace(/\s+/g,' ').trim()}`);
+   p.notizen=p.notizen.slice(0,60);
+   await schreiben(brPfad(gruppe,titel),brText(p));BR.seiten[titel]=p;
+   // B: für den Sonntags-Lauf (nur Fakten, feste Zielseite)
+   try{await fsDir(BR_ORD+'/Neu',true);
+    await schreiben(BR_ORD+'/Neu/'+BR_KON_PRE+brNotiz(b.name)+' '+Date.now().toString(36)+'.txt',
+     `Quelle: Kontakte ${titel} · ${brHeute()}\nSeite: ${titel}\nKundenkontakte mit ${b.name}:\n`+sort.map(k=>`- ${k.d}${k.z?' '+k.z:''} ${k.art}: ${String(k.t).replace(/\s+/g,' ').trim()}`).join('\n'))}catch(e){}
+   L.forEach(k=>alt.add(brKonSchl(b.name,k)));n+=L.length}
+  BR.stand.kontakte=[...alt].slice(-3000);await brStandSpeichern();await brIndex();await brLaden();try{brNeuZeichnen()}catch(e){}}
+ catch(e){console.error(e)}finally{BR_KON_LAEUFT=false}return n}
+// Nach „Kontakt notieren“ gleich übernehmen
+{const alt=bstKontakt;bstKontakt=async function(){const k=await alt.apply(this,arguments);if(k)setTimeout(()=>brKontakteAbgleich(),300);return k}}
+// Beim Start (vor dem Wochen-Check) die Kontakte der Mitarbeiter nachholen
+{const alt=brWochenCheck;brWochenCheck=async function(){try{await brKontakteAbgleich()}catch(e){}return alt.apply(this,arguments)}}
+// Beim Öffnen des Wikis ebenfalls
+{const alt=brZeigen;brZeigen=function(inh){const r=alt.apply(this,arguments);brKontakteAbgleich().then(n=>{if(n)try{brNeuZeichnen()}catch(e){}});return r}}
 // ===== Cockpit-Übersicht (Design-Probe „Büro-Design“): Kennzahlen der Firma, Baustellen mit Fortschritt, Heute =====
 // Erscheint, solange keine Baustelle gewählt ist. Klick auf eine Baustelle öffnet das bisherige Baustellen-Cockpit,
 // dort führt „‹ Übersicht“ zurück. Keine eigenen Daten: alles aus BST, TB, MG, AU_A/AU_R und dem Kalender.
