@@ -4165,6 +4165,46 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 #bp.bplpc .menue h4{font-size:13px!important;color:var(--k-t)!important;font-weight:600}
 #bp.bplpc .drhin{font-size:13px!important}
 #bp.bplpc #etMenue>h4:first-child:not(:has(+#etTyp)),#bp.bplpc #etMenue>h4:first-child+.chips:not(#etTyp){display:none}
+
+/* ===== Objekte & Boden (v0.11.26): Knopf im Einrichten-Kopf, Leiste rechts ===== */
+#bp:not(.bplpc) #opAn,#bp:not(.bplpc) .opanel{display:none!important}
+#bp.bplpc #palette{display:none!important}
+#bp.bplpc #opAn.an{background:color-mix(in srgb,var(--k-akz) 12%,var(--k-b1));border-color:color-mix(in srgb,var(--k-akz) 55%,var(--k-lin));color:var(--k-akz)}
+#bp .opanel{display:none}
+#bp.bplpc.opan .opanel{display:flex;flex-direction:column;position:absolute;top:56px;right:0;bottom:0;width:340px;z-index:8;background:var(--k-b1);border-left:1px solid var(--k-lin);box-shadow:-12px 0 28px -22px color-mix(in srgb,color-mix(in srgb,var(--k-sub) 9%,var(--k-b1)) 35%,transparent)}
+#bp .wmain{position:relative}
+#bp .opk{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px 18px;border-bottom:1px solid var(--k-lin)}
+#bp .opk b{font-size:16px;font-weight:600;color:var(--k-t)}
+#bp .opk .rund{width:34px;height:34px;border-radius:17px;display:grid;place-items:center}
+#bp .opk .rund svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+#bp .opin{flex:1;overflow:auto;padding:6px 18px 18px}
+#bp .opin h4{margin:16px 0 8px;font-size:13.5px;font-weight:600;color:var(--k-t);letter-spacing:0;text-transform:none}
+#bp .opraum{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:10px 12px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b0)}
+#bp .opraum b{display:block;font-size:15px;font-weight:600;color:var(--k-t)}
+#bp .opraum small{font-size:12.5px;color:var(--k-sub)}
+#bp .optext{background:none;border:0;padding:4px 0;color:var(--k-akz);font:600 13px inherit;cursor:pointer;letter-spacing:0;text-transform:none}
+#bp .opart{display:flex;border:1px solid var(--k-lin);border-radius:6px;overflow:hidden}
+#bp .opart button{flex:1;height:34px;border:0;border-left:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:500 13px inherit;cursor:pointer;padding:0 4px;letter-spacing:0;text-transform:none}
+#bp .opart button:first-child{border-left:0}
+#bp .opart button.an{background:var(--k-t);color:var(--k-b1);font-weight:600}
+#bp .opton{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+#bp .opton button,#bp .opobj button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);cursor:pointer;text-align:left;letter-spacing:0;text-transform:none;font:inherit}
+#bp .opton button:hover,#bp .opobj button:hover,#bp .opraeume button:hover{border-color:color-mix(in srgb,var(--k-akz) 45%,var(--k-lin))}
+#bp .opton button.an{border-color:var(--k-akz);box-shadow:inset 0 0 0 1px var(--k-akz)}
+#bp .opton i{display:block;width:100%;height:34px;border-radius:4px;border:1px solid rgba(0,0,0,.08);margin-bottom:4px}
+#bp .opton b,#bp .opobj b{font-size:13.5px;font-weight:600}
+#bp .opton small,#bp .opobj small{font-size:12px;color:var(--k-sub)}
+#bp .opin>.optext{margin-top:6px}
+#bp .opobj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#bp .opobj img{width:64px;height:48px;align-self:center;margin-bottom:2px}
+#bp .opobj b,#bp .opobj small{align-self:center;text-align:center}
+#bp .opobj button{align-items:stretch}
+#bp .opraeume{display:flex;flex-direction:column;gap:8px}
+#bp .opraeume button{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);cursor:pointer;text-align:left;font:inherit;letter-spacing:0;text-transform:none}
+#bp .opraeume i{width:34px;height:34px;flex:none;border-radius:4px;border:1px solid var(--k-lin);background:var(--k-b0)}
+#bp .opraeume b{display:block;font-size:14.5px;font-weight:600}
+#bp .opraeume small{font-size:12.5px;color:var(--k-sub)}
+#bp .ophin{font-size:13px;color:var(--k-sub);margin:14px 0 0;line-height:1.45}
 /* ===== Onstand-Verwaltung (nur Admin) · Probe „Onstand-Verwaltung“ ===== */
 #am .vwk{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 #am .vwkr{display:flex;gap:8px}
@@ -5175,7 +5215,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.25';
+const ON_VER='0.11.26';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7670,6 +7710,71 @@ const OBJ={tuer:{n:'Tür',g:{S:[80,10,200],M:[90,10,205],L:[110,10,210]},f:'#c9a
 function odim(o){const T=OBJ[o.t],g=o.g||'M',v=g==='X'?[o.w||T.g.M[0],o.d||T.g.M[1],o.h||T.g.M[2]]:T.g[g];return {w:v[0],d:v[1],h:v[2],z:T.z||0,f:T.f,n:T.n}}
 // Farben für die Zeichnung kommen aus dem Design (Hell/Dunkel): Wände und Linien in Textfarbe, Auswahl in Kupfer
 const BPC={t:'27,31,36',a:'174,90,39',s:'92,100,112',w:'255,255,255',wand:'70,74,80'};function bpFarben(){const g=getComputedStyle(document.documentElement),rgb=n=>{let v=g.getPropertyValue(n).trim().replace('#','');if(v.length===3)v=[...v].map(c=>c+c).join('');return /^[0-9a-f]{6}$/i.test(v)?[0,2,4].map(i=>parseInt(v.slice(i,i+2),16)).join(','):null};for(const [k,n] of [['t','--k-t'],['a','--k-akz'],['s','--k-sub'],['w','--k-b1']]){const x=rgb(n);if(x)BPC[k]=x}const T=BPC.t.split(',').map(Number),Wb=BPC.w.split(',').map(Number);BPC.wand=T.map((v,i)=>Math.round(v*.8+Wb[i]*.2)).join(',');if(!BPC.ff)try{BPC.ff=getComputedStyle(document.body).fontFamily||'Arial'}catch(e){BPC.ff='Arial'}}
+// ---------- Böden (v0.11.26): Holz in drei Tönen, Fliesen, Teppich, Estrich – je Raum, in 2D und 3D ----------
+const BPF={holz:{n:'Holz',t:{hell:['Hell','Birke','#E7D4AF','#CBB28A'],mittel:['Mittel','Eiche','#C99D6C','#A47A4E'],dunkel:['Dunkel','Dunkle Eiche','#6F4E36','#4D3424']},st:'mittel'},
+ fliese:{n:'Fliesen',t:{hell:['Hell','Weiß','#EFF1F3','#D1D5DA'],grau:['Grau','Steingrau','#BCC1C7','#9EA4AC'],dunkel:['Dunkel','Anthrazit','#4D525A','#383C43']},st:'hell'},
+ teppich:{n:'Teppich',t:{beige:['Beige','Sand','#DDD1BC','#D1C4AD'],grau:['Grau','Grau','#B0B5BC','#A4A9B0']},st:'grau'},
+ estrich:{n:'Estrich',t:{grau:['Grau','Beton','#CCC9C3','#B5B1AA']},st:'grau'}};
+const bpBodenT=b=>{const A=b&&BPF[b.a];return A?A.t[b.t]||A.t[A.st]:null};
+const bpBodenName=b=>{const A=b&&BPF[b.a],T=bpBodenT(b);return A?A.n+' '+T[1]:''};
+const bpHash=(i,j)=>{let h=Math.imul(i+7919,73856093)^Math.imul(j+104729,19349663);h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295};
+function bpBoden(K,r,P,sc){const T=bpBodenT(r.boden);if(!T)return false;const {c,pr}=K,b=bbox(P),a=r.boden.a;
+ c.save();c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.clip();c.fillStyle=T[2];c.fill();
+ const quer=(b.x1-b.x0)>=(b.y1-b.y0),W=(u,v)=>quer?[u,v]:[v,u],U0=quer?b.x0:b.y0,U1=quer?b.x1:b.y1,V0=quer?b.y0:b.x0,V1=quer?b.y1:b.x1;
+ const quad=(u0,v0,u1,v1)=>{c.beginPath();[[u0,v0],[u1,v0],[u1,v1],[u0,v1]].forEach((p,i)=>{const w=W(p[0],p[1]),q=pr(w[0],w[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath()};
+ const lin=(u0,v0,u1,v1)=>{const A=W(u0,v0),B=W(u1,v1),p=pr(A[0],A[1],0),q=pr(B[0],B[1],0);c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1])};
+ if(a==='holz'&&sc*18>=3.5){const bw=18,bl=140;for(let j=Math.floor(V0/bw),jn=Math.ceil(V1/bw);j<jn;j++){const v=j*bw,off=(j*53)%bl;for(let u=U0-off-bl,i=0;u<U1;u+=bl,i++){const h=bpHash(i+Math.round(U0),j);quad(u,v,u+bl,v+bw);c.fillStyle=h>.5?`rgba(255,255,255,${(h-.5)*.22})`:`rgba(0,0,0,${(.5-h)*.16})`;c.fill();if(sc*bw>=8){c.beginPath();lin(u+bl*.1,v+bw*(.3+h*.4),u+bl*.85,v+bw*(.3+h*.4));c.strokeStyle='rgba(0,0,0,.07)';c.lineWidth=.8;c.stroke()}}}
+  c.beginPath();for(let j=Math.floor(V0/bw),jn=Math.ceil(V1/bw);j<=jn;j++)lin(U0,j*bw,U1,j*bw);for(let j=Math.floor(V0/bw),jn=Math.ceil(V1/bw);j<jn;j++){const off=(j*53)%bl;for(let u=U0-off;u<U1;u+=bl)lin(u,j*bw,u,j*bw+bw)}c.strokeStyle=T[3];c.lineWidth=.8;c.stroke()}
+ else if(a==='fliese'&&sc*60>=5){c.beginPath();for(let u=Math.floor(U0/60)*60;u<=U1;u+=60)lin(u,V0,u,V1);for(let v=Math.floor(V0/60)*60;v<=V1;v+=60)lin(U0,v,U1,v);c.strokeStyle=T[3];c.lineWidth=1;c.stroke()}
+ else if(a==='teppich'&&sc*10>=3){c.fillStyle=T[3];for(let i=0;i<Math.min(900,(U1-U0)*(V1-V0)/300);i++){const u=U0+bpHash(i,1)*(U1-U0),v=V0+bpHash(i,2)*(V1-V0),w=W(u,v),q=pr(w[0],w[1],0);c.fillRect(q[0],q[1],1.2,1.2)}}
+ else if(a==='estrich'){c.fillStyle=T[3];for(let i=0;i<Math.min(700,(U1-U0)*(V1-V0)/500);i++){const u=U0+bpHash(i,3)*(U1-U0),v=V0+bpHash(i,4)*(V1-V0),w=W(u,v),q=pr(w[0],w[1],0);c.beginPath();c.arc(q[0],q[1],.4+bpHash(i,5)*1.1,0,7);c.fill()}}
+ c.restore();return true}
+// Ist der Boden dunkel? Dann bekommt die Beschriftung einen hellen Rand
+const bpHell=hex=>{const h=hex.replace('#','');return (parseInt(h.slice(0,2),16)*.3+parseInt(h.slice(2,4),16)*.59+parseInt(h.slice(4,6),16)*.11)>150};
+// ---------- Möbel (v0.11.26): Plansymbol in 2D, Körper aus mehreren Teilen in 3D ----------
+// Örtliche Achsen je Objekt: u entlang der Breite, v von der Rückseite (Wand) nach vorn
+function bpLokal(r,o,T){const ow=o.rot%180?T.d:T.w,od=o.rot%180?T.w:T.d,x0=r.x+o.x-ow/2,y0=r.y+o.y-od/2,W=T.w,D=T.d,R=((o.rot%360)+360)%360;
+ return (u,v)=>R===0?[x0+u,y0+v]:R===180?[x0+W-u,y0+D-v]:R===90?[x0+v,y0+u]:[x0+D-v,y0+W-u]}
+// Farben im hellen Design wie angegeben, im dunklen Design abgedunkelt
+function bpTon(f){if(!/^#/.test(f))return f;const w=BPC.w.split(',').map(Number),h=f.slice(1),v=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16));if(w[0]+w[1]+w[2]>384)return f;return `rgb(${v.map((x,i)=>Math.round(x*.4+w[i]*.6)).join(',')})`}
+function bpDunkler(f,k){let v;if(/^#/.test(f)){const h=f.slice(1);v=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16));return `rgb(${v.map(x=>Math.round(x*k)).join(',')})`}const m=f.match(/[\d.]+/g);if(!m)return f;return m.length>3?`rgba(${m.slice(0,3).map(x=>Math.round(x*k)).join(',')},${m[3]})`:`rgb(${m.slice(0,3).map(x=>Math.round(x*k)).join(',')})`}
+const MC={stoff:'#DDE5EF',stoff2:'#C6D2E1',holz:'#E9DAC3',holz2:'#CDB590',weiss:'#FFFFFF',wasser:'#D3EAF6',kueche:'#E6E9ED',platte:'#9CA3AC',topf:'#D9C1A3',gruen:'rgba(118,172,96,.78)'};
+function bpSym2D(K,r,o,T,sel){const {c,pr}=K,L=bpLokal(r,o,T),W=T.w,D=T.d,S=p=>{const w=L(p[0],p[1]);return pr(w[0],w[1])},F=bpTon;
+ const lc=sel?`rgb(${BPC.a})`:`rgb(${BPC.t})`,lf=sel?`rgba(${BPC.a},.7)`:`rgba(${BPC.t},.45)`,lw=sel?2:1.2;
+ const poly=(pts,f,s,w)=>{c.beginPath();pts.forEach((p,i)=>{const q=S(p);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();if(f){c.fillStyle=f;c.fill()}if(s){c.strokeStyle=s;c.lineWidth=w||1;c.stroke()}};
+ const rect=(u0,v0,u1,v1,f,s,w)=>poly([[u0,v0],[u1,v0],[u1,v1],[u0,v1]],f,s,w);
+ const rrect=(u0,v0,u1,v1,rd,f,s,w)=>{rd=Math.max(0,Math.min(rd,(u1-u0)/2,(v1-v0)/2));const P=[];[[u1-rd,v0+rd,-90],[u1-rd,v1-rd,0],[u0+rd,v1-rd,90],[u0+rd,v0+rd,180]].forEach(([cu,cv,a0])=>{for(let i=0;i<=5;i++){const a=(a0+18*i)*Math.PI/180;P.push([cu+rd*Math.cos(a),cv+rd*Math.sin(a)])}});poly(P,f,s,w)};
+ const ell=(cu,cv,ru,rv,f,s,w)=>{const P=[];for(let i=0;i<28;i++){const a=i/28*2*Math.PI;P.push([cu+ru*Math.cos(a),cv+rv*Math.sin(a)])}poly(P,f,s,w)};
+ const line=(u0,v0,u1,v1,s,w,dash)=>{const a=S([u0,v0]),b=S([u1,v1]);c.beginPath();c.setLineDash(dash||[]);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.strokeStyle=s;c.lineWidth=w||1;c.stroke();c.setLineDash([])};
+ switch(o.t){
+  case 'bett':{rect(0,0,W,D,F(MC.holz),lc,lw);rect(0,0,W,7,F(MC.holz2),lc,.9);const n=W>=120?2:1,pw=(W-14-(n-1)*6)/n,ph=Math.min(38,D*.19);for(let i=0;i<n;i++)rrect(7+i*(pw+6),12,7+i*(pw+6)+pw,12+ph,7,F(MC.weiss),lf,.9);const dv=12+ph+8;rect(3,dv,W-3,D-3,F(MC.stoff),lc,.9);line(3,dv+14,W-3,dv+14,lf,.9);const k=Math.min(34,W*.28);poly([[W-3,D-3],[W-3,D-3-k],[W-3-k,D-3]],F(MC.stoff2),lf,.9);break}
+  case 'sofa':{const a=Math.min(18,W*.1),bk=Math.min(24,D*.28);rrect(0,0,W,D,7,F(MC.stoff),lc,lw);rrect(a,0,W-a,bk,4,F(MC.stoff2),lf,.9);rrect(0,0,a,D,5,F(MC.stoff2),lf,.9);rrect(W-a,0,W,D,5,F(MC.stoff2),lf,.9);const n=W>=200?3:2,cw=(W-2*a)/n;for(let i=0;i<n;i++)rrect(a+i*cw+2,bk+2,a+(i+1)*cw-2,D-3,5,null,lf,.9);rrect(0,0,W,D,7,null,lc,lw);break}
+  case 'tisch':{rect(0,0,W,D,F(MC.holz),lc,lw);rect(4,4,W-4,D-4,null,lf,.8);break}
+  case 'stuhl':{rrect(3,D*.2,W-3,D,5,F(MC.holz),lc,lw);rrect(0,0,W,D*.2,3,F(MC.holz2),lc,.9);break}
+  case 'schrank':{rect(0,0,W,D,F(MC.holz),lc,lw);line(0,D-5,W,D-5,lc,.9);const n=Math.max(1,Math.round(W/50));for(let i=1;i<n;i++)line(W*i/n,D-5,W*i/n,D,lc,.9);line(6,D*.42,W-6,D*.42,lf,.9,[5,3]);for(let i=0;i<n;i++)line(W*(i+.5)/n-3,D-2.5,W*(i+.5)/n+3,D-2.5,lc,1.2);break}
+  case 'kueche':{rect(0,0,W,D,F(MC.kueche),lc,lw);line(0,D-4,W,D-4,lf,.8);const n=Math.max(1,Math.round(W/60));for(let i=1;i<n;i++)line(W*i/n,D-4,W*i/n,D,lf,.8);const su=Math.min(W*.24,60),sw=Math.min(70,W*.3);rrect(su-sw/2,9,su+sw/2,D-11,6,F(MC.weiss),lc,.9);ell(su,(D-2)/2,2.6,2.6,null,lc,.9);if(W>=140){const hu=W-Math.min(W*.26,62),hr=Math.min(9,D*.13);rrect(hu-30,8,hu+30,D-10,3,F('#3B4048'),null);[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>ell(hu+a*14,D/2-1+b*12,hr,hr,null,'rgba(255,255,255,.75)',.9))}break}
+  case 'dusche':{rect(0,0,W,D,F(MC.wasser),lc,lw);rect(4,4,W-4,D-4,null,lf,.8);line(4,4,W-4,D-4,lf,.7);line(W-4,4,4,D-4,lf,.7);ell(W/2,D/2,4,4,F(MC.weiss),lc,.9);break}
+  case 'wc':{const tw=Math.min(20,W/2),bw=Math.min(18,W*.46);rrect(W/2-tw,0,W/2+tw,Math.min(18,D*.28),3,F(MC.weiss),lc,lw);const cv=D*.28+D*.36;ell(W/2,cv,bw,D*.36,F(MC.weiss),lc,lw);ell(W/2,cv+2,bw*.6,D*.22,F(MC.wasser),lf,.8);break}
+  case 'wanne':{rrect(0,0,W,D,6,F(MC.weiss),lc,lw);rrect(7,7,W-7,D-7,Math.min(D*.38,26),F(MC.wasser),lf,.9);ell(W-22,D/2,3,3,null,lc,.9);break}
+  case 'pflanze':{const rr=Math.min(W,D)/2;ell(W/2,D/2,rr*.62,rr*.62,F(MC.topf),lc,lw);for(let i=0;i<7;i++){const a=i/7*2*Math.PI+.3;ell(W/2+Math.cos(a)*rr*.42,D/2+Math.sin(a)*rr*.42,rr*.4,rr*.4,MC.gruen,'rgba(70,120,60,.6)',.8)}ell(W/2,D/2,rr*.28,rr*.28,MC.gruen,'rgba(70,120,60,.6)',.8);break}
+  default:return false}
+ return true}
+// 3D-Körper: [u0,v0,u1,v1,z0,z1,Farbe] in cm; 'glas' = durchsichtig
+const BK={
+ bett:(W,D,H)=>{const n=W>=120?2:1,pw=(W-14-(n-1)*6)/n,ph=Math.min(38,D*.19),dv=12+ph+8,P=[];for(let i=0;i<n;i++)P.push([7+i*(pw+6),12,7+i*(pw+6)+pw,12+ph,H,H+9,MC.weiss]);return [[0,0,W,7,0,H+45,MC.holz2],[0,7,W,D,0,22,MC.holz],[3,9,W-3,D-3,22,H,MC.weiss],[3,dv,W-3,D-3,H,H+3,MC.stoff]].concat(P)},
+ sofa:(W,D,H)=>{const a=Math.min(18,W*.1),bk=Math.min(24,D*.28);return [[0,0,W,D,0,12,MC.stoff2],[a,bk,W-a,D-2,12,H*.5,MC.stoff],[0,0,W,bk,12,H,MC.stoff2],[0,bk,a,D,12,H*.68,MC.stoff2],[W-a,bk,W,D,12,H*.68,MC.stoff2]]},
+ tisch:(W,D,H)=>[[0,0,W,D,H-4,H,MC.holz],[3,3,9,9,0,H-4,MC.holz2],[W-9,3,W-3,9,0,H-4,MC.holz2],[3,D-9,9,D-3,0,H-4,MC.holz2],[W-9,D-9,W-3,D-3,0,H-4,MC.holz2]],
+ stuhl:(W,D,H)=>[[3,3,7,7,0,44,MC.holz2],[W-7,3,W-3,7,0,44,MC.holz2],[3,D-7,7,D-3,0,44,MC.holz2],[W-7,D-7,W-3,D-3,0,44,MC.holz2],[2,D*.15,W-2,D,44,48,MC.holz],[2,0,W-2,5,44,H,MC.holz2]],
+ schrank:(W,D,H)=>[[2,2,W-2,D,0,8,MC.holz2],[0,0,W,D,8,H,MC.holz]],
+ kueche:(W,D,H)=>[[2,0,W-2,D-6,0,10,MC.platte],[0,0,W,D-2,10,H-4,MC.kueche],[0,0,W,D,H-4,H,MC.platte],[0,0,W,Math.min(35,D),145,215,MC.kueche]],
+ dusche:(W,D,H)=>[[0,0,W,D,0,5,MC.weiss],[0,D-1.5,W,D,5,H,'glas'],[W-1.5,0,W,D-1.5,5,H,'glas']],
+ wc:(W,D,H)=>{const tw=Math.min(20,W/2),bw=Math.min(18,W*.46);return [[W/2-tw,0,W/2+tw,Math.min(18,D*.28),0,H,MC.weiss],[W/2-bw,D*.28,W/2+bw,D,0,40,MC.weiss]]},
+ wanne:(W,D,H)=>[[0,0,W,D,0,H,MC.weiss],[7,7,W-7,D-7,H,H+.5,MC.wasser]],
+ pflanze:(W,D,H)=>[[W*.25,D*.25,W*.75,D*.75,0,Math.min(35,H*.3),MC.topf],[W*.05,D*.05,W*.95,D*.95,Math.min(35,H*.3),H,'#86B870']]};
+function bpKoerper(Q,K,r,o,T,zc,bas,sel){const B=BK[o.t];if(!B)return false;const L=bpLokal(r,o,T),z=T.z||0,pr=K.pr;
+ B(T.w,T.d,T.h).forEach(([u0,v0,u1,v1,z0,z1,f])=>{const ec=[L(u0,v0),L(u1,v0),L(u1,v1),L(u0,v1)],m=L((u0+u1)/2,(v0+v1)/2),bc=pr(m[0],m[1])[2],key=bas+((bc-zc)+z0*.6)*1e-4,glas=f==='glas',col=glas?'rgba(190,222,242,.32)':bpTon(f);
+  for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4],fd=(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2;Q.push({d:key+(fd-bc)*1e-7,pts:[pr(a[0],a[1],z+z0),pr(b[0],b[1],z+z0),pr(b[0],b[1],z+z1),pr(a[0],a[1],z+z1)],fill:glas?col:bpDunkler(col,i%2?.8:.9),glas,sel})}
+  Q.push({d:key+2e-5,pts:ec.map(p=>pr(p[0],p[1],z+z1)),fill:col,glas,sel})});return true}
 // Tür und Fenster als Plansymbol: Öffnung in der Wand, Tür mit Flügel und Aufschlag, Fenster mit Doppellinie
 function bpSymbol(K,r,o,T,ow,od,WA,sel){const {c,pr}=K,s=K.s||1,n=o.n,tt=[-n[1],n[0]],q=n[0]?ow:od,w=T.w,C=[r.x+o.x,r.y+o.y],F=[C[0]-n[0]*q/2,C[1]-n[1]*q/2];let a=24;try{const x=wandAn(WA,[F[0]+n[0]*.5,F[1]+n[1]*.5],0);a=x?x.t:(WA.wand&&WA.wand.a)||24}catch(e){}if(a<1)return false;
  const P4=[[F[0]-tt[0]*w/2,F[1]-tt[1]*w/2],[F[0]+tt[0]*w/2,F[1]+tt[1]*w/2]],O4=P4.map(p=>[p[0]+n[0]*(a+.5),p[1]+n[1]*(a+.5)]),S=p=>pr(p[0],p[1]);
@@ -7685,7 +7790,7 @@ function bpSymbol(K,r,o,T,ow,od,WA,sel){const {c,pr}=K,s=K.s||1,n=o.n,tt=[-n[1],
 function bpObjTiefe(r,o,pr,zc){if(!o.n||(o.t!=='tuer'&&o.t!=='fenster'))return zc;const C=[r.x+o.x,r.y+o.y],P=wpoly(r);let best=null;
  for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],dx=b[0]-a[0],dy=b[1]-a[1],l2=dx*dx+dy*dy||1,t=((C[0]-a[0])*dx+(C[1]-a[1])*dy)/l2;if(t<-.05||t>1.05)continue;const d=Math.hypot(C[0]-a[0]-dx*t,C[1]-a[1]-dy*t);if(!best||d<best.d)best={d,m:[(a[0]+b[0])/2,(a[1]+b[1])/2]}}
  if(!best)return zc;return Math.max(pr(best.m[0],best.m[1])[2],pr(best.m[0]+o.n[0]*60,best.m[1]+o.n[1]*60)[2])+.5}
-function bpMassstab(K,s){const c=K.c,L=[50,100,200,500,1000,2000].find(v=>v*s>=70)||2000,px=L*s,x1=K.w-22,x0=x1-px,y=K.h-24;c.save();c.lineWidth=1.5;c.strokeStyle=`rgb(${BPC.t})`;c.beginPath();c.moveTo(x0,y-5);c.lineTo(x0,y);c.lineTo(x1,y);c.lineTo(x1,y-5);c.moveTo((x0+x1)/2,y-3);c.lineTo((x0+x1)/2,y);c.stroke();c.fillStyle=`rgb(${BPC.t})`;c.font=`600 12px ${BPC.ff}`;c.textAlign='center';c.fillText(L>=100?(L/100).toString().replace('.',',')+' m':L+' cm',(x0+x1)/2,y-9);c.restore()}
+function bpMassstab(K,s){const c=K.c,L=[50,100,200,500,1000,2000].find(v=>v*s>=70)||2000,px=L*s,x1=K.w-22-(ROOT.classList.contains('opan')&&c.canvas.id==='wcv'?340:0),x0=x1-px,y=K.h-24;c.save();c.lineWidth=1.5;c.strokeStyle=`rgb(${BPC.t})`;c.beginPath();c.moveTo(x0,y-5);c.lineTo(x0,y);c.lineTo(x1,y);c.lineTo(x1,y-5);c.moveTo((x0+x1)/2,y-3);c.lineTo((x0+x1)/2,y);c.stroke();c.fillStyle=`rgb(${BPC.t})`;c.font=`600 12px ${BPC.ff}`;c.textAlign='center';c.fillText(L>=100?(L/100).toString().replace('.',',')+' m':L+' cm',(x0+x1)/2,y-9);c.restore()}
 function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true),{c,pr}=K,t3=Math.sin(k.tilt)>.02;
  // Raster
  if(opt.raster!==false){c.lineWidth=1;const step=k.s*100>18?100:500;const tl=K.inv(0,0),br=K.inv(K.w,K.h),x0=Math.floor(Math.min(tl[0],br[0])/step)*step,x1=Math.max(tl[0],br[0]),y0=Math.floor(Math.min(tl[1],br[1])/step)*step,y1=Math.max(tl[1],br[1]);
@@ -7697,26 +7802,32 @@ function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true)
  const WA=opt.et||null;if(WA&&!t3)wandBand(K,raeume,WA,false,{f:`rgb(${BPC.wand})`,s:`rgb(${BPC.wand})`});
  if(opt.wsel&&!t3){c.beginPath();opt.wsel.quad.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=`rgba(${BPC.a},.45)`;c.fill();c.lineWidth=1.5;c.strokeStyle=`rgb(${BPC.a})`;c.stroke()}
  // Böden
- const Q=[];raeume.forEach(r=>{const P=wpoly(r),sel=opt.sel===r,fok=opt.fokus&&opt.fokus!==r;c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();
-  c.fillStyle=sel?`rgba(${BPC.a},.16)`:fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();if(!t3){c.lineWidth=sel?2.5:1;c.strokeStyle=sel?`rgb(${BPC.a})`:fok?`rgba(${BPC.t},.3)`:`rgb(${BPC.wand})`;c.shadowColor=c.strokeStyle;c.shadowBlur=sel?8:0;c.stroke();c.shadowBlur=0}
-  if(t3){const H=r.H;for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],sel,fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}if(WA){const O=raumAussen(r,WA);for(let i=0;i<O.length;i++){const a=O[i],b=O[(i+1)%O.length];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-.01,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],aussen:1,fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}}}
+ const Q=[];let RI=0;{const qp=Q.push.bind(Q);Q.push=(...a)=>{a.forEach(x=>{if(x.ri==null)x.ri=RI});return qp(...a)}}raeume.forEach((r,ri)=>{RI=ri;const P=wpoly(r),sel=opt.sel===r,fok=opt.fokus&&opt.fokus!==r;c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();
+  c.fillStyle=sel?`rgba(${BPC.a},.16)`:fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();if(!fok&&r.boden&&bpBoden(K,r,P,k.s)){c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();if(sel){c.fillStyle=`rgba(${BPC.a},.18)`;c.fill()}}if(!t3){c.lineWidth=sel?2.5:1;c.strokeStyle=sel?`rgb(${BPC.a})`:fok?`rgba(${BPC.t},.3)`:`rgb(${BPC.wand})`;c.shadowColor=c.strokeStyle;c.shadowBlur=sel?8:0;c.stroke();c.shadowBlur=0}
+  if(t3){const H=r.H,cb=bbox(P),cxm=(cb.x0+cb.x1)/2,cym=(cb.y0+cb.y1)/2;for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,rueck=pr(mx+(cxm-mx)*.05,my+(cym-my)*.05)[2]<pr(mx,my)[2];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],sel,fok,rueck,fein:(r.ver||[]).some(v=>v.typ==='dach')})}if(WA){const O=raumAussen(r,WA);for(let i=0;i<O.length;i++){const a=O[i],b=O[(i+1)%O.length],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-.01,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],aussen:1,rueck:pr(mx+(cxm-mx)*.05,my+(cym-my)*.05)[2]<pr(mx,my)[2],fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}}}
   if(!t3&&(r.ver||[]).some(v=>v.typ==='dach')){c.save();c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.clip();
    (r.ver||[]).filter(v=>v.typ==='dach').forEach(v=>{const t=Math.tan(v.neigung*Math.PI/180);[[100,'1 m'],[200,'2 m']].forEach(([hm,lab])=>{if(t<=0||hm<=v.knie)return;const dd=(hm-v.knie)/t,ln=v.wand==='N'?[[0,dd],[r.L,dd]]:v.wand==='S'?[[0,r.B-dd],[r.L,r.B-dd]]:v.wand==='W'?[[dd,0],[dd,r.B]]:[[r.L-dd,0],[r.L-dd,r.B]];const a=pr(...welt(r,...ln[0])),b=pr(...welt(r,...ln[1]));c.setLineDash(hm===100?[3,4]:[8,5]);c.strokeStyle='rgba(255,184,107,.75)';c.lineWidth=1.2;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([]);c.fillStyle='rgba(255,184,107,.9)';c.font='9.5px Arial';c.textAlign='left';c.fillText(lab,(a[0]+b[0])/2+4,(a[1]+b[1])/2-4)});
     // schraffierter Streifen unter 1 m
     const d1=t>0?Math.max(0,(100-v.knie)/t):0;if(d1>0){const st=v.wand==='N'?[[0,0],[r.L,0],[r.L,d1],[0,d1]]:v.wand==='S'?[[0,r.B-d1],[r.L,r.B-d1],[r.L,r.B],[0,r.B]]:v.wand==='W'?[[0,0],[d1,0],[d1,r.B],[0,r.B]]:[[r.L-d1,0],[r.L,0],[r.L,r.B],[r.L-d1,r.B]];c.beginPath();st.forEach((p,i)=>{const q=pr(...welt(r,...p));i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle='rgba(255,184,107,.07)';c.fill()}});c.restore()}
   (r.obj||[]).forEach(o=>{const T=odim(o),ow=o.rot%180?T.d:T.w,od=o.rot%180?T.w:T.d,x=r.x+o.x-ow/2,y=r.y+o.y-od/2,z=T.z||0;const ec=[[x,y],[x+ow,y],[x+ow,y+od],[x,y+od]];
    if(!t3&&o.n&&WA&&(o.t==='tuer'||o.t==='fenster')&&bpSymbol(K,r,o,T,ow,od,WA,opt.osel===o)){}
+   else if(!t3&&bpSym2D(K,r,o,T,opt.osel===o)){}
    else if(!t3){c.beginPath();ec.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=T.f+'33';c.fill();c.lineWidth=opt.osel===o?2.2:1.2;c.strokeStyle=opt.osel===o?`rgb(${BPC.a})`:T.f;c.stroke();if(k.s*ow>34){const m0=pr(x+ow/2,y+od/2);c.fillStyle=`rgb(${BPC.s})`;c.font=`500 11px ${BPC.ff}`;c.textAlign='center';c.fillText(T.n,m0[0],m0[1]+4)}}
-   else{const zc=pr(x+ow/2,y+od/2)[2],bas=bpObjTiefe(r,o,pr,zc);for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({d:bas+((pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-zc)*1e-4,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({d:bas+.03,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}})});
- Q.sort((a,b)=>a.d-b.d).forEach(q=>{c.beginPath();q.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();
+   else{const zc=pr(x+ow/2,y+od/2)[2],bas=bpObjTiefe(r,o,pr,zc);if(!bpKoerper(Q,K,r,o,T,zc,bas,opt.osel===o)){for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({d:bas+((pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-zc)*1e-4,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({d:bas+.03,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}}})});
+ // 3D-Reihenfolge Raum für Raum (hinten zuerst): hintere Wände · Böden-Möbel · vordere, durchsichtige Wände.
+ // So schiebt sich beim Drehen kein Möbel abwechselnd vor und hinter eine Wand (Flackern).
+ const RK=raeume.map(r=>{const b=bbox(wpoly(r));return pr((b.x0+b.x1)/2,(b.y0+b.y1)/2)[2]}),LAY=q=>q.aussen?(q.rueck?4:0):(q.obj||q.fill)?2:q.rueck?3:1;
+ Q.sort((a,b)=>((RK[a.ri]||0)-(RK[b.ri]||0))||(LAY(a)-LAY(b))||(a.d-b.d)).forEach(q=>{c.beginPath();q.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();
   if(q.aussen){c.fillStyle=q.fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.t},.06)`;c.fill();c.strokeStyle=q.fok?`rgba(${BPC.t},.12)`:`rgba(${BPC.t},.4)`;c.lineWidth=1;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}
+  else if(q.fill){c.fillStyle=q.fill;c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:q.glas?'rgba(120,160,190,.5)':'rgba(0,0,0,.24)';c.lineWidth=q.sel?1.6:.7;c.stroke()}
   else if(q.obj){c.fillStyle=q.obj.n==='Fenster'?`rgba(150,200,235,${q.deckel?.7:.4})`:q.obj.f+(q.deckel?'cc':'88');c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:'rgba(0,0,0,.35)';c.lineWidth=1;c.stroke()}
-  else{c.fillStyle=q.sel?`rgba(${BPC.a},.22)`:q.fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:q.fok?`rgba(${BPC.t},.18)`:`rgba(${BPC.t},.75)`;c.lineWidth=1.2;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}});
+  else{c.fillStyle=q.sel?`rgba(${BPC.a},${q.rueck?.08:.22})`:q.fok?`rgba(${BPC.t},.02)`:q.rueck?`rgba(${BPC.w},.16)`:`rgba(${BPC.w},.96)`;c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:q.fok?`rgba(${BPC.t},.18)`:`rgba(${BPC.t},.75)`;c.lineWidth=1.2;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}});
  if(WA&&t3)wandBand(K,raeume,WA,true,{f:`rgba(${BPC.wand},.75)`,s:`rgb(${BPC.wand})`});
  // Beschriftung
  if(opt.text!==false)raeume.forEach(r=>{const P=wpoly(r),b=bbox(P),cx=(b.x0+b.x1)/2,cy=opt.fokus===r&&(r.obj||[]).length?b.y0+Math.min(60,(b.y1-b.y0)*.15):(b.y0+b.y1)/2,z=t3?r.H:0,q=pr(cx,cy,z),wPx=(b.x1-b.x0)*k.s;if(opt.fokus&&opt.fokus!==r)return;
-  if(wPx>46){c.textAlign='center';c.fillStyle=`rgb(${BPC.t})`;c.font=`600 ${Math.max(12,Math.min(17,wPx/8))}px ${BPC.ff}`;c.fillText(r.name||'Raum',q[0],q[1]-3);c.fillStyle=`rgb(${BPC.s})`;c.font=`500 ${wPx>110?13:12}px ${BPC.ff}`;c.fillText((r.ver||[]).some(v=>v.typ==='dach')?m2(flaeche(P))+' m² · Wohnfl. '+m2(wohnflaeche(r))+' m²':m2(flaeche(P))+' m²',q[0],q[1]+14)}
-  if(!t3&&opt.masse!==false&&wPx>70){const hPx=(b.y1-b.y0)*k.s;c.fillStyle=`rgb(${BPC.s})`;c.font=`500 12px ${BPC.ff}`;const tObj=(r.obj||[]).some(o=>o.t==='tuer'&&o.n&&o.n[1]===-1),lObj=(r.obj||[]).some(o=>o.n&&o.n[0]===-1&&o.t==='tuer'),top=pr(tObj?b.x0+(b.x1-b.x0)*.78:cx,b.y0),lef=pr(b.x0,lObj?b.y0+(b.y1-b.y0)*.28:cy);if(hPx>110)c.fillText(m(b.x1-b.x0)+' m',top[0],top[1]+17);if(hPx>70&&wPx>130){c.save();c.translate(lef[0]+16,lef[1]);c.rotate(-Math.PI/2);c.fillText(m(b.y1-b.y0)+' m',0,0);c.restore()}}});
+  const BT=t3?null:bpBodenT(r.boden),rand=(r.obj||[]).length||BT,tx=(t,x,y)=>{if(rand){c.save();c.lineJoin='round';c.lineWidth=4;c.strokeStyle=BT&&!bpHell(BT[2])?'rgba(20,22,26,.55)':`rgba(${BPC.w},.9)`;c.strokeText(t,x,y);c.restore()}c.fillText(t,x,y)},dunkelB=BT&&!bpHell(BT[2]);
+  if(wPx>46){c.textAlign='center';c.fillStyle=dunkelB?'#fff':`rgb(${BPC.t})`;c.font=`600 ${Math.max(12,Math.min(17,wPx/8))}px ${BPC.ff}`;tx(r.name||'Raum',q[0],q[1]-3);c.fillStyle=dunkelB?'rgba(255,255,255,.85)':`rgb(${BPC.s})`;c.font=`500 ${wPx>110?13:12}px ${BPC.ff}`;tx((r.ver||[]).some(v=>v.typ==='dach')?m2(flaeche(P))+' m² · Wohnfl. '+m2(wohnflaeche(r))+' m²':m2(flaeche(P))+' m²',q[0],q[1]+14)}
+  if(!t3&&opt.masse!==false&&wPx>70){const hPx=(b.y1-b.y0)*k.s;c.fillStyle=dunkelB?'rgba(255,255,255,.85)':`rgb(${BPC.s})`;c.font=`500 12px ${BPC.ff}`;const tObj=(r.obj||[]).some(o=>o.t==='tuer'&&o.n&&o.n[1]===-1),lObj=(r.obj||[]).some(o=>o.n&&o.n[0]===-1&&o.t==='tuer'),top=pr(tObj?b.x0+(b.x1-b.x0)*.78:cx,b.y0),lef=pr(b.x0,lObj?b.y0+(b.y1-b.y0)*.28:cy);if(hPx>110)tx(m(b.x1-b.x0)+' m',top[0],top[1]+17);if(hPx>70&&wPx>130){c.save();c.translate(lef[0]+16,lef[1]);c.rotate(-Math.PI/2);tx(m(b.y1-b.y0)+' m',0,0);c.restore()}}});
  if(!t3&&opt.raster!==false&&(cv.id==='cv'||cv.id==='wcv')&&innerWidth>760)bpMassstab(K,k.s);
  // Einrast-Hilfslinien
  (opt.fuehrung||[]).forEach(g=>{c.strokeStyle='rgba(255,158,74,.8)';c.setLineDash([4,4]);c.lineWidth=1;c.beginPath();const a=pr(g[0],g[1]),b=pr(g[2],g[3]);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([])});
@@ -7909,12 +8020,44 @@ function etListe(){$('etListe').innerHTML='<h4>Etagen</h4>'+ET.slice().reverse()
 function neuBenennen(){// unterste bleibt ihr Typ, falls UG; danach EG, 1. OG …; ein DG bleibt oben DG
  const hatUG=ET[0].typ==='UG',hatDG=ET[ET.length-1].typ==='DG';let og=1;ET.forEach((e,i)=>{if(i===0&&hatUG){e.typ='UG';return}if(i===ET.length-1&&hatDG&&ET.length>1){e.typ='DG';return}const eg=hatUG?1:0;if(i===eg){e.typ='EG'}else if(i>eg){e.typ='OG';e.nr=og++}else e.typ='UG'})}
 function malW(){const r=FOK?[FOK]:ESEL.raeume;$('wTitel').innerHTML=FOK?`<small>${esc(planTitel())} · ${esc(etLang(ESEL))}</small>${esc(FOK.name)} · ${m2(flaeche(poly(FOK)))} m²`:`<small>${esc(planTitel())}${ESEL.raeume.length?' · Außenmaß '+aussenmass(ESEL):''}</small>Einrichten · ${esc(etLang(ESEL))}`;
- zeichne(cvW,ESEL.raeume,WK,{fokus:FOK,osel:OSEL,text:true,et:ESEL,fuehrung:OFUEHR});$('palette').classList.toggle('an',!!FOK);$('wTipp').textContent=FOK?'Objekt antippen und ziehen · ‹ zurück zum Gesamtbild':'Raum antippen für die Detailansicht';$('druckEt').querySelector('span').textContent=FOK?'Raum drucken':'Drucken';oWerkzeug()}
+ zeichne(cvW,ESEL.raeume,WK,{fokus:FOK,osel:OSEL,text:true,et:ESEL,fuehrung:OFUEHR});$('palette').classList.toggle('an',!!FOK);$('wTipp').textContent=FOK?'Objekt antippen und ziehen · ‹ zurück zum Gesamtbild':'Raum antippen für die Detailansicht';$('druckEt').querySelector('span').textContent=FOK?'Raum drucken':'Drucken';oWerkzeug();opMalen()}
 function kameraFahrt(z,d=700){animiere({...WK},{...WK,...z},d,o=>{Object.assign(WK,o);malW()})}
 $('dim').querySelectorAll('button').forEach(b=>b.onclick=()=>{DIM=+b.dataset.d;$('dim').querySelectorAll('button').forEach(x=>x.classList.toggle('an',x===b));if(DIM===3){WK2={s:WK.s,py:WK.py||0};kameraFahrt({tilt:.95,yaw:-.55,s:WK.s*.74,py:(WK.py||0)+90*WK.s*.74},900)}else kameraFahrt({tilt:0,yaw:0,s:WK2?WK2.s:WK.s/.74,py:WK2?WK2.py:0},900)});
 $('palette').innerHTML=Object.entries(OBJ).map(([k,o])=>{const [w,d]=o.g.M;return `<button type="button" data-ob="${k}"><svg viewBox="0 0 26 22"><rect x="${13-Math.min(11,w/22)}" y="${11-Math.min(9,d/22)}" width="${2*Math.min(11,w/22)}" height="${2*Math.min(9,d/22)}" rx="2"/></svg>${o.n}</button>`}).join('');
 $('palette').querySelectorAll('[data-ob]').forEach(b=>b.onclick=()=>{if(!FOK)return;const t=b.dataset.ob,T=OBJ[t],P=poly(FOK),bb=bbox(P);const n=FOK.obj.length%5,o={t,x:(FOK.rot%180?FOK.B/2:FOK.L/2)+(n-2)*35,y:(FOK.rot%180?FOK.L/2:FOK.B/2)+(n%2?40:-20),rot:0,g:'M'};if(t==='tuer'||t==='fenster'){o.y=T.g.M[1]/2}FOK.obj.push(o);OSEL=o;osnap(o);OFUEHR=[];malW();aend();toast(T.n+' eingefügt – zum Platzieren ziehen')});
-$('wZur').onclick=()=>{if(FOK){FOK=null;OSEL=null;kameraFahrt({...einpassen(ESEL.raeume,cvW)});return}zeige('vEditor')};
+// ===== Objekte & Boden (v0.11.26): Knopf „Objekte“ im Einrichten-Kopf, Leiste rechts mit Raumwahl, Boden und Objekten =====
+let OP=false,OPK='';const OPI={};
+const OGR=[['Türen & Fenster',['tuer','fenster']],['Wohnen & Schlafen',['sofa','tisch','stuhl','bett','schrank','pflanze']],['Küche & Bad',['kueche','dusche','wc','wanne']]];
+const opPan=(()=>{const a=document.createElement('aside');a.className='opanel';a.id='opanel';a.setAttribute('aria-label','Objekte und Boden');ROOT.querySelector('#vWeiter .wmain').appendChild(a);return a})();
+{const k=document.createElement('button');k.type='button';k.className='pill';k.id='opAn';k.setAttribute('aria-pressed','false');k.title='Möbel, Türen, Fenster und Boden';k.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M3 11h18v5H3z"/><path d="M5 16v2M19 16v2"/></svg>Objekte';$('mpAn').before(k);
+ k.onclick=()=>{OP=!OP;opMalen(true);if(OP&&!FOK&&ESEL)kameraFahrt({...einpassen(ESEL.raeume,cvW,.72),px:-170,...(WK.tilt>.3?{s:einpassen(ESEL.raeume,cvW,.72).s*.74}:{})});else if(!OP)kameraFahrt({px:0})}}
+// Vorschaubild je Objekt: dieselbe Zeichnung wie im Plan
+function opIcon(t){bpFarben();const key=t+BPC.t+BPC.w;if(OPI[key])return OPI[key];const cv=document.createElement('canvas');cv.width=128;cv.height=96;const c=cv.getContext('2d');c.scale(2,2);const T=odim({t,g:'M'});
+ if(t==='tuer'||t==='fenster'){c.fillStyle=`rgb(${BPC.wand})`;c.fillRect(4,8,14,10);c.fillRect(46,8,14,10);c.strokeStyle=`rgb(${BPC.t})`;c.lineWidth=1.2;c.strokeRect(18,8,28,10);if(t==='tuer'){c.beginPath();c.moveTo(46,18);c.lineTo(46,44);c.stroke();c.setLineDash([3,2]);c.beginPath();c.arc(46,18,26,Math.PI/2,Math.PI);c.stroke();c.setLineDash([])}else{c.fillStyle='rgba(150,200,235,.55)';c.fillRect(18,8,28,10);c.beginPath();c.moveTo(18,11.5);c.lineTo(46,11.5);c.moveTo(18,14.5);c.lineTo(46,14.5);c.stroke()}}
+ else{const s=Math.min(54/T.w,38/T.d),ox=32-T.w*s/2,oy=24-T.d*s/2;bpSym2D({c,pr:(x,y)=>[ox+x*s,oy+y*s]},{x:0,y:0},{t,x:T.w/2,y:T.d/2,rot:0},T,false)}
+ return OPI[key]=cv.toDataURL()}
+const opMuster=(a,x)=>a==='holz'?`background:repeating-linear-gradient(0deg,${x[2]} 0 7px,${x[3]} 7px 8px),${x[2]}`:a==='fliese'?`background:linear-gradient(90deg,${x[3]} 1px,transparent 1px) 0 0/12px 12px,linear-gradient(${x[3]} 1px,transparent 1px) 0 0/12px 12px,${x[2]}`:`background:${x[2]}`;
+function opZiel(r){const k=einpassen([r],cvW,.62);k.px=-170;if(WK.tilt>.3)k.s*=.74;kameraFahrt(k,700)}
+function opMalen(neu){const key=[OP,FOK&&FOK.id,ESEL&&ESEL.id,FOK&&JSON.stringify(FOK.boden||null),ESEL&&ESEL.raeume.map(r=>r.id+(r.boden?r.boden.a+r.boden.t:'')).join()].join('|');if(!neu&&key===OPK)return;OPK=key;
+ ROOT.classList.toggle('opan',OP);$('opAn').classList.toggle('an',OP);$('opAn').setAttribute('aria-pressed',String(OP));if(!OP||!ESEL){opPan.innerHTML='';return}
+ const kopf=`<div class="opk"><b>Objekte &amp; Boden</b><button type="button" class="rund" data-op="zu" aria-label="Schließen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>`;
+ if(!FOK){opPan.innerHTML=kopf+`<div class="opin"><h4>In welchen Raum?</h4><div class="opraeume">${ESEL.raeume.map(r=>`<button type="button" data-or="${r.id}"><i style="${r.boden?opMuster(r.boden.a,bpBodenT(r.boden)):''}"></i><span><b>${esc(r.name||'Raum')}</b><small>${m2(flaeche(poly(r)))} m² · ${r.boden?esc(bpBodenName(r.boden)):'kein Boden'}${(r.obj||[]).length?' · '+r.obj.length+' Objekte':''}</small></span></button>`).join('')}</div><p class="ophin">Oder den Raum im Plan anklicken.</p></div>`}
+ else{const b=FOK.boden||{},A=BPF[b.a];
+  opPan.innerHTML=kopf+`<div class="opin"><div class="opraum"><div><b>${esc(FOK.name||'Raum')}</b><small>${m2(flaeche(poly(FOK)))} m² · ${esc(etLang(ESEL))}</small></div><button type="button" class="optext" data-op="raum">Anderer Raum</button></div>
+  <h4>Boden</h4><div class="opart" role="group" aria-label="Bodenart">${[['','Ohne']].concat(Object.entries(BPF).map(([k,x])=>[k,x.n])).map(([k,t])=>`<button type="button" data-oa="${k}" class="${(b.a||'')===k?'an':''}">${t}</button>`).join('')}</div>
+  ${A&&Object.keys(A.t).length>1?`<div class="opton">${Object.entries(A.t).map(([k,x])=>`<button type="button" data-ot="${k}" class="${(b.t||A.st)===k?'an':''}"><i style="${opMuster(b.a,x)}"></i><b>${x[0]}</b><small>${x[1]}</small></button>`).join('')}</div>`:''}
+  ${A?`<button type="button" class="optext" data-op="alle">Auf alle Räume im ${esc(etLang(ESEL))} übertragen</button>`:''}
+  ${OGR.map(([g,L])=>`<h4>${g}</h4><div class="opobj">${L.map(t=>{const d=odim({t,g:'M'});return `<button type="button" data-oo="${t}"><img alt="" src="${opIcon(t)}"><b>${OBJ[t].n}</b><small>${d.w} × ${d.d} cm</small></button>`}).join('')}</div>`).join('')}
+  <p class="ophin">Klick setzt das Objekt in den Raum, dann an die richtige Stelle ziehen. Größe S · M · L und Drehen direkt am Objekt.</p></div>`}
+ opPan.querySelector('[data-op="zu"]').onclick=()=>{OP=false;opMalen(true);kameraFahrt({px:0})};
+ opPan.querySelectorAll('[data-or]').forEach(x=>x.onclick=()=>{const r=ESEL.raeume.find(r=>r.id===+x.dataset.or);if(!r)return;FOK=r;OSEL=null;opZiel(r);malW()});
+ const ar=opPan.querySelector('[data-op="raum"]');if(ar)ar.onclick=()=>{FOK=null;OSEL=null;const k=einpassen(ESEL.raeume,cvW,.72);k.px=-170;if(WK.tilt>.3)k.s*=.74;kameraFahrt(k);malW()};
+ opPan.querySelectorAll('[data-oa]').forEach(x=>x.onclick=()=>{const a=x.dataset.oa;if(!a)delete FOK.boden;else FOK.boden={a,t:FOK.boden&&FOK.boden.a===a?FOK.boden.t:BPF[a].st};aend();malW()});
+ opPan.querySelectorAll('[data-ot]').forEach(x=>x.onclick=()=>{FOK.boden.t=x.dataset.ot;aend();malW()});
+ const al=opPan.querySelector('[data-op="alle"]');if(al)al.onclick=()=>{ESEL.raeume.forEach(r=>r.boden={...FOK.boden});aend();malW();toast(bpBodenName(FOK.boden)+' in allen Räumen im '+etLang(ESEL))};
+ opPan.querySelectorAll('[data-oo]').forEach(x=>x.onclick=()=>{const p=$('palette').querySelector('[data-ob="'+x.dataset.oo+'"]');if(p)p.click()})}
+
+$('wZur').onclick=()=>{if(FOK){FOK=null;OSEL=null;const k=einpassen(ESEL.raeume,cvW,OP?.72:.78);if(OP)k.px=-170;if(WK.tilt>.3)k.s*=.74;kameraFahrt(k);return}zeige('vEditor')};
 const OPT=new Map();
 cvW.addEventListener('pointerdown',ev=>{cvW.setPointerCapture(ev.pointerId);OPT.set(ev.pointerId,[ev.clientX,ev.clientY]);if(OPT.size===2){const [a,b]=[...OPT.values()];OZUG={pinch:1,d:Math.hypot(a[0]-b[0],a[1]-b[1]),s:WK.s};return}
  const rc=cvW.getBoundingClientRect(),K=kamera(cvW,[],WK),p=K.inv(ev.clientX-rc.left,ev.clientY-rc.top);
@@ -7923,7 +8066,7 @@ cvW.addEventListener('pointerdown',ev=>{cvW.setPointerCapture(ev.pointerId);OPT.
 cvW.addEventListener('pointermove',ev=>{if(!OPT.has(ev.pointerId))return;OPT.set(ev.pointerId,[ev.clientX,ev.clientY]);if(!OZUG)return;if(OZUG.pinch&&OPT.size===2){const [a,b]=[...OPT.values()];WK.s=Math.max(.08,Math.min(5,OZUG.s*Math.hypot(a[0]-b[0],a[1]-b[1])/OZUG.d));malW();return}
  const dx=ev.clientX-OZUG.x,dy=ev.clientY-OZUG.y;OZUG.weit=Math.max(OZUG.weit,Math.hypot(dx,dy));
  if(OZUG.o){OZUG.o.x=Math.round(OZUG.ox+dx/WK.s);OZUG.o.y=Math.round(OZUG.oy+dy/WK.s);OZUG.rast=osnap(OZUG.o);malW()}else if(OZUG.pan&&OZUG.weit>3){if(WK.tilt>.3){WK.yaw=OZUG.yaw+dx*.008}else{WK.px=OZUG.px+dx;WK.py=OZUG.py+dy}malW()}});
-const wLos=ev=>{OPT.delete(ev.pointerId);if(OPT.size)return;const z=OZUG;OZUG=null;if(z&&z.o&&z.weit>3)aend();OFUEHR=[];if(z&&z.o&&z.weit>3&&z.rast)toast(z.o.t==='tuer'||z.o.t==='fenster'?'In die Wand gesetzt':'Bündig an die Wand gestellt');if(z&&z.pan&&z.weit<=3&&!FOK&&WK.tilt<.05){const r=treffer(ESEL.raeume,z.p);if(r){FOK=r;const b=bbox(wpoly(r)),k=einpassen([r],cvW,.7);kameraFahrt(k,750)}}malW()};
+const wLos=ev=>{OPT.delete(ev.pointerId);if(OPT.size)return;const z=OZUG;OZUG=null;if(z&&z.o&&z.weit>3)aend();OFUEHR=[];if(z&&z.o&&z.weit>3&&z.rast)toast(z.o.t==='tuer'||z.o.t==='fenster'?'In die Wand gesetzt':'Bündig an die Wand gestellt');if(z&&z.pan&&z.weit<=3&&!FOK&&WK.tilt<.05){const r=treffer(ESEL.raeume,z.p);if(r){FOK=r;const b=bbox(wpoly(r)),k=einpassen([r],cvW,.7);if(OP){k.px=-170;k.s=einpassen([r],cvW,.62).s}kameraFahrt(k,750)}}malW()};
 cvW.addEventListener('pointerup',wLos);cvW.addEventListener('pointercancel',wLos);
 cvW.addEventListener('wheel',ev=>{ev.preventDefault();WK.s=Math.max(.08,Math.min(5,WK.s*(ev.deltaY<0?1.1:.9)));malW()},{passive:false});
 function oWerkzeug(){const w=$('owerkz');if(!OSEL||!FOK||OZUG&&OZUG.o||WK.tilt>.05){w.classList.remove('an');return}const T=odim(OSEL),K=kamera(cvW,[],WK),p=K.pr(FOK.x+OSEL.x,FOK.y+OSEL.y-(OSEL.rot%180?T.w:T.d)/2);$('omass').classList.toggle('an',(OSEL.g||'M')==='X');w.style.left=Math.max(110,Math.min(K.w-110,p[0]))+'px';w.style.top=Math.max(6,p[1]-(($('omass').classList.contains('an'))?92:50))+'px';w.classList.add('an');const g=OSEL.g||'M';$('ogr').querySelectorAll('button').forEach(b=>b.classList.toggle('an',b.dataset.g===g));if(document.activeElement&&!document.activeElement.closest('#omass')){const d=odim(OSEL);$('omass').querySelectorAll('input').forEach(i=>i.value=d[i.dataset.m])}}
@@ -7996,7 +8139,7 @@ async function bpSpeichern(){if(!PLAN||!(await gedOk()))return false;PLAN.etagen
  await schreiben(bpDatei(PLAN.name,'json'),JSON.stringify({v:1,name:PLAN.name,baustelle:PLAN.baustelle||'',stand:PLAN.stand,etagen:ET}));
  const Q='Eingabe (Bauplan)';let md=kopfMeta('bauplan','persönlich',Q,'hoch')+`# Bauplan ${PLAN.name}\n\n${PLAN.baustelle?'Bauplan der Baustelle [['+PLAN.baustelle+']]. ':''}Teil von [[Baupläne]]. Daten für den Editor: Bauplan ${notizName(PLAN.name)}.json\n\n`;
  md+='- '+zeileMeta(`Übersicht: ${ET.length} ${ET.length===1?'Etage':'Etagen'} (${ET.map(etName).join(', ')}), ${alle.length} ${alle.length===1?'Raum':'Räume'}, ${m2(gf)} m² Grundfläche`+(Math.abs(wf-gf)>.5?`, ${m2(wf)} m² Wohnfläche`:'')+`, Außenmaß ${ET.filter(e=>e.raeume.length).map(e=>etName(e)+' '+aussenmass(e).replace(' M',' m')).join(', ')}`,Q,'hoch')+'\n';
- for(const e of ET)for(const r of e.raeume)md+='- '+zeileMeta(`${etName(e)} · ${r.name}: ${m(r.L)} × ${m(r.B)} m, Höhe ${m(r.H)} m, ${m2(flaeche(poly(r)))} m²`+((r.ver||[]).length?' ('+r.ver.map(vtext).join(', ')+')':'')+' · Außenwände oben/rechts/unten/links '+['N','O','S','W'].map(w=>mz(dickeVon(r,w,e))).join('/')+' cm'+((r.obj||[]).length?' · Möbel: '+r.obj.map(o=>odim(o).n).join(', '):''),Q,'hoch')+'\n';
+ for(const e of ET)for(const r of e.raeume)md+='- '+zeileMeta(`${etName(e)} · ${r.name}: ${m(r.L)} × ${m(r.B)} m, Höhe ${m(r.H)} m, ${m2(flaeche(poly(r)))} m²`+((r.ver||[]).length?' ('+r.ver.map(vtext).join(', ')+')':'')+' · Außenwände oben/rechts/unten/links '+['N','O','S','W'].map(w=>mz(dickeVon(r,w,e))).join('/')+' cm'+(r.boden?' · Boden: '+bpBodenName(r.boden):'')+((r.obj||[]).length?' · Möbel: '+r.obj.map(o=>odim(o).n).join(', '):''),Q,'hoch')+'\n';
  await schreiben(bpDatei(PLAN.name,'md'),md);
  let ix=await lesen(BP_ORD+'/Baupläne.md');if(!ix)ix=kopfMeta('bereich','persönlich','System (Arbeitsmodus)','hoch')+'# Baupläne\n\nAlle Baupläne aus dem Bauplan-Modus. Teil von [[Arbeit]].\n';
  const link='[[Bauplan '+notizName(PLAN.name)+']]';if(!ix.includes(link))await schreiben(BP_ORD+'/Baupläne.md',ix.replace(/^stand: .*$/m,'stand: '+HEUTE()).replace(/\s*$/,'\n')+'- '+link+'\n');
@@ -12510,6 +12653,29 @@ Mängel offen|Usterki otwarte|Defecte deschise|Defekte të hapura|Otvoreni nedos
 Neue Wände in cm|Nowe ściany w cm|Pereți noi în cm|Mure të reja në cm|Novi zidovi u cm|Нови стени в см
 Standard-Wandstärke dieser Etage|Standardowa grubość ścian na tym piętrze|Grosimea standard a pereților la acest etaj|Trashësia standarde e mureve në këtë kat|Standardna debljina zidova na ovoj etaži|Стандартна дебелина на стените на този етаж
 Rundung, Nische oder Schräge|Zaokrąglenie, wnęka lub skos|Rotunjire, nișă sau pantă|Rrumbullakim, kamare ose pjerrësi|Zaobljenje, niša ili kosina|Заобляне, ниша или наклон
+Objekte|Obiekty|Obiecte|Objekte|Objekti|Обекти
+Objekte & Boden|Obiekty i podłoga|Obiecte și pardoseală|Objekte dhe dysheme|Objekti i pod|Обекти и под
+In welchen Raum?|Do którego pomieszczenia?|În ce cameră?|Në cilën dhomë?|U koju prostoriju?|В коя стая?
+Anderer Raum|Inne pomieszczenie|Altă cameră|Dhomë tjetër|Druga prostorija|Друга стая
+Oder den Raum im Plan anklicken.|Albo kliknij pomieszczenie na planie.|Sau dă clic pe cameră în plan.|Ose kliko dhomën në plan.|Ili klikni prostoriju u planu.|Или щракни стаята в плана.
+Boden|Podłoga|Pardoseală|Dysheme|Pod|Под
+Holz|Drewno|Lemn|Dru|Drvo|Дърво
+Fliesen|Płytki|Gresie|Pllaka|Pločice|Плочки
+Teppich|Wykładzina|Mochetă|Qilim|Tepih|Мокет
+Estrich|Wylewka|Șapă|Massetë|Estrih|Замазка
+Hell|Jasny|Deschis|E çelët|Svijetlo|Светъл
+Mittel|Średni|Mediu|Mesatar|Srednje|Среден
+Birke|Brzoza|Mesteacăn|Mështekna|Breza|Бреза
+Eiche|Dąb|Stejar|Lisi|Hrast|Дъб
+Dunkle Eiche|Ciemny dąb|Stejar închis|Lisi i errët|Tamni hrast|Тъмен дъб
+Steingrau|Szary kamienny|Gri piatră|Gri guri|Kamena siva|Каменно сиво
+Anthrazit|Antracyt|Antracit|Antracit|Antracit|Антрацит
+Sand|Piaskowy|Nisip|Rërë|Pijesak|Пясъчен
+Beton|Beton|Beton|Beton|Beton|Бетон
+Türen & Fenster|Drzwi i okna|Uși și ferestre|Dyer dhe dritare|Vrata i prozori|Врати и прозорци
+Wohnen & Schlafen|Salon i sypialnia|Living și dormitor|Ndenja dhe gjumi|Dnevni boravak i spavanje|Хол и спалня
+Küche & Bad|Kuchnia i łazienka|Bucătărie și baie|Kuzhina dhe banjo|Kuhinja i kupaonica|Кухня и баня
+Klick setzt das Objekt in den Raum, dann an die richtige Stelle ziehen. Größe S · M · L und Drehen direkt am Objekt.|Kliknięcie wstawia obiekt do pomieszczenia, potem przeciągnij go na miejsce. Rozmiar S · M · L i obrót bezpośrednio przy obiekcie.|Clic pune obiectul în cameră, apoi trage-l la locul potrivit. Mărime S · M · L și rotire direct la obiect.|Klikimi e vendos objektin në dhomë, pastaj tërhiqe në vend. Madhësia S · M · L dhe rrotullimi te objekti.|Klik stavlja objekt u prostoriju, zatim ga povuci na mjesto. Veličina S · M · L i okretanje izravno na objektu.|Щракване поставя обекта в стаята, после го плъзни на място. Размер S · M · L и завъртане директно при обекта.
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
