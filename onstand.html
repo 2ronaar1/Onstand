@@ -4091,6 +4091,80 @@ body:has(#onstart.an) .spstart{display:flex}body:has(#onstart.an) .spstartl:not(
 #bp .form .pill,#bp #vNeu .pill{height:32px;font-size:12.5px}
 #bp .vorschau{background:var(--k-b1)!important;border:1px solid var(--k-lin)!important;border-radius:6px!important}
 #bp #druckAlle{justify-content:center}
+
+/* ===== Bauplan-Probe v0.11.24: Büro-Ansicht (layout.js) ===== */
+/* Liste: Vorschau mit Grundriss und Raumtabelle */
+#am .bplbild{position:relative;height:250px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b0);overflow:hidden}
+#am .bplbild canvas{display:block;width:100%;height:100%}
+#am .bplbild .bplets{position:absolute;top:8px;left:8px;z-index:1}
+#am .bplr{display:flex;flex-direction:column;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;font:14px var(--k-ui);font-variant-numeric:tabular-nums}
+#am .bplr>div{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr) 70px 90px;gap:10px;padding:8px 12px;border-top:1px solid var(--k-lin);align-items:baseline}
+#am .bplr>div:first-child{border-top:0}
+#am .bplr>div span:first-child{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .bplr>div>:nth-child(3),#am .bplr>div>:nth-child(4){text-align:right}
+#am .bplr>div b{font-weight:600}
+#am .bplr .bplrh{background:var(--k-b0);font-size:12.5px;color:var(--k-sub);padding:6px 12px}
+#am .bplr .bplrh span:first-child{font-weight:500}
+#am .bplal .c2 b{font-size:13.5px}
+/* Neuer Bauplan: Startweg als Karten mit Symbol */
+#am#am .bplwege .aulk{grid-template-columns:40px minmax(0,1fr);min-height:72px;align-items:center}
+#am .bplico{grid-row:1/3;width:40px;height:40px;display:grid;place-items:center}
+#am .bplico svg{width:32px;height:32px;fill:none;stroke:var(--k-akz);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#am#am .bplwege .aulk b,#am#am .bplwege .aulk small{grid-column:2}
+#am#am .bplwege .aulk small,#am#am .bplform [data-w="b"] .aulk small{white-space:normal}
+#am .bplnam.fehlt{border-color:var(--k-rot)!important}
+
+/* Werkstatt am PC: eine Kopfleiste, keine Fußleiste */
+#bp .aulmw{position:relative}
+#bp .auldrei{width:36px;height:34px;padding:0;border:1px solid var(--k-lin);background:var(--k-b1);border-radius:4px;font:600 18px/1 inherit;color:var(--k-t);cursor:pointer;display:grid;place-items:center}
+#bp .aulmenu{display:none;position:absolute;right:0;top:40px;z-index:40;min-width:270px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;box-shadow:0 14px 34px -14px rgba(0,0,0,.35);padding:5px}
+#bp .aulmenu.an{display:block}
+#bp .aulmenu button{display:block;width:100%;text-align:left;border:0;background:none;font:500 14px inherit;padding:9px 10px;border-radius:6px;cursor:pointer;color:var(--k-t);letter-spacing:0;text-transform:none;height:auto}
+#bp .aulmenu button small{display:block;font-size:12.5px;font-weight:400;color:var(--k-sub);margin-top:1px}
+#bp .aulmenu button:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#bp .aulmenu .rot{color:var(--k-rot)}
+#bp .aulmenu .rot.sicher{background:color-mix(in srgb,var(--k-rot) 10%,transparent);font-weight:600}
+#bp .aulmenu hr{border:0;border-top:1px solid var(--k-lin);margin:4px 0}
+#bp.bplpc #vEditor>.unten,#bp.bplpc #vWeiter .wmain>.unten{display:none!important}
+#bp.bplpc #etBtn{display:none!important}
+#bp.bplpc .flaechen{background-image:none!important}
+#bp.bplpc .leiste{gap:8px}
+#bp.bplpc .leiste .bptitel{max-width:280px;margin-right:2px}
+#bp.bplpc .leiste #eFl{margin-left:auto;border:0;padding:0 8px 0 0;text-align:right}
+#bp.bplpc #magnet{margin-left:0}
+#bp.bplpc .leiste :is(#raumNeu,#weiter){height:34px;font-size:13.5px!important;font-weight:600;padding:0 14px!important;border-radius:4px!important;letter-spacing:0!important}
+#bp.bplpc .leiste #raumNeu b{font-weight:600;margin-right:2px}
+#bp.bplpc .leiste #weiter:disabled{opacity:.5}
+#bp.bplpc .menue{top:58px;right:206px;left:auto}
+#bp.bplpc .bplhin{position:absolute;left:14px;bottom:14px;z-index:3;max-width:calc(100% - 180px);background:var(--k-b1);border:1px solid var(--k-lin);border-radius:6px;padding:6px 11px;pointer-events:none}
+#bp.bplpc .bplhin :is(.bphin,#wTipp){display:inline!important;font-size:13px!important;color:var(--k-sub)!important}
+#bp.bplpc.mpan #vWeiter .bplhin{display:none}
+/* Einrichten-Kopf: 2D/3D · Mängel · (+ Mangel · Mängelplan) · ⋯ · Drucken & speichern */
+#bp.bplpc .wkopf{gap:8px}
+#bp.bplpc .wkopf #mpUnten{display:none;gap:8px}
+#bp.bplpc .wkopf #mpUnten.an{display:flex}
+#bp.bplpc .wkopf #mpUnten .pill{height:34px;font-size:13px}
+#bp.bplpc #druckEt{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}
+#bp.bplpc.mpan #druckEt{background:var(--k-b1);border-color:var(--k-lin);color:var(--k-t)}
+/* Etagen links mit kleinem Grundriss */
+#bp.bplpc .wlayout{grid-template-columns:224px minmax(0,1fr)!important}
+#bp.bplpc .etliste{gap:8px}
+#bp.bplpc .etk{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:4px 6px;padding:8px!important}
+#bp.bplpc .etk canvas{position:static!important;opacity:1;grid-column:1/-1;order:-1;width:100%!important;height:96px!important;border-radius:4px;background:var(--k-b0)}
+#bp.bplpc .etk b{font-size:14px}
+#bp.bplpc .etk small{font-size:12.5px}
+#bp.bplpc .etk .pf button{font-size:12px;width:24px;height:22px}
+/* Raum-Blatt und Popups: lesbar, normale Schreibweise */
+#bp.bplpc .blatt .f{font-size:13px!important;color:var(--k-t)!important;font-weight:600}
+#bp.bplpc .blatt input{height:40px;font-size:15px}
+#bp.bplpc .blatt .wdz{border-top:1px solid var(--k-lin);padding-top:12px}
+#bp.bplpc .blatt .wdz>span{font-size:13px!important}
+#bp .wpop .wpk b{font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--k-sub);font-weight:600}
+#bp .wpop .wpk span{font-size:15px;font-weight:600;color:var(--k-t)}
+#bp .wpop small,#bp .menue .wsthin{font-size:12.5px;color:var(--k-sub)}
+#bp.bplpc .menue h4{font-size:13px!important;color:var(--k-t)!important;font-weight:600}
+#bp.bplpc .drhin{font-size:13px!important}
+#bp.bplpc #etMenue>h4:first-child:not(:has(+#etTyp)),#bp.bplpc #etMenue>h4:first-child+.chips:not(#etTyp){display:none}
 /* ===== Onstand-Verwaltung (nur Admin) · Probe „Onstand-Verwaltung“ ===== */
 #am .vwk{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 #am .vwkr{display:flex;gap:8px}
@@ -5101,7 +5175,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.21';
+const ON_VER='0.11.24';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7595,36 +7669,50 @@ function kamera(cv,welt,k,malen){const r=cv.getBoundingClientRect(),D=Math.min(2
 const OBJ={tuer:{n:'Tür',g:{S:[80,10,200],M:[90,10,205],L:[110,10,210]},f:'#c9a77a'},fenster:{n:'Fenster',g:{S:[80,12,100],M:[120,12,140],L:[200,12,160]},z:90,f:'#7FDBFF'},bett:{n:'Bett',g:{S:[90,200,45],M:[140,200,50],L:[180,200,55]},f:'#8C9EFF'},sofa:{n:'Sofa',g:{S:[160,85,80],M:[220,95,85],L:[300,160,85]},f:'#C792EA'},tisch:{n:'Tisch',g:{S:[80,80,75],M:[160,90,75],L:[220,100,75]},f:'#D4A373'},stuhl:{n:'Stuhl',g:{S:[40,45,85],M:[45,50,90],L:[60,60,100]},f:'#A1887F'},schrank:{n:'Schrank',g:{S:[100,60,200],M:[200,60,220],L:[300,60,240]},f:'#90A4AE'},kueche:{n:'Küche',g:{S:[180,62,92],M:[280,62,92],L:[360,62,92]},f:'#B0BEC5'},dusche:{n:'Dusche',g:{S:[80,80,200],M:[90,90,200],L:[120,90,200]},f:'#81D4FA'},wc:{n:'WC',g:{S:[36,55,78],M:[40,65,80],L:[45,70,82]},f:'#ECEFF1'},wanne:{n:'Wanne',g:{S:[160,70,58],M:[170,75,60],L:[190,90,62]},f:'#B3E5FC'},pflanze:{n:'Pflanze',g:{S:[30,30,60],M:[45,45,120],L:[60,60,180]},f:'#9CCC65'}};
 function odim(o){const T=OBJ[o.t],g=o.g||'M',v=g==='X'?[o.w||T.g.M[0],o.d||T.g.M[1],o.h||T.g.M[2]]:T.g[g];return {w:v[0],d:v[1],h:v[2],z:T.z||0,f:T.f,n:T.n}}
 // Farben für die Zeichnung kommen aus dem Design (Hell/Dunkel): Wände und Linien in Textfarbe, Auswahl in Kupfer
-const BPC={t:'27,31,36',a:'174,90,39',s:'92,100,112',w:'255,255,255'};function bpFarben(){const g=getComputedStyle(document.documentElement),rgb=n=>{let v=g.getPropertyValue(n).trim().replace('#','');if(v.length===3)v=[...v].map(c=>c+c).join('');return /^[0-9a-f]{6}$/i.test(v)?[0,2,4].map(i=>parseInt(v.slice(i,i+2),16)).join(','):null};for(const [k,n] of [['t','--k-t'],['a','--k-akz'],['s','--k-sub'],['w','--k-b1']]){const x=rgb(n);if(x)BPC[k]=x}}
+const BPC={t:'27,31,36',a:'174,90,39',s:'92,100,112',w:'255,255,255',wand:'70,74,80'};function bpFarben(){const g=getComputedStyle(document.documentElement),rgb=n=>{let v=g.getPropertyValue(n).trim().replace('#','');if(v.length===3)v=[...v].map(c=>c+c).join('');return /^[0-9a-f]{6}$/i.test(v)?[0,2,4].map(i=>parseInt(v.slice(i,i+2),16)).join(','):null};for(const [k,n] of [['t','--k-t'],['a','--k-akz'],['s','--k-sub'],['w','--k-b1']]){const x=rgb(n);if(x)BPC[k]=x}const T=BPC.t.split(',').map(Number),Wb=BPC.w.split(',').map(Number);BPC.wand=T.map((v,i)=>Math.round(v*.8+Wb[i]*.2)).join(',');if(!BPC.ff)try{BPC.ff=getComputedStyle(document.body).fontFamily||'Arial'}catch(e){BPC.ff='Arial'}}
+// Tür und Fenster als Plansymbol: Öffnung in der Wand, Tür mit Flügel und Aufschlag, Fenster mit Doppellinie
+function bpSymbol(K,r,o,T,ow,od,WA,sel){const {c,pr}=K,s=K.s||1,n=o.n,tt=[-n[1],n[0]],q=n[0]?ow:od,w=T.w,C=[r.x+o.x,r.y+o.y],F=[C[0]-n[0]*q/2,C[1]-n[1]*q/2];let a=24;try{const x=wandAn(WA,[F[0]+n[0]*.5,F[1]+n[1]*.5],0);a=x?x.t:(WA.wand&&WA.wand.a)||24}catch(e){}if(a<1)return false;
+ const P4=[[F[0]-tt[0]*w/2,F[1]-tt[1]*w/2],[F[0]+tt[0]*w/2,F[1]+tt[1]*w/2]],O4=P4.map(p=>[p[0]+n[0]*(a+.5),p[1]+n[1]*(a+.5)]),S=p=>pr(p[0],p[1]);
+ const lin=(p,q2,lw,col)=>{const A=S(p),B=S(q2);c.beginPath();c.lineWidth=lw;c.strokeStyle=col;c.moveTo(A[0],A[1]);c.lineTo(B[0],B[1]);c.stroke()};
+ c.beginPath();[P4[0],P4[1],O4[1],O4[0]].forEach((p,i)=>{const z=S(p);i?c.lineTo(z[0],z[1]):c.moveTo(z[0],z[1])});c.closePath();c.fillStyle=o.t==='fenster'?'rgba(150,200,235,.55)':`rgb(${BPC.w})`;c.fill();
+ const kc=sel?`rgb(${BPC.a})`:`rgb(${BPC.t})`;lin(P4[0],O4[0],1.4,kc);lin(P4[1],O4[1],1.4,kc);
+ if(o.t==='tuer'){const Hn=P4[1],E=[Hn[0]-n[0]*w,Hn[1]-n[1]*w];lin(Hn,E,sel?2.2:1.6,kc);const hp=S(Hn),ep=S(E),zp=S(P4[0]),a1=Math.atan2(ep[1]-hp[1],ep[0]-hp[0]),a2=Math.atan2(zp[1]-hp[1],zp[0]-hp[0]);let d=a2-a1;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;const rad=Math.hypot(ep[0]-hp[0],ep[1]-hp[1]);c.beginPath();c.lineWidth=1;c.setLineDash([4,3]);c.strokeStyle=sel?`rgb(${BPC.a})`:`rgba(${BPC.t},.55)`;c.arc(hp[0],hp[1],rad,a1,a2,d<0);c.stroke();c.setLineDash([])}
+ else{[a*.35,a*.65].forEach(f=>lin([P4[0][0]+n[0]*f,P4[0][1]+n[1]*f],[P4[1][0]+n[0]*f,P4[1][1]+n[1]*f],1.1,kc))}
+ return true}
+// Maßstab unten rechts: zeigt, wie lang 1 m (bzw. 50 cm, 2 m, 5 m) in der Zeichnung ist
+function bpMassstab(K,s){const c=K.c,L=[50,100,200,500,1000,2000].find(v=>v*s>=70)||2000,px=L*s,x1=K.w-22,x0=x1-px,y=K.h-24;c.save();c.lineWidth=1.5;c.strokeStyle=`rgb(${BPC.t})`;c.beginPath();c.moveTo(x0,y-5);c.lineTo(x0,y);c.lineTo(x1,y);c.lineTo(x1,y-5);c.moveTo((x0+x1)/2,y-3);c.lineTo((x0+x1)/2,y);c.stroke();c.fillStyle=`rgb(${BPC.t})`;c.font=`600 12px ${BPC.ff}`;c.textAlign='center';c.fillText(L>=100?(L/100).toString().replace('.',',')+' m':L+' cm',(x0+x1)/2,y-9);c.restore()}
 function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true),{c,pr}=K,t3=Math.sin(k.tilt)>.02;
  // Raster
  if(opt.raster!==false){c.lineWidth=1;const step=k.s*100>18?100:500;const tl=K.inv(0,0),br=K.inv(K.w,K.h),x0=Math.floor(Math.min(tl[0],br[0])/step)*step,x1=Math.max(tl[0],br[0]),y0=Math.floor(Math.min(tl[1],br[1])/step)*step,y1=Math.max(tl[1],br[1]);
-  c.strokeStyle=`rgba(${BPC.t},${t3?.04:.07})`;c.beginPath();for(let x=x0;x<=x1;x+=step){const a=pr(x,y0),b=pr(x,y1);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}for(let y=y0;y<=y1;y+=step){const a=pr(x0,y),b=pr(x1,y);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}c.stroke()}
+  c.strokeStyle=`rgba(${BPC.t},${t3?.04:.06})`;c.beginPath();for(let x=x0;x<=x1;x+=step){const a=pr(x,y0),b=pr(x,y1);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}for(let y=y0;y<=y1;y+=step){const a=pr(x0,y),b=pr(x1,y);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}c.stroke();
+  if(!t3&&step===100){c.strokeStyle=`rgba(${BPC.t},.11)`;c.beginPath();const X0=Math.floor(x0/500)*500,Y0=Math.floor(y0/500)*500;for(let x=X0;x<=x1;x+=500){const a=pr(x,y0),b=pr(x,y1);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}for(let y=Y0;y<=y1;y+=500){const a=pr(x0,y),b=pr(x1,y);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}c.stroke()}}
  // Geisterbild der Etage darunter
  (opt.geist||[]).forEach(r=>{const P=wpoly(r);c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.setLineDash([5,5]);c.strokeStyle='rgba(154,171,187,.28)';c.stroke();c.setLineDash([])});
  // Wände (2D)
- const WA=opt.et||null;if(WA&&!t3)wandBand(K,raeume,WA,false,{f:`rgb(${BPC.t})`,s:`rgb(${BPC.t})`});
+ const WA=opt.et||null;if(WA&&!t3)wandBand(K,raeume,WA,false,{f:`rgb(${BPC.wand})`,s:`rgb(${BPC.wand})`});
  if(opt.wsel&&!t3){c.beginPath();opt.wsel.quad.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=`rgba(${BPC.a},.45)`;c.fill();c.lineWidth=1.5;c.strokeStyle=`rgb(${BPC.a})`;c.stroke()}
  // Böden
  const Q=[];raeume.forEach(r=>{const P=wpoly(r),sel=opt.sel===r,fok=opt.fokus&&opt.fokus!==r;c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();
-  c.fillStyle=sel?`rgba(${BPC.a},.16)`:fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();if(!t3){c.lineWidth=sel?2.5:2;c.strokeStyle=sel?`rgb(${BPC.a})`:fok?`rgba(${BPC.t},.3)`:`rgb(${BPC.t})`;c.shadowColor=c.strokeStyle;c.shadowBlur=sel?10:4;c.stroke();c.shadowBlur=0}
+  c.fillStyle=sel?`rgba(${BPC.a},.16)`:fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();if(!t3){c.lineWidth=sel?2.5:1;c.strokeStyle=sel?`rgb(${BPC.a})`:fok?`rgba(${BPC.t},.3)`:`rgb(${BPC.wand})`;c.shadowColor=c.strokeStyle;c.shadowBlur=sel?8:0;c.stroke();c.shadowBlur=0}
   if(t3){const H=r.H;for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],sel,fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}if(WA){const O=raumAussen(r,WA);for(let i=0;i<O.length;i++){const a=O[i],b=O[(i+1)%O.length];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-.01,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],aussen:1,fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}}}
   if(!t3&&(r.ver||[]).some(v=>v.typ==='dach')){c.save();c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.clip();
    (r.ver||[]).filter(v=>v.typ==='dach').forEach(v=>{const t=Math.tan(v.neigung*Math.PI/180);[[100,'1 m'],[200,'2 m']].forEach(([hm,lab])=>{if(t<=0||hm<=v.knie)return;const dd=(hm-v.knie)/t,ln=v.wand==='N'?[[0,dd],[r.L,dd]]:v.wand==='S'?[[0,r.B-dd],[r.L,r.B-dd]]:v.wand==='W'?[[dd,0],[dd,r.B]]:[[r.L-dd,0],[r.L-dd,r.B]];const a=pr(...welt(r,...ln[0])),b=pr(...welt(r,...ln[1]));c.setLineDash(hm===100?[3,4]:[8,5]);c.strokeStyle='rgba(255,184,107,.75)';c.lineWidth=1.2;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([]);c.fillStyle='rgba(255,184,107,.9)';c.font='9.5px Arial';c.textAlign='left';c.fillText(lab,(a[0]+b[0])/2+4,(a[1]+b[1])/2-4)});
     // schraffierter Streifen unter 1 m
     const d1=t>0?Math.max(0,(100-v.knie)/t):0;if(d1>0){const st=v.wand==='N'?[[0,0],[r.L,0],[r.L,d1],[0,d1]]:v.wand==='S'?[[0,r.B-d1],[r.L,r.B-d1],[r.L,r.B],[0,r.B]]:v.wand==='W'?[[0,0],[d1,0],[d1,r.B],[0,r.B]]:[[r.L-d1,0],[r.L,0],[r.L,r.B],[r.L-d1,r.B]];c.beginPath();st.forEach((p,i)=>{const q=pr(...welt(r,...p));i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle='rgba(255,184,107,.07)';c.fill()}});c.restore()}
   (r.obj||[]).forEach(o=>{const T=odim(o),ow=o.rot%180?T.d:T.w,od=o.rot%180?T.w:T.d,x=r.x+o.x-ow/2,y=r.y+o.y-od/2,z=T.z||0;const ec=[[x,y],[x+ow,y],[x+ow,y+od],[x,y+od]];
-   if(!t3){c.beginPath();ec.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=T.f+'33';c.fill();c.lineWidth=opt.osel===o?2.2:1.2;c.strokeStyle=opt.osel===o?`rgb(${BPC.a})`:T.f;c.stroke();if(k.s*ow>34){const m0=pr(x+ow/2,y+od/2);c.fillStyle='#c8d6e8';c.font='10px Arial';c.textAlign='center';c.fillText(T.n,m0[0],m0[1]+3)}}
+   if(!t3&&o.n&&WA&&(o.t==='tuer'||o.t==='fenster')&&bpSymbol(K,r,o,T,ow,od,WA,opt.osel===o)){}
+   else if(!t3){c.beginPath();ec.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=T.f+'33';c.fill();c.lineWidth=opt.osel===o?2.2:1.2;c.strokeStyle=opt.osel===o?`rgb(${BPC.a})`:T.f;c.stroke();if(k.s*ow>34){const m0=pr(x+ow/2,y+od/2);c.fillStyle=`rgb(${BPC.s})`;c.font=`500 11px ${BPC.ff}`;c.textAlign='center';c.fillText(T.n,m0[0],m0[1]+4)}}
    else{for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2+.01,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({d:Math.max(...ec.map(p=>pr(p[0],p[1])[2]))+.02,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}})});
  Q.sort((a,b)=>a.d-b.d).forEach(q=>{c.beginPath();q.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();
   if(q.aussen){c.fillStyle=q.fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.t},.06)`;c.fill();c.strokeStyle=q.fok?`rgba(${BPC.t},.12)`:`rgba(${BPC.t},.4)`;c.lineWidth=1;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}
-  else if(q.obj){c.fillStyle=q.obj.f+(q.deckel?'cc':'88');c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:'rgba(0,0,0,.35)';c.lineWidth=1;c.stroke()}
+  else if(q.obj){c.fillStyle=q.obj.n==='Fenster'?`rgba(150,200,235,${q.deckel?.7:.4})`:q.obj.f+(q.deckel?'cc':'88');c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:'rgba(0,0,0,.35)';c.lineWidth=1;c.stroke()}
   else{c.fillStyle=q.sel?`rgba(${BPC.a},.22)`:q.fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:q.fok?`rgba(${BPC.t},.18)`:`rgba(${BPC.t},.75)`;c.lineWidth=1.2;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}});
- if(WA&&t3)wandBand(K,raeume,WA,true,{f:`rgba(${BPC.t},.5)`,s:`rgb(${BPC.t})`});
+ if(WA&&t3)wandBand(K,raeume,WA,true,{f:`rgba(${BPC.wand},.75)`,s:`rgb(${BPC.wand})`});
  // Beschriftung
  if(opt.text!==false)raeume.forEach(r=>{const P=wpoly(r),b=bbox(P),cx=(b.x0+b.x1)/2,cy=opt.fokus===r&&(r.obj||[]).length?b.y0+Math.min(60,(b.y1-b.y0)*.15):(b.y0+b.y1)/2,z=t3?r.H:0,q=pr(cx,cy,z),wPx=(b.x1-b.x0)*k.s;if(opt.fokus&&opt.fokus!==r)return;
-  if(wPx>46){c.textAlign='center';c.fillStyle=`rgb(${BPC.t})`;c.font=`${Math.max(10,Math.min(15,wPx/9))}px Arial`;c.fillText(r.name||'Raum',q[0],q[1]-2);c.fillStyle=`rgb(${BPC.s})`;c.font='10.5px Arial';c.fillText((r.ver||[]).some(v=>v.typ==='dach')?m2(flaeche(P))+' m² · Wohnfl. '+m2(wohnflaeche(r))+' m²':m2(flaeche(P))+' m²',q[0],q[1]+13)}
-  if(!t3&&opt.masse!==false&&wPx>70){c.fillStyle=`rgba(${BPC.w},.92)`;c.font='10px Arial';const top=pr(cx,b.y0),lef=pr(b.x0,cy);c.fillText(m(b.x1-b.x0)+' m',top[0],top[1]-6);c.save();c.translate(lef[0]-6,lef[1]);c.rotate(-Math.PI/2);c.fillText(m(b.y1-b.y0)+' m',0,0);c.restore()}});
+  if(wPx>46){c.textAlign='center';c.fillStyle=`rgb(${BPC.t})`;c.font=`600 ${Math.max(12,Math.min(17,wPx/8))}px ${BPC.ff}`;c.fillText(r.name||'Raum',q[0],q[1]-3);c.fillStyle=`rgb(${BPC.s})`;c.font=`500 ${wPx>110?13:12}px ${BPC.ff}`;c.fillText((r.ver||[]).some(v=>v.typ==='dach')?m2(flaeche(P))+' m² · Wohnfl. '+m2(wohnflaeche(r))+' m²':m2(flaeche(P))+' m²',q[0],q[1]+14)}
+  if(!t3&&opt.masse!==false&&wPx>70){const hPx=(b.y1-b.y0)*k.s;c.fillStyle=`rgb(${BPC.s})`;c.font=`500 12px ${BPC.ff}`;const tObj=(r.obj||[]).some(o=>o.t==='tuer'&&o.n&&o.n[1]===-1),lObj=(r.obj||[]).some(o=>o.n&&o.n[0]===-1&&o.t==='tuer'),top=pr(tObj?b.x0+(b.x1-b.x0)*.78:cx,b.y0),lef=pr(b.x0,lObj?b.y0+(b.y1-b.y0)*.28:cy);if(hPx>110)c.fillText(m(b.x1-b.x0)+' m',top[0],top[1]+17);if(hPx>70&&wPx>130){c.save();c.translate(lef[0]+16,lef[1]);c.rotate(-Math.PI/2);c.fillText(m(b.y1-b.y0)+' m',0,0);c.restore()}}});
+ if(!t3&&opt.raster!==false&&(cv.id==='cv'||cv.id==='wcv')&&innerWidth>760)bpMassstab(K,k.s);
  // Einrast-Hilfslinien
  (opt.fuehrung||[]).forEach(g=>{c.strokeStyle='rgba(255,158,74,.8)';c.setLineDash([4,4]);c.lineWidth=1;c.beginPath();const a=pr(g[0],g[1]),b=pr(g[2],g[3]);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([])});
  return K}
@@ -7706,10 +7794,10 @@ const etLang=e=>({UG:'Untergeschoss',EG:'Erdgeschoss',DG:'Dachgeschoss'})[e.typ]
 function bpTabs(){const t=$('bpTabs');t.innerHTML=ET.map(e=>`<button type="button" data-e="${e.id}" class="${e===EA?'an':''}">${esc(etName(e))}</button>`).join('')+'<button type="button" data-plus>+ Etage</button>';
  t.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{EA=ET.find(e=>e.id===+b.dataset.e);SEL=null;EK=einpassen(EA.raeume.length?EA.raeume:geist(),cvE);malE()});t.querySelector('[data-plus]').onclick=()=>$('etPlus').click()}
 $('etBtn').onclick=ev=>{ev.stopPropagation();const mm=$('etMenue');if(mm.classList.contains('an')){mm.classList.remove('an');return}
- mm.innerHTML=`${ET.length>1?`<h4>ETAGE WECHSELN</h4><div class="chips">${ET.map(e=>`<button type="button" data-e="${e.id}" class="${e===EA?'an':''}">${esc(etName(e))}</button>`).join('')}</div>`:''}
-  <h4>DIESE ETAGE IST</h4><div class="chips" id="etTyp">${['UG','EG','OG','DG'].map(t=>`<button type="button" data-t="${t}" class="${EA.typ===t?'an':''}">${t}</button>`).join('')}</div>
+ mm.innerHTML=`${ET.length>1?`<h4>Etage wechseln</h4><div class="chips">${ET.map(e=>`<button type="button" data-e="${e.id}" class="${e===EA?'an':''}">${esc(etName(e))}</button>`).join('')}</div>`:''}
+  <h4>Diese Etage ist</h4><div class="chips" id="etTyp">${['UG','EG','OG','DG'].map(t=>`<button type="button" data-t="${t}" class="${EA.typ===t?'an':''}">${t}</button>`).join('')}</div>
   <div class="og" style="${EA.typ==='OG'?'':'display:none'}" id="ogZ"><span style="font-size:12px;color:var(--sub)">Nummer</span><input id="ogNr" inputmode="numeric" value="${EA.nr}"><span style="font-size:12px;color:var(--sub)">. OG</span></div>
-  <h4>STANDARD-WANDSTÄRKE DIESER ETAGE (CM)</h4><div class="wst"><label class="f">NEUE WÄNDE<input id="wA" inputmode="decimal" value="${mz(wandVon(EA).a)}"></label></div>
+  <h4>Standard-Wandstärke dieser Etage</h4><div class="wst"><label class="f">Neue Wände in cm<input id="wA" inputmode="decimal" value="${mz(wandVon(EA).a)}"></label></div>
   <div class="chips" id="wVor">${WVOR.map(v=>`<button type="button" data-wv="${v}" class="${wandVon(EA).a===v?'an':''}">${mz(v)}</button>`).join('')}</div><p class="wsthin">Einzelne Wände anders? Im Plan direkt auf die Wand tippen. Außenwände eines Raums auch im Raum-Blatt.</p>`;
  mm.classList.add('an');mm.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{EA=ET.find(e=>e.id===+b.dataset.e);SEL=null;mm.classList.remove('an');EK=einpassen(EA.raeume.length?EA.raeume:geist(),cvE);malE()});
  mm.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{EA.typ=b.dataset.t;aend();mm.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('an',x===b));$('ogZ').style.display=EA.typ==='OG'?'':'none';malE()});
@@ -7720,11 +7808,11 @@ ROOT.addEventListener('click',e=>{if(!e.target.closest('#etMenue,#etBtn'))$('etM
 new ResizeObserver(()=>{if(!ROOT.classList.contains('auf'))return;if($('vEditor').classList.contains('an'))malE();if($('vWeiter').classList.contains('an'))malW()}).observe(ROOT);
 // ---------- Wand antippen: Stärke einer einzelnen Wand ----------
 function wpAuf(q,sx,sy){WSEL=q;SEL=null;const st=wandVon(EA),inn=q.typ==='innen',pres=inn?[10,11.5,15,17.5,24,30]:[17.5,24,30,36.5,42.5,49],eig=!inn&&q.r.wd&&q.r.wd[q.w]!=null,d=$('wPop');d.dataset.sx=sx;d.dataset.sy=sy;
- d.innerHTML=`<div class="wpk"><b>${inn?'INNENWAND':'AUSSENWAND'} · ${mz(q.t)} CM</b><span>${esc(inn?(q.ra.name||'Raum')+'  |  '+(q.rb.name||'Raum'):(q.r.name||'Raum'))}</span></div>
+ d.innerHTML=`<div class="wpk"><b>${inn?'Innenwand':'Außenwand'} · ${mz(q.t)} cm</b><span>${esc(inn?(q.ra.name||'Raum')+'  |  '+(q.rb.name||'Raum'):(q.r.name||'Raum'))}</span></div>
   <div class="chips">${pres.map(v=>`<button type="button" data-v="${v}" class="${Math.abs(v-q.t)<.05?'an':''}">${mz(v)}</button>`).join('')}</div>
-  <div class="wprow"><label class="f">EIGENE STÄRKE IN CM<input id="wpIn" inputmode="decimal" value="${mz(q.t)}"></label><button type="button" class="pill ja" id="wpOk">ÜBERNEHMEN</button></div>
+  <div class="wprow"><label class="f">Eigene Stärke in cm<input id="wpIn" inputmode="decimal" value="${mz(q.t)}"></label><button type="button" class="pill ja" id="wpOk">Übernehmen</button></div>
   <small>${inn?'Der Raum dahinter rückt mit, die Raummaße bleiben gleich.':eig?'Eigene Stärke für diese Seite des Raums.':'Jetzt der Standard der Etage ('+mz(st.a)+' cm).'}</small>
-  ${inn?'':`<div class="wprow">${eig?`<button type="button" class="pill" id="wpStd">STANDARD ${mz(st.a)}</button>`:''}<button type="button" class="pill" id="wpAlle">ALLE AUSSENWÄNDE SO</button></div>`}`;
+  ${inn?'':`<div class="wprow">${eig?`<button type="button" class="pill" id="wpStd">Standard ${mz(st.a)}</button>`:''}<button type="button" class="pill" id="wpAlle">Alle Außenwände so</button></div>`}`;
  d.classList.add('an');const fl=$('eFlaeche').getBoundingClientRect(),h=d.offsetHeight,w=d.offsetWidth;d.style.left=Math.max(10,Math.min(fl.width-w-10,sx-w/2))+'px';d.style.top=(sy+18+h<fl.height-70?sy+18:Math.max(10,sy-h-18))+'px';
  d.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>wpSetz(+b.dataset.v));$('wpOk').onclick=()=>wpSetz(zahl($('wpIn').value));$('wpIn').onkeydown=ev=>{if(ev.key==='Enter')wpSetz(zahl($('wpIn').value))};
  if($('wpStd'))$('wpStd').onclick=()=>{delete q.r.wd[q.w];wpNeu(q)};if($('wpAlle'))$('wpAlle').onclick=()=>{st.a=Math.max(0,Math.min(100,zahl($('wpIn').value)));EA.raeume.forEach(r=>{delete r.wd});aend();toast('Alle Außenwände der Etage: '+mz(st.a)+' cm');wpNeu(q)};malE()}
@@ -7750,7 +7838,7 @@ function formMalen(){requestAnimationFrame(()=>{const z=$('vNeu');if(z&&z.firstE
  $('vListe').querySelectorAll('[data-ve]').forEach(b=>b.onclick=()=>{BR.ver.splice(+b.dataset.ve,1);formMalen();vorschau()});
  $('vListe').querySelectorAll('[data-be]').forEach(b=>b.onclick=()=>{const i=+b.dataset.be;VNEU={...BR.ver[i],idx:i};formMalen();vorschau()});
  const n=$('vNeu');
- if(!VNEU){n.innerHTML=`<button type="button" class="pill" id="vPlus" style="width:100%">+ RUNDUNG, NISCHE ODER SCHRÄGE</button>`;$('vPlus').onclick=()=>{VNEU={typ:'',stufe:1};formMalen()};return}
+ if(!VNEU){n.innerHTML=`<button type="button" class="pill" id="vPlus" style="width:100%">+ Rundung, Nische oder Schräge</button>`;$('vPlus').onclick=()=>{VNEU={typ:'',stufe:1};formMalen()};return}
  if(!VNEU.typ){n.innerHTML=`<div class="schritt">1 · Was hat der Raum?</div><div class="typen">
    <button type="button" data-ty="bogen"><svg viewBox="0 0 34 24"><path d="M3 20V4h28v16"/><path d="M3 20q14 10 28 0" stroke="#FF9E4A"/></svg>Rundung</button>
    <button type="button" data-ty="rechteck"><svg viewBox="0 0 34 24"><path d="M3 4h28v16H3z"/><path d="M12 20v-6h10v6" stroke="#FF9E4A"/></svg>Nische / Vorsprung</button>
@@ -7796,7 +7884,7 @@ $('bOk').onclick=()=>{if(VNEU&&VNEU.typ&&(VNEU.wand||VNEU.ecke)){const v={...VNE
   EA.raeume.push(BR);SEL=BR}
  blattZu();aend();const ziel=einpassen(EA.raeume,cvE);animiere(EK,ziel,600,o=>{Object.assign(EK,o);malE()});toast(BALT?'Raum geändert':`${BR.name} gesetzt – zum Verschieben ziehen, er rastet an den anderen ein`)};
 // ---------- Weiter ----------
-let WK={mx:0,my:0,s:.5,px:0,py:0,tilt:0,yaw:0},FOK=null,OSEL=null,ESEL=null,DIM=2,OZUG=null,OMAG=true,OFUEHR=[];
+let WK2=null,WK={mx:0,my:0,s:.5,px:0,py:0,tilt:0,yaw:0},FOK=null,OSEL=null,ESEL=null,DIM=2,OZUG=null,OMAG=true,OFUEHR=[];
 // Objekt-Magnet: Möbel stellen sich mit der Rückseite bündig an die nächste Wand (auch in Ecken), Türen und Fenster setzen sich in die Wand
 const OFREI=['tisch','stuhl','pflanze'];
 function osnap(o){OFUEHR=[];o.n=null;if(!OMAG||!FOK)return false;const T=odim(o),{V,H}=wandstuecke(FOK),cx=FOK.x+o.x,cy=FOK.y+o.y,thr=Math.max(12,22/WK.s),auto=!OFREI.includes(o.t),inW=o.t==='tuer'||o.t==='fenster',dim=r=>[r%180?T.d:T.w,r%180?T.w:T.d];let best=null;
@@ -7807,7 +7895,7 @@ function osnap(o){OFUEHR=[];o.n=null;if(!OMAG||!FOK)return false;const T=odim(o)
  if(best.ver){o.x=Math.round(best.ziel-FOK.x);o.y=Math.round(l-FOK.y)}else{o.y=Math.round(best.ziel-FOK.y);o.x=Math.round(l-FOK.x)}o.n=best.ver?[-best.s,0]:[0,-best.s];
  OFUEHR=[best.ver?[best.X,best.a,best.X,best.b]:[best.a,best.X,best.b,best.X]];return true}const cvW=$('wcv');
 const sortiert=()=>ET;
-function weiterStart(){ET.sort((a,b)=>etStufe(a)-etStufe(b));ESEL=ESEL&&ET.includes(ESEL)?ESEL:ET.find(e=>e.raeume.length)||ET[0];FOK=null;OSEL=null;etListe();requestAnimationFrame(()=>{Object.assign(WK,einpassen(ESEL.raeume,cvW),{tilt:DIM===3?.95:0,yaw:DIM===3?-.55:0});malW()})}
+function weiterStart(){ET.sort((a,b)=>etStufe(a)-etStufe(b));ESEL=ESEL&&ET.includes(ESEL)?ESEL:ET.find(e=>e.raeume.length)||ET[0];FOK=null;OSEL=null;etListe();requestAnimationFrame(()=>{Object.assign(WK,einpassen(ESEL.raeume,cvW),{tilt:DIM===3?.95:0,yaw:DIM===3?-.55:0});WK2={s:WK.s,py:WK.py||0};if(DIM===3){WK.s*=.74;WK.py=(WK.py||0)+90*WK.s}malW()})}
 function etListe(){$('etListe').innerHTML='<h4>Etagen</h4>'+ET.slice().reverse().map(e=>`<div class="etk${e===ESEL?' an':''}" data-e="${e.id}"><div><b>${esc(etLang(e))}</b><small>${e.raeume.length} ${e.raeume.length===1?'Raum':'Räume'} · ${m2(e.raeume.reduce((s,r)=>s+flaeche(poly(r)),0))} m²</small></div><div class="pf"><button type="button" data-hoch="${e.id}" aria-label="nach oben">▲</button><button type="button" data-runter="${e.id}" aria-label="nach unten">▼</button></div><canvas></canvas></div>`).join('');
  $('etListe').querySelectorAll('.etk').forEach(k=>{const e=ET.find(x=>x.id===+k.dataset.e);requestAnimationFrame(()=>zeichne(k.querySelector('canvas'),e.raeume,{...einpassen(e.raeume,k.querySelector('canvas'),.85),tilt:0,yaw:0},{raster:false,text:false,et:e}));
   k.onclick=ev=>{if(ev.target.closest('button'))return;ESEL=e;FOK=null;OSEL=null;etListe();kameraFahrt(einpassen(e.raeume,cvW))}});
@@ -7818,7 +7906,7 @@ function neuBenennen(){// unterste bleibt ihr Typ, falls UG; danach EG, 1. OG �
 function malW(){const r=FOK?[FOK]:ESEL.raeume;$('wTitel').innerHTML=FOK?`<small>${esc(planTitel())} · ${esc(etLang(ESEL))}</small>${esc(FOK.name)} · ${m2(flaeche(poly(FOK)))} m²`:`<small>${esc(planTitel())}${ESEL.raeume.length?' · Außenmaß '+aussenmass(ESEL):''}</small>Einrichten · ${esc(etLang(ESEL))}`;
  zeichne(cvW,ESEL.raeume,WK,{fokus:FOK,osel:OSEL,text:true,et:ESEL,fuehrung:OFUEHR});$('palette').classList.toggle('an',!!FOK);$('wTipp').textContent=FOK?'Objekt antippen und ziehen · ‹ zurück zum Gesamtbild':'Raum antippen für die Detailansicht';$('druckEt').querySelector('span').textContent=FOK?'Raum drucken':'Drucken';oWerkzeug()}
 function kameraFahrt(z,d=700){animiere({...WK},{...WK,...z},d,o=>{Object.assign(WK,o);malW()})}
-$('dim').querySelectorAll('button').forEach(b=>b.onclick=()=>{DIM=+b.dataset.d;$('dim').querySelectorAll('button').forEach(x=>x.classList.toggle('an',x===b));kameraFahrt({tilt:DIM===3?.95:0,yaw:DIM===3?-.55:0,s:WK.s*(DIM===3?.92:1/.92)},900)});
+$('dim').querySelectorAll('button').forEach(b=>b.onclick=()=>{DIM=+b.dataset.d;$('dim').querySelectorAll('button').forEach(x=>x.classList.toggle('an',x===b));if(DIM===3){WK2={s:WK.s,py:WK.py||0};kameraFahrt({tilt:.95,yaw:-.55,s:WK.s*.74,py:(WK.py||0)+90*WK.s*.74},900)}else kameraFahrt({tilt:0,yaw:0,s:WK2?WK2.s:WK.s/.74,py:WK2?WK2.py:0},900)});
 $('palette').innerHTML=Object.entries(OBJ).map(([k,o])=>{const [w,d]=o.g.M;return `<button type="button" data-ob="${k}"><svg viewBox="0 0 26 22"><rect x="${13-Math.min(11,w/22)}" y="${11-Math.min(9,d/22)}" width="${2*Math.min(11,w/22)}" height="${2*Math.min(9,d/22)}" rx="2"/></svg>${o.n}</button>`}).join('');
 $('palette').querySelectorAll('[data-ob]').forEach(b=>b.onclick=()=>{if(!FOK)return;const t=b.dataset.ob,T=OBJ[t],P=poly(FOK),bb=bbox(P);const n=FOK.obj.length%5,o={t,x:(FOK.rot%180?FOK.B/2:FOK.L/2)+(n-2)*35,y:(FOK.rot%180?FOK.L/2:FOK.B/2)+(n%2?40:-20),rot:0,g:'M'};if(t==='tuer'||t==='fenster'){o.y=T.g.M[1]/2}FOK.obj.push(o);OSEL=o;osnap(o);OFUEHR=[];malW();aend();toast(T.n+' eingefügt – zum Platzieren ziehen')});
 $('wZur').onclick=()=>{if(FOK){FOK=null;OSEL=null;kameraFahrt({...einpassen(ESEL.raeume,cvW)});return}zeige('vEditor')};
@@ -7918,7 +8006,7 @@ window.addEventListener('keydown',ev=>{if(!ROOT.classList.contains('auf')||ev.ke
 // ===== im Funktionsmenü: Liste der Baupläne + neuer Bauplan =====
 let BPL=[],BPNEU=null;
 function bpZeigen(inh,opt){BPNEU=opt&&opt.neu?{name:'',b:''}:null;bpListeMalen(inh);Promise.all([bpListeLaden(),bstLaden()]).then(([l])=>{BPL=l;if(inh.isConnected)bpListeMalen(inh)}).catch(()=>{})}
-function bpListeMalen(inh){const bs=Object.values(typeof BST!=='undefined'?BST:{}).filter(b=>b.status!=='abgeschlossen');
+function bpListeMalen(inh){if(window.bplMalen&&window.bplMalen(inh))return;const bs=Object.values(typeof BST!=='undefined'?BST:{}).filter(b=>b.status!=='abgeschlossen');
  inh.innerHTML=`<div class="mgk"><div><span class="amtt">BAUPLÄNE</span><h2 class="mgh">Bauplan</h2></div><div class="mgakt"><button type="button" class="haupt bpneuB"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Neuer Bauplan</button></div></div>
   ${BPNEU?`<div class="bpneu"><div class="amfeld"><small>NAME DES PLANS</small><input class="bpnam" value="${esc(BPNEU.name)}" placeholder="z. B. Müller Bornheim oder Wohnung Weber"></div>${bs.length?`<div class="amfeld"><small>ZU WELCHER BAUSTELLE? (OPTIONAL)</small><div class="mgchips">${bs.map(b=>`<button type="button" data-b="${esc(b.name)}" class="${BPNEU.b===b.name?'an':''}" style="--cc:${b.c}">${esc(b.k)}<small>${esc(b.name)}</small></button>`).join('')}</div></div>`:''}<div class="amaktion"><button type="button" class="amab bpab">Abbrechen</button><button type="button" class="amja bpstart">Werkstatt öffnen</button></div></div>`:''}
   <div class="bpliste">${BPL.length?BPL.map((p,i)=>{const b=p.baustelle&&BST[p.baustelle],al=p.etagen.flatMap(e=>e.raeume),gf=al.reduce((s,r)=>s+flaeche(poly(r)),0);return `<div class="bprow" data-i="${i}" style="--bc:${b?b.c:'var(--aj)'}"><i></i><button type="button" class="bpauf"><canvas class="bpmini" aria-hidden="true"></canvas><span><b>${esc(p.name)}</b><small>${[b?b.name:'ohne Baustelle',p.etagen.map(e=>e.typ==='OG'?e.nr+'. OG':e.typ).join(' und '),m2(gf)+' m²'].filter(Boolean).map(esc).join(' · ')}</small><small class="bpstand">${p.stand?'geändert '+(p.stand===HEUTE()?'heute':new Date(p.stand+'T12:00').toLocaleDateString('de-DE')):''}</small></span><span class="bpz"><span><b>${al.length}</b>${al.length===1?'RAUM':'RÄUME'}</span><span><b>${m2(gf)}</b>m² BODEN</span><span><b>${p.etagen.length}</b>${p.etagen.length===1?'ETAGE':'ETAGEN'}</span>${(()=>{try{const n=b&&typeof MG!=='undefined'?(MG[b.name]||[]).filter(mgOffen).length:0;return n?`<span class="rot"><b>${n}</b>${n===1?'MANGEL':'MÄNGEL'}</span>`:''}catch(e){return ''}})()}</span><em>In der Werkstatt öffnen ›</em></button><button type="button" class="bpweg" title="Bauplan löschen" aria-label="Bauplan ${esc(p.name)} löschen"><svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"/></svg></button></div>`}).join('')+(BPNEU?'':'<button type="button" class="bpneukarte"><b>+</b>Neuer Bauplan</button>'):BPNEU?'':'<div class="amleer"><span>Noch kein Bauplan.<br>Plan einsenden, Skizze fotografieren oder Raum für Raum anlegen.</span></div>'}</div>`;{const nk=inh.querySelector('.bpneukarte');if(nk)nk.onclick=()=>inh.querySelector('.bpneuB').click()}
@@ -7930,6 +8018,11 @@ function bpListeMalen(inh){const bs=Object.values(typeof BST!=='undefined'?BST:{
  if(BPNEU){const nm=inh.querySelector('.bpnam');nm.oninput=()=>BPNEU.name=nm.value;inh.querySelectorAll('.bpneu [data-b]').forEach(x=>x.onclick=()=>{BPNEU.b=BPNEU.b===x.dataset.b?'':x.dataset.b;if(!nm.value.trim()&&BPNEU.b){nm.value=BPNEU.b;BPNEU.name=BPNEU.b}inh.querySelectorAll('.bpneu [data-b]').forEach(y=>y.classList.toggle('an',y.dataset.b===BPNEU.b))});
   inh.querySelector('.bpab').onclick=()=>{BPNEU=null;bpListeMalen(inh)};
   inh.querySelector('.bpstart').onclick=()=>{let n=notizName(nm.value.trim()||BPNEU.b||'');if(!n){nm.focus();return}if(BPL.some(p=>p.name===n))n=n+' '+(BPL.filter(p=>p.name.startsWith(n)).length+1);const plan={v:1,name:n,baustelle:BPNEU.b,etagen:[]};BPNEU=null;BPL.push(plan);bpListeMalen(inh);bpOeffnen(plan,true)}}}
+// Schnittstelle für die Büro-Ansicht (layout.js): Liste, Anlegen mit Startweg, Löschen
+window.BPAPI={get L(){return BPL},get neu(){return BPNEU},set neu(v){BPNEU=v},oeffnen:p=>bpOeffnen(p),flaeche:r=>flaeche(poly(r)),
+ anlegen(nm,b,weg){let n=notizName(String(nm||b||'').trim());if(!n)return null;if(BPL.some(p=>p.name===n))n=n+' '+(BPL.filter(p=>p.name.startsWith(n)).length+1);const plan={v:1,name:n,baustelle:b||'',etagen:[]};BPNEU=null;BPL.push(plan);bpOeffnen(plan,true);if(weg){const w=ROOT.querySelector('[data-weg="'+weg+'"]');if(w)w.click()}return plan},
+ async loeschen(p){await bpLoeschen(p);BPL=BPL.filter(x=>x!==p)},
+ async loeschenOffen(){const p=PLAN;if(!p)return;PLAN=null;try{await bpLoeschen(p)}catch(x){}BPL=BPL.filter(x=>x!==p);bpSchliessen()}};
 // Bauplan löschen: Daten, Übersicht und den Eintrag in Baupläne.md entfernen
 async function bpLoeschen(p){if(!(await gedOk()))return;const l='- [[Bauplan '+notizName(p.name)+']]';
  if(typeof pkWeg==='function'){const id=await pkWeg({k:'bp',t:'Bauplan · '+p.name,s:(p.baustelle?p.baustelle+' · ':'')+((p.etagen||[]).length||1)+' Etage(n)',files:[bpDatei(p.name,'json'),bpDatei(p.name,'md')],idx:[[BP_ORD+'/Baupläne.md',l]]});if(id){try{pkRueckgaengig('Bauplan „'+p.name+'“ gelöscht',id)}catch(x){}return}}
@@ -8440,14 +8533,29 @@ async function brNeuErmitteln(frag){BR.neuQuelle=[];if(!BR.stand)return 0;const 
 async function brDateienHinzu(files){await fsDir(BR_ORD+'/Neu',true);let n=0;for(const f of files){const text=await brDateiText(f,f.name);const kopf=`Quelle: ${f.name} · hinzugefügt ${brHeute()} von ${ON_PROFIL.name||''}\n`;
   await schreiben(BR_ORD+'/Neu/'+brNotiz(f.name.replace(/\.[^.]+$/,''))+' '+Date.now().toString(36)+'.txt',kopf+(text||'(kein lesbarer Text – nur der Dateiname)'));n++}await brLaden();return n}
 
+// ---------- Sauber halten: einheitliche Labels, jeder Fakt nur einmal, keine doppelten Notizen, Schreibvarianten auf dieselbe Seite ----------
+const BR_LABEL=[[/^(tel|tel\.|telefon|telefonnummer|fon|festnetz|rufnummer)$/,'Telefon'],[/^(mobil|handy|mobilnummer|mobiltelefon)$/,'Mobil'],[/^(e-?mail|mail|e-?mail-adresse|email-adresse)$/,'E-Mail'],
+ [/^(adresse|anschrift|postanschrift|standort)$/,'Adresse'],[/^(ansprechpartner(in)?|kontakt|kontaktperson|ansprechperson)$/,'Ansprechpartner'],[/^(web|webseite|website|homepage|internet)$/,'Webseite'],
+ [/^(ust-?id(nr\.?)?|ust\.?-?idnr\.?|umsatzsteuer-?id)$/,'USt-IdNr.'],[/^(st\.?-?nr\.?|steuernummer|steuer-?nr\.?)$/,'Steuernummer'],[/^(zahlungsziel|zahlungsbedingungen?)$/,'Zahlungsziel'],
+ [/^(kunde seit|kundin seit|zusammenarbeit seit|partner seit)$/,'Zusammenarbeit seit'],[/^(kundennummer|kundenkonto|kunden-?nr\.?)$/,'Kundennummer'],[/^(art|typ|branche)$/,'Art']];
+function brLabel(a){const t=String(a).trim().replace(/:$/,''),k=t.toLowerCase();for(const [re,n] of BR_LABEL)if(re.test(k))return n;return t.charAt(0).toUpperCase()+t.slice(1)}
+const brWertKey=(l,v)=>{const s=String(v).toLowerCase().trim();if(l==='Telefon'||l==='Mobil')return s.replace(/\D/g,'').replace(/^0049|^49/,'0');return s.replace(/[\s.,;:·\-–()"„“]+/g,' ').trim()};
+const brNotizKern=n=>String(n).replace(/^\d{4}-\d\d-\d\d\s*·\s*/,'').replace(/\s*\([^)]*\)\s*$/,'').replace(/\s*→\s*\[\[[^\]]+\]\]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+function brSauber(p){const F=[],werte=new Set();
+ for(const [a,b] of p.fakten){const l=brLabel(a),v=String(b).trim();if(!v)continue;const i=F.findIndex(f=>f[0]===l);if(i>=0){werte.delete(l+'|'+brWertKey(l,F[i][1]));F[i]=[l,v];werte.add(l+'|'+brWertKey(l,v));continue}
+  const k=brWertKey(l,v);if(k.length>3&&F.some(f=>brWertKey(f[0],f[1])===k))continue;F.push([l,v]);werte.add(l+'|'+k)}
+ const N=[],kerne=new Set([brNotizKern(p.intro||'')]);for(const n of p.notizen){const k=brNotizKern(n);if(!k||kerne.has(k))continue;kerne.add(k);N.push(n)}
+ const vorher=JSON.stringify([p.fakten,p.notizen]);p.fakten=F.slice(0,40);p.notizen=N.slice(0,60);return JSON.stringify([p.fakten,p.notizen])!==vorher}
+const brTitelKey=t=>String(t).toLowerCase().replace(/\b(gmbh|mbh|ag|kg|ug|ohg|gbr|e\.?\s?k\.?|co\.?|und|&|familie|fam\.?|herr|frau|firma)\b/g,' ').replace(/[^a-zäöüß0-9]+/g,' ').trim();
+function brPasstSeite(t){if(BR.seiten[t])return t;const k=brTitelKey(t);if(k.length<3)return t;for(const x of Object.keys(BR.seiten))if(brTitelKey(x)===k)return x;return t}
 // ---------- Einsortieren ----------
-async function brSeiteMerge(e,quelle){const titel=brNotiz(e.seite),alt=BR.seiten[titel];const gruppe=alt?alt.gruppe:(BR_GRUPPEN.includes(e.gruppe)?e.gruppe:'Firma & Wissen');
+async function brSeiteMerge(e,quelle){const titel=brPasstSeite(brNotiz(e.seite)),alt=BR.seiten[titel];const gruppe=alt?alt.gruppe:(BR_GRUPPEN.includes(e.gruppe)?e.gruppe:'Firma & Wissen');
  const p=alt?{...alt,fakten:[...alt.fakten],notizen:[...alt.notizen],quellen:[...alt.quellen]}:{titel,gruppe,unter:e.untertitel||'',intro:'',fakten:[],notizen:[],quellen:[]};
  if(!p.unter&&e.untertitel)p.unter=e.untertitel;
  const links=(e.links||[]).map(brNotiz).filter(l=>l&&l!==titel);let kurz=String(e.kurz||'').trim();for(const l of links)if(kurz&&!kurz.includes('[['+l+']]'))kurz+=` → [[${l}]]`;
  if(kurz){if(!p.intro)p.intro=kurz;else p.notizen.unshift(`${brHeute()} · ${kurz}${quelle?' ('+quelle+')':''}`)}
  for(const [a,b] of (e.fakten||[]).filter(f=>Array.isArray(f)&&f[0]&&f[1])){const i=p.fakten.findIndex(f=>f[0].toLowerCase()===String(a).toLowerCase());if(i>=0)p.fakten[i]=[String(a),String(b)];else p.fakten.push([String(a),String(b)])}
- if(quelle&&!p.quellen.includes(quelle))p.quellen.push(quelle);p.notizen=p.notizen.slice(0,60);
+ if(quelle&&!p.quellen.includes(quelle))p.quellen.push(quelle);brSauber(p);
  await schreiben(brPfad(gruppe,titel),brText(p));BR.seiten[titel]=p;return titel}
 async function brKiEinmal(dateien){const tok=await syToken();let r;
  try{r=await fetch(syBasis()+'/functions/v1/onstand-ki',{method:'POST',headers:{Authorization:'Bearer '+tok,apikey:SY_SERVER.k,'Content-Type':'application/json'},
@@ -8475,6 +8583,7 @@ async function brLauf(o={}){if(BR.laeuft)return;if(!syAktiv()||!KI.aktiv){onToas
     else{nz++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:null,v:BR_SORTV,d:brHeute(),name:j.anzeige,text:(anfrage.find(a=>a.id===j.id)||{}).text?.slice(0,300)||''}}
     if(j.art==='n'){try{await entfernen(BR_ORD+'/Neu/'+j.name)}catch(x){}}}
    await brStandSpeichern()}
+  for(const p of Object.values(BR.seiten)){const q={...p,fakten:[...p.fakten],notizen:[...p.notizen]};if(brSauber(q)){try{await schreiben(brPfad(q.gruppe,q.titel),brText(q));BR.seiten[q.titel]=q}catch(x){}}}
   BR.stand.letzterLauf=new Date().toISOString();await brStandSpeichern();await brIndex();await brLaden();
   BR.toast=gesamt?`Sortiert: ${zu} Datei${zu===1?'':'en'} zugeordnet${BR.frisch.length?' ('+[...new Set(BR.frisch)].slice(0,4).join(', ')+([...new Set(BR.frisch)].length>4?' …':'')+')':''}${nz?`, ${nz} nicht zugeordnet`:''}.`:'Keine neuen Dateien.';
   if(!o.still)onToast(BR.toast)}
@@ -8574,7 +8683,7 @@ function brBinden(inh){const q=s=>inh.querySelector(s);
   const t=await brZuordnen(id,titel,neu?q('[data-brgr]').value:(BR.seiten[titel]||{}).gruppe);BR.tab='wiki';BR.sel=t;BR.toast=`„${(BR.stand.dateien[id]||{}).name||''}“ ist jetzt bei ${t}.`;brMalen(inh)};
  const ig=q('[data-brign]');if(ig)ig.onclick=async()=>{await brIgnorieren(BR.sel.slice(3));BR.sel=null;brMalen(inh)};
  brSuchBinden(inh);const fr=q('.brfrage');if(fr)fr.onsubmit=e=>{e.preventDefault();const t=fr.querySelector('input').value.trim();if(!t)return;asAuf();setTimeout(()=>kiFragen(/[?]$/.test(t)?t:t+'?'),250)}}
-AM_FUNK.push({beruf:'handwerk',id:'brain',name:'FIRMEN-BRAIN',ico:'<g transform="scale(.8333)" stroke-width="2.05"><path d="M12 5.2a2.9 2.9 0 0 0-5.4-1.3A3.2 3.2 0 0 0 4 8.7a3.4 3.4 0 0 0 .4 5.5A3.3 3.3 0 0 0 8 19.4a2.8 2.8 0 0 0 4 .9z"/><path d="M12 5.2a2.9 2.9 0 0 1 5.4-1.3A3.2 3.2 0 0 1 20 8.7a3.4 3.4 0 0 1-.4 5.5 3.3 3.3 0 0 1-3.6 5.2 2.8 2.8 0 0 1-4 .9"/><path d="M8 9.3c1.2 0 2.2.8 2.4 2M16 9.3c-1.2 0-2.2.8-2.4 2M7.4 14.6c1-.7 2.3-.6 3.1.3M16.6 14.6c-1-.7-2.3-.6-3.1.3"/></g>',zeigen:brZeigen,zahl:()=>brNichtZugeordnet().length});
+AM_FUNK.push({beruf:'handwerk',id:'brain',name:'FIRMEN-BRAIN',ico:'<g transform="scale(.8333)" stroke-width="2.05" stroke-linejoin="round"><path d="M12 6.6C10.2 5.3 7.6 4.7 3.8 4.7v13.7c3.8 0 6.4.6 8.2 1.9z"/><path d="M12 6.6c1.8-1.3 4.4-1.9 8.2-1.9v13.7c-3.8 0-6.4.6-8.2 1.9"/><path d="M6.6 8.6c1.4.1 2.5.4 3.4.9M6.6 11.8c1.4.1 2.5.4 3.4.9M17.4 8.6c-1.4.1-2.5.4-3.4.9M17.4 11.8c-1.4.1-2.5.4-3.4.9"/></g>',zeigen:brZeigen,zahl:()=>brNichtZugeordnet().length});
 // Firmen-Brain im Wissen des Assistenten (nur Chef und Büro)
 // Für den Assistenten: Inhaltsverzeichnis aller Seiten nach Bereich (mit Kurzinfo) + Details zu den passenden Seiten
 function brKontext(frage){if(!BR.ok||!Object.keys(BR.seiten).length)return '';const f=String(frage||'').toLowerCase(),P=Object.values(BR.seiten);
@@ -12383,6 +12492,19 @@ Adresse & Kontakt|Adres i kontakt|Adresă și contact|Adresa dhe kontakti|Adresa
 Bank & Bezahlen|Bank i płatności|Bancă și plată|Banka dhe pagesa|Banka i plaćanje|Банка и плащане
 wie die Firma auf Angeboten und Rechnungen steht|jak firma widnieje na ofertach i fakturach|cum apare firma pe oferte și facturi|si shfaqet firma në oferta dhe fatura|kako tvrtka stoji na ponudama i računima|как фирмата стои в офертите и фактурите
 KI-Kontingent|Limit AI|Cotă AI|Kuota AI|AI kontingent|AI лимит
+Bauplan löschen|Usuń plan|Șterge planul|Fshi planin|Obriši plan|Изтрий плана
+Wie heißt der Plan?|Jak nazywa się plan?|Cum se numește planul?|Si quhet plani?|Kako se zove plan?|Как се казва планът?
+Zu welcher Baustelle?|Do której budowy?|Pentru ce șantier?|Për cilin kantier?|Za koje gradilište?|За кой обект?
+Ohne Baustelle|Bez budowy|Fără șantier|Pa kantier|Bez gradilišta|Без обект
+Wie möchtest du anfangen?|Jak chcesz zacząć?|Cum vrei să începi?|Si dëshiron të fillosh?|Kako želiš početi?|Как искаш да започнеш?
+Raum für Raum|Pokój po pokoju|Cameră cu cameră|Dhomë pas dhome|Prostorija po prostorija|Стая по стая
+Etage einstellen|Ustaw piętro|Setează etajul|Cakto katin|Postavi etažu|Настрой етажа
+Alle Etagen drucken|Drukuj wszystkie piętra|Tipărește toate etajele|Printo të gjitha katet|Ispiši sve etaže|Печат на всички етажи
+Neuer Bauplan|Nowy plan|Plan nou|Plan i ri|Novi plan|Нов план
+Mängel offen|Usterki otwarte|Defecte deschise|Defekte të hapura|Otvoreni nedostaci|Открити дефекти
+Neue Wände in cm|Nowe ściany w cm|Pereți noi în cm|Mure të reja në cm|Novi zidovi u cm|Нови стени в см
+Standard-Wandstärke dieser Etage|Standardowa grubość ścian na tym piętrze|Grosimea standard a pereților la acest etaj|Trashësia standarde e mureve në këtë kat|Standardna debljina zidova na ovoj etaži|Стандартна дебелина на стените на този етаж
+Rundung, Nische oder Schräge|Zaokrąglenie, wnęka lub skos|Rotunjire, nișă sau pantă|Rrumbullakim, kamare ose pjerrësi|Zaobljenje, niša ili kosina|Заобляне, ниша или наклон
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -13342,6 +13464,86 @@ document.addEventListener('click',ev=>{if(!document.body.classList.contains('bpa
  const bp=document.getElementById('bp'),q=s=>bp&&bp.querySelector(s);if(q('#vWeiter.an')){const z=q('#wZur');z&&z.click()}const x=q('#vStart.an')?q('#sZu'):q('#eZur');if(x)x.click()},true);
 // Überschriften, die die Werkstatt in GROSSBUCHSTABEN setzt (z. B. „NEUER RAUM“), in normaler Schreibweise
 {const bp=document.getElementById('bp');if(bp)new MutationObserver(()=>{bp.querySelectorAll('#bTitel,.menue h4,.mpkarte h4,.bkopf>b').forEach(e=>{const n=e.firstChild;if(n&&n.nodeType===3){const k=n.nodeValue.trim();if(k.length>3&&k===k.toUpperCase()&&/[A-ZÄÖÜ]/.test(k))n.nodeValue=n.nodeValue.replace(k,frSatz(k))}})}).observe(bp,{subtree:true,childList:true,characterData:true})}
+// ===== Bauplan im Büro-Design (Probe „Bauplan“, v0.11.24) =====
+// Liste am PC (ab 980 px): Tabelle mit Vorschau wie Aufträge/Kunden, Neuer Bauplan als eine Karte mit Startweg.
+// Werkstatt am PC (ab 761 px): eine Kopfleiste (‹ Baupläne · Name · Etagen … Gesamt · Magnet · ⋯ · + Raum · Weiter ›), keine Fußleiste.
+// Zeichnen, Speichern, Drucken und Mängel bleiben in bauplan.js. Handy bleibt wie es ist.
+const BPLY={vor:null,weg:'manuell'};
+const bplBreit=()=>{if(typeof hyHandy==='function'&&hyHandy())return false;const a=document.querySelector('#am .aminhalt');return (a&&a.clientWidth||innerWidth)>=980};
+const bplM2=v=>(Math.round(v*100)/100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
+const bplMz=v=>(Math.round(v)/100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
+const bplEt=e=>e.typ==='OG'?e.nr+'. OG':e.typ;
+const bplEtLang=e=>({UG:'Untergeschoss',EG:'Erdgeschoss',DG:'Dachgeschoss'})[e.typ]||(e.typ==='OG'?e.nr+'. Obergeschoss':e.typ);
+const bplDat=s=>{if(!s)return '';const h=typeof HEUTE==='function'?HEUTE():'';if(s===h)return 'heute';const d=new Date(s+'T12:00');return d.getDate()+'.'+(d.getMonth()+1)+'.'+String(d.getFullYear()).slice(2)};
+const bplMg=p=>{try{const b=p.baustelle&&BST[p.baustelle];return b&&typeof MG!=='undefined'?(MG[b.name]||[]).filter(mgOffen).length:0}catch(e){return 0}};
+const bplZahl=p=>{const R=(p.etagen||[]).flatMap(e=>e.raeume);return {R,m2:R.reduce((s,r)=>s+BPAPI.flaeche(r),0)/1e4}};
+const BPL_I={plan:'<svg viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="36" rx="3"/><path d="M14 14h20v12H24v8H14z"/><path d="M14 30h10"/></svg>',skizze:'<svg viewBox="0 0 48 48"><path d="M10 38l4-12 18-18 8 8-18 18z"/><path d="M28 12l8 8"/><path d="M8 42h32" stroke-dasharray="3 3"/></svg>',manuell:'<svg viewBox="0 0 48 48"><rect x="6" y="10" width="18" height="14"/><rect x="24" y="10" width="18" height="22"/><rect x="6" y="24" width="18" height="14"/></svg>'};
+
+// ---------- Liste ----------
+window.bplMalen=function(inh){if(!window.BPAPI||!bplBreit())return false;inh.classList.add('bplan');
+ if(BPAPI.neu){bplNeu(inh);return true}
+ const L=BPAPI.L,ges=L.reduce((s,p)=>s+bplZahl(p).m2,0);
+ if(!L.some(p=>p.name===BPLY.vor))BPLY.vor=L[0]?L[0].name:null;const v=L.find(p=>p.name===BPLY.vor);
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">${L.length} ${L.length===1?'Plan':'Pläne'}${L.length?' · '+bplM2(ges)+' m² gezeichnet':''}</span><h2 class="mgh">Bauplan</h2></div><div class="mgakt"><button type="button" class="haupt bplneu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Bauplan</button></div></div>
+ <div class="aux">${L.length?`<div class="ausplit kulsplit"><div class="aual bplal"><div class="authd"><span>Bauplan</span><span>Etagen</span><span>Fläche</span><span>Geändert</span></div>
+  ${L.map(p=>{const b=p.baustelle&&BST[p.baustelle],z=bplZahl(p),mg=bplMg(p);return `<button type="button" class="auar aulz${p.name===BPLY.vor?' sel':''}" data-bpn="${esc(p.name)}"><span class="c1"><b>${esc(p.name)}</b><small>${b?`<span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span>${esc(b.name)}`:'ohne Baustelle'}</small></span><span class="c2"><b>${p.etagen.length} ${p.etagen.length===1?'Etage':'Etagen'}</b><small>${esc(p.etagen.map(bplEt).join(', '))} · ${z.R.length} ${z.R.length===1?'Raum':'Räume'}</small></span><span class="c3"><b>${bplM2(z.m2)} m²</b><small>Boden</small></span><span class="c4"><b>${esc(bplDat(p.stand)||'–')}</b><small class="${mg?'kulrot':''}">${mg?mg+(mg===1?' Mangel offen':' Mängel offen'):'&nbsp;'}</small></span></button>`}).join('')}</div>
+  ${v?`<div class="auvor kulvor"><div class="auvk"><span>${esc(v.baustelle||'Bauplan')}</span><div class="mgakt"><button type="button" class="aultext" data-bpo="1">In der Werkstatt öffnen</button>${aulDrei('<button type="button" class="rot bleibt" data-bpweg="1">Bauplan löschen</button>')}</div></div>${bplKurz(v)}</div>`:''}</div>`
+  :`<div class="amleer fileer">Noch kein Bauplan.<br>Oben rechts „+ Bauplan“ – Plan einsenden, Skizze fotografieren oder Raum für Raum zeichnen.</div>`}</div>`;
+ aulMenuBinden(inh);
+ inh.querySelector('.bplneu').onclick=()=>{BPAPI.neu={name:'',b:''};BPLY.weg='manuell';bplMalen(inh);setTimeout(()=>{const x=inh.querySelector('.bplnam');x&&x.focus()},50)};
+ inh.querySelectorAll('[data-bpn]').forEach(r=>{const p=L.find(x=>x.name===r.dataset.bpn);r.onclick=()=>{if(BPLY.vor===p.name){BPAPI.oeffnen(p);return}BPLY.vor=p.name;bplMalen(inh)};r.ondblclick=()=>BPAPI.oeffnen(p)});
+ if(v){const o=inh.querySelector('[data-bpo]');o.onclick=()=>BPAPI.oeffnen(v);inh.querySelectorAll('[data-bpe]').forEach(b=>b.onclick=()=>{BPLY.et=+b.dataset.bpe;bplMalen(inh)});
+  const w=inh.querySelector('[data-bpweg]');w.onclick=async()=>{if(!w.classList.contains('sicher')){w.classList.add('sicher');w.textContent='Wirklich löschen? Nochmal klicken';return}try{await BPAPI.loeschen(v)}catch(x){}BPLY.vor=null;bplMalen(inh)};
+  requestAnimationFrame(()=>{const c=inh.querySelector('.bplbild canvas');if(c&&window.bpMini){const e=bplEtWahl(v);try{window.bpMini(c,{...v,etagen:[e]})}catch(x){}}})}
+ return true};
+const bplEtWahl=p=>{const E=p.etagen.filter(e=>e.raeume.length);return E.find(e=>e.id===BPLY.et)||E[0]||p.etagen[0]||{raeume:[]}};
+function bplKurz(p){const b=p.baustelle&&BST[p.baustelle],z=bplZahl(p),mg=bplMg(p),e=bplEtWahl(p),E=p.etagen.filter(x=>x.raeume.length),hoch=Math.max(0,...z.R.map(r=>r.H||0));
+ return `<div class="kulkurz"><div class="kulkk">${b?`<span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span>`:''}<div><b>${esc(p.name)}</b><small>${esc([b?b.name:'ohne Baustelle',p.stand?'geändert '+bplDat(p.stand):''].filter(Boolean).join(' · '))}</small></div></div>
+  <div class="bplbild">${E.length>1?`<div class="aulst bplets">${E.map(x=>`<button type="button" data-bpe="${x.id}" class="${x===e?'an':''}">${esc(bplEt(x))}</button>`).join('')}</div>`:''}<canvas aria-label="Grundriss ${esc(bplEtLang(e))}"></canvas></div>
+  <div class="kulzahl"><div><small>Etagen</small><b>${p.etagen.length}</b></div><div><small>Räume</small><b>${z.R.length}</b></div><div><small>Boden</small><b>${bplM2(z.m2)} m²</b></div><div><small>Mängel</small><b class="${mg?'kulrot':''}">${mg} offen</b></div></div>
+  ${e.raeume.length?`<div class="kullab">Räume ${esc(bplEtLang(e))}</div><div class="bplr"><div class="bplrh"><span>Raum</span><span>Maße</span><span>Höhe</span><span>Fläche</span></div>${e.raeume.map(r=>`<div><span>${esc(r.name||'Raum')}</span><span>${bplMz(r.L)} × ${bplMz(r.B)} m</span><span>${bplMz(r.H||250)} m</span><b>${bplM2(BPAPI.flaeche(r)/1e4)} m²</b></div>`).join('')}</div>`:'<p class="kulfehlt">Noch keine Räume gezeichnet.</p>'}</div>`}
+// ---------- Neuer Bauplan: eine Karte ----------
+function bplNeu(inh){const N=BPAPI.neu,bs=Object.values(typeof BST!=='undefined'?BST:{}).filter(b=>b.status!=='abgeschlossen');
+ const W=[['plan','Plan einsenden','Foto oder PDF vom Original-Bauplan – Onstand liest Räume und Maße'],['skizze','Skizze mit Maßen','Handskizze fotografieren – Onstand erkennt Striche und Zahlen'],['manuell','Raum für Raum','Räume eingeben und aneinanderschieben']];
+ inh.innerHTML=`<div class="mgk auldk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">Baupläne</span><h2 class="mgh">Neuer Bauplan</h2></div></div>
+ <div class="aux"><div class="aukarte aufm aulform kulform bplform">
+  <label><span class="aullab">Wie heißt der Plan?</span><input class="aut bplnam" value="${esc(N.name)}" placeholder="z. B. Müller Bornheim oder Wohnung Weber"></label>
+  ${bs.length?`<div><span class="aullab">Zu welcher Baustelle? <small>optional – dann sieht man den Plan auch bei Kunde und Mängeln</small></span><div class="mgchips aulwahl kulwahl" data-w="b">${[['','Ohne Baustelle','nur der Plan',null]].concat(bs.map(b=>[b.name,b.name,b.ort||b.kontakt||'Baustelle',b])).map(([k,t,s,b])=>`<button type="button" data-v="${esc(k)}" class="aulk${N.b===k?' an':''}">${b?`<span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span>`:''}<b>${esc(t)}</b><small>${esc(s)}</small></button>`).join('')}</div></div>`:''}
+  <div><span class="aullab">Wie möchtest du anfangen?</span><div class="mgchips aulwahl kulwahl bplwege" data-w="weg">${W.map(([k,t,s])=>`<button type="button" data-v="${k}" class="aulk${BPLY.weg===k?' an':''}"><span class="bplico">${BPL_I[k]}</span><b>${t}</b><small>${s}</small></button>`).join('')}</div></div>
+  <div class="amaktion"><button type="button" class="amab bplab">Abbrechen</button><button type="button" class="amja bplstart">Werkstatt öffnen</button></div></div></div>`;
+ const nm=inh.querySelector('.bplnam');nm.oninput=()=>N.name=nm.value;
+ inh.querySelectorAll('[data-w="b"] [data-v]').forEach(x=>x.onclick=()=>{N.b=x.dataset.v;if(!nm.value.trim()&&N.b){nm.value=N.b;N.name=N.b}inh.querySelectorAll('[data-w="b"] [data-v]').forEach(y=>y.classList.toggle('an',y===x))});
+ inh.querySelectorAll('[data-w="weg"] [data-v]').forEach(x=>{x.onclick=()=>{BPLY.weg=x.dataset.v;inh.querySelectorAll('[data-w="weg"] [data-v]').forEach(y=>y.classList.toggle('an',y===x))};x.ondblclick=()=>inh.querySelector('.bplstart').click()});
+ const zu=()=>{BPAPI.neu=null;bplMalen(inh)};inh.querySelector('.aulzur').onclick=zu;inh.querySelector('.bplab').onclick=zu;
+ nm.onkeydown=e=>{if(e.key==='Enter')inh.querySelector('.bplstart').click()};
+ inh.querySelector('.bplstart').onclick=()=>{if(!(N.name.trim()||N.b)){nm.focus();nm.classList.add('fehlt');return}const p=BPAPI.anlegen(N.name,N.b,BPLY.weg);if(p)BPLY.vor=p.name}}
+
+// ---------- Werkstatt am PC: eine Kopfleiste ----------
+(()=>{const bp=document.getElementById('bp');if(!bp||typeof aulDrei!=='function')return;const q=s=>bp.querySelector(s),mq=matchMedia('(min-width:761px)');
+ const mag=q('#magnet'),lei=q('#vEditor .leiste'),un=q('#vEditor .unten'),rn=q('#raumNeu'),we=q('#weiter'),hin=q('#vEditor .bphin'),fl=q('#eFlaeche'),eFl=q('#eFl');
+ const wk=q('#vWeiter .wkopf'),wun=q('#vWeiter .unten'),mpU=q('#mpUnten'),dA=q('#druckAlle'),dE=q('#druckEt'),wT=q('#wTipp'),wF=q('#wFlaeche');
+ // ⋯ in der Werkstatt
+ const m1=document.createElement('div');m1.className='bplmehr';m1.innerHTML=aulDrei(`<button type="button" data-bpm="et">Etage einstellen<small>Art der Etage und Standard-Wandstärke</small></button><button type="button" data-bpm="druck">Drucken &amp; speichern<small>als PDF, Bild oder auf Papier</small></button><hr><button type="button" class="rot bleibt" data-bpm="weg">Bauplan löschen</button>`);
+ const m2=document.createElement('div');m2.className='bplmehr';m2.innerHTML=aulDrei(`<button type="button" data-bpm="alle">Alle Etagen drucken<small>eine Seite pro Etage</small></button>`);
+ const h1=document.createElement('div');h1.className='bplhin';const h2=document.createElement('div');h2.className='bplhin';
+ const p1=document.createElement('span');p1.hidden=true;const p2=document.createElement('span');p2.hidden=true;const p3=document.createElement('span');p3.hidden=true;const p4=document.createElement('span');p4.hidden=true;
+ if(rn)rn.before(p1);if(we)we.before(p2);if(mpU)mpU.before(p3);if(hin)hin.before(p4);
+ function ordnen(){const pc=mq.matches;bp.classList.toggle('bplpc',pc);
+  if(pc){if(m1.parentNode!==lei){lei.append(eFl,mag,m1,rn,we);fl.append(h1);h1.append(hin);wk.insertBefore(mpU,dE);wk.insertBefore(m2,dE);wF.append(h2);if(wT)h2.append(wT)}
+   if(we)we.innerHTML='Weiter ›';}
+  else if(m1.parentNode===lei){eFl.before(mag);p1.after(rn);p2.after(we);p3.after(mpU);p4.after(hin);m1.remove();m2.remove();h1.remove();if(wT)wun.prepend(wT);h2.remove();if(we)we.innerHTML='Weiter →'}}
+ ordnen();mq.addEventListener('change',ordnen);
+ const zu=()=>document.querySelectorAll('.aulmenu.an').forEach(x=>x.classList.remove('an'));
+ const kn=e=>{const k=e.target.closest&&e.target.closest('#bp .auldrei');if(!k)return;e.stopPropagation();const m=k.nextElementSibling,an=!m.classList.contains('an');zu();m.classList.toggle('an',an);k.setAttribute('aria-expanded',an)};
+ bp.addEventListener('click',kn);
+ bp.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('#bp [data-bpm]');if(!b)return;const a=b.dataset.bpm;
+  if(a==='et'){zu();setTimeout(()=>q('#etBtn').click(),0)}
+  else if(a==='druck'){zu();if(!we.disabled){we.click();setTimeout(()=>dE.click(),350)}}
+  else if(a==='alle'){zu();dA.click()}
+  else if(a==='weg'){if(!b.classList.contains('sicher')){b.classList.add('sicher');b.textContent='Wirklich löschen? Nochmal klicken';return}zu();b.classList.remove('sicher');b.textContent='Bauplan löschen';await BPAPI.loeschenOffen()}});
+ // Titel der Einrichten-Ansicht: Außenmaß in normaler Schreibweise
+ const wt=q('#wTitel');if(wt)new MutationObserver(()=>{const s=wt.querySelector('small')||wt;s.childNodes.forEach(n=>{if(n.nodeType===3&&/\d M\b/.test(n.nodeValue))n.nodeValue=n.nodeValue.replace(/(\d) M\b/g,'$1 m')})}).observe(wt,{childList:true,subtree:true,characterData:true});
+})();
 // ===== Einstellungen am PC als eigene Seite (Probe „Einstellungen“) =====
 // Links in der Seitenleiste unter Papierkorb. Nur Firmen-Einstellungen (seit v0.11.3): Firma & Preise, Rechnungen & Mahnungen | Daten, Abo.
 // Persönliches (Profil, Sprache, Design, Konto & Geräte, App, Rundgang, Über) steht nur im Logo-Menü, Mitarbeiter nur unter Personal, Papierkorb nur in der Leiste.
@@ -14259,7 +14461,7 @@ function vwDokBlatt(){const lk=VW.lk,d=lkVoll(lk.daten),D=lkDoks(d),art=VW.dokAr
  else mitte=`<table><tr><th>Nr.</th><th>Stelle</th><th>Mangel</th><th>Frist</th></tr><tr><td>1</td><td>Bad OG</td><td>Silikonfuge Dusche nacharbeiten</td><td>24.11.2026</td></tr><tr><td>2</td><td>Flur</td><td>Kratzer Türzarge</td><td>24.11.2026</td></tr></table><div class="unt"><div>Auftraggeber</div><div>Auftragnehmer</div></div>`;
  const spalten={firma:`<div><b>${esc(firma)}</b>${B.str}<br>${B.ort}<br>Inhaber: ${B.inhaber}</div>`,kontakt:`<div${pf()}><b>Kontakt</b>Tel. ${B.tel}<br>${B.mail}<br>St.-Nr. ${B.stnr}<br>USt-IdNr. ${B.ust}</div>`,bank:`<div${pf()}><b>Bank</b>${B.bank}<br>IBAN ${B.iban}<br>BIC ${B.bic}<br>${B.hr}</div>`};
  const fuss=art==='angebot'||art==='rechnung'?`<div class="dfuss">${D.fuss.map(k=>spalten[k]).join('')}</div>`:'';
- const ons=`<div class="donst">${D.onst?`Onstand × ${esc(firma)}`:'Erstellt mit Onstand'} · onstand.de</div>`;
+ const ons=`<div class="donst">Erstellt mit Onstand · onstand.de</div>`;
  const schluss=art==='rechnung'&&T.schluss?`<p class="dtx">${lkTextHtml(T.schluss,V)}</p>`:tx(T.schluss);
  return `<div class="vwblatt ${D.streifen?'streif':''}" style="--f:${esc(d.farbe)};--f2:${esc(lkMisch(d.farbe,'#ffffff',.35))}">${kopf}${adr}<h3 class="dtitel ${D.titelSerif?'serif':''} ${D.titelFarbe?'farbe':''}">${titel}</h3>${tx(T.ein)}${mitte}${schluss}${tx(T.gruss)}${fuss||'<div style="margin-top:auto"></div>'}${ons}</div>`}
 function vwDokSeite(){const lk=VW.lk,D=vwDok(),dn=VW_DOKS.find(x=>x[0]===VW.dokArt)[1],T=D.tx[VW.dokArt];
@@ -14288,7 +14490,6 @@ function vwDokSeite(){const lk=VW.lk,D=vwDok(),dn=VW_DOKS.find(x=>x[0]===VW.dokA
   <div class="vwbox"><div class="vwbk"><b>Fußzeile</b><span>Angebot und Rechnung</span></div><div class="vwbi">
    <div class="vwfuss">${D.fuss.map((k,i)=>`<div><span>${VW_FUSS[k]}</span><button type="button" data-dk="hoch" data-i="${i}" ${i===0?'disabled':''}>▲</button><button type="button" data-dk="runter" data-i="${i}" ${i===D.fuss.length-1?'disabled':''}>▼</button></div>`).join('')}</div>
    <span class="vwhin">Die Angaben kommen aus „Firma &amp; Preise“ der jeweiligen Firma.</span>
-   <div class="vwschalter">${sch('onst','„Onstand × Firma“ unten statt „Erstellt mit Onstand“')}</div>
   </div></div>
   <div class="vwfest"><b>Bleibt immer fest</b><ul><li>Zahlen und Beträge in Schwarz</li><li>Pflichtangaben der Rechnung: Nummer, Datum, Leistungszeitraum, Adresse, Steuernummer, MwSt., Bank</li><li>E-Rechnung (XRechnung/ZUGFeRD) – nur das Aussehen ändert sich</li></ul><label class="vwsch" style="padding:8px 0 0"><span>Pflichtangaben markieren</span><input type="checkbox" data-dk="pflicht" ${VW.dokPflicht?'checked':''}></label></div>
   <div class="vwknr"><button type="button" class="vwbtn p" data-lk="speichern">Look speichern</button><button type="button" class="vwbtn" data-dk="zurueck">Texte zurücksetzen</button></div>
@@ -14316,7 +14517,7 @@ const BB_FARBEN=['#1F5FBF','#1B2230','#0F8C8C','#2E7D32','#AE5A27','#B8860B','#7
 function bbFirma(){try{return auFirma()}catch(e){return {}}}
 // Vorlage = Verwaltungs-Look, darüber die eigenen Angaben der Firma
 function bbDoks(F){F=F||bbFirma();const L=LK.d&&LK.d.doks||{},E=F.doks||{},tx={};for(const [k] of BB_DOKS)tx[k]=Object.assign({},(L.tx||{})[k]||{},(E.tx||{})[k]||{});
- return lkDoks({serif:!!(LK.d&&LK.d.serif),doks:Object.assign({},L,E,{tx})})}
+ const o=lkDoks({serif:!!(LK.d&&LK.d.serif),doks:Object.assign({},L,E,{tx})});o.onst=false;return o}  // unten steht immer „Erstellt mit Onstand“
 function bbLook(F){F=F||bbFirma();const eigen=!!(F.logo||F.dokFarbe||F.doks);if(!LK.d&&!eigen)return null;
  const d=LK.d?Object.assign({},LK.d):lkVoll({farbe:'#1F5FBF',firma:F.name||''});if(F.logo)d.voll=F.logo;if(F.dokFarbe)d.farbe=F.dokFarbe;if(!d.firma)d.firma=F.name||'';d.doks=bbDoks(F);return d}
 // Beim Drucken / PDF: für die Dauer des Dokuments den Look der Firma einsetzen
@@ -14351,9 +14552,8 @@ function bbSeite(){const D=bbArbeit(),F=bbFirma(),art=ES.dokArt,dn=BB_DOKS.find(
    <label><span class="aullab">Grußformel</span><textarea class="aut bbtx" rows="2" data-bt="gruss" placeholder="leer = kein Gruß">${esc(T.gruss||'')}</textarea></label>
    <p class="kulkleer">${hint}</p><button type="button" class="aultext bbzur">Texte für ${esc(dn)} zurücksetzen</button>
   </div>
-  <div class="aukarte aulform esform"><div class="kulkh"><b>Fußzeile</b><small>Angebot und Rechnung · Angaben aus den Firmendaten</small></div>
+  <div class="aukarte aulform esform"><div class="kulkh"><b>Fußzeile</b><small>Angebot und Rechnung · Angaben aus den Firmendaten · unten steht immer „Erstellt mit Onstand“</small></div>
    <div class="bbfuss">${D.fuss.map((k,i)=>`<div><span>${BB_FUSS[k]}</span><button type="button" data-bu="${i}" data-d="-1" ${i===0?'disabled':''} aria-label="nach vorn">▲</button><button type="button" data-bu="${i}" data-d="1" ${i===D.fuss.length-1?'disabled':''} aria-label="nach hinten">▼</button></div>`).join('')}</div>
-   ${sch('onst','„Onstand × Firma“ unten statt „Erstellt mit Onstand“')}
    <p class="kulfehlt">Bleibt immer fest: Zahlen und Beträge in Schwarz, alle Pflichtangaben der Rechnung und die E-Rechnung – nur das Aussehen ändert sich.</p>
   </div></div>
  <div class="bbrechts"><div class="aukarte kulkarte"><div class="kulkh"><b>Vorschau · ${esc(dn)}</b><small>mit deinen Firmendaten</small></div><div class="vwdflach bbflach">${bbVorschau(art,D,ES.farbe)}</div></div></div></div>`}
