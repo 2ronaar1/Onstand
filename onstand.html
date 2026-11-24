@@ -4499,13 +4499,68 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* Hauptknopf: blau gefüllt, alle anderen Knöpfe in der Kopfzeile ruhig umrandet */
 #am .mgakt .haupt{background:var(--k-akz)!important;border-color:var(--k-akz)!important;color:var(--k-auf)!important}
 #am .mgakt .haupt:hover{background:var(--k-akzd)!important;border-color:var(--k-akzd)!important}
+/* ===== Aufträge im Grundlayout (layout.js, v0.11.4) ===== */
+/* ⋯-Menü */
+#am .aulmw{position:relative}
+#am#am .auldrei{width:36px;height:36px;padding:0;border:1px solid var(--k-lin);background:var(--k-b1);border-radius:8px;font:600 18px/1 var(--k-ui);color:var(--k-t);cursor:pointer;display:grid;place-items:center}
+#am .aulmenu{display:none;position:absolute;right:0;top:42px;z-index:30;min-width:240px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;box-shadow:0 14px 34px -14px rgba(0,0,0,.35);padding:5px}
+#am .aulmenu.an{display:block}
+#am#am .aulmenu button{display:block;width:100%;text-align:left;border:0;background:none;font:500 13.5px var(--k-ui);padding:8px 10px;border-radius:6px;cursor:pointer;color:var(--k-t);letter-spacing:0;text-transform:none;height:auto}
+#am#am .aulmenu button:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#am#am .aulmenu .rot{color:var(--k-rot)}#am#am .aulmenu .rot.sicher{background:color-mix(in srgb,var(--k-rot) 10%,transparent);font-weight:600}
+#am .aulmenu hr{border:0;border-top:1px solid var(--k-lin);margin:4px 0}
+/* Suche oben im Kopf */
+#am .mgakt>.fisuch{height:36px;width:260px;border-radius:8px;background:var(--k-b1);border:1px solid var(--k-lin)}
+#am .mgakt>.fisuch input{font-size:13.5px}
+/* Status als kleine Zahlenzeile, Jahr rechts */
+#am#am .aukette.aulzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin:10px 0 8px;padding:0;border:0;background:none}
+#am#am .aukette.aulzeile>div[data-fs]{display:flex;align-items:baseline;gap:6px;border:0;background:none;padding:3px 0;border-radius:0;cursor:pointer}
+#am#am .aukette.aulzeile>div[data-fs]::after{display:none}
+#am#am .aukette.aulzeile small{display:inline;font:500 12.5px var(--k-ui);letter-spacing:0;text-transform:capitalize;color:var(--k-sub)}
+#am#am .aukette.aulzeile b{display:inline;margin:0;font:700 13px var(--k-ui);color:var(--k-t)}
+#am#am .aukette.aulzeile span{display:none}
+#am#am .aukette.aulzeile>div.fian{box-shadow:inset 0 -2px 0 var(--k-akz)}#am#am .aukette.aulzeile>div.fian small{color:var(--k-akz)}
+#am#am .aukette.aulzeile .fijahr{margin-left:auto}
+#am .fibar.aulbar .fizeile:not(:has(.fichips:not([hidden]))){display:none}
+/* Zeilen: Angebot · Kunde · Status · Brutto */
+#am#am .ausplit .aual>.auar.aulz,#am#am .ausplit .authd{grid-template-columns:minmax(0,1.5fr) minmax(0,1.1fr) 104px 110px;padding-left:14px}
+#am#am .auar.aulz{display:grid;align-items:center;column-gap:14px;grid-template-columns:minmax(0,1.5fr) minmax(0,1.1fr) 104px 110px;text-align:left;padding:10px 14px}
+#am#am .auar.aulz>span{display:block;min-width:0}
+#am#am .auar.aulz b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--k-t)}
+#am#am .auar.aulz small{display:block;font-size:12px;color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am#am .auar.aulz .c2{font-size:13px;color:var(--k-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am#am .auar.aulz .c4{text-align:right}#am#am .auar.aulz .c4 b{font-variant-numeric:tabular-nums}
+#am .aulkz{display:inline-block;font:600 10.5px var(--k-ui);letter-spacing:.04em;color:var(--k-sub);border:1px solid var(--k-lin);border-left:3px solid var(--bc);border-radius:4px;padding:0 4px;margin-right:6px;vertical-align:1px}
+#am .aulpill{display:inline-flex;font:600 11.5px var(--k-ui);padding:2px 8px;border-radius:10px;white-space:nowrap;color:var(--k-sub);background:color-mix(in srgb,var(--k-t) 6%,var(--k-b1))}
+#am .aulpill.verschickt,#am .aulpill.gestellt{color:var(--k-gelb);background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1))}
+#am .aulpill.angenommen,#am .aulpill.bezahlt{color:var(--k-gruen);background:color-mix(in srgb,var(--k-gruen) 11%,var(--k-b1))}
+#am .aulpill.abgelehnt,#am .aulpill.ueber{color:var(--k-rot);background:color-mix(in srgb,var(--k-rot) 10%,var(--k-b1))}
+#am#am .aultext{background:none!important;border-color:transparent!important;color:var(--k-akz)!important}
+/* Angebot: Kopf mit Zurück, Status in einer Reihe, ⋯ und PDF rechts */
+#am .mgk.auldk{align-items:center;flex-wrap:wrap;gap:12px 16px;padding-bottom:12px;border-bottom:1px solid var(--k-lin);margin-bottom:14px}
+#am .mgk.auldk>div:has(>.mgh){flex:1;min-width:180px}
+#am#am .aulzur{height:36px;border:1px solid var(--k-lin);background:var(--k-b1);border-radius:8px;padding:0 12px;font:600 13px var(--k-ui);color:var(--k-t);cursor:pointer;white-space:nowrap}
+#am .aulst{display:flex;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;background:var(--k-b1)}
+#am#am .aulst button{border:0;border-left:1px solid var(--k-lin);border-radius:0;background:none;height:34px;padding:0 13px;font:500 13px var(--k-ui);color:var(--k-t);cursor:pointer;letter-spacing:0;text-transform:none}
+#am#am .aulst button:first-child{border-left:0}
+#am#am .aulst button.an{background:var(--k-t);color:var(--k-b1);font-weight:600}
+#am#am .aulst button:disabled{opacity:.45;cursor:not-allowed}
+#am#am .aulst button.an[data-st="angenommen"]{background:var(--k-gruen);color:var(--k-t)}#am#am .aulst button.an[data-st="abgelehnt"]{background:var(--k-rot);color:var(--k-t)}
+/* großer Knopf unter den Positionen */
+#am#am .aulneupos{display:block;width:100%;margin:10px 0 4px;height:44px;border:1.5px dashed color-mix(in srgb,var(--k-akz) 45%,var(--k-lin));border-radius:8px;background:color-mix(in srgb,var(--k-akz) 5%,var(--k-b1));color:var(--k-akz);font:600 14px var(--k-ui);letter-spacing:0;text-transform:none;cursor:pointer}
+#am#am .aulneupos:hover{background:color-mix(in srgb,var(--k-akz) 10%,var(--k-b1))}
+#am .aupos :is(input,textarea)::selection,#am .autitel::selection{background:color-mix(in srgb,var(--k-akz) 35%,transparent)}
+#am .aupos :is(input,textarea):focus{outline:none;border-color:var(--k-akz)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--k-akz) 18%,transparent)}
+@media (max-width:760px){#am .mgakt>.fisuch{width:100%;order:-1}#am .mgk.auldk .aulst{order:5;width:100%}#am#am .aulst button{flex:1;padding:0 4px;font-size:12px}
+ #am#am .auar.aulz{grid-template-columns:minmax(0,1fr) auto;row-gap:4px}#am#am .auar.aulz .c2{grid-column:1}#am#am .auar.aulz .c3{grid-column:2;grid-row:1;justify-self:end}#am#am .auar.aulz .c4{grid-column:2;grid-row:2}}
+#am#am .aux.aulpx{flex:none!important;height:auto!important;min-height:0!important;padding-bottom:0!important;overflow:visible}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.3';
+const ON_VER='0.11.4';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6101,6 +6156,131 @@ function aubLive(inh,obj,vor,pdf){if(!aubBreit(inh)||!obj)return;const x=inh.que
  neu();let t=0;const spaeter=ms=>{clearTimeout(t);t=setTimeout(neu,ms)};x.addEventListener('input',()=>spaeter(180));x.addEventListener('change',()=>spaeter(60));x.addEventListener('click',()=>spaeter(250))}
 auDokMalen=function(inh,a){const o=AUB_DOK.apply(this,arguments);const p=inh.querySelector('.aupos');if(p&&aubBreit(inh)&&a.pos.length)p.insertAdjacentHTML('afterbegin','<div class="aupzh"><span>Pos.</span><span>Leistung</span><span>Menge</span><span>Gesamt · Einzelpreis</span><span></span></div>');aubLive(inh,a,auVorschau,auPdf);return o};
 arMalen=function(inh){const o=AUB_AR.apply(this,arguments);aubLive(inh,AUV.rech,arVorschau,arPdf);return o};
+// ===== Aufträge im Grundlayout (v0.11.4) =====
+// Legt sich über die fertigen Ansichten aus auftraege.js/buero.js (Logik bleibt dort) und ordnet nur neu:
+// Liste: Titel „Aufträge“, Suche oben, ⋯ (Eingangsrechnungen, Export), ein blauer Knopf; Reiter Angebote · Rechnungen · Offen · Preisliste;
+// Status als kleine Zahlenzeile (antippen = filtern), Zeilen mit Kürzel statt Farbstreifen, Vorschau mit Öffnen + PDF.
+// Angebot: ‹ Zurück, Status in einer Reihe, ⋯ (aus Bauplan, duplizieren, als Vorlage speichern, löschen), PDF ganz rechts,
+// großer Knopf „+ Position hinzufügen“, Klick in ein Feld markiert den ganzen Inhalt.
+// Firmendaten (aus Einstellungen) und Mahnstufen (Einstellungen → Rechnungen & Mahnungen) erscheinen nur noch dort.
+const AUL={mahn:false,vorl:null,vorlLad:null};
+const AUL_TAB={ang:'Angebote',rech:'Rechnungen',offen:'Offen',preis:'Preisliste',eing:'Eingangsrechnungen',exp:'Export'};
+const AUL_ST=[['entwurf','Entwurf'],['verschickt','Verschickt'],['angenommen','Angenommen'],['abgelehnt','Abgelehnt']];
+const aulDrei=(items)=>`<div class="aulmw"><button type="button" class="auldrei" aria-label="Weitere Aktionen" aria-haspopup="true" aria-expanded="false">⋯</button><div class="aulmenu" role="menu">${items}</div></div>`;
+function aulMenuBinden(root){root.querySelectorAll('.auldrei').forEach(k=>k.onclick=ev=>{ev.stopPropagation();const m=k.nextElementSibling,an=!m.classList.contains('an');document.querySelectorAll('.aulmenu.an').forEach(x=>x.classList.remove('an'));m.classList.toggle('an',an);k.setAttribute('aria-expanded',an)})}
+document.addEventListener('click',ev=>{if(!ev.target.closest||!ev.target.closest('.aulmenu .bleibt'))document.querySelectorAll('.aulmenu.an').forEach(x=>x.classList.remove('an'))});
+const aulWeg=e=>{if(e)e.style.setProperty('display','none','important')};
+const aulKz=b=>b&&b.k?`<span class="aulkz" style="--bc:${b.c||'var(--k-sub)'}">${esc(b.k)}</span>`:'';
+
+// ---------- Liste ----------
+function aulListe(inh){const mgk=inh.querySelector(':scope>.mgk');if(!mgk)return;
+ const h=mgk.querySelector('.mgh'),tt=mgk.querySelector('.amtt');if(h)h.textContent='Aufträge';
+ if(tt)tt.textContent=AU_A.length+(AU_A.length===1?' Angebot':' Angebote')+' · '+AU_R.length+(AU_R.length===1?' Rechnung':' Rechnungen');
+ const akt=mgk.querySelector('.mgakt');if(akt){const f=akt.querySelector('.aufir');if(f)f.remove();akt.querySelectorAll('.tr').forEach(x=>x.remove());
+  const such=inh.querySelector('.fibar .fisuch');if(such)akt.prepend(such);
+  if(!akt.querySelector('.auldrei'))akt.querySelector('.haupt')?.insertAdjacentHTML('beforebegin',aulDrei(`<button type="button" data-aul="eing">Eingangsrechnungen</button><button type="button" data-aul="exp">Export für Steuerbüro</button>`));
+  if(!akt.querySelector('.auldrei'))akt.insertAdjacentHTML('beforeend',aulDrei(`<button type="button" data-aul="eing">Eingangsrechnungen</button><button type="button" data-aul="exp">Export für Steuerbüro</button>`));
+  aulMenuBinden(akt);akt.querySelectorAll('[data-aul]').forEach(b=>b.onclick=()=>{AUV.tab=b.dataset.aul;auMalen(inh)})}
+ // Reiter: vier feste, Eingang/Export erscheinen nur, solange sie offen sind
+ const tabs=inh.querySelector('.autabs');if(tabs){const T=['ang','rech','offen','preis'].concat(['eing','exp'].includes(AUV.tab)?[AUV.tab]:[]);
+  const z={ang:AU_A.length,rech:AU_R.length,offen:(()=>{try{return opListe().length}catch(e){return 0}})(),preis:AU_P.length};let rot=false;try{rot=opDran().length>0}catch(e){}
+  tabs.innerHTML=T.map(t=>`<button type="button" data-t="${t}" class="${AUV.tab===t?'an':''}">${AUL_TAB[t]}${z[t]!=null?`<em class="${t==='offen'&&rot?'rot':''}">${z[t]}</em>`:''}</button>`).join('');
+  tabs.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{AUV.tab=b.dataset.t;AUL.mahn=false;auMalen(inh)})}
+ // Status-Zeile statt Kästen, Jahr rechts daneben; Status-Knöpfe der Filterleiste entfallen (die Zeile filtert)
+ const k=inh.querySelector('.aukette');if(k){k.classList.add('aulzeile');k.querySelectorAll('small').forEach(x=>{const t=x.textContent.trim();x.textContent=t.charAt(0)+t.slice(1).toLowerCase()});const bar=inh.querySelector('.fibar'),j=bar&&bar.querySelector('.fijahr');if(j)k.appendChild(j);if(bar){bar.classList.add('aulbar');const ch=bar.querySelector('.fichips');if(ch&&AUV.tab==='ang')ch.hidden=true}}
+ // Zeilen: Kürzel statt Farbstreifen, Kunde als eigene Spalte
+ inh.querySelectorAll('.auar[data-i]').forEach(r=>{const a=AU_A[+r.dataset.i];if(!a)return;const b=BST[a.b];r.classList.add('aulz');
+  r.innerHTML=`<span class="c1"><b>${esc(a.t||'ohne Titel')}</b><small>${esc(a.nr)} · ${auDat(a.d)}</small></span><span class="c2">${aulKz(b)}${esc(a.b)}</span><span class="c3"><span class="aulpill ${a.st}">${AUL_ST.find(x=>x[0]===a.st)?.[1]||a.st}</span></span><span class="c4"><b>${auEur(auBrutto(a))}</b><small>${a.pos.length} ${a.pos.length===1?'Position':'Positionen'}</small></span>`});
+ inh.querySelectorAll('.auar[data-r]').forEach(r=>{const x=AU_R[+r.dataset.r];if(!x)return;const b=BST[x.b],ue=x.st==='gestellt'&&arFaellig(x)<tbIso(new Date());r.classList.add('aulz');
+  r.innerHTML=`<span class="c1"><b>${esc(x.t||'Rechnung')}</b><small>${esc(x.nr||'Entwurf')} · ${auDat(x.d)}</small></span><span class="c2">${aulKz(b)}${esc(x.b)}</span><span class="c3"><span class="aulpill ${ue?'ueber':x.st}">${ue?'überfällig':(AR_ST[x.st]||['?'])[0].charAt(0)+(AR_ST[x.st]||['?'])[0].slice(1).toLowerCase()}</span></span><span class="c4"><b>${auEur(arBrutto(x))}</b><small>${x.st==='gestellt'?'fällig '+auDat(arFaellig(x)):esc((AR_ART[x.art]||'').replace('rechnung',''))}</small></span>`});
+ const hd=inh.querySelector('.authd');if(hd)hd.innerHTML=`<span>${AUV.tab==='rech'?'Rechnung':'Angebot'}</span><span>Kunde</span><span>Status</span><span>Brutto</span>`;
+ // Vorschau: „Öffnen“ ruhig, PDF daneben (der blaue Knopf ist „+ Angebot“ oben)
+ inh.querySelectorAll('.auvor .auvk').forEach(v=>{const o=v.querySelector('[data-vo]');if(o){o.classList.remove('haupt');o.classList.add('aultext')}const s=v.querySelector(':scope>span');const sel=AUV.tab==='rech'?AU_R[AUV.vr]:AU_A[AUV.vs];if(s&&sel)s.textContent=(sel.nr||'Entwurf')+' · '+(sel.t||'')})}
+
+// ---------- Preisliste als eigener Reiter, Firmendaten nur aus Einstellungen ----------
+function aulFirma(inh,nurPreise){const kopf=inh.querySelector(':scope>.amkopf');const firmaK=inh.querySelector('.aufm'),qr=inh.querySelector('.rqkarte'),preisK=[...inh.querySelectorAll('.aukarte')].find(k=>k.querySelector('.aupneu'));
+ if(nurPreise){aulWeg(firmaK);aulWeg(qr);
+  if(kopf)kopf.outerHTML=`<div class="mgk"><div><span class="amtt">Leistungen und Preise für Angebote (netto)</span><h2 class="mgh">Aufträge</h2></div><div class="mgakt">${aulDrei(`<button type="button" data-aul="eing">Eingangsrechnungen</button><button type="button" data-aul="exp">Export für Steuerbüro</button>`)}<button type="button" class="haupt aulpneu">+ Leistung</button></div></div><div class="aux aulpx"><div class="autabs" role="tablist"></div></div>`;
+  const aux=inh.querySelector('.aux:not(.aulpx)'),px=inh.querySelector('.aulpx');if(aux&&px)px.after(aux);
+  if(preisK){const alt=preisK.querySelector('.aupneu');aulWeg(alt);const n=inh.querySelector('.aulpneu');if(n&&alt)n.onclick=()=>alt.click();const kh=preisK.querySelector('.aukh b');if(kh)kh.textContent='Preisliste'}
+  const akt=inh.querySelector('.mgk .mgakt');aulMenuBinden(akt);akt.querySelectorAll('[data-aul]').forEach(b=>b.onclick=()=>{AUV.firma=false;AUV.tab=b.dataset.aul;auMalen(inh)});
+  aulListe(inh);return}
+ // aus Einstellungen: nur Firmendaten (+ QR-Code), Zurück führt zu den Einstellungen
+ aulWeg(preisK);
+ if(kopf)kopf.outerHTML=`<div class="mgk"><div><span class="amtt">Erscheinen auf Angeboten und Rechnungen</span><h2 class="mgh">Firma &amp; Preise</h2></div><div class="mgakt"><button type="button" class="aulzur">‹ Einstellungen</button><button type="button" class="aulpl">Preisliste öffnen</button></div></div>`;
+ const z=inh.querySelector('.aulzur');if(z)z.onclick=()=>{AUV.firma=false;amFunktion('mehr',{seite:'einst'})};
+ const pl=inh.querySelector('.aulpl');if(pl)pl.onclick=()=>{AUV.firma=false;AUV.tab='preis';auMalen(inh)};
+ const hb=firmaK&&firmaK.querySelector('.aukh b');if(hb)hb.textContent='Firmendaten fürs PDF'}
+
+// ---------- Mahnstufen nur noch aus Einstellungen ----------
+function aulOffen(inh){const d=inh.querySelector('.opeinst');if(!d)return;
+ if(!AUL.mahn){aulWeg(d);return}
+ // Ansicht „Rechnungen & Mahnungen“: nur die Einstellungen, Zurück zu den Einstellungen
+ inh.innerHTML='';inh.insertAdjacentHTML('beforeend',`<div class="mgk"><div><span class="amtt">Wann Onstand erinnert und mahnt</span><h2 class="mgh">Rechnungen &amp; Mahnungen</h2></div><div class="mgakt"><button type="button" class="aulzur">‹ Einstellungen</button></div></div><div class="aux aulmahn"></div>`);
+ inh.querySelector('.aulmahn').appendChild(d);d.open=true;d.style.display='';
+ inh.querySelector('.aulzur').onclick=()=>{AUL.mahn=false;amFunktion('mehr',{seite:'einst'})}}
+{const a=onMenuAktion;onMenuAktion=function(x){if(x==='mahn'){AUL.mahn=true;amFunktion('auftraege',{tab:'offen'});return}return a.apply(this,arguments)}}
+{const a=amFunktion;amFunktion=function(id){if(id!=='auftraege')AUL.mahn=false;return a.apply(this,arguments)}}
+
+// ---------- Angebot bearbeiten ----------
+async function aulVorlagen(){if(AUL.vorl)return AUL.vorl;try{const t=await lesen(AU_ORD+'/Vorlagen.json');AUL.vorl=t?JSON.parse(t):[]}catch(e){AUL.vorl=[]}if(!Array.isArray(AUL.vorl))AUL.vorl=[];return AUL.vorl}
+async function aulVorlageSpeichern(a,inh){if(!(await gedOk())){mgToast(inh,'Dafür muss der Onstand-Ordner verbunden sein');return}const L=await aulVorlagen(),t=(a.t||'Vorlage').replace(/\s*\(Kopie\)$/,'');
+ const i=L.findIndex(v=>v.t===t),v={t,pos:a.pos.map(p=>({n:p.n,e:p.e,p:p.p,l:p.l||0,m:p.m,f:p.f}))};if(i>=0)L[i]=v;else L.unshift(v);
+ await schreiben(AU_ORD+'/Vorlagen.json',JSON.stringify(L,null,1));mgToast(inh,'Als Vorlage „'+t+'“ gespeichert – beim nächsten neuen Angebot auswählbar')}
+async function aulDuplizieren(a,inh){if(!(await gedOk())){mgToast(inh,'Dafür muss der Onstand-Ordner verbunden sein');return}
+ const k=JSON.parse(JSON.stringify(a));delete k.vers;delete k.ann;Object.assign(k,{nr:auNeueNr(),st:'entwurf',d:mgHeute(),t:(a.t||'Angebot')+' (Kopie)'});k.pos.forEach(p=>delete p.her);
+ AU_A.unshift(k);await auSpeichern(k);AUV.offen=k;auMalen(inh);mgToast(inh,'Kopie '+k.nr+' angelegt')}
+async function aulStatus(a,st,inh){if(a.st===st)return;if(AU_R.some(r=>r.a===a.nr)){mgToast(inh,'Zu diesem Angebot gibt es schon Rechnungen – der Status bleibt');return}
+ a.st=st;if(st==='verschickt'&&!a.vers)a.vers=mgHeute();if(st==='angenommen')a.ann=mgHeute();if(st==='entwurf'){delete a.ann}
+ await auSpeichern(a);auMalen(inh);mgToast(inh,st==='angenommen'?'Angenommen – Auftrag über '+auEur(auBrutto(a)):st==='verschickt'?'Als verschickt markiert':st==='abgelehnt'?'Als abgelehnt markiert':'Zurück auf Entwurf')}
+function aulDok(inh,a){const alt=inh.querySelector(':scope>.amkopf');if(!alt)return;const b=BST[a.b]||{},ed=a.st==='entwurf'||a.st==='verschickt';
+ if(typeof hyHandy==='function'&&hyHandy())return aulDokFelder(inh,a,ed); // Handy: eigene Kopf- und Knopfleiste (handy.js) bleibt
+ const bp=inh.querySelector('.aubp'),lo=inh.querySelector('.auloesch'),pdf=inh.querySelector('.aupdf'),rechnungen=AU_R.some(r=>r.a===a.nr);
+ alt.outerHTML=`<div class="mgk auldk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">${esc(a.t||'')}${a.b?' · '+esc(a.b):''}</span><h2 class="mgh">Angebot ${esc(a.nr)}</h2></div>
+  <div class="aulst" role="group" aria-label="Status">${AUL_ST.map(([k,t])=>`<button type="button" data-st="${k}" class="${a.st===k?'an':''}" aria-pressed="${a.st===k}"${rechnungen&&a.st!==k?' disabled title="Es gibt schon Rechnungen"':''}>${t}</button>`).join('')}</div>
+  <div class="mgakt">${aulDrei(`${bp?'<button type="button" data-aul="bp">Positionen aus Bauplan übernehmen</button>':''}<button type="button" data-aul="dup">Angebot duplizieren</button><button type="button" data-aul="vorl">Als Vorlage speichern</button>${lo?'<hr><button type="button" class="rot bleibt" data-aul="weg">Angebot löschen</button>':''}`)}<button type="button" class="haupt aulpdf">PDF</button></div></div>`;
+ inh.querySelectorAll('.auknoepfe').forEach(aulWeg);inh.querySelectorAll('.aulivev [data-vpdf]').forEach(aulWeg);
+ const k=inh.querySelector('.auldk');aulMenuBinden(k);
+ k.querySelector('.aulzur').onclick=()=>{AUV.offen=null;auMalen(inh)};
+ k.querySelector('.aulpdf').onclick=()=>{if(pdf)pdf.click();else auPdf(a)};
+ k.querySelectorAll('.aulst [data-st]').forEach(x=>x.onclick=()=>aulStatus(a,x.dataset.st,inh));
+ k.querySelectorAll('[data-aul]').forEach(x=>x.onclick=()=>{const w=x.dataset.aul;
+  if(w==='bp'&&bp){bp.click();setTimeout(()=>inh.querySelector('.aubpbox .auplan')?.scrollIntoView({block:'nearest',behavior:'smooth'}),60)}
+  if(w==='dup')aulDuplizieren(a,inh);if(w==='vorl')aulVorlageSpeichern(a,inh);
+  if(w==='weg'&&lo){if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent='Angebot löschen'}},4000);return}
+   x.closest('.aulmenu').classList.remove('an');lo.classList.add('sicher');lo.click()}});
+ aulDokFelder(inh,a,ed)}
+function aulDokFelder(inh,a,ed){
+ // großer Knopf unter den Positionen statt „+ NEUE POSITION“ oben
+ const kat=inh.querySelector('.aukat');if(kat&&ed){aulWeg(kat);const box=inh.querySelector('.aubox');if(box&&!inh.querySelector('.aulneupos')){box.insertAdjacentHTML('beforebegin','<button type="button" class="aulneupos">+ Position hinzufügen</button>');inh.querySelector('.aulneupos').onclick=()=>{kat.click();box.scrollIntoView({block:'nearest',behavior:'smooth'})}}}
+ const h=inh.querySelector('.aukh b');if(h&&/POSITIONEN/.test(h.textContent))h.textContent='Positionen';
+ // Klick in Leistung, Menge oder Preis markiert den ganzen Inhalt (einfach lostippen)
+ inh.querySelectorAll('.aupos input,.aupos textarea,.autitel').forEach(i=>{i.addEventListener('focus',()=>setTimeout(()=>{try{i.select()}catch(e){}},0));i.addEventListener('mouseup',e=>{if(i.dataset.aulsel!=='1'){e.preventDefault();i.dataset.aulsel='1'}});i.addEventListener('blur',()=>delete i.dataset.aulsel)});
+ inh.querySelectorAll('.auhin').forEach(x=>{if(/FIRMA (&amp;|&) PREISE/.test(x.innerHTML))x.textContent='Für das PDF fehlen noch deine Firmendaten – unter Einstellungen → Firma & Preise eintragen.'})}
+
+// ---------- Neues Angebot: aus Vorlage ----------
+function aulNeu(inh){const f=inh.querySelector('.aufm');if(!f||f.querySelector('.aulvorl'))return;
+ aulVorlagen().then(L=>{if(!L.length||!f.isConnected||f.querySelector('.aulvorl'))return;const t=f.querySelector('.aut')?.closest('label');if(!t)return;
+  t.insertAdjacentHTML('afterend',`<label class="aulvorl">AUS VORLAGE (optional)<div class="mgchips">${L.map((v,i)=>`<button type="button" data-vl="${i}" class="${AUL.wahl===i?'an':''}">${esc(v.t)}<small>${v.pos.length} ${v.pos.length===1?'Position':'Positionen'}</small></button>`).join('')}</div></label>`);
+  f.querySelectorAll('[data-vl]').forEach(x=>x.onclick=()=>{const i=+x.dataset.vl;AUL.wahl=AUL.wahl===i?null:i;f.querySelectorAll('[data-vl]').forEach(y=>y.classList.toggle('an',+y.dataset.vl===AUL.wahl));const ti=f.querySelector('.aut');if(AUL.wahl!=null&&ti&&!ti.value.trim()){ti.value=L[i].t;AUV.neu.t=L[i].t}})})}
+// nach dem Anlegen: Positionen der Vorlage übernehmen
+{const a=auSpeichern;auSpeichern=async function(x){if(AUL.wahl!=null&&AUV.neu&&x&&x.st==='entwurf'&&!x.pos.length&&AUL.vorl&&AUL.vorl[AUL.wahl]){x.pos=AUL.vorl[AUL.wahl].pos.map(p=>Object.assign({},p,{her:''}));AUL.wahl=null}return a.apply(this,arguments)}}
+
+// ---------- übrige Unterseiten (Rechnung, neue Rechnung, offener Posten, neues Angebot): Kopf im Grundlayout ----------
+function aulKopf(inh,titel){if(typeof hyHandy==='function'&&hyHandy())return;const k=inh.querySelector(':scope>.amkopf');if(!k)return;const tt=k.querySelector('.amtt'),zur=k.querySelector('.ampf');
+ const t=titel||(typeof glNormal==='function'?glNormal(tt?tt.textContent:''):(tt?tt.textContent:''));
+ const neu=document.createElement('div');neu.className='mgk auldk';neu.innerHTML=`${zur?'<button type="button" class="aulzur">‹ Zurück</button>':''}<div><span class="amtt">Aufträge</span><h2 class="mgh"></h2></div>`;neu.querySelector('.mgh').textContent=t;
+ k.replaceWith(neu);if(AUV.rech)inh.querySelectorAll('.aulivev [data-vpdf]').forEach(aulWeg);if(zur){aulWeg(zur);neu.appendChild(zur);neu.querySelector('.aulzur').onclick=()=>zur.click()}}
+// ---------- Einhängen ----------
+{const a=auMalen;auMalen=function(inh){const r=a.apply(this,arguments);try{
+  if(AUV.op||AUV.rech||AUV.rechNeu)aulKopf(inh);
+  else if(AUV.firma)aulFirma(inh,false);
+  else if(AUV.neu){aulKopf(inh,'Neues Angebot');aulNeu(inh)}
+  else if(AUV.offen)aulDok(inh,AUV.offen);
+  else if(AUV.tab==='preis'){AUV.firma=true;a.call(this,inh);AUV.firma=false;aulFirma(inh,true)}
+  else{aulListe(inh);if(AUV.tab==='offen')aulOffen(inh)}}catch(e){console.error(e)}return r}}
+// Einstellungen → Firma & Preise: nur Firmendaten
+{const a=onMenuAktion;onMenuAktion=function(x){if(x==='firma'){amFunktion('auftraege',{firma:true});return}return a.apply(this,arguments)}}
 
 // ===== Handwerk · Funktion 1: Baustellen-Tagebuch =====
 // Gedächtnis/Persönlich/Arbeit/Bautagebuch/Bautagebuch JJJJ-MM.md – ein Abschnitt pro Tag und Baustelle, jederzeit bearbeitbar; Übersicht Bautagebuch.md.
@@ -11340,6 +11520,34 @@ Profil, Sprache, Design, Konto & Geräte: oben links auf das Logo tippen.|Profil
 Dort sind Profil, Sprache, Konto und Geräte.|Tam są profil, język, konto i urządzenia.|Acolo sunt profilul, limba, contul și dispozitivele.|Aty janë profili, gjuha, llogaria dhe pajisjet.|Tamo su profil, jezik, račun i uređaji.|Там са профилът, езикът, акаунтът и устройствата.
 Hier liegen die Einstellungen der Firma.|Tu są ustawienia firmy.|Aici sunt setările firmei.|Këtu janë cilësimet e firmës.|Ovdje su postavke tvrtke.|Тук са настройките на фирмата.
 Abo|Abonament|Abonament|Abonim|Pretplata|Абонамент
+Export für Steuerbüro|Eksport dla biura rachunkowego|Export pentru contabil|Eksport për kontabilistin|Izvoz za knjigovođu|Експорт за счетоводителя
+Leistungen und Preise für Angebote (netto)|Usługi i ceny do ofert (netto)|Servicii și prețuri pentru oferte (net)|Shërbime dhe çmime për oferta (neto)|Usluge i cijene za ponude (neto)|Услуги и цени за оферти (нето)
+Erscheinen auf Angeboten und Rechnungen|Pojawiają się na ofertach i fakturach|Apar pe oferte și facturi|Shfaqen në oferta dhe fatura|Pojavljuju se na ponudama i računima|Появяват се в офертите и фактурите
+‹ Einstellungen|‹ Ustawienia|‹ Setări|‹ Cilësimet|‹ Postavke|‹ Настройки
+Preisliste öffnen|Otwórz cennik|Deschide lista de prețuri|Hap listën e çmimeve|Otvori cjenik|Отвори ценоразписа
+Wann Onstand erinnert und mahnt|Kiedy Onstand przypomina i upomina|Când Onstand amintește și somează|Kur Onstand kujton dhe paralajmëron|Kada Onstand podsjeća i opominje|Кога Onstand напомня и изисква плащане
+‹ Zurück|‹ Wstecz|‹ Înapoi|‹ Mbrapa|‹ Natrag|‹ Назад
+Angebot {x}|Oferta {x}|Oferta {x}|Oferta {x}|Ponuda {x}|Оферта {x}
+Positionen aus Bauplan übernehmen|Przejmij pozycje z planu budowy|Preia pozițiile din plan|Merr pozicionet nga plani|Preuzmi stavke iz plana|Вземи позициите от плана
+Angebot duplizieren|Duplikuj ofertę|Duplică oferta|Dyfisho ofertën|Dupliciraj ponudu|Дублирай офертата
+Als Vorlage speichern|Zapisz jako szablon|Salvează ca șablon|Ruaj si shabllon|Spremi kao predložak|Запази като шаблон
+Wirklich löschen? Nochmal tippen|Na pewno usunąć? Stuknij ponownie|Sigur ștergi? Atinge din nou|Fshij vërtet? Prek përsëri|Stvarno obrisati? Dodirni ponovno|Наистина ли да изтрия? Натисни пак
++ Position hinzufügen|+ Dodaj pozycję|+ Adaugă poziție|+ Shto pozicion|+ Dodaj stavku|+ Добави позиция
+AUS VORLAGE (optional)|Z SZABLONU (opcjonalnie)|DIN ȘABLON (opțional)|NGA SHABLLONI (opsionale)|IZ PREDLOŠKA (neobavezno)|ОТ ШАБЛОН (по избор)
+Zu diesem Angebot gibt es schon Rechnungen – der Status bleibt|Do tej oferty są już faktury – status zostaje|Există deja facturi pentru această ofertă – statusul rămâne|Për këtë ofertë ka tashmë fatura – statusi mbetet|Za ovu ponudu već postoje računi – status ostaje|Към тази оферта вече има фактури – статусът остава
+Als abgelehnt markiert|Oznaczono jako odrzucone|Marcată ca respinsă|Shënuar si e refuzuar|Označeno kao odbijeno|Отбелязана като отхвърлена
+Als verschickt markiert|Oznaczono jako wysłane|Marcată ca trimisă|Shënuar si e dërguar|Označeno kao poslano|Отбелязана като изпратена
+Zurück auf Entwurf|Z powrotem na szkic|Înapoi la ciornă|Kthyer në draft|Natrag na skicu|Обратно в чернова
+Kopie {x} angelegt|Utworzono kopię {x}|Copia {x} a fost creată|Kopja {x} u krijua|Kopija {x} je stvorena|Копието {x} е създадено
+Als Vorlage „{x}“ gespeichert – beim nächsten neuen Angebot auswählbar|Zapisano jako szablon „{x}” – do wyboru przy następnej ofercie|Salvat ca șablon „{x}” – îl poți alege la următoarea ofertă|U ruajt si shabllon „{x}“ – mund ta zgjedhësh në ofertën e radhës|Spremljeno kao predložak „{x}“ – može se odabrati kod sljedeće ponude|Запазен като шаблон „{x}“ – избира се при следващата оферта
+Für das PDF fehlen noch deine Firmendaten – unter Einstellungen → Firma & Preise eintragen.|Do PDF brakuje danych firmy – wpisz je w Ustawienia → Firma i ceny.|Pentru PDF lipsesc datele firmei – completează-le în Setări → Firmă și prețuri.|Për PDF mungojnë të dhënat e firmës – plotësoji te Cilësimet → Firma dhe çmimet.|Za PDF nedostaju podaci tvrtke – upiši ih pod Postavke → Tvrtka i cijene.|За PDF липсват данните на фирмата – въведи ги в Настройки → Фирма и цени.
+{n} Angebote · {n} Rechnungen|{n} ofert · {n} faktur|{n} oferte · {n} facturi|{n} oferta · {n} fatura|{n} ponuda · {n} računa|{n} оферти · {n} фактури
+1 Angebot · {n} Rechnungen|1 oferta · {n} faktur|1 ofertă · {n} facturi|1 ofertë · {n} fatura|1 ponuda · {n} računa|1 оферта · {n} фактури
+{n} Angebote · 1 Rechnung|{n} ofert · 1 faktura|{n} oferte · 1 factură|{n} oferta · 1 faturë|{n} ponuda · 1 račun|{n} оферти · 1 фактура
+fällig {x}|termin {x}|scadent {x}|afati {x}|dospijeće {x}|падеж {x}
+{n} Positionen|{n} pozycji|{n} poziții|{n} pozicione|{n} stavki|{n} позиции
+1 Position|1 pozycja|1 poziție|1 pozicion|1 stavka|1 позиция
+Es gibt schon Rechnungen|Są już faktury|Există deja facturi|Ka tashmë fatura|Već postoje računi|Вече има фактури
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
