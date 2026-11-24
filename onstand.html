@@ -4710,6 +4710,39 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .aulptab .gr td{background:color-mix(in srgb,var(--k-t) 7%,var(--k-b1));color:var(--k-t);padding:10px 12px;border-bottom:1px solid var(--k-lin)}
 #am .aulptab .gr td span{color:var(--k-sub)}
 #am .aulkl .aulkst{font-style:normal;color:#F2B705;font-size:15px;flex:none}
+/* ===== Kunden im Grundlayout (kunden/layout.js) ===== */
+#am .mgakt>.kulsuch{height:36px;width:260px;border-radius:8px;background:var(--k-b1);border:1px solid var(--k-lin);display:flex;align-items:center;gap:8px;padding:0 10px}
+#am#am .kulsuch input{border:0;background:none;height:100%;flex:1;min-width:0;font:14px var(--k-ui);color:var(--k-t);outline:none;box-shadow:none;padding:0}
+#am#am .kulsuch svg{width:16px;height:16px;flex:none;color:var(--k-sub)}
+#am .glsplit:has(.kurow,.kuliste){flex:none;height:auto}
+#am .glsplit:has(.kurow,.kuliste) :is(.gll,.glr){max-height:none;overflow:visible}
+#am#am .gll .kuliste{border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);overflow:hidden;padding:0;gap:0}
+#am .kulth,#am#am .gll .kurow{display:grid!important;grid-template-columns:34px minmax(0,1.6fr) minmax(0,1fr) minmax(0,1.1fr) 118px;align-items:center;gap:12px}
+#am .kulth{padding:9px 14px;border-bottom:1px solid var(--k-lin);background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));font:600 12.5px var(--k-ui);color:var(--k-sub)}
+#am .kulth span:first-child{grid-column:1/3}
+#am#am .gll .kurow{padding:11px 14px;border:0;border-bottom:1px solid var(--k-lin);border-radius:0;margin:0;background:var(--k-b1);box-shadow:none;min-height:0;text-align:left}
+#am#am .gll .kurow:last-child{border-bottom:0}
+#am#am .gll .kurow:hover{background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
+#am#am .gll .kurow.sel{background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1));box-shadow:inset 3px 0 0 var(--k-akz)}
+#am#am .gll .kurow .kutx small{display:none}
+#am#am .gll .kurow .kutx b{font:600 14.5px var(--k-ui);color:var(--k-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+#am .gll .kurow :is(.kulo,.kulap){font:14px var(--k-ui);color:var(--k-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .gll .kurow .leer{color:var(--k-sub)}
+#am#am .gll .kurow em.aulpill{justify-self:start;font:600 12.5px var(--k-ui);font-style:normal;letter-spacing:0;text-transform:none;padding:3px 10px;border-radius:12px;margin:0}
+#am#am .gll .kurow em.kulint{color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 10%,var(--k-b1))}
+/* rechts */
+#am#am .glr .gldk h3 .aulpill{vertical-align:2px;margin-left:6px;font-size:12px}
+#am#am .glr .gldk .mgakt{align-items:center;gap:6px}
+#am#am .glr :is(.kukonlab,.kukf,.kukonl){display:flex!important}
+#am#am .glr .kukonl{flex-direction:column;margin:0 18px 16px}
+#am#am .glr .kukf{margin:0 18px 8px;flex-wrap:wrap;gap:6px}
+#am#am .glr .kukonlab{align-items:center;margin:14px 18px 8px;font:600 13.5px var(--k-ui)!important;color:var(--k-t)!important}
+#am#am .glr .kukonlab .kukneu{margin-left:auto;border:0;background:none;color:var(--k-akz);font:600 13.5px var(--k-ui);padding:0;height:auto;display:inline-flex;align-items:center;gap:5px;cursor:pointer;text-transform:none;letter-spacing:0}
+#am#am .glr .kukonlab .kukneu svg{width:14px;height:14px}
+#am#am .aminhalt:has(.kuneu,.kuzur,.kusp) :is(.glr .tbfelder>span){font-size:13.5px!important;font-weight:600!important}
+#am#am .glr .tbfelder>div{font-size:15px}
+#am#am .glr .gllab{font-size:13.5px!important;color:var(--k-t)!important}
+#am#am .glr .kukonlab{padding:0}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -4837,7 +4870,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.12';
+const ON_VER='0.11.14';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5421,7 +5454,7 @@ const auNetto=a=>a.pos.reduce((s,p)=>s+p.p*p.m,0),auLohn=a=>a.pos.reduce((s,p)=>
 const auDat=s=>s?tbAusIso(s).toLocaleDateString('de-DE'):'';
 function auFirma(){try{return JSON.parse(localStorage.getItem('onstandFirma')||'{}')}catch(e){return {}}}
 // ---------- Preisliste (Gedächtnis: Persönlich/Arbeit/Preisliste.md, von Hand lesbar und änderbar) ----------
-function auPlParse(t){const out=[];String(t||'').split('\n').forEach(l=>{const m=l.match(/^-\s+(.+?)\s*\|\s*([^|]+?)\s*\|\s*([\d.,]+)\s*€\s*\|\s*Lohn\s*(\d+)\s*%\s*\|\s*(\w+)(?:\s·\sQuelle:\s*([^·]*?)\s·)?/);if(m)out.push({n:m[1].trim(),e:m[2].trim(),p:auNum(m[3]),l:+m[4],f:AU_FL[m[5].toLowerCase()]?m[5].toLowerCase():(Object.keys(AU_FL).find(k=>AU_FL[k].toLowerCase()===m[5].toLowerCase())||'frei'),bsp:/Beispiel/i.test(m[6]||''),fav:/·\s*Favorit\s*$/.test(l)})});return out}
+function auPlParse(t){const out=[];String(t||'').split('\n').forEach(l=>{const m=l.match(/^-\s+(.+?)\s*\|\s*([^|]+?)\s*\|\s*([\d.,]+)\s*€\s*\|\s*Lohn\s*(\d+)\s*%\s*\|\s*([A-Za-zÄÖÜäöüß]+)(?:\s·\sQuelle:\s*([^·]*?)\s·)?/);if(m)out.push({n:m[1].trim(),e:m[2].trim(),p:auNum(m[3]),l:+m[4],f:AU_FL[m[5].toLowerCase()]?m[5].toLowerCase():(Object.keys(AU_FL).find(k=>AU_FL[k].toLowerCase()===m[5].toLowerCase())||'frei'),bsp:/Beispiel/i.test(m[6]||''),fav:/·\s*Favorit\s*$/.test(l)})});return out}
 async function auPlLaden(){AU_P=[];if(!(await gedOk()))return AU_P;const t=await lesen(AU_PL);AU_P=auPlParse(t);if(!t){AU_P=AU_BEISPIEL.map(([n,e,p,l,f])=>({n,e,p,l,f,bsp:true}));await auPlSchreiben()}return AU_P}
 async function auPlSchreiben(){if(!(await gedOk()))return;let s=kopfMeta('preisliste','persönlich','Eingabe (Aufträge)','hoch')+'# Preisliste\n\nEigene Leistungen mit Einheit, Nettopreis, Lohnanteil und Fläche (Boden, Wände, Decke, Kanten oder frei – damit rechnet Onstand Mengen aus dem Bauplan). Teil von [[Arbeit]].\n\n';
  AU_P.forEach(x=>{s+=`- ${x.n.replace(/\|/g,'/')} | ${x.e} | ${auZ(x.p).replace(/\./g,'')} € | Lohn ${Math.round(x.l)} % | ${AU_FL[x.f]} · Quelle: ${x.bsp?'Beispielpreis von Onstand – bitte anpassen':'Eingabe (Preisliste)'} · Sicherheit: ${x.bsp?'niedrig':'hoch'} · Stand: ${HEUTE()}${x.fav?' · Favorit':''}\n`});await schreiben(AU_PL,s)}
@@ -12023,6 +12056,11 @@ Antippen und eintragen oder dem Assistenten erzählen|Dotknij i wpisz albo powie
 Als Favorit markieren|Oznacz jako ulubione|Marchează ca favorit|Shëno si të preferuar|Označi kao favorit|Отбележи като любимо
 Favorit entfernen|Usuń z ulubionych|Elimină din favorite|Hiq nga të preferuarat|Ukloni iz favorita|Премахни от любими
 Favorit – steht in Angeboten und Rechnungen ganz oben|Ulubione – na samej górze w ofertach i fakturach|Favorit – apare primul în oferte și facturi|E preferuar – shfaqet e para në oferta dhe fatura|Favorit – prikazuje se prvi u ponudama i računima|Любимо – най-отгоре в офертите и фактурите
+Kundenliste exportieren|Eksportuj listę klientów|Exportă lista de clienți|Eksporto listën e klientëve|Izvezi popis kupaca|Експортирай списъка с клиенти
+Kunde löschen|Usuń klienta|Șterge clientul|Fshi klientin|Izbriši kupca|Изтрий клиента
+Route planen|Zaplanuj trasę|Planifică ruta|Planifiko rrugën|Planiraj rutu|Планирай маршрут
+{n} aktiv · {x} Interessenten|{n} aktywnych · {x} zainteresowanych|{n} activi · {x} interesați|{n} aktivë · {x} të interesuar|{n} aktivnih · {x} zainteresiranih|{n} активни · {x} заинтересовани
+{n} aktiv · {x} Interessent|{n} aktywnych · {x} zainteresowany|{n} activi · {x} interesat|{n} aktivë · {x} i interesuar|{n} aktivnih · {x} zainteresiran|{n} активни · {x} заинтересован
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -12308,6 +12346,53 @@ function pbReiter(){const a=document.querySelector('#am .aminhalt');if(!a)return
   v.innerHTML=`<div class="pbrol"><div class="pbrk"><b>Rollen &amp; Rechte</b>${chef&&konto?'<button type="button" class="esbtn pbred">Rollen bearbeiten</button>':''}</div>${typeof reUebersicht==='function'?reUebersicht():''}</div>
    <p class="petipp">${konto?'Wer welche Rolle hat, legst du unter Einstellungen → Konto &amp; Geräte fest.':'Rollen gelten, sobald das Firmenkonto verbunden ist (Einstellungen → Konto &amp; Geräte).'}</p>`;
   const e=v.querySelector('.pbred');if(e)e.onclick=()=>{try{reEditor()}catch(x){}}}}
+// ===== Kunden im Grundlayout (Probe „Hauptbildschirme“, v0.11.14) =====
+// Legt sich über kuMalen (Logik bleibt in kunden.js, glanz.js teilt links/rechts). Nur am PC (ab 980 px); Handy bleibt.
+// Kopf: „2 aktiv · 0 Interessenten“, Suche als Feld, ⋯ (Kundenliste exportieren), blau „+ Neuer Kunde“.
+// Links Tabelle Kunde · Ort · Ansprechpartner · Status, Reiter Aktiv · Interessenten · Abgeschlossen.
+// Rechts: Name + Kundenart, „Bearbeiten“ als Link, ⋯ (Kontakt notieren, Anrufen, Route planen, Kunde löschen), Verknüpft (Tagebuch statt Cockpit), Letzte Kontakte des Kunden.
+const kulBreit=()=>{const a=document.querySelector('#am .aminhalt');return (a&&a.clientWidth||innerWidth)>=980};
+const KUL_ART={privat:'Privat',firma:'Firma',behoerde:'Behörde'};
+function kulExport(){const S=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"',ST={interessent:'Interessent',abgeschlossen:'Abgeschlossen'};
+ const K=[['Name','name'],['Kürzel','k'],['Status',b=>ST[b.status]||'In Arbeit'],['Standort','ort'],['Ansprechpartner','kontakt'],['Telefon','tel'],['E-Mail','mail'],['Kundenart',b=>KUL_ART[b.kart]||''],['Rechnung an','rname'],['Straße','rstr'],['PLZ Ort','rort'],['Rechnungs-E-Mail','rmail'],['USt-IdNr.','rust'],['Leitweg-ID','leitweg']];
+ const z=[K.map(k=>S(k[0])).join(';')].concat(Object.values(BST).sort((a,b)=>a.name.localeCompare(b.name)).map(b=>K.map(([t,f])=>S(typeof f==='function'?f(b):b[f])).join(';')));
+ const bl=new Blob(['﻿'+z.join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='Kundenliste '+new Date().toLocaleDateString('de-DE')+'.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function kulKopf(w){const k=w.querySelector(':scope>.mgk');if(!k||!k.querySelector('.kuneu'))return;const B=Object.values(BST),akt=B.filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent').length,it=B.filter(b=>b.status==='interessent').length;
+ const tt=k.querySelector('.amtt');if(tt)tt.textContent=akt+' aktiv · '+it+' '+(it===1?'Interessent':'Interessenten');
+ const a=k.querySelector('.mgakt');const sb=a.querySelector('.kusb');if(sb)aulWeg(sb);a.querySelectorAll('.tr').forEach(x=>x.remove());
+ const s=a.querySelector('.kusuch');if(s){s.placeholder='Name, Ort, Ansprechpartner';if(!s.parentElement.classList.contains('kulsuch')){const l=document.createElement('label');l.className='fisuch kulsuch';s.before(l);l.innerHTML=typeof FI_I!=='undefined'?FI_I.such:'';l.appendChild(s)}}
+ const neu=a.querySelector('.kuneu');if(neu&&!neu.dataset.kul){neu.dataset.kul=1;neu.lastChild.textContent='Neuer Kunde'}
+ if(!a.querySelector('.auldrei')){const m=document.createElement('div');m.innerHTML=aulDrei('<button type="button" data-kul="exp">Kundenliste exportieren</button>');a.insertBefore(m.firstElementChild,neu);aulMenuBinden(a);a.querySelector('[data-kul="exp"]').onclick=kulExport}
+ // Reiter: Aktiv · Interessenten · Abgeschlossen
+ const r=w.querySelector(':scope>.glreiter'),f=r&&r.querySelector('[data-kt="fertig"]'),i=r&&r.querySelector('[data-kt="intr"]');if(f&&i&&i.nextElementSibling!==f)i.after(f)}
+function kulListe(w){const l=w.querySelector('.gll');if(!l)return;const L=l.querySelector('.kuliste');if(!L)return;
+ // Letzte Kontakte stehen rechts beim Kunden – links nicht doppelt
+ l.querySelectorAll(".gllab,.kukonl").forEach(x=>aulWeg(x));
+ if(!L.querySelector('.kulth')&&L.querySelector('.kurow'))L.insertAdjacentHTML('afterbegin','<div class="kulth"><span>Kunde</span><span>Ort</span><span>Ansprechpartner</span><span>Status</span></div>');
+ L.querySelectorAll('.kurow').forEach(z=>{if(z.querySelector('.kulo'))return;const b=BST[z.dataset.n]||{},em=z.querySelector('em');
+  z.querySelector('.kutx').insertAdjacentHTML('afterend',`<span class="kulo">${esc((b.ort||'').split(',').pop().replace(/^\s*\d{5}\s*/,'').trim()||'–')}</span><span class="kulap${b.kontakt?'':' leer'}">${esc(b.kontakt||'–')}</span>`);
+  if(em){em.textContent=b.status==='abgeschlossen'?'Abgeschlossen':b.status==='interessent'?'Interessent':'In Arbeit';em.classList.add('aulpill',b.status==='abgeschlossen'?'bezahlt':b.status==='interessent'?'kulint':'verschickt');z.appendChild(em)}})}
+function kulDetail(w){const r=w.querySelector('.glr');if(!r||!r.querySelector('.kued'))return;const b=BST[KU_SEL];if(!b)return;const k=r.querySelector(':scope>.gldk');
+ const h3=k&&k.querySelector('h3');if(h3&&b.kart&&KUL_ART[b.kart]&&!h3.querySelector('.aulpill'))h3.insertAdjacentHTML('beforeend',` <span class="aulpill">${KUL_ART[b.kart]}</span>`);
+ const a=k&&k.querySelector('.mgakt');if(!a||a.querySelector('.auldrei'))return;
+ const bea=a.querySelector('.kued');bea.classList.add('aultext');bea.textContent='Bearbeiten';a.querySelectorAll('.glanruf').forEach(x=>aulWeg(x));
+ // „Kontakt notieren“ zurück zu „Letzte Kontakte“
+ const kn=a.querySelector('.kukneu'),lab=r.querySelector('.kukonlab');if(kn&&lab){lab.appendChild(kn);kn.lastChild.textContent='Kontakt notieren'}
+ const tel=b.tel?b.tel.replace(/[^+\d]/g,''):'';
+ a.insertAdjacentHTML('beforeend',aulDrei(`<button type="button" data-kud="kon">Kontakt notieren</button>${tel?`<button type="button" data-kud="tel">Anrufen</button>`:''}${b.ort?'<button type="button" data-kud="route">Route planen</button>':''}<hr><button type="button" class="rot bleibt" data-kud="weg">Kunde löschen</button>`));aulMenuBinden(a);
+ a.querySelectorAll('[data-kud]').forEach(x=>x.onclick=()=>{const t=x.dataset.kud;
+  if(t==='kon'){const y=r.querySelector('.kukneu');if(y){y.click();y.scrollIntoView({block:'center',behavior:'smooth'})}}
+  if(t==='tel'){const y=r.querySelector('.kuakt a[href^="tel:"]');if(y)y.click();else location.href='tel:'+tel}
+  if(t==='route')window.open('https://maps.apple.com/?daddr='+encodeURIComponent(b.ort),'_blank','noopener');
+  if(t==='weg'){if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent='Kunde löschen'}},3000);return}
+   const inh=document.querySelector('#am .aminhalt');KU_V.ed=true;kuMalen(inh);const g=document.querySelector('#am .kuweg');if(g){g.click();g.click()}}});
+ // Verknüpft: „Cockpit“ heißt jetzt „Tagebuch“ und springt zum letzten Eintrag dieser Baustelle
+ const c=r.querySelector('[data-go="cockpit"]');if(c){const s=c.querySelector('span');if(s&&s.firstChild&&s.firstChild.nodeType===3)s.firstChild.nodeValue='Tagebuch';const sm=c.querySelector('small');if(sm)sm.textContent=sm.textContent.replace(/Tagebuch-Eintr(ag|äge)/,m=>m.endsWith('ag')?'Eintrag':'Einträge');
+  c.innerHTML=c.innerHTML.replace(/<svg[\s\S]*?<\/svg>/,'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/></svg>');
+  c.onclick=()=>{const d=Object.keys(TB).filter(x=>(TB[x]||[]).some(e=>e&&e.b===b.name)).sort().pop();if(d){TBV.sel=tbAusIso(d);TBV.idx=Math.max(0,TB[d].findIndex(e=>e.b===b.name))}amFunktion('tagebuch')}}
+ // Reihenfolge wie in der Probe: Felder, Verknüpft, dann Letzte Kontakte
+ const ver=r.querySelector('.glverkn');if(ver&&lab){[lab,r.querySelector('.kukonform'),r.querySelector('.kukf'),r.querySelector('.kukonl')].filter(Boolean).forEach(x=>r.appendChild(x))}}
+{const a=kuMalen;kuMalen=function(inh){if(kulBreit()&&KU_SEL!==''&&!KU_V.ed)KU_V.such=true;const r=a.apply(this,arguments);try{if(kulBreit()){const w=document.querySelector('#am .aminhalt');kulKopf(w);kulListe(w);kulDetail(w)}}catch(e){console.error(e)}return r}}
 // ===== Firmen-Wiki im Büro-Design (Probe „Firmen-Wiki“) =====
 // Am PC steht „Frag das Firmenwissen“ oben über Liste und Seite; Bezeichnungen in normaler Schreibweise.
 const BW_MAL=brMalen;
