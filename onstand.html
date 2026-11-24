@@ -4644,6 +4644,15 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .aulkl button small{color:var(--k-sub);font-variant-numeric:tabular-nums;white-space:nowrap}
 #am#am .aulkat>[data-frei]{display:block;margin-top:8px;width:100%;height:38px;border:1px dashed var(--k-lin);border-radius:8px;background:none;color:var(--k-akz);font:600 13.5px var(--k-ui);cursor:pointer;letter-spacing:0;text-transform:none}
 @media (max-width:600px){#am .aulptab th:nth-child(4),#am .aulptab td.g{display:none}#am .aulptab .r{width:auto;white-space:nowrap}#am .aulptab .e{width:44px}}
+
+/* Beschriftungen lesbar (Rechnungsdatum, Leistung von/bis, Zahlungsziel …) */
+#am#am .aulgross{font:600 14px/1.3 var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-t)!important}
+#am#am label.aulgross :is(input,select,textarea){font-weight:400}
+#am#am .aux .aukh>b{font:600 14px var(--k-ui);letter-spacing:0;text-transform:none;color:var(--k-t)}
+#am#am .aulive .aux .aupz,#am#am .aulive .aux .aupz :is(input,textarea){font-size:14px}
+#am#am .aulive .aux .aupz .aug small,#am#am .aulive .aux .aupz .aug small input{font-size:12.5px}
+#am#am .aulive .aux .aukarte button:not(.aulneupos):not(.auweg){font-size:13.5px}
+#am#am .aulive .aux .aukarte :is(p,small):not(.aun){font-size:max(1em,13px)}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -4771,7 +4780,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.9';
+const ON_VER='0.11.10';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6562,12 +6571,19 @@ function aulRechPos(inh){const kat=inh.querySelector('.arkat');if(!kat||inh.quer
  box.insertAdjacentHTML('beforebegin','<button type="button" class="aulneupos">+ Position hinzufügen</button>');inh.querySelector('.aulneupos').onclick=()=>{kat.click();box.scrollIntoView({block:'nearest',behavior:'smooth'})};
  inh.querySelectorAll('.aukh b').forEach(h=>{if(h.textContent==='POSITIONEN')h.textContent='Positionen'});
  inh.querySelectorAll('.aupos input,.aupos textarea').forEach(i=>i.addEventListener('focus',()=>setTimeout(()=>{try{i.select()}catch(e){}},0)))}
+// ---------- Beschriftungen gut lesbar: normal geschrieben statt winziger Großbuchstaben ----------
+function aulLabels(inh){const x=inh.querySelector(':scope>.aux')||inh.querySelector('.aulive .aux');if(!x)return;
+ const w=document.createTreeWalker(x,NodeFilter.SHOW_TEXT);let n;const L=[];while(n=w.nextNode())L.push(n);
+ L.forEach(n=>{const e=n.parentElement;if(!e||e.closest('.aulivev,.aublatt,.auvor'))return;const t=n.textContent.trim();if(t.length<3||t!==t.toUpperCase()||!/[A-ZÄÖÜ]{3}/.test(t))return;
+  if(e.tagName==='LABEL'||e.matches('.aukh b,.auf,.aulab')){n.textContent=n.textContent.replace(t,typeof glNormal==='function'?glNormal(t):t.charAt(0)+t.slice(1).toLowerCase());e.classList.add('aulgross')}})}
+// Rechnung wird nach Änderungen (z. B. neue Position) direkt neu gezeichnet: Kopf und Knöpfe dann wieder anpassen
+{const a=arMalen;arMalen=function(inh){const r=a.apply(this,arguments);try{if(AUV.rech&&!AUV.op){aulKopf(inh);aulRech(inh);aulRechPos(inh);aulLabels(inh)}}catch(e){console.error(e)}return r}}
 // ---------- Einhängen ----------
 {const a=auMalen;auMalen=function(inh){const r=a.apply(this,arguments);try{
-  if(AUV.op||AUV.rech||AUV.rechNeu){aulKopf(inh,AUV.rechNeu&&!AUV.rech?'Neue Rechnung':undefined);if(AUV.rech&&!AUV.op){aulRech(inh);aulRechPos(inh)}if(AUV.rechNeu&&!AUV.rech)aulRechArt(inh)}
+  if(AUV.op||AUV.rech||AUV.rechNeu){aulKopf(inh,AUV.rechNeu&&!AUV.rech?'Neue Rechnung':undefined);if(AUV.rech&&!AUV.op){aulRech(inh);aulRechPos(inh)}aulLabels(inh);if(AUV.rechNeu&&!AUV.rech)aulRechArt(inh)}
   else if(AUV.firma)aulFirma(inh,false);
   else if(AUV.neu){aulKopf(inh,'Neues Angebot');aulNeu(inh)}
-  else if(AUV.offen)aulDok(inh,AUV.offen);
+  else if(AUV.offen){aulDok(inh,AUV.offen);aulLabels(inh)}
   else if(AUV.tab==='preis')aulPreise(inh);
   else{aulListe(inh);if(AUV.tab==='offen')aulOffen(inh)}}catch(e){console.error(e)}return r}}
 // Einstellungen → Firma & Preise: nur Firmendaten
