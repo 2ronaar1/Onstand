@@ -5175,7 +5175,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.24';
+const ON_VER='0.11.25';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -7680,6 +7680,11 @@ function bpSymbol(K,r,o,T,ow,od,WA,sel){const {c,pr}=K,s=K.s||1,n=o.n,tt=[-n[1],
  else{[a*.35,a*.65].forEach(f=>lin([P4[0][0]+n[0]*f,P4[0][1]+n[1]*f],[P4[1][0]+n[0]*f,P4[1][1]+n[1]*f],1.1,kc))}
  return true}
 // Maßstab unten rechts: zeigt, wie lang 1 m (bzw. 50 cm, 2 m, 5 m) in der Zeichnung ist
+// 3D-Reihenfolge der Objekte: jedes Objekt als Block mit einer festen Tiefe, damit sich beim Drehen nichts abwechselnd über- und unterschiebt (Flackern).
+// Tür und Fenster hängen an ihrer Wand: gleich nach deren Innen- und Außenfläche gezeichnet.
+function bpObjTiefe(r,o,pr,zc){if(!o.n||(o.t!=='tuer'&&o.t!=='fenster'))return zc;const C=[r.x+o.x,r.y+o.y],P=wpoly(r);let best=null;
+ for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],dx=b[0]-a[0],dy=b[1]-a[1],l2=dx*dx+dy*dy||1,t=((C[0]-a[0])*dx+(C[1]-a[1])*dy)/l2;if(t<-.05||t>1.05)continue;const d=Math.hypot(C[0]-a[0]-dx*t,C[1]-a[1]-dy*t);if(!best||d<best.d)best={d,m:[(a[0]+b[0])/2,(a[1]+b[1])/2]}}
+ if(!best)return zc;return Math.max(pr(best.m[0],best.m[1])[2],pr(best.m[0]+o.n[0]*60,best.m[1]+o.n[1]*60)[2])+.5}
 function bpMassstab(K,s){const c=K.c,L=[50,100,200,500,1000,2000].find(v=>v*s>=70)||2000,px=L*s,x1=K.w-22,x0=x1-px,y=K.h-24;c.save();c.lineWidth=1.5;c.strokeStyle=`rgb(${BPC.t})`;c.beginPath();c.moveTo(x0,y-5);c.lineTo(x0,y);c.lineTo(x1,y);c.lineTo(x1,y-5);c.moveTo((x0+x1)/2,y-3);c.lineTo((x0+x1)/2,y);c.stroke();c.fillStyle=`rgb(${BPC.t})`;c.font=`600 12px ${BPC.ff}`;c.textAlign='center';c.fillText(L>=100?(L/100).toString().replace('.',',')+' m':L+' cm',(x0+x1)/2,y-9);c.restore()}
 function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true),{c,pr}=K,t3=Math.sin(k.tilt)>.02;
  // Raster
@@ -7702,7 +7707,7 @@ function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true)
   (r.obj||[]).forEach(o=>{const T=odim(o),ow=o.rot%180?T.d:T.w,od=o.rot%180?T.w:T.d,x=r.x+o.x-ow/2,y=r.y+o.y-od/2,z=T.z||0;const ec=[[x,y],[x+ow,y],[x+ow,y+od],[x,y+od]];
    if(!t3&&o.n&&WA&&(o.t==='tuer'||o.t==='fenster')&&bpSymbol(K,r,o,T,ow,od,WA,opt.osel===o)){}
    else if(!t3){c.beginPath();ec.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=T.f+'33';c.fill();c.lineWidth=opt.osel===o?2.2:1.2;c.strokeStyle=opt.osel===o?`rgb(${BPC.a})`:T.f;c.stroke();if(k.s*ow>34){const m0=pr(x+ow/2,y+od/2);c.fillStyle=`rgb(${BPC.s})`;c.font=`500 11px ${BPC.ff}`;c.textAlign='center';c.fillText(T.n,m0[0],m0[1]+4)}}
-   else{for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2+.01,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({d:Math.max(...ec.map(p=>pr(p[0],p[1])[2]))+.02,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}})});
+   else{const zc=pr(x+ow/2,y+od/2)[2],bas=bpObjTiefe(r,o,pr,zc);for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({d:bas+((pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-zc)*1e-4,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({d:bas+.03,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}})});
  Q.sort((a,b)=>a.d-b.d).forEach(q=>{c.beginPath();q.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();
   if(q.aussen){c.fillStyle=q.fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.t},.06)`;c.fill();c.strokeStyle=q.fok?`rgba(${BPC.t},.12)`:`rgba(${BPC.t},.4)`;c.lineWidth=1;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}
   else if(q.obj){c.fillStyle=q.obj.n==='Fenster'?`rgba(150,200,235,${q.deckel?.7:.4})`:q.obj.f+(q.deckel?'cc':'88');c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:'rgba(0,0,0,.35)';c.lineWidth=1;c.stroke()}
