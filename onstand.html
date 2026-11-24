@@ -4499,6 +4499,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* Hauptknopf: blau gefüllt, alle anderen Knöpfe in der Kopfzeile ruhig umrandet */
 #am .mgakt .haupt{background:var(--k-akz)!important;border-color:var(--k-akz)!important;color:var(--k-auf)!important}
 #am .mgakt .haupt:hover{background:var(--k-akzd)!important;border-color:var(--k-akzd)!important}
+#am .mgk .mgh{font-variant-numeric:normal}
 /* ===== Aufträge im Grundlayout (layout.js, v0.11.4) ===== */
 /* ⋯-Menü */
 #am .aulmw{position:relative}
@@ -4554,13 +4555,133 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 @media (max-width:760px){#am .mgakt>.fisuch{width:100%;order:-1}#am .mgk.auldk .aulst{order:5;width:100%}#am#am .aulst button{flex:1;padding:0 4px;font-size:12px}
  #am#am .auar.aulz{grid-template-columns:minmax(0,1fr) auto;row-gap:4px}#am#am .auar.aulz .c2{grid-column:1}#am#am .auar.aulz .c3{grid-column:2;grid-row:1;justify-self:end}#am#am .auar.aulz .c4{grid-column:2;grid-row:2}}
 #am#am .aux.aulpx{flex:none!important;height:auto!important;min-height:0!important;padding-bottom:0!important;overflow:visible}
+/* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
+#am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
+ display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
+:root[data-design="dunkel"] #am .wk{--wkl:#8AB4FF;--wkr:#FF7B6E}
+#am .wkinhalt{display:none}
+#am .wkbaum{border-right:1px solid var(--k-lin);padding:16px 12px 30px 18px;font-size:14px;overflow:auto;max-height:calc(100vh - 170px);position:sticky;top:0}
+#am .wkbaum a{color:var(--wkl);text-decoration:none;cursor:pointer}
+#am .wkbaum a:hover{text-decoration:underline}
+#am .wkstart{display:block;font-weight:600;margin-bottom:4px}
+#am .wkstart.an{color:var(--k-t)}
+#am .wkkat{margin-top:14px}
+#am .wkkat>h4{margin:0 0 6px;font:700 11.5px/1.3 var(--k-ui);letter-spacing:.09em;text-transform:uppercase;color:var(--k-sub);cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:8px}
+#am .wkkat>h4 span{font-weight:500;letter-spacing:0}
+#am .wkkat.zu>ul{display:none}
+#am .wkbaum ul{list-style:none;margin:0;padding:0}
+#am .wkbaum li{margin:1px 0}
+#am .wkseite{display:block;padding:3px 8px;border-radius:6px;margin-left:-8px}
+#am .wkseite.an{background:color-mix(in srgb,var(--wkl) 11%,transparent);font-weight:600;text-decoration:none!important}
+#am .wkseite.frisch::after{content:"neu";font:600 10px var(--k-ui);color:var(--k-gruen);margin-left:6px}
+#am .wkunter{margin:2px 0 8px 10px;padding-left:10px;border-left:1px solid var(--k-lin)}
+#am .wkord{color:var(--k-sub);font-size:13px;margin-top:6px;cursor:pointer;user-select:none}
+#am .wkord:hover{color:var(--k-t)}#am .wkord span{opacity:.75}
+#am .wkein{display:grid!important;grid-template-columns:auto minmax(0,1fr);column-gap:6px;align-items:baseline;font-size:13px;line-height:1.4;padding:2px 0;margin-left:12px}
+#am .wkein small{color:var(--k-sub);font-variant-numeric:tabular-nums}
+#am .wkartikel{padding:22px 32px 40px;min-width:0}
+#am .wktitel{border-bottom:1px solid var(--k-lin);padding-bottom:6px}
+#am .wktitel h1{margin:0;font:600 30px/1.15 var(--wkserif);color:var(--k-t)}
+#am .wkreiter{display:flex;gap:18px;font-size:13.5px;padding:8px 0 0;border-bottom:1px solid var(--k-lin);margin-bottom:16px}
+#am .wkreiter a{padding:4px 0 8px;color:var(--wkl);cursor:pointer;text-decoration:none}
+#am .wkreiter a.an{color:var(--k-t);border-bottom:2px solid var(--k-t);cursor:default}
+#am .wkreiter .rechts{margin-left:auto;display:flex;gap:18px}
+#am .wkunterz{color:var(--k-sub);font-size:13.5px;margin:-6px 0 16px}
+#am .wkfliess{display:flow-root;font-size:15px;line-height:1.6}
+#am .wkfliess p{margin:0 0 14px;max-width:72ch}
+#am .wkab{font:600 22px/1.25 var(--wkserif);margin:26px 0 12px;padding-bottom:4px;border-bottom:1px solid var(--k-lin);display:flex;align-items:baseline;gap:10px;color:var(--k-t)}
+#am .wkab small{font:400 12.5px var(--k-ui);color:var(--k-sub)}
+#am .wkl{color:var(--wkl);text-decoration:none;cursor:pointer}#am .wkl:hover{text-decoration:underline}
+#am .wkneu{color:var(--wkr);text-decoration:none;cursor:pointer}#am .wkneu:hover{text-decoration:underline}
+#am .wkpunkte{margin:0 0 12px;padding-left:20px;max-width:72ch}#am .wkpunkte li{margin:3px 0}#am .wkpunkte small{color:var(--k-sub)}
+#am .wkleertext{color:var(--k-sub);font-size:14px}
+#am .wksteck{float:right;width:300px;margin:0 0 18px 26px;background:var(--wkbox);border:1px solid var(--k-lin);font-size:13.5px;line-height:1.45}
+#am .wksteck .sk{position:relative;background:var(--wkkopf);text-align:center;font-weight:700;padding:8px 64px}
+#am#am .wktyp{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--k-sub);font:500 12px var(--k-ui);padding:2px 5px;border-radius:5px;cursor:pointer;height:auto;letter-spacing:0;text-transform:none}
+#am#am .wktyp:hover{background:color-mix(in srgb,var(--k-t) 8%,transparent);color:var(--k-t)}
+#am .wktypwahl{position:absolute;right:6px;top:calc(100% - 2px);z-index:5;display:flex;flex-direction:column;min-width:100px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:4px;box-shadow:0 10px 24px -10px rgba(0,0,0,.3)}
+#am#am .wktypwahl button{border:0;background:none;color:var(--k-t);font:500 13px var(--k-ui);padding:5px 8px;border-radius:5px;cursor:pointer;display:flex;justify-content:space-between;gap:6px;height:auto;letter-spacing:0;text-transform:none}
+#am#am .wktypwahl button:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#am .wksteck .bild{display:grid;place-items:center;padding:16px 10px 6px;background:var(--k-b1)}
+#am .wksteck .bild svg,#am .wksteck .bild img{width:150px;height:150px;border-radius:50%;object-fit:cover}
+#am .wksteck .bu{display:flex;flex-direction:column;gap:2px;text-align:center;font-size:12.5px;color:var(--k-sub);padding:2px 10px 10px;background:var(--k-b1);border-bottom:1px solid var(--k-lin)}
+#am .wksteck .bu .bk{font-size:12px}
+#am#am .wksteck .bu button{border:0;background:none;color:var(--wkl);font:inherit;cursor:pointer;padding:0;height:auto;letter-spacing:0;text-transform:none}
+#am .wkbwahl{color:var(--wkl);cursor:pointer;position:relative}
+#am .wkbwahl input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+#am .wksteck table{width:100%;border-collapse:collapse;table-layout:fixed}
+#am .wksteck th,#am .wksteck td{text-align:left;vertical-align:top;padding:6px 10px;border-top:1px solid var(--k-lin)}
+#am .wksteck th{width:42%;font-weight:600}
+#am .wksteck td{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#am .wksteck td.leer{color:var(--k-sub)}
+#am .wksteck .ab{background:var(--wkkopf);text-align:center;font-weight:700;padding:6px}
+#am .wkfigur{display:none;padding:10px;border-bottom:1px solid var(--k-lin);background:var(--k-b1);font-size:12.5px}
+#am .wkfigur.an{display:grid;gap:8px}
+#am .wkfigur .reihe{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#am .wkfigur .reihe>b{width:52px;font-weight:600}
+#am#am .wkfigur button{border:1px solid var(--k-lin);background:var(--wkbox);color:var(--k-t);border-radius:6px;padding:3px 8px;font:12px var(--k-ui);cursor:pointer;height:auto;letter-spacing:0;text-transform:none}
+#am#am .wkfigur button.an{border-color:var(--wkl);color:var(--wkl);background:color-mix(in srgb,var(--wkl) 8%,var(--k-b1))}
+#am#am .wkfigur .haut{width:22px;height:22px;border-radius:50%;padding:0}
+#am .wkliste{margin:0 0 6px;padding:0;list-style:none;max-width:72ch}
+#am .wkliste li{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px dotted var(--k-lin);font-size:14px}
+#am .wkliste .d{color:var(--k-sub);font-variant-numeric:tabular-nums}
+#am .wkliste .s{color:var(--k-sub);font-size:12.5px;white-space:nowrap}#am .wkliste .s.rot{color:var(--k-rot)}
+#am .wkbelege{font-size:13.5px;padding-left:22px;max-width:72ch}#am .wkbelege li{padding:2px 0}#am .wkbelege small{color:var(--k-sub)}
+#am .wkerw{font-size:13.5px;color:var(--k-sub)}
+#am .wkkatschild{margin-top:26px;border:1px solid var(--k-lin);background:var(--wkbox);padding:8px 12px;font-size:13px;clear:both}
+#am .wkkatschild a{color:var(--wkl);cursor:pointer}
+#am .wkkacheln{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0 6px}
+#am .wkkachel{border:1px solid var(--k-lin);border-radius:10px;padding:14px;background:var(--wkbox);font-size:14px}
+#am .wkkachel b{display:block;font:600 17px var(--wkserif)}#am .wkkachel span{color:var(--k-sub);font-size:13px}
+#am .wk .brseite{display:block}
+/* Suche oben mit Trefferliste */
+#am .mgakt>.wksuche{height:36px;width:280px;border-radius:8px;background:var(--k-b1);border:1px solid var(--k-lin)}
+#am .aminhalt:has(>.wktreffer){position:relative}
+#am .wktreffer{position:absolute;right:0;top:58px;z-index:40;margin:0;width:min(420px,100%);background:var(--k-b1);border:1px solid var(--k-lin);border-radius:10px;box-shadow:0 14px 34px -14px rgba(0,0,0,.3);padding:5px}
+#am#am .wktreffer button{display:block;width:100%;text-align:left;border:0;background:none;padding:7px 10px;border-radius:6px;cursor:pointer;color:var(--k-t);height:auto;letter-spacing:0;text-transform:none;font:13.5px var(--k-ui)}
+#am#am .wktreffer button:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#am .wktreffer b{display:block;font-weight:600}#am .wktreffer small{display:block;color:var(--k-sub);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am#am .wktreffer .wkfrag{border-top:1px solid var(--k-lin);border-radius:0 0 6px 6px;margin-top:3px}#am .wktreffer .wkfrag b{color:var(--k-akz)}
+#am .wkmdat{display:block;padding:8px 10px;border-radius:6px;cursor:pointer;font:500 13.5px var(--k-ui);color:var(--k-t)}
+#am .wkmdat:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#am .brreiter.wkr{margin-bottom:12px}
+/* Vorschau und Karte */
+#am .wkvorschau{position:fixed;z-index:50;width:320px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:10px;box-shadow:0 18px 40px -16px rgba(0,0,0,.45);padding:14px;font-size:13.5px;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;color:var(--k-t)}
+#am .wkvorschau.an{opacity:1;transform:none}
+#am .wkvorschau .vk{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+#am .wkvorschau .vk svg,#am .wkvorschau .vk img{width:48px;height:48px;flex:none;border-radius:50%;object-fit:cover}
+#am .wkvorschau b{font:600 17px Georgia,serif;display:block;line-height:1.2}
+#am .wkvorschau small{color:var(--k-sub)}#am .wkvorschau p{margin:6px 0 0}
+#am .wkkarte{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.35);display:none;place-items:center;padding:16px}
+#am .wkkarte.an{display:grid}
+#am .wkkarte>div{width:min(420px,100%);background:var(--k-b1);color:var(--k-t);border-radius:12px;border:1px solid var(--k-lin);padding:18px 20px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+#am .wkkarte h3{margin:0 0 4px;font:600 20px Georgia,serif}
+#am .wkkarte .kl{color:var(--k-sub);font-size:13px;margin-bottom:12px}
+#am .wkkarte p{margin:0 0 12px;font-size:14px}
+#am .wkkarte dl{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;margin:0 0 16px;font-size:14px}
+#am .wkkarte dt{color:var(--k-sub)}#am .wkkarte dd{margin:0}
+#am .wkkarte .kn{display:flex;gap:8px;justify-content:flex-end}
+#am#am .wkkarte .kn button{border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);border-radius:8px;padding:0 14px;height:36px;font:600 13px var(--k-ui);cursor:pointer;letter-spacing:0;text-transform:none}
+#am#am .wkkarte .kn button.haupt{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}
+/* Handy und schmale Fenster: Baum hinter „☰ Inhalt“, Kasten über dem Text */
+@media (max-width:900px){
+ #am .wk{grid-template-columns:1fr;border:0;background:none;min-height:0}
+ #am#am .wkinhalt{display:inline-flex;align-items:center;justify-self:start;height:36px;border:1px solid var(--k-lin);background:var(--k-b1);border-radius:8px;padding:0 12px;font:600 13px var(--k-ui);color:var(--k-t);margin-bottom:10px;letter-spacing:0;text-transform:none}
+ #am .wkbaum{display:none;position:static;max-height:none;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);margin-bottom:12px}
+ #am .wk.baumauf .wkbaum{display:block}
+ #am .wkartikel{padding:16px;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1)}
+ #am .wktitel h1{font-size:26px}
+ #am .wksteck{float:none;width:100%;margin:0 0 18px}
+ #am .mgakt>.wksuche{width:100%;order:-1}
+ #am .wkliste li{grid-template-columns:76px minmax(0,1fr)}#am .wkliste .s{grid-column:2}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.4';
+const ON_VER='0.11.5';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -11548,6 +11669,64 @@ fällig {x}|termin {x}|scadent {x}|afati {x}|dospijeće {x}|падеж {x}
 {n} Positionen|{n} pozycji|{n} poziții|{n} pozicione|{n} stavki|{n} позиции
 1 Position|1 pozycja|1 poziție|1 pozicion|1 stavka|1 позиция
 Es gibt schon Rechnungen|Są już faktury|Există deja facturi|Ka tashmë fatura|Već postoje računi|Вече има фактури
+Startseite|Strona główna|Pagina principală|Faqja kryesore|Početna|Начало
+Lieferanten & Partner|Dostawcy i partnerzy|Furnizori și parteneri|Furnizues dhe partnerë|Dobavljači i partneri|Доставчици и партньори
+Firma & Abläufe|Firma i procesy|Firma și procese|Firma dhe proceset|Tvrtka i procesi|Фирма и процеси
+Dateien|Pliki|Fișiere|Skedarë|Datoteke|Файлове
+Artikel|Artykuł|Articol|Artikull|Članak|Статия
+Bild ändern|Zmień obraz|Schimbă imaginea|Ndrysho foton|Promijeni sliku|Смени снимката
+Figur anpassen|Dostosuj postać|Ajustează figura|Përshtat figurën|Prilagodi lik|Настрой фигурата
+Figur verwenden|Użyj postaci|Folosește figura|Përdor figurën|Koristi lik|Използвай фигурата
+Logo entfernen|Usuń logo|Elimină logo-ul|Hiq logon|Ukloni logo|Премахни логото
+Privat|Prywatny|Privat|Privat|Privatno|Частен
+Aus Onstand|Z Onstand|Din Onstand|Nga Onstand|Iz Onstanda|От Onstand
+Auftragswert|Wartość zlecenia|Valoare comandă|Vlera e porosisë|Vrijednost narudžbe|Стойност на поръчката
+Abgerechnet|Rozliczono|Facturat|Faturuar|Obračunato|Фактурирано
+Wird erwähnt auf|Wspomniane na|Menționat pe|Përmendet në|Spominje se na|Споменава се в
+Kategorie:|Kategoria:|Categorie:|Kategoria:|Kategorija:|Категория:
+Zuletzt geändert|Ostatnio zmienione|Modificat recent|Ndryshuar së fundi|Zadnje promijenjeno|Последно променени
+Fehlende Artikel|Brakujące artykuły|Articole lipsă|Artikuj që mungojnë|Nedostajući članci|Липсващи статии
+Auftrag & Leistungen|Zlecenie i usługi|Comandă și servicii|Porosia dhe shërbimet|Narudžba i usluge|Поръчка и услуги
+Absprachen & Wünsche|Ustalenia i życzenia|Înțelegeri și dorințe|Marrëveshje dhe dëshira|Dogovori i želje|Уговорки и желания
+Aufgaben & Können|Zadania i umiejętności|Sarcini și abilități|Detyra dhe aftësi|Zadaci i vještine|Задачи и умения
+Einsätze|Przydziały|Lucrări|Angazhime|Angažmani|Обекти
+Zusammenarbeit|Współpraca|Colaborare|Bashkëpunim|Suradnja|Сътрудничество
+Konditionen|Warunki|Condiții|Kushtet|Uvjeti|Условия
+Worauf achten|Na co uważać|La ce să fii atent|Çfarë të kesh parasysh|Na što paziti|За какво да внимаваме
+– noch keine Angaben|– brak danych|– încă nicio informație|– ende pa të dhëna|– još nema podataka|– още няма данни
+Kunde seit|Klient od|Client din|Klient që nga|Klijent od|Клиент от
+Im Betrieb seit|W firmie od|În firmă din|Në firmë që nga|U tvrtki od|Във фирмата от
+Schwerpunkt|Specjalizacja|Specializare|Specializim|Specijalnost|Специалност
+Zusammenarbeit seit|Współpraca od|Colaborare din|Bashkëpunim që nga|Suradnja od|Сътрудничество от
+Frau|Kobieta|Femeie|Grua|Žena|Жена
+Mann|Mężczyzna|Bărbat|Burrë|Muškarac|Мъж
+Haare|Włosy|Păr|Flokë|Kosa|Коса
+Haut|Skóra|Piele|Lëkura|Koža|Кожа
+Bart|Broda|Barbă|Mjekër|Brada|Брада
+Dutt|Kok|Coc|Topuz|Punđa|Кок
+Suchen oder fragen …|Szukaj lub zapytaj …|Caută sau întreabă …|Kërko ose pyet …|Traži ili pitaj …|Търси или питай …
++ Seite|+ Strona|+ Pagină|+ Faqe|+ Stranica|+ Страница
+Dateien hinzufügen|Dodaj pliki|Adaugă fișiere|Shto skedarë|Dodaj datoteke|Добави файлове
+☰ Inhalt|☰ Spis treści|☰ Cuprins|☰ Përmbajtja|☰ Sadržaj|☰ Съдържание
+Frag das Firmen-Wiki|Zapytaj wiki firmy|Întreabă wiki-ul firmei|Pyet wiki-n e firmës|Pitaj wiki tvrtke|Попитай фирмената wiki
+Artikel anlegen|Utwórz artykuł|Creează articolul|Krijo artikullin|Stvori članak|Създай статия
+Noch kein Artikel|Brak artykułu|Încă niciun articol|Ende pa artikull|Još nema članka|Още няма статия
+Kommt vor auf|Występuje na|Apare pe|Shfaqet në|Pojavljuje se na|Среща се в
+Im Mängel-Menü öffnen|Otwórz w usterkach|Deschide la defecte|Hap te defektet|Otvori u nedostacima|Отвори в дефектите
+In Aufträge öffnen|Otwórz w zleceniach|Deschide la comenzi|Hap te porositë|Otvori u narudžbama|Отвори в поръчките
+Bei den Kunden öffnen|Otwórz u klientów|Deschide la clienți|Hap te klientët|Otvori kod klijenata|Отвори при клиентите
+Nur für Chef sichtbar|Widoczne tylko dla szefa|Vizibil doar pentru șef|E dukshme vetëm për shefin|Vidljivo samo šefu|Видимо само за шефа
+Nur für Chef sichtbar · {n} Seiten|Widoczne tylko dla szefa · {n} stron|Vizibil doar pentru șef · {n} pagini|E dukshme vetëm për shefin · {n} faqe|Vidljivo samo šefu · {n} stranica|Видимо само за шефа · {n} страници
+Sortier-Lauf|Sortowanie|Sortare|Renditja|Sortiranje|Сортиране
+Noch keine Einleitung – die KI schreibt sie beim nächsten Sortieren, oder oben auf „Bearbeiten“.|Brak wstępu – AI napisze go przy następnym sortowaniu albo kliknij u góry „Edytuj”.|Încă nicio introducere – AI o scrie la următoarea sortare sau apasă sus „Editează”.|Ende pa hyrje – AI e shkruan në renditjen e radhës, ose lart te „Ndrysho“.|Još nema uvoda – AI ga piše pri sljedećem sortiranju ili gore na „Uredi“.|Още няма увод – AI го пише при следващото сортиране или горе „Редактирай“.
+Diesen Artikel gibt es noch nicht. Onstand legt ihn an; die KI ergänzt ihn beim nächsten Sortieren aus euren Dateien.|Tego artykułu jeszcze nie ma. Onstand go utworzy; AI uzupełni go przy następnym sortowaniu z waszych plików.|Acest articol nu există încă. Onstand îl creează; AI îl completează la următoarea sortare din fișierele voastre.|Ky artikull nuk ekziston ende. Onstand e krijon; AI e plotëson në renditjen e radhës nga skedarët tuaj.|Ovaj članak još ne postoji. Onstand ga stvara; AI ga dopunjuje pri sljedećem sortiranju iz vaših datoteka.|Тази статия още не съществува. Onstand я създава; AI я допълва при следващото сортиране от вашите файлове.
+Diese Namen kommen in Texten vor, haben aber noch keine Seite:|Te nazwy występują w tekstach, ale nie mają jeszcze strony:|Aceste nume apar în texte, dar nu au încă pagină:|Këta emra shfaqen në tekste, por nuk kanë ende faqe:|Ova imena pojavljuju se u tekstovima, ali još nemaju stranicu:|Тези имена се срещат в текстове, но още нямат страница:
+Noch kein Artikel · Klick legt ihn an|Brak artykułu · kliknij, aby utworzyć|Încă niciun articol · clic îl creează|Ende pa artikull · kliko për ta krijuar|Još nema članka · klik ga stvara|Още няма статия · клик я създава
+Figur|Postać|Figură|Figura|Lik|Фигура
+{n} · aus Onstand|{n} · z Onstand|{n} · din Onstand|{n} · nga Onstand|{n} · iz Onstanda|{n} · от Onstand
+Interview ({n} Fragen)|Wywiad ({n} pytań)|Interviu ({n} întrebări)|Intervistë ({n} pyetje)|Intervju ({n} pitanja)|Интервю ({n} въпроса)
+Wiki|Wiki|Wiki|Wiki|Wiki|Wiki
+Datei|Plik|Fișier|Skedar|Datoteka|Файл
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -11831,6 +12010,227 @@ function bwEdit(inh){const se=inh.querySelector('.brseite'),akt=inh.querySelecto
    BR.seiten[n.titel]=n;await brIndex();BR.sel=n.titel;BW_ED=null;brMalen(inh);mgToast(inh,neu?'Seite angelegt':'Gespeichert')}catch(e){mgToast(inh,'Speichern ging nicht: '+(e.message||e))}};
  const w=se.querySelector('.bwweg');if(w){let s2=0;w.onclick=async()=>{if(!s2){s2=1;w.textContent='Wirklich löschen?';setTimeout(()=>{if(w.isConnected){s2=0;w.textContent='Seite löschen'}},4000);return}
   try{await entfernen(brPfad(p.gruppe,p.titel))}catch(e){}delete BR.seiten[p.titel];await brIndex();BR.sel=null;BW_ED=null;brMalen(inh);mgToast(inh,'Seite gelöscht')}}}
+// ---------- Figur (wie ein Kontakt-Avatar, von Hand eingestellt) ----------
+const WK_HAUT=['#F7DCCB','#EBBE9C','#CF9670','#9E6A48','#6A4330'];
+const WK_HAARF={schwarz:'#2B2725',braun:'#6E4B32',blond:'#D8B26C',grau:'#A8A7A4',rot:'#A4492C'};
+let WK_FN=0;
+const wkMisch=(a,b,t)=>{const A=parseInt(a.slice(1),16),B=parseInt(b.slice(1),16),c=(s)=>Math.round(((A>>s)&255)*(1-t)+((B>>s)&255)*t);return '#'+[16,8,0].map(x=>c(x).toString(16).padStart(2,'0')).join('')};
+const wkDunkler=(hex,f)=>{const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,m=x=>Math.max(0,Math.min(255,Math.round(x*f)));return '#'+[m(r),m(g),m(b)].map(x=>x.toString(16).padStart(2,'0')).join('')};
+function wkFigur(f){const id='f'+(++WK_FN),w=f.g==='w',h=WK_HAUT[f.haut]??WK_HAUT[1],hd=wkDunkler(h,.88),hs=wkDunkler(h,.76),hf=WK_HAARF[f.farbe]||WK_HAARF.braun,hfd=wkDunkler(hf,.78),hfl=wkDunkler(hf,1.18),hemd=f.hemd||'#5E7894',hemdd=wkDunkler(hemd,.82),haar=f.haar||'kurz';
+ const kopf=w?'M56 70C56 49 66 38 80 38S104 49 104 70C104 92 94 106 80 108C66 106 56 92 56 70Z'
+            :'M55 68C55 47 66 37 80 37S105 47 105 68L104.5 82C104 92 99 99 92 104L87 107.5C83 110 77 110 73 107.5L68 104C61 99 56 92 55.5 82Z';
+ const grad=`url(#${id}h)`;
+ // Hinterkopf-Haare (hinter Gesicht und Hals)
+ const hinten=w?{lang:`<path d="M52 74C50 46 63 33 80 33S110 46 108 74L111 120C105 127 96 127 91 120L93 88H67L69 120C64 127 55 127 49 120Z" fill="${grad}"/>`,
+   kurz:`<path d="M52 74C51 46 64 34 80 34S109 46 108 74V97C105 102 100 102 97 98V82H63V98C60 102 55 102 52 97Z" fill="${grad}"/>`,
+   dutt:`<circle cx="80" cy="31" r="11.5" fill="${grad}"/>`}[haar]||''
+  :{lang:`<path d="M52 70C50 45 63 32 80 32S110 45 108 70L109 106C106 112 99 113 96 107L97 84H63L64 107C61 113 54 112 51 106Z" fill="${grad}"/>`}[haar]||'';
+ // Haare vorne (über der Stirn)
+ const vorne=w?{lang:`<path d="M55 67C55 46 66 35 80 35S105 46 105 67C99 55 89 49 77 50C69 51 61 57 55 67Z" fill="${grad}"/><path d="M78 37C84 37 92 39 98 44" stroke="${hfl}" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".5"/>`,
+   kurz:`<path d="M55 68C55 46 66 35 80 35S105 46 105 68C100 57 92 51 83 50C74 52 63 57 55 68Z" fill="${grad}"/>`,
+   dutt:`<path d="M56 66C56 47 67 38 80 38S104 47 104 66C100 55 91 49 80 49S60 55 56 66Z" fill="${grad}"/>`}[haar]||''
+  :{kurz:`<path d="M54.5 65C53.5 45 65 33 80 33S106.5 45 105.5 65C104 57.5 101 52 97 49.5C91 47.5 86 48.5 80 47.5C74 48.5 68 48 63 50C58.5 53 56 58 54.5 65Z" fill="${grad}"/>`,
+   lang:`<path d="M55 66C54 45 66 34 80 35C94 34 106 45 105 66C103 56 97 49 88 46.5L80 41L72 46.5C63 49 57 56 55 66Z" fill="${grad}"/><path d="M55.5 62C54.5 74 55.5 86 58.5 97L54 99C51 86 51 72 53 62Z" fill="${grad}"/><path d="M104.5 62C105.5 74 104.5 86 101.5 97L106 99C109 86 109 72 107 62Z" fill="${grad}"/>`,
+   glatze:`<path d="M55 72C54.5 64 55.5 58 57.5 54L59.5 73Z" fill="${hf}" opacity=".75"/><path d="M105 72C105.5 64 104.5 58 102.5 54L100.5 73Z" fill="${hf}" opacity=".75"/>`}[haar]||'';
+ const bart=!w&&f.bart?`<path d="M55.5 79C56 91.5 61 99 68 104L73 107.5C77 110 83 110 87 107.5L92 104C99 99 104 91.5 104.5 79C101.5 88 96 92.5 90.5 93C88 97.5 84.5 99 80 99S72 97.5 69.5 93C64 92.5 58.5 88 55.5 79Z" fill="${hf}"/><path d="M72 91C75 89.2 78 89.2 80 90.1C82 89.2 85 89.2 88 91C85 92.3 82.3 92.5 80 91.8C77.7 92.5 75 92.3 72 91Z" fill="${hf}"/>`:'';
+ const ey=76,auge=x=>`<ellipse cx="${x}" cy="${ey}" rx="2.9" ry="3.5" fill="#2C2420"/><circle cx="${x+1}" cy="${ey-1.3}" r=".95" fill="#fff" opacity=".9"/>${w?`<path d="M${x+2.2} ${ey-3.1}L${x+4.4} ${ey-4.6}" stroke="#2C2420" stroke-width="1.2" stroke-linecap="round"/>`:''}`;
+ const braue=x=>w?`<path d="M${x-5} 69.6Q${x} 66.6 ${x+5} 69" stroke="${hfd}" stroke-width="2" stroke-linecap="round" fill="none"/>`:`<path d="M${x-5.5} 69.8Q${x} 66.8 ${x+5.5} 69.2" stroke="${hfd}" stroke-width="3" stroke-linecap="round" fill="none"/>`;
+ const mund=w?`<path d="M73.5 93.5Q80 98.6 86.5 93.5" stroke="#A65450" stroke-width="2.1" stroke-linecap="round" fill="none"/>`:`<path d="M74 94Q80 97.6 86 94" stroke="#6E4236" stroke-width="2.2" stroke-linecap="round" fill="none"/>`;
+ return `<svg viewBox="0 0 160 160" role="img" aria-label="Figur"><defs>
+  <linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${wkMisch(hemd,'#F2F4F6',.8)}"/><stop offset="1" stop-color="${wkMisch(hemd,'#DCE0E5',.62)}"/></linearGradient>
+  <radialGradient id="${id}k" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="${wkDunkler(h,1.03)}"/><stop offset="1" stop-color="${h}"/></radialGradient>
+  <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hfl}"/><stop offset="1" stop-color="${hf}"/></linearGradient>
+  <linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hemd}"/><stop offset="1" stop-color="${hemdd}"/></linearGradient>
+  <clipPath id="${id}c"><circle cx="80" cy="80" r="80"/></clipPath></defs>
+ <g clip-path="url(#${id}c)"><rect width="160" height="160" fill="url(#${id}g)"/>
+ <g transform="translate(80 84) scale(1.2) translate(-80 -80)">
+  ${hinten}
+  <rect x="70" y="96" width="20" height="28" rx="9" fill="${hd}"/><path d="M70 104Q80 111 90 104V112Q80 117 70 112Z" fill="${hs}" opacity=".35"/>
+  <path d="M24 172C26 141 46 124 70 120Q80 127 90 120C114 124 134 141 136 172Z" fill="url(#${id}s)"/>
+  <path d="M70 120Q80 127 90 120" stroke="${hemdd}" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="${w?56.5:55.5}" cy="75" rx="4.8" ry="7.6" fill="${hd}"/><ellipse cx="${w?103.5:104.5}" cy="75" rx="4.8" ry="7.6" fill="${hd}"/>
+  <path d="${kopf}" fill="url(#${id}k)"/>
+  ${vorne}${bart}${braue(70)}${braue(90)}${auge(70)}${auge(90)}
+  <path d="M78.2 86.3Q80 88.2 81.8 86.3" stroke="${hs}" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="64" cy="87" rx="5" ry="3" fill="#E7867F" opacity="${w?.22:.1}"/><ellipse cx="96" cy="87" rx="5" ry="3" fill="#E7867F" opacity="${w?.22:.1}"/>
+  ${mund}</g></g></svg>`}
+function wkFirmaBild(kurz,farbe){return `<svg viewBox="0 0 160 160" role="img" aria-label="Firma"><defs><linearGradient id="fb${kurz}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${wkDunkler(farbe,1.9)}"/><stop offset="1" stop-color="${wkDunkler(farbe,1.5)}"/></linearGradient></defs><circle cx="80" cy="80" r="80" fill="url(#fb${kurz})"/>
+ <path d="M40 124V64l40-24 40 24v60z" fill="${farbe}"/><rect x="54" y="76" width="14" height="14" rx="2" fill="#fff" opacity=".85"/><rect x="73" y="76" width="14" height="14" rx="2" fill="#fff" opacity=".85"/><rect x="92" y="76" width="14" height="14" rx="2" fill="#fff" opacity=".85"/>
+ <rect x="70" y="100" width="20" height="24" rx="2" fill="#fff" opacity=".9"/><text x="80" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="${wkDunkler(farbe,.7)}">${kurz}</text></svg>`}
+
+// ===== Firmen-Wiki im Wikipedia-Aufbau (Probe „Firmen-Wiki“, v0.11.5) =====
+// Übernimmt die Wiki-Ansicht (Reiter „Wiki“); Neu, Nicht zugeordnet, Interview, Einrichten und „Teil des KI-Pakets“ bleiben aus brain.js.
+// Links der Baum: Kategorien (grau, fett, Großbuchstaben, nicht klickbar) → Seiten (blau), darunter auf Klick die kleinen Einträge aus Onstand
+// (Mängel, Angebote & Rechnungen, Kontakte, Dateien; Unterordner grau). Rechts der Artikel: Titel, Unterzeile, Einleitung, Standard-Abschnitte je Art,
+// Kasten rechts (Privat/Firma grau im Kopf, Figur oder Logo, Standard-Felder, „Aus Onstand“), Belege, „Wird erwähnt auf“, Kategorie.
+// Blaue Links = Seite gibt es, rote Links = kommt vor, aber noch keine Seite (Klick legt sie an). Beim Drüberfahren eine kleine Vorschau.
+// Daten: Seiten aus BR.seiten. Versteckte Fakten auf der Seite: Typ (Privat/Firma), Figur (g,haar,farbe,haut,hemd,bart), Bild (Datei in Firmen-Brain/_bilder).
+const WK={start:true,offenK:new Set(),offenO:new Set(),zuKat:new Set(),typMenue:false,figur:false,neuTitel:'',bilder:{},q:''};
+const WK_KAT=[['kunden','Kunden & Baustellen'],['personal','Mitarbeiter'],['partner','Lieferanten & Partner'],['ablauf','Firma & Abläufe']];
+const WK_ORD=[['m','Mängel'],['a','Angebote & Rechnungen'],['k','Kontakte'],['d','Dateien']];
+const WK_FELD={privat:['Ansprechpartner','Adresse','Telefon','E-Mail','Kunde seit','Status','Einzug'],firma:['Firma','Ansprechpartner','Adresse','Telefon','E-Mail','USt-IdNr.','Kunde seit','Status'],
+ personal:['Rolle','Im Betrieb seit','Schwerpunkt','Sprache','Telefon','Stunden diese Woche'],partner:['Art','Ansprechpartner','Adresse','Telefon','E-Mail','Zusammenarbeit seit'],ablauf:[]};
+const WK_ALIAS={'ansprechpartnerin':'Ansprechpartner','kontakt':'Ansprechpartner','ort':'Adresse','anschrift':'Adresse','tel':'Telefon','telefonnummer':'Telefon','mail':'E-Mail','email':'E-Mail','leistung':'Art','gewerk':'Art','ust-id':'USt-IdNr.','ust-idnr':'USt-IdNr.','im betrieb seit':'Im Betrieb seit','dabei seit':'Im Betrieb seit','kunde seit':'Kunde seit','zusammenarbeit seit':'Zusammenarbeit seit'};
+const WK_VERSTECKT=['Typ','Figur','Bild'];
+const WK_KOND=/rabatt|skonto|zahlungs|kondition|preis|lieferzeit|mindest/i;
+const wkEsc=s=>esc(String(s==null?'':s));
+const wkDat=s=>{const m=String(s||'').match(/^(\d{4})-(\d\d)-(\d\d)/);return m?m[3]+'.'+m[2]+'.'+m[1]:String(s||'')};
+const wkKurz=t=>t.split(/\s+/).filter(Boolean).map(w=>w[0]).join('').slice(0,3).toUpperCase();
+function wkFakt(p,k){const f=(p.fakten||[]).find(([a])=>a.toLowerCase()===k.toLowerCase());return f?f[1]:''}
+function wkPer(t){try{return (typeof PER!=='undefined'&&PER[t])||null}catch(e){return null}}
+function wkKat(p){if(p.gruppe==='Kunden & Baustellen')return 'kunden';if(p.gruppe==='Partner & Lieferanten')return 'partner';return wkPer(p.titel)?'personal':'ablauf'}
+const wkBst=p=>{try{return BST[p.titel]||null}catch(e){return null}};
+function wkTyp(p){const t=wkFakt(p,'Typ').toLowerCase();if(t)return t.startsWith('f')?'firma':'privat';return wkFakt(p,'Firma')||/gmbh|\bag\b|\bkg\b|gbr|ug\b|e\.k\.|logistik|halle|büro/i.test(p.titel)?'firma':'privat'}
+function wkArt(p){const k=wkKat(p);if(k==='kunden')return wkTyp(p)==='firma'?'firma':'person';if(k==='personal')return 'person';if(k==='partner')return 'firma';return 'text'}
+function wkFigurDaten(p){const v=wkFakt(p,'Figur').split(',');const g=v[0]==='w'||v[0]==='m'?v[0]:(/\b(frau|petra|anna|maria|sylwia|ewa|sabine|julia|lisa|monika|andrea|claudia)\b/i.test(p.titel+' '+(p.fakten||[]).filter(([k])=>/ansprech|kontakt/i.test(k)).map(f=>f[1]).join(' '))||(p.fakten||[]).some(([k])=>/ansprechpartnerin/i.test(k)))?'w':'m';
+ return {g,haar:v[1]||(g==='w'?'lang':'kurz'),farbe:v[2]||'braun',haut:+(v[3]||1),hemd:v[4]||'#5E7894',bart:v[5]==='1'}}
+// Werte für den Kasten: Fakten der Seite (mit Alias), ergänzt aus Kunden, Personal, Tagebuch
+function wkWerte(p){const o={},b=wkBst(p),per=wkPer(p.titel);(p.fakten||[]).forEach(([a,v])=>{if(WK_VERSTECKT.includes(a))return;const k=WK_ALIAS[a.toLowerCase()]||a;if(!o[k])o[k]=v});
+ if(b){if(!o['Ansprechpartner']&&b.kontakt)o['Ansprechpartner']=b.kontakt;if(!o['Adresse']&&b.ort)o['Adresse']=b.ort;if(!o['Telefon']&&b.tel)o['Telefon']=b.tel;if(!o['Einzug']&&b.einzug)o['Einzug']=wkDat(b.einzug);
+  if(!o['Status']&&b.status)o['Status']=({offen:'In Arbeit',abgeschlossen:'Abgeschlossen',interessent:'Interessent'})[b.status]||b.status}
+ if(per){if(!o['Rolle']&&per.rolle)o['Rolle']=per.rolle;if(!o['Telefon']&&per.tel)o['Telefon']=per.tel;
+  try{let h=0;const mo=tbIso(tbMo(new Date()));Object.entries(TB).forEach(([t,l])=>{if(t<mo)return;(l||[]).forEach(e=>{if(peListe(e.p).includes(per.name||p.titel))h+=peDauer(e.z)||0})});o['Stunden diese Woche']=(Math.round(h*10)/10).toLocaleString('de-DE')+' h'}catch(e){}}
+ return o}
+function wkOnstand(p){if(wkKat(p)!=='kunden')return null;let wert=0,ab=0,off=0;try{(AU_A||[]).filter(a=>a.b===p.titel&&a.st==='angenommen').forEach(a=>wert+=auBrutto(a));(AU_R||[]).filter(r=>r.b===p.titel&&r.st!=='entwurf').forEach(r=>{ab+=arBrutto(r);off+=opOffen(r)})}catch(e){}
+ const e=x=>x?auEur(x):'–';return [['Auftragswert',e(wert)],['Abgerechnet',e(ab)],['Offen',e(off)]]}
+// kleine Einträge aus Onstand je Seite
+function wkKlein(p){const o={},k=wkKat(p),t=p.titel;
+ try{let M=[];if(k==='kunden')M=(MG[t]||[]);else if(k==='personal')M=Object.values(MG).flat().filter(m=>m.z===t);if(M.length)o.m=M.map(m=>({d:m.an||'',t:(m.nr?m.nr+' · ':'')+m.t,s:mgUeber(m)?'überfällig':mgOffen(m)?'offen':'erledigt',rot:mgUeber(m),z:{f:'maengel',o:{id:m.b+'|'+m.nr}},f:[['Baustelle',m.b],['Stelle',m.raum||''],['Zuständig',m.z],['Frist',wkDat(m.frist||'')]]}))}catch(e){}
+ if(k==='kunden'){try{const A=(AU_A||[]).filter(a=>a.b===t).map(a=>({d:a.d,t:'Angebot '+a.nr+' · '+(a.t||''),s:({entwurf:'Entwurf',verschickt:'verschickt',angenommen:'angenommen',abgelehnt:'abgelehnt'})[a.st]||a.st,rot:false,z:{f:'auftraege',a:a.nr},f:[['Datum',wkDat(a.d)],['Betrag',auEur(auBrutto(a))],['Status',a.st]]})),
+   R=(AU_R||[]).filter(r=>r.b===t).map(r=>{const of=opOffen(r);return {d:r.d,t:(r.nr||'Entwurf')+' · '+(r.t||'Rechnung'),s:r.st==='bezahlt'?'bezahlt':of>0?'offen':r.st,rot:of>0&&arFaellig(r)<tbIso(new Date()),z:{f:'auftraege',r:r.nr},f:[['Datum',wkDat(r.d)],['Betrag',auEur(arBrutto(r))],['Offen',of?auEur(of):'–']]}});
+   const L=A.concat(R).sort((x,y)=>String(y.d).localeCompare(String(x.d)));if(L.length)o.a=L}catch(e){}
+  const b=wkBst(p);if(b&&(b.kon||[]).length)o.k=b.kon.map(x=>({d:x.d,t:x.t,s:x.art,rot:false,z:{f:'kunden'},f:[['Datum',wkDat(x.d)+(x.z?' · '+x.z:'')],['Art',x.art]]}))}
+ if((p.quellen||[]).length)o.d=p.quellen.map(q=>({d:'',t:String(q).split('/').pop(),s:'Datei',rot:false,f:[['Datei',String(q)]]}));
+ return o}
+// Text mit [[Links]]: blau, wenn es die Seite gibt, sonst rot
+function wkLink(t){return wkEsc(t).replace(/\[\[([^\]]+)\]\]/g,(m,x)=>BR.seiten[x]?`<a class="wkl" data-wks="${wkEsc(x)}">${wkEsc(x)}</a>`:`<a class="wkneu" data-wkneu="${wkEsc(x)}">${wkEsc(x)}</a>`)}
+function wkFehlend(){const s=new Set();Object.values(BR.seiten).forEach(p=>[p.intro,...p.notizen,...p.fakten.map(f=>f[1])].join(' ').replace(/\[\[([^\]]+)\]\]/g,(m,x)=>{if(!BR.seiten[x])s.add(x)}));return [...s].sort((a,b)=>a.localeCompare(b,'de'))}
+function wkKurzText(p){return String(p.intro||'').replace(/\[\[|\]\]/g,'').replace(/\s+/g,' ').split(/(?<=[.!?])\s/)[0].slice(0,160)}
+function wkBild(p,gross){const f=wkFakt(p,'Bild');if(f&&WK.bilder[f])return `<img src="${WK.bilder[f]}" alt="${wkEsc(p.titel)}">`;if(f&&!WK.bilder[f])wkBildLaden(f);
+ const a=wkArt(p);if(a==='person')return wkFigur(wkFigurDaten(p));if(a==='firma'){const b=wkBst(p);return wkFirmaBild(wkEsc((b&&b.k)||wkKurz(p.titel)),(b&&/^#[0-9a-f]{6}$/i.test(b.c||'')?b.c:'#5E7894'))}return ''}
+async function wkBildLaden(f){if(WK.bilder[f]!==undefined)return;WK.bilder[f]='';try{const h=await datei(BR_ORD+'/_bilder/'+f),d=await h.getFile();WK.bilder[f]=URL.createObjectURL(d);if(BR_INH&&BR_INH.isConnected&&AM_AKT==='brain')brMalen(BR_INH)}catch(e){}}
+// Seite speichern (Fakten ändern) – gleiche Datei wie beim Sortieren
+async function wkSetzeFakt(p,k,v){const i=p.fakten.findIndex(([a])=>a===k);if(v==null||v===''){if(i>=0)p.fakten.splice(i,1)}else if(i>=0)p.fakten[i]=[k,v];else p.fakten.push([k,v]);
+ try{await schreiben(brPfad(p.gruppe,p.titel),brText(p))}catch(e){mgToast(BR_INH,'Speichern ging nicht')}}
+
+// ---------- Baum ----------
+function wkBaum(sel){const P=Object.values(BR.seiten);
+ return `<a class="wkstart${WK.start?' an':''}" data-wkstart="1">Startseite</a>`+WK_KAT.map(([k,n])=>{const L=P.filter(p=>wkKat(p)===k).sort((a,b)=>a.titel.localeCompare(b.titel,'de'));if(!L.length)return '';
+  return `<div class="wkkat${WK.zuKat.has(k)?' zu':''}" data-wkkat="${k}"><h4 role="button" tabindex="0" aria-expanded="${!WK.zuKat.has(k)}">${n}<span>${L.length}</span></h4><ul>${L.map(p=>`<li><a class="wkseite${!WK.start&&p.titel===sel?' an':''}${BR.frisch.includes(p.titel)?' frisch':''}" data-wks="${wkEsc(p.titel)}" data-wkbaum="1">${wkEsc(p.titel)}</a>${WK.offenK.has(p.titel)?wkUnter(p):''}</li>`).join('')}</ul></div>`}).join('')}
+function wkUnter(p){const kl=wkKlein(p),O=WK_ORD.filter(([k])=>kl[k]&&kl[k].length);if(!O.length)return '';
+ return `<div class="wkunter">${O.map(([k,n])=>{const c=p.titel+'|'+k,auf=WK.offenO.has(c);return `<div class="wkord" data-wkord="${wkEsc(c)}" role="button" tabindex="0" aria-expanded="${auf}">${n} <span>(${kl[k].length})</span></div>${auf?kl[k].slice(0,12).map((e,i)=>`<a class="wkein" data-wke="${wkEsc(p.titel)}|${k}|${i}">${e.d?`<small>${wkDat(e.d).slice(0,6)}</small>`:'<small></small>'}<span>${wkEsc(e.t)}</span></a>`).join(''):''}`}).join('')}</div>`}
+
+// ---------- Artikel ----------
+function wkStartseite(){const P=Object.values(BR.seiten),F=wkFehlend(),lz=BR.stand&&BR.stand.letzterLauf?wkDat(new Date(BR.stand.letzterLauf).toISOString()):'';
+ return `<div class="wktitel"><h1>Firmen-Wiki</h1></div><div class="wkreiter"><a class="an">Startseite</a></div>
+  <p class="wkunterz">Das Wissen eurer Firma: ${P.length} ${P.length===1?'Artikel':'Artikel'}, von der KI aus euren Dateien geschrieben und jeden Sonntag aktualisiert.${lz?' Zuletzt sortiert am '+lz+'.':''}</p>
+  <div class="wkkacheln">${WK_KAT.map(([k,n])=>{const L=P.filter(p=>wkKat(p)===k);return L.length?`<div class="wkkachel"><b>${n}</b><span>${L.length} Artikel · </span>${L.slice(0,3).map(p=>`<a class="wkl" data-wks="${wkEsc(p.titel)}">${wkEsc(p.titel)}</a>`).join(', ')}</div>`:''}).join('')}</div>
+  ${BR.frisch.length?`<h2 class="wkab">Zuletzt geändert</h2><ul class="wkliste">${BR.frisch.slice(0,8).filter(t=>BR.seiten[t]).map(t=>`<li><span class="d">${lz}</span><span class="m"><a class="wkl" data-wks="${wkEsc(t)}">${wkEsc(t)}</a></span><span class="s">Sortier-Lauf</span></li>`).join('')}</ul>`:''}
+  ${F.length?`<h2 class="wkab">Fehlende Artikel</h2><p class="wkerw">Diese Namen kommen in Texten vor, haben aber noch keine Seite: ${F.slice(0,20).map(x=>`<a class="wkneu" data-wkneu="${wkEsc(x)}">${wkEsc(x)}</a>`).join(', ')}</p>`:''}`}
+function wkAbschnitte(p){const k=wkKat(p),FE=WK_FELD[k==='kunden'?wkTyp(p):k]||[],extra=(p.fakten||[]).filter(([a])=>!WK_VERSTECKT.includes(a)&&!FE.includes(WK_ALIAS[a.toLowerCase()]||a)&&!(k==='kunden'&&a==='Firma'));
+ const fl=L=>L.length?`<ul class="wkpunkte">${L.map(([a,v])=>`<li>${v?`<b>${wkEsc(a)}:</b> ${wkLink(v)}`:wkLink(a)}</li>`).join('')}</ul>`:'';
+ const notiz=n=>{const m=String(n).match(/^(\d{4}-\d\d-\d\d)\s*·\s*(.*)$/);return m?[m[1],m[2]]:['',String(n)]};
+ const verlauf=L=>L.length?`<ul class="wkliste">${L.map(([d,t,s])=>`<li><span class="d">${wkDat(d)}</span><span class="m">${wkLink(t)}</span><span class="s">${wkEsc(s||'')}</span></li>`).join('')}</ul>`:'';
+ const N=(p.notizen||[]).map(notiz);let A=[];
+ if(k==='kunden'){let off=[];try{off=(AU_A||[]).filter(a=>a.b===p.titel&&a.st!=='abgelehnt')}catch(e){}
+  const kon=((wkBst(p)||{}).kon||[]).map(x=>[x.d,x.t,x.art]);
+  A=[['Auftrag & Leistungen',off.length?`<ul class="wkpunkte">${off.map(a=>`<li><b>${wkEsc(a.t||'Angebot')}</b> (Angebot ${wkEsc(a.nr)}, ${({entwurf:'Entwurf',verschickt:'verschickt',angenommen:'angenommen'})[a.st]||a.st}): ${a.pos.slice(0,4).map(x=>wkEsc(x.n)).join(', ')}${a.pos.length>4?' …':''}</li>`).join('')}</ul>`:''],
+   ['Absprachen & Wünsche',fl(extra)],['Verlauf',verlauf(N.map(([d,t])=>[d,t,'Wiki']).concat(kon).sort((a,b)=>String(b[0]).localeCompare(String(a[0]))).slice(0,15))]]}
+ else if(k==='personal'){const E={};try{Object.entries(TB).forEach(([t,l])=>{if(t<tbIso(tbPlus(new Date(),-30)))return;(l||[]).forEach(e=>{if(peListe(e.p).includes(p.titel))E[e.b]=(E[e.b]||0)+1})})}catch(e){}
+  A=[['Aufgaben & Können',fl(extra)+verlauf(N.map(([d,t])=>[d,t,'']))],['Einsätze',Object.keys(E).length?`<p>Letzte 30 Tage laut Tagebuch: ${Object.entries(E).sort((a,b)=>b[1]-a[1]).map(([b,n])=>`${BR.seiten[b]?`<a class="wkl" data-wks="${wkEsc(b)}">${wkEsc(b)}</a>`:wkEsc(b)} (${n} ${n===1?'Tag':'Tage'})`).join(', ')}.</p>`:'']]}
+ else if(k==='partner')A=[['Zusammenarbeit',fl(extra.filter(([a])=>!WK_KOND.test(a)))+verlauf(N.map(([d,t])=>[d,t,'']))],['Konditionen',fl(extra.filter(([a])=>WK_KOND.test(a)))]];
+ else A=[['Ablauf',N.length?`<ul class="wkpunkte">${N.map(([d,t])=>`<li>${wkLink(t)}${d?` <small>(${wkDat(d)})</small>`:''}</li>`).join('')}</ul>`:''],['Worauf achten',fl(extra)]];
+ return A.map(([h,x])=>`<h2 class="wkab">${h}</h2>${x||'<p class="wkleertext">– noch keine Angaben</p>'}`).join('')}
+function wkArtikel(p){const k=wkKat(p),kat=WK_KAT.find(x=>x[0]===k)[1],typ=wkTyp(p),W=wkWerte(p),FE=WK_FELD[k==='kunden'?typ:k]||[],art=wkArt(p),foto=wkFakt(p,'Bild');
+ const zeilen=L=>L.map(([n,v])=>`<tr><th>${wkEsc(n)}</th><td${v&&v!=='–'?'':' class="leer"'}>${v?wkLink(v).replace(/\n/g,'<br>'):'–'}</td></tr>`).join('');
+ const onst=wkOnstand(p),bu=k==='kunden'&&typ==='firma'?(W['Firma']||p.titel):(W['Ansprechpartner']&&k==='kunden'?W['Ansprechpartner']:p.titel);
+ const kasten=k==='ablauf'?'':`<aside class="wksteck"><div class="sk"><span>${wkEsc(p.titel)}</span>${k==='kunden'?`<button type="button" class="wktyp" aria-haspopup="true" aria-expanded="${WK.typMenue}">${typ==='firma'?'Firma':'Privat'}</button>${WK.typMenue?`<div class="wktypwahl" role="menu">${['privat','firma'].map(t=>`<button type="button" role="menuitemradio" aria-checked="${typ===t}" data-wktyp="${t}">${t==='privat'?'Privat':'Firma'}${typ===t?'<span>✓</span>':''}</button>`).join('')}</div>`:''}`:''}</div>
+  <div class="bild">${wkBild(p,true)}</div><div class="bu"><span>${wkEsc(bu)}</span><span class="bk"><label class="wkbwahl">Bild ändern<input type="file" accept="image/*" class="wkbfile"></label>${foto?` · <button type="button" class="wkbweg">${art==='person'?'Figur verwenden':'Logo entfernen'}</button>`:art==='person'?` · <button type="button" class="wkfa">Figur anpassen</button>`:''}</span></div>${art==='person'&&!foto?wkFigurPanel(p):''}
+  <table>${zeilen(FE.map(f=>[f,W[f]||'']))}</table>${onst?`<div class="ab">Aus Onstand</div><table>${zeilen(onst)}</table>`:''}</aside>`;
+ const kl=wkKlein(p),klein=WK_ORD.filter(([x])=>kl[x]&&kl[x].length&&x!=='d').map(([x,n])=>`<h2 class="wkab">${n}<small>${kl[x].length} · aus Onstand</small></h2><ul class="wkliste">${kl[x].slice(0,4).map((e,i)=>`<li><span class="d">${wkDat(e.d)}</span><span class="m"><a class="wkl" data-wke="${wkEsc(p.titel)}|${x}|${i}">${wkEsc(e.t)}</a></span><span class="s${e.rot?' rot':''}">${wkEsc(e.s)}</span></li>`).join('')}</ul>`).join('');
+ const von=Object.values(BR.seiten).filter(x=>x.titel!==p.titel&&[x.intro,...x.notizen,...x.fakten.map(f=>f[1])].join(' ').includes('[['+p.titel+']]')).map(x=>x.titel);
+ const unterz=k==='kunden'?(typ==='firma'?'Firmenkunde':'Privatkunde')+(p.unter?' · '+p.unter.replace(/^(privat|firmen)?kund(e|in)\s*·\s*/i,''):''):(p.unter||kat);
+ return `<div class="wktitel"><h1>${wkEsc(p.titel)}</h1></div><div class="wkreiter"><a class="an">Artikel</a><span class="rechts"><a class="an">Lesen</a><a data-wkbea="1">Bearbeiten</a></span></div>
+  <p class="wkunterz">${wkEsc(unterz)}</p>
+  <div class="wkfliess">${kasten}${p.intro?`<p>${wkLink(p.intro)}</p>`:'<p class="wkleertext">Noch keine Einleitung – die KI schreibt sie beim nächsten Sortieren, oder oben auf „Bearbeiten“.</p>'}${wkAbschnitte(p)}${klein}
+  ${(p.quellen||[]).length?`<h2 class="wkab">Belege</h2><ol class="wkbelege">${p.quellen.slice(0,30).map(q=>`<li>${wkEsc(String(q).split('/').pop())}<small> · ${wkEsc(String(q).split('/').slice(0,-1).join('/')||'Notiz')}</small></li>`).join('')}</ol>`:''}
+  ${von.length?`<h2 class="wkab">Wird erwähnt auf</h2><p class="wkerw">${von.map(t=>`<a class="wkl" data-wks="${wkEsc(t)}">${wkEsc(t)}</a>`).join(' · ')}</p>`:''}
+  <div class="wkkatschild">Kategorie: <a data-wkstart="1">${kat}</a></div></div>`}
+function wkFigurPanel(p){const f=wkFigurDaten(p),B=(k,L)=>L.map(([v,t])=>`<button type="button" data-wkf="${k}:${v}" class="${String(k==='bart'?(f.bart?'1':'0'):f[k])===v?'an':''}">${t}</button>`).join('');
+ return `<div class="wkfigur${WK.figur?' an':''}"><div class="reihe"><b>Figur</b>${B('g',[['w','Frau'],['m','Mann']])}</div><div class="reihe"><b>Haare</b>${B('haar',[['kurz','kurz'],['lang','lang'],['dutt','Dutt'],['glatze','keine']])}</div>
+ <div class="reihe"><b>Farbe</b>${B('farbe',[['schwarz','schwarz'],['braun','braun'],['blond','blond'],['grau','grau'],['rot','rot']])}</div><div class="reihe"><b>Haut</b>${WK_HAUT.map((c,i)=>`<button type="button" class="haut${f.haut===i?' an':''}" data-wkf="haut:${i}" style="background:${c}" aria-label="Hautton ${i+1}"></button>`).join('')}</div>${f.g==='m'?`<div class="reihe"><b>Bart</b>${B('bart',[['0','nein'],['1','ja']])}</div>`:''}</div>`}
+
+// ---------- Zeichnen ----------
+const WK_ALT=brMalen;
+function wkZustaendig(){try{return syAktiv()&&KI.aktiv&&BR.stand&&BR.ansicht!=='interview'&&(BR.tab||'wiki')==='wiki'&&!(BR.sel&&BR.sel.startsWith('NZ:'))&&!bwFein.warte}catch(e){return false}}
+brMalen=function(inh){if(!wkZustaendig())return WK_ALT.apply(this,arguments);BR_INH=inh;BR.tab='wiki';
+ const P=Object.values(BR.seiten);if(BR.sel&&!BR.seiten[BR.sel])BR.sel=null;if(!BR.sel)WK.start=true;const sel=BR.sel,p=!WK.start&&sel?BR.seiten[sel]:null;
+ const neu=BR.neuQuelle.length+BR.neuNotizen.length,nz=brNichtZugeordnet(),offen=brOffeneFragen();
+ const menu=`${offen.length?`<button type="button" data-wkm="int">Interview (${offen.length} Fragen)</button>`:''}<button type="button" data-wkm="lauf"${BR.laeuft?' disabled':''}>Jetzt sortieren</button>${BR.quelle?'<button type="button" data-wkm="pruef">Ordner prüfen</button>':''}${window.showDirectoryPicker?`<button type="button" data-wkm="ordner">Ordner verknüpfen${BR.stand.quelle?' · '+wkEsc(BR.stand.quelle):''}</button>`:''}<label class="wkmdat">Dateien hinzufügen<input type="file" multiple hidden></label>`;
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">Nur für Chef sichtbar · ${P.length} ${P.length===1?'Seite':'Seiten'}${BR.laeuft?' · sortiere …':''}</span><h2 class="mgh">Firmen-Wiki</h2></div><div class="mgakt"><label class="fisuch wksuche">${FI_I.such}<input type="search" enterkeyhint="search" placeholder="Suchen oder fragen …" value="${wkEsc(WK.q)}" aria-label="Im Firmen-Wiki suchen"></label>${aulDrei(menu)}<button type="button" class="haupt bwneu">+ Seite</button></div></div>
+  ${neu||nz.length?`<div class="brreiter wkr" role="tablist"><button type="button" class="an" data-brtab="wiki">Wiki<i>${P.length}</i></button>${neu?`<button type="button" data-brtab="neu">Neu<i>${neu}</i></button>`:''}${nz.length?`<button type="button" class="warn" data-brtab="nz">Nicht zugeordnet<i>${nz.length}</i></button>`:''}</div>`:''}
+  ${BR.toast?`<div class="brtoast">${wkEsc(BR.toast)}</div>`:''}
+  <div class="wktreffer" hidden></div>
+  <div class="wk${BW_ED!==null?' wked':''}"><button type="button" class="wkinhalt">☰ Inhalt</button><nav class="wkbaum" aria-label="Seiten">${wkBaum(sel)}</nav><article class="wkartikel">${BW_ED!==null?'<div class="brseite"></div>':p?wkArtikel(p):wkStartseite()}</article></div>
+  <div class="wkvorschau" aria-hidden="true"></div><div class="wkkarte" role="dialog" aria-modal="true"><div></div></div>`;
+ if(BW_ED!==null){try{bwEdit(inh)}catch(e){console.error(e)}const t=inh.querySelector('[data-bw="titel"]');if(t&&WK.neuTitel&&BW_ED===''){t.value=WK.neuTitel;WK.neuTitel=''}}
+ wkBinden(inh,p)};
+// Kopf ohne Wiki-Ansicht (Neu, Nicht zugeordnet): gleicher Titel
+{const a=bwFein;bwFein=function(inh){a.apply(this,arguments);try{const h=inh.querySelector(':scope>.mgk .mgh');if(h&&h.textContent==='Firmen-Wiki'){const t=inh.querySelector(':scope>.mgk .amtt');if(t)t.textContent='Nur für Chef sichtbar'}}catch(e){}}}
+
+// ---------- Klicks, Vorschau, Karten ----------
+function wkGehe(inh,t){BR.sel=t;WK.start=false;WK.typMenue=false;WK.figur=false;brMalen(inh);const a=inh.querySelector('.wkartikel');if(a)a.scrollTop=0;inh.scrollTop=0}
+function wkEintrag(code){const [t,k,i]=code.split('|'),p=BR.seiten[t];if(!p)return null;return (wkKlein(p)[k]||[])[+i]||null}
+function wkKarte(inh,e,kl,knopf,tun){const k=inh.querySelector('.wkkarte');k.firstElementChild.innerHTML=`<h3>${wkEsc(e.t)}</h3><div class="kl">${wkEsc(kl)}</div>${e.text?`<p>${wkEsc(e.text)}</p>`:''}<dl>${(e.f||[]).filter(x=>x[1]).map(([a,b])=>`<dt>${wkEsc(a)}</dt><dd>${wkEsc(b)}</dd>`).join('')}</dl><div class="kn"><button type="button" data-wkz>Schließen</button>${knopf?`<button type="button" class="haupt" data-wkok>${wkEsc(knopf)}</button>`:''}</div>`;
+ k.classList.add('an');k.querySelectorAll('[data-wkz]').forEach(b=>b.onclick=()=>k.classList.remove('an'));const ok=k.querySelector('[data-wkok]');if(ok){ok.focus();ok.onclick=()=>{k.classList.remove('an');tun()}}
+ k.onclick=ev=>{if(ev.target===k)k.classList.remove('an')}}
+function wkBinden(inh,p){const q=s=>inh.querySelector(s),vs=q('.wkvorschau');let vt=0;
+ aulMenuBinden(inh.querySelector(':scope>.mgk .mgakt'));
+ inh.querySelectorAll('[data-wkm]').forEach(b=>b.onclick=async()=>{const m=b.dataset.wkm;if(m==='int'){BR.ansicht='interview';brMalen(inh)}if(m==='lauf'){await brLauf({frag:true});brMalen(inh)}if(m==='pruef'){await brNeuErmitteln(true);brMalen(inh)}
+  if(m==='ordner'){try{await brQuelleWaehlen();BR.toast='';await brLaden();await brNeuErmitteln(true);brMalen(inh)}catch(e){if(e&&e.name!=='AbortError')mgToast(inh,e.message||'Das ging nicht.')}}});
+ inh.querySelectorAll('.wkmdat input').forEach(i=>i.onchange=async()=>{const n=await brDateienHinzu([...i.files]);i.value='';BR.toast=n+' Datei'+(n===1?'':'en')+' im Fach Neu – werden am Sonntag einsortiert.';brMalen(inh)});
+ q('.bwneu').onclick=()=>{BW_ED='';WK.start=false;brMalen(inh)};
+ inh.querySelectorAll('[data-brtab]').forEach(b=>b.onclick=()=>{BR.tab=b.dataset.brtab;BR.sel=null;BR.toast='';brMalen(inh)});
+ // Suche: Baum filtern, Enter öffnet den ersten Treffer, sonst Frage an den Assistenten
+ const inp=q('.wksuche input'),tr=q('.wktreffer');const such=()=>{const s=WK.q.trim().toLowerCase();if(!s){tr.hidden=true;return}
+  const L=Object.values(BR.seiten).filter(x=>brSuchText(x).toLowerCase().includes(s)).slice(0,8);tr.hidden=false;
+  tr.innerHTML=`${L.map(x=>`<button type="button" data-wks="${wkEsc(x.titel)}"><b>${wkEsc(x.titel)}</b><small>${wkEsc(wkKurzText(x)||x.unter||'')}</small></button>`).join('')}<button type="button" class="wkfrag"><b>Frag das Firmen-Wiki</b><small>„${wkEsc(WK.q.trim())}“ – der Assistent sucht auch in den Dateien</small></button>`;
+  tr.querySelectorAll('[data-wks]').forEach(b=>b.onclick=()=>{WK.q='';wkGehe(inh,b.dataset.wks)});tr.querySelector('.wkfrag').onclick=()=>{const t=WK.q.trim();WK.q='';asAuf();setTimeout(()=>kiFragen(/[?]$/.test(t)?t:t+'?'),250)}};
+ inp.oninput=()=>{WK.q=inp.value;such()};inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const b=tr.querySelector('button');if(b)b.click()}if(e.key==='Escape'){WK.q='';inp.value='';such()}};if(WK.q)such();
+ // Baum
+ inh.querySelectorAll('[data-wkstart]').forEach(x=>x.onclick=ev=>{ev.preventDefault();WK.start=true;BR.sel=null;BW_ED=null;brMalen(inh)});
+ inh.querySelectorAll('.wkkat>h4').forEach(h=>{const t=()=>{const k=h.parentElement.dataset.wkkat;WK.zuKat.has(k)?WK.zuKat.delete(k):WK.zuKat.add(k);h.parentElement.classList.toggle('zu');h.setAttribute('aria-expanded',!WK.zuKat.has(k))};h.onclick=t;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+ inh.querySelectorAll('[data-wkord]').forEach(x=>{const t=()=>{const c=x.dataset.wkord;WK.offenO.has(c)?WK.offenO.delete(c):WK.offenO.add(c);brMalen(inh)};x.onclick=t;x.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+ inh.querySelectorAll('[data-wks]').forEach(x=>{if(x.closest('.wktreffer'))return;x.onclick=ev=>{ev.preventDefault();const t=x.dataset.wks;BW_ED=null;
+  if(x.dataset.wkbaum){if(!WK.start&&t===BR.sel){WK.offenK.has(t)?WK.offenK.delete(t):WK.offenK.add(t);brMalen(inh);return}WK.offenK.add(t)}inh.querySelector('.wk').classList.remove('baumauf');wkGehe(inh,t)}});
+ q('.wkinhalt').onclick=()=>q('.wk').classList.toggle('baumauf');
+ inh.querySelectorAll('[data-wke]').forEach(x=>x.onclick=ev=>{ev.preventDefault();const e=wkEintrag(x.dataset.wke);if(!e)return;const [t,k]=x.dataset.wke.split('|'),n=WK_ORD.find(o=>o[0]===k)[1];
+  const ziel=e.z;wkKarte(inh,e,n+' · '+t,ziel?({maengel:'Im Mängel-Menü öffnen',auftraege:'In Aufträge öffnen',kunden:'Bei den Kunden öffnen'})[ziel.f]:'',()=>{if(!ziel)return;
+   if(ziel.f==='auftraege'){amFunktion('auftraege');onWarte('#am .autabs',6000).then(()=>{try{const inh2=document.querySelector('#am .aminhalt');if(ziel.a){AUV.offen=AU_A.find(a=>a.nr===ziel.a)||null}else{AUV.rech=AU_R.find(r=>r.nr===ziel.r)||null}auMalen(inh2)}catch(e){}})}
+   else if(ziel.f==='maengel')amFunktion('maengel',ziel.o&&ziel.o.id?{id:ziel.o.id}:undefined);else amFunktion(ziel.f)})});
+ inh.querySelectorAll('[data-wkneu]').forEach(x=>x.onclick=()=>{const n=x.dataset.wkneu;wkKarte(inh,{t:n,text:'Diesen Artikel gibt es noch nicht. Onstand legt ihn an; die KI ergänzt ihn beim nächsten Sortieren aus euren Dateien.',f:[['Kommt vor auf',p?p.titel:'mehreren Seiten']]},'Noch kein Artikel','Artikel anlegen',()=>{BW_ED='';WK.neuTitel=n;WK.start=false;brMalen(inh)})});
+ const bea=q('[data-wkbea]');if(bea&&p)bea.onclick=()=>{BW_ED=p.titel;brMalen(inh)};
+ // Vorschau beim Drüberfahren (nur mit Maus)
+ if(matchMedia('(hover:hover)').matches)inh.querySelectorAll('.wkartikel [data-wks],.wkartikel [data-wke],.wkartikel [data-wkneu]').forEach(x=>{x.onmouseenter=()=>{clearTimeout(vt);vt=setTimeout(()=>{let h='';
+   if(x.dataset.wks&&BR.seiten[x.dataset.wks]&&x.dataset.wks!==BR.sel){const s=BR.seiten[x.dataset.wks];h=`<div class="vk">${wkBild(s)}<div><b>${wkEsc(s.titel)}</b><small>${wkEsc(s.unter||WK_KAT.find(k=>k[0]===wkKat(s))[1])}</small></div></div>${wkKurzText(s)?`<p>${wkEsc(wkKurzText(s))}</p>`:''}`}
+   else if(x.dataset.wke){const e=wkEintrag(x.dataset.wke);if(e)h=`<b>${wkEsc(e.t)}</b><p>${(e.f||[]).filter(y=>y[1]).map(([a,b])=>wkEsc(a+': '+b)).join(' · ')}</p>`}
+   else if(x.dataset.wkneu)h=`<b>${wkEsc(x.dataset.wkneu)}</b><small>Noch kein Artikel · Klick legt ihn an</small>`;
+   if(!h)return;vs.innerHTML=h;const r=x.getBoundingClientRect();vs.style.left=Math.min(innerWidth-336,Math.max(8,r.left))+'px';vs.style.top=(r.bottom+178>innerHeight?r.top-178:r.bottom+8)+'px';vs.classList.add('an')},280)};x.onmouseleave=()=>{clearTimeout(vt);vs.classList.remove('an')}});
+ if(!p)return;
+ // Privat/Firma im Kasten-Kopf
+ const ty=q('.wktyp');if(ty)ty.onclick=ev=>{ev.stopPropagation();WK.typMenue=!WK.typMenue;const y=q('.wkartikel').scrollTop;brMalen(inh);inh.querySelector('.wkartikel').scrollTop=y};
+ inh.querySelectorAll('[data-wktyp]').forEach(b=>b.onclick=async()=>{WK.typMenue=false;await wkSetzeFakt(p,'Typ',b.dataset.wktyp==='firma'?'Firma':'Privat');brMalen(inh)});
+ // Figur anpassen, Bild ändern
+ const fa=q('.wkfa');if(fa)fa.onclick=()=>{WK.figur=!WK.figur;q('.wkfigur').classList.toggle('an',WK.figur)};
+ inh.querySelectorAll('[data-wkf]').forEach(b=>b.onclick=async()=>{const f=wkFigurDaten(p),[k,v]=b.dataset.wkf.split(':');f[k]=k==='haut'?+v:k==='bart'?v==='1':v;
+  await wkSetzeFakt(p,'Figur',[f.g,f.haar,f.farbe,f.haut,f.hemd,f.bart?1:0].join(','));WK.figur=true;const y=q('.wkartikel').scrollTop;brMalen(inh);inh.querySelector('.wkartikel').scrollTop=y});
+ const bf=q('.wkbfile');if(bf)bf.onchange=async()=>{const f=bf.files[0];if(!f)return;try{const img=await createImageBitmap(f),s=Math.min(1,360/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+   const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.86)),name=brNotiz(p.titel).replace(/\s+/g,'_')+'_'+Date.now().toString(36)+'.jpg';await schreiben(BR_ORD+'/_bilder/'+name,blob);WK.bilder[name]=URL.createObjectURL(blob);await wkSetzeFakt(p,'Bild',name);brMalen(inh)}catch(e){mgToast(inh,'Das Bild ließ sich nicht speichern')}};
+ const bw=q('.wkbweg');if(bw)bw.onclick=async()=>{await wkSetzeFakt(p,'Bild','');brMalen(inh)}}
+document.addEventListener('click',ev=>{if(WK.typMenue&&!(ev.target.closest&&ev.target.closest('.wktypwahl,.wktyp'))&&AM_AKT==='brain'&&BR_INH){WK.typMenue=false;brMalen(BR_INH)}});
+addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.wkkarte.an').forEach(k=>k.classList.remove('an'))});
+// Neue Seite aus rotem Link: Bereich passend vorschlagen
+{const a=bwEdit;bwEdit=function(inh){const r=a.apply(this,arguments);try{if(BW_ED===''&&WK.neuTitel){const t=inh.querySelector('[data-bw="titel"]');if(t)t.value=WK.neuTitel}}catch(e){}return r}}
 // ===== Mängel nach der Onstand-Design-Probe =====
 // Titel „Mängel“, Baustelle als Auswahl oben rechts, EINE Reiterzeile (Offen · Überfällig · Zu prüfen · Erledigt · Abnahmen),
 // Liste als Tabelle Mangel | Frist | Status, rechts Karte: Kopf mit Pille, Foto, Feldzeilen, Knöpfe „Als behoben markieren“ / „Abnahme starten“.
