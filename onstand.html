@@ -4555,6 +4555,41 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 @media (max-width:760px){#am .mgakt>.fisuch{width:100%;order:-1}#am .mgk.auldk .aulst{order:5;width:100%}#am#am .aulst button{flex:1;padding:0 4px;font-size:12px}
  #am#am .auar.aulz{grid-template-columns:minmax(0,1fr) auto;row-gap:4px}#am#am .auar.aulz .c2{grid-column:1}#am#am .auar.aulz .c3{grid-column:2;grid-row:1;justify-self:end}#am#am .auar.aulz .c4{grid-column:2;grid-row:2}}
 #am#am .aux.aulpx{flex:none!important;height:auto!important;min-height:0!important;padding-bottom:0!important;overflow:visible}
+/* Positionen: Menge-Spalte breit genug, damit Feld und Einheit nicht über die Leistung ragen */
+#am#am .aupz,#am#am .aupzh{grid-template-columns:22px minmax(0,1fr) 136px 108px 28px;column-gap:12px}
+#am#am .aupz .aum{justify-content:flex-end;min-width:0}
+#am#am .aupz .aum input{width:64px}
+@media(max-width:430px){#am#am .aupz{grid-template-columns:16px minmax(0,1fr) 120px 22px}}
+/* Auswahl-Karten (Baustelle, Auftrag, Vorlage) und Formulare im neuen Stil */
+#am .aulform{padding:18px 20px!important}
+#am .aulform>label,#am .aulform .aulvorl{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;font:inherit;letter-spacing:0;text-transform:none;color:var(--k-t)}
+#am .aullab{font:600 13.5px var(--k-ui);color:var(--k-t);letter-spacing:0;text-transform:none}#am .aullab small{font-weight:400;color:var(--k-sub)}
+#am .aulwahl{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+#am#am .aulk{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;width:100%;min-height:56px;padding:9px 12px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);cursor:pointer;letter-spacing:0;text-transform:none;height:auto;box-shadow:none}
+#am#am .aulk:hover{border-color:color-mix(in srgb,var(--k-akz) 45%,var(--k-lin))}
+#am#am .aulk.an{border-color:var(--k-akz);box-shadow:inset 0 0 0 1px var(--k-akz);background:color-mix(in srgb,var(--k-akz) 6%,var(--k-b1))}
+#am .aulk .aulkz{grid-row:1/3;margin:0}
+#am .aulk b{font:600 14px var(--k-ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .aulk small{grid-column:2;font:12.5px var(--k-ui);color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .aulk:not(:has(.aulkz)) b,#am .aulk:not(:has(.aulkz)) small{grid-column:1/3}
+#am .aulvw{position:relative}
+#am#am .aulvx{position:absolute;top:6px;right:6px;min-width:24px;height:24px;padding:0 6px;border:0;border-radius:6px;background:none;color:var(--k-sub);font:600 14px/1 var(--k-ui);cursor:pointer;letter-spacing:0;text-transform:none}
+#am#am .aulvx:hover{background:color-mix(in srgb,var(--k-rot) 10%,transparent);color:var(--k-rot)}
+#am#am .aulvx.sicher{background:var(--k-rot);color:var(--k-t);font-size:12px}
+#am .aulform .aut{height:40px;border-radius:8px}
+#am .aulform .amaktion{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+/* Rechnungsart */
+#am .auarten.aulform{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;padding:0!important;margin-bottom:14px}
+#am#am .auarten.aulform>button{text-align:left;padding:14px 16px;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);color:var(--k-t);cursor:pointer;height:auto;letter-spacing:0;text-transform:none;display:flex;flex-direction:column;gap:4px}
+#am#am .auarten.aulform>button b{font:600 15px var(--k-ui);color:var(--k-t);letter-spacing:0}
+#am#am .auarten.aulform>button span{font:13px var(--k-ui);color:var(--k-sub)}
+#am#am .auarten.aulform>button:hover{border-color:color-mix(in srgb,var(--k-akz) 45%,var(--k-lin))}
+#am#am .auarten.aulform>button.an{border-color:var(--k-akz);box-shadow:inset 0 0 0 1px var(--k-akz);background:color-mix(in srgb,var(--k-akz) 6%,var(--k-b1))}
+#am .auwahl .aukh b{font:600 13.5px var(--k-ui);letter-spacing:0;text-transform:none;color:var(--k-t)}
+#am .auwahl .aual{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+/* Rechnung: Status-Pill und Knöpfe im Kopf */
+#am .aulrst{align-self:center}
+#am .aulrmenu{display:flex;gap:8px;align-items:center;margin-left:auto}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -4681,7 +4716,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.5';
+const ON_VER='0.11.6';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6380,9 +6415,11 @@ function aulDokFelder(inh,a,ed){
  inh.querySelectorAll('.auhin').forEach(x=>{if(/FIRMA (&amp;|&) PREISE/.test(x.innerHTML))x.textContent='Für das PDF fehlen noch deine Firmendaten – unter Einstellungen → Firma & Preise eintragen.'})}
 
 // ---------- Neues Angebot: aus Vorlage ----------
-function aulNeu(inh){const f=inh.querySelector('.aufm');if(!f||f.querySelector('.aulvorl'))return;
+function aulNeu(inh){const f=inh.querySelector('.aufm');if(!f||f.querySelector('.aulvorl'))return;aulFormNeu(inh);
  aulVorlagen().then(L=>{if(!L.length||!f.isConnected||f.querySelector('.aulvorl'))return;const t=f.querySelector('.aut')?.closest('label');if(!t)return;
-  t.insertAdjacentHTML('afterend',`<label class="aulvorl">AUS VORLAGE (optional)<div class="mgchips">${L.map((v,i)=>`<button type="button" data-vl="${i}" class="${AUL.wahl===i?'an':''}">${esc(v.t)}<small>${v.pos.length} ${v.pos.length===1?'Position':'Positionen'}</small></button>`).join('')}</div></label>`);
+  t.insertAdjacentHTML('afterend',`<div class="aulvorl"><span class="aullab">Aus Vorlage <small>(optional)</small></span><div class="aulwahl">${L.map((v,i)=>`<div class="aulvw"><button type="button" data-vl="${i}" class="aulk${AUL.wahl===i?' an':''}"><b>${esc(v.t)}</b><small>${v.pos.length} ${v.pos.length===1?'Position':'Positionen'}</small></button><button type="button" class="aulvx" data-vx="${i}" title="Vorlage löschen" aria-label="Vorlage „${esc(v.t)}“ löschen">×</button></div>`).join('')}</div></div>`);
+  f.querySelectorAll('[data-vx]').forEach(x=>x.onclick=async ev=>{ev.stopPropagation();const i=+x.dataset.vx;if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='Löschen?';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent='×'}},3500);return}
+   const v=L.splice(i,1)[0];if(AUL.wahl===i)AUL.wahl=null;else if(AUL.wahl>i)AUL.wahl--;try{await schreiben(AU_ORD+'/Vorlagen.json',JSON.stringify(L,null,1))}catch(e){}f.querySelector('.aulvorl')?.remove();aulNeu(inh);mgToast(inh,'Vorlage „'+(v?v.t:'')+'“ gelöscht')});
   f.querySelectorAll('[data-vl]').forEach(x=>x.onclick=()=>{const i=+x.dataset.vl;AUL.wahl=AUL.wahl===i?null:i;f.querySelectorAll('[data-vl]').forEach(y=>y.classList.toggle('an',+y.dataset.vl===AUL.wahl));const ti=f.querySelector('.aut');if(AUL.wahl!=null&&ti&&!ti.value.trim()){ti.value=L[i].t;AUV.neu.t=L[i].t}})})}
 // nach dem Anlegen: Positionen der Vorlage übernehmen
 {const a=auSpeichern;auSpeichern=async function(x){if(AUL.wahl!=null&&AUV.neu&&x&&x.st==='entwurf'&&!x.pos.length&&AUL.vorl&&AUL.vorl[AUL.wahl]){x.pos=AUL.vorl[AUL.wahl].pos.map(p=>Object.assign({},p,{her:''}));AUL.wahl=null}return a.apply(this,arguments)}}
@@ -6392,9 +6429,35 @@ function aulKopf(inh,titel){if(typeof hyHandy==='function'&&hyHandy())return;con
  const t=titel||(typeof glNormal==='function'?glNormal(tt?tt.textContent:''):(tt?tt.textContent:''));
  const neu=document.createElement('div');neu.className='mgk auldk';neu.innerHTML=`${zur?'<button type="button" class="aulzur">‹ Zurück</button>':''}<div><span class="amtt">Aufträge</span><h2 class="mgh"></h2></div>`;neu.querySelector('.mgh').textContent=t;
  k.replaceWith(neu);if(AUV.rech)inh.querySelectorAll('.aulivev [data-vpdf]').forEach(aulWeg);if(zur){aulWeg(zur);neu.appendChild(zur);neu.querySelector('.aulzur').onclick=()=>zur.click()}}
+// ---------- Auswahl Baustelle / Auftrag / Rechnungsart: Karten statt alter Kürzel-Chips ----------
+function aulBstKarten(box){box.querySelectorAll('.mgchips [data-b]').forEach(x=>{if(x.classList.contains('aulk'))return;const b=BST[x.dataset.b]||{};x.classList.add('aulk');
+  x.innerHTML=`<span class="aulkz" style="--bc:${b.c||'var(--k-sub)'}">${esc(b.k||'')}</span><b>${esc(x.dataset.b)}</b><small>${esc([b.kontakt,b.ort].filter(Boolean).join(' · ')||'Baustelle')}</small>`});
+ box.querySelectorAll('.mgchips').forEach(m=>m.classList.add('aulwahl'))}
+function aulLabel(el,t){if(!el)return;const n=[...el.childNodes].find(x=>x.nodeType===3&&x.textContent.trim());if(n)n.replaceWith(Object.assign(document.createElement('span'),{className:'aullab',textContent:t}))}
+function aulFormNeu(inh){const f=inh.querySelector('.aufm');if(!f||f.classList.contains('aulform'))return;f.classList.add('aulform');
+ const [l1,l2]=f.querySelectorAll(':scope>label');aulLabel(l1,'Für welche Baustelle?');aulLabel(l2,'Titel');aulBstKarten(f);
+ const ab=f.querySelector('.auab'),ok=f.querySelector('.auok');if(ab)ab.textContent='Abbrechen';if(ok)ok.textContent='Angebot anlegen'}
+function aulRechArt(inh){const x=inh.querySelector('.auarten');if(!x||x.classList.contains('aulform'))return;x.classList.add('aulform');
+ x.querySelectorAll('[data-art]').forEach(b=>{const e=b.querySelector('b');if(e)e.textContent=({abschlag:'Abschlag',schluss:'Schlussrechnung',regie:'Regie aus Tagebuch',frei:'Freie Rechnung'})[b.dataset.art]||e.textContent});
+ const w=inh.querySelector('.auwahl');if(w)aulWeg(w);
+ x.querySelectorAll('[data-art]').forEach(b=>b.addEventListener('click',()=>{x.querySelectorAll('[data-art]').forEach(y=>y.classList.toggle('an',y===b));setTimeout(()=>{if(!w)return;w.style.display='';const h=w.querySelector('.aukh b');if(h)h.textContent=/AUFTRAG/.test(h.textContent)?'Zu welchem Auftrag?':'Für welche Baustelle?';aulBstKarten(w);
+  w.querySelectorAll('.auar[data-a]').forEach(r=>{const a=AU_A.find(y=>y.nr===r.dataset.a);if(!a)return;const bb=BST[a.b]||{};r.classList.add('aulk','aulkr');r.innerHTML=`<span class="aulkz" style="--bc:${bb.c||'var(--k-sub)'}">${esc(bb.k||'')}</span><b>${esc(a.t||'Angebot')}</b><small>${esc(a.nr)} · ${esc(a.b)} · ${auEur(auBrutto(a))}</small>`});
+  w.scrollIntoView({block:'nearest',behavior:'smooth'})},0)}))}
+// ---------- Rechnung bearbeiten: Kopf wie beim Angebot, Knöpfe ins ⋯-Menü, Hauptaktion blau rechts ----------
+function aulRech(inh){if(typeof hyHandy==='function'&&hyHandy())return;const r=AUV.rech;if(!r)return;const k=inh.querySelector(':scope>.mgk.auldk');if(!k||k.querySelector('.aulrmenu'))return;
+ const ue=r.st==='gestellt'&&arFaellig(r)<tbIso(new Date()),st=ue?['ueber','überfällig']:[r.st,(AR_ST[r.st]||[r.st])[0].charAt(0)+(AR_ST[r.st]||[r.st])[0].slice(1).toLowerCase()];
+ const h=k.querySelector('.mgh');if(h)h.textContent=(AR_ART[r.art]||'Rechnung').replace(/^./,c=>c.toUpperCase())+(r.nr?' '+r.nr:'');const tt=k.querySelector('.amtt');if(tt)tt.textContent=[r.t,r.b].filter(Boolean).join(' · ');
+ const reihen=[...inh.querySelectorAll('.aux .auknoepfe')].filter(x=>!x.closest('.aukarte'));const B=reihen.flatMap(x=>[...x.querySelectorAll('button')]).filter(b=>b.offsetParent!==null||b.style.display!=='none');
+ const haupt=B.filter(b=>b.classList.contains('ja')).pop()||null,pdf=B.find(b=>b.classList.contains('arpdf')),er=B.find(b=>/e-rechnung/i.test(b.textContent)),rest=B.filter(b=>b!==haupt&&b!==pdf&&b!==er);
+ const txt=b=>{const t=b.textContent.trim();return (t===t.toUpperCase()?t.charAt(0)+t.slice(1).toLowerCase():t).replace(/e-rechnung/i,'E-Rechnung').replace(/\bpdf\b/i,'PDF').replace(/offener posten/i,'Offener Posten')};
+ k.insertAdjacentHTML('beforeend',`<span class="aulpill ${st[0]} aulrst">${esc(st[1])}</span><div class="mgakt aulrmenu">${rest.length?aulDrei(rest.map((b,i)=>`${/löschen|storno/i.test(b.textContent)?'<hr>':''}<button type="button" data-aulr="${i}" class="${/löschen|storno/i.test(b.textContent)?'rot bleibt':''}">${esc(txt(b))}</button>`).join('')):''}${er?'<button type="button" class="aulzur aulrer" title="XRechnung oder ZUGFeRD für Firmen und Behörden">E-Rechnung</button>':''}${pdf?'<button type="button" class="aulzur aulrpdf">PDF</button>':''}${haupt?`<button type="button" class="haupt aulrhaupt">${esc(txt(haupt))}</button>`:''}</div>`);
+ reihen.forEach(aulWeg);aulMenuBinden(k);
+ const pb=k.querySelector('.aulrpdf');if(pb)pb.onclick=()=>pdf.click();const eb=k.querySelector('.aulrer');if(eb)eb.onclick=()=>er.click();const hb=k.querySelector('.aulrhaupt');if(hb)hb.onclick=()=>haupt.click();
+ k.querySelectorAll('[data-aulr]').forEach(x=>x.onclick=()=>{const b=rest[+x.dataset.aulr];if(/löschen/i.test(b.textContent)){if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent=txt(b)}},2500);return}b.classList.add('sicher')}
+  x.closest('.aulmenu').classList.remove('an');b.click()})}
 // ---------- Einhängen ----------
 {const a=auMalen;auMalen=function(inh){const r=a.apply(this,arguments);try{
-  if(AUV.op||AUV.rech||AUV.rechNeu)aulKopf(inh);
+  if(AUV.op||AUV.rech||AUV.rechNeu){aulKopf(inh,AUV.rechNeu&&!AUV.rech?'Neue Rechnung':undefined);if(AUV.rech&&!AUV.op)aulRech(inh);if(AUV.rechNeu&&!AUV.rech)aulRechArt(inh)}
   else if(AUV.firma)aulFirma(inh,false);
   else if(AUV.neu){aulKopf(inh,'Neues Angebot');aulNeu(inh)}
   else if(AUV.offen)aulDok(inh,AUV.offen);
@@ -8263,7 +8326,7 @@ function cpkZiehen(inh){const R=inh.querySelector('.cpkraster');if(!R)return;let
   // Finger: erst nach kurzem Halten ziehen, sonst normal scrollen (wie am iPhone)
   if(e.pointerType==='touch'){const x0=e.clientX,y0=e.clientY;let t=setTimeout(()=>{t=null;el.classList.add('hebt');start(e)},300);const weg=ev=>{if(t&&(ev.type!=='pointermove'||Math.hypot(ev.clientX-x0,ev.clientY-y0)>8)){clearTimeout(t);t=null;aus()}};const aus=()=>{removeEventListener('pointermove',weg);removeEventListener('pointerup',weg);removeEventListener('pointercancel',weg)};addEventListener('pointermove',weg);addEventListener('pointerup',weg);addEventListener('pointercancel',weg);return}
   e.preventDefault();start(e)};
- const start=e=>{const el=e.target.closest('.cpkp');if(!el)return;const r=el.getBoundingClientRect(),g=el.cloneNode(true);g.classList.add('cpkgeist');g.classList.remove('zieht');Object.assign(g.style,{width:r.width+'px',height:r.height+'px',left:r.left+'px',top:r.top+'px'});inh.appendChild(g);el.classList.add('zieht');
+ const start=e=>{const el=e.target.closest('.cpkp');if(!el)return;const r=el.getBoundingClientRect(),g=el.cloneNode(true);g.classList.add('cpkgeist');g.classList.remove('zieht');Object.assign(g.style,{width:r.width+'px',height:r.height+'px',left:r.left+'px',top:r.top+'px'});(document.getElementById('am')||document.body).appendChild(g);el.classList.add('zieht');
   CPK.zug={i:+el.dataset.i,id:el.dataset.id,g,dx:e.clientX-r.left,dy:e.clientY-r.top};
   const mv=ev=>{const Z=CPK.zug;if(!Z)return;Z.g.style.left=(ev.clientX-Z.dx)+'px';Z.g.style.top=(ev.clientY-Z.dy)+'px';const jetzt=performance.now();if(jetzt-letzt<120)return;
    Z.g.style.display='none';const unter=document.elementFromPoint(ev.clientX,ev.clientY);Z.g.style.display='';const ziel=unter&&unter.closest&&unter.closest('.cpkraster .cpkp');if(!ziel||ziel.dataset.id===Z.id)return;
@@ -11727,6 +11790,16 @@ Figur|Postać|Figură|Figura|Lik|Фигура
 Interview ({n} Fragen)|Wywiad ({n} pytań)|Interviu ({n} întrebări)|Intervistë ({n} pyetje)|Intervju ({n} pitanja)|Интервю ({n} въпроса)
 Wiki|Wiki|Wiki|Wiki|Wiki|Wiki
 Datei|Plik|Fișier|Skedar|Datoteka|Файл
+Aus Vorlage|Z szablonu|Din șablon|Nga shablloni|Iz predloška|От шаблон
+(optional)|(opcjonalnie)|(opțional)|(opsionale)|(neobavezno)|(по избор)
+Löschen?|Usunąć?|Ștergi?|Fshij?|Obrisati?|Да изтрия?
+Vorlage „{x}“ gelöscht|Usunięto szablon „{x}”|Șablonul „{x}” a fost șters|Shablloni „{x}“ u fshi|Predložak „{x}“ obrisan|Шаблонът „{x}“ е изтрит
+E-Rechnung|E-faktura|Factură electronică|E-faturë|E-račun|Е-фактура
+Offener Posten ›|Otwarta pozycja ›|Sumă restantă ›|Pozicion i hapur ›|Otvorena stavka ›|Неплатена сума ›
+Den Ordner verknüpfst du am PC. Danach ist das Firmen-Wiki auch hier am Handy da.|Folder połączysz na komputerze. Potem wiki firmy będzie też tutaj na telefonie.|Folderul îl conectezi pe PC. Apoi wiki-ul firmei e și aici pe telefon.|Dosjen e lidh në kompjuter. Pastaj wiki i firmës është edhe këtu në telefon.|Mapu povezuješ na računalu. Nakon toga je wiki tvrtke i ovdje na mobitelu.|Папката свързваш на компютъра. След това фирмената wiki е и тук на телефона.
+Rechnung {x}|Faktura {x}|Factura {x}|Fatura {x}|Račun {x}|Фактура {x}
+Abschlagsrechnung {x}|Faktura zaliczkowa {x}|Factură parțială {x}|Faturë paradhënie {x}|Račun za predujam {x}|Авансова фактура {x}
+Schlussrechnung {x}|Faktura końcowa {x}|Factura finală {x}|Fatura përfundimtare {x}|Završni račun {x}|Окончателна фактура {x}
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -12166,7 +12239,7 @@ function wkZustaendig(){try{return syAktiv()&&KI.aktiv&&BR.stand&&BR.ansicht!=='
 brMalen=function(inh){if(!wkZustaendig())return WK_ALT.apply(this,arguments);BR_INH=inh;BR.tab='wiki';
  const P=Object.values(BR.seiten);if(BR.sel&&!BR.seiten[BR.sel])BR.sel=null;if(!BR.sel)WK.start=true;const sel=BR.sel,p=!WK.start&&sel?BR.seiten[sel]:null;
  const neu=BR.neuQuelle.length+BR.neuNotizen.length,nz=brNichtZugeordnet(),offen=brOffeneFragen();
- const menu=`${offen.length?`<button type="button" data-wkm="int">Interview (${offen.length} Fragen)</button>`:''}<button type="button" data-wkm="lauf"${BR.laeuft?' disabled':''}>Jetzt sortieren</button>${BR.quelle?'<button type="button" data-wkm="pruef">Ordner prüfen</button>':''}${window.showDirectoryPicker?`<button type="button" data-wkm="ordner">Ordner verknüpfen${BR.stand.quelle?' · '+wkEsc(BR.stand.quelle):''}</button>`:''}<label class="wkmdat">Dateien hinzufügen<input type="file" multiple hidden></label>`;
+ const menu=`${offen.length?`<button type="button" data-wkm="int">Interview (${offen.length} Fragen)</button>`:''}<button type="button" data-wkm="lauf"${BR.laeuft?' disabled':''}>Jetzt sortieren</button>${BR.quelle?'<button type="button" data-wkm="pruef">Ordner prüfen</button>':''}${window.showDirectoryPicker?`<button type="button" data-wkm="ordner">Ordner verknüpfen${BR.stand.quelle?' · '+wkEsc(BR.stand.quelle):''}</button>`:''}`;
  inh.innerHTML=`<div class="mgk"><div><span class="amtt">Nur für Chef sichtbar · ${P.length} ${P.length===1?'Seite':'Seiten'}${BR.laeuft?' · sortiere …':''}</span><h2 class="mgh">Firmen-Wiki</h2></div><div class="mgakt"><label class="fisuch wksuche">${FI_I.such}<input type="search" enterkeyhint="search" placeholder="Suchen oder fragen …" value="${wkEsc(WK.q)}" aria-label="Im Firmen-Wiki suchen"></label>${aulDrei(menu)}<button type="button" class="haupt bwneu">+ Seite</button></div></div>
   ${neu||nz.length?`<div class="brreiter wkr" role="tablist"><button type="button" class="an" data-brtab="wiki">Wiki<i>${P.length}</i></button>${neu?`<button type="button" data-brtab="neu">Neu<i>${neu}</i></button>`:''}${nz.length?`<button type="button" class="warn" data-brtab="nz">Nicht zugeordnet<i>${nz.length}</i></button>`:''}</div>`:''}
   ${BR.toast?`<div class="brtoast">${wkEsc(BR.toast)}</div>`:''}
@@ -12231,6 +12304,9 @@ document.addEventListener('click',ev=>{if(WK.typMenue&&!(ev.target.closest&&ev.t
 addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.wkkarte.an').forEach(k=>k.classList.remove('an'))});
 // Neue Seite aus rotem Link: Bereich passend vorschlagen
 {const a=bwEdit;bwEdit=function(inh){const r=a.apply(this,arguments);try{if(BW_ED===''&&WK.neuTitel){const t=inh.querySelector('[data-bw="titel"]');if(t)t.value=WK.neuTitel}}catch(e){}return r}}
+
+// „Dateien hinzufügen“ entfällt überall (Wissen kommt aus dem verknüpften Ordner, Tagebuch, Angeboten und Kontakten)
+{const a=bwFein;bwFein=function(inh){a.apply(this,arguments);try{inh.querySelectorAll('.brdat').forEach(x=>x.remove());inh.querySelectorAll('.auhin').forEach(x=>{if(/einzelne Dateien hinzufügen/.test(x.textContent))x.textContent='Den Ordner verknüpfst du am PC. Danach ist das Firmen-Wiki auch hier am Handy da.'})}catch(e){}}}
 // ===== Mängel nach der Onstand-Design-Probe =====
 // Titel „Mängel“, Baustelle als Auswahl oben rechts, EINE Reiterzeile (Offen · Überfällig · Zu prüfen · Erledigt · Abnahmen),
 // Liste als Tabelle Mangel | Frist | Status, rechts Karte: Kopf mit Pille, Foto, Feldzeilen, Knöpfe „Als behoben markieren“ / „Abnahme starten“.
