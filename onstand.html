@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F6F6F7"><script>try{const d=localStorage.getItem('onstandDesign');if(d&&d!=='kupfer')document.documentElement.dataset.design=d}catch(e){}</script><title>Onstand</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%230D1014%22/%3E%3Cpath%20d=%22M36.28%2016.86L16.86%2036.28L16.86%2063.72L36.28%2083.14L63.72%2083.14L83.14%2063.72L83.14%2036.28L63.72%2016.86Z%20M60%2025.86L74.14%2040L74.14%2060L60%2074.14L40%2074.14L25.86%2060L25.86%2040L40%2025.86Z%22%20fill=%22%23EEE9E4%22%20fill-rule=%22evenodd%22/%3E%3Cpath%20d=%22M36.28%2016.86L63.72%2016.86L60%2025.86L40%2025.86Z%22%20fill=%22%23D19A6A%22/%3E%3C/svg%3E"><link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Onstand"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-/* ===== Onstand · Designs: Hell (Standard) und Dunkel, Akzent Kupfer =====
+/* ===== Onstand · Designs: Hell (Standard) und Dunkel, Akzent Blau (bis v0.11.2 Kupfer) =====
    Diese Datei setzt nur die Farbwerte. bauen.py ersetzt beim Bauen alle festen Farben in den übrigen CSS-Teilen
    durch diese Werte (dunkel → Flächen, hell → Text, Orange → Akzent). Grün, Gelb, Rot bleiben Markierungen. */
-:root{--k-b0:#F6F6F7;--k-b1:#FFFFFF;--k-sub:#5C6470;--k-t:#1B1F24;--k-akz:#AE5A27;--k-akzd:#8E4718;--k-auf:#FFFFFF;
+:root{--k-b0:#F6F6F7;--k-b1:#FFFFFF;--k-sub:#5C6470;--k-t:#1B1F24;--k-akz:#1F5FBF;--k-akzd:#1A52A6;--k-auf:#FFFFFF;
  --k-rot:#C42B1C;--k-gelb:#9A6700;--k-gruen:#107C41;--k-info:#1C6F96;--k-blau:#2F5D9A;--k-kup:var(--k-akz);
  --k-lin:#E1E3E6;--k-nav:#F0F1F3;--k-ui:"Segoe UI Variable Text","Segoe UI",-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Roboto,Arial,sans-serif;color-scheme:light}
-:root[data-design="dunkel"]{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#E39459;--k-akzd:#C07440;--k-auf:#1A0F07;
+:root[data-design="dunkel"]{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#6AA3FF;--k-akzd:#4C86E0;--k-auf:#071328;
  --k-rot:#FF6B7F;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-lin:#36363B;--k-nav:#1C1C1E;color-scheme:dark}
 html.dwechsel,html.dwechsel *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
 /* Start- und Anmelde-Bildschirm immer dunkel – auch wenn das Design auf „Hell“ steht */
-#onstart,.spstart,.spstartl{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#E39459;--k-akzd:#C07440;--k-auf:#1A0F07;
+#onstart,.spstart,.spstartl{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#6AA3FF;--k-akzd:#4C86E0;--k-auf:#071328;
  --k-rot:#FF6B7F;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-lin:#36363B;--k-nav:#1C1C1E;color-scheme:dark;
  --ad:var(--k-akzd);--aj:var(--k-akz);--bad:var(--k-rot);--bg:color-mix(in srgb,var(--k-b1) 25%,var(--k-b0));--blau:var(--k-blau);--d:var(--k-akzd);--gelb:var(--k-gelb);--gruen:var(--k-gruen);--j:var(--k-akz);--lin:color-mix(in srgb,var(--k-sub) 18%,transparent);--ok:var(--k-gruen);--plan:var(--k-info);--rot:var(--k-rot);--row:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));--sub:var(--k-sub);--txt:var(--k-t);--warn:var(--k-gelb)}
 /* ===== Onstand · Grundstil und Rahmen (Konzept D) ===== */
@@ -4472,13 +4472,40 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .abban p{flex:1;min-width:0;margin:0;font-size:13px;line-height:1.5}
 #am .abban button{height:34px;padding:0 14px;border:0;border-radius:6px;background:var(--k-akz);color:var(--k-auf);font:600 12.5px var(--k-ui);cursor:pointer;white-space:nowrap}
 @media (max-width:760px){#am .abban{flex-direction:column;align-items:stretch}#am .abban button{height:42px;border-radius:21px}}
+/* ===== Grundlayout „klassisch hell“ (v0.11.3) =====
+   Eine Aktionsfarbe (Blau, aus design.css), feste Bereichsfarben nur als kleine Akzente:
+   Symbole in der linken Leiste, Farbpunkt vor dem Seitentitel. Kopfzeile: Punkt + Titel, darunter eine graue Zeile.
+   Die Bereichsfarben (--cpk-*) stehen in module/cockpit/cockpit.css. */
+#am .onni[data-f="cockpit"],#am[data-bereich="cockpit"]{--bf:var(--cpk-cockpit)}
+#am .onni[data-f="auftraege"],#am[data-bereich="auftraege"]{--bf:var(--cpk-auftraege)}
+#am .onni[data-f="tagebuch"],#am[data-bereich="tagebuch"]{--bf:var(--cpk-tagebuch)}
+#am .onni[data-f="kalender"],#am[data-bereich="kalender"],#kal{--bf:var(--cpk-kalender)}
+#am .onni[data-f="kunden"],#am[data-bereich="kunden"]{--bf:var(--cpk-kunden)}
+#am .onni[data-f="personal"],#am[data-bereich="personal"]{--bf:var(--cpk-personal)}
+#am .onni[data-f="brain"],#am[data-bereich="brain"]{--bf:var(--cpk-wiki)}
+#am .onni[data-f="maengel"],#am[data-bereich="maengel"]{--bf:var(--cpk-maengel)}
+#am .onni[data-f="bauplan"],#am[data-bereich="bauplan"]{--bf:var(--cpk-bauplan)}
+#am[data-bereich="mehr"]{--bf:var(--k-sub)}
+/* linke Leiste: farbige Symbole, aktiver Punkt weiß hinterlegt statt Akzent-Balken */
+#am .onnav .onni[data-f] svg{stroke:var(--bf)}
+#am .onunten .onni svg{stroke:var(--k-sub)}
+#am#am .onni.an{color:var(--k-t);background:var(--k-b1);font-weight:600;box-shadow:inset 0 0 0 1px var(--k-lin)}
+#am#am .onni.an::before{display:none}
+:root[data-design="dunkel"] #am#am .onni.an{background:color-mix(in srgb,var(--k-t) 9%,transparent);box-shadow:none}
+/* Kopfzeile: Farbpunkt + Titel, die kleine Zeile grau darunter */
+#am#am .mgk>div:has(>.mgh){display:flex!important;flex-direction:column-reverse!important;align-items:flex-start;min-width:0}
+#am#am .mgk .amtt,#kal#kal .ktitel small{color:var(--k-sub);font-size:12.5px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none;margin-top:2px}
+#am .mgk .mgh::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--bf,var(--k-sub));margin-right:10px;vertical-align:middle;position:relative;top:-2px}
+/* Hauptknopf: blau gefüllt, alle anderen Knöpfe in der Kopfzeile ruhig umrandet */
+#am .mgakt .haupt{background:var(--k-akz)!important;border-color:var(--k-akz)!important;color:var(--k-auf)!important}
+#am .mgakt .haupt:hover{background:var(--k-akzd)!important;border-color:var(--k-akzd)!important}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.2';
+const ON_VER='0.11.3';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -4616,7 +4643,7 @@ const amOffen=()=>true;
 function onToast(t){const e=AM_EL&&AM_EL.querySelector('.ontoast');if(!e)return;e.textContent=t;e.classList.add('an');clearTimeout(onToast.t);onToast.t=setTimeout(()=>e.classList.remove('an'),3600)}
 function say(t){if(!t)return;if(typeof asMeldung==='function'&&asOffen())asMeldung(String(t));else onToast(String(t))}
 // ---------- Design: Hell (Standard) und Dunkel, Akzent Kupfer – pro Gerät gespeichert ----------
-const ON_DESIGNS=[{id:'hell',name:'Hell',f:['#FFFFFF','#AE5A27'],meta:'#F6F6F7'},{id:'dunkel',name:'Dunkel',f:['#232326','#E39459'],meta:'#161618'}];
+const ON_DESIGNS=[{id:'hell',name:'Hell',f:['#FFFFFF','#1F5FBF'],meta:'#F6F6F7'},{id:'dunkel',name:'Dunkel',f:['#232326','#6AA3FF'],meta:'#161618'}];
 function onDesignAkt(){let d='hell';try{d=localStorage.getItem('onstandDesign')||'hell'}catch(e){}if(d==='kupfer'||d==='nachtblau')d='dunkel';return ON_DESIGNS.some(x=>x.id===d)?d:'hell'}
 function onDesign(id,weich){const D=ON_DESIGNS.find(x=>x.id===id)||ON_DESIGNS[0],h=document.documentElement;
  if(weich&&!RM){h.classList.add('dwechsel');clearTimeout(onDesign.t);onDesign.t=setTimeout(()=>h.classList.remove('dwechsel'),450)}
@@ -4632,10 +4659,9 @@ const onMz=(k,t,s)=>`<button type="button" data-m="${k}" class="onmz"><svg class
 function onMenu(){const m=AM_EL.querySelector('.onmenu');if(m.classList.contains('an')){m.classList.remove('an');return}const {firma,ini,logo}=onInitialen();
  let pk=0,si='';try{pk=(PK_CACHE||[]).length}catch(e){}try{const z=localStorage.getItem('onstandSiLetzt');if(z)si=new Date(z).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}catch(e){}
  m.innerHTML=`<div class="mk"><span class="av">${logo?`<img src="${esc(logo)}" alt="">`:ON_LOGO}</span><div><b>${esc(firma)}</b><small>${esc(ON_PROFIL.name||'')}</small></div></div>
-  ${onMz('profil','Profil','Name, Rolle')}${typeof spName==='function'?onMz('sprache','Sprache',spName(spAkt())):''}${onMz('firma','Firma &amp; Preise','Logo, Steuernr., IBAN')}${onMz('personal','Mitarbeiter','')}${onMz('mahn','Mahnwesen','')}
-  ${onMz('pk','Papierkorb',pk?String(pk):'')}${onMz('si','Sicherung',si)}${onMz('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}${onMz('ordner','Datenordner',GED&&GED.handy?'dieses Gerät':esc(ROOT?ROOT.name:'—'))}<hr>
+  ${onMz('profil','Profil','Name, Rolle')}${typeof spName==='function'?onMz('sprache','Sprache',spName(spAkt())):''}${onMz('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}<hr>
   <div class="ondesign"><span>DESIGN</span><div>${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}"><i style="background:linear-gradient(135deg,${d.f[0]} 50%,${d.f[1]} 50%)"></i>${d.name}</button>`).join('')}</div></div><hr>
-  ${onMz('abo','Abo &amp; KI-Paket',typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht')}${typeof APP!=='undefined'&&APP.standalone?'':onMz('app','Als App installieren','PC &amp; Handy')}${onMz('rundgang','Rundgang','wiederholen')}${onMz('ueber','Über Onstand','v'+ON_VER)}`;
+  ${typeof APP!=='undefined'&&APP.standalone?'':onMz('app','Als App installieren','PC &amp; Handy')}${onMz('rundgang','Rundgang','wiederholen')}${onMz('ueber','Über Onstand','v'+ON_VER)}`;
  m.classList.add('an');
  m.querySelectorAll('[data-design]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();onDesign(b.dataset.design,true);m.querySelectorAll('[data-design]').forEach(x=>{const an=x===b;x.classList.toggle('an',an);x.setAttribute('aria-pressed',an)})});
  m.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{m.classList.remove('an');onMenuAktion(b.dataset.m)})}
@@ -10142,8 +10168,8 @@ function hyEinst(inh){const {firma,logo}=onInitialen();let pk=0,si='';try{pk=(PK
  const Z=(k,t,s)=>`<button type="button" data-m="${k}"><span class="hyri hysq" style="--q:${HY_EF[k]||'#A29D97'}"><svg viewBox="0 0 24 24" aria-hidden="true">${ON_MZ_ICO[k]||''}</svg></span><span class="hyrt"><b>${t}</b>${s?`<small>${s}</small>`:''}</span>${hyIco('chev')}</button>`;
  inh.innerHTML=`<button type="button" class="hyzur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>Mehr</button><div class="mgk"><div><span class="amtt">ONSTAND</span><h2 class="mgh">Einstellungen</h2></div></div>
  <div class="hygrp hyprofil"><button type="button" data-m="profil"><span class="hyav">${logo?`<img src="${esc(logo)}" alt="">`:ON_LOGO}</span><span class="hyrt"><b>${esc(firma)}</b><small>${esc([ON_PROFIL.name,ON_PROFIL.rolle].filter(Boolean).join(' · ')||'Profil')} · Name, Rolle</small></span>${hyIco('chev')}</button></div>
- <div class="hylab">FIRMA</div><div class="hygrp">${Z('firma','Firma &amp; Preise','Logo, Steuernummer, IBAN, Preisliste')}${Z('personal','Mitarbeiter','Team, Stunden, Urlaub')}${Z('mahn','Mahnwesen','Mahnstufen und Fristen')}</div>
- <div class="hylab">DATEN &amp; KONTO</div><div class="hygrp">${Z('pk','Papierkorb',pk?pk+(pk===1?' Eintrag':' Einträge')+' · 30 Tage zurückholbar':'30 Tage zurückholbar')}${Z('si','Sicherung',si||'jeden Morgen automatisch')}${Z('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}${Z('ordner','Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'))}</div>
+ <div class="hylab">FIRMA</div><div class="hygrp">${Z('firma','Firma &amp; Preise','Logo, Steuernummer, IBAN, Preisliste')}${Z('mahn','Mahnwesen','Mahnstufen und Fristen')}</div>
+ <div class="hylab">DATEN &amp; KONTO</div><div class="hygrp">${Z('si','Sicherung',si||'jeden Morgen automatisch')}${Z('konto','Konto &amp; Geräte',typeof syAktiv==='function'&&syAktiv()?'verbunden':'einrichten')}${Z('ordner','Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'))}</div>
  <div class="hylab">DESIGN</div><div class="hygrp hydes">${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}"><i style="background:linear-gradient(135deg,${d.f[0]} 50%,${d.f[1]} 50%)"></i>${d.name}</button>`).join('')}</div>
  <div class="hylab">APP</div><div class="hygrp">${Z('abo','Abo &amp; KI-Paket',typeof KI!=='undefined'&&KI.aktiv?'KI aktiv':'KI nicht gebucht')}${typeof APP!=='undefined'&&APP.standalone?'':Z('app','Als App installieren','auf den Home-Bildschirm')}${typeof spName==='function'?Z('sprache','Sprache',spName(spAkt())):''}${Z('rundgang','Rundgang','noch einmal zeigen')}${Z('ueber','Über Onstand','Version '+ON_VER)}</div>
  <p class="hyver">Onstand ${ON_VER} · Deine Daten liegen in deinem Datenordner</p>`;
@@ -11308,6 +11334,12 @@ in {n} Tagen|za {n} dni|în {n} zile|për {n} ditë|za {n} dana|след {n} д�
 zuletzt {x}|ostatnio {x}|ultima dată {x}|së fundi {x}|zadnje {x}|последно {x}
 seit {x}|od {x}|din {x}|që nga {x}|od {x}|от {x}
 {x} offen|{x} otwarte|{x} deschis|{x} e hapur|{x} otvoreno|{x} неплатени
+Einstellungen der Firma|Ustawienia firmy|Setările firmei|Cilësimet e firmës|Postavke tvrtke|Настройки на фирмата
+Rechnungen & Mahnungen|Faktury i upomnienia|Facturi și somații|Fatura dhe kujtesa|Računi i opomene|Фактури и напомняния
+Profil, Sprache, Design, Konto & Geräte: oben links auf das Logo tippen.|Profil, język, wygląd, konto i urządzenia: stuknij logo w lewym górnym rogu.|Profil, limbă, design, cont și dispozitive: atinge logo-ul din stânga sus.|Profili, gjuha, dizajni, llogaria dhe pajisjet: prek logon lart majtas.|Profil, jezik, dizajn, račun i uređaji: dodirni logo gore lijevo.|Профил, език, дизайн, акаунт и устройства: натисни логото горе вляво.
+Dort sind Profil, Sprache, Konto und Geräte.|Tam są profil, język, konto i urządzenia.|Acolo sunt profilul, limba, contul și dispozitivele.|Aty janë profili, gjuha, llogaria dhe pajisjet.|Tamo su profil, jezik, račun i uređaji.|Там са профилът, езикът, акаунтът и устройствата.
+Hier liegen die Einstellungen der Firma.|Tu są ustawienia firmy.|Aici sunt setările firmei.|Këtu janë cilësimet e firmës.|Ovdje su postavke tvrtke.|Тук са настройките на фирмата.
+Abo|Abonament|Abonament|Abonim|Pretplata|Абонамент
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -11677,7 +11709,8 @@ document.addEventListener('click',ev=>{if(!document.body.classList.contains('bpa
 // Überschriften, die die Werkstatt in GROSSBUCHSTABEN setzt (z. B. „NEUER RAUM“), in normaler Schreibweise
 {const bp=document.getElementById('bp');if(bp)new MutationObserver(()=>{bp.querySelectorAll('#bTitel,.menue h4,.mpkarte h4,.bkopf>b').forEach(e=>{const n=e.firstChild;if(n&&n.nodeType===3){const k=n.nodeValue.trim();if(k.length>3&&k===k.toUpperCase()&&/[A-ZÄÖÜ]/.test(k))n.nodeValue=n.nodeValue.replace(k,frSatz(k))}})}).observe(bp,{subtree:true,childList:true,characterData:true})}
 // ===== Einstellungen am PC als eigene Seite (Probe „Einstellungen“) =====
-// Links in der Seitenleiste unter Papierkorb. Zwei Spalten mit Karten: Firma & Preise, Konto & Abgleich, Team · Mahnwesen | Darstellung, Daten, App.
+// Links in der Seitenleiste unter Papierkorb. Nur Firmen-Einstellungen (seit v0.11.3): Firma & Preise, Rechnungen & Mahnungen | Daten, Abo.
+// Persönliches (Profil, Sprache, Design, Konto & Geräte, App, Rundgang, Über) steht nur im Logo-Menü, Mitarbeiter nur unter Personal, Papierkorb nur in der Leiste.
 // Alle Knöpfe führen die bekannten Menüpunkte aus (onMenuAktion). Am Handy bleibt die Einstellungen-Liste unter „Mehr“.
 document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('#am [data-einst]');if(!b)return;ev.preventDefault();amFunktion('mehr',{seite:'einst'})});
 {const alt=amFunktion;amFunktion=function(id,opt){try{AM_EL&&AM_EL.querySelectorAll('[data-einst]').forEach(x=>x.classList.toggle('an',id==='mehr'&&!!(opt&&opt.seite==='einst')))}catch(e){}return alt.apply(this,arguments)}}
@@ -11687,15 +11720,14 @@ function esSeite(inh){const F=typeof auFirma==='function'?auFirma():{},{firma,lo
  const leer='<i class="ohne">—</i>',Z=(l,v,k,t)=>`<div class="esz"><small>${l}</small><span>${v||leer}</span>${k?`<button type="button" class="esk2" data-m="${k}">${t||'Öffnen'}</button>`:''}</div>`;
  const K=(t,kopf,inhalt)=>`<section class="esk"><div class="eskk"><b>${t}</b>${kopf||''}</div>${inhalt}</section>`;
  const rolle=an?({chef:'Chef',buero:'Büro',bauleiter:'Bauleiter',baustelle:'Mitarbeiter',sub:'Subunternehmer'})[syRolle()]||syRolle():'';
- inh.innerHTML=`<div class="mgk"><div><span class="amtt">ONSTAND</span><h2 class="mgh">Einstellungen</h2></div></div>
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">EINSTELLUNGEN DER FIRMA</span><h2 class="mgh">Einstellungen</h2></div></div>
  <div class="esgrid"><div class="esspalte">
   ${K('Firma &amp; Preise','<button type="button" class="esbtn" data-m="firma">Bearbeiten</button>',Z('Firma',esc(F.name||firma))+Z('Steuernummer',esc(F.stnr||F.ust||''))+Z('Bank',esc([F.bank,F.iban].filter(Boolean).join(' · ')))+Z('Preisliste','Leistungen und Preise','firma','Öffnen'))}
-  ${K('Konto &amp; Abgleich',`<span class="espill ${an?'g':'n'}">${an?'Verbunden':'Nicht verbunden'}</span>`,Z('Profil',esc([ON_PROFIL.name,ON_PROFIL.rolle].filter(Boolean).join(' · ')),'profil','Bearbeiten')+Z('Konto & Geräte',an?'Firmenkonto · '+esc(rolle):'noch nicht eingerichtet','konto',an?'Öffnen':'Einrichten')+Z('Rollen & Rechte','wer was sehen und ändern darf',an?'konto':'','Öffnen'))}
-  ${K('Team &amp; Mahnwesen','',Z('Mitarbeiter','Team, Stunden, Urlaub','personal')+Z('Mahnwesen','Mahnstufen und Fristen','mahn'))}
+  ${K('Rechnungen &amp; Mahnungen','',Z('Mahnwesen','Mahnstufen und Fristen','mahn'))}
  </div><div class="esspalte">
-  ${K('Darstellung','',`<div class="esz"><small>Design</small><span class="esseg">${ON_DESIGNS.map(d=>`<button type="button" data-design="${d.id}" class="${onDesignAkt()===d.id?'an':''}" aria-pressed="${onDesignAkt()===d.id}">${d.name}</button>`).join('')}</span></div>`+(typeof spName==='function'?Z('Sprache',esc(spName(spAkt())),'sprache','Ändern'):''))}
-  ${K('Daten','',Z('Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'),'ordner','Ändern')+Z('Sicherung',si?'zuletzt '+si:'jeden Morgen automatisch','si','Öffnen')+Z('Papierkorb',pk?pk+(pk===1?' Eintrag':' Einträge')+' · 30 Tage zurückholbar':'leer · 30 Tage zurückholbar','pk','Öffnen'))}
-  ${K('App','',Z('Abo &amp; KI-Paket',ki?'KI aktiv':'KI nicht gebucht','abo','Öffnen')+(typeof APP!=='undefined'&&APP.standalone?'':Z('Als App installieren','PC und Handy','app','Installieren'))+Z('Rundgang','noch einmal zeigen','rundgang','Starten')+Z('Über Onstand','Version '+ON_VER,'ueber','Öffnen'))}
+  ${K('Daten','',Z('Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'),'ordner','Ändern')+Z('Sicherung',si?'zuletzt '+si:'jeden Morgen automatisch','si','Öffnen'))}
+  ${K('Abo','',Z('Abo &amp; KI-Paket',ki?'KI aktiv':'KI nicht gebucht','abo','Öffnen'))}
+  <p class="esver">Profil, Sprache, Design, Konto &amp; Geräte: oben links auf das Logo tippen.</p>
   <p class="esver">Onstand ${ON_VER} · Deine Daten liegen in deinem Datenordner</p>
  </div></div>`;
  inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}});
@@ -12689,6 +12721,16 @@ setTimeout(onRandPruefen,0);
 
 function onRandInfo(){onRandPruefen();const W2=ON_RAND.w||{},w=onRandPruefen.w||{},r=AM_EL?AM_EL.getBoundingClientRect():{top:0,height:0},m=e=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:0;top:0;width:1px;visibility:hidden;height:'+e;document.body.appendChild(d);const h=Math.round(d.getBoundingClientRect().height);d.remove();return h},vv=window.visualViewport;
  return `v${ON_VER} · Fenster ${w.iw}×${w.ih} · Bildschirm ${screen.width}×${screen.height} · sichtbar ${vv?Math.round(vv.height)+' ab '+Math.round(vv.offsetTop):'–'} · svh ${m('100svh')} · dvh ${m('100dvh')} · lvh ${m('100lvh')} · Rand oben ${w.st} / unten ${w.sb} · Fläche ${Math.round(r.top)}/${Math.round(r.height)} · Dokument ${document.documentElement.clientHeight} · ${w.sa?'App':'Browser'} · Ausgleich ${w.weg?'an':'aus'} · --st ${getComputedStyle(document.documentElement).getPropertyValue('--st').trim()} · --sb ${getComputedStyle(document.documentElement).getPropertyValue('--sb').trim()} · voll ${document.documentElement.classList.contains('onvoll')?'an':'aus'} · kurz ${W2.kurz} · fix-unten ${W2.lb} · sichtbar-unten ${W2.vb} · ausgleich ${W2.unten}`}
+// ===== Grundlayout (v0.11.3): Bereich am Rahmen merken und kleine Titelzeile normal schreiben =====
+// #am bekommt data-bereich (für Farbpunkt im Titel, siehe seite/grundlayout.css).
+// Die kleine Zeile über/unter dem Titel (.amtt) stand bisher in Großbuchstaben; jetzt normal: „DIENSTAG, 24. NOVEMBER“ → „Dienstag, 24. November“.
+const GL_KLEIN=new Set(['der','die','das','des','dem','den','und','oder','für','von','vom','mit','im','am','an','auf','aus','zum','zur','in','bei','bis','ohne','pro']);
+const GL_GROSS=new Set(['KW','PDF','KI','GAEB','MWST','USt','UST','CSV','IBAN','QR','PC','ID','GMBH']);
+function glNormal(t){if(!t||t!==t.toUpperCase()||!/[A-ZÄÖÜ]{2}/.test(t))return t;
+ let i=0;return t.split(/(\s+)/).map(w=>{if(/\S/.test(w))i++;if(i>1&&GL_KLEIN.has(w.toLowerCase()))return w.toLowerCase();if(/\s/.test(w)||/\d/.test(w)||GL_GROSS.has(w.replace(/[^A-Za-zÄÖÜäöü]/g,'')))return w;const m=w.match(/^([^A-Za-zÀ-ÿĀ-žА-я]*)(.)(.*)$/);return m?m[1]+m[2]+m[3].toLowerCase():w}).join('').replace(/\bGmbh\b/g,'GmbH')}
+function glTitel(root){try{(root||document).querySelectorAll('#am .mgk .amtt,#kal .ktitel small').forEach(e=>{if(e.children.length)return;const t=e.textContent,n=glNormal(t);if(n!==t)e.textContent=n})}catch(e){}}
+{const a=amFunktion;amFunktion=function(id){const r=a.apply(this,arguments);try{if(AM_EL)AM_EL.dataset.bereich=AM_AKT||id}catch(e){}return r}}
+{let t=0;new MutationObserver(()=>{if(t)return;t=requestAnimationFrame(()=>{t=0;glTitel()})}).observe(document.documentElement,{childList:true,subtree:true,characterData:true})}
 // ===== Onstand · nur in der iPhone-App (Capacitor-Hülle): PDF statt Drucken, Teilen, Spracherkennung, Erinnerungen, Vibration =====
 // Im Browser und am PC passiert hier nichts. Die Funktionen der App-Hülle heißen „Plugins“ (Share, Filesystem, Haptics,
 // LocalNotifications, SpeechRecognition) und werden über window.Capacitor erreicht.
@@ -13199,10 +13241,10 @@ function eiStand(){const F=(()=>{try{return JSON.parse(localStorage.getItem('ons
  if(typeof KI!=='undefined'&&KI.aktiv)L.push(['brain','Firmen-Brain verknüpfen',typeof BR!=='undefined'&&(!!BR.quelle||Object.keys(BR.seiten||{}).length>0)]);
  return L.map(([id,n,ok])=>({id,n,ok:!!ok}))}
 const EI_HILFE={
- konto:{n:'Firmenkonto',jetzt:'Jetzt du: Firma anlegen.',schritte:[{sel:'#am .onlogo',t:'Logo antippen',p:'Hier liegen alle Einstellungen.'},{sel:'#am .onmenu [data-m="konto"]',t:'Konto & Geräte',p:'Hier legst du das Firmenkonto an.',vor:()=>{if(!document.querySelector('#am .onmenu.an'))onMenu()}}],ziel:'#am .onmenu [data-m="konto"]'},
+ konto:{n:'Firmenkonto',jetzt:'Jetzt du: Firma anlegen.',schritte:[{sel:'#am .onlogo',t:'Logo antippen',p:'Dort sind Profil, Sprache, Konto und Geräte.'},{sel:'#am .onmenu [data-m="konto"]',t:'Konto & Geräte',p:'Hier legst du das Firmenkonto an.',vor:()=>{if(!document.querySelector('#am .onmenu.an'))onMenu()}}],ziel:'#am .onmenu [data-m="konto"]'},
  firma:{n:'Firma & Preise',jetzt:'Jetzt du: Name, Steuernummer und IBAN eintragen – speichert von selbst.',schritte:[
-  {sel:'#am .onlogo',t:'Logo antippen',p:'Hier liegen alle Einstellungen.'},
-  {sel:'#am .onmenu [data-m="firma"]',t:'Firma & Preise',p:'Öffnet deine Firmendaten.',vor:()=>{if(!document.querySelector('#am .onmenu.an'))onMenu()}},
+  {sel:()=>document.querySelector('#am .onunten [data-einst]')||document.querySelector('#am .onlogo'),t:'Einstellungen',p:'Hier liegen die Einstellungen der Firma.'},
+  {sel:'#am .aminhalt [data-m="firma"]',t:'Firma & Preise',p:'Öffnet deine Firmendaten.',vor:async()=>{onMenuZu();amFunktion('mehr',{seite:'einst'});await eiWarte('#am .aminhalt [data-m="firma"]',4000)}},
   {sel:'#am .aufm',t:'Drei Angaben',p:'Name, Steuernummer oder USt-IdNr. und IBAN – sie stehen auf jeder Rechnung.',vor:async()=>{onMenuZu();amFunktion('auftraege',{firma:true});await eiWarte('#am .aufm',6000)}}],ziel:'#am .aufm'},
  mit:{n:'Mitarbeiter verbinden',jetzt:'Jetzt du: auf „+ Gerät verbinden“ tippen.',schritte:[
   {sel:'#am .onlogo',t:'Logo antippen',p:'Dort sind Konto und Geräte.'},
