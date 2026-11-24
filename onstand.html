@@ -1249,6 +1249,78 @@ body.re-lesen-bauplan :is(.bpneuB,.bpweg,#raumNeu,#etPlus,#vPlus,#mpNeu,[data-w=
 #am .cpgk{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
 #am .cpgk button{font-size:9.5px;letter-spacing:1.5px;border:1px solid color-mix(in srgb,var(--k-sub) 30%,transparent);background:color-mix(in srgb,var(--k-b1) 40%,var(--k-b0));color:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));border-radius:14px;padding:9px 12px}
 #am .cpgk .cpgja{background:var(--aj);border-color:var(--aj);color:var(--k-auf)}
+/* ===== Cockpit als Baukasten (panels.js): Panels wie Widgets, 4 Spalten, nichts scrollt ===== */
+:root{--cpk-cockpit:var(--k-sub);--cpk-auftraege:#7A4FC4;--cpk-tagebuch:#0F8C8C;--cpk-kalender:#C2386B;--cpk-kunden:#3F51B5;--cpk-personal:#B07D1E;--cpk-wiki:color-mix(in srgb,var(--k-sub) 60%,var(--k-b1));--cpk-maengel:var(--k-rot);--cpk-bauplan:#2E8BC0}
+:root[data-design="dunkel"]{--cpk-auftraege:#A88BE8;--cpk-tagebuch:#4FC2C2;--cpk-kalender:#E77FA6;--cpk-kunden:#8C9BF0;--cpk-personal:#E0B45C;--cpk-bauplan:#6DBBE6}
+#am .cpk{padding:4px 0 32px}
+#am .cpkwrap{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+#am .cpk.edit .cpkwrap{grid-template-columns:minmax(0,1fr) 270px}
+#am .cpkraster{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:150px;grid-auto-flow:dense;gap:14px;min-width:0}
+#am .cpkp{position:relative;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);display:flex;flex-direction:column;overflow:hidden;min-width:0}
+#am .cpkp.s-k{grid-column:span 1}#am .cpkp.s-b{grid-column:span 2}#am .cpkp.s-g{grid-column:span 2;grid-row:span 2}
+#am .cpkph{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--k-lin);font:600 13px var(--k-ui);min-height:40px;color:var(--k-t)}
+#am .cpkph .dot{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+#am .cpkph .tt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .cpkph .anz{font-weight:500;color:var(--k-sub);font-size:12px;white-space:nowrap}
+#am .cpkph .lk{border:0;background:none;padding:0;font:500 12.5px var(--k-ui);color:var(--k-blau);cursor:pointer;white-space:nowrap}
+#am .cpkpb{flex:1;min-height:0;overflow:hidden;padding:2px 0}
+#am .cpkz{display:flex;align-items:center;gap:10px;width:100%;padding:6px 12px;border:0;border-top:1px solid var(--k-lin);background:none;font:13px var(--k-ui);color:var(--k-t);text-align:left;cursor:pointer}
+#am .cpkz:first-child{border-top:0}#am .cpkz:hover{background:color-mix(in srgb,var(--k-t) 4%,transparent)}
+#am .cpkz .d{min-width:46px;max-width:76px;flex:none;color:var(--k-sub);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .cpkz .n{flex:1;min-width:0}#am .cpkz .n b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#am .cpkz .n small{display:block;color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+#am .cpkz .w{white-space:nowrap}#am .cpkw{font-variant-numeric:tabular-nums;font-weight:600}
+#am .cpkpill{display:inline-flex;font:600 11px var(--k-ui);padding:2px 7px;border-radius:10px;white-space:nowrap}
+#am .cpkpill.or{color:var(--k-gelb);background:color-mix(in srgb,var(--k-gelb) 12%,var(--k-b1))}#am .cpkpill.rt{color:var(--k-rot);background:color-mix(in srgb,var(--k-rot) 10%,var(--k-b1))}#am .cpkpill.gy{color:var(--k-sub);background:color-mix(in srgb,var(--k-t) 6%,var(--k-b1))}
+#am .cpkzahl{padding:8px 12px}#am .cpkzahl b{display:block;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2;color:var(--k-t)}#am .cpkzahl small{font-size:12.5px;color:var(--k-sub)}
+#am .cpkleer{margin:0;padding:12px;color:var(--k-sub);font-size:13px}
+#am .cpkleer2{grid-column:1/-1;padding:28px;border:1px dashed var(--k-lin);border-radius:8px;color:var(--k-sub);text-align:center}
+#am .cpkbal{display:flex;align-items:center;gap:8px;padding:4px 12px;font-size:12.5px;color:var(--k-t)}
+#am .cpkbal span{width:76px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .cpkbal i{flex:1;height:8px;border-radius:4px;background:color-mix(in srgb,var(--k-t) 8%,transparent);overflow:hidden}#am .cpkbal i em{display:block;height:100%;background:var(--c)}
+#am .cpkbal b{width:46px;text-align:right;font-variant-numeric:tabular-nums}
+#am .cpkstempel{padding:8px 12px;display:flex;flex-direction:column;gap:6px}#am .cpkstempel b{font-size:22px;font-variant-numeric:tabular-nums;color:var(--k-t)}#am .cpkstempel small{color:var(--k-sub);font-size:12px}
+#am .cpkstempel button{height:34px;border-radius:6px;border:1px solid var(--k-akz);background:var(--k-b1);color:var(--k-akz);font:600 13px var(--k-ui);cursor:pointer}
+#am .cpkschnell{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px}#am .cpkschnell.eins{grid-template-columns:1fr;gap:6px}
+#am .cpkschnell button{height:38px;border:1px solid var(--k-lin);background:var(--k-b1);border-radius:6px;font:600 13px var(--k-ui);cursor:pointer;color:var(--k-t);display:flex;align-items:center;gap:8px;padding:0 10px}
+#am .cpkschnell button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+#am .cpknotiz{display:block;width:100%;height:100%;overflow:hidden;border:0;resize:none;font:13.5px/24px var(--k-ui);color:var(--k-t);padding:4px 12px;background:repeating-linear-gradient(transparent 0 23px,var(--k-lin) 23px 24px);background-attachment:local}
+#am .cpknotiz:focus{outline:none}#am .cpknotiz.voll{box-shadow:inset 0 -3px 0 var(--k-gelb)}
+/* Anpassen */
+#am .cpkanp{white-space:nowrap}
+#am .cpkband{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;margin-bottom:14px;border:1px solid color-mix(in srgb,var(--k-blau) 25%,var(--k-lin));background:color-mix(in srgb,var(--k-blau) 7%,var(--k-b1));border-radius:8px;font-size:13.5px;color:var(--k-t)}
+#am .cpkband span{color:var(--k-sub)}#am .cpkband div{margin-left:auto;display:flex;gap:8px}
+#am .cpkband button{height:34px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);border-radius:6px;padding:0 12px;font:600 13px var(--k-ui);cursor:pointer}
+#am .cpkband button.haupt{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}
+#am .cpkph .ctrl{display:none;gap:3px;align-items:center;position:absolute;left:50%;bottom:8px;transform:translateX(-50%);background:var(--k-b1);border:1px solid var(--k-lin);border-radius:9px;padding:3px;box-shadow:0 4px 14px color-mix(in srgb,color-mix(in srgb,var(--k-sub) 3%,var(--k-b1)) 14%,transparent);z-index:2}
+#am .cpk.edit .ctrl{display:flex}#am .cpk.edit .cpkph .lk{display:none}
+#am .cpkph .ctrl button{height:24px;width:28px;border:1px solid var(--k-lin);background:var(--k-b1);border-radius:5px;cursor:pointer;color:var(--k-sub);padding:0;display:grid;place-items:center}
+#am .cpkph .ctrl svg{width:18px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+#am .cpkph .ctrl button.an{border-color:var(--k-t);color:var(--k-t)}#am .cpkph .ctrl button.an svg{fill:color-mix(in srgb,var(--k-t) 18%,transparent)}
+#am .cpkph .weg{display:none;position:absolute;top:-1px;left:-1px;width:22px;height:22px;border-radius:0 0 8px 0;border:0;background:var(--k-rot);color:var(--k-t);font:600 14px/1 var(--k-ui);cursor:pointer;z-index:3;place-items:center;padding:0}
+#am .cpk.edit .weg{display:grid}#am .cpk.edit .cpkph{padding-left:28px}
+#am .cpk.edit .cpkp{border-style:dashed;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#am .cpkp.hebt{box-shadow:0 10px 24px -10px rgba(0,0,0,.35)}
+#am .cpk.edit .cpkpb{pointer-events:none}
+#am .cpkp.zieht{opacity:.25}
+.cpkgeist{position:fixed;z-index:9999;pointer-events:none;box-shadow:0 18px 40px -12px rgba(0,0,0,.35);transform:rotate(1.2deg);opacity:.95}
+#am .cpkkat{border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);padding:12px 0;position:sticky;top:10px}
+#am .cpkkat h3{margin:0 14px 6px;font:600 14px var(--k-ui);color:var(--k-t)}
+#am .cpkkat .gr{font:600 10.5px var(--k-ui);letter-spacing:.09em;text-transform:uppercase;color:var(--k-sub);padding:10px 14px 3px}
+#am .cpkkat button{display:flex;align-items:center;gap:9px;width:100%;border:0;background:none;padding:6px 14px;font:500 13px var(--k-ui);color:var(--k-t);cursor:pointer;text-align:left}
+#am .cpkkat button:hover:not(:disabled){background:color-mix(in srgb,var(--k-t) 4%,transparent)}
+#am .cpkkat button i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+#am .cpkkat button small{margin-left:auto;color:var(--k-sub);font-size:12px}
+#am .cpkkat button:disabled{opacity:.45;cursor:default}
+#am .cpkhin{margin:12px 14px 0;font-size:12px;color:var(--k-sub);line-height:1.45}
+@media (prefers-reduced-motion:reduce){.cpkgeist{transform:none}}
+@media (max-width:1100px){#am .cpk.edit .cpkwrap{grid-template-columns:minmax(0,1fr)}#am .cpkkat{position:static}}
+@media (max-width:760px){#am .cpkraster{grid-template-columns:1fr 1fr;gap:10px}#am .cpkp.s-b,#am .cpkp.s-g{grid-column:span 2}#am .cpkband div{margin-left:0}#am .cpkzahl b{font-size:22px}}
+
+#am .cpk.edit~* .cpkanp,#am .mgk .cpkanp.versteckt{display:none}
+#am .cpkkat button,#am .cpkschnell button,#am .cpkband button{font-size:13px;line-height:1.3}
+#am .cpkph .weg{color:var(--k-t);font-size:14px}
+#am .cpkph .lk{font-weight:500;color:var(--k-blau)}
+#am .cpkz .n small{font-weight:400}
 /* ===== Arbeitsmodus · Handwerk · AUFTRÄGE (v15.13) ===== */
 #am .aux{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
 #am .aux>*{flex-shrink:0}
@@ -2395,6 +2467,8 @@ body.kalan #bar,body.kalan #turbo,body.kalan #vbtn,body.kalan #status,body.kalan
  #kal .ktitel{padding:0;min-height:0}
 }
 @media (max-width:760px){#am .glr .tbfelder,#am .gldk~.tbfelder{grid-template-columns:max-content minmax(0,1fr);column-gap:14px}#am .aminhalt:has(.kuneu,.kuzur) :is(.tbfelder>span,.gllab,.gldk small){letter-spacing:1.4px}}
+
+#am#am .amnotiz input.tbzfalsch[data-f="z"]{border-color:var(--k-rot)!important;background:color-mix(in srgb,var(--k-rot) 7%,var(--karte,transparent))!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--k-rot) 25%,transparent)!important;color:var(--k-rot)!important}
 /* ===== Suchen & Filtern (kern/finden.js), Letzte Kontakte (Kunden), Suche im Firmen-Brain – PC und Handy ===== */
 .fiweg{display:none!important}
 #am .fibar{display:flex;flex-direction:column;gap:10px;margin:0 0 12px}
@@ -4404,7 +4478,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.10.98';
+const ON_VER='0.11.2';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6065,7 +6139,7 @@ function tbNotiz(inh){const n=inh.querySelector('.amnotiz'),S=TBV.sel,s=tbIso(S)
  n.classList.remove('streif','tbedit');
  if(!e&&!TBV.edit){n.innerHTML=`<div class="amnk"><div><small>${tagT}</small><h4>KEIN EINTRAG</h4></div></div><div class="amleer"><span>Für diesen Tag gibt es noch keinen Eintrag.<br>Erzähl es einfach dem Assistenten – was auf der Baustelle passiert ist.</span><div class="amleerk"><button type="button" class="amneu">+ EINTRAG ANLEGEN</button><button type="button" class="amsag"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Sagen</button></div></div>`;n.querySelector('.amneu').onclick=()=>{TBV.edit=true;TBV.idx=l.length;tbNotiz(inh)};n.querySelector('.amsag').onclick=()=>{try{asAuf()}catch(e){}};return}
  if(TBV.edit){const v=e||{};n.classList.add('tbedit');n.innerHTML=`<div class="amnk"><div><small>${tagT} · ${e?'BEARBEITEN':'NEUER EINTRAG'}</small><h4 class="tbbw"><input data-f="b" value="${esc(v.b||'')}" autocomplete="off" placeholder="Baustelle wählen oder neu eintippen" aria-label="Baustelle" role="combobox" aria-expanded="false"><div class="tbwahl" role="listbox" hidden></div></h4></div><div class="mgakt"><button type="button" class="amab">Abbrechen</button><button type="button" class="amja haupt">${TB_I.haken}Speichern</button></div></div>
-   <div class="amtext"><div class="tbfelder"><span>ZEIT &amp; TEAM</span><div class="tbzt"><input data-f="z" value="${esc(v.z||'')}" placeholder="07:00–16:00" aria-label="Arbeitszeit"><input data-f="p" value="${esc(v.p||'')}" placeholder="Wer war da?" aria-label="Personal"><div class="tbpchips">${Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu).map(x=>`<button type="button" data-pn="${esc(x.name)}" class="${peListe(v.p).includes(x.name)?'an':''}">${esc(x.k)}</button>`).join('')}</div></div>
+   <div class="amtext"><div class="tbfelder"><span>ZEIT &amp; TEAM</span><div class="tbzt"><input data-f="z" value="${esc(v.z||'')}" placeholder="z. B. 7-16" aria-label="Arbeitszeit" autocomplete="off" spellcheck="false"><input data-f="p" value="${esc(v.p||'')}" placeholder="Wer war da?" aria-label="Personal"><div class="tbpchips">${Object.values(PER).filter(x=>x.status==='aktiv'&&!x.neu).map(x=>`<button type="button" data-pn="${esc(x.name)}" class="${peListe(v.p).includes(x.name)?'an':''}">${esc(x.k)}</button>`).join('')}</div></div>
    ${[['l','AUSGEFÜHRT','Was wurde gemacht?'],['m','LIEFERUNG','keine'],['x','BEHINDERUNG','keine'],['a','ABSPRACHE','keine']].map(([f,t,ph])=>`<span>${t}</span><div><textarea data-f="${f}" rows="1" placeholder="${ph}" aria-label="${t}">${esc(v[f]||'')}</textarea></div>`).join('')}</div>
    </div>
    <div class="tbverlauf">${e?`<button type="button" class="amlos">Löschen</button>`:''}<span>Enter springt eine Zeile weiter, in der letzten speichert es · Umschalt + Enter macht einen Zeilenumbruch · Strg + Enter speichert sofort</span></div>`;
@@ -6103,6 +6177,24 @@ function tbMangelKnopf(e,s){if(typeof mgAlle!=='function')return '';const m=mgAl
 PK_WIEDER.tb=async d=>{await tbBereit();const l=TB[d.tag]=TB[d.tag]||[];if(!l.some(x=>tbGleich(x,d.e)))l.push(d.e);await tbSchreiben(d.tag.slice(0,7))};
 async function tbUmbenennen(alt,neu){await tbBereit();const mon=new Set();for(const [tag,l] of Object.entries(TB))l.forEach(e=>{if(e.b===alt){e.b=neu;mon.add(tag.slice(0,7))}});for(const ym of mon)await tbSchreiben(ym)}
 AM_FUNK.push({beruf:'handwerk',id:'tagebuch',name:'TAGEBUCH',ico:'<path d="M5 3h8l3 3v11H5z"/><path d="M8 9h5M8 12h5"/>',zeigen:tbZeigen});
+// ===== Tagebuch · Arbeitszeit kurz eintippen (v0.11.1) =====
+// „7-17“, „7.30-16“, „730-1600“, „7:30 bis 16:15“ → „07:00–17:00“ usw. Leerzeichen lassen sich im Feld nicht eintippen.
+// Beim Verlassen des Feldes wird umgewandelt; Unsinn (z. B. „25-3“, Ende vor Beginn) wird rot markiert und nicht gespeichert.
+function tbZeitTeil(t){t=String(t||'').replace(/[.,h]/gi,':').replace(/:+$/,'');if(!t)return null;let h,m=0;
+ if(/^\d{1,2}$/.test(t))h=+t;else if(/^\d{3,4}$/.test(t)){h=+t.slice(0,-2);m=+t.slice(-2)}else{const x=t.match(/^(\d{1,2}):(\d{1,2})$/);if(!x)return null;h=+x[1];m=+x[2];if(x[2].length===1)m*=10}
+ if(h>24||m>59||(h===24&&m))return null;return h*60+m}
+function tbZeitNorm(s){const roh=String(s||'').trim();if(!roh)return {ok:true,v:''};
+ const t=roh.toLowerCase().replace(/\s+/g,'').replace(/uhr/g,'').replace(/bis/g,'-').replace(/[–—−~]/g,'-');const p=t.split('-');
+ if(p.length!==2)return {ok:false,v:roh};const a=tbZeitTeil(p[0]),b=tbZeitTeil(p[1]);if(a==null||b==null||b<=a)return {ok:false,v:roh};
+ const f=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0');return {ok:true,v:f(a)+'–'+f(b)}}
+(()=>{const S='.amnotiz input[data-f="z"]';
+ const markiere=(el,ok)=>{el.classList.toggle('tbzfalsch',!ok);if(ok)el.removeAttribute('aria-invalid');else el.setAttribute('aria-invalid','true');el.title=ok?'':'Arbeitszeit so eintippen: 7-16 oder 7.30-16.15'};
+ document.addEventListener('beforeinput',ev=>{const el=ev.target;if(!el.matches||!el.matches(S))return;if(ev.data&&/\s/.test(ev.data))ev.preventDefault()},true);
+ document.addEventListener('input',ev=>{const el=ev.target;if(!el.matches||!el.matches(S))return;if(/\s/.test(el.value)){const p=el.selectionStart,vor=el.value.slice(0,p).replace(/\s/g,'').length;el.value=el.value.replace(/\s/g,'');try{el.setSelectionRange(vor,vor)}catch(e){}}if(el.classList.contains('tbzfalsch')&&tbZeitNorm(el.value).ok)markiere(el,true)},true);
+ document.addEventListener('blur',ev=>{const el=ev.target;if(!el.matches||!el.matches(S))return;const r=tbZeitNorm(el.value);if(r.ok)el.value=r.v;markiere(el,r.ok)},true);
+ // Vor dem Speichern: umwandeln, bei Fehler nicht speichern
+ document.addEventListener('click',ev=>{const j=ev.target.closest&&ev.target.closest('.amnotiz .amja');if(!j)return;const el=j.closest('.amnotiz').querySelector('input[data-f="z"]');if(!el)return;
+  const r=tbZeitNorm(el.value);if(r.ok){el.value=r.v;markiere(el,true);return}markiere(el,false);ev.stopImmediatePropagation();ev.preventDefault();el.focus();try{onToast('Arbeitszeit prüfen, z. B. 7-16')}catch(e){}},true)})();
 
 // ===== Handwerk · Funktion 2: Kunden-Menü – Baustellen selbst kategorisieren: Kürzel, Farbe, Standort, Ansprechpartner, Einzug, Status, Zugang, Besonderheiten =====
 // Daten im Baustellen-Register (Gedächtnis/Persönlich/Arbeit/Baustellen). Neue Namen, die Aaron Onstand erzählt, erscheinen hier automatisch.
@@ -7730,6 +7822,131 @@ function cpuSpalten(inh){try{if(innerWidth<=760)return;const cin=inh.querySelect
  const K=[...cin.querySelectorAll(':scope>.cpkarte:not(.cpprojekt)')];if(K.length<5)return;
  const z=document.createElement('div'),l=document.createElement('div'),r=document.createElement('div');z.className='cpzwei';l.className=r.className='cpspalte';
  l.append(K[0],K[1]);if(meld)r.append(meld);r.append(K[4],K[2],K[3]);z.append(l,r);cin.append(z);const g=inh.querySelector('.cpgrid');if(g)g.classList.add('cpa');inh.querySelectorAll('.cpzahlen small br,.cpring small br').forEach(x=>x.replaceWith(' '));const j=inh.querySelector('.cpphasen .j'),k=inh.querySelector('.mgk .amtt');if(j&&k)k.textContent='BAUSTELLE · '+j.textContent.trim().toUpperCase()}catch(e){}}
+// ===== Cockpit als Baukasten (Panels wie Widgets) =====
+// Ersetzt die feste Übersicht (cpUebersicht aus uebersicht.js). Jeder stellt sich sein Cockpit selbst zusammen:
+// Panels hinzufügen, entfernen, ziehen (die anderen rücken weich nach) und in drei Größen zeigen
+// (k = kleines Quadrat, b = Rechteck, g = großes Quadrat). Kein Panel scrollt: Listen zeigen nur, was hineinpasst,
+// der Rest steht als „+n“ im Kopf. Das Layout liegt pro Person auf dem Gerät (localStorage).
+// Rechte: Gesamtsummen (offene Rechnungen gesamt, Auftragsbestand) nur Chef. Einzelne Rechnungen und Angebote nur,
+// wer Aufträge voll sehen darf (Chef, Büro). Alles andere nach den Bereichsrechten, bei „eigen“ nur die eigenen Einträge.
+const CPK_KAP={k:2,b:2,g:5},CPK_GT={k:'kleines Quadrat',b:'Rechteck',g:'großes Quadrat'};
+const CPK_GI={k:'<svg viewBox="0 0 20 14"><rect x="6" y="3" width="8" height="8" rx="1.5"/></svg>',b:'<svg viewBox="0 0 20 14"><rect x="2" y="3" width="16" height="8" rx="1.5"/></svg>',g:'<svg viewBox="0 0 20 14"><rect x="4" y="1" width="12" height="12" rx="1.5"/></svg>'};
+const CPK_GRUPPEN=['Heute','Baustellen','Geld','Team','Mängel','Ich','Sonstiges'];
+const CPK={edit:false,zug:null};
+function cpkServer(){try{if(!SY_KONTO)return 'chef';const R=reRolleVon(reRolleId());return R?R.server:'baustelle'}catch(e){return 'chef'}}
+const cpkR=a=>{try{return typeof reRecht==='function'?reRecht(a):'alles'}catch(e){return 'alles'}};
+const cpkGesamt=()=>cpkServer()==='chef'&&cpkR('auftraege')==='alles';
+const cpkGeld=()=>cpkR('auftraege')==='alles';
+const cpkIch=()=>{try{return reIchName()}catch(e){return ''}};
+const cpkEurF=x=>typeof auEur==='function'?auEur(x):(+x||0).toFixed(2)+' €';
+const cpkTag=s=>{const d=tbAusIso(s);return ['So','Mo','Di','Mi','Do','Fr','Sa'][d.getDay()]+' '+d.getDate()+'.'+(d.getMonth()+1)+'.'};
+const cpkDm=s=>{const d=tbAusIso(s);return String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'};
+const cpkPill=(t,k)=>`<span class="cpkpill ${k}">${esc(t)}</span>`;
+const cpkH=x=>(Math.round(x*10)/10).toLocaleString('de-DE')+' h';
+function cpkMaengel(){let M=[];try{M=Object.values(typeof MG!=='undefined'?MG:{}).flat()}catch(e){}if(cpkR('maengel')==='eigen'){const ich=cpkIch();M=M.filter(m=>m.z===ich)}return M}
+function cpkTB(von,bis){const out=[],eigen=cpkR('tagebuch')==='eigen',ich=cpkIch();try{Object.entries(TB).forEach(([t,l])=>{if(t<von||t>bis)return;(l||[]).forEach(e=>{if(!eigen||peListe(e.p).includes(ich))out.push([t,e])})})}catch(e){}return out.sort((a,b)=>b[0].localeCompare(a[0]))}
+function cpkFaellig(){const heute=tbIso(new Date()),out=[];try{(typeof AU_R!=='undefined'?AU_R:[]).forEach(r=>{const o=opOffen(r);if(o>0&&arFaellig(r)<heute)out.push([r,o])})}catch(e){}return out.sort((a,b)=>arFaellig(a[0]).localeCompare(arFaellig(b[0])))}
+
+// ---------- Panel-Katalog ----------
+// recht(): darf die aktuelle Rolle das Panel sehen · liste()/zahl()/eigen() liefern den Inhalt · f = Bereich für Klicks
+const CPK_P={
+ heute:{t:'Heute',g:'Heute',c:'kalender',gr:['b','g'],f:'kalender',recht:()=>cpkR('kalender')!=='kein',liste(){const heute=tbIso(new Date()),geld=cpkGeld(),L=[];
+  try{(kalAm(heute,true)||[]).filter(e=>!['feiertag','tb','faellig','mangel','abnahme','gewaehr','gespraech','gedaechtnis'].includes(e.art)).forEach(e=>L.push([e.von&&!e.ganz?e.von:'',e.t,e.ort||'',e.art==='geburtstag'?cpkPill('Geburtstag','gy'):e.art==='einzug'?cpkPill('Einzug','or'):cpkPill('Termin','gy'),'kalender']))}catch(e){}
+  cpkMaengel().filter(mgUeber).forEach(m=>L.push(['Frist',m.nr+' · '+m.t,[m.b,m.z].filter(Boolean).join(' · '),cpkPill('überfällig','rt'),'maengel']));
+  if(geld)cpkFaellig().forEach(([r])=>L.push(['Fällig',r.nr+' · '+r.b,'seit '+cpkDm(arFaellig(r)),cpkPill('überfällig','rt'),'auftraege']));
+  return L},leer:'Heute steht nichts an.'},
+ termin:{t:'Nächster Termin',g:'Heute',c:'kalender',gr:['k','b'],f:'kalender',recht:()=>cpkR('kalender')!=='kein',zahl(){const jetzt=new Date().toTimeString().slice(0,5);try{for(let i=0;i<60;i++){const s=tbIso(tbPlus(new Date(),i)),e=(kalAm(s,true)||[]).filter(e=>e.art==='termin'&&e.von&&(i||e.von>=jetzt))[0];if(e)return [cpkTag(s)+' · '+e.von,[e.t,e.ort].filter(Boolean).join(' · '),'',20]}}catch(e){}return ['—','nichts geplant','',20]}},
+ einzug:{t:'Einzüge bald',g:'Heute',c:'kunden',gr:['b','g'],f:'kunden',recht:()=>cpkR('kunden')!=='kein',liste(){const heute=tbIso(new Date());let L=[];try{L=Object.values(BST).filter(b=>/^\d{4}-\d\d-\d\d$/.test(b.einzug||'')&&b.einzug>=heute).sort((a,b)=>a.einzug.localeCompare(b.einzug))}catch(e){}
+  return L.map(b=>{const t=Math.round((tbAusIso(b.einzug)-tbAusIso(heute))/864e5);return [cpkDm(b.einzug),'Einzug '+b.name,t===0?'heute':t===1?'morgen':'in '+t+' Tagen',t<=21?cpkPill('bald','or'):'','kunden']})},leer:'Kein Einzug geplant.'},
+ baustellen:{t:'Baustellen',g:'Baustellen',c:'kunden',gr:['b','g'],f:'kunden',recht:()=>cpkR('kunden')!=='kein',liste(){let L=[];try{L=cpListe()}catch(e){}
+  return L.map(b=>{let letzt=null;try{Object.entries(TB).forEach(([t,l])=>(l||[]).forEach(e=>{if(e.b===b.name&&(!letzt||t>letzt[0]))letzt=[t,e]}))}catch(e){}
+   const ph=typeof cpuPhase==='function'?CPU_PH[cpuPhase(b)]:'';return ['',b.name,[ph,letzt?'zuletzt '+cpkDm(letzt[0])+(letzt[1].l?': '+letzt[1].l:''):''].filter(Boolean).join(' · '),'','@'+b.name]})},leer:'Noch keine offene Baustelle.'},
+ lieferung:{t:'Lieferungen diese Woche',g:'Baustellen',c:'tagebuch',gr:['b','g'],f:'tagebuch',recht:()=>cpkR('tagebuch')!=='kein',liste(){const mo=tbIso(tbMo(new Date()));return cpkTB(mo,tbIso(tbPlus(tbMo(new Date()),6))).filter(([,e])=>e.m&&!/^keine?$/i.test(String(e.m).trim())).map(([t,e])=>[cpkTag(t).split(' ')[0],e.m,e.b||'','','tagebuch'])},leer:'Diese Woche keine Lieferung eingetragen.'},
+ tagebuch:{t:'Tagebuch diese Woche',g:'Baustellen',c:'tagebuch',gr:['b','g'],f:'tagebuch',recht:()=>cpkR('tagebuch')!=='kein',liste(){const mo=tbIso(tbMo(new Date()));return cpkTB(mo,tbIso(new Date())).map(([t,e])=>{const n=peListe(e.p);return [cpkTag(t).split(' ')[0],e.b||'Baustelle',[e.l,n.join(', ')].filter(Boolean).join(' · '),`<span class="cpkw">${cpkH((peDauer(e.z)||0)*Math.max(1,n.length))}</span>`,'tagebuch']})},leer:'Diese Woche noch kein Eintrag.'},
+ fehlt:{t:'Tagebuch fehlt',g:'Baustellen',c:'tagebuch',gr:['k','b'],f:'tagebuch',recht:()=>cpkR('tagebuch')!=='kein',liste(){const heute=new Date(),L=[],eigen=cpkR('tagebuch')==='eigen',ich=cpkIch();let erst=null;
+  try{erst=Object.keys(TB).filter(t=>(TB[t]||[]).length).sort()[0]}catch(e){}if(!erst)return L;let off=0;try{off=cpListe().length}catch(e){}if(!off)return L;
+  for(let i=14;i>=1;i--){const d=tbPlus(heute,-i),s=tbIso(d),wt=d.getDay();if(wt===0||wt===6||s<erst)continue;let ft=false;try{ft=!!kFeiertage(d.getFullYear())[s]}catch(e){}if(ft)continue;
+   const l=(TB[s]||[]).filter(e=>!eigen||peListe(e.p).includes(ich));if(!l.length)L.push([cpkTag(s),eigen?'Kein eigener Eintrag':'Kein Eintrag','',cpkPill('fehlt','or'),'tagebuch:'+s])}
+  return L.reverse()},leer:'Alles eingetragen.'},
+ gesamt:{t:'Offene Rechnungen gesamt',g:'Geld',c:'auftraege',gr:['k','b'],f:'auftraege',recht:cpkGesamt,zahl(){let s=0,n=0;try{(AU_R||[]).forEach(r=>{const o=opOffen(r);if(o>0){s+=o;n++}})}catch(e){}const f=cpkFaellig().length;return [cpkEurF(s),n+(n===1?' Rechnung':' Rechnungen')+(f?' · '+f+' überfällig':''),f?'var(--k-gelb)':'']}},
+ bestand:{t:'Auftragsbestand',g:'Geld',c:'auftraege',gr:['k','b'],f:'auftraege',recht:cpkGesamt,zahl(){let s=0;try{(AU_A||[]).filter(a=>a.st==='angenommen').forEach(a=>{const ab=(AU_R||[]).filter(r=>r.a===a.nr&&r.st!=='entwurf'&&!(typeof opIstKorr==='function'&&opIstKorr(r))).reduce((x,r)=>x+arBrutto(r),0);s+=Math.max(0,auBrutto(a)-ab)})}catch(e){}return [cpkEurF(s),'angenommen, noch nicht abgerechnet','']}},
+ posten:{t:'Zu mahnen',g:'Geld',c:'auftraege',gr:['b','g'],f:'auftraege',recht:cpkGeld,liste(){const heute=tbAusIso(tbIso(new Date()));return cpkFaellig().map(([r,o])=>[Math.round((heute-tbAusIso(arFaellig(r)))/864e5)+' T.',r.nr+' · '+r.b,cpkEurF(o)+' offen',cpkPill('überfällig','rt'),'auftraege'])},leer:'Nichts überfällig.'},
+ angebote:{t:'Offene Angebote',g:'Geld',c:'auftraege',gr:['b','g'],f:'auftraege',recht:cpkGeld,liste(){let L=[];try{L=(AU_A||[]).filter(a=>a.st==='entwurf'||a.st==='verschickt').sort((a,b)=>String(b.d).localeCompare(String(a.d)))}catch(e){}return L.map(a=>[a.d?cpkDm(a.d):'',a.nr+' · '+(a.t||'Angebot'),a.b||'',a.st==='verschickt'?cpkPill('verschickt','or'):cpkPill('Entwurf','gy'),'auftraege'])},leer:'Kein offenes Angebot.'},
+ stunden:{t:'Stunden diese Woche',g:'Team',c:'personal',gr:['b','g'],f:'personal',recht:()=>['alles','lesen'].includes(cpkR('personal')),bal(){const W={};cpkTB(tbIso(tbMo(new Date())),tbIso(new Date())).forEach(([,e])=>{const h=peDauer(e.z)||0;peListe(e.p).forEach(n=>W[n]=(W[n]||0)+h)});return Object.entries(W).sort((a,b)=>b[1]-a[1])},leer:'Diese Woche noch keine Stunden.'},
+ urlaub:{t:'Urlaub & Abwesenheit',g:'Team',c:'personal',gr:['b','g'],f:'kalender',recht:()=>cpkR('kalender')!=='kein',liste(){const L=[],ges=new Set();try{for(let i=0;i<60;i++){const s=tbIso(tbPlus(new Date(),i));(kalAm(s,true)||[]).filter(e=>e.kat==='url').forEach(e=>{const k=e.id||e.t;if(ges.has(k))return;ges.add(k);L.push([i===0?'jetzt':cpkDm(s),e.t,e.bis?'bis '+cpkDm(e.bis):'','','kalender'])})}}catch(e){}return L},leer:'Keine Abwesenheit geplant.'},
+ maengel:{t:'Offene Mängel',g:'Mängel',c:'maengel',gr:['k','b','g'],f:'maengel',recht:()=>cpkR('maengel')!=='kein',zahl(){const M=cpkMaengel(),o=M.filter(mgOffen).length,u=M.filter(mgUeber).length,eigen=cpkR('maengel')==='eigen';return [String(o),u?(u===o&&o>1?'alle überfällig':u+' überfällig'):o?(eigen?'mir zugeteilt':'keiner überfällig'):'nichts offen',u?'var(--k-rot)':'']}},
+ meine:{t:'Meine Stunden',g:'Ich',c:'personal',gr:['k','b'],f:'tagebuch',recht:()=>cpkR('tagebuch')!=='kein',eigen(){const ich=cpkIch();let h=0;try{Object.entries(TB).forEach(([t,l])=>{if(t<tbIso(tbMo(new Date()))||t>tbIso(new Date()))return;(l||[]).forEach(e=>{if(peListe(e.p).includes(ich))h+=peDauer(e.z)||0})})}catch(e){}
+  return `<div class="cpkstempel"><div><b>${cpkH(h)}</b> <small>diese Woche${ich?'':' · Name fehlt im Profil'}</small></div><button type="button" data-cpu="tagebuch">+ Eintrag</button></div>`}},
+ schnell:{t:'Schnell anlegen',g:'Ich',c:'cockpit',gr:['k','b'],recht:()=>true,eigen(g){const B=[['tagebuch','Eintrag',cpkR('tagebuch')!=='kein'&&cpkR('tagebuch')!=='lesen'],['auftraege','Angebot',cpkGeld()],['kunden','Kunde',cpkR('kunden')==='alles'],['maengel','Mangel',cpkR('maengel')!=='kein'&&cpkR('maengel')!=='lesen']].filter(x=>x[2]);const L=g==='k'?B.slice(0,2):B;
+  return `<div class="cpkschnell${g==='k'?' eins':''}">${L.map(([f,t])=>`<button type="button" data-cpu="${f}" data-neu="1" style="--c:var(--cpk-${f})"><i></i>${t}</button>`).join('')}</div>`}},
+ notiz:{t:'Notizen',g:'Sonstiges',c:'cockpit',gr:['k','b','g'],recht:()=>true,eigen(){let v='';try{v=localStorage.getItem('onstandCockpitNotiz_'+reIchKey())||''}catch(e){}return `<textarea class="cpknotiz" aria-label="Notizen" placeholder="Notiz für dich …">${esc(v)}</textarea>`}},
+ geburtstag:{t:'Geburtstage',g:'Sonstiges',c:'kalender',gr:['k','b'],f:'kalender',recht:()=>cpkR('kalender')!=='kein',liste(){const L=[];try{for(let i=0;i<45;i++){const s=tbIso(tbPlus(new Date(),i));(kalAm(s,true)||[]).filter(e=>e.art==='geburtstag').forEach(e=>L.push([i===0?'heute':cpkDm(s),e.t,'','','kalender']))}}catch(e){}return L},leer:'In den nächsten Wochen keiner.'}};
+
+// Vorschläge je Rolle (Mitarbeiter = baustelle, Bauleiter wie Büro ohne Geld)
+const CPK_VOR={chef:[['heute','g'],['gesamt','k'],['maengel','k'],['angebote','b'],['baustellen','b'],['fehlt','b'],['bestand','k'],['termin','k']],
+ buero:[['heute','g'],['termin','k'],['fehlt','k'],['posten','b'],['angebote','b'],['einzug','b'],['stunden','b']],
+ bauleiter:[['heute','g'],['termin','k'],['fehlt','k'],['baustellen','b'],['maengel','k'],['lieferung','b'],['stunden','b']],
+ baustelle:[['heute','b'],['meine','k'],['fehlt','k'],['tagebuch','b'],['lieferung','b'],['maengel','k'],['schnell','k']]};
+const cpkDarf=id=>{const p=CPK_P[id];try{return !!p&&p.recht()}catch(e){return false}};
+const cpkKey=()=>'onstandCockpit_'+(typeof reIchKey==='function'?reIchKey():'ich');
+function cpkVor(){const s=cpkServer();return (CPK_VOR[s]||CPK_VOR.baustelle).filter(([id])=>cpkDarf(id)).map(x=>[...x])}
+function cpkLayout(){let L=null;try{L=JSON.parse(localStorage.getItem(cpkKey())||'null')}catch(e){}if(!Array.isArray(L))L=cpkVor();
+ const ges=new Set();return L.filter(x=>Array.isArray(x)&&cpkDarf(x[0])&&!ges.has(x[0])&&ges.add(x[0])).map(([id,g])=>[id,CPK_P[id].gr.includes(g)?g:CPK_P[id].gr[0]])}
+function cpkSpeichern(L){try{localStorage.setItem(cpkKey(),JSON.stringify(L))}catch(e){}}
+
+// ---------- Inhalt: so zuschneiden, dass nie gescrollt werden muss ----------
+function cpkDaten(p){try{return p.liste?p.liste():p.bal?p.bal():null}catch(e){return []}}
+function cpkRest(p,g,D){if(p.liste)return Math.max(0,D.length-CPK_KAP[g]);if(p.bal)return Math.max(0,D.length-(g==='g'?9:2));return 0}
+function cpkInhalt(p,g,D){
+ if(p.zahl){let z;try{z=p.zahl()}catch(e){z=['—','','']}const [w,s,f,gr]=z;return `<div class="cpkzahl"><b${gr?` style="font-size:${gr}px"`:''}>${esc(w)}</b><small${f?` style="color:${f}"`:''}>${String(s).split(' · ').map(x=>`<span>${esc(x)}</span>`).join(' · ')}</small></div>`}
+ if(p.eigen){try{return p.eigen(g)}catch(e){return ''}}
+ if(!D.length)return `<p class="cpkleer">${esc(p.leer||'')}</p>`;
+ if(p.bal){const n=g==='g'?9:2,max=Math.max(40,...D.map(x=>x[1]));return D.slice(0,n).map(([t,v])=>`<div class="cpkbal"><span>${esc(t)}</span><i><em style="width:${Math.min(100,v/max*100)}%"></em></i><b>${cpkH(v)}</b></div>`).join('')}
+ return D.slice(0,CPK_KAP[g]).map(([d,n,s,w,ziel])=>`<button type="button" class="cpkz"${ziel?` data-ziel="${esc(ziel)}"`:''}>${d?`<span class="d">${esc(d)}</span>`:''}<span class="n"><b>${esc(n)}</b>${s?`<small>${String(s).split(' · ').map(x=>`<span>${esc(x)}</span>`).join(' · ')}</small>`:''}</span>${w?`<span class="w">${w}</span>`:''}</button>`).join('')}
+
+// ---------- Zeichnen ----------
+cpUebersicht=function(inh,flip){const L=cpkLayout(),d=new Date(),vor={};if(flip)inh.querySelectorAll('.cpkp').forEach(e=>vor[e.dataset.id]=e.getBoundingClientRect());
+ const neu=[['tagebuch','+ Eintrag',cpkR('tagebuch')!=='kein'&&cpkR('tagebuch')!=='lesen']].filter(x=>x[2]);
+ const panel=([id,g],i)=>{const p=CPK_P[id],D=cpkDaten(p),rest=D?cpkRest(p,g,D):0;return `<section class="cpkp s-${g}" data-i="${i}" data-id="${id}" style="--c:var(--cpk-${p.c})" aria-label="${esc(p.t)}"><div class="cpkph"><span class="dot"></span><span class="tt">${esc(p.t)}</span>${rest?`<span class="anz">+${rest}</span>`:''}${p.f?`<button type="button" class="lk" data-cpu="${p.f}">${esc(({kalender:'Kalender',kunden:'Kunden',tagebuch:'Tagebuch',auftraege:'Aufträge',personal:'Personal',maengel:'Mängel'})[p.f]||'')}</button>`:''}<span class="ctrl">${p.gr.map(x=>`<button type="button" data-gr="${i}|${x}" class="${x===g?'an':''}" title="${CPK_GT[x]}" aria-label="Größe: ${CPK_GT[x]}">${CPK_GI[x]}</button>`).join('')}</span><button type="button" class="weg" data-weg="${i}" aria-label="Panel entfernen">×</button></div><div class="cpkpb">${cpkInhalt(p,g,D||[])}</div></section>`};
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">${['SONNTAG','MONTAG','DIENSTAG','MITTWOCH','DONNERSTAG','FREITAG','SAMSTAG'][d.getDay()]}, ${d.getDate()}. ${d.toLocaleDateString('de-DE',{month:'long'}).toUpperCase()}</span><h2 class="mgh">Cockpit</h2></div><div class="mgakt">${CPK.edit?'':'<button type="button" class="cpkanp">Cockpit anpassen</button>'}${neu.map(([f,t])=>`<button type="button" class="haupt" data-cpu="${f}" data-neu="1">${t}</button>`).join('')}</div></div>
+ <div class="cpk${CPK.edit?' edit':''}">${CPK.edit?`<div class="cpkband" role="status"><b>Cockpit anpassen</b><span>Panels ziehen – die anderen rücken nach · Größe unten im Panel wählen · rotes × entfernt</span><div><button type="button" class="cpkzur">Auf Vorschlag zurücksetzen</button><button type="button" class="haupt cpkfertig">Fertig</button></div></div>`:''}
+  <div class="cpkwrap"><div class="cpkraster">${L.length?L.map(panel).join(''):`<div class="cpkleer2">Noch keine Panels. Oben „Cockpit anpassen“ antippen und Panels hinzufügen.</div>`}</div>${CPK.edit?cpkKatalog(L):''}</div></div>`;
+ if(flip&&!(typeof RM!=='undefined'&&RM))inh.querySelectorAll('.cpkp').forEach(e=>{const a=vor[e.dataset.id];if(!a||e.classList.contains('zieht'))return;const b=e.getBoundingClientRect(),dx=a.left-b.left,dy=a.top-b.top;if(dx||dy)e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:240,easing:'cubic-bezier(.2,.8,.2,1)'})});
+ cpkBinden(inh);try{if(!CPK.edit&&typeof eiErsteSchritte==='function')eiErsteSchritte(inh)}catch(e){}}
+function cpkKatalog(L){const drin=new Set(L.map(x=>x[0]));
+ return `<aside class="cpkkat" aria-label="Panels hinzufügen"><h3>Panels hinzufügen</h3>${CPK_GRUPPEN.map(g=>{const E=Object.entries(CPK_P).filter(([id,p])=>p.g===g&&cpkDarf(id));return E.length?`<div class="gr">${g}</div>${E.map(([id,p])=>`<button type="button" data-add="${id}" style="--c:var(--cpk-${p.c})" ${drin.has(id)?'disabled':''}><i></i>${esc(p.t)}<small>${drin.has(id)?'drin':'+'}</small></button>`).join('')}`:''}).join('')}
+  <p class="cpkhin">${cpkServer()==='chef'?'Gesamtsummen sieht nur der Chef. Büro sieht einzelne Rechnungen zum Mahnen, aber keine Summen.':'Manche Panels sieht nur der Chef.'}</p></aside>`}
+function cpkBinden(inh){const L=cpkLayout(),neu=()=>cpUebersicht(inh,true);
+ const an=inh.querySelector('.cpkanp');if(an)an.onclick=()=>{CPK.edit=true;cpUebersicht(inh)};
+ const f=inh.querySelector('.cpkfertig');if(f)f.onclick=()=>{CPK.edit=false;cpUebersicht(inh)};
+ const z=inh.querySelector('.cpkzur');if(z)z.onclick=()=>{cpkSpeichern(cpkVor());neu()};
+ inh.querySelectorAll('[data-gr]').forEach(b=>b.onclick=e=>{e.stopPropagation();const [i,x]=b.dataset.gr.split('|');L[+i][1]=x;cpkSpeichern(L);neu()});
+ inh.querySelectorAll('[data-weg]').forEach(b=>b.onclick=e=>{e.stopPropagation();L.splice(+b.dataset.weg,1);cpkSpeichern(L);neu()});
+ inh.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const id=b.dataset.add;L.push([id,CPK_P[id].gr[0]]);cpkSpeichern(L);neu();const el=inh.querySelector(`.cpkp[data-id="${id}"]`);if(el)el.scrollIntoView({block:'nearest',behavior:'smooth'})});
+ inh.querySelectorAll('.ctrl button,.weg').forEach(b=>b.addEventListener('pointerdown',e=>e.stopPropagation()));
+ if(!CPK.edit){
+  inh.querySelectorAll('[data-cpu]').forEach(x=>x.onclick=e=>{e.stopPropagation();const f=x.dataset.cpu,o=x.dataset.neu?({auftraege:{neu:1},maengel:{neu:{}}})[f]:null;o?amFunktion(f,o):amFunktion(f)});
+  inh.querySelectorAll('[data-ziel]').forEach(x=>x.onclick=()=>{const z=x.dataset.ziel;if(z[0]==='@'){CPV.b=z.slice(1);cpMalen(inh);return}const [f,tag]=z.split(':');if(f==='tagebuch'&&tag){try{TBV.sel=tbAusIso(tag)}catch(e){}}f==='auftraege'&&x.querySelector('.cpkpill.rt')?amFunktion('auftraege',{tab:'offen'}):amFunktion(f)});
+  inh.querySelectorAll('.cpknotiz').forEach(t=>{let alt=t.value;t.oninput=()=>{if(t.scrollHeight>t.clientHeight+1){t.value=alt;t.classList.add('voll');setTimeout(()=>t.classList.remove('voll'),600);return}alt=t.value;try{localStorage.setItem('onstandCockpitNotiz_'+reIchKey(),t.value)}catch(e){}}})}
+ else cpkZiehen(inh)}
+
+// ---------- Ziehen wie am iPhone: die anderen Panels weichen weich aus ----------
+function cpkZiehen(inh){const R=inh.querySelector('.cpkraster');if(!R)return;let letzt=0;
+ R.onpointerdown=e=>{const el=e.target.closest('.cpkp');if(!el||e.button>0)return;
+  // Finger: erst nach kurzem Halten ziehen, sonst normal scrollen (wie am iPhone)
+  if(e.pointerType==='touch'){const x0=e.clientX,y0=e.clientY;let t=setTimeout(()=>{t=null;el.classList.add('hebt');start(e)},300);const weg=ev=>{if(t&&(ev.type!=='pointermove'||Math.hypot(ev.clientX-x0,ev.clientY-y0)>8)){clearTimeout(t);t=null;aus()}};const aus=()=>{removeEventListener('pointermove',weg);removeEventListener('pointerup',weg);removeEventListener('pointercancel',weg)};addEventListener('pointermove',weg);addEventListener('pointerup',weg);addEventListener('pointercancel',weg);return}
+  e.preventDefault();start(e)};
+ const start=e=>{const el=e.target.closest('.cpkp');if(!el)return;const r=el.getBoundingClientRect(),g=el.cloneNode(true);g.classList.add('cpkgeist');g.classList.remove('zieht');Object.assign(g.style,{width:r.width+'px',height:r.height+'px',left:r.left+'px',top:r.top+'px'});inh.appendChild(g);el.classList.add('zieht');
+  CPK.zug={i:+el.dataset.i,id:el.dataset.id,g,dx:e.clientX-r.left,dy:e.clientY-r.top};
+  const mv=ev=>{const Z=CPK.zug;if(!Z)return;Z.g.style.left=(ev.clientX-Z.dx)+'px';Z.g.style.top=(ev.clientY-Z.dy)+'px';const jetzt=performance.now();if(jetzt-letzt<120)return;
+   Z.g.style.display='none';const unter=document.elementFromPoint(ev.clientX,ev.clientY);Z.g.style.display='';const ziel=unter&&unter.closest&&unter.closest('.cpkraster .cpkp');if(!ziel||ziel.dataset.id===Z.id)return;
+   const rr=ziel.getBoundingClientRect();if(Math.abs(ev.clientX-(rr.left+rr.width/2))>rr.width*.38&&Math.abs(ev.clientY-(rr.top+rr.height/2))>rr.height*.38)return;
+   const L=cpkLayout(),j=+ziel.dataset.i,[x]=L.splice(Z.i,1);L.splice(j,0,x);cpkSpeichern(L);Z.i=j;letzt=jetzt;cpUebersicht(inh,true);const n=inh.querySelector(`.cpkp[data-id="${Z.id}"]`);if(n)n.classList.add('zieht')};
+  const ende=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',ende);removeEventListener('pointercancel',ende);const Z=CPK.zug;CPK.zug=null;if(Z)Z.g.remove();cpUebersicht(inh,true)};
+  const halt=ev=>{if(CPK.zug)ev.preventDefault()};document.addEventListener('touchmove',halt,{passive:false});
+  const ende2=()=>{document.removeEventListener('touchmove',halt)};addEventListener('pointerup',ende2,{once:true});addEventListener('pointercancel',ende2,{once:true});
+  addEventListener('pointermove',mv);addEventListener('pointerup',ende);addEventListener('pointercancel',ende)}}
+{const a=amFunktion;amFunktion=function(id){if(id!=='cockpit'){CPK.edit=false;if(CPK.zug){try{CPK.zug.g.remove()}catch(e){}CPK.zug=null}}return a.apply(this,arguments)}}
 // QR-Code-Erzeuger: QRCode for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT-Lizenz (aus qrcode-terminal). Für Onstand im Browser verpackt.
 const ON_QR=(()=>{const M={},C={};function req(n){n=n.replace("./","");if(C[n])return C[n].exports;const m=C[n]={exports:{}};M[n](m,m.exports,req);return m.exports}
 M['QR8bitByte']=function(module,exports,require){var QRMode = require('./QRMode');
@@ -9263,7 +9480,7 @@ function syAnmeldeDialog(tab){const F=onInitialen().firma,rein=!window.showDirec
  const d=onDialog(`<h3>Firmenkonto</h3><div class="sytabs">${Object.entries(T).map(([a,n])=>`<button type="button" data-t="${a}" class="${a===tab?'an':''}">${n}</button>`).join('')}</div>
   ${tab==='anlegen'?`<p>Einmal als Chef: Firma anlegen. Alles, was schon in Onstand auf diesem Gerät ist, kommt mit ins Konto.</p>
    <label>FIRMA<input data-a="firma" value="${esc(F==='Onstand'?'':F)}" placeholder="z. B. Muster Bau GmbH"></label><label>DEIN NAME<input data-a="name" value="${esc(ON_PROFIL.name||'')}"></label>
-   <label>E-MAIL<input data-a="mail" type="email" autocomplete="username"></label><label>PASSWORT (MIND. 8 ZEICHEN)<input data-a="pw" type="password" autocomplete="new-password"></label>
+   <label>E-MAIL<input data-a="mail" type="email" autocomplete="username"></label><label>PASSWORT (MIND. 8 ZEICHEN)<input data-a="pw" type="password" autocomplete="new-password"></label><p class="sycodeh sypwh">Passwort gut aufbewahren: Zum Schutz eurer Firmendaten lässt es sich nicht zurücksetzen.</p>
    <label>CODE<input data-a="code" placeholder="z. B. BRANDT-7K4M" autocomplete="off" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase"></label><p class="sycodeh">${SY_CODE_HINWEIS}</p>`
   :tab==='anmelden'?`<p>Du hast schon ein Firmenkonto (z. B. am zweiten PC)? Melde dich mit E-Mail und Passwort an.</p>
    <label>E-MAIL<input data-a="mail" type="email" autocomplete="username"></label><label>PASSWORT<input data-a="pw" type="password" autocomplete="current-password"></label>`
@@ -11042,6 +11259,55 @@ wesentlich (gefährdet die Abnahme)|istotna (zagraża odbiorowi)|esențial (pune
 Dafür braucht es das Firmenkonto (Firmenlogo → Konto & Geräte).|Do tego potrzebne jest konto firmowe (logo firmy → Konto i urządzenia).|Pentru asta e nevoie de contul firmei (logo firmă → Cont și dispozitive).|Për këtë nevojitet llogaria e firmës (logoja e firmës → Llogaria dhe pajisjet).|Za to treba račun tvrtke (logo tvrtke → Račun i uređaji).|За това е нужен фирменият акаунт (лого на фирмата → Акаунт и устройства).
 Basiszinssatz (§ 247 BGB)|Stopa bazowa (§ 247 BGB)|Rata dobânzii de bază (§ 247 BGB)|Norma bazë e interesit (§ 247 BGB)|Osnovna kamatna stopa (§ 247 BGB)|Основен лихвен процент (§ 247 BGB)
 Noch keine offene Baustelle. Leg eine im Kunden-Menü an oder erzähl dem Assistenten, wo du heute warst.|Jeszcze brak otwartej budowy. Dodaj ją w menu klientów albo powiedz asystentowi, gdzie dziś byłeś.|Încă niciun șantier deschis. Adaugă unul în meniul Clienți sau spune-i asistentului unde ai fost azi.|Ende asnjë kantier i hapur. Krijo një te menyja e klientëve ose tregoji asistentit ku ishe sot.|Još nema otvorenog gradilišta. Dodaj ga u izborniku kupaca ili reci asistentu gdje si danas bio.|Още няма отворен обект. Добави го в менюто с клиенти или кажи на асистента къде беше днес.
+Passwort gut aufbewahren: Zum Schutz eurer Firmendaten lässt es sich nicht zurücksetzen.|Zapisz dobrze hasło: dla ochrony danych firmy nie da się go zresetować.|Păstrează bine parola: pentru protecția datelor firmei nu poate fi resetată.|Ruaje mirë fjalëkalimin: për mbrojtjen e të dhënave të firmës nuk mund të rivendoset.|Dobro čuvaj lozinku: radi zaštite podataka tvrtke ne može se resetirati.|Пази паролата добре: заради защитата на фирмените данни тя не може да се нулира.
+z. B. 7-16|np. 7-16|de ex. 7-16|p.sh. 7-16|npr. 7-16|напр. 7-16
+Arbeitszeit prüfen, z. B. 7-16|Sprawdź czas pracy, np. 7-16|Verifică timpul de lucru, de ex. 7-16|Kontrollo kohën e punës, p.sh. 7-16|Provjeri radno vrijeme, npr. 7-16|Провери работното време, напр. 7-16
+Arbeitszeit so eintippen: 7-16 oder 7.30-16.15|Wpisz czas pracy tak: 7-16 lub 7.30-16.15|Introdu timpul astfel: 7-16 sau 7.30-16.15|Shkruaj kohën kështu: 7-16 ose 7.30-16.15|Upiši radno vrijeme ovako: 7-16 ili 7.30-16.15|Въведи времето така: 7-16 или 7.30-16.15
+Cockpit anpassen|Dostosuj kokpit|Personalizează cockpitul|Përshtat kabinën|Prilagodi kokpit|Настрой таблото
+Auf Vorschlag zurücksetzen|Przywróć propozycję|Revino la propunere|Kthe te propozimi|Vrati na prijedlog|Върни към предложението
+Panels ziehen – die anderen rücken nach · Größe unten im Panel wählen · rotes × entfernt|Przeciągaj panele – pozostałe się przesuną · Rozmiar wybierz na dole panelu · czerwony × usuwa|Trage panourile – celelalte se mută · Alege mărimea jos în panou · × roșu șterge|Tërhiq panelet – të tjerat lëvizin · Zgjidh madhësinë poshtë në panel · × e kuqe heq|Povuci panele – ostali se pomaknu · Veličinu odaberi dolje u panelu · crveni × uklanja|Плъзгай панелите – другите се преместват · Размерът се избира долу в панела · червеното × премахва
+Panels hinzufügen|Dodaj panele|Adaugă panouri|Shto panele|Dodaj panele|Добави панели
+Einzüge bald|Wkrótce wprowadzenia|Mutări în curând|Hyrje së shpejti|Useljenja uskoro|Предстоящи нанасяния
+Lieferungen diese Woche|Dostawy w tym tygodniu|Livrări săptămâna aceasta|Dorëzime këtë javë|Isporuke ovaj tjedan|Доставки тази седмица
+Tagebuch diese Woche|Dziennik w tym tygodniu|Jurnal săptămâna aceasta|Ditari këtë javë|Dnevnik ovaj tjedan|Дневник тази седмица
+Tagebuch fehlt|Brak wpisu w dzienniku|Lipsește jurnalul|Mungon ditari|Nedostaje dnevnik|Липсва дневник
+Offene Rechnungen gesamt|Otwarte faktury razem|Facturi deschise total|Fatura të hapura gjithsej|Otvoreni računi ukupno|Неплатени фактури общо
+Auftragsbestand|Portfel zleceń|Portofoliu de comenzi|Porosi në pritje|Stanje narudžbi|Портфейл поръчки
+Zu mahnen|Do upomnienia|De somat|Për t'u kujtuar|Za opomenu|За напомняне
+Offene Angebote|Otwarte oferty|Oferte deschise|Oferta të hapura|Otvorene ponude|Отворени оферти
+Schnell anlegen|Szybko dodaj|Adaugă rapid|Shto shpejt|Brzo dodaj|Бързо добавяне
+Geld|Pieniądze|Bani|Para|Novac|Пари
+Ich|Ja|Eu|Unë|Ja|Аз
+Kein Einzug geplant.|Brak zaplanowanych wprowadzeń.|Nicio mutare planificată.|Asnjë hyrje e planifikuar.|Nema planiranog useljenja.|Няма планирано нанасяне.
+Diese Woche keine Lieferung eingetragen.|W tym tygodniu brak wpisanych dostaw.|Nicio livrare înregistrată săptămâna aceasta.|Asnjë dorëzim i shënuar këtë javë.|Ovaj tjedan nema upisane isporuke.|Тази седмица няма записана доставка.
+Diese Woche noch kein Eintrag.|W tym tygodniu jeszcze brak wpisu.|Încă nicio înregistrare săptămâna aceasta.|Ende asnjë shënim këtë javë.|Ovaj tjedan još nema unosa.|Тази седмица още няма запис.
+Alles eingetragen.|Wszystko wpisane.|Totul înregistrat.|Gjithçka e shënuar.|Sve je upisano.|Всичко е записано.
+Nichts überfällig.|Nic po terminie.|Nimic restant.|Asgjë e vonuar.|Ništa nije dospjelo.|Нищо просрочено.
+Kein offenes Angebot.|Brak otwartych ofert.|Nicio ofertă deschisă.|Asnjë ofertë e hapur.|Nema otvorene ponude.|Няма отворена оферта.
+Keine Abwesenheit geplant.|Brak zaplanowanych nieobecności.|Nicio absență planificată.|Asnjë mungesë e planifikuar.|Nema planiranog odsustva.|Няма планирано отсъствие.
+In den nächsten Wochen keiner.|W najbliższych tygodniach brak.|Niciunul în săptămânile următoare.|Asnjë në javët e ardhshme.|Nijedan u sljedećim tjednima.|Няма в следващите седмици.
+Kein eigener Eintrag|Brak własnego wpisu|Nicio înregistrare proprie|Asnjë shënim i yti|Nema vlastitog unosa|Няма собствен запис
+fehlt|brak|lipsește|mungon|nedostaje|липсва
+Termin|Termin|Programare|Takim|Termin|Среща
+Geburtstag|Urodziny|Zi de naștere|Ditëlindje|Rođendan|Рожден ден
+drin|dodany|adăugat|shtuar|dodano|добавен
+angenommen, noch nicht abgerechnet|przyjęte, jeszcze nierozliczone|acceptate, încă nefacturate|pranuar, ende pa faturuar|prihvaćeno, još nije obračunato|приети, още нефактурирани
+mir zugeteilt|przydzielone mnie|atribuite mie|caktuar mua|dodijeljeno meni|възложени на мен
+nichts offen|nic otwartego|nimic deschis|asgjë e hapur|ništa otvoreno|нищо отворено
+alle überfällig|wszystkie po terminie|toate restante|të gjitha të vonuara|sve dospjelo|всички просрочени
+Gesamtsummen sieht nur der Chef. Büro sieht einzelne Rechnungen zum Mahnen, aber keine Summen.|Sumy całkowite widzi tylko szef. Biuro widzi pojedyncze faktury do upomnienia, ale bez sum.|Totalurile le vede doar șeful. Biroul vede facturi individuale de somat, dar fără totaluri.|Shumat totale i sheh vetëm shefi. Zyra sheh fatura të veçanta për kujtesë, por pa shuma.|Ukupne iznose vidi samo šef. Ured vidi pojedinačne račune za opomenu, ali bez zbrojeva.|Общите суми вижда само шефът. Офисът вижда отделни фактури за напомняне, но без суми.
+Manche Panels sieht nur der Chef.|Niektóre panele widzi tylko szef.|Unele panouri le vede doar șeful.|Disa panele i sheh vetëm shefi.|Neke panele vidi samo šef.|Някои панели вижда само шефът.
+Noch keine Panels. Oben „Cockpit anpassen“ antippen und Panels hinzufügen.|Brak paneli. Stuknij u góry „Dostosuj kokpit” i dodaj panele.|Încă niciun panou. Atinge sus „Personalizează cockpitul” și adaugă panouri.|Ende asnjë panel. Prek lart „Përshtat kabinën” dhe shto panele.|Još nema panela. Dodirni gore „Prilagodi kokpit” i dodaj panele.|Още няма панели. Натисни горе „Настрой таблото“ и добави панели.
++ Eintrag|+ Wpis|+ Înregistrare|+ Shënim|+ Unos|+ Запис
+jetzt|teraz|acum|tani|sada|сега
+Notiz für dich …|Notatka dla ciebie …|Notiță pentru tine …|Shënim për ty …|Bilješka za tebe …|Бележка за теб …
+{n} überfällig|{n} po terminie|{n} restante|{n} të vonuara|{n} dospjelo|{n} просрочени
+{n} Rechnungen|{n} faktur|{n} facturi|{n} fatura|{n} računa|{n} фактури
+1 Rechnung|1 faktura|1 factură|1 faturë|1 račun|1 фактура
+in {n} Tagen|za {n} dni|în {n} zile|për {n} ditë|za {n} dana|след {n} дни
+zuletzt {x}|ostatnio {x}|ultima dată {x}|së fundi {x}|zadnje {x}|последно {x}
+seit {x}|od {x}|din {x}|që nga {x}|od {x}|от {x}
+{x} offen|{x} otwarte|{x} deschis|{x} e hapur|{x} otvoreno|{x} неплатени
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -12337,7 +12603,7 @@ if(typeof hyKopf==='function'){const alt=hyKopf;hyKopf=function(){const r=alt.ap
 // Läuft nur über https (GitHub Pages, später onstand.de). Als Datei vom PC geöffnet gibt es keinen Service Worker;
 // dort erklärt der Menüpunkt, wie man zur App-Fassung wechselt und die Einstellungen mitnimmt.
 const APP={prompt:null,ios:/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
- standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,web:location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'};
+ standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true||/OnstandWindows/.test(navigator.userAgent),web:location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'};
 // v0.10.21: Onstand als echte iPhone-App (Capacitor-Hülle, erkennbar am Zusatz „OnstandApp“ im User-Agent).
 // Dort gibt es den iOS-Fehler der Home-Bildschirm-Web-Apps nicht: kein Service Worker, kein „Als App installieren“, keine Rand-Korrektur.
 APP.nativ=/OnstandApp/.test(navigator.userAgent);if(APP.nativ){APP.standalone=true;document.documentElement.classList.add('onnativ');
@@ -12795,7 +13061,7 @@ function onStartNeu(){const s=eiStartEl();
  s.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const w=b.dataset.w;if(w==='ordner'){s.classList.remove('os2');onStartBild('neu');return}eiFormular(w)})}
 function eiFormular(w){const s=eiStartEl(),F=onInitialen().firma;
  const felder=w==='neu'?`<div class="oszz"><label>DEIN NAME<input id="einame" value="${esc(ON_PROFIL.name||'')}" autocomplete="name"></label><label>FIRMA<input id="eifirma" value="${esc(F==='Onstand'?'':F)}" placeholder="z. B. Muster Bau GmbH"></label></div>
-   <label>E-MAIL<input id="eimail" type="email" autocomplete="username"></label><label>PASSWORT (MIND. 8 ZEICHEN)<input id="eipw" type="password" autocomplete="new-password"></label><label>CODE<input id="einkcode" placeholder="z. B. BRANDT-7K4M" autocomplete="off" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase"></label><p class="oscodeh">${SY_CODE_HINWEIS}</p>`
+   <label>E-MAIL<input id="eimail" type="email" autocomplete="username"></label><label>PASSWORT (MIND. 8 ZEICHEN)<input id="eipw" type="password" autocomplete="new-password"></label><p class="oscodeh eipwh">Passwort gut aufbewahren: Zum Schutz eurer Firmendaten lässt es sich nicht zurücksetzen.</p><label>CODE<input id="einkcode" placeholder="z. B. BRANDT-7K4M" autocomplete="off" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase"></label><p class="oscodeh">${SY_CODE_HINWEIS}</p>`
   :w==='an'?`<label>E-MAIL<input id="eimail" type="email" autocomplete="username"></label><label>PASSWORT<input id="eipw" type="password" autocomplete="current-password"></label>`
   :`<p class="osp">Am PC deines Chefs: Logo → Konto &amp; Geräte → <b>GERÄT VERBINDEN</b>. Den QR-Code mit der Kamera scannen oder den Code hier eingeben.</p><label>DEIN NAME<input id="einame" value="${esc(ON_PROFIL.name||'')}" autocomplete="name"></label><label>CODE<input id="eicode" inputmode="numeric" maxlength="7" placeholder="6 Ziffern" autocomplete="one-time-code"></label>`;
  s.innerHTML=`<div class="osf"><svg class="oszs klein" viewBox="0 0 100 100" aria-hidden="true">${ON_LOGO.replace(/^<svg[^>]*>|<\/svg>$/g,'')}</svg><h2>${w==='neu'?'NEUE FIRMA':w==='an'?'ANMELDEN':'MIT FIRMA VERBINDEN'}</h2>
