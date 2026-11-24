@@ -4517,7 +4517,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am#am .aukette.aulzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin:10px 0 8px;padding:0;border:0;background:none}
 #am#am .aukette.aulzeile>div[data-fs]{display:flex;align-items:baseline;gap:6px;border:0;background:none;padding:3px 0;border-radius:0;cursor:pointer}
 #am#am .aukette.aulzeile>div[data-fs]::after{display:none}
-#am#am .aukette.aulzeile small{display:inline;font:500 12.5px var(--k-ui);letter-spacing:0;text-transform:capitalize;color:var(--k-sub)}
+#am#am .aukette.aulzeile small{display:inline;font:500 12.5px var(--k-ui);letter-spacing:0;text-transform:none;color:var(--k-sub)}
 #am#am .aukette.aulzeile b{display:inline;margin:0;font:700 13px var(--k-ui);color:var(--k-t)}
 #am#am .aukette.aulzeile span{display:none}
 #am#am .aukette.aulzeile>div.fian{box-shadow:inset 0 -2px 0 var(--k-akz)}#am#am .aukette.aulzeile>div.fian small{color:var(--k-akz)}
@@ -4590,6 +4590,60 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 /* Rechnung: Status-Pill und Knöpfe im Kopf */
 #am .aulrst{align-self:center}
 #am .aulrmenu{display:flex;gap:8px;align-items:center;margin-left:auto}
+/* Offen: Zahlenzeile wie bei Angeboten, Summe grau daneben */
+#am#am .aukette.opk.aulzeile>div[data-opf]{display:flex;align-items:baseline;gap:6px;border:0;background:none;padding:3px 0;cursor:pointer;min-width:0}
+#am#am .aukette.opk.aulzeile>div[data-opf]::after{display:none}
+#am#am .aukette.opk.aulzeile small i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sc);margin-right:6px;vertical-align:0}
+#am#am .aukette.opk.aulzeile span{display:inline;font:12.5px var(--k-ui);color:var(--k-sub);margin-left:2px}
+#am#am .aukette.opk.aulzeile>div.an{box-shadow:inset 0 -2px 0 var(--k-akz)}
+#am .aux>.aukh b{letter-spacing:0;text-transform:none;font:600 13.5px var(--k-ui);color:var(--k-t)}
+
+/* Preisliste */
+#am .aulpreis{display:block}
+#am .aulphin{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid color-mix(in srgb,var(--k-gelb) 30%,var(--k-lin));background:color-mix(in srgb,var(--k-gelb) 7%,var(--k-b1));border-radius:8px;font-size:13px;margin:0 0 12px;color:var(--k-t)}
+#am#am .aulphx{margin-left:auto;border:0;background:none;color:var(--k-sub);cursor:pointer;font-size:17px;height:auto;padding:0 4px}
+#am .aulpfil{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+#am#am .aulpfil button{border:1px solid var(--k-lin);background:var(--k-b1);border-radius:16px;padding:0 12px;height:30px;font:500 13px var(--k-ui);cursor:pointer;color:var(--k-t);letter-spacing:0;text-transform:none}
+#am#am .aulpfil button.an{background:var(--k-t);color:var(--k-b1);border-color:var(--k-t)}
+#am .aulpl{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+#am .aulptab{border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);overflow:hidden}
+#am .aulptab table{width:100%;border-collapse:collapse;font-size:13.5px;color:var(--k-t)}
+#am .aulptab th{text-align:left;font:600 11.5px var(--k-ui);letter-spacing:.05em;text-transform:uppercase;color:var(--k-sub);padding:9px 12px;border-bottom:1px solid var(--k-lin);background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
+#am .aulptab td{padding:9px 12px;border-bottom:1px solid var(--k-lin)}
+#am .aulptab .r{text-align:right;font-variant-numeric:tabular-nums;width:110px}#am .aulptab .e{width:70px}#am .aulptab .g{color:var(--k-sub);width:90px}
+#am .aulptab .gr td{font:600 12px var(--k-ui);color:var(--k-sub);padding:14px 12px 6px}#am .aulptab .gr td span{font-weight:400}
+#am .aulptab tr.z{cursor:pointer}#am .aulptab tr.z:hover td{background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
+#am .aulptab tr.sel td{background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1))!important}#am .aulptab tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--k-akz)}
+#am .aulptab .bsp{font:600 10.5px var(--k-ui);color:var(--k-gelb);margin-left:6px}
+#am .aulped{border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);position:sticky;top:10px}
+#am .aulpedk{padding:11px 14px;border-bottom:1px solid var(--k-lin);font:600 13.5px var(--k-ui);color:var(--k-t)}
+#am .aulpedb{padding:14px}
+#am .aulpedb label,#am .aulpfl{display:flex;flex-direction:column;gap:4px;font:600 12.5px var(--k-ui);color:var(--k-sub);margin-bottom:12px;letter-spacing:0;text-transform:none}
+#am .aulpedb input,#am .aulpedb select{height:38px;border:1px solid var(--k-lin);border-radius:6px;padding:0 10px;font:14px var(--k-ui);color:var(--k-t);background:var(--k-b1);width:100%}
+#am .aulpedb input.r{text-align:right}
+#am .aulpedb input:focus,#am .aulpedb select:focus{outline:none;border-color:var(--k-akz);box-shadow:0 0 0 3px color-mix(in srgb,var(--k-akz) 18%,transparent)}
+#am .aulpedb small{font:400 12px var(--k-ui);color:var(--k-sub)}
+#am .aulpedb .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#am .aulpfl .aulst{flex-wrap:wrap}#am#am .aulpfl .aulst button{flex:1 0 auto;padding:0 8px}
+#am .aulprech{background:color-mix(in srgb,var(--k-t) 4%,var(--k-b1));border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--k-sub)}#am .aulprech b{color:var(--k-t);font-variant-numeric:tabular-nums}
+#am .aulpedf{display:flex;align-items:center;gap:10px;border-top:1px solid var(--k-lin);padding:12px 14px;font-size:12px;color:var(--k-sub)}
+#am#am .aulpweg{color:var(--k-rot);border-color:color-mix(in srgb,var(--k-rot) 35%,var(--k-lin))}#am#am .aulpweg.sicher{background:var(--k-rot);color:var(--k-t)}
+#am .mgakt>.aulpsuch{height:36px;width:230px;border-radius:8px;background:var(--k-b1);border:1px solid var(--k-lin)}
+@media (max-width:900px){#am .aulpl{grid-template-columns:1fr}#am .aulped{position:static}#am .mgakt>.aulpsuch{width:100%;order:-1}}
+/* Leistung hinzufügen: Suche, Gruppen, Liste */
+#am .aukatalog.aulkat{display:block!important;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);padding:10px;margin:6px 0 10px}
+#am .aulkk{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+#am .aulkk .fisuch{flex:1;min-width:200px;height:36px;border-radius:8px;background:var(--k-b1);border:1px solid var(--k-lin)}
+#am .aulkk .aulpfil{margin:0}
+#am .aulkl{max-height:260px;overflow:auto;border:1px solid var(--k-lin);border-radius:8px}
+#am#am .aulkl button{display:flex!important;align-items:baseline;gap:10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--k-lin);border-radius:0;background:var(--k-b1);padding:9px 12px;font:14px var(--k-ui);color:var(--k-t);cursor:pointer;height:auto;letter-spacing:0;text-transform:none;box-shadow:none}
+#am#am .aulkl button:last-child{border-bottom:0}
+#am#am .aulkl button[hidden]{display:none!important}
+#am#am .aulkl button:hover{background:color-mix(in srgb,var(--k-akz) 6%,var(--k-b1))}
+#am .aulkl button .n{flex:1;min-width:0}
+#am .aulkl button small{color:var(--k-sub);font-variant-numeric:tabular-nums;white-space:nowrap}
+#am#am .aulkat>[data-frei]{display:block;margin-top:8px;width:100%;height:38px;border:1px dashed var(--k-lin);border-radius:8px;background:none;color:var(--k-akz);font:600 13.5px var(--k-ui);cursor:pointer;letter-spacing:0;text-transform:none}
+@media (max-width:600px){#am .aulptab th:nth-child(4),#am .aulptab td.g{display:none}#am .aulptab .r{width:auto;white-space:nowrap}#am .aulptab .e{width:44px}}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -4716,7 +4770,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.6';
+const ON_VER='0.11.8';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -6343,7 +6397,8 @@ function aulListe(inh){const mgk=inh.querySelector(':scope>.mgk');if(!mgk)return
   tabs.innerHTML=T.map(t=>`<button type="button" data-t="${t}" class="${AUV.tab===t?'an':''}">${AUL_TAB[t]}${z[t]!=null?`<em class="${t==='offen'&&rot?'rot':''}">${z[t]}</em>`:''}</button>`).join('');
   tabs.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{AUV.tab=b.dataset.t;AUL.mahn=false;auMalen(inh)})}
  // Status-Zeile statt Kästen, Jahr rechts daneben; Status-Knöpfe der Filterleiste entfallen (die Zeile filtert)
- const k=inh.querySelector('.aukette');if(k){k.classList.add('aulzeile');k.querySelectorAll('small').forEach(x=>{const t=x.textContent.trim();x.textContent=t.charAt(0)+t.slice(1).toLowerCase()});const bar=inh.querySelector('.fibar'),j=bar&&bar.querySelector('.fijahr');if(j)k.appendChild(j);if(bar){bar.classList.add('aulbar');const ch=bar.querySelector('.fichips');if(ch&&AUV.tab==='ang')ch.hidden=true}}
+ const k=inh.querySelector('.aukette');if(k){k.classList.add('aulzeile');k.querySelectorAll('small').forEach(x=>{const n=[...x.childNodes].find(y=>y.nodeType===3&&y.textContent.trim());if(n){const t=n.textContent.trim();n.textContent=t.charAt(0)+t.slice(1).toLowerCase().replace(/\b1\. mahnung/,'1. Mahnung')}});
+  const kh=inh.querySelector('.aux>.aukh b');if(kh&&AUV.tab==='offen'){const t=kh.textContent;if(t===t.toUpperCase())kh.textContent=t.charAt(0)+t.slice(1).toLowerCase().replace(/ posten/,' Posten')}const al=inh.querySelector('.aux>.aukh .opalle');if(al)al.textContent='Alle zeigen';const bar=inh.querySelector('.fibar'),j=bar&&bar.querySelector('.fijahr');if(j)k.appendChild(j);if(bar){bar.classList.add('aulbar');const ch=bar.querySelector('.fichips');if(ch&&AUV.tab==='ang')ch.hidden=true}}
  // Zeilen: Kürzel statt Farbstreifen, Kunde als eigene Spalte
  inh.querySelectorAll('.auar[data-i]').forEach(r=>{const a=AU_A[+r.dataset.i];if(!a)return;const b=BST[a.b];r.classList.add('aulz');
   r.innerHTML=`<span class="c1"><b>${esc(a.t||'ohne Titel')}</b><small>${esc(a.nr)} · ${auDat(a.d)}</small></span><span class="c2">${aulKz(b)}${esc(a.b)}</span><span class="c3"><span class="aulpill ${a.st}">${AUL_ST.find(x=>x[0]===a.st)?.[1]||a.st}</span></span><span class="c4"><b>${auEur(auBrutto(a))}</b><small>${a.pos.length} ${a.pos.length===1?'Position':'Positionen'}</small></span>`});
@@ -6455,13 +6510,64 @@ function aulRech(inh){if(typeof hyHandy==='function'&&hyHandy())return;const r=A
  const pb=k.querySelector('.aulrpdf');if(pb)pb.onclick=()=>pdf.click();const eb=k.querySelector('.aulrer');if(eb)eb.onclick=()=>er.click();const hb=k.querySelector('.aulrhaupt');if(hb)hb.onclick=()=>haupt.click();
  k.querySelectorAll('[data-aulr]').forEach(x=>x.onclick=()=>{const b=rest[+x.dataset.aulr];if(/löschen/i.test(b.textContent)){if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent=txt(b)}},2500);return}b.classList.add('sicher')}
   x.closest('.aulmenu').classList.remove('an');b.click()})}
+// ---------- Preisliste (Probe „Preisliste neu“): Tabelle nach Bauplan-Fläche, Bearbeiten rechts ----------
+const AUL_FL=[['boden','Boden','Menge kommt aus dem Bauplan'],['wand','Wände','Menge kommt aus dem Bauplan'],['decke','Decke','Menge kommt aus dem Bauplan'],['sockel','Kanten (Umfang)','Menge kommt aus dem Bauplan'],['frei','Ohne Bauplan','wird nicht aus dem Bauplan berechnet']];
+const AUL_EH=['m²','m','lfm','m³','Stk','h','pausch.','kg','t','Tag'];
+let AUL_PT=0;const aulPSpei=()=>{clearTimeout(AUL_PT);AUL_PT=setTimeout(()=>auPlSchreiben().catch(()=>{}),700)};
+function aulPreise(inh){const P=AU_P,q=(AUL.pq||'').trim().toLowerCase(),fil=AUL.pfil||'';if(AUL.psel==null||AUL.psel>=P.length)AUL.psel=P.length?0:null;
+ let hin=true;try{hin=localStorage.getItem('onstandPreisHinweis')!=='zu'}catch(e){}const bsp=P.some(x=>x.bsp);
+ const L=P.map((x,i)=>[x,i]).filter(([x])=>(!fil||(x.f||'frei')===fil)&&(!q||String(x.n).toLowerCase().includes(q)));const x=AUL.psel!=null?P[AUL.psel]:null;
+ const eur=v=>auEur(+v||0),zl=v=>(+v||0).toLocaleString('de-DE');
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">${AU_A.length} ${AU_A.length===1?'Angebot':'Angebote'} · ${AU_R.length} ${AU_R.length===1?'Rechnung':'Rechnungen'}</span><h2 class="mgh">Aufträge</h2></div><div class="mgakt"><label class="fisuch aulpsuch">${FI_I.such}<input type="search" placeholder="Leistung suchen" value="${esc(AUL.pq||'')}" aria-label="Leistung suchen"></label>${aulDrei(`<button type="button" data-aul="eing">Eingangsrechnungen</button><button type="button" data-aul="exp">Export für Steuerbüro</button>`)}<button type="button" class="haupt aulpneu">+ Leistung</button></div></div>
+ <div class="aux aulpx"><div class="autabs" role="tablist"></div></div>
+ <div class="aux aulpreis">${bsp&&hin?'<div class="aulphin"><span><b>Beispielpreise von Onstand.</b> Bitte deine echten Preise eintragen – die orange markierten Zeilen sind noch Beispiele.</span><button type="button" class="aulphx" aria-label="Hinweis schließen">×</button></div>':''}
+  <div class="aulpfil"><button type="button" data-pf="" class="${fil?'':'an'}">Alle ${P.length}</button>${AUL_FL.map(([k,n])=>{const c=P.filter(y=>(y.f||'frei')===k).length;return c?`<button type="button" data-pf="${k}" class="${fil===k?'an':''}">${n} ${c}</button>`:''}).join('')}</div>
+  <div class="aulpl"><div class="aulptab">${P.length?`<table><thead><tr><th>Leistung</th><th class="e">Einheit</th><th class="r">Preis netto</th><th class="r">Lohnanteil</th></tr></thead><tbody>
+   ${AUL_FL.filter(([k])=>L.some(([y])=>(y.f||'frei')===k)).map(([k,n,t])=>`<tr class="gr"><td colspan="4">${n} <span>· ${t}</span></td></tr>${L.filter(([y])=>(y.f||'frei')===k).map(([y,i])=>`<tr class="z${i===AUL.psel?' sel':''}" data-pi="${i}" tabindex="0"><td>${esc(y.n)}${y.bsp?'<span class="bsp">Beispiel</span>':''}</td><td class="e">${esc(y.e)}</td><td class="r"><b>${eur(y.p)}</b></td><td class="r g">${Math.round(+y.l||0)} %</td></tr>`).join('')}`).join('')}
+   </tbody></table>${L.length?'':'<p class="auhin" style="padding:14px">Nichts gefunden.</p>'}`:'<p class="auhin" style="padding:14px">Noch keine Leistung. Oben rechts „+ Leistung“.</p>'}</div>
+  ${x?`<div class="aulped"><div class="aulpedk">Leistung bearbeiten</div><div class="aulpedb">
+   <label>Leistung<input data-pe="n" value="${esc(x.n)}"></label>
+   <div class="zwei"><label>Einheit<select data-pe="e">${[...new Set(AUL_EH.concat(x.e?[x.e]:[]))].map(e=>`<option${e===x.e?' selected':''}>${esc(e)}</option>`).join('')}</select></label><label>Preis netto €<input data-pe="p" inputmode="decimal" class="r" value="${zl(x.p)}"></label></div>
+   <label>Lohnanteil %<input data-pe="l" inputmode="numeric" class="r" value="${Math.round(+x.l||0)}"><small>für die Steuerermäßigung nach § 35a auf Rechnungen an Privatkunden</small></label>
+   <div class="aulpfl"><span>Menge aus dem Bauplan</span><div class="aulst">${AUL_FL.map(([k,n])=>`<button type="button" data-pfl="${k}" class="${(x.f||'frei')===k?'an':''}">${n.split(' ')[0]}</button>`).join('')}</div><small>${(x.f||'frei')==='frei'?'Die Menge trägst du im Angebot selbst ein.':'Beim Übernehmen aus dem Bauplan rechnet Onstand die Menge je Raum aus.'}</small></div>
+   <div class="aulprech">Beispiel: 20 ${esc(x.e)} × ${eur(x.p)} = <b>${eur(20*x.p)}</b> netto, davon Lohn <b>${eur(20*x.p*(+x.l||0)/100)}</b></div></div>
+   <div class="aulpedf"><button type="button" class="aulzur aulpweg">Löschen</button><span>speichert von selbst</span></div></div>`:''}</div></div>`;
+ aulListe(inh);const akt=inh.querySelector(':scope>.mgk .mgakt');aulMenuBinden(akt);akt.querySelectorAll('[data-aul]').forEach(b=>b.onclick=()=>{AUV.tab=b.dataset.aul;auMalen(inh)});
+ const si=inh.querySelector('.aulpsuch input');si.oninput=()=>{AUL.pq=si.value;aulPreise(inh);const t=inh.querySelector('.aulpsuch input');t.focus();t.setSelectionRange(t.value.length,t.value.length)};
+ const hx=inh.querySelector('.aulphx');if(hx)hx.onclick=()=>{try{localStorage.setItem('onstandPreisHinweis','zu')}catch(e){}aulPreise(inh)};
+ inh.querySelectorAll('[data-pf]').forEach(b=>b.onclick=()=>{AUL.pfil=b.dataset.pf;aulPreise(inh)});
+ inh.querySelectorAll('tr.z').forEach(r=>{r.onclick=()=>{AUL.psel=+r.dataset.pi;aulPreise(inh);if(innerWidth<900)inh.querySelector('.aulped')?.scrollIntoView({block:'start',behavior:'smooth'})};r.onkeydown=e=>{if(e.key==='Enter')r.click()}});
+ inh.querySelector('.aulpneu').onclick=()=>{AU_P.unshift({n:'Neue Leistung',e:'m²',p:0,l:70,f:'frei',bsp:false});AUL.psel=0;AUL.pfil='';AUL.pq='';aulPSpei();aulPreise(inh);const i=inh.querySelector('[data-pe="n"]');if(i){i.focus();i.select()}};
+ if(!x)return;const zeile=()=>inh.querySelector('tr.sel');
+ inh.querySelectorAll('[data-pe]').forEach(i=>{const f=i.dataset.pe;i.addEventListener('focus',()=>setTimeout(()=>{try{i.select()}catch(e){}},0));
+  i[i.tagName==='SELECT'?'onchange':'oninput']=()=>{x[f]=f==='p'||f==='l'?auNum(i.value):i.value;x.bsp=false;aulPSpei();const z=zeile();if(z){if(f==='n')z.cells[0].textContent=i.value;if(f==='e')z.cells[1].textContent=i.value;if(f==='p')z.cells[2].innerHTML='<b>'+eur(x.p)+'</b>';if(f==='l')z.cells[3].textContent=Math.round(+x.l||0)+' %'}
+   const r=inh.querySelector('.aulprech');if(r)r.innerHTML=`Beispiel: 20 ${esc(x.e)} × ${eur(x.p)} = <b>${eur(20*x.p)}</b> netto, davon Lohn <b>${eur(20*x.p*(+x.l||0)/100)}</b>`};});
+ inh.querySelectorAll('[data-pfl]').forEach(b=>b.onclick=()=>{x.f=b.dataset.pfl;x.bsp=false;aulPSpei();aulPreise(inh)});
+ const w=inh.querySelector('.aulpweg');w.onclick=async()=>{if(!w.classList.contains('sicher')){w.classList.add('sicher');w.textContent='Wirklich löschen?';setTimeout(()=>{if(w.isConnected){w.classList.remove('sicher');w.textContent='Löschen'}},3000);return}
+  const i=AUL.psel,y=AU_P[i];AU_P.splice(i,1);AUL.psel=Math.min(i,AU_P.length-1);aulPSpei();aulPreise(inh);if(y){try{const id=await pkWeg({k:'pr',t:'Leistung · '+y.n,s:auEur(y.p)+' / '+y.e+' · Lohn '+Math.round(y.l||0)+' %',data:{x:y,i},wieder:'pr'});pkRueckgaengig('Leistung „'+y.n+'“ gelöscht',id,()=>{if(inh.isConnected)aulPreise(inh)})}catch(e){}}}}
+// ---------- Leistung hinzufügen: Auswahl mit Suche und Gruppen statt aller Leistungen als Kästchen ----------
+function aulKatalog(k){if(k.classList.contains('aulkat'))return;k.classList.add('aulkat');const B=[...k.querySelectorAll('button[data-i]')],frei=k.querySelector('[data-frei]');
+ B.forEach(b=>{const x=AU_P[+b.dataset.i]||{};b.dataset.fl=x.f||'frei';const pr=b.querySelector('small');const n=document.createElement('span');n.className='n';n.textContent=x.n||b.firstChild.textContent;b.innerHTML='';b.append(n);if(pr)b.append(pr)});
+ const grp=AUL_FL.filter(([f])=>B.some(b=>b.dataset.fl===f));
+ k.insertAdjacentHTML('afterbegin',`<div class="aulkk"><label class="fisuch">${FI_I.such}<input type="search" placeholder="Leistung suchen …" aria-label="Leistung suchen"></label>${grp.length>1?`<div class="aulpfil"><button type="button" data-kf="" class="an">Alle</button>${grp.map(([f,n])=>`<button type="button" data-kf="${f}">${n.split(' ')[0]}</button>`).join('')}</div>`:''}</div><div class="aulkl"></div>`);
+ const l=k.querySelector('.aulkl');B.forEach(b=>l.appendChild(b));if(frei){frei.textContent='+ Freie Position (ohne Preisliste)';k.appendChild(frei)}
+ let f='';const inp=k.querySelector('input');const tun=()=>{const q=inp.value.trim().toLowerCase();B.forEach(b=>b.hidden=!((!f||b.dataset.fl===f)&&(!q||b.textContent.toLowerCase().includes(q))))};
+ inp.oninput=tun;inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const b=B.find(x=>!x.hidden);if(b)b.click()}};
+ k.querySelectorAll('[data-kf]').forEach(c=>c.onclick=()=>{f=c.dataset.kf;k.querySelectorAll('[data-kf]').forEach(y=>y.classList.toggle('an',y===c));tun()});
+ if(matchMedia('(hover:hover)').matches)setTimeout(()=>inp.focus(),30)}
+new MutationObserver(M=>{for(const m of M)for(const n of m.addedNodes){if(n.nodeType!==1)continue;if(n.classList.contains('aukatalog'))aulKatalog(n);else n.querySelectorAll&&n.querySelectorAll('.aukatalog').forEach(aulKatalog)}}).observe(document.documentElement,{childList:true,subtree:true});
+// Rechnung: großer Knopf „+ Position hinzufügen“ statt „+ AUS PREISLISTE“
+function aulRechPos(inh){const kat=inh.querySelector('.arkat');if(!kat||inh.querySelector('.aulneupos'))return;aulWeg(kat);const box=inh.querySelector('.aubox');if(!box)return;
+ box.insertAdjacentHTML('beforebegin','<button type="button" class="aulneupos">+ Position hinzufügen</button>');inh.querySelector('.aulneupos').onclick=()=>{kat.click();box.scrollIntoView({block:'nearest',behavior:'smooth'})};
+ inh.querySelectorAll('.aukh b').forEach(h=>{if(h.textContent==='POSITIONEN')h.textContent='Positionen'});
+ inh.querySelectorAll('.aupos input,.aupos textarea').forEach(i=>i.addEventListener('focus',()=>setTimeout(()=>{try{i.select()}catch(e){}},0)))}
 // ---------- Einhängen ----------
 {const a=auMalen;auMalen=function(inh){const r=a.apply(this,arguments);try{
-  if(AUV.op||AUV.rech||AUV.rechNeu){aulKopf(inh,AUV.rechNeu&&!AUV.rech?'Neue Rechnung':undefined);if(AUV.rech&&!AUV.op)aulRech(inh);if(AUV.rechNeu&&!AUV.rech)aulRechArt(inh)}
+  if(AUV.op||AUV.rech||AUV.rechNeu){aulKopf(inh,AUV.rechNeu&&!AUV.rech?'Neue Rechnung':undefined);if(AUV.rech&&!AUV.op){aulRech(inh);aulRechPos(inh)}if(AUV.rechNeu&&!AUV.rech)aulRechArt(inh)}
   else if(AUV.firma)aulFirma(inh,false);
   else if(AUV.neu){aulKopf(inh,'Neues Angebot');aulNeu(inh)}
   else if(AUV.offen)aulDok(inh,AUV.offen);
-  else if(AUV.tab==='preis'){AUV.firma=true;a.call(this,inh);AUV.firma=false;aulFirma(inh,true)}
+  else if(AUV.tab==='preis')aulPreise(inh);
   else{aulListe(inh);if(AUV.tab==='offen')aulOffen(inh)}}catch(e){console.error(e)}return r}}
 // Einstellungen → Firma & Preise: nur Firmendaten
 {const a=onMenuAktion;onMenuAktion=function(x){if(x==='firma'){amFunktion('auftraege',{firma:true});return}return a.apply(this,arguments)}}
@@ -11800,6 +11906,34 @@ Den Ordner verknüpfst du am PC. Danach ist das Firmen-Wiki auch hier am Handy d
 Rechnung {x}|Faktura {x}|Factura {x}|Fatura {x}|Račun {x}|Фактура {x}
 Abschlagsrechnung {x}|Faktura zaliczkowa {x}|Factură parțială {x}|Faturë paradhënie {x}|Račun za predujam {x}|Авансова фактура {x}
 Schlussrechnung {x}|Faktura końcowa {x}|Factura finală {x}|Fatura përfundimtare {x}|Završni račun {x}|Окончателна фактура {x}
+Leistung suchen|Szukaj usługi|Caută serviciu|Kërko shërbim|Traži uslugu|Търси услуга
+Leistung suchen …|Szukaj usługi …|Caută serviciu …|Kërko shërbim …|Traži uslugu …|Търси услуга …
+Beispielpreise von Onstand.|Przykładowe ceny Onstand.|Prețuri exemplu de la Onstand.|Çmime shembull nga Onstand.|Primjeri cijena iz Onstanda.|Примерни цени от Onstand.
+Bitte deine echten Preise eintragen – die orange markierten Zeilen sind noch Beispiele.|Wpisz swoje prawdziwe ceny – pomarańczowe wiersze to jeszcze przykłady.|Introdu prețurile tale reale – rândurile portocalii sunt încă exemple.|Shkruaj çmimet e tua të vërteta – rreshtat portokalli janë ende shembuj.|Upiši svoje stvarne cijene – narančasti redovi su još primjeri.|Въведи истинските си цени – оранжевите редове са още примери.
+Menge kommt aus dem Bauplan|Ilość z planu budowy|Cantitatea vine din plan|Sasia vjen nga plani|Količina dolazi iz plana|Количеството идва от плана
+wird nicht aus dem Bauplan berechnet|nie liczone z planu budowy|nu se calculează din plan|nuk llogaritet nga plani|ne računa se iz plana|не се изчислява от плана
+Preis netto|Cena netto|Preț net|Çmimi neto|Cijena neto|Цена нето
+Preis netto €|Cena netto €|Preț net €|Çmimi neto €|Cijena neto €|Цена нето €
+Lohnanteil|Udział robocizny|Cota manoperă|Pjesa e punës|Udio rada|Дял труд
+Lohnanteil %|Udział robocizny %|Cota manoperă %|Pjesa e punës %|Udio rada %|Дял труд %
+Leistung bearbeiten|Edytuj usługę|Editează serviciul|Ndrysho shërbimin|Uredi uslugu|Редактирай услугата
+für die Steuerermäßigung nach § 35a auf Rechnungen an Privatkunden|do ulgi podatkowej wg § 35a na fakturach dla klientów prywatnych|pentru reducerea fiscală § 35a pe facturile către clienți privați|për lehtësimin tatimor sipas § 35a në faturat për klientë privatë|za porezno umanjenje po § 35a na računima privatnim klijentima|за данъчното облекчение по § 35a във фактури към частни клиенти
+Menge aus dem Bauplan|Ilość z planu budowy|Cantitate din plan|Sasia nga plani|Količina iz plana|Количество от плана
+Die Menge trägst du im Angebot selbst ein.|Ilość wpisujesz sam w ofercie.|Cantitatea o introduci singur în ofertă.|Sasinë e shkruan vetë në ofertë.|Količinu upisuješ sam u ponudi.|Количеството въвеждаш сам в офертата.
+Beim Übernehmen aus dem Bauplan rechnet Onstand die Menge je Raum aus.|Przy przejmowaniu z planu Onstand liczy ilość dla każdego pomieszczenia.|La preluarea din plan Onstand calculează cantitatea pe cameră.|Kur merret nga plani, Onstand llogarit sasinë për çdo dhomë.|Pri preuzimanju iz plana Onstand računa količinu po prostoriji.|При вземане от плана Onstand изчислява количеството за всяко помещение.
+speichert von selbst|zapisuje się samo|se salvează singur|ruhet vetë|sprema se samo|запазва се само
++ Freie Position (ohne Preisliste)|+ Dowolna pozycja (bez cennika)|+ Poziție liberă (fără listă de prețuri)|+ Pozicion i lirë (pa listë çmimesh)|+ Slobodna stavka (bez cjenika)|+ Свободна позиция (без ценоразпис)
+Nichts gefunden.|Nic nie znaleziono.|Nimic găsit.|Nuk u gjet asgjë.|Ništa nije pronađeno.|Нищо не е намерено.
+Noch keine Leistung. Oben rechts „+ Leistung“.|Brak usług. U góry po prawej „+ Usługa”.|Încă niciun serviciu. Sus în dreapta „+ Serviciu”.|Ende asnjë shërbim. Lart djathtas „+ Shërbim“.|Još nema usluge. Gore desno „+ Usluga“.|Още няма услуга. Горе вдясно „+ Услуга“.
+Ohne|Bez|Fără|Pa|Bez|Без
+Kanten (Umfang)|Krawędzie (obwód)|Margini (perimetru)|Skajet (perimetri)|Rubovi (opseg)|Ръбове (периметър)
+Ohne Bauplan|Bez planu|Fără plan|Pa plan|Bez plana|Без план
+Alle {n}|Wszystkie {n}|Toate {n}|Të gjitha {n}|Sve {n}|Всички {n}
+Boden {n}|Podłoga {n}|Pardoseală {n}|Dysheme {n}|Pod {n}|Под {n}
+Wände {n}|Ściany {n}|Pereți {n}|Mure {n}|Zidovi {n}|Стени {n}
+Decke {n}|Sufit {n}|Tavan {n}|Tavan {n}|Strop {n}|Таван {n}
+Kanten (Umfang) {n}|Krawędzie (obwód) {n}|Margini (perimetru) {n}|Skajet (perimetri) {n}|Rubovi (opseg) {n}|Ръбове (периметър) {n}
+Ohne Bauplan {n}|Bez planu {n}|Fără plan {n}|Pa plan {n}|Bez plana {n}|Без план {n}
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
