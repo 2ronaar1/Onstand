@@ -4764,13 +4764,14 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
  #am .mgakt>.wksuche{width:100%;order:-1}
  #am .wkliste li{grid-template-columns:76px minmax(0,1fr)}#am .wkliste .s{grid-column:2}
 }
+#am#am .wk{flex:none;height:auto;align-items:start}#am .wkbaum{align-self:stretch}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.8';
+const ON_VER='0.11.9';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
