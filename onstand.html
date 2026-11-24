@@ -4710,39 +4710,105 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .aulptab .gr td{background:color-mix(in srgb,var(--k-t) 7%,var(--k-b1));color:var(--k-t);padding:10px 12px;border-bottom:1px solid var(--k-lin)}
 #am .aulptab .gr td span{color:var(--k-sub)}
 #am .aulkl .aulkst{font-style:normal;color:#F2B705;font-size:15px;flex:none}
-/* ===== Kunden im Grundlayout (kunden/layout.js) ===== */
-#am .mgakt>.kulsuch{height:36px;width:260px;border-radius:8px;background:var(--k-b1);border:1px solid var(--k-lin);display:flex;align-items:center;gap:8px;padding:0 10px}
-#am#am .kulsuch input{border:0;background:none;height:100%;flex:1;min-width:0;font:14px var(--k-ui);color:var(--k-t);outline:none;box-shadow:none;padding:0}
-#am#am .kulsuch svg{width:16px;height:16px;flex:none;color:var(--k-sub)}
-#am .glsplit:has(.kurow,.kuliste){flex:none;height:auto}
-#am .glsplit:has(.kurow,.kuliste) :is(.gll,.glr){max-height:none;overflow:visible}
-#am#am .gll .kuliste{border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);overflow:hidden;padding:0;gap:0}
-#am .kulth,#am#am .gll .kurow{display:grid!important;grid-template-columns:34px minmax(0,1.6fr) minmax(0,1fr) minmax(0,1.1fr) 118px;align-items:center;gap:12px}
-#am .kulth{padding:9px 14px;border-bottom:1px solid var(--k-lin);background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));font:600 12.5px var(--k-ui);color:var(--k-sub)}
-#am .kulth span:first-child{grid-column:1/3}
-#am#am .gll .kurow{padding:11px 14px;border:0;border-bottom:1px solid var(--k-lin);border-radius:0;margin:0;background:var(--k-b1);box-shadow:none;min-height:0;text-align:left}
-#am#am .gll .kurow:last-child{border-bottom:0}
-#am#am .gll .kurow:hover{background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
-#am#am .gll .kurow.sel{background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1));box-shadow:inset 3px 0 0 var(--k-akz)}
-#am#am .gll .kurow .kutx small{display:none}
-#am#am .gll .kurow .kutx b{font:600 14.5px var(--k-ui);color:var(--k-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-#am .gll .kurow :is(.kulo,.kulap){font:14px var(--k-ui);color:var(--k-t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#am .gll .kurow .leer{color:var(--k-sub)}
-#am#am .gll .kurow em.aulpill{justify-self:start;font:600 12.5px var(--k-ui);font-style:normal;letter-spacing:0;text-transform:none;padding:3px 10px;border-radius:12px;margin:0}
-#am#am .gll .kurow em.kulint{color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 10%,var(--k-b1))}
-/* rechts */
-#am#am .glr .gldk h3 .aulpill{vertical-align:2px;margin-left:6px;font-size:12px}
-#am#am .glr .gldk .mgakt{align-items:center;gap:6px}
-#am#am .glr :is(.kukonlab,.kukf,.kukonl){display:flex!important}
-#am#am .glr .kukonl{flex-direction:column;margin:0 18px 16px}
-#am#am .glr .kukf{margin:0 18px 8px;flex-wrap:wrap;gap:6px}
-#am#am .glr .kukonlab{align-items:center;margin:14px 18px 8px;font:600 13.5px var(--k-ui)!important;color:var(--k-t)!important}
-#am#am .glr .kukonlab .kukneu{margin-left:auto;border:0;background:none;color:var(--k-akz);font:600 13.5px var(--k-ui);padding:0;height:auto;display:inline-flex;align-items:center;gap:5px;cursor:pointer;text-transform:none;letter-spacing:0}
-#am#am .glr .kukonlab .kukneu svg{width:14px;height:14px}
-#am#am .aminhalt:has(.kuneu,.kuzur,.kusp) :is(.glr .tbfelder>span){font-size:13.5px!important;font-weight:600!important}
-#am#am .glr .tbfelder>div{font-size:15px}
-#am#am .glr .gllab{font-size:13.5px!important;color:var(--k-t)!important}
-#am#am .glr .kukonlab{padding:0}
+/* ===== Kunden im Aufträge-Design (kunden/layout.js) ===== */
+#am .kulgrau{color:var(--k-sub);font-style:normal}#am .kulrot{color:var(--k-rot)!important}#am .kulgelb{color:var(--k-gelb);font-weight:600}
+#am#am .ausplit .kulal>.auar.aulz,#am#am .ausplit .kulal .authd{grid-template-columns:minmax(0,1.4fr) minmax(0,1.1fr) 118px 150px}
+#am .kulal .c4{text-align:right}#am .kulal .c4 b{display:block}#am .kulal .c2 .aulkz{margin-right:8px}
+/* Vorschau rechts */
+#am .kulvor{background:var(--k-b1)}
+#am .kulkurz{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+#am .kulkk{display:flex;align-items:center;gap:10px}#am .kulkk b{display:block;font:600 17px var(--k-ui);color:var(--k-t)}#am .kulkk small{color:var(--k-sub);font-size:13.5px}
+#am .kuldl{display:grid;grid-template-columns:130px minmax(0,1fr);margin:0;font-size:14.5px}
+#am .kuldl dt,#am .kuldl dd{margin:0;padding:8px 0;border-top:1px solid var(--k-lin)}#am .kuldl dt{color:var(--k-sub);font-weight:600;font-size:13.5px}
+#am .kuldl a,#am .kulfl a{color:var(--k-akz);text-decoration:none}
+#am .kulfehlt{margin:0;padding:9px 12px;border-radius:8px;background:color-mix(in srgb,var(--k-gelb) 9%,var(--k-b1));color:var(--k-t);font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#am .kulfehlt .aultext{margin-left:auto}
+#am .kulzahl{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));border:1px solid var(--k-lin);border-radius:8px;overflow:hidden}
+#am .kulzahl>div{padding:9px 12px;border-left:1px solid var(--k-lin)}#am .kulzahl>div:first-child{border-left:0}
+#am .kulzahl small{display:block;font-size:12.5px;color:var(--k-sub)}#am .kulzahl b{font:600 15px var(--k-ui);font-variant-numeric:tabular-nums;color:var(--k-t)}
+#am .kullab{font:600 13.5px var(--k-ui);color:var(--k-t);margin-bottom:-6px}
+#am .kulletzt{border:1px solid var(--k-lin);border-radius:8px;overflow:hidden}
+/* Kunde als Seite */
+#am .kulseite{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}
+#am .kulsp1,#am .kulsp2{display:flex;flex-direction:column;gap:16px;min-width:0}
+#am#am .kulkarte{padding:14px 16px;margin:0}
+#am .kulkh{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}#am .kulkh b{font:600 15px var(--k-ui);color:var(--k-t)}#am .kulkh small{color:var(--k-sub);font-size:13px}#am .kulkh .aulpill{margin-left:auto}
+#am .kulfl{display:grid;grid-template-columns:150px minmax(0,1fr)}
+#am .kulfl>span,#am .kulfl>div{padding:10px 0;border-top:1px solid var(--k-lin);font-size:15px;color:var(--k-t)}
+#am .kulfl>span{font:600 14px var(--k-ui);color:var(--k-sub)}
+#am .kulroute{margin-left:8px;font-weight:600;font-size:13.5px}
+#am#am .kulplus{border:0;background:none;padding:0;height:auto;color:var(--k-sub);font:14px var(--k-ui);cursor:pointer;letter-spacing:0;text-transform:none}
+#am#am .kulplus:hover{color:var(--k-akz)}
+#am .kulverk{display:flex;flex-direction:column;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;margin-top:6px}
+#am#am .kulverk button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-top:1px solid var(--k-lin);border-radius:0;background:var(--k-b1);padding:11px 14px;height:auto;cursor:pointer;color:var(--k-t);letter-spacing:0;text-transform:none;box-shadow:none}
+#am#am .kulverk button:first-child{border-top:0}#am#am .kulverk button:hover{background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
+#am .kulverk button:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+#am .kulverk span{flex:1;min-width:0}#am .kulverk b{display:block;font:600 14.5px var(--k-ui)}#am .kulverk small{display:block;font-size:13px;color:var(--k-sub)}
+#am .kulverk em{font:600 13.5px var(--k-ui);font-style:normal}#am .kulverk i{font-style:normal;color:var(--k-sub);font-size:18px}
+#am#am .kulkon .kukonlab{display:flex;align-items:center;margin:0 0 8px;font:600 15px var(--k-ui)!important;color:var(--k-t)!important;letter-spacing:0;text-transform:none}
+#am#am .kulkon .kukonlab .kukneu{margin-left:auto;border:0;background:none;color:var(--k-akz);font:600 14px var(--k-ui);padding:0;height:auto;display:inline-flex;align-items:center;gap:5px;cursor:pointer;text-transform:none;letter-spacing:0}
+#am#am .kulkon .kukneu svg{width:14px;height:14px}
+#am#am .kulkon .kukonl{margin:0}
+#am .kulst{margin-right:4px}
+/* Formular: eine Karte wie „Neues Angebot“ */
+#am#am .kulform{width:100%;max-width:880px;box-sizing:border-box}
+#am .kulform>label,#am .kulform>div{margin-bottom:14px}
+#am .kulzwei{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+#am .kulzwei label{display:flex;flex-direction:column;gap:6px;margin:0}
+#am .kulform label{display:flex;flex-direction:column;gap:6px}
+#am .kulkzz{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--k-sub);margin-top:-6px}
+#am .kulfarbe{display:flex;gap:12px;align-items:center;flex-wrap:wrap}#am#am .kulkzin{width:84px;text-transform:uppercase;text-align:center;font-weight:700}
+#am .kulfarbe .kusw{display:flex;flex-wrap:wrap;gap:6px}
+#am#am .kulfarbe .kusw button{width:26px;height:26px;border-radius:50%;border:0;background:var(--bc);padding:0;cursor:pointer}
+#am#am .kulfarbe .kusw button.an{box-shadow:0 0 0 2px var(--k-b1),0 0 0 4px var(--k-t)}
+#am#am .kulwahl{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:6px}
+#am#am .kulwahl .aulk{text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:2px;height:auto;padding:10px 12px}
+#am#am .kulwahl .aulk.an{border-color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1));box-shadow:inset 0 0 0 1px var(--k-akz)}
+#am#am .kulwahl .aulk b{font:600 14.5px var(--k-ui)}#am#am .kulwahl .aulk small{font:13px var(--k-ui);color:var(--k-sub)}
+#am .kulteil{border-top:1px solid var(--k-lin);padding-top:16px;margin-top:4px;display:flex;flex-direction:column;gap:14px}
+#am .kulteilh{font-size:15px!important}
+#am#am .kulmehr{display:block;margin:0 0 14px;font-size:14px}
+#am .kulform .amaktion{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:6px 0 0}
+#am .kulform .kulsp{flex:1}
+#am#am .kulweg{color:var(--k-rot)}#am#am .kulweg.sicher{background:var(--k-rot);color:var(--k-t);border-color:var(--k-rot)}
+/* Letzte Kontakte wie im Firmen-Wiki */
+#am .kulkon .kulkh .aultext{margin-left:auto}
+#am#am .kulkl{max-width:none;margin:4px 0 0}
+#am#am .kulkl li{grid-template-columns:84px minmax(0,1fr) auto;font-size:14.5px;padding:8px 0}
+#am#am .kulkl .wkl{color:var(--k-akz);cursor:pointer;text-decoration:none}#am#am .kulkl .wkl:hover{text-decoration:underline}
+#am .kulkleer{margin:6px 0 0;color:var(--k-sub);font-size:14px}
+#am .kulkalle{margin-top:8px}
+#am .kulkf{display:flex;flex-direction:column;gap:10px;padding:12px;border:1px solid var(--k-lin);border-radius:8px;margin:6px 0 10px;background:color-mix(in srgb,var(--k-t) 2%,var(--k-b1))}
+#am .kulkf[hidden]{display:none}
+#am#am .kulkf textarea{width:100%;box-sizing:border-box;border:1px solid var(--k-lin);border-radius:8px;padding:10px 12px;font:15px var(--k-ui);color:var(--k-t);background:var(--k-b1);resize:vertical}
+#am .kulkf .amaktion{display:flex;justify-content:flex-end;gap:8px}
+#am .kulkart{align-self:flex-start}
+#am .kulkarte2 h3{font:600 19px var(--k-ui)!important}
+#am .kulkarte2 .kn{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+#am#am .kulkweg{color:var(--k-rot);margin-right:auto}
+#am .kulsplit{margin-top:14px}
+#am .kulfarbe[hidden]{display:none}
+#am#am .kulmehr{text-align:left;align-self:flex-start}
+#am .kulvor{align-self:start;height:auto!important;max-height:none!important}
+/* Filter-Knopf */
+#am .kulfw{position:relative}
+#am#am .kulfb{width:auto;display:inline-flex;align-items:center;gap:6px;padding:0 12px;font:600 13.5px var(--k-ui);letter-spacing:0;text-transform:none}
+#am#am .kulfb svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+#am#am .kulfb.an{border-color:var(--k-akz);color:var(--k-akz);background:color-mix(in srgb,var(--k-akz) 8%,var(--k-b1))}
+#am#am .kulfm{min-width:240px}
+#am#am .kulfm button{display:flex;align-items:center;gap:8px}
+#am .kulfm i{width:14px;font-style:normal;color:var(--k-akz);font-weight:700}
+#am .kulfm em{margin-left:auto;font-style:normal;color:var(--k-sub);font-size:13px;font-variant-numeric:tabular-nums}
+/* Kontakte mit kleinem Symbol */
+#am .kulkl2{display:flex;flex-direction:column;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;margin-top:6px}
+#am#am .kulkz2{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;text-align:left;border:0;border-top:1px solid var(--k-lin);border-radius:0;background:var(--k-b1);padding:10px 12px;height:auto;cursor:pointer;color:var(--k-t);letter-spacing:0;text-transform:none;box-shadow:none}
+#am#am .kulkz2:first-child{border-top:0}
+#am#am .kulkz2:hover{background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1))}
+#am .kulico{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--k-t) 6%,var(--k-b1));color:var(--k-sub);font-style:normal}
+#am .kulico svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#am .kulkz2 .m{min-width:0}#am .kulkz2 b{display:block;font:600 14.5px var(--k-ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .kulkz2 small{display:block;font-size:13px;color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am .kulkz2 .d{font-size:13px;color:var(--k-sub);white-space:nowrap;font-variant-numeric:tabular-nums}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -4870,7 +4936,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.14';
+const ON_VER='0.11.15';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -12061,6 +12127,24 @@ Kunde löschen|Usuń klienta|Șterge clientul|Fshi klientin|Izbriši kupca|Из�
 Route planen|Zaplanuj trasę|Planifică ruta|Planifiko rrugën|Planiraj rutu|Планирай маршрут
 {n} aktiv · {x} Interessenten|{n} aktywnych · {x} zainteresowanych|{n} activi · {x} interesați|{n} aktivë · {x} të interesuar|{n} aktivnih · {x} zainteresiranih|{n} активни · {x} заинтересовани
 {n} aktiv · {x} Interessent|{n} aktywnych · {x} zainteresowany|{n} activi · {x} interesat|{n} aktivë · {x} i interesuar|{n} aktivnih · {x} zainteresiran|{n} активни · {x} заинтересован
+Daten fehlen|Brak danych|Lipsesc date|Mungojnë të dhënat|Nedostaju podaci|Липсват данни
+Mit Angebot|Z ofertą|Cu ofertă|Me ofertë|S ponudom|С оферта
+Seit 7 Tagen kein Kontakt|Brak kontaktu od 7 dni|Fără contact de 7 zile|Pa kontakt prej 7 ditësh|Bez kontakta 7 dana|Без контакт от 7 дни
+Dieses Jahr|W tym roku|Anul acesta|Këtë vit|Ove godine|Тази година
+Umsatz netto|Obrót netto|Cifră de afaceri netă|Qarkullim neto|Promet neto|Оборот нето
+Kunde bearbeiten|Edytuj klienta|Editează clientul|Ndrysho klientin|Uredi kupca|Редактирай клиента
+Kunde anlegen|Dodaj klienta|Adaugă clientul|Shto klientin|Dodaj kupca|Добави клиента
+Wie heißt der Kunde oder die Baustelle?|Jak nazywa się klient lub budowa?|Cum se numește clientul sau șantierul?|Si quhet klienti ose kantieri?|Kako se zove kupac ili gradilište?|Как се казва клиентът или обектът?
+Kürzel für Kalender und Tagebuch|Skrót do kalendarza i dziennika|Prescurtare pentru calendar și jurnal|Shkurtim për kalendarin dhe ditarin|Kratica za kalendar i dnevnik|Съкращение за календар и дневник
++ Baustelle und Rechnung angeben|+ Podaj budowę i fakturę|+ Adaugă șantier și factură|+ Shto kantierin dhe faturën|+ Unesi gradilište i račun|+ Въведи обект и фактура
+Adresse der Baustelle|Adres budowy|Adresa șantierului|Adresa e kantierit|Adresa gradilišta|Адрес на обекта
+für das Team vor Ort|dla ekipy na miejscu|pentru echipa de pe șantier|për ekipin në vend|za tim na terenu|за екипа на място
++ eintragen|+ wpisz|+ completează|+ shëno|+ upiši|+ въведи
++ Kontakt notieren|+ Zanotuj kontakt|+ Notează contactul|+ Shëno kontaktin|+ Zabilježi kontakt|+ Запиши контакт
+Im Kalender öffnen|Otwórz w kalendarzu|Deschide în calendar|Hap në kalendar|Otvori u kalendaru|Отвори в календара
+Anfrage, noch kein Auftrag|Zapytanie, jeszcze bez zlecenia|Cerere, încă fără comandă|Kërkesë, ende pa porosi|Upit, još bez naloga|Запитване, още без поръчка
+Baustelle läuft|Budowa trwa|Șantierul e în lucru|Kantieri po punon|Gradilište u tijeku|Обектът тече
+fertig und abgerechnet|gotowe i rozliczone|gata și facturat|përfunduar dhe faturuar|gotovo i obračunato|готово и фактурирано
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -12346,53 +12430,173 @@ function pbReiter(){const a=document.querySelector('#am .aminhalt');if(!a)return
   v.innerHTML=`<div class="pbrol"><div class="pbrk"><b>Rollen &amp; Rechte</b>${chef&&konto?'<button type="button" class="esbtn pbred">Rollen bearbeiten</button>':''}</div>${typeof reUebersicht==='function'?reUebersicht():''}</div>
    <p class="petipp">${konto?'Wer welche Rolle hat, legst du unter Einstellungen → Konto &amp; Geräte fest.':'Rollen gelten, sobald das Firmenkonto verbunden ist (Einstellungen → Konto &amp; Geräte).'}</p>`;
   const e=v.querySelector('.pbred');if(e)e.onclick=()=>{try{reEditor()}catch(x){}}}}
-// ===== Kunden im Grundlayout (Probe „Hauptbildschirme“, v0.11.14) =====
-// Legt sich über kuMalen (Logik bleibt in kunden.js, glanz.js teilt links/rechts). Nur am PC (ab 980 px); Handy bleibt.
-// Kopf: „2 aktiv · 0 Interessenten“, Suche als Feld, ⋯ (Kundenliste exportieren), blau „+ Neuer Kunde“.
-// Links Tabelle Kunde · Ort · Ansprechpartner · Status, Reiter Aktiv · Interessenten · Abgeschlossen.
-// Rechts: Name + Kundenart, „Bearbeiten“ als Link, ⋯ (Kontakt notieren, Anrufen, Route planen, Kunde löschen), Verknüpft (Tagebuch statt Cockpit), Letzte Kontakte des Kunden.
-const kulBreit=()=>{const a=document.querySelector('#am .aminhalt');return (a&&a.clientWidth||innerWidth)>=980};
+// ===== Kunden im Aufträge-Design (Probe „Kunden“, v0.11.15) =====
+// Am PC (ab 980 px) zeichnet diese Datei den Kundenbereich selbst – mit denselben Bausteinen wie Aufträge:
+// Liste mit Reitern, Kennzahlen-Zeile, Tabelle und Vorschau rechts; Kunde als eigene Seite mit ‹ Zurück und Status-Schalter;
+// Neu/Bearbeiten als Karten-Formular wie „Neues Angebot“. Daten, Kontakte und Speichern kommen aus kunden.js/baustellen.js. Handy bleibt.
+const KUL={f:'',vor:null};
 const KUL_ART={privat:'Privat',firma:'Firma',behoerde:'Behörde'};
-function kulExport(){const S=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"',ST={interessent:'Interessent',abgeschlossen:'Abgeschlossen'};
- const K=[['Name','name'],['Kürzel','k'],['Status',b=>ST[b.status]||'In Arbeit'],['Standort','ort'],['Ansprechpartner','kontakt'],['Telefon','tel'],['E-Mail','mail'],['Kundenart',b=>KUL_ART[b.kart]||''],['Rechnung an','rname'],['Straße','rstr'],['PLZ Ort','rort'],['Rechnungs-E-Mail','rmail'],['USt-IdNr.','rust'],['Leitweg-ID','leitweg']];
+const KUL_ST={offen:['In Arbeit','verschickt'],interessent:['Interessent','entwurf'],abgeschlossen:['Abgeschlossen','bezahlt']};
+const kulSt=b=>b.status==='abgeschlossen'||b.status==='interessent'?b.status:'offen';
+const kulBreit=()=>{if(typeof hyHandy==='function'&&hyHandy())return false;const a=document.querySelector('#am .aminhalt');return (a&&a.clientWidth||innerWidth)>=980};
+const kulGeld=()=>!(typeof syGeld==='function'&&!syGeld());
+const kulEur=v=>typeof auEur==='function'?auEur(v):(Math.round(v*100)/100).toLocaleString('de-DE',{minimumFractionDigits:2})+' €';
+function kulZahlen(b){const n=b.name,an=typeof AU_A!=='undefined'?AU_A.filter(a=>a.b===n):[],re=typeof AU_R!=='undefined'?AU_R.filter(r=>r.b===n):[];
+ let offen=0;try{offen=re.reduce((s,r)=>s+(opOffen(r)||0),0)}catch(e){}let ums=0;try{ums=re.reduce((s,r)=>s+(r.netto||0),0)}catch(e){}
+ const E=Object.values(TB).flat().filter(e=>e&&e.b===n),std=E.reduce((s,e)=>s+(typeof peDauer==='function'?(peDauer(e.z)||0)*Math.max(1,peListe(e.p).length):0),0);
+ const mg=typeof mgAlle==='function'?mgAlle().filter(m=>m.b===n&&(typeof mgOffen!=='function'||mgOffen(m))).length:0;
+ const kon=kuKontakte(b),letzt=kon.length?kon.map(k=>k.d).sort().pop():'';const angSum=an.filter(a=>a.st!=='abgelehnt').reduce((s,a)=>s+auNetto(a),0);
+ const fehlt=[['Adresse',b.ort],['Ansprechpartner',b.kontakt],['Telefon oder E-Mail',b.tel||b.mail]].filter(x=>!String(x[1]||'').trim()).map(x=>x[0]);
+ return {an,re,offen,ums,E,std,mg,kon,letzt,angSum,fehlt,pl:(typeof BPL!=='undefined'?BPL:[]).find(p=>p.baustelle===n)}}
+const kulTage=d=>d?Math.round((new Date()-tbAusIso(d))/864e5):999;
+const kulH=h=>(Math.round(h*10)/10).toLocaleString('de-DE')+' h';
+const kulOrt=b=>(b.ort||'').split(',').pop().replace(/^\s*\d{5}\s*/,'').trim();
+// ---------- Liste ----------
+function kulListe(inh){const B=Object.values(BST).sort((a,b)=>a.name.localeCompare(b.name)),G={aktiv:B.filter(b=>kulSt(b)==='offen'),intr:B.filter(b=>kulSt(b)==='interessent'),fertig:B.filter(b=>kulSt(b)==='abgeschlossen')};
+ const tab=G[KU_V.tab]?KU_V.tab:'aktiv',geld=kulGeld(),Z=new Map(B.map(b=>[b.name,kulZahlen(b)])),q=(KU_V.q||'').trim().toLowerCase();
+ const FI={aktiv:[['','Alle',()=>1],['re','Offene Rechnungen',b=>Z.get(b.name).offen>0,1],['mg','Offene Mängel',b=>Z.get(b.name).mg>0],['dat','Daten fehlen',b=>Z.get(b.name).fehlt.length>0]],
+  intr:[['','Alle',()=>1],['ang','Mit Angebot',b=>Z.get(b.name).an.length>0],['still','Seit 7 Tagen kein Kontakt',b=>kulTage(Z.get(b.name).letzt)>=7]],
+  fertig:[['','Alle',()=>1],['re','Offene Rechnungen',b=>Z.get(b.name).offen>0,1],['jahr','Dieses Jahr',b=>(Z.get(b.name).letzt||'').startsWith(String(new Date().getFullYear()))]]}[tab].filter(f=>geld||!f[3]);
+ if(!FI.some(f=>f[0]===KUL.f))KUL.f='';const ff=FI.find(f=>f[0]===KUL.f)[2],fa=FI.find(f=>f[0]===KUL.f);
+ const L=G[tab].filter(ff).filter(b=>!q||(b.name+' '+b.k+' '+(b.ort||'')+' '+(b.kontakt||'')).toLowerCase().includes(q));
+ if(!L.some(b=>b.name===KUL.vor))KUL.vor=L[0]?L[0].name:null;
+ const c4=tab==='intr'?'Angebot':tab==='fertig'?'Umsatz netto':'Offen';
+ const sp4=(b,z)=>!geld?`<b>${z.E.length?kulH(z.std):'–'}</b><small>${z.E.length} Tagebuch</small>`:tab==='intr'?(z.an.length?`<b>${kulEur(z.angSum)}</b><small>${z.an.length} ${z.an.length===1?'Angebot':'Angebote'}</small>`:'<b class="kulgrau">–</b><small>noch kein Angebot</small>')
+  :tab==='fertig'?`<b>${kulEur(z.ums)}</b><small>${z.re.length} ${z.re.length===1?'Rechnung':'Rechnungen'}</small>`:(z.offen?`<b class="kulrot">${kulEur(z.offen)}</b><small>offen</small>`:`<b class="kulgrau">–</b><small>${z.re.length?'alles bezahlt':'noch keine Rechnung'}</small>`);
+ const unter=(b,z)=>[kulOrt(b),tab==='intr'?(z.letzt?'letzter Kontakt '+kuWann(z.letzt,''):'noch kein Kontakt'):z.fehlt.length?'<span class="kulgelb">Daten fehlen</span>':(b.einzug?'Einzug '+esc(kuDatum(b.einzug)):'')].filter(Boolean).join(' · ');
+ const leer={aktiv:B.length?'Gerade keine laufende Baustelle.':'Noch kein Kunde.<br>Oben rechts auf „+ Kunde“.',intr:'Noch keine Interessenten.<br>Anfragen legst du über „+ Kunde“ mit dem Status „Interessent“ an – so geht keine verloren, bevor ein Auftrag daraus wird.',fertig:'Noch nichts abgeschlossen.<br>Stell den Status eines Kunden auf „Abgeschlossen“, wenn die Baustelle fertig ist.'}[tab];
+ const v=KUL.vor?BST[KUL.vor]:null,vz=v?Z.get(v.name):null;
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">${G.aktiv.length} aktiv · ${G.intr.length} ${G.intr.length===1?'Interessent':'Interessenten'}</span><h2 class="mgh">Kunden</h2></div><div class="mgakt"><label class="fisuch"><input type="search" class="kulq" placeholder="Name, Ort, Ansprechpartner" value="${esc(KU_V.q||'')}" aria-label="Kunden durchsuchen"></label>${G[tab].length||KUL.f?`<div class="aulmw kulfw"><button type="button" class="auldrei kulfb${KUL.f?' an':''}" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4-2v-4.5z"/></svg>${KUL.f?esc(fa[1]):'Filter'}</button><div class="aulmenu kulfm" role="menu">${FI.map(([k,t,fn])=>`<button type="button" data-kf="${k}" class="${KUL.f===k?'an':''}"><i>${KUL.f===k?'✓':''}</i>${k?t:'Alle anzeigen'}<em>${G[tab].filter(fn).length}</em></button>`).join('')}</div></div>`:''}${aulDrei('<button type="button" data-kul="exp">Kundenliste exportieren</button>')}<button type="button" class="haupt kulneu">Kunde</button></div></div>
+ <div class="aux"><div class="autabs" role="tablist">${[['aktiv','Aktiv'],['intr','Interessenten'],['fertig','Abgeschlossen']].map(([k,t])=>`<button type="button" data-kt="${k}" class="${tab===k?'an':''}">${t}<em>${G[k].length}</em></button>`).join('')}</div>
+  ${L.length?`<div class="ausplit kulsplit"><div class="aual kulal"><div class="authd"><span>Kunde</span><span>Ansprechpartner</span><span>Status</span><span>${geld?c4:'Tagebuch'}</span></div>
+   ${L.map(b=>{const z=Z.get(b.name),s=KUL_ST[kulSt(b)];return `<button type="button" class="auar aulz${b.name===KUL.vor?' sel':''}" data-n="${esc(b.name)}" style="--bc:${b.c}"><span class="c1"><b>${esc(b.name)}</b><small>${unter(b,z)||'&nbsp;'}</small></span><span class="c2"><span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span>${b.kontakt?esc(b.kontakt):'<i class="kulgrau">–</i>'}</span><span class="c3"><span class="aulpill ${s[1]}">${s[0]}</span></span><span class="c4">${sp4(b,z)}</span></button>`}).join('')}</div>
+   ${v?`<div class="auvor kulvor"><div class="auvk"><span>${esc(v.k)} · ${esc(v.name)}</span><div class="mgakt"><button type="button" class="aultext" data-kuo="${esc(v.name)}">Öffnen</button></div></div>${kulKurz(v,vz)}</div>`:''}</div>`
+  :`<div class="amleer fileer">${q?'Nichts gefunden für „'+esc(KU_V.q)+'“.':KUL.f?'Niemand in dieser Auswahl.':leer}</div>`}</div>`;
+ const akt=inh.querySelector(':scope>.mgk .mgakt');aulMenuBinden(akt);akt.querySelector('[data-kul="exp"]').onclick=kulExport;
+ inh.querySelector('.kulneu').onclick=()=>{KU_SEL='';KU_V.ed=false;kuMalen(inh)};
+ const si=inh.querySelector('.kulq');si.oninput=()=>{KU_V.q=si.value;const p=si.selectionStart;kuMalen(inh);const t=inh.querySelector('.kulq');if(t){t.focus();try{t.setSelectionRange(p,p)}catch(e){}}};
+ inh.querySelectorAll('[data-kt]').forEach(b=>b.onclick=()=>{KU_V.tab=b.dataset.kt;KUL.f='';KUL.vor=null;kuMalen(inh)});
+ inh.querySelectorAll('[data-kf]').forEach(b=>{b.onclick=()=>{KUL.f=KUL.f===b.dataset.kf?'':b.dataset.kf;kuMalen(inh)};b.onkeydown=e=>{if(e.key==='Enter')b.click()}});
+ inh.querySelectorAll('.kulal .auar').forEach(r=>{r.onclick=()=>{if(KUL.vor===r.dataset.n){kulAuf(inh,r.dataset.n);return}KUL.vor=r.dataset.n;kuMalen(inh)};r.ondblclick=()=>kulAuf(inh,r.dataset.n)});
+ const o=inh.querySelector('[data-kuo]');if(o)o.onclick=()=>kulAuf(inh,o.dataset.kuo);
+ kulKurzBinden(inh,v)}
+const kulAuf=(inh,n)=>{KU_SEL=n;KU_V.ed=false;inh.scrollTop=0;kuMalen(inh)};
+// Vorschau rechts in der Liste: das Wichtigste zum Kunden auf einen Blick
+function kulKurz(b,z){const geld=kulGeld(),tel=b.tel?b.tel.replace(/[^+\d]/g,''):'';
+ const F=[['Ansprechpartner',esc(b.kontakt||'')],['Telefon',b.tel?`<a href="tel:${esc(tel)}">${esc(b.tel)}</a>`:''],['E-Mail',b.mail?`<a href="mailto:${esc(b.mail)}">${esc(b.mail)}</a>`:''],['Adresse',esc(b.ort||'')],['Zugang',esc(b.zugang||'')]].filter(f=>f[1]);
+ return `<div class="kulkurz"><div class="kulkk"><span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span><div><b>${esc(b.name)}</b><small>${[KUL_ART[b.kart],kulOrt(b)].filter(Boolean).join(' · ')||'&nbsp;'}</small></div></div>
+  ${F.length?`<dl class="kuldl">${F.map(([t,v])=>`<dt>${t}</dt><dd>${v}</dd>`).join('')}</dl>`:''}
+  ${z.fehlt.length?`<p class="kulfehlt">Fehlt noch: ${z.fehlt.join(', ')} <button type="button" class="aultext" data-kued="${esc(b.name)}">Ergänzen ›</button></p>`:''}
+  <div class="kulzahl">${geld?`<div><small>Angebote</small><b>${z.an.length}</b></div><div><small>Offen</small><b class="${z.offen?'kulrot':''}">${z.offen?kulEur(z.offen):'–'}</b></div>`:''}<div><small>Tagebuch</small><b>${z.E.length?kulH(z.std):'–'}</b></div><div><small>Mängel offen</small><b class="${z.mg?'kulrot':''}">${z.mg}</b></div></div>
+  ${z.kon.length?`<div class="kullab">Letzte Kontakte</div><div class="kulkl2">${z.kon.slice(0,3).map(k=>kulKonZ(k,'data-kvk="1"')).join('')}</div>`:''}</div>`}
+function kulKurzBinden(inh,b){if(!b)return;const e=inh.querySelector('[data-kued]');if(e)e.onclick=()=>{KU_SEL=b.name;KU_V.ed=true;kuMalen(inh)};inh.querySelectorAll('[data-kvk]').forEach(x=>x.onclick=ev=>{ev.preventDefault();kulAuf(inh,b.name)})}
+// ---------- Kunde als eigene Seite ----------
+function kulSeite(inh,b){const n=b.name,z=kulZahlen(b),geld=kulGeld(),st=kulSt(b),tel=b.tel?b.tel.replace(/[^+\d]/g,''):'';
+ const feld=(t,v,ed)=>`<span>${t}</span><div>${v||`<button type="button" class="kulplus" data-kued="1">+ ${ed||'eintragen'}</button>`}</div>`;
+ const rech=b.rname||b.rstr||b.rort||b.rmail||b.rust||b.leitweg;
+ inh.innerHTML=`<div class="mgk auldk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">${[KUL_ART[b.kart],kulOrt(b),b.kontakt].filter(Boolean).map(esc).join(' · ')||'Kunden'}</span><h2 class="mgh">${esc(n)}</h2></div>
+  <div class="mgakt"><div class="aulst kulst" role="group" aria-label="Status">${[['interessent','Interessent'],['offen','In Arbeit'],['abgeschlossen','Abgeschlossen']].map(([k,t])=>`<button type="button" data-kst="${k}" class="${st===k?'an':''}">${t}</button>`).join('')}</div>
+  ${aulDrei(`<button type="button" data-kud="kon">Kontakt notieren</button>${geld?'<button type="button" data-kud="ang">Neues Angebot</button>':''}<hr><button type="button" class="rot bleibt" data-kud="weg">Kunde löschen</button>`)}<button type="button" class="haupt kulbea">Bearbeiten</button></div></div>
+ <div class="aux kulseite"><div class="kulsp1">
+  <div class="aukarte kulkarte"><div class="kulkh"><span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span><b>Kontakt</b></div>
+   <div class="kulfl">${feld('Ansprechpartner',esc(b.kontakt||''))}${feld('Telefon',b.tel?`<a href="tel:${esc(tel)}">${esc(b.tel)}</a>`:'')}${feld('E-Mail',b.mail?`<a href="mailto:${esc(b.mail)}">${esc(b.mail)}</a>`:'')}${feld('Adresse',b.ort?`${esc(b.ort)} <a class="kulroute" href="https://maps.apple.com/?daddr=${encodeURIComponent(b.ort)}" target="_blank" rel="noopener">Route ›</a>`:'')}</div></div>
+  <div class="aukarte kulkarte"><div class="kulkh"><b>Baustelle</b><small>für das Team vor Ort</small></div>
+   <div class="kulfl">${feld('Einzug',b.einzug?esc(kuDatum(b.einzug)):'')}${feld('Zugang',esc(b.zugang||''),'Schlüssel, Code, Klingel')}${feld('Besonderheiten',esc(b.besonders||''))}${geld?feld('Auftrag',b.summe?esc(b.summe):z.an.filter(a=>a.st==='angenommen').length?kulEur(z.an.filter(a=>a.st==='angenommen').reduce((s,a)=>s+auNetto(a),0))+' netto':''):''}</div></div>
+  ${geld?`<div class="aukarte kulkarte"><div class="kulkh"><b>Rechnung</b><small>${rech?'abweichende Rechnungsadresse':'geht an den Kunden oben'}</small>${b.kart&&b.kart!=='privat'&&!(b.rmail&&b.rname&&b.rort)?'<span class="aulpill verschickt">für E-Rechnung fehlt etwas</span>':''}</div>
+   <div class="kulfl">${feld('Kundenart',KUL_ART[b.kart]||'Automatisch')}${rech?feld('Rechnung an',esc(b.rname||''))+feld('Anschrift',[b.rstr,b.rort].filter(Boolean).map(esc).join(', '))+feld('Rechnungs-E-Mail',esc(b.rmail||''))+(b.rust?feld('USt-IdNr.',esc(b.rust)):'')+(b.leitweg?feld('Leitweg-ID',esc(b.leitweg)):''):''}</div></div>`:''}
+ </div><div class="kulsp2">
+  <div class="aukarte kulkarte"><div class="kulkh"><b>Verknüpft</b></div><div class="kulverk">
+   ${geld?`<button type="button" data-go="auftraege" style="--c:var(--cpk-auftraege,#7A4FC4)"><span><b>Angebote &amp; Rechnungen</b><small>${z.an.length} ${z.an.length===1?'Angebot':'Angebote'} · ${z.re.length} ${z.re.length===1?'Rechnung':'Rechnungen'}</small></span>${z.offen?`<em class="kulrot">${kulEur(z.offen)} offen</em>`:''}<i>›</i></button>`:''}
+   <button type="button" data-go="tagebuch" style="--c:var(--cpk-tagebuch,#0F8C8C)"><span><b>Tagebuch</b><small>${z.E.length} ${z.E.length===1?'Eintrag':'Einträge'}${z.std?' · '+kulH(z.std):''}</small></span><i>›</i></button>
+   <button type="button" data-go="maengel" style="--c:var(--cpk-maengel,#C8352B)"><span><b>Mängel</b><small>${z.mg?z.mg+' offen':'keine offenen'}</small></span>${z.mg?`<em class="kulrot">${z.mg} offen</em>`:''}<i>›</i></button>
+   <button type="button" data-go="bauplan" style="--c:var(--cpk-bauplan,#2E8BC0)"><span><b>Bauplan</b><small>${z.pl?'Plan „'+esc(z.pl.name)+'“':'Grundriss und Aufmaß'}</small></span><i>›</i></button></div></div>
+  ${kulKonBlock(b,z)}</div></div>`;
+ // Bindungen
+ inh.querySelector('.aulzur').onclick=()=>{KU_SEL=null;KUL.vor=n;kuMalen(inh)};
+ const bea=()=>{KU_V.ed=true;kuMalen(inh)};inh.querySelector('.kulbea').onclick=bea;inh.querySelectorAll('[data-kued]').forEach(x=>x.onclick=bea);
+ inh.querySelectorAll('[data-kst]').forEach(x=>x.onclick=async()=>{if(x.classList.contains('an'))return;const s=x.dataset.kst;await bstSpeichern(n,Object.assign({},b,{status:s}));KU_V.tab=s==='abgeschlossen'?'fertig':s==='interessent'?'intr':'aktiv';kuMalen(inh)});
+ const a=inh.querySelector(':scope>.mgk .mgakt');aulMenuBinden(a);
+ a.querySelectorAll('[data-kud]').forEach(x=>x.onclick=async()=>{const t=x.dataset.kud;
+  if(t==='kon'){const y=inh.querySelector('.kulkn');if(y)y.click()}
+  if(t==='ang'){try{AUV.tab='ang';AUV.offen=null;AUV.neu={b:n}}catch(e){}amFunktion('auftraege')}
+  if(t==='weg'){if(!x.classList.contains('sicher')){const zz=z.E.length+z.an.length+z.re.length;x.classList.add('sicher');x.textContent=zz?'Wirklich löschen? Tagebuch und Belege bleiben':'Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent='Kunde löschen'}},3500);return}
+   const id=await bstLoeschen(n);KU_SEL=null;KU_V.ed=false;kuMalen(inh);try{pkRueckgaengig(n+' gelöscht',id,async()=>{await bstLaden();if(inh.isConnected)kuMalen(inh)})}catch(e){}}});
+ inh.querySelectorAll('[data-go]').forEach(x=>x.onclick=()=>{const g=x.dataset.go;
+  if(g==='tagebuch'){const d=Object.keys(TB).filter(k=>(TB[k]||[]).some(e=>e&&e.b===n)).sort().pop();if(d){TBV.sel=tbAusIso(d);TBV.idx=Math.max(0,TB[d].findIndex(e=>e.b===n))}amFunktion('tagebuch')}
+  else if(g==='maengel'){try{MGV.b=n;MGV.tab='maengel';MGV.sel=null}catch(e){}amFunktion('maengel')}else amFunktion(g)});
+ kulKonBinden(inh,b,z)}
+// ---------- Neu / Bearbeiten: eine Karte wie „Neues Angebot“ ----------
+function kulForm(inh){const neu=KU_SEL==='',alt=BST[KU_SEL]||{},b=neu?{name:'',k:'',c:bstFarbe(),ort:'',kontakt:'',tel:'',mail:'',einzug:'',status:KU_V.tab==='intr'?'interessent':'offen',zugang:'',besonders:'',kart:''}:{...alt};
+ let farbe=b.c,st=kulSt(b),kart=b.kart||'',kzHand=!neu;const geld=kulGeld(),v=x=>esc(b[x]||''),mehr=!neu||KU_V.kmehr;
+ const fe=(t,f,ph,typ)=>`<label><span class="aullab">${t}</span><input class="aut" data-f="${f}"${typ||''} value="${v(f)}" placeholder="${ph}"></label>`;
+ const wahl=(w,L,akt)=>`<div class="mgchips aulwahl kulwahl" data-w="${w}">${L.map(([k,t,s])=>`<button type="button" data-v="${k}" class="aulk${akt===k?' an':''}"><b>${t}</b><small>${s}</small></button>`).join('')}</div>`;
+ inh.innerHTML=`<div class="mgk auldk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">${neu?'Kunden':esc(alt.name)}</span><h2 class="mgh">${neu?'Neuer Kunde':'Kunde bearbeiten'}</h2></div></div>
+ <div class="aux"><div class="aukarte aufm aulform kulform">
+  <label><span class="aullab">Wie heißt der Kunde oder die Baustelle?</span><input class="aut" data-f="name" value="${v('name')}" placeholder="z. B. Müller Bornheim"></label>
+  <div class="kulkzz"><span class="aulkz kulkzb" style="--bc:${farbe}">${esc(b.k||'---')}</span><span>Kürzel für Kalender und Tagebuch</span><button type="button" class="aultext kulkzon">ändern</button></div>
+  <div class="kulfarbe" hidden><input data-f="k" class="aut kulkzin" maxlength="3" value="${v('k')}" aria-label="Kürzel"><div class="kusw">${BST_PAL.map(c=>`<button type="button" data-c="${c}" style="--bc:${c}" class="${c===farbe?'an':''}" aria-label="Farbe"></button>`).join('')}</div></div>
+  <div><span class="aullab">Status</span>${wahl('st',[['interessent','Interessent','Anfrage, noch kein Auftrag'],['offen','In Arbeit','Baustelle läuft'],['abgeschlossen','Abgeschlossen','fertig und abgerechnet']],st)}</div>
+  ${fe('Adresse der Baustelle','ort','Straße, PLZ Ort')}
+  <div class="kulzwei">${fe('Ansprechpartner','kontakt','Name')}${fe('Telefon','tel','Nummer',' inputmode="tel"')}</div>
+  ${fe('E-Mail','mail','Adresse',' type="email"')}
+  ${mehr?`<div class="kulteil"><span class="aullab kulteilh">Baustelle <small>für das Team vor Ort</small></span>
+   <div class="kulzwei"><label><span class="aullab">Einzug</span><input class="aut" type="date" data-f="einzug" value="${esc(/^\d{4}-\d\d-\d\d$/.test(b.einzug||'')?b.einzug:'')}"></label>${fe('Zugang','zugang','Schlüssel, Code, Klingel')}</div>
+   ${fe('Besonderheiten','besonders','z. B. Hund, Parken nur im Hof')}${geld?fe('Auftragssumme','summe','leer = Summe der angenommenen Angebote'):''}</div>
+  ${geld?`<div class="kulteil"><span class="aullab kulteilh">Rechnung <small>nur wenn die Rechnung an jemand anderen geht</small></span>
+   <div><span class="aullab">Kundenart</span>${wahl('kart',[['','Automatisch','Onstand erkennt es'],['privat','Privat','mit Lohnanteil § 35a'],['firma','Firma','USt-IdNr., § 13b möglich'],['behoerde','Behörde','E-Rechnung mit Leitweg-ID']],kart)}</div>
+   <div class="kulzwei">${fe('Rechnung an','rname','Name oder Firma')}${fe('Rechnungs-E-Mail','rmail','für die E-Rechnung',' type="email"')}${fe('Straße','rstr','Straße und Hausnummer')}${fe('PLZ Ort','rort','63067 Offenbach')}${fe('USt-IdNr.','rust','nur bei Firmen, § 13b')}${fe('Leitweg-ID','leitweg','nur bei Behörden')}</div></div>`:''}`
+  :`<button type="button" class="aultext kulmehr">+ Baustelle und Rechnung angeben</button>`}
+  <div class="amaktion">${neu?'':'<button type="button" class="amab kulweg">Löschen</button><span class="kulsp"></span>'}<button type="button" class="amab kulab">Abbrechen</button><button type="button" class="amja kulok">${neu?'Kunde anlegen':'Speichern'}</button></div>
+ </div></div>`;
+ const q=f=>inh.querySelector(`[data-f="${f}"]`),kzb=inh.querySelector('.kulkzb'),vor=()=>{kzb.style.setProperty('--bc',farbe);kzb.textContent=(q('k').value||'---').toUpperCase()};
+ inh.querySelector('.aulzur').onclick=inh.querySelector('.kulab').onclick=()=>{KU_V.ed=false;KU_V.kmehr=false;if(neu)KU_SEL=null;kuMalen(inh)};
+ inh.querySelector('.kulkzon').onclick=()=>{const f=inh.querySelector('.kulfarbe');f.hidden=!f.hidden;if(!f.hidden)q('k').focus()};
+ inh.querySelectorAll('.kusw button').forEach(x=>x.onclick=()=>{farbe=x.dataset.c;inh.querySelectorAll('.kusw button').forEach(y=>y.classList.toggle('an',y===x));vor()});
+ q('k').oninput=()=>{kzHand=true;vor()};q('name').oninput=()=>{if(!kzHand)q('k').value=bstKuerzel(q('name').value||'X');vor()};
+ inh.querySelectorAll('.kulwahl').forEach(w=>w.querySelectorAll('[data-v]').forEach(x=>x.onclick=()=>{w.querySelectorAll('[data-v]').forEach(y=>y.classList.toggle('an',y===x));if(w.dataset.w==='st')st=x.dataset.v;else kart=x.dataset.v}));
+ const mh=inh.querySelector('.kulmehr');if(mh)mh.onclick=()=>{const keep={};inh.querySelectorAll('[data-f]').forEach(i=>keep[i.dataset.f]=i.value);const s0=st,f0=farbe;KU_V.kmehr=true;kuMalen(inh);Object.entries(keep).forEach(([f,x])=>{const i=inh.querySelector(`[data-f="${f}"]`);if(i)i.value=x});inh.querySelector(`[data-w="st"] [data-v="${s0}"]`)?.click();farbe=f0;const kb=inh.querySelector('.kulkzb');if(kb){kb.style.setProperty('--bc',f0);kb.textContent=(keep.k||'---').toUpperCase()}};
+ const I=[...inh.querySelectorAll('input[data-f]')].filter(i=>i.dataset.f!=='k');I.forEach((i,j)=>i.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();if(I[j+1])I[j+1].focus();else inh.querySelector('.kulok').click()}});
+ const w=inh.querySelector('.kulweg');if(w)w.onclick=async()=>{if(!w.classList.contains('sicher')){w.classList.add('sicher');w.textContent='Wirklich löschen?';setTimeout(()=>{if(w.isConnected){w.classList.remove('sicher');w.textContent='Löschen'}},3500);return}
+  const n=KU_SEL,id=await bstLoeschen(n);KU_SEL=null;KU_V.ed=false;kuMalen(inh);try{pkRueckgaengig(n+' gelöscht',id,async()=>{await bstLaden();if(inh.isConnected)kuMalen(inh)})}catch(e){}};
+ inh.querySelector('.kulok').onclick=async()=>{const n=q('name').value.trim();if(!n){q('name').focus();return}
+  const o=Object.assign({},neu?{}:alt,{c:farbe,status:st,kart});['k','name','ort','kontakt','tel','mail','summe','einzug','zugang','besonders','rname','rstr','rort','rmail','rust','leitweg'].forEach(f=>{const i=q(f);if(i)o[f]=i.value.trim()});
+  if(!o.k)o.k=bstKuerzel(n);const doppelt=Object.values(BST).find(x=>x.k===String(o.k).toUpperCase()&&x.name!==(neu?'':KU_SEL));
+  if(doppelt){inh.querySelector('.kulfarbe').hidden=false;const k=q('k');k.focus();k.setCustomValidity('Kürzel schon vergeben ('+doppelt.name+')');k.reportValidity();setTimeout(()=>k.setCustomValidity(''),2000);return}
+  await bstSpeichern(neu?null:KU_SEL,o);KU_V.ed=false;KU_V.kmehr=false;KU_SEL=BST[o.name]?o.name:null;if(KU_SEL)KU_V.tab=st==='abgeschlossen'?'fertig':st==='interessent'?'intr':'aktiv';kuMalen(inh)};
+ if(neu)setTimeout(()=>q('name').focus(),30)}
+// ---------- Letzte Kontakte wie im Firmen-Wiki: Datum · Eintrag · Art, Klick öffnet eine Karte ----------
+const KUL_KART={Anruf:'Anruf','E-Mail':'E-Mail',Besuch:'Besuch',Termin:'Termin',Notiz:'Notiz',Tagebuch:'Tagebuch',Beleg:'Beleg'};
+const kulKonUnter=k=>{const a=k.art==='Beleg'?String(k.t).split(' ')[0]:(KUL_KART[k.art]||k.art);return k.s&&k.s!=='notiert'&&k.s!==a?a+' · '+k.s:a};
+const kulKonZ=(k,attr)=>`<button type="button" class="kulkz2" ${attr}><i class="kulico">${(typeof KU_KI!=='undefined'&&(KU_KI[k.art]||KU_KI.Notiz))||''}</i><span class="m"><b>${esc(k.t)}</b><small>${esc(kulKonUnter(k))}</small></span><span class="d">${esc(kuWann(k.d,k.z))}</span></button>`;
+function kulKonBlock(b,z){const L=z.kon,zeig=KU_V.kalle?L:L.slice(0,6);
+ return `<div class="aukarte kulkarte kulkon"><div class="kulkh"><b>Letzte Kontakte</b><small>${L.length}</small><button type="button" class="aultext kulkn">+ Kontakt notieren</button></div>
+  <div class="kulkf" hidden><div class="aulst kulkart">${(typeof BST_KART!=='undefined'?BST_KART:['Anruf','E-Mail','Besuch','Notiz']).map((a,i)=>`<button type="button" data-ka="${esc(a)}" class="${i?'':'an'}">${esc(a)}</button>`).join('')}</div>
+   <textarea class="aut" rows="2" placeholder="Worum ging es? z. B. Fliesen kommen Donnerstag" aria-label="Worum ging es"></textarea><div class="amaktion"><button type="button" class="amab kulkab">Abbrechen</button><button type="button" class="amja kulksp">Speichern</button></div></div>
+  ${L.length?`<div class="kulkl2">${zeig.map((k,i)=>kulKonZ(k,`data-kk="${i}"`)).join('')}</div>${L.length>6?`<button type="button" class="aultext kulkalle">${KU_V.kalle?'Weniger anzeigen':'Alle '+L.length+' anzeigen'}</button>`:''}`
+  :'<p class="kulkleer">Noch keine Kontakte. Anrufe und E-Mails über „Kontakt notieren“ festhalten – Tagebuch, Termine und Belege erscheinen hier von selbst.</p>'}</div>`}
+function kulKonBinden(inh,b,z){const L=z.kon,neu=()=>{const y=inh.scrollTop;kuMalen(inh);inh.scrollTop=y};
+ const f=inh.querySelector('.kulkf'),ta=f.querySelector('textarea');const auf=()=>{f.hidden=false;ta.focus();f.scrollIntoView({block:'center',behavior:'smooth'})};inh.querySelector('.kulkn').onclick=()=>{if(f.hidden)auf();else f.hidden=true};
+ f.querySelectorAll('[data-ka]').forEach(x=>x.onclick=()=>f.querySelectorAll('[data-ka]').forEach(y=>y.classList.toggle('an',y===x)));
+ f.querySelector('.kulkab').onclick=()=>{f.hidden=true;ta.value=''};
+ f.querySelector('.kulksp').onclick=async()=>{const t=ta.value.trim();if(!t){ta.focus();return}const a=f.querySelector('[data-ka].an').dataset.ka;await bstKontakt(b.name,a,t);neu();try{mgToast(inh,a+' gespeichert')}catch(e){}};
+ const al=inh.querySelector('.kulkalle');if(al)al.onclick=()=>{KU_V.kalle=!KU_V.kalle;neu()};
+ inh.querySelectorAll('[data-kk]').forEach(x=>x.onclick=ev=>{ev.preventDefault();const k=L[+x.dataset.kk];if(k)kulKonKarte(inh,b,k,neu)})}
+function kulKonKarte(inh,b,k,neu){let c=inh.querySelector('.wkkarte.kulkarte2');if(!c){c=document.createElement('div');c.className='wkkarte kulkarte2';c.innerHTML='<div></div>';inh.appendChild(c)}
+ const nr=(String(k.t).match(/(?:Angebot|Rechnung)\s+(\S+)/)||[])[1],ziel=k.tb?'Im Tagebuch öffnen':k.kal?'Im Kalender öffnen':k.au?'In Aufträge öffnen':'';
+ const F=[['Art',KUL_KART[k.art]||k.art],['Datum',kuDatum(k.d)+(k.z?' · '+k.z:'')],['Kunde',b.name],[k.art==='Tagebuch'?'Team · Zeit':'Stand',k.s&&k.s!=='notiert'?k.s:'']].filter(x=>x[1]);
+ c.firstElementChild.innerHTML=`<h3>${esc(k.t)}</h3><div class="kl">${esc((KUL_KART[k.art]||k.art)+' · '+b.name)}</div><dl>${F.map(([a,v])=>`<dt>${esc(a)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+  <div class="kn">${k.kon?'<button type="button" class="kulkweg">Löschen</button>':''}<button type="button" data-wkz>Schließen</button>${ziel?`<button type="button" class="haupt" data-wkok>${ziel}</button>`:''}</div>`;
+ c.classList.add('an');const zu=()=>c.classList.remove('an');c.querySelector('[data-wkz]').onclick=zu;c.onclick=ev=>{if(ev.target===c)zu()};
+ const ok=c.querySelector('[data-wkok]');if(ok){ok.focus();ok.onclick=()=>{zu();if(k.tb){TBV.sel=tbAusIso(k.tb);TBV.ans=5;TBV.edit=false;amFunktion('tagebuch')}else if(k.kal){try{amZu();kalAuf(k.kal)}catch(e){amFunktion('kalender')}}
+  else if(k.au){amFunktion('auftraege');onWarte('#am .autabs',6000).then(()=>{try{const i2=document.querySelector('#am .aminhalt');if(/^Angebot/.test(k.t))AUV.offen=AU_A.find(a=>a.nr===nr)||null;else AUV.rech=AU_R.find(r=>r.nr===nr)||null;auMalen(i2)}catch(e){}})}}}
+ const w=c.querySelector('.kulkweg');if(w)w.onclick=async()=>{if(!w.classList.contains('sicher')){w.classList.add('sicher');w.textContent='Wirklich löschen?';return}await bstKontaktWeg(b.name,k.kon);zu();neu()}}
+function kulExport(){const S=x=>'"'+String(x==null?'':x).replace(/"/g,'""')+'"',ST={interessent:'Interessent',abgeschlossen:'Abgeschlossen'};
+ const K=[['Name','name'],['Kürzel','k'],['Status',b=>ST[b.status]||'In Arbeit'],['Adresse','ort'],['Ansprechpartner','kontakt'],['Telefon','tel'],['E-Mail','mail'],['Kundenart',b=>KUL_ART[b.kart]||''],['Rechnung an','rname'],['Straße','rstr'],['PLZ Ort','rort'],['Rechnungs-E-Mail','rmail'],['USt-IdNr.','rust'],['Leitweg-ID','leitweg']];
  const z=[K.map(k=>S(k[0])).join(';')].concat(Object.values(BST).sort((a,b)=>a.name.localeCompare(b.name)).map(b=>K.map(([t,f])=>S(typeof f==='function'?f(b):b[f])).join(';')));
  const bl=new Blob(['﻿'+z.join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='Kundenliste '+new Date().toLocaleDateString('de-DE')+'.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
-function kulKopf(w){const k=w.querySelector(':scope>.mgk');if(!k||!k.querySelector('.kuneu'))return;const B=Object.values(BST),akt=B.filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent').length,it=B.filter(b=>b.status==='interessent').length;
- const tt=k.querySelector('.amtt');if(tt)tt.textContent=akt+' aktiv · '+it+' '+(it===1?'Interessent':'Interessenten');
- const a=k.querySelector('.mgakt');const sb=a.querySelector('.kusb');if(sb)aulWeg(sb);a.querySelectorAll('.tr').forEach(x=>x.remove());
- const s=a.querySelector('.kusuch');if(s){s.placeholder='Name, Ort, Ansprechpartner';if(!s.parentElement.classList.contains('kulsuch')){const l=document.createElement('label');l.className='fisuch kulsuch';s.before(l);l.innerHTML=typeof FI_I!=='undefined'?FI_I.such:'';l.appendChild(s)}}
- const neu=a.querySelector('.kuneu');if(neu&&!neu.dataset.kul){neu.dataset.kul=1;neu.lastChild.textContent='Neuer Kunde'}
- if(!a.querySelector('.auldrei')){const m=document.createElement('div');m.innerHTML=aulDrei('<button type="button" data-kul="exp">Kundenliste exportieren</button>');a.insertBefore(m.firstElementChild,neu);aulMenuBinden(a);a.querySelector('[data-kul="exp"]').onclick=kulExport}
- // Reiter: Aktiv · Interessenten · Abgeschlossen
- const r=w.querySelector(':scope>.glreiter'),f=r&&r.querySelector('[data-kt="fertig"]'),i=r&&r.querySelector('[data-kt="intr"]');if(f&&i&&i.nextElementSibling!==f)i.after(f)}
-function kulListe(w){const l=w.querySelector('.gll');if(!l)return;const L=l.querySelector('.kuliste');if(!L)return;
- // Letzte Kontakte stehen rechts beim Kunden – links nicht doppelt
- l.querySelectorAll(".gllab,.kukonl").forEach(x=>aulWeg(x));
- if(!L.querySelector('.kulth')&&L.querySelector('.kurow'))L.insertAdjacentHTML('afterbegin','<div class="kulth"><span>Kunde</span><span>Ort</span><span>Ansprechpartner</span><span>Status</span></div>');
- L.querySelectorAll('.kurow').forEach(z=>{if(z.querySelector('.kulo'))return;const b=BST[z.dataset.n]||{},em=z.querySelector('em');
-  z.querySelector('.kutx').insertAdjacentHTML('afterend',`<span class="kulo">${esc((b.ort||'').split(',').pop().replace(/^\s*\d{5}\s*/,'').trim()||'–')}</span><span class="kulap${b.kontakt?'':' leer'}">${esc(b.kontakt||'–')}</span>`);
-  if(em){em.textContent=b.status==='abgeschlossen'?'Abgeschlossen':b.status==='interessent'?'Interessent':'In Arbeit';em.classList.add('aulpill',b.status==='abgeschlossen'?'bezahlt':b.status==='interessent'?'kulint':'verschickt');z.appendChild(em)}})}
-function kulDetail(w){const r=w.querySelector('.glr');if(!r||!r.querySelector('.kued'))return;const b=BST[KU_SEL];if(!b)return;const k=r.querySelector(':scope>.gldk');
- const h3=k&&k.querySelector('h3');if(h3&&b.kart&&KUL_ART[b.kart]&&!h3.querySelector('.aulpill'))h3.insertAdjacentHTML('beforeend',` <span class="aulpill">${KUL_ART[b.kart]}</span>`);
- const a=k&&k.querySelector('.mgakt');if(!a||a.querySelector('.auldrei'))return;
- const bea=a.querySelector('.kued');bea.classList.add('aultext');bea.textContent='Bearbeiten';a.querySelectorAll('.glanruf').forEach(x=>aulWeg(x));
- // „Kontakt notieren“ zurück zu „Letzte Kontakte“
- const kn=a.querySelector('.kukneu'),lab=r.querySelector('.kukonlab');if(kn&&lab){lab.appendChild(kn);kn.lastChild.textContent='Kontakt notieren'}
- const tel=b.tel?b.tel.replace(/[^+\d]/g,''):'';
- a.insertAdjacentHTML('beforeend',aulDrei(`<button type="button" data-kud="kon">Kontakt notieren</button>${tel?`<button type="button" data-kud="tel">Anrufen</button>`:''}${b.ort?'<button type="button" data-kud="route">Route planen</button>':''}<hr><button type="button" class="rot bleibt" data-kud="weg">Kunde löschen</button>`));aulMenuBinden(a);
- a.querySelectorAll('[data-kud]').forEach(x=>x.onclick=()=>{const t=x.dataset.kud;
-  if(t==='kon'){const y=r.querySelector('.kukneu');if(y){y.click();y.scrollIntoView({block:'center',behavior:'smooth'})}}
-  if(t==='tel'){const y=r.querySelector('.kuakt a[href^="tel:"]');if(y)y.click();else location.href='tel:'+tel}
-  if(t==='route')window.open('https://maps.apple.com/?daddr='+encodeURIComponent(b.ort),'_blank','noopener');
-  if(t==='weg'){if(!x.classList.contains('sicher')){x.classList.add('sicher');x.textContent='Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(x.isConnected){x.classList.remove('sicher');x.textContent='Kunde löschen'}},3000);return}
-   const inh=document.querySelector('#am .aminhalt');KU_V.ed=true;kuMalen(inh);const g=document.querySelector('#am .kuweg');if(g){g.click();g.click()}}});
- // Verknüpft: „Cockpit“ heißt jetzt „Tagebuch“ und springt zum letzten Eintrag dieser Baustelle
- const c=r.querySelector('[data-go="cockpit"]');if(c){const s=c.querySelector('span');if(s&&s.firstChild&&s.firstChild.nodeType===3)s.firstChild.nodeValue='Tagebuch';const sm=c.querySelector('small');if(sm)sm.textContent=sm.textContent.replace(/Tagebuch-Eintr(ag|äge)/,m=>m.endsWith('ag')?'Eintrag':'Einträge');
-  c.innerHTML=c.innerHTML.replace(/<svg[\s\S]*?<\/svg>/,'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/></svg>');
-  c.onclick=()=>{const d=Object.keys(TB).filter(x=>(TB[x]||[]).some(e=>e&&e.b===b.name)).sort().pop();if(d){TBV.sel=tbAusIso(d);TBV.idx=Math.max(0,TB[d].findIndex(e=>e.b===b.name))}amFunktion('tagebuch')}}
- // Reihenfolge wie in der Probe: Felder, Verknüpft, dann Letzte Kontakte
- const ver=r.querySelector('.glverkn');if(ver&&lab){[lab,r.querySelector('.kukonform'),r.querySelector('.kukf'),r.querySelector('.kukonl')].filter(Boolean).forEach(x=>r.appendChild(x))}}
-{const a=kuMalen;kuMalen=function(inh){if(kulBreit()&&KU_SEL!==''&&!KU_V.ed)KU_V.such=true;const r=a.apply(this,arguments);try{if(kulBreit()){const w=document.querySelector('#am .aminhalt');kulKopf(w);kulListe(w);kulDetail(w)}}catch(e){console.error(e)}return r}}
+// Einhängen: am PC zeichnet Onstand Kunden hier, sonst wie bisher
+{const a=kuMalen;kuMalen=function(inh){if(!kulBreit())return a.apply(this,arguments);const w=document.querySelector('#am .aminhalt')||inh;
+ try{if(KU_SEL===''||KU_V.ed)kulForm(w);else if(KU_SEL&&BST[KU_SEL])kulSeite(w,BST[KU_SEL]);else{KU_SEL=null;kulListe(w)}}catch(e){console.error(e);return a.apply(this,arguments)}}}
 // ===== Firmen-Wiki im Büro-Design (Probe „Firmen-Wiki“) =====
 // Am PC steht „Frag das Firmenwissen“ oben über Liste und Seite; Bezeichnungen in normaler Schreibweise.
 const BW_MAL=brMalen;
