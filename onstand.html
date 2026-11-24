@@ -4917,6 +4917,33 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am#am .mglprot>.mbkab{display:none!important}
 #am#am .mglprot .mgunters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 #am#am .mglprot .mgpad canvas{width:100%;height:150px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);display:block;margin-top:6px}
+/* ===== Einstellungen wie in der Probe (kern/einst.js) ===== */
+#am .esneu{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start;margin-top:16px}
+#am#am .esnav{padding:8px;display:flex;flex-direction:column;gap:2px;position:sticky;top:10px}
+#am .eslab{font:600 12.5px var(--k-ui);color:var(--k-sub);padding:10px 10px 4px}
+#am#am .esnav button{text-align:left;border:0;background:none;border-radius:6px;padding:9px 10px;font:500 14.5px var(--k-ui);color:var(--k-t);cursor:pointer;height:auto;letter-spacing:0;text-transform:none;box-shadow:none}
+#am#am .esnav button:hover{background:color-mix(in srgb,var(--k-t) 4%,var(--k-b1))}
+#am#am .esnav button.an{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));color:var(--k-akz);font-weight:600}
+#am .esnix{color:var(--k-sub);font-size:14px;padding:10px}
+#am .esrechts{display:flex;flex-direction:column;gap:16px;min-width:0}
+#am#am .esform{max-width:none}
+#am .eslogo{display:flex;align-items:center;gap:14px;padding:12px;border:1px solid var(--k-lin);border-radius:8px;margin-bottom:16px}
+#am .eslb{width:56px;height:56px;border-radius:10px;border:1px solid var(--k-lin);display:grid;place-items:center;font:700 18px var(--k-ui);color:var(--k-sub);background:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));overflow:hidden;flex:none}
+#am .eslb img{width:100%;height:100%;object-fit:contain;background:var(--k-t)}
+#am .eslogo>div{flex:1;min-width:0}#am .eslogo b{display:block;font:600 14.5px var(--k-ui)}#am .eslogo small{color:var(--k-sub);font-size:13px}
+#am#am .eslbtn{display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid var(--k-lin);border-radius:6px;font:600 14px var(--k-ui);cursor:pointer;background:var(--k-b1);color:var(--k-t)}
+#am .esqr{margin-top:18px;padding-top:16px;border-top:1px solid var(--k-lin);display:flex;flex-direction:column;gap:10px}
+#am .esqrz{display:flex;gap:10px;align-items:flex-start;cursor:pointer}#am .esqrz input{width:18px;height:18px;margin-top:2px}
+#am .esqrz b{display:block;font:600 14.5px var(--k-ui)}#am .esqrz small{color:var(--k-sub);font-size:13px}
+#am .esqrp{align-self:flex-start;margin-left:28px}#am .esqrp.aus{opacity:.5}
+#am .eseinh{display:flex;align-items:center;gap:8px}#am .eseinh input{max-width:120px}#am .eseinh em{font-style:normal;color:var(--k-sub);font-size:13.5px}
+#am .esrow{display:flex;gap:10px;align-items:center;margin-top:12px}
+#am#am .esrow .amab{height:38px;padding:0 16px;border:1px solid var(--k-lin);border-radius:6px;background:var(--k-b1);font:600 14px var(--k-ui);color:var(--k-t);cursor:pointer;letter-spacing:0;text-transform:none}
+#am .esfuss{color:var(--k-sub);font-size:13px;margin:0 2px}
+#am .esk2k h3{margin:0 0 6px;font:600 16px var(--k-ui)}
+#am#am .essp[disabled]{opacity:.5}
+@media (max-width:979px){#am .esneu{grid-template-columns:1fr}#am#am .esnav{position:static}}
+#am#am .essp.esok{background:var(--k-b1)!important;color:var(--k-gruen)!important;border:1px solid var(--k-lin)!important}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -5044,7 +5071,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.18';
+const ON_VER='0.11.19';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -12294,6 +12321,17 @@ Verweigert|Odmówiono|Refuzat|Refuzuar|Odbijeno|Отказан
 Unterschriften|Podpisy|Semnături|Nënshkrime|Potpisi|Подписи
 Protokoll erstellen|Utwórz protokół|Creează procesul-verbal|Krijo procesverbalin|Izradi zapisnik|Създай протокол
 Abnahme entfernen|Usuń odbiór|Elimină recepția|Hiq pranimin|Ukloni primopredaju|Премахни приемането
+Einstellung suchen|Szukaj ustawienia|Caută setarea|Kërko cilësimin|Traži postavku|Търси настройка
+Firma · nur für Chef und Büro|Firma · tylko dla szefa i biura|Firmă · doar pentru șef și birou|Firma · vetëm për shefin dhe zyrën|Tvrtka · samo za šefa i ured|Фирма · само за шефа и офиса
+Firmendaten|Dane firmy|Datele firmei|Të dhënat e firmës|Podaci tvrtke|Данни на фирмата
+Datenordner & Sicherung|Folder danych i kopia|Dosar de date și backup|Dosja e të dhënave dhe kopja|Mapa podataka i sigurnosna kopija|Папка с данни и архив
+Logo hochladen|Prześlij logo|Încarcă logo|Ngarko logon|Učitaj logo|Качи лого
+Logo ändern|Zmień logo|Schimbă logo|Ndrysho logon|Promijeni logo|Смени логото
+✓ Gespeichert|✓ Zapisano|✓ Salvat|✓ U ruajt|✓ Spremljeno|✓ Запазено
+Ordner wechseln|Zmień folder|Schimbă dosarul|Ndrysho dosjen|Promijeni mapu|Смени папката
+Sicherungen ansehen|Pokaż kopie|Vezi backup-urile|Shiko kopjet|Prikaži kopije|Виж архивите
+Letzte Sicherung|Ostatnia kopia|Ultimul backup|Kopja e fundit|Zadnja kopija|Последен архив
+Abo & KI-Paket öffnen|Otwórz abonament i pakiet AI|Deschide abonament și pachet AI|Hap abonimin dhe paketën AI|Otvori pretplatu i AI paket|Отвори абонамент и AI пакет
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -13260,23 +13298,61 @@ document.addEventListener('click',ev=>{if(!document.body.classList.contains('bpa
 document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('#am [data-einst]');if(!b)return;ev.preventDefault();amFunktion('mehr',{seite:'einst'})});
 {const alt=amFunktion;amFunktion=function(id,opt){try{AM_EL&&AM_EL.querySelectorAll('[data-einst]').forEach(x=>x.classList.toggle('an',id==='mehr'&&!!(opt&&opt.seite==='einst')))}catch(e){}return alt.apply(this,arguments)}}
 {const alt=hyEinst;hyEinst=function(inh){if(hyHandy())return alt.apply(this,arguments);try{esSeite(inh)}catch(e){console.error(e);return alt.apply(this,arguments)}}}
-function esSeite(inh){const F=typeof auFirma==='function'?auFirma():{},{firma,logo}=onInitialen(),an=typeof syAktiv==='function'&&syAktiv(),ki=typeof KI!=='undefined'&&KI.aktiv;
- let pk=0,si='';try{pk=(PK_CACHE||[]).length}catch(e){}try{const z=localStorage.getItem('onstandSiLetzt');if(z)si=new Date(z).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})}catch(e){}
- const leer='<i class="ohne">—</i>',Z=(l,v,k,t)=>`<div class="esz"><small>${l}</small><span>${v||leer}</span>${k?`<button type="button" class="esk2" data-m="${k}">${t||'Öffnen'}</button>`:''}</div>`;
- const K=(t,kopf,inhalt)=>`<section class="esk"><div class="eskk"><b>${t}</b>${kopf||''}</div>${inhalt}</section>`;
- const rolle=an?({chef:'Chef',buero:'Büro',bauleiter:'Bauleiter',baustelle:'Mitarbeiter',sub:'Subunternehmer'})[syRolle()]||syRolle():'';
- inh.innerHTML=`<div class="mgk"><div><span class="amtt">EINSTELLUNGEN DER FIRMA</span><h2 class="mgh">Einstellungen</h2></div></div>
- <div class="esgrid"><div class="esspalte">
-  ${K('Firma &amp; Preise','<button type="button" class="esbtn" data-m="firma">Bearbeiten</button>',Z('Firma',esc(F.name||firma))+Z('Steuernummer',esc(F.stnr||F.ust||''))+Z('Bank',esc([F.bank,F.iban].filter(Boolean).join(' · ')))+Z('Preisliste','Leistungen und Preise','firma','Öffnen'))}
-  ${K('Rechnungen &amp; Mahnungen','',Z('Mahnwesen','Mahnstufen und Fristen','mahn'))}
- </div><div class="esspalte">
-  ${K('Daten','',Z('Datenordner',GED&&GED.handy?'auf diesem Gerät':esc(ROOT?ROOT.name:'nicht verbunden'),'ordner','Ändern')+Z('Sicherung',si?'zuletzt '+si:'jeden Morgen automatisch','si','Öffnen'))}
-  ${K('Abo','',Z('Abo &amp; KI-Paket',ki?'KI aktiv':'KI nicht gebucht','abo','Öffnen'))}
-  <p class="esver">Profil, Sprache, Design, Konto &amp; Geräte: oben links auf das Logo tippen.</p>
-  <p class="esver">Onstand ${ON_VER} · Deine Daten liegen in deinem Datenordner</p>
- </div></div>`;
- inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}});
- inh.querySelectorAll('[data-design]').forEach(b=>b.onclick=()=>{onDesign(b.dataset.design,true);inh.querySelectorAll('[data-design]').forEach(x=>{const a=x===b;x.classList.toggle('an',a);x.setAttribute('aria-pressed',a)})})}
+// ---------- Seite wie in der Probe „Hauptbildschirme“ (v0.11.19): links Bereiche, rechts das Formular, oben Suche und blau „Speichern“ ----------
+const ES={b:'firma',dirty:false,q:''};
+const ES_B=[['Firma',[['firma','Firmendaten','firma name logo inhaber adresse telefon e-mail steuer ust bank iban bic handelsregister angebot gültig qr'],['rech','Rechnungen & Mahnungen','rechnung mahnung mahnwesen erinnerung gebühr zins basiszins frist']]],['Daten',[['daten','Datenordner & Sicherung','ordner datenordner sicherung backup speicher']]],['Abo',[['abo','Abo & KI-Paket','abo ki paket denk-fragen kosten']]]];
+const ES_FE=[['name','Firma','z. B. Muster Bau GmbH'],['zusatz','Zeile unter dem Namen','z. B. Trockenbau · Fliesen · Innenausbau'],['inhaber','Geschäftsführer / Inhaber',''],['str','Straße',''],['ort','PLZ Ort',''],['tel','Telefon',''],['mail','E-Mail',''],['web','Webseite','z. B. meinbetrieb.de'],['stnr','Steuernummer',''],['ust','USt-IdNr.',''],['hr','Handelsregister','z. B. HRB 12345, AG Frankfurt'],['bank','Bank',''],['iban','IBAN',''],['bic','BIC',''],['gueltig','Angebot gültig (Tage)','30']];
+const ES_ME=[['er','Zahlungserinnerung','Tage nach Fälligkeit'],['m1','1. Mahnung','Tage nach Fälligkeit'],['m2','2. Mahnung','Tage nach Fälligkeit'],['mv','Mahnbescheid prüfen','Tage nach der 2. Mahnung'],['geb','Mahngebühr ab 1. Mahnung','€'],['bz','Basiszinssatz (§ 247 BGB)','%']];
+function esChef(){try{return !(typeof syAktiv==='function'&&syAktiv())||['chef','buero'].includes(syRolle())}catch(e){return true}}
+function esSeite(inh){const chef=esChef(),q=ES.q.trim().toLowerCase();
+ const nav=ES_B.map(([l,L])=>{const M=L.filter(([k,t,w])=>!q||(t+' '+w).toLowerCase().includes(q));return M.length?`<div class="eslab">${l}</div>${M.map(([k,t])=>`<button type="button" data-esb="${k}" class="${ES.b===k?'an':''}">${esc(t)}</button>`).join('')}`:''}).join('')||'<p class="esnix">Nichts gefunden.</p>';
+ const titel=ES_B.flatMap(x=>x[1]).find(x=>x[0]===ES.b)[1];
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">Firma · nur für Chef und Büro</span><h2 class="mgh">Einstellungen</h2></div><div class="mgakt"><label class="fisuch"><input type="search" class="esq" placeholder="Einstellung suchen" value="${esc(ES.q)}" aria-label="Einstellung suchen"></label>${ES.b==='firma'||ES.b==='rech'?`<button type="button" class="haupt essp${ES.dirty?'':' esok'}"${chef?'':' disabled'}>${ES.dirty?'Speichern':'✓ Gespeichert'}</button>`:''}</div></div>
+ <div class="aux esneu"><nav class="aukarte esnav" aria-label="Bereiche">${nav}</nav><div class="esrechts">${chef?esInhalt(ES.b):`<div class="aukarte esk2k"><h3>${esc(titel)}</h3><p class="kulkleer">Die Einstellungen der Firma ändern Chef und Büro. Profil, Sprache und Design findest du oben links im Logo-Menü.</p></div>`}
+  <p class="esfuss">Profil, Sprache, Design, Konto &amp; Geräte: oben links auf das Logo tippen · Onstand ${esc(ON_VER)}</p></div></div>`;
+ const s=inh.querySelector('.esq');s.oninput=()=>{ES.q=s.value;const M=ES_B.flatMap(x=>x[1]).filter(([k,t,w])=>(t+' '+w).toLowerCase().includes(ES.q.trim().toLowerCase()));if(M.length&&!M.some(x=>x[0]===ES.b))esWechsel(inh,M[0][0],true);else esSeite(inh);const t=inh.querySelector('.esq');t.focus();t.setSelectionRange(t.value.length,t.value.length)};
+ inh.querySelectorAll('[data-esb]').forEach(b=>b.onclick=()=>esWechsel(inh,b.dataset.esb));
+ if(chef)esBinden(inh)}
+function esWechsel(inh,b,still){if(ES.dirty)esSpeichern(inh,true);ES.b=b;ES.dirty=false;esSeite(inh)}
+function esInhalt(b){const F=typeof auFirma==='function'?auFirma():{},{logo}=onInitialen();
+ if(b==='firma'){const ok=typeof rqIbanOk==='function'&&F.iban&&rqIbanOk(F.iban),an=!!F.qr&&ok,pos=typeof RQ_POS!=='undefined'&&RQ_POS.some(p=>p[0]===F.qrPos)?F.qrPos:'box';
+  return `<div class="aukarte aulform esform"><div class="kulkh"><b>Firmendaten</b><small>erscheinen auf Angeboten und Rechnungen</small></div>
+   <div class="eslogo"><span class="eslb">${F.logo?`<img src="${esc(F.logo)}" alt="Logo">`:esc(onInitialen().ini||'')}</span><div><b>Logo</b><small>${F.logo?'erscheint oben links in Onstand':'Bild als PNG oder JPG, am besten quadratisch'}</small></div><label class="amab eslbtn">${F.logo?'Logo ändern':'Logo hochladen'}<input type="file" accept="image/png,image/jpeg,image/webp" hidden></label>${F.logo?'<button type="button" class="aultext eslweg">Entfernen</button>':''}</div>
+   <div class="kulzwei">${ES_FE.map(([k,t,ph])=>`<label><span class="aullab">${t}</span><input class="aut" data-k="${k}" value="${esc(F[k]||'')}" placeholder="${esc(ph)}"${k==='iban'?' spellcheck="false"':''}></label>`).join('')}</div>
+   ${typeof RQ_POS!=='undefined'?`<div class="esqr"><label class="esqrz"><input type="checkbox" data-k2="qr" ${an?'checked':''} ${ok?'':'disabled'}><span><b>QR-Code zum Bezahlen auf Rechnungen</b><small>${ok?'Der Kunde scannt ihn mit seiner Banking-App: Empfänger, IBAN, Betrag und Rechnungsnummer sind sofort eingetragen.':F.iban?'Die IBAN scheint nicht zu stimmen – bitte prüfen.':'Erst die IBAN eintragen.'}</small></span></label>
+    <div class="aulst esqrp${an?'':' aus'}" role="radiogroup" aria-label="Platz auf der Rechnung">${RQ_POS.map(([v,n])=>`<button type="button" data-qp="${v}" class="${v===pos?'an':''}" ${an?'':'disabled'}>${n}</button>`).join('')}</div></div>`:''}</div>`}
+ if(b==='rech'){const E=typeof opEinst==='function'?opEinst():{};
+  return `<div class="aukarte aulform esform"><div class="kulkh"><b>Rechnungen &amp; Mahnungen</b><small>so erinnert Onstand an offene Rechnungen</small></div>
+   <div class="kulzwei">${ES_ME.map(([k,t,e])=>`<label><span class="aullab">${t}</span><span class="eseinh"><input class="aut" data-oe="${k}" inputmode="decimal" value="${esc(typeof auZ==='function'?auZ(E[k]??''):String(E[k]??''))}"><em>${e}</em></span></label>`).join('')}</div>
+   <p class="kulfehlt">Basiszinssatz seit 01.07.2026: 1,52 %. Die Bundesbank passt ihn zum 1. Januar und 1. Juli an – dann hier ändern.</p>
+   <p class="kulkleer">Die offenen Posten selbst stehen unter Aufträge → Offen.</p></div>`}
+ if(b==='daten'){let si='';try{const z=localStorage.getItem('onstandSiLetzt');if(z)si=new Date(z).toLocaleDateString('de-DE')}catch(e){}const ord=GED&&GED.handy?'Speicher dieses Geräts':ROOT?ROOT.name:'';
+  return `<div class="aukarte kulkarte"><div class="kulkh"><b>Datenordner</b><small>hier liegen alle Daten der Firma</small></div>
+   <div class="kulfl"><span>Verbunden</span><div>${ord?esc(ord):'<b class="kulrot">nicht verbunden</b>'}</div></div><div class="esrow"><button type="button" class="amab" data-m="ordner">${ROOT||GED&&GED.handy?'Ordner wechseln':'Ordner verbinden'}</button></div></div>
+  <div class="aukarte kulkarte"><div class="kulkh"><b>Sicherung</b><small>jeden Morgen automatisch</small></div>
+   <div class="kulfl"><span>Letzte Sicherung</span><div>${si?esc(si):'<span class="kulgrau">noch keine</span>'}</div></div><div class="esrow"><button type="button" class="amab" data-m="si">Sicherungen ansehen</button></div></div>`}
+ if(b==='abo'){const ki=typeof KI!=='undefined'&&KI.aktiv,an=typeof syAktiv==='function'&&syAktiv();
+  return `<div class="aukarte kulkarte"><div class="kulkh"><b>Abo &amp; KI-Paket</b>${ki?'<span class="aulpill bezahlt">KI aktiv</span>':'<span class="aulpill entwurf">KI nicht gebucht</span>'}</div>
+   <div class="kulfl"><span>Firmenkonto</span><div>${an?esc((SY_KONTO&&SY_KONTO.name)||'verbunden'):'<span class="kulgrau">nicht verbunden</span>'}</div>${ki?`<span>Denk-Fragen heute</span><div>${esc(String(KI.rest??'–'))} von ${esc(String(KI.limit??25))} frei</div><span>Kostenbremse</span><div>höchstens ca. 8 € KI-Kosten im Monat, danach bis Monatsende Pause</div>`:''}</div>
+   <div class="esrow"><button type="button" class="amab" data-m="abo">Abo &amp; KI-Paket öffnen</button>${an?'':'<button type="button" class="aultext" data-m="konto">Firmenkonto verbinden</button>'}</div></div>`}
+ return ''}
+function esMerk(inh){if(ES.dirty)return;ES.dirty=true;const b=inh.querySelector('.essp');if(b){b.textContent='Speichern';b.classList.remove('esok')}}
+function esSpeichern(inh,still){if(ES.b==='firma'){const f=auFirma();inh.querySelectorAll('[data-k]').forEach(i=>{f[i.dataset.k]=i.value.trim()});try{localStorage.setItem('onstandFirma',JSON.stringify(f))}catch(e){}if(typeof fiSpeichern==='function')fiSpeichern();try{onLogo()}catch(e){}}
+ if(ES.b==='rech'&&typeof opEinst==='function'){const E=opEinst();inh.querySelectorAll('[data-oe]').forEach(i=>{const v=auNum(i.value);if(isFinite(v)&&v>=0)E[i.dataset.oe]=v});opEinstSetzen(E)}
+ ES.dirty=false;if(!still){const b=inh.querySelector('.essp');if(b){b.textContent='✓ Gespeichert';b.classList.add('esok')}try{onToast('Gespeichert')}catch(e){}}}
+function esBinden(inh){const sp=inh.querySelector('.essp');if(sp)sp.onclick=()=>{if(ES.dirty)esSpeichern(inh);else try{onToast('Alles gespeichert')}catch(e){}};
+ inh.querySelectorAll('[data-k],[data-oe]').forEach(i=>{i.addEventListener('focus',()=>setTimeout(()=>{try{i.select()}catch(e){}},0));i.oninput=()=>esMerk(inh);i.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const A=[...inh.querySelectorAll('[data-k],[data-oe]')],n=A[A.indexOf(i)+1];if(n)n.focus();else esSpeichern(inh)}}});
+ const iban=inh.querySelector('[data-k="iban"]');if(iban)iban.onchange=()=>{esSpeichern(inh,true);esSeite(inh)};
+ const qr=inh.querySelector('[data-k2="qr"]');if(qr)qr.onchange=()=>{esSpeichern(inh,true);const f=auFirma();f.qr=qr.checked;localStorage.setItem('onstandFirma',JSON.stringify(f));if(typeof fiSpeichern==='function')fiSpeichern();esSeite(inh)};
+ inh.querySelectorAll('[data-qp]').forEach(b=>b.onclick=()=>{const f=auFirma();f.qrPos=b.dataset.qp;localStorage.setItem('onstandFirma',JSON.stringify(f));if(typeof fiSpeichern==='function')fiSpeichern();inh.querySelectorAll('[data-qp]').forEach(x=>x.classList.toggle('an',x===b))});
+ const lf=inh.querySelector('.eslbtn input');if(lf)lf.onchange=async()=>{const fl=lf.files&&lf.files[0];if(!fl)return;try{const u=await esLogoKlein(fl);esSpeichern(inh,true);const f=auFirma();f.logo=u;localStorage.setItem('onstandFirma',JSON.stringify(f));if(typeof fiSpeichern==='function')fiSpeichern();try{onLogo()}catch(e){}esSeite(inh);onToast('Logo gespeichert')}catch(e){onToast('Das Bild konnte nicht gelesen werden.')}};
+ const lw=inh.querySelector('.eslweg');if(lw)lw.onclick=()=>{esSpeichern(inh,true);const f=auFirma();delete f.logo;localStorage.setItem('onstandFirma',JSON.stringify(f));if(typeof fiSpeichern==='function')fiSpeichern();try{onLogo()}catch(e){}esSeite(inh)};
+ inh.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{try{onMenuAktion(b.dataset.m)}catch(e){}})}
+// Logo verkleinern (höchstens 256 px, als PNG), damit es klein in den Firmendaten bleibt
+function esLogoKlein(fl){return new Promise((ok,nein)=>{const u=URL.createObjectURL(fl),im=new Image();im.onload=()=>{const s=Math.min(1,256/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/png'))};im.onerror=()=>{URL.revokeObjectURL(u);nein()};im.src=u})}
+// Ungespeicherte Änderungen nicht verlieren: beim Verlassen der Einstellungen still speichern
+{const alt=amFunktion;amFunktion=function(){try{if(ES.dirty){const a=document.querySelector('#am .aminhalt');if(a&&a.querySelector('.esneu'))esSpeichern(a,true)}}catch(e){}return alt.apply(this,arguments)}}
+window.addEventListener('beforeunload',()=>{try{if(ES.dirty){const a=document.querySelector('#am .aminhalt');if(a&&a.querySelector('.esneu'))esSpeichern(a,true)}}catch(e){}});
 // ===== Meine Stunden: einstempeln, Pause, Feierabend; Zeit nachtragen (heute/gestern); Erinnerung um 17 Uhr =====
 // Gespeichert wird als eigener Tagebuch-Eintrag der Person („Arbeitszeit: 07:00–16:00, Pause 30 Min.“) – damit zählen
 // Personal, Stundenzettel und Export automatisch mit. Keine automatische Pause: nur was gedrückt oder eingetragen wurde.
