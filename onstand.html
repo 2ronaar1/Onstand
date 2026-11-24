@@ -4873,6 +4873,50 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .ondlg .msf>label{font:600 13.5px var(--k-ui);letter-spacing:0;text-transform:none;color:var(--k-t)}
 #am#am .plmeine .msbox{max-width:none}
 #am#am .kulfm{min-width:280px}#am#am .kulfm button{white-space:nowrap}
+/* ===== Mängel im Kunden-/Personal-Design (maengel/layout.js) ===== */
+#am .mglbst{display:inline-flex;align-items:center;height:36px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);padding:0 4px 0 10px;gap:4px}
+#am .mglbst span{font:500 12.5px var(--k-ui);color:var(--k-sub)}
+#am#am .mglbs{border:0;background:none;height:34px;font:600 13.5px var(--k-ui);color:var(--k-t);max-width:200px;cursor:pointer;outline:none}
+#am .mglgr{display:block;padding:6px 10px 2px;font:600 11.5px var(--k-ui);color:var(--k-sub)}
+#am#am .ausplit .mglal>.auar.aulz,#am#am .ausplit .mglal .authd{grid-template-columns:minmax(0,1.7fr) minmax(0,.8fr) 96px 132px}
+#am#am .ausplit .mglab2>.auar.aulz,#am#am .ausplit .mglab2 .authd{grid-template-columns:minmax(0,1.5fr) 100px 110px 132px}
+#am .mglal .c1 small .aulkz,#am .mglab2 .c1 b .aulkz{margin-right:6px}
+#am .mglal .c3 b,#am .mglab2 .c2 b,#am .mglab2 .c3 b{display:block}
+#am .mglal .c4,#am .mglab2 .c4{display:flex;justify-content:flex-start}
+#am .mglerz{display:flex;gap:8px;margin-top:14px;max-width:none}
+#am#am .mglerz input{flex:1;height:42px;border:1px solid var(--k-lin);border-radius:8px;padding:0 12px;font:15px var(--k-ui);background:var(--k-b1);color:var(--k-t)}
+#am .mglerz.denkt{opacity:.6}
+#am#am .mglerz .amab{height:42px;padding:0 16px;font:600 14px var(--k-ui);border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);cursor:pointer;letter-spacing:0;text-transform:none}
+/* Fotos */
+#am#am .mglfotos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+#am#am .mglfotos1{grid-template-columns:minmax(0,260px)}
+#am#am .mglfotos .mgfbox{min-height:120px;border:1.5px dashed var(--k-lin);border-radius:8px;background:color-mix(in srgb,var(--k-t) 2%,var(--k-b1));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;overflow:hidden;position:relative}
+#am#am .mglfotos2 .mgfbox{min-height:180px}
+#am#am .mglfotos .mgfbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#am#am .mglfotos .mglab{font:600 13px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-t)!important}
+#am#am .mglfotos .mgfl,#am#am .mglfotos .mgfl span{font:13px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-sub)!important}
+#am#am .mglweiter{align-self:flex-start;height:38px;padding:0 16px;border:1px solid var(--k-lin);border-radius:6px;background:var(--k-b1);font:600 14px var(--k-ui);color:var(--k-t);cursor:pointer;letter-spacing:0;text-transform:none}
+#am .mglweiterz{display:flex;justify-content:flex-end;margin-top:12px}
+#am#am .mglweiterz .amja{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-t)}
+#am .mglfr{display:flex;gap:12px;margin-top:4px}#am .mglfr .aultext{font-size:13px}
+#am .mglplan{margin-top:16px}
+#am .kulico{font:700 14px var(--k-ui)}
+/* Abnahme-Protokoll im gleichen Rahmen */
+#am#am .mglprot{max-width:880px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;padding:18px 20px;margin-top:16px;overflow:visible}
+#am#am .mglprot .amfeld>small,#am#am .mglprot .mgbox h4,#am#am .mglprot .mgpad{font:600 13.5px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-t)!important}
+#am#am .mglprot .mgchips button,#am#am .mglprot .mgerg button{text-transform:none;letter-spacing:0;font:500 14px var(--k-ui)}
+#am#am .mglprot input[type=date],#am#am .mglprot input[type=time]{height:40px;border:1px solid var(--k-lin);border-radius:8px;padding:0 10px;font:15px var(--k-ui)}
+#am#am .mglak{max-width:880px;display:flex;justify-content:flex-end;gap:8px;margin-top:12px;position:static;background:none;border:0;padding:0}
+#am#am .mglak button{text-transform:none;letter-spacing:0;font:600 14px var(--k-ui)}
+#am#am .mglak .amlos{margin-right:auto;color:var(--k-rot)}
+#am#am .aminhalt:has(.mglal,.mglab2,.mglerz,.mglplan)>.aux{flex:none!important;min-height:0!important;height:auto!important}
+#am#am .mglak{position:static!important;inset:auto!important;box-shadow:none!important}
+#am#am .mglprot .mgunters{margin-top:14px}
+#am#am .kulwahl[data-w="s"]{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+#am#am .mglprot{flex:none!important;height:auto!important;max-height:none!important;overflow:visible!important}
+#am#am .mglprot>.mbkab{display:none!important}
+#am#am .mglprot .mgunters{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#am#am .mglprot .mgpad canvas{width:100%;height:150px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);display:block;margin-top:6px}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -5000,7 +5044,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.16';
+const ON_VER='0.11.18';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -8288,7 +8332,7 @@ async function brIndex(){const L=Object.values(BR.seiten).sort((a,b)=>a.titel.lo
 
 // ---------- Dateien lesen (Text für die KI, höchstens ~1.500 Zeichen) ----------
 const brEnt=t=>String(t||'').replace(/&#(\d+);/g,(m,n)=>String.fromCharCode(+n)).replace(/&#x([0-9a-f]+);/gi,(m,n)=>String.fromCharCode(parseInt(n,16))).replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&amp;/g,'&');
-const BR_MAX=1500,BR_TEXTEND=/\.(txt|md|csv|json|xml|eml|html?|ics|vcf|log)$/i;
+const BR_MAX=6000,BR_TEXTEND=/\.(txt|md|csv|json|xml|eml|html?|ics|vcf|log)$/i;
 async function brDateiText(file,name){try{const n=name.toLowerCase();
   if(BR_TEXTEND.test(n)){let t=await file.text();if(/\.eml$/.test(n))t=t.replace(/^[\s\S]*?\r?\n\r?\n/,m=>m.split(/\r?\n/).filter(z=>/^(from|to|subject|date|von|an|betreff|datum):/i.test(z)).join('\n')+'\n');if(/\.html?$/.test(n))t=t.replace(/<[^>]+>/g,' ');return t.replace(/\s+/g,' ').slice(0,BR_MAX)}
   if(/\.pdf$/.test(n))return (await brPdfText(new Uint8Array(await file.arrayBuffer()))).slice(0,BR_MAX);
@@ -8331,8 +8375,10 @@ async function brQuelleWaehlen(){if(!window.showDirectoryPicker)throw new Error(
  await brStandSpeichern();await brIndex();return h}
 async function brQuelleRecht(frag){if(!BR.quelle)return false;try{let p=await BR.quelle.queryPermission({mode:'read'});if(p!=='granted'&&frag)p=await BR.quelle.requestPermission({mode:'read'});return p==='granted'}catch(e){return false}}
 async function brScan(dir,pre,out){for await(const [n,h] of dir.entries()){if(n.startsWith('.')||n.startsWith('~$')||/^(thumbs\.db|desktop\.ini)$/i.test(n))continue;if(h.kind==='directory'){if(out.length<5000)await brScan(h,pre+n+'/',out)}else out.push({pfad:pre+n,h})}return out}
+// Nicht zugeordnete Dateien: nach einer neuen Sortier-Regel sofort, sonst frühestens nach 6 Tagen (Wochenlauf) noch einmal ansehen
+const BR_SORTV=2,brNochmal=alt=>!alt.seite&&((alt.v||1)<BR_SORTV||(Date.now()-new Date(alt.d||0))/864e5>=6);
 async function brNeuErmitteln(frag){BR.neuQuelle=[];if(!BR.stand)return 0;const ign=new Set(BR.stand.ignoriert||[]);
- if(await brQuelleRecht(frag)){const L=await brScan(BR.quelle,'',[]);for(const x of L){const id='Q:'+x.pfad;if(ign.has(id))continue;let f;try{f=await x.h.getFile()}catch(e){continue}const sig=f.size+'-'+f.lastModified,alt=BR.stand.dateien[id];if(!alt||alt.sig!==sig)BR.neuQuelle.push({id,pfad:x.pfad,name:f.name,file:f,sig})}}
+ if(await brQuelleRecht(frag)){const L=await brScan(BR.quelle,'',[]);for(const x of L){const id='Q:'+x.pfad;if(ign.has(id))continue;let f;try{f=await x.h.getFile()}catch(e){continue}const sig=f.size+'-'+f.lastModified,alt=BR.stand.dateien[id];if(!alt||alt.sig!==sig||brNochmal(alt))BR.neuQuelle.push({id,pfad:x.pfad,name:f.name,file:f,sig})}}
  return BR.neuQuelle.length+BR.neuNotizen.length}
 async function brDateienHinzu(files){await fsDir(BR_ORD+'/Neu',true);let n=0;for(const f of files){const text=await brDateiText(f,f.name);const kopf=`Quelle: ${f.name} · hinzugefügt ${brHeute()} von ${ON_PROFIL.name||''}\n`;
   await schreiben(BR_ORD+'/Neu/'+brNotiz(f.name.replace(/\.[^.]+$/,''))+' '+Date.now().toString(36)+'.txt',kopf+(text||'(kein lesbarer Text – nur der Dateiname)'));n++}await brLaden();return n}
@@ -8364,12 +8410,12 @@ async function brLauf(o={}){if(BR.laeuft)return;if(!syAktiv()||!KI.aktiv){onToas
     if(j.art==='q'){text=await brDateiText(j.file,j.name);ordner=j.pfad.split('/').slice(0,-1).join('/');datum=new Date(j.file.lastModified).toISOString().slice(0,10)}
     else{const t=await lesen(BR_ORD+'/Neu/'+j.name);j.roh=t;const m=t.match(/^Quelle: (.+?) · /);name=m?m[1]:j.name;text=t.split('\n').slice(1).join('\n').slice(0,BR_MAX)}
     j.anzeige=name;anfrage.push({id:j.id,name,ordner,datum,text})}
-   const erg=await brKi(anfrage),nachId=new Map(erg.map(e=>[String(e.id),e]));
-   for(const j of teil){const e=nachId.get(j.id),quelle=j.art==='q'?(BR.stand.quelle||'Ordner')+'/'+j.pfad:j.anzeige;
+   const erg=await brKi(anfrage),nachId=new Map();erg.forEach(e=>{const k=String(e.id);if(!nachId.has(k))nachId.set(k,[]);nachId.get(k).push(e)});
+   for(const j of teil){const E=(nachId.get(j.id)||[]).filter(x=>x&&x.seite&&x.seite!=='null'),e=E[0]||(nachId.get(j.id)||[])[0],quelle=j.art==='q'?(BR.stand.quelle||'Ordner')+'/'+j.pfad:j.anzeige;
     const kz=j.art==='n'&&j.name.startsWith('Kontakt ')?/^Seite: (.+)$/m.exec(j.roh||''):null;
     if(kz){const t=await brSeiteMerge({seite:kz[1].trim(),gruppe:'Kunden & Baustellen',kurz:'',fakten:(e&&e.fakten)||[],links:[]},'');BR.frisch.push(t);zu++;BR.stand.dateien[j.id]={sig:'',seite:t,d:brHeute(),name:j.anzeige}}
-    else if(e&&e.seite&&e.seite!=='null'){const t=await brSeiteMerge(e,quelle);BR.frisch.push(t);zu++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:t,d:brHeute(),name:j.anzeige}}
-    else{nz++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:null,d:brHeute(),name:j.anzeige,text:(anfrage.find(a=>a.id===j.id)||{}).text?.slice(0,300)||''}}
+    else if(E.length){const T=[];for(const x of E){const t=await brSeiteMerge(x,quelle);if(t&&!T.includes(t))T.push(t);BR.frisch.push(t)}zu++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:T[0]||null,seiten:T,d:brHeute(),name:j.anzeige}}
+    else{nz++;BR.stand.dateien[j.id]={sig:j.sig||'',seite:null,v:BR_SORTV,d:brHeute(),name:j.anzeige,text:(anfrage.find(a=>a.id===j.id)||{}).text?.slice(0,300)||''}}
     if(j.art==='n'){try{await entfernen(BR_ORD+'/Neu/'+j.name)}catch(x){}}}
    await brStandSpeichern()}
   BR.stand.letzterLauf=new Date().toISOString();await brStandSpeichern();await brIndex();await brLaden();
@@ -12231,6 +12277,23 @@ Oder eine neue Person?|Czy nowa osoba?|Sau o persoană nouă?|Apo një person i 
 + Als neue Person anlegen|+ Dodaj jako nową osobę|+ Adaugă ca persoană nouă|+ Shto si person të ri|+ Dodaj kao novu osobu|+ Добави като ново лице
 Eintrag verwerfen|Odrzuć wpis|Renunță la intrare|Hidh hyrjen|Odbaci unos|Отхвърли записа
 Gefunden in|Znaleziono w|Găsit în|Gjetur në|Pronađeno u|Намерено в
+Mangel, Raum oder Nummer|Usterka, pomieszczenie lub numer|Defect, cameră sau număr|Defekt, dhomë ose numër|Nedostatak, prostorija ili broj|Дефект, помещение или номер
+Ausfüllen lassen|Wypełnij automatycznie|Completează automat|Plotëso automatikisht|Ispuni automatski|Попълни автоматично
+Als geprüft abhaken|Odhacz jako sprawdzone|Bifează ca verificat|Shëno si të kontrolluar|Označi kao provjereno|Отметни като проверен
+Mangel löschen|Usuń usterkę|Șterge defectul|Fshi defektin|Izbriši nedostatak|Изтрий дефекта
+Mangel bearbeiten|Edytuj usterkę|Editează defectul|Ndrysho defektin|Uredi nedostatak|Редактирай дефекта
+Mangel anlegen|Dodaj usterkę|Adaugă defectul|Shto defektin|Dodaj nedostatak|Добави дефекта
+Auf welcher Baustelle?|Na której budowie?|Pe ce șantier?|Në cilin kantier?|Na kojem gradilištu?|На кой обект?
+Wer kümmert sich?|Kto się tym zajmie?|Cine se ocupă?|Kush merret?|Tko se brine?|Кой се грижи?
+Wie schlimm?|Jak poważne?|Cât de grav?|Sa e rëndë?|Koliko ozbiljno?|Колко сериозно?
+Fotos|Zdjęcia|Fotografii|Foto|Fotografije|Снимки
+Im Bauplan zeigen|Pokaż w planie|Arată în plan|Shfaq në plan|Prikaži u planu|Покажи в плана
+Abgenommen|Odebrano|Recepționat|Pranuar|Preuzeto|Приет
+Mit Vorbehalt|Z zastrzeżeniem|Cu rezervă|Me rezervë|S rezervom|С резерва
+Verweigert|Odmówiono|Refuzat|Refuzuar|Odbijeno|Отказан
+Unterschriften|Podpisy|Semnături|Nënshkrime|Potpisi|Подписи
+Protokoll erstellen|Utwórz protokół|Creează procesul-verbal|Krijo procesverbalin|Izradi zapisnik|Създай протокол
+Abnahme entfernen|Usuń odbiór|Elimină recepția|Hiq pranimin|Ukloni primopredaju|Премахни приемането
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -13026,6 +13089,157 @@ function mbAbSeite(inh){const sc=inh.querySelector('.mgscroll');if(!sc||sc.query
  sc.insertAdjacentHTML('afterbegin',`<div class="mbk mbkab"><b>Abnahme · ${esc(k)}</b><span class="mbp" style="--pc:${e[1]}">${e[0]}</span></div>`);
  kbSchreib(inh,'.amfeld>small,.mgbox>h4');inh.querySelectorAll('.mgpad').forEach(p=>{const n=p.firstChild;if(n&&n.nodeType===3)n.nodeValue=n.nodeValue.replace('UNTERSCHRIFT KUNDE','Unterschrift Kunde').replace('UNTERSCHRIFT AUFTRAGNEHMER','Unterschrift Auftragnehmer')});
 }
+// ===== Mängel im Kunden-/Personal-Design (Probe „Mängel“, v0.11.17) =====
+// Am PC (ab 980 px): Reiter Offen · Zu prüfen · Erledigt · Abnahmen, Filter-Knopf (Baustelle, Überfällig, Wesentlich, Zuständig),
+// Tabelle mit Vorschau, Mangel als eigene Seite mit Status-Schalter, Formular als eine Karte, Abnahmen als Tabelle,
+// Abnahme-Protokoll im gleichen Rahmen. Speichern, Fotos, Unterschriften und Protokoll bleiben aus maengel.js. Handy bleibt.
+const MGL={f:'',q:'',vor:null,avor:null};
+const mglBreit=()=>{if(typeof hyHandy==='function'&&hyHandy())return false;const a=document.querySelector('#am .aminhalt');return (a&&a.clientWidth||innerWidth)>=980};
+const MGL_ST={offen:['Offen','verschickt'],arbeit:['In Arbeit','kulint'],behoben:['Behoben · prüfen','entwurf'],geprueft:['Geprüft','bezahlt']};
+const MGL_ERG={'':['Geplant','verschickt'],ok:['Abgenommen','bezahlt'],vor:['Mit Vorbehalt','entwurf'],nein:['Verweigert','abgelehnt']};
+const mglPill=m=>m.schwer&&mgOffen(m)?'<span class="aulpill abgelehnt">Wesentlich</span>':`<span class="aulpill ${MGL_ST[m.st][1]}">${MGL_ST[m.st][0]}</span>`;
+const mglDat=s=>{const d=tbAusIso(s);return d.getDate()+'.'+(d.getMonth()+1)+'.'+String(d.getFullYear()).slice(2)};
+const mglKz=b=>{const x=mgB(b);return `<span class="aulkz" style="--bc:${x.c}">${esc(x.k)}</span>`};
+const MGL_I={tb:'<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/></svg>',bp:'<svg viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg>',kal:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',pe:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.9-3.6 3.6-5.5 7-5.5s6.1 1.9 7 5.5"/></svg>',ku:'<svg viewBox="0 0 24 24"><path d="M3 20h18M6 20V10l6-5 6 5v10"/></svg>',ab:'<svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 7"/></svg>',filter:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4-2v-4.5z"/></svg>'};
+function mglBaustellen(){return [...new Set(mgAlle().map(m=>m.b).concat(Object.keys(AB)).concat(Object.values(BST).filter(b=>b.status!=='abgeschlossen'&&b.status!=='interessent').map(b=>b.name)))].filter(b=>BST[b]||MG[b]||AB[b]).sort((a,b)=>a.localeCompare(b))}
+// ---------- Kopf + Reiter ----------
+function mglKopf(alle){const L=alle.filter(m=>MGV.b==='alle'||m.b===MGV.b),off=L.filter(mgOffen),ue=L.filter(mgUeber),tab=MGV.tab==='abnahme'?'abn':MGV.f==='behoben'?'behoben':MGV.f==='erledigt'?'erledigt':'offen',bs=mglBaustellen();
+ const pe=[...new Set(alle.filter(mgOffen).map(m=>m.z).filter(Boolean))].sort();
+ const FI=[['','Alle anzeigen',()=>1,'Allgemein'],['ueber','Überfällig',mgUeber,'Allgemein'],['schwer','Wesentlich',m=>m.schwer&&mgOffen(m),'Allgemein']].concat(pe.map(n=>['z:'+n,n,m=>m.z===n,'Zuständig']));
+ const fa=FI.find(f=>f[0]===MGL.f)||FI[0];
+ const n=(fn)=>L.filter(m=>tab==='offen'?mgOffen(m):tab==='behoben'?m.st==='behoben':m.st==='geprueft').filter(fn).length;
+ let grp='';const menu=FI.map(([k,t,fn,g])=>{const h=g!==grp?`${grp?'<hr>':''}<small class="mglgr">${g}</small>`:'';grp=g;return h+`<button type="button" data-mf="${esc(k)}" class="${MGL.f===k?'an':''}"><i>${MGL.f===k?'✓':''}</i>${esc(t)}<em>${n(fn)}</em></button>`}).join('');
+ const bsel=`<label class="mglbst"><span>Baustelle</span><select class="mglbs" aria-label="Baustelle"><option value="alle">Alle Baustellen</option>${bs.map(b=>`<option value="${esc(b)}"${MGV.b===b?' selected':''}>${esc(b)}</option>`).join('')}</select></label>`;
+ return {FI,fa,tab,html:`<div class="mgk"><div><span class="amtt">${off.length} offen${ue.length?` · <b class="kulrot">${ue.length} überfällig</b>`:''}${MGV.b!=='alle'?' · '+esc(MGV.b):''}</span><h2 class="mgh">Mängel</h2></div><div class="mgakt">
+  <label class="fisuch"><input type="search" class="mglq" placeholder="Mangel, Raum oder Nummer" value="${esc(MGL.q)}" aria-label="Mängel durchsuchen"></label>${bsel}
+  ${tab==='abn'?'':`<div class="aulmw kulfw"><button type="button" class="auldrei kulfb${MGL.f?' an':''}" aria-haspopup="true" aria-expanded="false">${MGL_I.filter}${MGL.f?esc(fa[1]):'Filter'}</button><div class="aulmenu kulfm" role="menu">${menu}</div></div>`}
+  ${aulDrei(`<button type="button" data-mm="abplan">Abnahme planen</button>${MGV.b!=='alle'&&AB[MGV.b]?'<button type="button" data-mm="abauf">Abnahme öffnen</button>':''}`)}
+  <button type="button" class="haupt mglneu">Mangel</button></div></div>
+ <div class="aux"><div class="autabs" role="tablist">${[['offen','Offen',off.length,ue.length>0],['behoben','Zu prüfen',L.filter(m=>m.st==='behoben').length],['erledigt','Erledigt',L.filter(m=>m.st==='geprueft').length],['abn','Abnahmen',Object.keys(AB).filter(b=>MGV.b==='alle'||b===MGV.b).length]].map(([k,t,z,rot])=>`<button type="button" data-mt="${k}" class="${tab===k?'an':''}">${t}<em class="${rot?'rot':''}">${z}</em></button>`).join('')}</div></div>`}}
+function mglKopfBinden(inh){const a=inh.querySelector(':scope>.mgk .mgakt');aulMenuBinden(a);
+ inh.querySelectorAll('[data-mt]').forEach(b=>b.onclick=()=>{const t=b.dataset.mt;MGV.sel=null;MGV.abn=null;MGL.vor=null;if(t==='abn')MGV.tab='abnahme';else{MGV.tab='maengel';MGV.f=t}mgMalen(inh)});
+ inh.querySelectorAll('[data-mf]').forEach(b=>b.onclick=()=>{MGL.f=b.dataset.mf;mgMalen(inh)});
+ const s=inh.querySelector('.mglbs');s.onchange=()=>{MGV.b=s.value;MGV.sel=null;MGL.vor=null;MGL.avor=null;mgMalen(inh)};
+ const q=inh.querySelector('.mglq');q.oninput=()=>{MGL.q=q.value;const p=q.selectionStart;mgMalen(inh);const t=inh.querySelector('.mglq');if(t){t.focus();try{t.setSelectionRange(p,p)}catch(e){}}};
+ inh.querySelector('.mglneu').onclick=()=>{MGV.form={b:MGV.b!=='alle'?MGV.b:'',frist:mgPlus(mgHeute(),7),schwer:0};mgMalen(inh)};
+ const ap=a.querySelector('[data-mm="abplan"]');if(ap)ap.onclick=()=>{MGV.tab='abnahme';MGV.sel=null;MGV.abn=null;MGL.plan=1;mgMalen(inh)};
+ const ao=a.querySelector('[data-mm="abauf"]');if(ao)ao.onclick=()=>{MGV.tab='abnahme';MGV.abn=MGV.b;mgMalen(inh)}}
+// ---------- Liste ----------
+function mglListe(inh){const alle=mgAlle(),K=mglKopf(alle),q=MGL.q.trim().toLowerCase();
+ const L=alle.filter(m=>MGV.b==='alle'||m.b===MGV.b).filter(m=>K.tab==='offen'?mgOffen(m):K.tab==='behoben'?m.st==='behoben':m.st==='geprueft').filter(K.fa[2])
+  .filter(m=>!q||[m.nr,m.t,m.raum,m.b,m.z].join(' ').toLowerCase().includes(q)).sort((a,b)=>mgUeber(b)-mgUeber(a)||b.schwer-a.schwer||String(a.frist||'9').localeCompare(String(b.frist||'9')));
+ if(!L.some(m=>mgId(m)===MGL.vor))MGL.vor=L[0]?mgId(L[0]):null;const v=MGL.vor?mgFind(MGL.vor):null;
+ const leer={offen:'Keine offenen Mängel. Sehr gut.<br>Neue Mängel oben rechts mit „+ Mangel“ – oder unten kurz erzählen.',behoben:'Nichts zu prüfen.<br>Behobene Mängel landen hier, bis jemand sie abhakt.',erledigt:'Noch nichts erledigt.'}[K.tab];
+ inh.innerHTML=K.html+`<div class="aux">${L.length?`<div class="ausplit kulsplit"><div class="aual mglal"><div class="authd"><span>Mangel</span><span>Zuständig</span><span>Frist</span><span>Status</span></div>
+  ${L.map(m=>{const f=mgFrist(m);return `<button type="button" class="auar aulz${mgId(m)===MGL.vor?' sel':''}" data-id="${esc(mgId(m))}"><span class="c1"><b>${esc(m.nr)} · ${esc(m.t)}</b><small>${mglKz(m.b)}${esc(m.b)}${m.raum?' · '+esc(m.raum):''}${m.iris?' · <span class="kulgelb">vom Assistenten · prüfen</span>':''}</small></span><span class="c2">${m.z?esc(m.z):'<i class="kulgrau">niemand</i>'}</span><span class="c3"><b class="${f.k==='ueber'?'kulrot':''}">${m.frist?mglDat(m.frist):'–'}</b><small class="${f.k==='ueber'?'kulrot':''}">${f.k==='ueber'?esc(f.t):m.st==='geprueft'&&m.erledigt?'erledigt '+mglDat(m.erledigt):'&nbsp;'}</small></span><span class="c4">${mglPill(m)}</span></button>`}).join('')}</div>
+  ${v?`<div class="auvor kulvor"><div class="auvk"><span>${esc(v.nr)} · ${esc(v.b)}</span><div class="mgakt"><button type="button" class="aultext" data-mo="${esc(mgId(v))}">Öffnen</button></div></div>${mglKurz(v)}</div>`:''}</div>`
+  :`<div class="amleer fileer">${q?'Nichts gefunden für „'+esc(MGL.q)+'“.':MGL.f?'Nichts in dieser Auswahl.':leer}</div>`}
+  <form class="mglerz"><input placeholder="Mangel kurz erzählen – z. B. „Halle Offenbach, Fuge im Flur gerissen, Jaczek bis Freitag“" aria-label="Mangel erzählen"><button type="submit" class="amab">Ausfüllen lassen</button></form></div>`;
+ mglKopfBinden(inh);
+ inh.querySelectorAll('.mglal .auar').forEach(r=>{r.onclick=()=>{if(MGL.vor===r.dataset.id){mglAuf(inh,r.dataset.id);return}MGL.vor=r.dataset.id;mgMalen(inh)};r.ondblclick=()=>mglAuf(inh,r.dataset.id)});
+ const o=inh.querySelector('[data-mo]');if(o)o.onclick=()=>mglAuf(inh,o.dataset.mo);
+ if(v){mgFotosZeigen(inh.querySelector('.kulvor'),v);const w=inh.querySelector('.mglweiter');if(w)w.onclick=()=>mglSetze(inh,v,w.dataset.st)}
+ const fe=inh.querySelector('.mglerz');fe.onsubmit=async e=>{e.preventDefault();const i=fe.querySelector('input'),t=i.value.trim();if(!t)return i.focus();fe.classList.add('denkt');i.disabled=true;
+  const r=await mgVerstehen(t).catch(()=>null);if(!inh.isConnected)return;if(!r||!r.length){MGV.form=mgLokal(t);mgMalen(inh);return}const f=r[0];if(!f.b&&MGV.b&&BST[MGV.b])f.b=MGV.b;MGV.form=Object.assign(f,{iris:1});mgMalen(inh)}}
+const mglAuf=(inh,id)=>{MGV.sel=id;inh.scrollTop=0;mgMalen(inh)};
+const MGL_WEITER={offen:['arbeit','In Arbeit nehmen'],arbeit:['behoben','Als behoben markieren'],behoben:['geprueft','Als geprüft abhaken']};
+async function mglSetze(inh,m,st){if(st==='behoben'&&!m.nach)mgToast(inh,'Tipp: Nachher-Foto machen, dann ist es bei der Abnahme belegt');m.st=st;m.erledigt=st==='geprueft'?mgHeute():'';delete m.iris;await mgSpeichern(m,m);if(st==='geprueft')mgToast(inh,m.nr+' geprüft und erledigt');mgMalen(inh)}
+function mglKurz(m){const p=mgPers(m.z),f=mgFrist(m),w=MGL_WEITER[m.st];
+ return `<div class="kulkurz"><div class="kulkk">${mglKz(m.b)}<div><b>${esc(m.t)}</b><small>${esc([m.b,m.raum].filter(Boolean).join(' · '))}</small></div></div>
+  <div class="mgfotos mglfotos">${mgFbox('Vorher','vor','kein Foto')}${mgFbox('Nachher','nach','kommt beim Beheben')}</div>
+  <dl class="kuldl"><dt>Zuständig</dt><dd>${esc(m.z||'niemand')}${p?` <span class="kulgrau">· ${esc(p.du?'du':p.rolle||'')}</span>`:''}</dd><dt>Frist</dt><dd class="${f.k==='ueber'?'kulrot':''}">${m.frist?esc(mgLang(m.frist))+(f.k==='ueber'?' · '+esc(f.t):''):'ohne Frist'}</dd><dt>Einstufung</dt><dd>${m.schwer?'<b class="kulrot">wesentlich</b> · zählt bei der Abnahme':'unwesentlich'}</dd>${m.notiz?`<dt>Notiz</dt><dd>${esc(m.notiz)}</dd>`:''}</dl>
+  ${w?`<button type="button" class="amab mglweiter" data-st="${w[0]}">${w[1]}</button>`:''}</div>`}
+// ---------- Mangel als eigene Seite ----------
+function mglSeite(inh,m){const b=mgB(m.b),s=MG_ST.findIndex(x=>x[0]===m.st),f=mgFrist(m),p=mgPers(m.z),tbTag=(m.herkunft.match(/Bautagebuch (\d{4}-\d\d-\d\d)/)||[])[1],w=MGL_WEITER[m.st];
+ const feld=(t,v)=>`<span>${t}</span><div>${v||'<button type="button" class="kulplus" data-mbe="1">+ eintragen</button>'}</div>`;
+ const V=[tbTag?['tb',MGL_I.tb,'Tagebuch '+tbAusIso(tbTag).toLocaleDateString('de-DE'),'Eintrag, aus dem der Mangel kommt']:null,['bp',MGL_I.bp,m.pl?'Im Bauplan zeigen':'Im Bauplan setzen',m.pl?m.pl.plan+(m.raum?' · '+m.raum:''):'Stelle im Grundriss markieren'],m.frist?['kal',MGL_I.kal,'Frist im Kalender',mgLang(m.frist)+' · Erinnerung am Tag vorher']:null,m.z?['pe',MGL_I.pe,m.z,mgAlle().filter(x=>x.z===m.z&&mgOffen(x)).length+' offene Mängel']:null,['ku',MGL_I.ku,m.b,b.kontakt?'Ansprechpartner: '+b.kontakt:'Kunde öffnen'],AB[m.b]?['ab',MGL_I.ab,'Abnahme '+tbAusIso(AB[m.b].datum).toLocaleDateString('de-DE'),AB_ERG[AB[m.b].erg]]:null].filter(Boolean);
+ inh.innerHTML=`<div class="mgk auldk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">${esc([m.nr,m.b,m.raum].filter(Boolean).join(' · '))}</span><h2 class="mgh">${esc(m.t)}</h2></div>
+  <div class="mgakt"><div class="aulst" role="group" aria-label="Status">${MG_ST.map(x=>`<button type="button" data-mst="${x[0]}" class="${m.st===x[0]?'an':''}">${{offen:'Offen',arbeit:'In Arbeit',behoben:'Behoben',geprueft:'Geprüft'}[x[0]]}</button>`).join('')}</div>
+  ${aulDrei(`<button type="button" data-ml="bp">${m.pl?'Im Bauplan zeigen':'Im Bauplan setzen'}</button>${AB[m.b]?'<button type="button" data-ml="ab">Abnahme öffnen</button>':'<button type="button" data-mm2="abplan">Abnahme planen</button>'}<hr><button type="button" class="rot bleibt" data-mm2="weg">Mangel löschen</button>`)}<button type="button" class="haupt mglbea">Bearbeiten</button></div></div>
+ <div class="aux kulseite"><div class="kulsp1">
+  ${m.iris?`<p class="kulfehlt">Vom Assistenten eingetragen – bitte kurz prüfen. <button type="button" class="aultext mglgut">Passt so ›</button></p>`:''}
+  <div class="aukarte kulkarte"><div class="kulkh">${mglKz(m.b)}<b>Fotos</b><small>Antippen zum Aufnehmen</small></div><div class="mgfotos mglfotos mglfotos2">${mgFbox('Vorher','vor','Foto aufnehmen')}${mgFbox('Nachher','nach','Nachher-Foto aufnehmen')}</div></div>
+  <div class="aukarte kulkarte"><div class="kulkh"><b>Angaben</b>${m.schwer&&mgOffen(m)?'<span class="aulpill abgelehnt">Wesentlich</span>':''}</div>
+   <div class="kulfl">${feld('Baustelle',esc(m.b))}${feld('Raum / Stelle',esc(m.raum||''))}${feld('Zuständig',m.z?esc(m.z)+(p?` <span class="kulgrau">· ${esc(p.du?'du':p.rolle||'')}</span>`:''):'')}${feld('Frist',m.frist?`<span class="${f.k==='ueber'?'kulrot':''}">${esc(mgLang(m.frist))}${f.k==='ueber'?' · '+esc(f.t):''}</span>`:'')}${feld('Einstufung',m.schwer?'<b class="kulrot">wesentlich</b> · zählt bei der Abnahme':'unwesentlich')}${feld('Notiz',esc(m.notiz||''))}${m.an?feld('Angelegt',esc(mglDat(m.an))+(m.herkunft?' · '+esc(m.herkunft):'')):''}${m.erledigt?feld('Erledigt',esc(mglDat(m.erledigt))):''}</div>
+   ${w?`<div class="mglweiterz"><button type="button" class="amja mglweiter" data-st="${w[0]}">${w[1]}</button></div>`:''}</div>
+ </div><div class="kulsp2"><div class="aukarte kulkarte"><div class="kulkh"><b>Verknüpft</b></div><div class="kulkl2">${V.map(([k,ic,t,u])=>`<button type="button" class="kulkz2" data-ml="${k}"><i class="kulico">${ic}</i><span class="m"><b>${esc(t)}</b><small>${esc(u)}</small></span><span class="d">›</span></button>`).join('')}</div></div></div></div>`;
+ inh.querySelector('.aulzur').onclick=()=>{MGL.vor=mgId(m);MGV.sel=null;mgMalen(inh)};
+ const bea=()=>{MGV.form=Object.assign({},m,{alt:mgId(m)});mgMalen(inh)};inh.querySelector('.mglbea').onclick=bea;inh.querySelectorAll('[data-mbe]').forEach(x=>x.onclick=bea);
+ inh.querySelectorAll('[data-mst]').forEach(x=>x.onclick=()=>{if(!x.classList.contains('an'))mglSetze(inh,m,x.dataset.mst)});
+ const wb=inh.querySelector('.mglweiter');if(wb)wb.onclick=()=>mglSetze(inh,m,wb.dataset.st);
+ const g=inh.querySelector('.mglgut');if(g)g.onclick=async()=>{delete m.iris;await mgSpeichern(m,m);mgMalen(inh)};
+ const a=inh.querySelector(':scope>.mgk .mgakt');aulMenuBinden(a);
+ inh.querySelectorAll('[data-ml]').forEach(x=>x.onclick=async()=>{const l=x.dataset.ml;if(l==='bp'){if(!window.bpMangelImPlan||!(await window.bpMangelImPlan(m)))mgToast(inh,'Für '+m.b+' gibt es noch keinen Bauplan – im Menü Bauplan anlegen');return}
+  if(l==='tb'){TBV.sel=tbAusIso(tbTag);TBV.ans=5;TBV.edit=false;TBV.idx=Math.max(0,(TB[tbTag]||[]).findIndex(e=>e.b===m.b));amFunktion('tagebuch')}
+  else if(l==='kal'){amZu();kalAuf(m.frist)}else if(l==='pe'){PE_SEL=m.z;PE_ED=false;amFunktion('personal');setTimeout(()=>{try{PE_SEL=m.z;peMalen(AM_EL.querySelector('.aminhalt'))}catch(e){}},400)}
+  else if(l==='ku'){KU_SEL=m.b;KU_V.ed=false;amFunktion('kunden',{name:m.b})}else if(l==='ab'){MGV.sel=null;MGV.tab='abnahme';MGV.abn=m.b;mgMalen(inh)}});
+ const pl=a.querySelector('[data-mm2="abplan"]');if(pl)pl.onclick=async()=>{const du=Object.values(typeof PER!=='undefined'?PER:{}).find(p=>p.du);AB[m.b]={datum:mgPlus(mgHeute(),7),zeit:'09:00',teil:du?[du.name]:[],erg:'',vorb:[],jahre:5,sigK:'',sigW:'',erstellt:''};await abSchreiben(m.b);MGV.sel=null;MGV.tab='abnahme';MGV.abn=m.b;mgMalen(inh)};
+ const wg=a.querySelector('[data-mm2="weg"]');wg.onclick=async()=>{if(!wg.classList.contains('sicher')){wg.classList.add('sicher');wg.textContent='Wirklich löschen? Nochmal tippen';setTimeout(()=>{if(wg.isConnected){wg.classList.remove('sicher');wg.textContent='Mangel löschen'}},3500);return}
+  MG[m.b]=(MG[m.b]||[]).filter(x=>x.nr!==m.nr);await mgSchreiben(m.b);MGV.sel=null;mgMalen(inh);try{const id=await pkWeg({k:'mg',t:'Mangel '+m.nr+' · '+m.b,s:[m.t,m.raum].filter(Boolean).join(' · '),data:m,wieder:'mg'});pkRueckgaengig(m.nr+' gelöscht',id,()=>{if(inh.isConnected)mgMalen(inh)})}catch(e){}};
+ inh.querySelectorAll('.mgfbox input').forEach(inp=>inp.onchange=async()=>{const fl=inp.files&&inp.files[0];if(!fl)return;const w2=inp.closest('.mgfbox').dataset.w,bl=await mgFotoKlein(fl),name=notizName(m.b)+' '+m.nr+' '+(w2==='vor'?'vorher':'nachher')+' '+Date.now().toString(36)+'.jpg';
+  try{await mgBildSpeichern(MG_ORD+'/Fotos',name,bl)}catch(e){mgToast(inh,'Foto konnte nicht gespeichert werden.');return}m[w2]='Fotos/'+name;m[w2+'Url']=URL.createObjectURL(bl);if(w2==='nach'&&mgOffen(m)){m.st='behoben';mgToast(inh,'Nachher-Foto da: Status „Behoben“, jetzt prüfen')}await mgSpeichern(m,m);mgMalen(inh)});
+ mgFotosZeigen(inh,m)}
+// ---------- Neu / Bearbeiten: eine Karte ----------
+function mglForm(inh){MGV.formAktiv=true;const v=MGV.form,neu=!v.alt,bs=Object.values(BST).filter(b=>b.status!=='abgeschlossen'||b.name===v.b),pe=Object.values(typeof PER!=='undefined'?PER:{}).filter(p=>p.status==='aktiv'&&!p.neu||p.name===v.z),offenBei=n=>mgAlle().filter(x=>x.z===n&&mgOffen(x)).length;
+ let bW=v.b||'',zW=v.z||'',sW=v.schwer?1:0;
+ inh.innerHTML=`<div class="mgk auldk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">${neu?'Mängel':esc(v.nr+' · '+v.b)}</span><h2 class="mgh">${neu?'Neuer Mangel':'Mangel bearbeiten'}</h2></div></div>
+ <div class="aux"><div class="aukarte aufm aulform kulform">
+  ${v.iris?'<p class="kulfehlt">Der Assistent hat ausgefüllt – bitte kurz prüfen, dann speichern.</p>':''}
+  <label><span class="aullab">Was ist los?</span><input class="aut" data-f="t" value="${esc(v.t||'')}" placeholder="z. B. Fliese im Bad gesprungen"></label>
+  <div><span class="aullab">Auf welcher Baustelle?</span><div class="mgchips aulwahl kulwahl" data-w="b">${bs.map(b=>`<button type="button" data-v="${esc(b.name)}" class="aulk${bW===b.name?' an':''}"><b><span class="aulkz" style="--bc:${b.c}">${esc(b.k)}</span>${esc(b.name)}</b><small>${esc([b.kontakt,(b.ort||'').split(',').pop().trim()].filter(Boolean).join(' · ')||'&nbsp;')}</small></button>`).join('')||'<p class="kulkleer">Noch keine Baustellen – erst bei Kunden anlegen.</p>'}</div></div>
+  <div class="kulzwei"><label><span class="aullab">Raum / Stelle</span><input class="aut" data-f="raum" value="${esc(v.raum||'')}" placeholder="z. B. Bad, Wand links"></label>
+   <label><span class="aullab">Frist</span><input class="aut" type="date" data-f="frist" value="${esc(v.frist||'')}"><span class="mglfr">${[['+3 Tage',3],['+1 Woche',7],['+2 Wochen',14]].map(([n,d])=>`<button type="button" class="aultext" data-d="${d}">${n}</button>`).join('')}</span></label></div>
+  <div><span class="aullab">Wer kümmert sich?</span><div class="mgchips aulwahl kulwahl" data-w="z">${pe.map(p=>`<button type="button" data-v="${esc(p.name)}" class="aulk${zW===p.name?' an':''}"><b><span class="aulkz">${esc(p.k)}</span>${esc(p.name)}</b><small>${esc(p.rolle||'')} · ${offenBei(p.name)} offen</small></button>`).join('')}</div></div>
+  <div><span class="aullab">Wie schlimm?</span><div class="mgchips aulwahl kulwahl" data-w="s"><button type="button" data-v="0" class="aulk${sW?'':' an'}"><b>Unwesentlich</b><small>Schönheitsfehler, Abnahme möglich</small></button><button type="button" data-v="1" class="aulk${sW?' an':''}"><b class="kulrot">Wesentlich</b><small>gefährdet die Abnahme</small></button></div></div>
+  ${neu?`<div><span class="aullab">Foto <small>optional</small></span><div class="mgfotos mglfotos mglfotos1">${mgFbox('Vorher','vor','Foto aufnehmen')}</div></div>`:''}
+  <label><span class="aullab">Notiz</span><input class="aut" data-f="notiz" value="${esc(v.notiz||'')}" placeholder="z. B. Material bestellt"></label>
+  <div class="amaktion"><button type="button" class="amab mglabb">Abbrechen</button><button type="button" class="amja mglok">${neu?'Mangel anlegen':'Speichern'}</button></div>
+ </div></div>`;
+ const fv=n=>inh.querySelector(`[data-f=${n}]`).value.trim(),zur=()=>{const alt=v.alt;MGV.form=null;MGV.sel=alt||null;mgMalen(inh)};
+ inh.querySelector('.aulzur').onclick=inh.querySelector(".mglabb").onclick=zur;
+ inh.querySelectorAll('.kulwahl[data-w]').forEach(g=>g.querySelectorAll('[data-v]').forEach(x=>x.onclick=()=>{g.querySelectorAll('[data-v]').forEach(y=>y.classList.toggle('an',y===x));const w=g.dataset.w;if(w==='b')bW=x.dataset.v;else if(w==='z')zW=x.dataset.v;else sW=+x.dataset.v}));
+ inh.querySelectorAll('.mglfr [data-d]').forEach(x=>x.onclick=()=>{inh.querySelector('[data-f=frist]').value=mgPlus(mgHeute(),+x.dataset.d)});
+ const fi=inh.querySelector('.mgfbox[data-w=vor] input');if(fi)fi.onchange=async()=>{const fl=fi.files&&fi.files[0];if(!fl)return;v.vorBlob=await mgFotoKlein(fl);v.vorUrl=URL.createObjectURL(v.vorBlob);mgFotosZeigen(inh,v)};if(v.vorUrl)mgFotosZeigen(inh,v);
+ const ok=inh.querySelector('.mglok');ok.onclick=async()=>{const o={b:bW,z:zW,schwer:sW,raum:fv('raum'),frist:fv('frist'),t:fv('t').replace(/\s+/g,' '),notiz:fv('notiz')};
+  if(!o.t)return inh.querySelector('[data-f=t]').focus();if(!o.b)return mgToast(inh,'Bitte eine Baustelle wählen');if(!o.z)return mgToast(inh,'Wer kümmert sich darum?');
+  ok.disabled=true;const alt=v.alt?mgFind(v.alt):null;const m=alt?Object.assign({},alt,o):Object.assign({nr:'',st:'offen',herkunft:v.herkunft||(v.iris?'Assistent · aus Erzählung':''),vor:'',nach:'',erledigt:'',an:mgHeute()},o);
+  try{if(!alt)m.nr=mgNeueNr(o.b);if(v.vorBlob){const name=notizName(o.b)+' '+m.nr+' vorher '+Date.now().toString(36)+'.jpg';await mgBildSpeichern(MG_ORD+'/Fotos',name,v.vorBlob);m.vor='Fotos/'+name;m.vorUrl=v.vorUrl}
+   if(!(await mgSpeichern(alt,m)))throw new Error('ged')}catch(e){ok.disabled=false;return mgToast(inh,'Dafür muss der Onstand-Ordner verbunden sein (Firmenlogo oben links → Datenordner).')}
+  try{gedErinnerung((alt?'Mangel geändert: ':'Mangel angelegt: ')+m.b+' '+m.nr+' – '+m.t,'Mängel')}catch(e){}
+  MGV.form=null;MGV.sel=mgId(m);MGV.f='offen';MGV.tab='maengel';mgMalen(inh);if(!alt)mgToast(inh,m.nr+' angelegt'+(m.frist?' · Frist '+mgKurz(m.frist)+' steht im Kalender':''))};
+ if(neu)setTimeout(()=>{const t=inh.querySelector('[data-f=t]');if(t&&!t.value)t.focus()},30)}
+// ---------- Abnahmen ----------
+function mglAbListe(inh){const alle=mgAlle(),K=mglKopf(alle),bs=mglBaustellen(),G=Object.entries(AB).filter(([k])=>MGV.b==='alle'||MGV.b===k).sort((a,b)=>a[1].datum.localeCompare(b[1].datum)),ohne=bs.filter(k=>!AB[k]&&BST[k]&&(MGV.b==='alle'||MGV.b===k));
+ if(!G.some(([k])=>k===MGL.avor))MGL.avor=G[0]?G[0][0]:null;const v=MGL.avor?AB[MGL.avor]:null;
+ inh.innerHTML=K.html+`<div class="aux">${G.length?`<div class="ausplit kulsplit"><div class="aual mglab2"><div class="authd"><span>Baustelle</span><span>Termin</span><span>Offene Mängel</span><span>Ergebnis</span></div>
+  ${G.map(([k,a])=>{const off=(MG[k]||[]).filter(mgOffen),w=off.filter(m=>m.schwer).length,e=MGL_ERG[a.erg]||MGL_ERG[''];return `<button type="button" class="auar aulz${k===MGL.avor?' sel':''}" data-k="${esc(k)}"><span class="c1"><b>${mglKz(k)}${esc(k)}</b><small>${esc((BST[k]||{}).kontakt||'')}</small></span><span class="c2"><b>${esc(mglDat(a.datum))}</b><small>${a.zeit?esc(a.zeit)+' Uhr':'&nbsp;'}</small></span><span class="c3"><b>${off.length}</b><small class="${w?'kulrot':''}">${w?w+' wesentlich':'&nbsp;'}</small></span><span class="c4"><span class="aulpill ${e[1]}">${e[0]}</span></span></button>`}).join('')}</div>
+  ${v?`<div class="auvor kulvor"><div class="auvk"><span>Abnahme · ${esc(MGL.avor)}</span><div class="mgakt"><button type="button" class="aultext" data-ao="${esc(MGL.avor)}">Öffnen</button></div></div>${mglAbKurz(MGL.avor,v)}</div>`:''}</div>`
+  :'<div class="amleer fileer">Noch keine Abnahme geplant.<br>Unten eine Baustelle wählen.</div>'}
+  ${ohne.length?`<div class="aukarte kulkarte mglplan"><div class="kulkh"><b>Abnahme planen</b><small>für Baustellen ohne Termin</small></div><div class="mgchips aulwahl kulwahl">${ohne.map(k=>{const x=mgB(k),o=(MG[k]||[]).filter(mgOffen).length;return `<button type="button" class="aulk" data-plan="${esc(k)}"><b><span class="aulkz" style="--bc:${x.c}">${esc(x.k)}</span>${esc(k)}</b><small>${o?o+' offene Mängel':'keine offenen Mängel'}</small></button>`}).join('')}</div></div>`:''}</div>`;
+ mglKopfBinden(inh);
+ inh.querySelectorAll('.mglab2 .auar').forEach(r=>r.onclick=()=>{if(MGL.avor===r.dataset.k){MGV.abn=r.dataset.k;mgMalen(inh);return}MGL.avor=r.dataset.k;mgMalen(inh)});
+ const o=inh.querySelector('[data-ao]');if(o)o.onclick=()=>{MGV.abn=o.dataset.ao;mgMalen(inh)};
+ inh.querySelectorAll('[data-plan]').forEach(b=>b.onclick=async()=>{const k=b.dataset.plan,du=Object.values(typeof PER!=='undefined'?PER:{}).find(p=>p.du);AB[k]={datum:mgPlus(mgHeute(),7),zeit:'09:00',teil:du?[du.name]:[],erg:'',vorb:[],jahre:5,sigK:'',sigW:'',erstellt:''};await abSchreiben(k);MGV.abn=k;mgMalen(inh);mgToast(inh,'Abnahme geplant · Termin steht im Kalender')});
+ if(MGL.plan){MGL.plan=0;const pl=inh.querySelector('.mglplan');if(pl)pl.scrollIntoView({block:'center'})}}
+function mglAbKurz(k,a){const off=(MG[k]||[]).filter(mgOffen),zuP=(MG[k]||[]).filter(m=>m.st==='behoben'),e=MGL_ERG[a.erg]||MGL_ERG[''];
+ return `<div class="kulkurz"><div class="kulkk">${mglKz(k)}<div><b>${esc(k)}</b><small>${esc(mgLang(a.datum))}${a.zeit?' · '+esc(a.zeit)+' Uhr':''}</small></div><span class="aulpill ${e[1]}" style="margin-left:auto">${e[0]}</span></div>
+  <dl class="kuldl"><dt>Teilnehmer</dt><dd>${esc([(BST[k]||{}).kontakt].concat(a.teil).filter(Boolean).join(', ')||'–')}</dd><dt>Gewährleistung</dt><dd>${a.jahre===4?'VOB/B · 4 Jahre':'BGB · 5 Jahre'}${a.erg&&a.erg!=='nein'?' · bis '+esc(tbAusIso(abEnde(a)).toLocaleDateString('de-DE')):''}</dd><dt>Unterschriften</dt><dd>${[a.sigK?'Kunde ✓':'Kunde fehlt',a.sigW?'Auftragnehmer ✓':'Auftragnehmer fehlt'].join(' · ')}</dd></dl>
+  ${off.length?`<div class="kullab">Offene Mängel</div><div class="kulkl2">${off.slice(0,4).map(m=>`<div class="kulkz2"><i class="kulico">!</i><span class="m"><b>${esc(m.nr)} · ${esc(m.t)}</b><small>${esc([m.raum,m.z].filter(Boolean).join(' · '))}</small></span><span class="d">${m.schwer?'<b class="kulrot">wesentlich</b>':''}</span></div>`).join('')}</div>`:'<p class="kulkleer">Keine offenen Mängel. Gute Voraussetzung.</p>'}
+  ${zuP.length?`<p class="kulfehlt">${zuP.length} behoben, aber noch nicht geprüft – vor der Abnahme kurz ansehen.</p>`:''}</div>`}
+// Abnahme-Protokoll: Inhalt aus maengel.js, Kopf und Beschriftungen im gleichen Stil
+function mglAbSeite(inh){const k=MGV.abn,a=AB[k];if(!a)return;const kopf=inh.querySelector(':scope>.mgekopf');if(!kopf||inh.querySelector('.mglabk'))return;
+ const zu=kopf.querySelector('[data-a=zu]'),e=MGL_ERG[a.erg]||MGL_ERG[''];
+ kopf.outerHTML=`<div class="mgk auldk mglabk"><button type="button" class="aulzur">‹ Zurück</button><div><span class="amtt">${esc(mgLang(a.datum))}${a.zeit?' · '+esc(a.zeit)+' Uhr':''}</span><h2 class="mgh">Abnahme · ${esc(k)}</h2></div><div class="mgakt"><span class="aulpill ${e[1]}">${e[0]}</span></div></div>`;
+ const n=inh.querySelector('.mglabk .aulzur');n.onclick=()=>zu.click();
+ const sc=inh.querySelector(':scope>.mgscroll');if(sc)sc.classList.add('mglprot');
+ inh.querySelectorAll('.amfeld>small,.mgbox h4,.mgpad').forEach(x=>{const t=x.firstChild;if(t&&t.nodeType===3&&/[A-ZÄÖÜ]{3}/.test(t.nodeValue)&&t.nodeValue===t.nodeValue.toUpperCase())t.nodeValue=typeof kbText==='function'?kbText(t.nodeValue.trim())+' ':t.nodeValue});
+ const T={'ABGENOMMEN':'Abgenommen','ABGENOMMEN MIT VORBEHALT':'Mit Vorbehalt','VERWEIGERT':'Verweigert','LÖSCHEN':'Löschen','ENTFERNEN':'Abnahme entfernen','SPEICHERN':'Speichern','PROTOKOLL':'Protokoll erstellen','ALS PDF / DRUCKEN':'Als PDF / Drucken'};
+ inh.querySelectorAll('.mgerg button,[data-cl],.amaktion button').forEach(b=>{const t=b.textContent.trim();if(T[t])b.textContent=T[t]});
+ const ak=inh.querySelector(':scope>.amaktion');if(ak)ak.classList.add('mglak')}
+// Einhängen: am PC zeichnet diese Datei; Abnahme-Protokoll wird nur umgestaltet
+{const a=mgMalen;mgMalen=function(inh){if(!mglBreit())return a.apply(this,arguments);const w=document.querySelector('#am .aminhalt')||inh;MGV.formAktiv=false;if(MGV.f==='ueber'){MGV.f='offen';MGL.f='ueber'}
+ try{if(MGV.form)return mglForm(w);if(MGV.abn){const r=a.apply(this,[w]);mglAbSeite(w);return r}
+  if(MGV.sel&&mgFind(MGV.sel))return mglSeite(w,mgFind(MGV.sel));MGV.sel=null;if(MGV.tab==='abnahme')return mglAbListe(w);return mglListe(w)}catch(e){console.error(e);return a.apply(this,arguments)}}}
 // ===== Kalender · Büro-Design =====
 // ---------- Kalender öffnen: ruhiger Aufbau wie bei den anderen Seiten (vorher sprang das Raster sofort hinein, der Rest blitzte hinterher) ----------
 const KB_AUF=kalAuf;
