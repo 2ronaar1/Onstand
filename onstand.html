@@ -4967,6 +4967,13 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 @media (max-width:1250px){#am .bbgrid{grid-template-columns:1fr}#am .bbrechts{position:static;order:-1}}
 #am#am .kulform label.bbsch,#am#am .kulform label.esqrz{flex-direction:row;align-items:flex-start;gap:10px;text-align:left}#am#am .kulform label.bbsch input{width:18px;height:18px;margin-top:2px;flex:none}
 #am#am#am .esform label.bbsch,#am#am#am .esform label.esqrz{display:flex;flex-direction:row;align-items:flex-start;gap:10px;text-align:left;justify-content:flex-start}#am#am#am .esform label.bbsch input,#am#am#am .esform label.esqrz input{width:18px;height:18px;margin:2px 0 0;flex:none}
+/* Einstellungen: Gruppen und ruhigere Felder */
+#am .esgr{margin-top:22px;padding-top:18px;border-top:1px solid var(--k-lin)}
+#am .esgr:first-of-type{border-top:0;padding-top:4px;margin-top:8px}
+#am .esgrk{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}#am .esgrk b{font:600 15.5px var(--k-ui);color:var(--k-t)}#am .esgrk small{font-size:13px;color:var(--k-sub)}
+#am .esgr .esqr{margin-top:16px;padding-top:0;border-top:0}
+#am#am#am .esform .aut,#am#am#am .esform input.aut,#am#am#am .esform textarea.aut{border:1px solid color-mix(in srgb,var(--k-t) 18%,var(--k-b1))!important;border-width:1px!important;padding-left:14px!important;padding-right:14px!important;border-radius:8px;box-shadow:none;outline:none;background:var(--k-b1)}
+#am#am#am .esform .aut:focus{border-color:var(--k-akz)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--k-akz) 16%,transparent)}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -5094,7 +5101,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.20';
+const ON_VER='0.11.21';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -12371,6 +12378,11 @@ Grußformel|Formuła pożegnalna|Formulă de încheiere|Përshëndetja|Pozdrav|�
 Fußzeile|Stopka|Subsol|Fundi i faqes|Podnožje|Долен колонтитул
 Vorschau|Podgląd|Previzualizare|Pamja paraprake|Pregled|Преглед
 mit deinen Firmendaten|z danymi twojej firmy|cu datele firmei tale|me të dhënat e firmës|s podacima tvoje tvrtke|с данните на фирмата
+Firma & Steuer|Firma i podatki|Firmă și taxe|Firma dhe tatimet|Tvrtka i porez|Фирма и данъци
+Adresse & Kontakt|Adres i kontakt|Adresă și contact|Adresa dhe kontakti|Adresa i kontakt|Адрес и контакт
+Bank & Bezahlen|Bank i płatności|Bancă și plată|Banka dhe pagesa|Banka i plaćanje|Банка и плащане
+wie die Firma auf Angeboten und Rechnungen steht|jak firma widnieje na ofertach i fakturach|cum apare firma pe oferte și facturi|si shfaqet firma në oferta dhe fatura|kako tvrtka stoji na ponudama i računima|как фирмата стои в офертите и фактурите
+KI-Kontingent|Limit AI|Cotă AI|Kuota AI|AI kontingent|AI лимит
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -13341,6 +13353,7 @@ document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.clos
 const ES={b:'firma',dirty:false,q:''};
 const ES_B=[['Firma',[['firma','Firmendaten','firma name logo inhaber adresse telefon e-mail steuer ust bank iban bic handelsregister angebot gültig qr'],['dok','Briefbogen & Texte','logo briefbogen dokument vorlage farbe text einleitung gruß fußzeile angebot rechnung design aussehen pdf'],['rech','Rechnungen & Mahnungen','rechnung mahnung mahnwesen erinnerung gebühr zins basiszins frist']]],['Daten',[['daten','Datenordner & Sicherung','ordner datenordner sicherung backup speicher']]],['Abo',[['abo','Abo & KI-Paket','abo ki paket denk-fragen kosten']]]];
 const ES_FE=[['name','Firma','z. B. Muster Bau GmbH'],['zusatz','Zeile unter dem Namen','z. B. Trockenbau · Fliesen · Innenausbau'],['inhaber','Geschäftsführer / Inhaber',''],['str','Straße',''],['ort','PLZ Ort',''],['tel','Telefon',''],['mail','E-Mail',''],['web','Webseite','z. B. meinbetrieb.de'],['stnr','Steuernummer',''],['ust','USt-IdNr.',''],['hr','Handelsregister','z. B. HRB 12345, AG Frankfurt'],['bank','Bank',''],['iban','IBAN',''],['bic','BIC',''],['gueltig','Angebot gültig (Tage)','30']];
+const ES_GR=[['Firma & Steuer','wie die Firma auf Angeboten und Rechnungen steht',['name','zusatz','inhaber','hr','stnr','ust']],['Adresse & Kontakt','',['str','ort','tel','mail','web']],['Bank & Bezahlen','',['bank','iban','bic']],['Angebote','',['gueltig']]];
 const ES_ME=[['er','Zahlungserinnerung','Tage nach Fälligkeit'],['m1','1. Mahnung','Tage nach Fälligkeit'],['m2','2. Mahnung','Tage nach Fälligkeit'],['mv','Mahnbescheid prüfen','Tage nach der 2. Mahnung'],['geb','Mahngebühr ab 1. Mahnung','€'],['bz','Basiszinssatz (§ 247 BGB)','%']];
 function esChef(){try{return !(typeof syAktiv==='function'&&syAktiv())||['chef','buero'].includes(syRolle())}catch(e){return true}}
 function esSeite(inh){const chef=esChef(),q=ES.q.trim().toLowerCase();
@@ -13353,13 +13366,15 @@ function esSeite(inh){const chef=esChef(),q=ES.q.trim().toLowerCase();
  inh.querySelectorAll('[data-esb]').forEach(b=>b.onclick=()=>esWechsel(inh,b.dataset.esb));
  if(chef)esBinden(inh)}
 function esWechsel(inh,b,still){if(ES.dirty)esSpeichern(inh,true);ES.b=b;ES.dirty=false;ES.dok=null;esSeite(inh)}
+function esQr(F){if(typeof RQ_POS==='undefined')return '';const ok=typeof rqIbanOk==='function'&&F.iban&&rqIbanOk(F.iban),an=!!F.qr&&ok,pos=RQ_POS.some(p=>p[0]===F.qrPos)?F.qrPos:'box';
+ return `<div class="esqr"><label class="esqrz"><input type="checkbox" data-k2="qr" ${an?'checked':''} ${ok?'':'disabled'}><span><b>QR-Code zum Bezahlen auf Rechnungen</b><small>${ok?'Der Kunde scannt ihn mit seiner Banking-App: Empfänger, IBAN, Betrag und Rechnungsnummer sind sofort eingetragen.':F.iban?'Die IBAN scheint nicht zu stimmen – bitte prüfen.':'Erst die IBAN eintragen.'}</small></span></label>
+  <div class="aulst esqrp${an?'':' aus'}" role="radiogroup" aria-label="Platz auf der Rechnung">${RQ_POS.map(([v,n])=>`<button type="button" data-qp="${v}" class="${v===pos?'an':''}" ${an?'':'disabled'}>${n}</button>`).join('')}</div></div>`}
 function esInhalt(b){const F=typeof auFirma==='function'?auFirma():{},{logo}=onInitialen();
  if(b==='firma'){const ok=typeof rqIbanOk==='function'&&F.iban&&rqIbanOk(F.iban),an=!!F.qr&&ok,pos=typeof RQ_POS!=='undefined'&&RQ_POS.some(p=>p[0]===F.qrPos)?F.qrPos:'box';
   return `<div class="aukarte aulform esform"><div class="kulkh"><b>Firmendaten</b><small>erscheinen auf Angeboten und Rechnungen</small></div>
    <div class="eslogo"><span class="eslb">${F.logo?`<img src="${esc(F.logo)}" alt="Logo">`:esc(onInitialen().ini||'')}</span><div><b>Logo</b><small>${F.logo?'erscheint oben links in Onstand':'Bild als PNG oder JPG, am besten quadratisch'}</small></div><label class="amab eslbtn">${F.logo?'Logo ändern':'Logo hochladen'}<input type="file" accept="image/png,image/jpeg,image/webp" hidden></label>${F.logo?'<button type="button" class="aultext eslweg">Entfernen</button>':''}</div>
-   <div class="kulzwei">${ES_FE.map(([k,t,ph])=>`<label><span class="aullab">${t}</span><input class="aut" data-k="${k}" value="${esc(F[k]||'')}" placeholder="${esc(ph)}"${k==='iban'?' spellcheck="false"':''}></label>`).join('')}</div>
-   ${typeof RQ_POS!=='undefined'?`<div class="esqr"><label class="esqrz"><input type="checkbox" data-k2="qr" ${an?'checked':''} ${ok?'':'disabled'}><span><b>QR-Code zum Bezahlen auf Rechnungen</b><small>${ok?'Der Kunde scannt ihn mit seiner Banking-App: Empfänger, IBAN, Betrag und Rechnungsnummer sind sofort eingetragen.':F.iban?'Die IBAN scheint nicht zu stimmen – bitte prüfen.':'Erst die IBAN eintragen.'}</small></span></label>
-    <div class="aulst esqrp${an?'':' aus'}" role="radiogroup" aria-label="Platz auf der Rechnung">${RQ_POS.map(([v,n])=>`<button type="button" data-qp="${v}" class="${v===pos?'an':''}" ${an?'':'disabled'}>${n}</button>`).join('')}</div></div>`:''}</div>`}
+   ${ES_GR.map(([t,u,K])=>`<div class="esgr"><div class="esgrk"><b>${t}</b>${u?`<small>${u}</small>`:''}</div><div class="kulzwei">${K.map(k=>{const [,lt,ph]=ES_FE.find(x=>x[0]===k);return `<label><span class="aullab">${lt}</span><input class="aut" data-k="${k}" value="${esc(F[k]||'')}" placeholder="${esc(ph)}"${k==='iban'||k==='bic'?' spellcheck="false"':''}></label>`}).join('')}</div>${t==='Bank & Bezahlen'?esQr(F):''}</div>`).join('')}
+</div>`}
  if(b==='dok')return bbSeite();
  if(b==='rech'){const E=typeof opEinst==='function'?opEinst():{};
   return `<div class="aukarte aulform esform"><div class="kulkh"><b>Rechnungen &amp; Mahnungen</b><small>so erinnert Onstand an offene Rechnungen</small></div>
@@ -13373,7 +13388,7 @@ function esInhalt(b){const F=typeof auFirma==='function'?auFirma():{},{logo}=onI
    <div class="kulfl"><span>Letzte Sicherung</span><div>${si?esc(si):'<span class="kulgrau">noch keine</span>'}</div></div><div class="esrow"><button type="button" class="amab" data-m="si">Sicherungen ansehen</button></div></div>`}
  if(b==='abo'){const ki=typeof KI!=='undefined'&&KI.aktiv,an=typeof syAktiv==='function'&&syAktiv();
   return `<div class="aukarte kulkarte"><div class="kulkh"><b>Abo &amp; KI-Paket</b>${ki?'<span class="aulpill bezahlt">KI aktiv</span>':'<span class="aulpill entwurf">KI nicht gebucht</span>'}</div>
-   <div class="kulfl"><span>Firmenkonto</span><div>${an?esc((SY_KONTO&&SY_KONTO.name)||'verbunden'):'<span class="kulgrau">nicht verbunden</span>'}</div>${ki?`<span>Denk-Fragen heute</span><div>${esc(String(KI.rest??'–'))} von ${esc(String(KI.limit??25))} frei</div><span>Kostenbremse</span><div>höchstens ca. 8 € KI-Kosten im Monat, danach bis Monatsende Pause</div>`:''}</div>
+   <div class="kulfl"><span>Firmenkonto</span><div>${an?esc((SY_KONTO&&SY_KONTO.name)||'verbunden'):'<span class="kulgrau">nicht verbunden</span>'}</div>${ki?`<span>Denk-Fragen heute</span><div>${esc(String(KI.rest??'–'))} von ${esc(String(KI.limit??25))} frei</div><span>KI-Kontingent</span><div>rund 4 Mio. KI-Tokens im Monat · Sortieren und Übersetzen verbrauchen davon nur wenig</div>`:''}</div>
    <div class="esrow"><button type="button" class="amab" data-m="abo">Abo &amp; KI-Paket öffnen</button>${an?'':'<button type="button" class="aultext" data-m="konto">Firmenkonto verbinden</button>'}</div></div>`}
  return ''}
 function esMerk(inh){if(ES.dirty)return;ES.dirty=true;const b=inh.querySelector('.essp');if(b){b.textContent='Speichern';b.classList.remove('esok')}}

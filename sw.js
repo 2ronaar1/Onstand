@@ -1,6 +1,6 @@
 // Onstand · Service Worker: startet ohne Netz und holt bei Netz immer die neueste Fassung.
 // Nur eigene Dateien werden gespeichert; Anfragen an das Firmenkonto (Supabase) laufen unverändert durch.
-const SPEICHER='onstand-app-113';
+const SPEICHER='onstand-app-114';
 const DATEIEN=['./onstand.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(SPEICHER).then(c=>c.addAll(DATEIEN)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==SPEICHER).map(n=>caches.delete(n)))).then(()=>self.clients.claim()))});
