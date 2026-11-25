@@ -5515,7 +5515,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.29';
+const ON_VER='0.11.30';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -8087,27 +8087,32 @@ const BK={
  regal:(W,D,H)=>{const B=[[0,0,2,D,0,H,MC.holz2],[W-2,0,W,D,0,H,MC.holz2],[2,0,W-2,1.5,0,H,MC.holz2]];for(const f of [0,.25,.5,.75])B.push([2,1.5,W-2,D,H*f,H*f+2,MC.holz]);B.push([0,0,W,D,H-.01,H+2,MC.holz]);return B},
  schreibtisch:(W,D,H)=>[[0,0,W,D,H-3,H,MC.holz],[2,4,5,D-4,0,H-3,MC.holz2],[W-5,4,W-2,D-4,0,H-3,MC.holz2],[W/2-4,6,W/2+4,13,H,H+8,'#3B4048'],[W/2-26,8,W/2+26,10,H+8,H+40,'#3B4048']],
  waschtisch:(W,D,H)=>[[2,0,W-2,D-3,12,H-4,MC.weiss],[0,0,W,D,H-4,H,MC.weiss],[W*.15,D*.3,W*.85,D*.85,H,H+.4,MC.wasser],[W*.1,0,W*.9,1.5,H+20,H+85,'glas']],
- waschmaschine:(W,D,H)=>[[0,0,W,D,0,H,MC.weiss],[0,0,W,10,H-1,H+.3,'#DDE2E8'],[W/2-17,D,W/2+17,D+1.5,H*.5-17,H*.5+17,'#BFD0DE']],
+ waschmaschine:(W,D,H)=>[[0,0,W,D,0,H,MC.weiss],[0,0,W,10,H,H+.3,'#DDE2E8'],[W/2-17,D,W/2+17,D+1.5,H*.5-17,H*.5+17,'#BFD0DE']],
  kuehlschrank:(W,D,H)=>[[0,0,W,D,0,H,'#EEF1F4'],[W-9,D,W-6,D+2.5,H*.35,H*.85,'#9CA3AC']],
  heizkoerper:(W,D,H)=>[[0,0,W,D,0,H,'#F4F6F8']],
  treppe:(W,D,H)=>{const rise=18,n=Math.max(3,Math.round(H/rise)),run=W/n,B=[];for(let i=0;i<n;i++)B.push([i*run,2,(i+1)*run,D,0,(i+1)*H/n,'#E6DDD4']);B.push([0,0,W,2,0,H+90,'#C9BBAE']);return B}};
 function bpKoerper(Q,K,r,o,T,zc,bas,sel){const B=BK[o.t];if(!B)return false;const L=bpLokal(r,o,T),z=T.z||0,pr=K.pr;
- B(T.w,T.d,T.h).forEach(([u0,v0,u1,v1,z0,z1,f])=>{const ec=[L(u0,v0),L(u1,v0),L(u1,v1),L(u0,v1)],m=L((u0+u1)/2,(v0+v1)/2),bc=pr(m[0],m[1])[2],key=bas+((bc-zc)+z0*.6)*1e-4,glas=f==='glas',col=glas?'rgba(190,222,242,.32)':bpTon(f),box=bpBox(ec,z+z0,z+z1,bc);
-  for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4],fd=(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2;Q.push({d:key+(fd-bc)*1e-7,box,fd,pts:[pr(a[0],a[1],z+z0),pr(b[0],b[1],z+z0),pr(b[0],b[1],z+z1),pr(a[0],a[1],z+z1)],fill:glas?col:bpDunkler(col,i%2?.8:.9),glas,sel})}
-  Q.push({d:key+2e-5,box,fd:1e9,pts:ec.map(p=>pr(p[0],p[1],z+z1)),fill:col,glas,sel})});return true}
+ B(T.w,T.d,T.h).forEach(([u0,v0,u1,v1,z0,z1,f],pi)=>{const ec=[L(u0,v0),L(u1,v0),L(u1,v1),L(u0,v1)],m=L((u0+u1)/2,(v0+v1)/2),bc=pr(m[0],m[1])[2],key=bas+((bc-zc)+z0*.6)*1e-4,glas=f==='glas',col=glas?'rgba(190,222,242,.32)':bpTon(f),box=bpBox(ec,z+z0,z+z1,bc);
+  for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4],fd=(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2;Q.push({tag:r.id+'|'+o.t+'@'+o.x+','+o.y+'|'+pi+'|'+i,d:key+(fd-bc)*1e-7,box,fd,pts:[pr(a[0],a[1],z+z0),pr(b[0],b[1],z+z0),pr(b[0],b[1],z+z1),pr(a[0],a[1],z+z1)],fill:glas?col:bpDunkler(col,i%2?.8:.9),glas,sel})}
+  Q.push({tag:r.id+'|'+o.t+'@'+o.x+','+o.y+'|'+pi+'|T',d:key+2e-5,box,fd:1e9,pts:ec.map(p=>pr(p[0],p[1],z+z1)),fill:col,glas,sel})});return true}
 // Möbelteile als Quader (Weltkoordinaten) – für die Reihenfolge beim Zeichnen
 function bpBox(ec,z0,z1,bc){const xs=ec.map(p=>p[0]),ys=ec.map(p=>p[1]);return {x0:Math.min(...xs),x1:Math.max(...xs),y0:Math.min(...ys),y1:Math.max(...ys),z0,z1,bc}}
 // Reihenfolge von Quadern wie beim Maler: was hinten (bzw. unten) liegt, zuerst. Statt nach Mittelpunkt (springt beim Drehen)
 // nach Trennachse: liegen zwei Quader nebeneinander, entscheidet die Blickrichtung; liegen sie übereinander, der untere zuerst.
-function bpVorHinten(A,B,sy,cy){const e=.5,sx=A.x1<=B.x0+e?1:B.x1<=A.x0+e?-1:0,syy=A.y1<=B.y0+e?1:B.y1<=A.y0+e?-1:0;
- const rx=sx?(sx*sy>0?-1:1):0,ry=syy?(syy*cy>0?-1:1):0;
- if(rx&&ry&&rx!==ry){return A.bc<B.bc?-1:1}if(rx)return rx;if(ry)return ry;
- if(A.z1<=B.z0+e)return -1;if(B.z1<=A.z0+e)return 1;return 0}
-function bpReihe(L,sy,cy){const n=L.length,ein=new Array(n).fill(0),nach=L.map(()=>[]);
- for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const v=bpVorHinten(L[i],L[j],sy,cy);if(v<0){nach[i].push(j);ein[j]++}else if(v>0){nach[j].push(i);ein[i]++}}
- const out=[],frei=[];for(let i=0;i<n;i++)if(!ein[i])frei.push(i);const fertig=new Array(n).fill(false);
- while(out.length<n){if(!frei.length){let b=-1;for(let i=0;i<n;i++)if(!fertig[i]&&(b<0||L[i].bc<L[b].bc||(L[i].bc===L[b].bc&&L[i].z0<L[b].z0)))b=i;ein[b]=0;frei.push(b)}
-  frei.sort((a,b)=>L[a].bc-L[b].bc||L[a].z0-L[b].z0);const i=frei.shift();if(fertig[i])continue;fertig[i]=true;out.push(i);for(const j of nach[i])if(!fertig[j]&&--ein[j]===0)frei.push(j)}
+// Trennebenen-Regel: Jede Ebene, die zwei Quader trennt (x, y oder z), sagt, welcher von der Kamera weiter weg liegt.
+// Widersprechen sich zwei Ebenen, können sich die Quader auf dem Bildschirm nicht überdecken – dann gibt es keine Vorgabe.
+function bpVorHinten(A,B,sy,cy){const e=.5,V=[];
+ if(A.x1<=B.x0+e)V.push(sy>0?-1:1);else if(B.x1<=A.x0+e)V.push(sy>0?1:-1);
+ if(A.y1<=B.y0+e)V.push(cy>0?-1:1);else if(B.y1<=A.y0+e)V.push(cy>0?1:-1);
+ if(A.z1<=B.z0+e)V.push(-1);else if(B.z1<=A.z0+e)V.push(1);
+ if(!V.length)return 0;return V.every(v=>v===V[0])?V[0]:0}
+// Raum auf der anderen Seite einer Tür (für die Reihenfolge in 3D)
+function bpNachbar(R,r,o){if(!o.n||(o.t!=='tuer'&&o.t!=='fenster'))return null;const C=[r.x+o.x,r.y+o.y];for(const d of [20,35,50,70]){const p=[C[0]+o.n[0]*d,C[1]+o.n[1]*d];for(let i=0;i<R.length;i++){const x=R[i];if(x===r)continue;const P=wpoly(x);let c=false;for(let a=0,b=P.length-1;a<P.length;b=a++){if((P[a][1]>p[1])!==(P[b][1]>p[1])&&p[0]<(P[b][0]-P[a][0])*(p[1]-P[a][1])/(P[b][1]-P[a][1])+P[a][0])c=!c}if(c)return i}}return null}
+function bpSchirm(Q,pr){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const x of [Q.x0,Q.x1])for(const y of [Q.y0,Q.y1])for(const z of [Q.z0,Q.z1]){const p=pr(x,y,z);x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}return [x0,y0,x1,y1]}
+function bpReihe(L,sy,cy,pr){const n=L.length,ein=new Array(n).fill(0),nach=L.map(()=>[]),S=pr?L.map(b=>bpSchirm(b,pr)):null;
+ for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){if(S){const a=S[i],b=S[j];if(a[2]<=b[0]+.5||b[2]<=a[0]+.5||a[3]<=b[1]+.5||b[3]<=a[1]+.5)continue}const v=bpVorHinten(L[i],L[j],sy,cy);if(v<0){nach[i].push(j);ein[j]++}else if(v>0){nach[j].push(i);ein[i]++}}
+ const out=[],fertig=new Array(n).fill(false),wahl=()=>{let b=-1;for(let i=0;i<n;i++)if(!fertig[i]&&ein[i]<=0&&(b<0||L[i].bc<L[b].bc||(L[i].bc===L[b].bc&&L[i].z0<L[b].z0)))b=i;return b};
+ while(out.length<n){let i=wahl();if(i<0){for(let k=0;k<n;k++)if(!fertig[k]&&(i<0||ein[k]<ein[i]||(ein[k]===ein[i]&&L[k].bc<L[i].bc)))i=k}fertig[i]=true;out.push(i);for(const j of nach[i])ein[j]--}
  const rang=new Map();out.forEach((i,k)=>rang.set(L[i],k));return rang}
 // Tür und Fenster als Plansymbol: Öffnung in der Wand, Tür mit Flügel und Aufschlag, Fenster mit Doppellinie
 function bpSymbol(K,r,o,T,ow,od,WA,sel){const {c,pr}=K,s=K.s||1,n=o.n,tt=[-n[1],n[0]],q=n[0]?ow:od,w=T.w,C=[r.x+o.x,r.y+o.y],F=[C[0]-n[0]*q/2,C[1]-n[1]*q/2];let a=24;try{const x=wandAn(WA,[F[0]+n[0]*.5,F[1]+n[1]*.5],0);a=x?x.t:(WA.wand&&WA.wand.a)||24}catch(e){}if(a<1)return false;
@@ -8138,7 +8143,7 @@ function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true)
  // Böden
  const Q=[];let RI=0;{const qp=Q.push.bind(Q);Q.push=(...a)=>{a.forEach(x=>{if(x.ri==null)x.ri=RI});return qp(...a)}}raeume.forEach((r,ri)=>{RI=ri;const P=wpoly(r),sel=opt.sel===r,fok=opt.fokus&&opt.fokus!==r;c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();
   c.fillStyle=sel?`rgba(${BPC.a},.16)`:fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.w},.96)`;c.fill();if(!fok&&r.boden&&bpBoden(K,r,P,k.s)){c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1],0);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();if(sel){c.fillStyle=`rgba(${BPC.a},.18)`;c.fill()}}if(!t3){c.lineWidth=sel?2.5:1;c.strokeStyle=sel?`rgb(${BPC.a})`:fok?`rgba(${BPC.t},.3)`:`rgb(${BPC.wand})`;c.shadowColor=c.strokeStyle;c.shadowBlur=sel?8:0;c.stroke();c.shadowBlur=0}
-  if(t3){const H=r.H,cb=bbox(P),cxm=(cb.x0+cb.x1)/2,cym=(cb.y0+cb.y1)/2;for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,rueck=pr(mx+(cxm-mx)*.05,my+(cym-my)*.05)[2]<pr(mx,my)[2];Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],sel,fok,rueck,fein:(r.ver||[]).some(v=>v.typ==='dach')})}if(WA){const O=raumAussen(r,WA);for(let i=0;i<O.length;i++){const a=O[i],b=O[(i+1)%O.length],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;Q.push({d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-.01,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],aussen:1,rueck:pr(mx+(cxm-mx)*.05,my+(cym-my)*.05)[2]<pr(mx,my)[2],fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}}}
+  if(t3){const H=r.H,cb=bbox(P),cxm=(cb.x0+cb.x1)/2,cym=(cb.y0+cb.y1)/2;for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,rueck=pr(mx+(cxm-mx)*.05,my+(cym-my)*.05)[2]<pr(mx,my)[2];Q.push({tag:'W'+r.id+'.'+i,d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],sel,fok,rueck,fein:(r.ver||[]).some(v=>v.typ==='dach')})}if(WA){const O=raumAussen(r,WA);for(let i=0;i<O.length;i++){const a=O[i],b=O[(i+1)%O.length],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;Q.push({tag:'A'+r.id+'.'+i,d:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-.01,pts:[pr(a[0],a[1],0),pr(b[0],b[1],0),pr(b[0],b[1],b[2]),pr(a[0],a[1],a[2])],aussen:1,rueck:pr(mx+(cxm-mx)*.05,my+(cym-my)*.05)[2]<pr(mx,my)[2],fok,fein:(r.ver||[]).some(v=>v.typ==='dach')})}}}
   if(!t3&&(r.ver||[]).some(v=>v.typ==='dach')){c.save();c.beginPath();P.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.clip();
    (r.ver||[]).filter(v=>v.typ==='dach').forEach(v=>{const t=Math.tan(v.neigung*Math.PI/180);[[100,'1 m'],[200,'2 m']].forEach(([hm,lab])=>{if(t<=0||hm<=v.knie)return;const dd=(hm-v.knie)/t,ln=v.wand==='N'?[[0,dd],[r.L,dd]]:v.wand==='S'?[[0,r.B-dd],[r.L,r.B-dd]]:v.wand==='W'?[[dd,0],[dd,r.B]]:[[r.L-dd,0],[r.L-dd,r.B]];const a=pr(...welt(r,...ln[0])),b=pr(...welt(r,...ln[1]));c.setLineDash(hm===100?[3,4]:[8,5]);c.strokeStyle='rgba(255,184,107,.75)';c.lineWidth=1.2;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([]);c.fillStyle='rgba(255,184,107,.9)';c.font='9.5px Arial';c.textAlign='left';c.fillText(lab,(a[0]+b[0])/2+4,(a[1]+b[1])/2-4)});
     // schraffierter Streifen unter 1 m
@@ -8147,14 +8152,15 @@ function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true)
    if(!t3&&o.n&&WA&&(o.t==='tuer'||o.t==='fenster')&&bpSymbol(K,r,o,T,ow,od,WA,opt.osel===o)){}
    else if(!t3&&bpSym2D(K,r,o,T,opt.osel===o)){}
    else if(!t3){c.beginPath();ec.forEach((p,i)=>{const q=pr(p[0],p[1]);i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1])});c.closePath();c.fillStyle=T.f+'33';c.fill();c.lineWidth=opt.osel===o?2.2:1.2;c.strokeStyle=opt.osel===o?`rgb(${BPC.a})`:T.f;c.stroke();if(k.s*ow>34){const m0=pr(x+ow/2,y+od/2);c.fillStyle=`rgb(${BPC.s})`;c.font=`500 11px ${BPC.ff}`;c.textAlign='center';c.fillText(T.n,m0[0],m0[1]+4)}}
-   else{const zc=pr(x+ow/2,y+od/2)[2],bas=bpObjTiefe(r,o,pr,zc);if(!bpKoerper(Q,K,r,o,T,zc,bas,opt.osel===o)){const box=bpBox(ec,z,z+T.h,zc);for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({d:bas+((pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-zc)*1e-4,box,fd:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({d:bas+.03,box,fd:1e9,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}}})});
+   else{const zc=pr(x+ow/2,y+od/2)[2],bas=bpObjTiefe(r,o,pr,zc);if(!bpKoerper(Q,K,r,o,T,zc,bas,opt.osel===o)){const box=bpBox(ec,z,z+T.h,zc),nb=bpNachbar(raeume,r,o);for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4];Q.push({ri2:nb,tag:r.id+'|'+o.t+'@'+o.x+','+o.y+'|'+i,d:bas+((pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2-zc)*1e-4,box,fd:(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2,pts:[pr(a[0],a[1],z),pr(b[0],b[1],z),pr(b[0],b[1],z+T.h),pr(a[0],a[1],z+T.h)],obj:T,sel:opt.osel===o})}Q.push({ri2:nb,tag:r.id+'|'+o.t+'@'+o.x+','+o.y+'|T',d:bas+.03,box,fd:1e9,pts:ec.map(p=>pr(p[0],p[1],z+T.h)),obj:T,deckel:1,sel:opt.osel===o})}}})});
  // 3D-Reihenfolge Raum für Raum (hinten zuerst): hintere Wände · Böden-Möbel · vordere, durchsichtige Wände.
  // So schiebt sich beim Drehen kein Möbel abwechselnd vor und hinter eine Wand (Flackern).
  // Räume und Möbel nach Trennachse statt nach Mittelpunkt – nichts springt beim Drehen vor oder hinter etwas.
- const vy=Math.sin(k.yaw),vc=Math.cos(k.yaw),RB=raeume.map(r=>{const b=bbox(wpoly(r));return {x0:b.x0,x1:b.x1,y0:b.y0,y1:b.y1,z0:0,z1:0,bc:pr((b.x0+b.x1)/2,(b.y0+b.y1)/2)[2]}}),RR=bpReihe(RB,vy,vc),RK=RB.map(b=>RR.get(b)),LAY=q=>q.aussen?(q.rueck?4:0):(q.obj||q.fill)?2:q.rueck?3:1;
- const BR=new Map();if(t3){const G={};Q.forEach(q=>{if(q.box){(G[q.ri]=G[q.ri]||new Set()).add(q.box)}});for(const ri in G){const R=bpReihe([...G[ri]],vy,vc);R.forEach((v,b)=>BR.set(b,v))}}
+ const vy=Math.sin(k.yaw),vc=Math.cos(k.yaw),RB=raeume.map(r=>{const b=bbox(wpoly(r));return {x0:b.x0,x1:b.x1,y0:b.y0,y1:b.y1,z0:0,z1:t3?(r.H||250):0,bc:pr((b.x0+b.x1)/2,(b.y0+b.y1)/2)[2]}}),RR=bpReihe(RB,vy,vc,t3?pr:null),RK=RB.map(b=>RR.get(b)),LAY=q=>q.aussen?(q.rueck?4:0):(q.obj||q.fill)?2:q.rueck?3:1;
+ Q.forEach(q=>{if(q.ri2!=null&&(RK[q.ri2]||0)>(RK[q.ri]||0))q.ri=q.ri2});
+ const BR=new Map();if(t3){const G={};Q.forEach(q=>{if(q.box){(G[q.ri]=G[q.ri]||new Set()).add(q.box)}});for(const ri in G){const R=bpReihe([...G[ri]],vy,vc,pr);R.forEach((v,b)=>BR.set(b,v))}}
  const FK=q=>q.box?BR.get(q.box)*1e6+(q.fd===1e9?5e5:0)+(q.fd===1e9?0:q.fd+1e5):q.d;
- Q.sort((a,b)=>((RK[a.ri]||0)-(RK[b.ri]||0))||(LAY(a)-LAY(b))||(a.box&&b.box?FK(a)-FK(b):a.d-b.d)).forEach(q=>{c.beginPath();q.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();
+ Q.sort((a,b)=>((RK[a.ri]||0)-(RK[b.ri]||0))||(LAY(a)-LAY(b))||(a.box&&b.box?FK(a)-FK(b):a.d-b.d));if(window.__qlog)window.__qlog(Q,LAY);Q.forEach(q=>{c.beginPath();q.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();
   if(q.aussen){c.fillStyle=q.fok?`rgba(${BPC.t},.02)`:`rgba(${BPC.t},.06)`;c.fill();c.strokeStyle=q.fok?`rgba(${BPC.t},.12)`:`rgba(${BPC.t},.4)`;c.lineWidth=1;if(q.fein){c.beginPath();c.moveTo(q.pts[0][0],q.pts[0][1]);c.lineTo(q.pts[1][0],q.pts[1][1]);c.moveTo(q.pts[3][0],q.pts[3][1]);c.lineTo(q.pts[2][0],q.pts[2][1])}c.stroke()}
   else if(q.fill){c.fillStyle=q.fill;c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:q.glas?'rgba(120,160,190,.5)':'rgba(0,0,0,.24)';c.lineWidth=q.sel?1.6:.7;c.stroke()}
   else if(q.obj){c.fillStyle=q.obj.n==='Fenster'?`rgba(150,200,235,${q.deckel?.7:.4})`:q.obj.f+(q.deckel?'cc':'88');c.fill();c.strokeStyle=q.sel?`rgb(${BPC.a})`:'rgba(0,0,0,.35)';c.lineWidth=1;c.stroke()}
@@ -8167,7 +8173,7 @@ function zeichne(cv,raeume,k,opt={}){bpFarben();const K=kamera(cv,raeume,k,true)
   if(!t3&&opt.masse!==false&&wPx>70){const hPx=(b.y1-b.y0)*k.s;c.fillStyle=dunkelB?'rgba(255,255,255,.85)':`rgb(${BPC.s})`;c.font=`500 12px ${BPC.ff}`;const tObj=(r.obj||[]).some(o=>o.t==='tuer'&&o.n&&o.n[1]===-1),lObj=(r.obj||[]).some(o=>o.n&&o.n[0]===-1&&o.t==='tuer'),top=pr(tObj?b.x0+(b.x1-b.x0)*.78:cx,b.y0),lef=pr(b.x0,lObj?b.y0+(b.y1-b.y0)*.28:cy);if(hPx>110)tx(m(b.x1-b.x0)+' m',top[0],top[1]+17);if(hPx>70&&wPx>130){c.save();c.translate(lef[0]+16,lef[1]);c.rotate(-Math.PI/2);tx(m(b.y1-b.y0)+' m',0,0);c.restore()}}});
  if(!t3&&opt.raster!==false&&(cv.id==='cv'||cv.id==='wcv')&&innerWidth>760)bpMassstab(K,k.s);
  // Einrast-Hilfslinien
- (opt.fuehrung||[]).forEach(g=>{c.strokeStyle='rgba(255,158,74,.8)';c.setLineDash([4,4]);c.lineWidth=1;c.beginPath();const a=pr(g[0],g[1]),b=pr(g[2],g[3]);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([])});
+ (opt.fuehrung||[]).forEach(g=>{c.strokeStyle=`rgba(${BPC.a},.9)`;c.setLineDash([4,4]);c.lineWidth=1;c.beginPath();const a=pr(g[0],g[1]),b=pr(g[2],g[3]);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([])});
  return K}
 // ---------- Kamera-Helfer ----------
 function einpassen(raeume,cv,rand=.78){const r=cv.getBoundingClientRect();if(!raeume.length)return {mx:0,my:0,s:Math.min(r.width,r.height)/1200,px:0,py:0};const b=bbox(raeume.flatMap(wpoly));return {mx:(b.x0+b.x1)/2,my:(b.y0+b.y1)/2,s:Math.min(r.width*rand/Math.max(100,b.x1-b.x0),r.height*rand/Math.max(100,b.y1-b.y0),2.2),px:0,py:0}}
@@ -8348,6 +8354,15 @@ function osnap(o){OFUEHR=[];o.n=null;if(!OMAG||!FOK)return false;const T=odim(o)
  if(best.ver){o.x=Math.round(best.ziel-FOK.x);o.y=Math.round(l-FOK.y)}else{o.y=Math.round(best.ziel-FOK.y);o.x=Math.round(l-FOK.x)}o.n=best.ver?[-best.s,0]:[0,-best.s];
  OFUEHR=[best.ver?[best.X,best.a,best.X,best.b]:[best.a,best.X,best.b,best.X]];return true}const cvW=$('wcv');
 const sortiert=()=>ET;
+// Parallel-Einrasten: Mitte eines Objekts rastet in der Flucht anderer Objekte ein (Tür gegenüber Tür, Stuhl gegenüber Stuhl,
+// Fenster über Fenster) und an der Raummitte. Hängt ein Objekt an einer Wand, wird nur entlang der Wand ausgerichtet.
+function bpFlucht(o){if(!OMAG||!FOK||!ESEL)return '';const C=[FOK.x+o.x,FOK.y+o.y],thr=Math.max(5,12/WK.s),W0=OFUEHR[0];
+ const frei=W0?(Math.abs(W0[0]-W0[2])<.5?['y']:['x']):['x','y'],wand=o.t==='tuer'||o.t==='fenster';
+ const K=[];const b=bbox(wpoly(FOK));
+ for(const r of (wand?ESEL.raeume:[FOK]))for(const x of r.obj||[]){if(x===o)continue;const gleich=x.t===o.t||(wand&&(x.t==='tuer'||x.t==='fenster'));if(!gleich&&!['tisch','couchtisch','schreibtisch','bett','sofa'].includes(x.t))continue;K.push({x:r.x+x.x,y:r.y+x.y,n:odim(x).n})}K.push({x:(b.x0+b.x1)/2,y:(b.y0+b.y1)/2,n:'Raummitte'});
+ let txt='';for(const ax of frei){let best=null;for(const k of K){const d=Math.abs(k[ax]-C[ax==='x'?0:1]);if(d<thr&&(!best||d<best.d))best={k,d}}
+  if(!best)continue;const v=best.k[ax];if(ax==='x'){o.x=Math.round(v-FOK.x);C[0]=v;OFUEHR.push([v,Math.min(best.k.y,C[1])-30,v,Math.max(best.k.y,C[1])+30])}else{o.y=Math.round(v-FOK.y);C[1]=v;OFUEHR.push([Math.min(best.k.x,C[0])-30,v,Math.max(best.k.x,C[0])+30,v])}txt=best.k.n}
+ return txt}
 function weiterStart(){ET.sort((a,b)=>etStufe(a)-etStufe(b));ESEL=ESEL&&ET.includes(ESEL)?ESEL:ET.find(e=>e.raeume.length)||ET[0];FOK=null;OSEL=null;etListe();requestAnimationFrame(()=>{Object.assign(WK,einpassen(ESEL.raeume,cvW),{tilt:DIM===3?.95:0,yaw:DIM===3?-.55:0});WK2={s:WK.s,py:WK.py||0};if(DIM===3){WK.s*=.74;WK.py=(WK.py||0)+90*WK.s}malW()})}
 function etListe(){$('etListe').innerHTML='<h4>Etagen</h4>'+ET.slice().reverse().map(e=>`<div class="etk${e===ESEL?' an':''}" data-e="${e.id}"><div><b>${esc(etLang(e))}</b><small>${e.raeume.length} ${e.raeume.length===1?'Raum':'Räume'} · ${m2(e.raeume.reduce((s,r)=>s+flaeche(poly(r)),0))} m²</small></div><div class="pf"><button type="button" data-hoch="${e.id}" aria-label="nach oben">▲</button><button type="button" data-runter="${e.id}" aria-label="nach unten">▼</button></div><canvas></canvas></div>`).join('');
  $('etListe').querySelectorAll('.etk').forEach(k=>{const e=ET.find(x=>x.id===+k.dataset.e);requestAnimationFrame(()=>zeichne(k.querySelector('canvas'),e.raeume,{...einpassen(e.raeume,k.querySelector('canvas'),.85),tilt:0,yaw:0},{raster:false,text:false,et:e}));
@@ -8402,8 +8417,8 @@ cvW.addEventListener('pointerdown',ev=>{cvW.setPointerCapture(ev.pointerId);OPT.
  OSEL=null;OZUG={pan:1,x:ev.clientX,y:ev.clientY,px:WK.px,py:WK.py,yaw:WK.yaw,weit:0,p};malW()});
 cvW.addEventListener('pointermove',ev=>{if(!OPT.has(ev.pointerId))return;OPT.set(ev.pointerId,[ev.clientX,ev.clientY]);if(!OZUG)return;if(OZUG.pinch&&OPT.size===2){const [a,b]=[...OPT.values()];WK.s=Math.max(.08,Math.min(5,OZUG.s*Math.hypot(a[0]-b[0],a[1]-b[1])/OZUG.d));malW();return}
  const dx=ev.clientX-OZUG.x,dy=ev.clientY-OZUG.y;OZUG.weit=Math.max(OZUG.weit,Math.hypot(dx,dy));
- if(OZUG.o){OZUG.o.x=Math.round(OZUG.ox+dx/WK.s);OZUG.o.y=Math.round(OZUG.oy+dy/WK.s);OZUG.rast=osnap(OZUG.o);malW()}else if(OZUG.pan&&OZUG.weit>3){if(WK.tilt>.3){WK.yaw=OZUG.yaw+dx*.008}else{WK.px=OZUG.px+dx;WK.py=OZUG.py+dy}malW()}});
-const wLos=ev=>{OPT.delete(ev.pointerId);if(OPT.size)return;const z=OZUG;OZUG=null;if(z&&z.o&&z.weit>3)aend();OFUEHR=[];if(z&&z.o&&z.weit>3&&z.rast)toast(z.o.t==='tuer'||z.o.t==='fenster'?'In die Wand gesetzt':'Bündig an die Wand gestellt');if(z&&z.pan&&z.weit<=3&&!FOK&&WK.tilt<.05){const r=treffer(ESEL.raeume,z.p);if(r){FOK=r;const b=bbox(wpoly(r)),k=einpassen([r],cvW,.7);if(OP){k.px=-170;k.s=einpassen([r],cvW,.62).s}kameraFahrt(k,750)}}malW()};
+ if(OZUG.o){OZUG.o.x=Math.round(OZUG.ox+dx/WK.s);OZUG.o.y=Math.round(OZUG.oy+dy/WK.s);OZUG.rast=osnap(OZUG.o);OZUG.flucht=bpFlucht(OZUG.o);malW()}else if(OZUG.pan&&OZUG.weit>3){if(WK.tilt>.3){WK.yaw=OZUG.yaw+dx*.008}else{WK.px=OZUG.px+dx;WK.py=OZUG.py+dy}malW()}});
+const wLos=ev=>{OPT.delete(ev.pointerId);if(OPT.size)return;const z=OZUG;OZUG=null;if(z&&z.o&&z.weit>3)aend();OFUEHR=[];if(z&&z.o&&z.weit>3&&(z.rast||z.flucht))toast((z.rast?(z.o.t==='tuer'||z.o.t==='fenster'?'In die Wand gesetzt':'Bündig an die Wand gestellt'):'Ausgerichtet')+(z.flucht?' · in einer Flucht mit '+(z.flucht==='Raummitte'?'der Raummitte':z.flucht):''));if(z&&z.pan&&z.weit<=3&&!FOK&&WK.tilt<.05){const r=treffer(ESEL.raeume,z.p);if(r){FOK=r;const b=bbox(wpoly(r)),k=einpassen([r],cvW,.7);if(OP){k.px=-170;k.s=einpassen([r],cvW,.62).s}kameraFahrt(k,750)}}malW()};
 cvW.addEventListener('pointerup',wLos);cvW.addEventListener('pointercancel',wLos);
 cvW.addEventListener('wheel',ev=>{ev.preventDefault();WK.s=Math.max(.08,Math.min(5,WK.s*(ev.deltaY<0?1.1:.9)));malW()},{passive:false});
 function oWerkzeug(){const w=$('owerkz');if(!OSEL||!FOK||OZUG&&OZUG.o||WK.tilt>.05){w.classList.remove('an');return}const T=odim(OSEL),K=kamera(cvW,[],WK),p=K.pr(FOK.x+OSEL.x,FOK.y+OSEL.y-(OSEL.rot%180?T.w:T.d)/2);$('omass').classList.toggle('an',(OSEL.g||'M')==='X');w.style.left=Math.max(110,Math.min(K.w-110,p[0]))+'px';w.style.top=Math.max(6,p[1]-(($('omass').classList.contains('an'))?92:50))+'px';w.classList.add('an');const g=OSEL.g||'M';$('ogr').querySelectorAll('button').forEach(b=>b.classList.toggle('an',b.dataset.g===g));if(document.activeElement&&!document.activeElement.closest('#omass')){const d=odim(OSEL);$('omass').querySelectorAll('input').forEach(i=>i.value=d[i.dataset.m])}}
@@ -13077,6 +13092,8 @@ Treppe|Schody|Scară|Shkallë|Stepenice|Стълби
 Türen, Fenster & Bau|Drzwi, okna i budowa|Uși, ferestre și construcție|Dyer, dritare dhe ndërtim|Vrata, prozori i gradnja|Врати, прозорци и строеж
 Wohnen|Salon|Living|Ndenja|Dnevni boravak|Хол
 Schlafen & Arbeiten|Sypialnia i praca|Dormit și lucru|Gjumi dhe puna|Spavanje i rad|Спалня и работа
+Ausgerichtet|Wyrównano|Aliniat|U rreshtua|Poravnato|Подравнено
+der Raummitte|środka pomieszczenia|centrul camerei|qendrën e dhomës|sredinom prostorije|средата на стаята
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
