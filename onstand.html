@@ -5388,6 +5388,49 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am#am .cpkph .weg{position:relative;color:transparent}
 #am#am .cpkph .weg::before{position:absolute;left:50%;top:50%;margin:-5px 0 0 -5px;background:var(--k-rot)}
 #am#am .cpkph .weg:hover::before{background:var(--k-t)}
+
+/* ===== Daten übernehmen (v0.11.31) ===== */
+#am .imdrop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:130px;margin:14px 0 4px;border:1.5px dashed color-mix(in srgb,var(--k-akz) 45%,var(--k-lin));border-radius:10px;background:color-mix(in srgb,var(--k-akz) 4%,var(--k-b1));cursor:pointer;text-align:center;padding:16px}
+#am .imdrop:hover,#am .imdrop.ueber{background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));border-color:var(--k-akz)}
+#am .imdrop.lies{opacity:.7;pointer-events:none}
+#am .imdk{font:600 15px var(--k-ui);color:var(--k-t)}
+#am .imdk u{color:var(--k-akz);text-decoration:none}
+#am .imdrop small{font-size:13px;color:var(--k-sub)}
+#am .imwege{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+#am .imwege>div{border:1px solid var(--k-lin);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+#am .imwege b{font:600 14.5px var(--k-ui);color:var(--k-t)}
+#am .imwege p{margin:0;font-size:13.5px;line-height:1.5;color:var(--k-sub)}
+#am .imwege .aultext{align-self:flex-start;margin-top:auto}
+#am .imico{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));color:var(--k-akz);flex:none}
+#am .imico.gruen{background:color-mix(in srgb,var(--k-gruen,#1E7A46) 12%,var(--k-b1));color:var(--k-gruen,#1E7A46)}
+#am .imico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#am .imhin{margin:14px 0 0;font-size:13.5px;line-height:1.5;color:var(--k-sub)}
+#am .imhin b{color:var(--k-t);font-weight:600}
+#am .imtxt{font-size:14px;color:var(--k-t);line-height:1.5;margin:10px 0}
+#am .imtxt.klein{font-size:13px;color:var(--k-sub);margin:8px 2px 0}
+#am .imv .kulkh{display:flex;align-items:baseline;gap:10px}
+#am .imv .imaus{margin-left:auto}
+#am .imfeld{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+#am .imsp{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+#am .imsp label,#am .imopt label{display:flex;flex-direction:column;gap:5px;font:600 13px var(--k-ui);color:var(--k-sub)}
+#am .imsp select,#am .imopt select,#am .imfeld select{height:40px;border-radius:8px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:14px var(--k-ui);padding:0 10px}
+#am .imopt{flex-direction:row;flex-wrap:wrap;gap:12px}
+#am .imopt label{flex:1 1 200px}
+#am .imcheck{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;color:var(--k-t)}
+#am .imcheck input{width:17px;height:17px;accent-color:var(--k-akz)}
+#am .imziel .aulk{min-height:52px}
+#am .imtab{border:1px solid var(--k-lin);border-radius:8px;overflow:auto;max-height:420px}
+#am .imtab table{width:100%;border-collapse:collapse;font:13.5px var(--k-ui)}
+#am .imtab th{position:sticky;top:0;background:var(--k-b0,color-mix(in srgb,var(--k-t) 89%,var(--k-sub)));text-align:left;font-weight:600;font-size:12.5px;color:var(--k-sub);padding:8px 10px;border-bottom:1px solid var(--k-lin);white-space:nowrap}
+#am .imtab td{padding:7px 10px;border-top:1px solid var(--k-lin);color:var(--k-t);vertical-align:top}
+#am .imtab td:first-child{width:1%;white-space:nowrap}
+#am .imtab tr:first-child td{border-top:0}
+#am .imv .amaktion{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+#am .imok .imokk{display:flex;align-items:center;gap:12px}
+#am .imok .imokk b{display:block;font:600 16px var(--k-ui);color:var(--k-t)}
+#am .imok .imokk small{font-size:13.5px;color:var(--k-sub)}
+#am .imok .esrow{margin-top:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media (max-width:979px){#am .imwege{grid-template-columns:1fr}}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -5515,7 +5558,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.30';
+const ON_VER='0.11.31';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -8354,6 +8397,21 @@ function osnap(o){OFUEHR=[];o.n=null;if(!OMAG||!FOK)return false;const T=odim(o)
  if(best.ver){o.x=Math.round(best.ziel-FOK.x);o.y=Math.round(l-FOK.y)}else{o.y=Math.round(best.ziel-FOK.y);o.x=Math.round(l-FOK.x)}o.n=best.ver?[-best.s,0]:[0,-best.s];
  OFUEHR=[best.ver?[best.X,best.a,best.X,best.b]:[best.a,best.X,best.b,best.X]];return true}const cvW=$('wcv');
 const sortiert=()=>ET;
+// Neues Objekt an eine freie Stelle: Raster im Raum absuchen. Möbel, die an die Wand gehören, an eine freie Wand (mit Magnet),
+// Tische und Stühle frei in die größte Lücke. Türen halten ihren Schwenkbereich frei, nichts überlappt.
+function bpRechteck(r,o){const T=odim(o),ow=o.rot%180?T.d:T.w,od=o.rot%180?T.w:T.d;let x0=r.x+o.x-ow/2,y0=r.y+o.y-od/2,x1=x0+ow,y1=y0+od;
+ if(o.t==='tuer'&&o.n){const w=T.w;if(o.n[0]===-1)x1+=w;else if(o.n[0]===1)x0-=w;else if(o.n[1]===-1)y1+=w;else y0-=w}return {x0,y0,x1,y1}}
+function bpFreiePlatz(r,o){const P=wpoly(r),b=bbox(P),T=odim(o),auto=!OFREI.includes(o.t),wand=o.t==='tuer'||o.t==='fenster',rand=8;
+ const drin=(x,y)=>{let c=false;for(let a=0,k=P.length-1;a<P.length;k=a++){if((P[a][1]>y)!==(P[k][1]>y)&&x<(P[k][0]-P[a][0])*(y-P[a][1])/(P[k][1]-P[a][1])+P[a][0])c=!c}return c};
+ const R=(r.obj||[]).filter(x=>x!==o).map(x=>bpRechteck(r,x)),frei=q=>R.every(z=>q.x1<=z.x0+.5||z.x1<=q.x0+.5||q.y1<=z.y0+.5||z.y1<=q.y0+.5);
+ const innen=q=>wand||(drin(q.x0+1,q.y0+1)&&drin(q.x1-1,q.y0+1)&&drin(q.x0+1,q.y1-1)&&drin(q.x1-1,q.y1-1)&&drin((q.x0+q.x1)/2,(q.y0+q.y1)/2));
+ const cx=(b.x0+b.x1)/2,cy=(b.y0+b.y1)/2,st=Math.max(10,Math.round(Math.min(b.x1-b.x0,b.y1-b.y0)/24));let best=null;const merk=OFUEHR.slice(),alt={x:o.x,y:o.y,rot:o.rot,n:o.n};
+ for(const pass of wand?[1]:[1,2]){if(best)break;for(let y=b.y0+rand;y<=b.y1-rand;y+=st)for(let x=b.x0+rand;x<=b.x1-rand;x+=st){if(!drin(x,y))continue;o.x=x-r.x;o.y=y-r.y;o.rot=alt.rot;o.n=null;let an=false;if(auto)an=osnap(o);
+  if(auto&&!an&&pass===1&&(wand||!['tisch','couchtisch','stuhl','pflanze','sessel'].includes(o.t)))continue;if(pass===2&&an){o.rot=alt.rot;o.n=null;o.x=x-r.x;o.y=y-r.y}const q=bpRechteck(r,o);
+  const g=4,q2={x0:q.x0-g,y0:q.y0-g,x1:q.x1+g,y1:q.y1+g};if(!innen(q))continue;const ov=R.reduce((t,z)=>t+Math.max(0,Math.min(q2.x1,z.x1)-Math.max(q2.x0,z.x0))*Math.max(0,Math.min(q2.y1,z.y1)-Math.max(q2.y0,z.y0)),0);if(ov>0&&(pass===1||wand))continue;
+  const mx=(q.x0+q.x1)/2,my=(q.y0+q.y1)/2,abst=Math.min(...R.map(z=>Math.max(0,z.x0-q.x1,q.x0-z.x1)+Math.max(0,z.y0-q.y1,q.y0-z.y1)).concat([400]));
+  const score=(an?Math.hypot(mx-cx,my-cy)*.2-abst*.5:Math.hypot(mx-cx,my-cy)-abst*.8)+ov*5;if(!best||score<best.s)best={s:score,x:o.x,y:o.y,rot:o.rot,n:o.n}}}
+ OFUEHR=merk;if(best){o.x=best.x;o.y=best.y;o.rot=best.rot;o.n=best.n;return true}Object.assign(o,alt);return false}
 // Parallel-Einrasten: Mitte eines Objekts rastet in der Flucht anderer Objekte ein (Tür gegenüber Tür, Stuhl gegenüber Stuhl,
 // Fenster über Fenster) und an der Raummitte. Hängt ein Objekt an einer Wand, wird nur entlang der Wand ausgerichtet.
 function bpFlucht(o){if(!OMAG||!FOK||!ESEL)return '';const C=[FOK.x+o.x,FOK.y+o.y],thr=Math.max(5,12/WK.s),W0=OFUEHR[0];
@@ -8376,7 +8434,7 @@ function malW(){const r=FOK?[FOK]:ESEL.raeume;$('wTitel').innerHTML=FOK?`<small>
 function kameraFahrt(z,d=700){animiere({...WK},{...WK,...z},d,o=>{Object.assign(WK,o);malW()})}
 $('dim').querySelectorAll('button').forEach(b=>b.onclick=()=>{DIM=+b.dataset.d;$('dim').querySelectorAll('button').forEach(x=>x.classList.toggle('an',x===b));if(DIM===3){WK2={s:WK.s,py:WK.py||0};kameraFahrt({tilt:.95,yaw:-.55,s:WK.s*.74,py:(WK.py||0)+90*WK.s*.74},900)}else kameraFahrt({tilt:0,yaw:0,s:WK2?WK2.s:WK.s/.74,py:WK2?WK2.py:0},900)});
 $('palette').innerHTML=Object.entries(OBJ).map(([k,o])=>{const [w,d]=o.g.M;return `<button type="button" data-ob="${k}"><svg viewBox="0 0 26 22"><rect x="${13-Math.min(11,w/22)}" y="${11-Math.min(9,d/22)}" width="${2*Math.min(11,w/22)}" height="${2*Math.min(9,d/22)}" rx="2"/></svg>${o.n}</button>`}).join('');
-$('palette').querySelectorAll('[data-ob]').forEach(b=>b.onclick=()=>{if(!FOK)return;const t=b.dataset.ob,T=OBJ[t],P=poly(FOK),bb=bbox(P);const n=FOK.obj.length%5,o={t,x:(FOK.rot%180?FOK.B/2:FOK.L/2)+(n-2)*35,y:(FOK.rot%180?FOK.L/2:FOK.B/2)+(n%2?40:-20),rot:0,g:'M'};if(t==='tuer'||t==='fenster'){o.y=T.g.M[1]/2}FOK.obj.push(o);OSEL=o;osnap(o);OFUEHR=[];malW();aend();toast(T.n+' eingefügt – zum Platzieren ziehen')});
+$('palette').querySelectorAll('[data-ob]').forEach(b=>b.onclick=()=>{if(!FOK)return;const t=b.dataset.ob,T=OBJ[t],P=poly(FOK),bb=bbox(P);const o={t,x:(FOK.rot%180?FOK.B/2:FOK.L/2),y:(FOK.rot%180?FOK.L/2:FOK.B/2),rot:0,g:'M'};if(t==='tuer'||t==='fenster'){o.y=T.g.M[1]/2}const frei=bpFreiePlatz(FOK,o);FOK.obj.push(o);OSEL=o;if(!frei)osnap(o);OFUEHR=[];malW();aend();toast(T.n+' eingefügt – zum Platzieren ziehen')});
 // ===== Objekte & Boden (v0.11.26): Knopf „Objekte“ im Einrichten-Kopf, Leiste rechts mit Raumwahl, Boden und Objekten =====
 let OP=false,OPK='';const OPI={};
 const OGR=[['Türen, Fenster & Bau',['tuer','fenster','treppe','heizkoerper']],['Wohnen',['sofa','sessel','couchtisch','tisch','stuhl','sideboard','regal','pflanze']],['Schlafen & Arbeiten',['bett','schrank','schreibtisch']],['Küche & Bad',['kueche','kuehlschrank','dusche','wanne','wc','waschtisch','waschmaschine']]];
@@ -13094,6 +13152,24 @@ Wohnen|Salon|Living|Ndenja|Dnevni boravak|Хол
 Schlafen & Arbeiten|Sypialnia i praca|Dormit și lucru|Gjumi dhe puna|Spavanje i rad|Спалня и работа
 Ausgerichtet|Wyrównano|Aliniat|U rreshtua|Poravnato|Подравнено
 der Raummitte|środka pomieszczenia|centrul camerei|qendrën e dhomës|sredinom prostorije|средата на стаята
+Daten übernehmen|Przenieś dane|Preia datele|Merr të dhënat|Preuzmi podatke|Прехвърли данни
+Aus der bisherigen Software übernehmen|Przenieś z dotychczasowego programu|Preia din programul anterior|Merr nga programi i mëparshëm|Preuzmi iz dosadašnjeg programa|Прехвърли от досегашния софтуер
+Datei hierher ziehen oder|Przeciągnij plik tutaj lub|Trage fișierul aici sau|Tërhiqe skedarin këtu ose|Povuci datoteku ovdje ili|Плъзни файла тук или
+auswählen|wybierz|alege|zgjidh|odaberi|избери
+Tabelle aus Excel oder CSV|Tabela z Excela lub CSV|Tabel din Excel sau CSV|Tabelë nga Excel ose CSV|Tablica iz Excela ili CSV|Таблица от Excel или CSV
+Leistungsverzeichnis (GAEB)|Przedmiar (GAEB)|Listă de lucrări (GAEB)|Lista e punimeve (GAEB)|Troškovnik (GAEB)|Количествена сметка (GAEB)
+Firmenordner|Folder firmy|Dosarul firmei|Dosja e firmës|Mapa tvrtke|Папка на фирмата
+Zum Firmen-Wiki ›|Do Wiki firmy ›|La Wiki firmă ›|Te Wiki e firmës ›|Na Wiki tvrtke ›|Към фирменото Wiki ›
+Was steht in der Datei?|Co jest w pliku?|Ce conține fișierul?|Çfarë ka në skedar?|Što je u datoteci?|Какво има във файла?
+Leistungen mit Preisen|Usługi z cenami|Lucrări cu prețuri|Punime me çmime|Usluge s cijenama|Услуги с цени
+Mitarbeiter|Pracownicy|Angajați|Punonjës|Zaposlenici|Служители
+Spalten zuordnen|Przypisz kolumny|Asociază coloanele|Cakto kolonat|Dodijeli stupce|Свържи колоните
+– nicht übernehmen –|– nie przenosić –|– nu prelua –|– mos e merr –|– ne preuzimati –|– не прехвърляй –
+schon da|już jest|există deja|ekziston|već postoji|вече има
+neu|nowy|nou|e re|novo|ново
+Rückgängig|Cofnij|Anulează|Zhbëj|Poništi|Отмени
+Weitere Datei übernehmen|Przenieś kolejny plik|Preia alt fișier|Merr skedar tjetër|Preuzmi drugu datoteku|Прехвърли друг файл
+In der Preisliste ansehen|Zobacz w cenniku|Vezi în lista de prețuri|Shiko në listën e çmimeve|Pogledaj u cjeniku|Виж в ценоразписа
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -15205,6 +15281,139 @@ function bbBinden(inh){const D=bbArbeit(),vor=()=>{const f=inh.querySelector('.b
  const z=inh.querySelector('.bbzur');if(z)z.onclick=()=>{const L=LK.d&&LK.d.doks&&LK.d.doks.tx&&LK.d.doks.tx[ES.dokArt]||{};D.tx[ES.dokArt]=Object.assign({},LK_DOK_TX[ES.dokArt],L);merk();neu()};
  inh.querySelectorAll('[data-bu]').forEach(b=>b.onclick=()=>{const i=+b.dataset.bu,j=i+ +b.dataset.d;[D.fuss[i],D.fuss[j]]=[D.fuss[j],D.fuss[i]];merk();neu()});
  const lf=inh.querySelector('.eslbtn input');if(lf)lf.onchange=async()=>{const fl=lf.files&&lf.files[0];if(!fl)return;try{const u=await esLogoKlein(fl);const f=auFirma();f.logo=u;localStorage.setItem('onstandFirma',JSON.stringify(f));if(typeof fiSpeichern==='function')fiSpeichern();try{onLogo()}catch(e){}neu();onToast('Logo gespeichert')}catch(e){onToast('Das Bild konnte nicht gelesen werden.')}}}
+// ===== Daten übernehmen (v0.11.31): aus der bisherigen Software (WinWorker, Taifun, Label, Excel-Listen …) =====
+// Einstellungen → Daten → „Daten übernehmen“. Drei Wege:
+//  1. Tabelle (Excel .xlsx oder CSV): Leistungen mit Preisen → Preisliste, Kunden → Kunden, Mitarbeiter → Personal.
+//     Spalten werden automatisch zugeordnet, Vorschau vor dem Übernehmen, Doppelte werden erkannt.
+//  2. Leistungsverzeichnis als GAEB (.x81–.x86, mit Preisen) → Preisliste.
+//  3. Firmenordner (Briefe, Verträge, Notizen) → Firmen-Wiki.
+// Alles läuft im Browser, keine Datei verlässt den Rechner. Excel wird ohne Zusatz-Bibliothek gelesen (ZIP + XML).
+const IM={s:null};
+
+// ---------- Excel (.xlsx) ohne Bibliothek ----------
+async function imZip(buf){const d=new DataView(buf),u8=new Uint8Array(buf);let e=-1;for(let i=buf.byteLength-22;i>=Math.max(0,buf.byteLength-66000);i--)if(d.getUint32(i,true)===0x06054b50){e=i;break}
+ if(e<0)throw new Error('Die Datei ist keine Excel-Datei (.xlsx).');const n=d.getUint16(e+10,true);let p=d.getUint32(e+16,true);const F={};
+ for(let k=0;k<n;k++){if(d.getUint32(p,true)!==0x02014b50)break;const meth=d.getUint16(p+10,true),cs=d.getUint32(p+20,true),nl=d.getUint16(p+28,true),xl=d.getUint16(p+30,true),cl=d.getUint16(p+32,true),off=d.getUint32(p+42,true),name=new TextDecoder().decode(u8.subarray(p+46,p+46+nl));
+  F[name]={meth,cs,off};p+=46+nl+xl+cl}
+ return async name=>{const f=F[name];if(!f)return null;const ln=d.getUint16(f.off+26,true),lx=d.getUint16(f.off+28,true),st=f.off+30+ln+lx,roh=u8.subarray(st,st+f.cs);
+  if(f.meth===0)return new TextDecoder().decode(roh);if(f.meth!==8)throw new Error('Diese Excel-Datei ist ungewöhnlich gepackt. Bitte in Excel als .xlsx oder .csv neu speichern.');
+  const ds=new DecompressionStream('deflate-raw'),w=ds.writable.getWriter();w.write(roh);w.close();return await new Response(ds.readable).text()}}
+const imSp=s=>{let n=0;for(const c of s)n=n*26+(c.charCodeAt(0)-64);return n-1};
+async function imXlsx(buf){const z=await imZip(buf),dp=new DOMParser(),x=t=>dp.parseFromString(t,'application/xml'),T=(el,n)=>[...el.getElementsByTagNameNS('*',n)];
+ const ss=[];const sst=await z('xl/sharedStrings.xml');if(sst)for(const si of T(x(sst),'si'))ss.push(T(si,'t').map(t=>t.textContent).join(''));
+ const wb=x(await z('xl/workbook.xml')||'<w/>'),rels=x(await z('xl/_rels/workbook.xml.rels')||'<r/>'),R={};T(rels,'Relationship').forEach(r=>R[r.getAttribute('Id')]=r.getAttribute('Target'));
+ const blaetter=T(wb,'sheet').map(s=>{const id=s.getAttribute('r:id')||s.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','id');let t=R[id]||'';t=t.replace(/^\/?xl\//,'');return {name:s.getAttribute('name'),pfad:'xl/'+t}});
+ if(!blaetter.length)blaetter.push({name:'Tabelle1',pfad:'xl/worksheets/sheet1.xml'});
+ const out=[];for(const b of blaetter){const t=await z(b.pfad);if(!t)continue;const rows=[];for(const r of T(x(t),'row')){const zeile=[];for(const c of T(r,'c')){const ref=c.getAttribute('r')||'',col=imSp(ref.replace(/\d+/g,'')),typ=c.getAttribute('t'),v=T(c,'v')[0];let w='';
+    if(typ==='s')w=ss[+(v&&v.textContent)]||'';else if(typ==='inlineStr')w=T(c,'t').map(q=>q.textContent).join('');else w=v?v.textContent:'';zeile[col]=w}
+   rows.push([...zeile].map(v=>v==null?'':String(v)))}out.push({name:b.name,rows})}return out}
+// ---------- CSV ----------
+function imCsv(buf){let t=new TextDecoder('utf-8').decode(buf);if(t.includes('�'))t=new TextDecoder('windows-1252').decode(buf);t=t.replace(/^﻿/,'');
+ const kopf=t.split(/\r?\n/).slice(0,5).join('\n'),tr=[';','\t',',','|'].map(c=>[c,(kopf.match(new RegExp(c==='|'?'\\|':c,'g'))||[]).length]).sort((a,b)=>b[1]-a[1])[0][0];
+ const rows=[];let z=[],f='',q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'){if(t[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c==='"')q=true;else if(c===tr){z.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;z.push(f);rows.push(z);z=[];f=''}else f+=c}
+ if(f||z.length){z.push(f);rows.push(z)}return [{name:'CSV',rows:rows.filter(r=>r.some(v=>String(v).trim()))}]}
+
+// ---------- Erkennen ----------
+const IM_ZIEL={
+ pl:{n:'Leistungen mit Preisen',ziel:'Preisliste',ico:'<path d="M4 5h12M4 10h12M4 15h8"/>',F:[['n','Leistung (Kurztext)',['kurztext','bezeichnung','leistung','artikelbezeichnung','text','beschreibung','artikel','position','langtext']],['e','Einheit',['einheit','me','mengeneinheit','eh','einh']],['p','Preis netto',['einheitspreis','ep','vk','verkaufspreis','preis','netto','vk-preis','vk netto','preis netto']],['l','Lohnanteil %',['lohnanteil','lohn','lohn %','lohnanteil %']],['f','Bereich',['bereich','kategorie','gruppe','warengruppe','gewerk','titel']]]},
+ ku:{n:'Kunden',ziel:'Kunden',ico:'<circle cx="10" cy="7" r="3.2"/><path d="M3.5 17c.8-3.4 3.4-5 6.5-5s5.7 1.6 6.5 5"/>',F:[['name','Name / Firma',['firma','name','kunde','kundenname','firmenname','name1','nachname','bezeichnung']],['vor','Vorname',['vorname']],['kontakt','Ansprechpartner',['ansprechpartner','kontakt','kontaktperson']],['str','Straße',['straße','strasse','str','adresse','anschrift']],['plz','PLZ',['plz','postleitzahl']],['ort','Ort',['ort','stadt','wohnort']],['tel','Telefon',['telefon','tel','telefon 1','mobil','handy','phone']],['mail','E-Mail',['e-mail','email','mail']],['rust','USt-IdNr.',['ust-idnr','ustid','ust-id','umsatzsteuer-id']]]},
+ pe:{n:'Mitarbeiter',ziel:'Personal',ico:'<circle cx="10" cy="6.5" r="2.8"/><path d="M5 17c.6-3 2.6-4.6 5-4.6s4.4 1.6 5 4.6"/>',F:[['name','Name',['name','mitarbeiter','nachname','mitarbeitername']],['vor','Vorname',['vorname']],['rolle','Rolle',['rolle','funktion','beruf','tätigkeit','taetigkeit','position','qualifikation']],['tel','Telefon',['telefon','tel','mobil','handy']]]}};
+const imNorm=s=>String(s||'').toLowerCase().replace(/[._\-:()]/g,' ').replace(/\s+/g,' ').trim();
+function imKopfZeile(rows){for(let i=0;i<Math.min(10,rows.length);i++){const r=rows[i],txt=r.filter(v=>v&&isNaN(parseFloat(String(v).replace(',','.')))).length;if(txt>=2&&txt>=r.filter(Boolean).length*.6)return i}return 0}
+function imZuordnen(kopf,ziel){const M={},frei=new Set(kopf.map((_,i)=>i));for(const [k,,W] of IM_ZIEL[ziel].F){let best=-1,bs=0;kopf.forEach((h,i)=>{if(!frei.has(i))return;const n=imNorm(h);W.forEach((w,j)=>{const s=n===w?100-j:n.startsWith(w+' ')||n.endsWith(' '+w)?60-j:n.includes(w)&&w.length>=4?30-j:0;if(s>bs){bs=s;best=i}})});if(best>=0){M[k]=best;frei.delete(best)}}return M}
+function imRaten(kopf){const sc=Object.keys(IM_ZIEL).map(z=>{const M=imZuordnen(kopf,z);let s=Object.keys(M).length;if(z==='pl'&&M.p!=null&&M.n!=null)s+=3;if(z==='ku'&&(M.str!=null||M.mail!=null))s+=2;if(z==='pe'&&M.rolle!=null)s+=2;return [z,s]}).sort((a,b)=>b[1]-a[1]);return sc[0][0]}
+const imPreis=v=>{let s=String(v||'').replace(/[€\s]/g,'');if(!s)return NaN;if(/^\d+(\.\d+)?$/.test(s))return parseFloat(s);if(s.includes(','))s=s.replace(/\./g,'').replace(',','.');return parseFloat(s)};
+const imEh=u=>typeof gaEh==='function'?gaEh(u):(String(u||'').trim()||'psch');
+const imBereich=v=>{const s=imNorm(v);if(/boden|estrich|fliesen ?boden|belag/.test(s))return 'boden';if(/wand|wände|waende|tapete|putz|trockenbau|spachtel/.test(s))return 'wand';if(/decke/.test(s))return 'decke';if(/sockel|kante|leiste|fuge/.test(s))return 'sockel';return ''};
+
+// ---------- Datensätze bauen ----------
+function imSaetze(){const S=IM.s;if(!S)return [];const B=S.blaetter[S.blatt],rows=B.rows.slice(S.kopf+1),M=S.M,g=(r,k)=>M[k]!=null?String(r[M[k]]??'').trim():'';
+ if(S.ziel==='pl')return rows.map(r=>{const n=g(r,'n').replace(/\s+/g,' ');if(!n)return null;const p=imPreis(g(r,'p')),l=parseFloat(String(g(r,'l')).replace(',','.')),fb=imBereich(g(r,'f'))||imBereich(n);
+  return {n:n.slice(0,160),e:imEh(g(r,'e')),p:isNaN(p)?0:Math.round(p*100)/100,l:isNaN(l)?S.lohn:Math.max(0,Math.min(100,Math.round(l))),f:fb||S.bereich,ohne:isNaN(p)}}).filter(Boolean);
+ if(S.ziel==='ku')return rows.map(r=>{let n=g(r,'name');const v=g(r,'vor');if(v&&n&&M.vor!==M.name&&!/gmbh|ag\b|kg\b|ug\b|e\.k|gbr|ohg/i.test(n))n=v+' '+n;n=n.replace(/\s+/g,' ').trim();if(!n)return null;
+  const adr=[g(r,'str'),[g(r,'plz'),g(r,'ort')].filter(Boolean).join(' ')].filter(Boolean).join(', ');return {name:n,kontakt:g(r,'kontakt'),ort:adr,tel:g(r,'tel'),mail:g(r,'mail'),rust:g(r,'rust'),status:S.status}}).filter(Boolean);
+ return rows.map(r=>{let n=g(r,'name');const v=g(r,'vor');if(v&&M.vor!==M.name)n=v+' '+n;n=n.replace(/\s+/g,' ').trim();if(!n)return null;return {name:n,rolle:g(r,'rolle'),tel:g(r,'tel'),status:'aktiv'}}).filter(Boolean)}
+function imDa(x){const S=IM.s;if(S.ziel==='pl')return (typeof AU_P!=='undefined'?AU_P:[]).some(y=>!y.bsp&&y.n.toLowerCase()===x.n.toLowerCase());if(S.ziel==='ku')return !!(typeof BST!=='undefined'&&BST[notizName(x.name)]);return !!(typeof PER!=='undefined'&&PER[notizName(x.name)])}
+
+// ---------- Datei lesen ----------
+async function imDatei(fl){const name=fl.name||'Datei',end=(name.match(/\.([a-z0-9]+)$/i)||[])[1]?.toLowerCase()||'',buf=await fl.arrayBuffer();
+ try{try{await Promise.all([typeof auPlLaden==='function'?auPlLaden():0,typeof bstLaden==='function'?bstLaden():0,typeof peLaden==='function'?peLaden():0])}catch(e){}
+  if(/^x8[1-6]$|^xml$/.test(end)){IM.s={gaeb:imGaeb(new TextDecoder().decode(buf),name),name,ziel:'pl',lohn:50,bereich:'frei',doppelt:'preis'};return}
+  if(end==='xls')throw new Error('Alte Excel-Dateien (.xls) kann Onstand nicht lesen. Bitte in Excel „Speichern unter“ → „Excel-Arbeitsmappe (.xlsx)“ oder „CSV (Trennzeichen-getrennt)“ wählen.');
+  if(/^d8[1-6]$/.test(end))throw new Error('Alte GAEB-Dateien (.d81–.d86) kann Onstand nicht lesen. Bitte in der bisherigen Software als GAEB XML (.x81–.x86) speichern.');
+  const blaetter=end==='xlsx'||end==='xlsm'?await imXlsx(buf):imCsv(buf);const bi=Math.max(0,blaetter.findIndex(b=>b.rows.length>1));if(!blaetter[bi]||blaetter[bi].rows.length<2)throw new Error('In der Datei stehen keine Zeilen.');
+  const kopf=imKopfZeile(blaetter[bi].rows),K=blaetter[bi].rows[kopf].map(v=>String(v||'').trim()),ziel=imRaten(K);
+  IM.s={name,blaetter,blatt:bi,kopf,ziel,M:imZuordnen(K,ziel),lohn:50,bereich:'frei',status:'abgeschlossen',doppelt:'preis',bspWeg:true}}
+ catch(e){IM.s={fehler:e.message||String(e),name}}}
+function imGaeb(xml,name){const doc=new DOMParser().parseFromString(xml,'application/xml');if(doc.querySelector('parsererror')||doc.documentElement.localName!=='GAEB')throw new Error('Das ist keine GAEB-XML-Datei (.x81–.x86).');
+ const T=(e,n)=>[...e.getElementsByTagNameNS('*',n)],txt=e=>e?String(e.textContent||'').replace(/\s+/g,' ').trim():'',kind=(e,n)=>e?[...e.children].find(c=>c.localName===n):null,out=[];
+ for(const it of T(doc,'Item')){const d=kind(it,'Description'),ct=kind(d,'CompleteText'),kurz=txt(kind(ct,'OutlineText'))||txt(kind(ct,'DetailTxt')).slice(0,140);if(!kurz)continue;
+  let c=it.parentElement,ti='';while(c&&!ti){if(c.localName==='BoQCtgy')ti=txt(kind(c,'LblTx'));c=c.parentElement}
+  const up=txt(kind(it,'UP')),p=parseFloat(up.replace(',','.'));out.push({n:kurz.slice(0,160),e:imEh(txt(kind(it,'QU'))),p:isNaN(p)?0:Math.round(p*100)/100,l:50,f:imBereich(ti)||imBereich(kurz)||'frei',ohne:isNaN(p),titel:ti})}
+ if(!out.length)throw new Error('In der GAEB-Datei stehen keine Positionen.');return out}
+
+// ---------- Übernehmen ----------
+async function imUebernehmen(){const S=IM.s,L=S.gaeb?S.gaeb.map(x=>({...x,l:S.lohn,f:x.f==='frei'?S.bereich:x.f})):imSaetze();let neu=0,akt=0,weg=0;
+ if(S.ziel==='pl'){await auPlLaden();IM.vorher=JSON.stringify(AU_P);if(S.bspWeg&&AU_P.length&&AU_P.every(x=>x.bsp)){weg=AU_P.length;AU_P.length=0}
+  for(const x of L){const y=AU_P.find(z=>z.n.toLowerCase()===x.n.toLowerCase());if(y){if(S.doppelt==='preis'&&!x.ohne){y.p=x.p;y.e=x.e;y.bsp=false;akt++}continue}AU_P.push({n:x.n,e:x.e,p:x.p,l:x.l,f:x.f,fav:false});neu++}
+  await auPlSchreiben()}
+ else if(S.ziel==='ku'){for(const x of L){const n=notizName(x.name);if(!n)continue;const alt=BST[n];if(alt){let g=false;for(const k of ['kontakt','ort','tel','mail','rust'])if(x[k]&&!alt[k]){alt[k]=x[k];g=true}if(g){await bstSpeichern(n,alt);akt++}continue}
+  await bstSpeichern(null,{name:n,k:bstKuerzel(n),c:bstFarbe(),ort:x.ort,kontakt:x.kontakt,tel:x.tel,mail:x.mail,rust:x.rust,status:x.status,einzug:'',zugang:'',besonders:''});neu++}}
+ else{for(const x of L){const n=notizName(x.name);if(!n)continue;const alt=PER[n];if(alt){let g=false;for(const k of ['rolle','tel'])if(x[k]&&!alt[k]){alt[k]=x[k];g=true}if(g){await peSpeichern(n,alt);akt++}continue}
+  await peSpeichern(null,{name:n,rolle:x.rolle,tel:x.tel,status:'aktiv'});neu++}}
+ IM.fertig={ziel:S.ziel,neu,akt,weg,name:S.name};IM.s=null}
+
+// ---------- Oberfläche ----------
+const IM_I={tab:'<svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg>',lv:'<svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h5"/></svg>',ord:'<svg viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>',ok:'<svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 7"/></svg>'};
+function imSeite(){const S=IM.s,f=IM.fertig;
+ if(f){const Z={pl:['Preisliste','auftraege','In der Preisliste ansehen'],ku:['Kunden','kunden','Zu den Kunden'],pe:['Personal','personal','Zum Personal']}[f.ziel];IM.fertig=null;
+  return `<div class="aukarte kulkarte imok"><div class="imokk"><span class="imico gruen">${IM_I.ok}</span><div><b>${f.neu} ${f.neu===1?'Eintrag':'Einträge'} übernommen</b><small>${esc(f.name)} → ${Z[0]}${f.akt?` · ${f.akt} vorhandene ${f.ziel==='pl'?'mit neuem Preis':'ergänzt'}`:''}${f.weg?` · ${f.weg} Beispiel-Leistungen entfernt`:''}</small></div></div>
+   <div class="esrow"><button type="button" class="amja" data-imgo="${Z[1]}">${Z[2]}</button>${f.ziel==='pl'&&IM.vorher?'<button type="button" class="amab" data-imzur>Rückgängig</button>':''}<button type="button" class="aultext" data-imneu>Weitere Datei übernehmen</button></div></div>`}
+ if(S&&S.fehler)return `<div class="aukarte kulkarte"><div class="kulkh"><b>${esc(S.name)}</b><span class="aulpill abgelehnt">Nicht lesbar</span></div><p class="imtxt">${esc(S.fehler)}</p><div class="esrow"><button type="button" class="amab" data-imneu>Andere Datei wählen</button></div></div>`;
+ if(S)return imVorschau();
+ return `<div class="aukarte kulkarte"><div class="kulkh"><b>Aus der bisherigen Software übernehmen</b><small>WinWorker, Taifun, Label, Lexware, eigene Excel-Listen …</small></div>
+  <label class="imdrop" data-imdrop><input type="file" accept=".xlsx,.xlsm,.csv,.txt,.xls,.x81,.x82,.x83,.x84,.x85,.x86,.xml,.d83,.d84" hidden><span class="imdk">Datei hierher ziehen oder <u>auswählen</u></span><small>Excel (.xlsx), CSV oder GAEB (.x81–.x86) · die Datei bleibt auf diesem Rechner</small></label>
+  <div class="imwege">
+   <div><span class="imico">${IM_I.tab}</span><b>Tabelle aus Excel oder CSV</b><p>Leistungen mit Preisen, Kunden oder Mitarbeiter. Onstand erkennt die Spalten selbst, du siehst vorher, was übernommen wird.</p></div>
+   <div><span class="imico">${IM_I.lv}</span><b>Leistungsverzeichnis (GAEB)</b><p>Ein LV mit Preisen (.x81–.x86) kommt in die Preisliste. Ausschreibungen zum Ausfüllen öffnest du unter Aufträge → Angebot aus GAEB.</p></div>
+   <div><span class="imico">${IM_I.ord}</span><b>Firmenordner</b><p>Briefe, Verträge, Notizen und alles andere sortiert das Firmen-Wiki (KI-Paket) in verlinkte Seiten.</p><button type="button" class="aultext" data-imgo="brain">Zum Firmen-Wiki ›</button></div></div>
+  <p class="imhin"><b>So kommt es aus der alten Software:</b> In WinWorker z. B. die Stammdaten (Leistungen, Kunden) über „Export“ als Excel oder CSV speichern, ein LV über „GAEB-Export“ als .x84 oder .x81.</p></div>`}
+function imVorschau(){const S=IM.s,G=!!S.gaeb,Z=IM_ZIEL[S.ziel],L=G?S.gaeb:imSaetze(),da=L.filter(imDa).length,ohne=S.ziel==='pl'?L.filter(x=>x.ohne).length:0,bsp=S.ziel==='pl'&&typeof AU_P!=='undefined'&&AU_P.length&&AU_P.every(x=>x.bsp);
+ const B=G?null:S.blaetter[S.blatt],K=G?[]:B.rows[S.kopf].map((v,i)=>String(v||'').trim()||'Spalte '+(i+1));
+ const kopf=`<div class="kulkh"><b>${esc(S.name)}</b><small>${G?'GAEB-Leistungsverzeichnis':`${B.rows.length-S.kopf-1} Zeilen${S.blaetter.length>1?' · Blatt „'+esc(B.name)+'“':''}`}</small><button type="button" class="aultext imaus" data-imneu>Andere Datei</button></div>`;
+ const wahl=G?'':`<div class="imfeld"><span class="aullab">Was steht in der Datei?</span><div class="mgchips aulwahl kulwahl imziel">${Object.entries(IM_ZIEL).map(([k,z])=>`<button type="button" data-imz="${k}" class="aulk${S.ziel===k?' an':''}"><b>${z.n}</b><small>kommt in: ${z.ziel}</small></button>`).join('')}</div></div>`;
+ const blatt=!G&&S.blaetter.length>1?`<label class="imfeld"><span class="aullab">Tabellenblatt</span><select class="aut" data-imblatt>${S.blaetter.map((b,i)=>`<option value="${i}"${i===S.blatt?' selected':''}>${esc(b.name)} (${b.rows.length} Zeilen)</option>`).join('')}</select></label>`:'';
+ const spalten=G?'':`<div class="imfeld"><span class="aullab">Spalten zuordnen <small>von Onstand erkannt – bei Bedarf ändern</small></span><div class="imsp">${Z.F.map(([k,t])=>`<label><span>${t}</span><select class="aut" data-imm="${k}"><option value="">– nicht übernehmen –</option>${K.map((h,i)=>`<option value="${i}"${S.M[k]===i?' selected':''}>${esc(h)}</option>`).join('')}</select></label>`).join('')}</div></div>`;
+ const opt=S.ziel==='pl'?`<div class="imfeld imopt"><label><span class="aullab">Lohnanteil, wenn keiner angegeben</span><select class="aut" data-imlohn>${[0,30,40,50,60,70,80,100].map(v=>`<option value="${v}"${S.lohn===v?' selected':''}>${v} %</option>`).join('')}</select></label>
+   <label><span class="aullab">Bereich, wenn nicht erkannt</span><select class="aut" data-imber>${Object.entries(typeof AU_FL!=='undefined'?AU_FL:{frei:'frei'}).map(([k,v])=>`<option value="${k}"${S.bereich===k?' selected':''}>${v==='frei'?'Ohne Bauplan':v}</option>`).join('')}</select></label>
+   <label><span class="aullab">Leistung gibt es schon</span><select class="aut" data-imdop><option value="preis"${S.doppelt==='preis'?' selected':''}>Preis aktualisieren</option><option value="lass"${S.doppelt==='lass'?' selected':''}>so lassen</option></select></label></div>
+   ${bsp?`<label class="imcheck"><input type="checkbox" data-imbsp${S.bspWeg?' checked':''}> Die ${AU_P.length} Beispiel-Leistungen von Onstand dabei entfernen</label>`:''}`
+  :S.ziel==='ku'?`<div class="imfeld imopt"><label><span class="aullab">Status der übernommenen Kunden</span><select class="aut" data-imst>${[['abgeschlossen','Abgeschlossen (frühere Kunden)'],['offen','In Arbeit'],['interessent','Interessent']].map(([k,t])=>`<option value="${k}"${S.status===k?' selected':''}>${t}</option>`).join('')}</select></label></div>`:'';
+ const sp=S.ziel==='pl'?[['Leistung','n'],['Einheit','e'],['Preis','p'],['Lohn','l'],['Bereich','f']]:S.ziel==='ku'?[['Name','name'],['Adresse','ort'],['Ansprechpartner','kontakt'],['Telefon','tel'],['E-Mail','mail']]:[['Name','name'],['Rolle','rolle'],['Telefon','tel']];
+ const zelle=(x,k)=>k==='p'?(x.ohne?'<i class="kulrot">kein Preis</i>':esc(x.p.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}))+' €'):k==='l'?x.l+' %':k==='f'?esc(x.f==='frei'?'–':(AU_FL[x.f]||x.f)):esc(x[k]||'')||'<span class="kulgrau">–</span>';
+ const tab=`<div class="imtab"><table><thead><tr><th></th>${sp.map(([t])=>`<th>${t}</th>`).join('')}</tr></thead><tbody>${L.slice(0,12).map(x=>`<tr><td>${imDa(x)?'<span class="aulpill entwurf">schon da</span>':'<span class="aulpill bezahlt">neu</span>'}</td>${sp.map(([,k])=>`<td>${zelle(x,k)}</td>`).join('')}</tr>`).join('')}</tbody></table>${L.length>12?`<p class="imtxt klein">… und ${L.length-12} weitere</p>`:''}</div>`;
+ const neu=L.length-da,ok=L.length>0&&(S.ziel!=='pl'||S.M&&S.M.n!=null||G);
+ return `<div class="aukarte kulkarte imv">${kopf}${wahl}${blatt}${spalten}${opt}
+  <div class="imfeld"><span class="aullab">Vorschau <small>${L.length} ${L.length===1?'Eintrag':'Einträge'} · ${neu} neu${da?` · ${da} schon vorhanden`:''}${ohne?` · <span class="kulrot">${ohne} ohne Preis</span>`:''}</small></span>${L.length?tab:'<p class="imtxt">Keine Einträge erkannt. Bitte die Spalte für den Namen zuordnen.</p>'}</div>
+  <div class="amaktion"><button type="button" class="amab" data-imneu>Abbrechen</button><button type="button" class="amja" data-imgo2${ok?'':' disabled'}>${neu} ${Z.n} übernehmen</button></div></div>`}
+function imBinden(inh){const q=s=>inh.querySelector(s),qa=s=>inh.querySelectorAll(s),neu=()=>{IM.s=null;esSeite(inh)},neu2=()=>esSeite(inh);
+ const d=q('[data-imdrop]');if(d){const i=d.querySelector('input'),los=async fl=>{if(!fl)return;d.classList.add('lies');d.querySelector('.imdk').textContent='Lese '+fl.name+' …';await imDatei(fl);neu2()};
+  i.onchange=()=>los(i.files&&i.files[0]);d.addEventListener('dragover',e=>{e.preventDefault();d.classList.add('ueber')});d.addEventListener('dragleave',()=>d.classList.remove('ueber'));d.addEventListener('drop',e=>{e.preventDefault();d.classList.remove('ueber');los(e.dataTransfer.files&&e.dataTransfer.files[0])})}
+ qa('[data-imneu]').forEach(b=>b.onclick=neu);
+ qa('[data-imgo]').forEach(b=>b.onclick=()=>{const z=b.dataset.imgo;if(z==='auftraege')amAuf('auftraege',{tab:'preis'});else amFunktion(z)});
+ const zur=q('[data-imzur]');if(zur)zur.onclick=async()=>{try{AU_P.length=0;JSON.parse(IM.vorher).forEach(x=>AU_P.push(x));await auPlSchreiben();IM.vorher=null;onToast('Preisliste wie vorher')}catch(e){}neu()};
+ const S=IM.s;if(!S||S.fehler)return;
+ qa('[data-imz]').forEach(b=>b.onclick=()=>{S.ziel=b.dataset.imz;const B=S.blaetter[S.blatt];S.M=imZuordnen(B.rows[S.kopf].map(v=>String(v||'').trim()),S.ziel);neu2()});
+ const bl=q('[data-imblatt]');if(bl)bl.onchange=()=>{S.blatt=+bl.value;const B=S.blaetter[S.blatt];S.kopf=imKopfZeile(B.rows);const K=B.rows[S.kopf].map(v=>String(v||'').trim());S.ziel=imRaten(K);S.M=imZuordnen(K,S.ziel);neu2()};
+ qa('[data-imm]').forEach(s=>s.onchange=()=>{const k=s.dataset.imm;if(s.value==='')delete S.M[k];else{const v=+s.value;for(const x in S.M)if(S.M[x]===v)delete S.M[x];S.M[k]=v}neu2()});
+ const lo=q('[data-imlohn]');if(lo)lo.onchange=()=>{S.lohn=+lo.value;neu2()};const be=q('[data-imber]');if(be)be.onchange=()=>{S.bereich=be.value;neu2()};
+ const dp=q('[data-imdop]');if(dp)dp.onchange=()=>{S.doppelt=dp.value};const st=q('[data-imst]');if(st)st.onchange=()=>{S.status=st.value;neu2()};const bs=q('[data-imbsp]');if(bs)bs.onchange=()=>{S.bspWeg=bs.checked};
+ const go=q('[data-imgo2]');if(go)go.onclick=async()=>{go.disabled=true;go.textContent='Übernehme …';try{await imUebernehmen()}catch(e){console.error(e);onToast('Das hat nicht geklappt: '+(e.message||e))}neu2()}}
+// in die Einstellungen einhängen
+{const g=ES_B.find(x=>x[0]==='Daten');if(g)g[1].push(['import','Daten übernehmen','import übernehmen excel xlsx csv tabelle winworker taifun label lexware alte software preisliste leistungen preise kunden personal mitarbeiter gaeb x84 x81 lv firmenordner'])}
+{const alt=esInhalt;esInhalt=function(b){return b==='import'?imSeite():alt.apply(this,arguments)}}
+{const alt=esBinden;esBinden=function(inh){alt.apply(this,arguments);if(ES.b==='import')imBinden(inh)}}
 // ===== Papierkorb & Sicherungen als Seite im Büro-Design (Probe „Papierkorb & Assistent“, v0.11.27) =====
 // Am PC (ab 980 px) öffnet „Papierkorb“ eine eigene Seite wie Aufträge oder Kunden: Reiter Papierkorb · Sicherungen,
 // Tabelle mit Vorschau, Filter nach Bereich, ein blauer Knopf (Zurückholen bzw. Jetzt sichern). Daten und Logik bleiben in papierkorb.js und sicherung.js.
