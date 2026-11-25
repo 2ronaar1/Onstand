@@ -5202,6 +5202,180 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 #am .pksdel.sicher span{display:inline}
 #am .pksw.weg{opacity:.35;transition:opacity .2s}
 #am#am#am .pksw .auar.aulz.pksz,#am#am#am .pksal .authd{padding-right:60px}
+
+/* ===== Kalender im Büro-Design (v0.11.28) ===== */
+#kal#kal.klay .kin{display:grid!important;grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"kopf kopf" "body links" "neu links";gap:0 24px;padding:0 24px 20px!important}
+#kal#kal.klay .kkopf{grid-area:kopf;display:flex;align-items:center;gap:8px;margin:0 -24px 24px!important;padding:12px 24px!important;min-height:74.5px;box-sizing:border-box;background:var(--k-b1);border-bottom:1px solid var(--k-lin);position:relative}
+#kal#kal.klay .ktitel{display:flex;flex-direction:column;flex:1 1 auto!important;padding:0!important;margin:0 auto 0 0;min-width:0}
+#kal#kal.klay #kmon{order:0;display:flex!important;align-items:center;gap:10px;font:600 22px/1.25 var(--k-ui)!important;letter-spacing:0!important;color:var(--k-t)}
+#kal#kal.klay #kmon::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--cpk-kalender,#C2185B);flex:none}
+#kal#kal.klay #kklein{order:1;font:500 12.5px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-sub)!important;margin:3px 0 0 19px!important}
+#kal#kal.klay #kklein b{color:var(--k-t);font-weight:600}
+#kal#kal.klay .kkopf>.knav{display:flex;gap:4px;margin:0 6px 0 0}
+#kal#kal.klay .kkopf>.knav button{height:36px;min-height:36px;border-radius:8px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:600 13.5px var(--k-ui)!important;padding:0 12px}
+#kal#kal.klay .kkopf>.knav .krund{width:36px;padding:0;font-size:18px!important}
+#kal#kal.klay #kans{display:flex;flex:none!important;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;background:var(--k-b1)}
+#kal#kal.klay #kans button{border:0;border-left:1px solid var(--k-lin);border-radius:0;background:none;height:34px;padding:0 13px!important;font:500 13px var(--k-ui)!important;color:var(--k-t)}
+#kal#kal.klay #kans button:first-child{border-left:0}
+#kal#kal.klay #kans button.an{background:var(--k-t);color:var(--k-b1);font-weight:600!important}
+#kal#kal.klay .kmobil{display:none!important}
+#kal#kal.klay #ksuche{display:block!important;width:220px;height:36px;box-sizing:border-box;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);padding:0 12px;font:14px var(--k-ui)}
+#kal#kal.klay .klyfw{position:relative}
+#kal#kal.klay .klyfb{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid var(--k-lin);border-radius:8px;background:var(--k-b1);color:var(--k-t);font:600 13.5px var(--k-ui);cursor:pointer;white-space:nowrap}
+#kal#kal.klay .klyfb.an{border-color:var(--k-akz);color:var(--k-akz)}
+#kal#kal.klay .klyfb svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linejoin:round}
+#kal#kal.klay .klyfm{display:none;position:absolute;right:0;top:42px;z-index:40;min-width:270px;background:var(--k-b1);border:1px solid var(--k-lin);border-radius:8px;box-shadow:0 14px 34px -14px rgba(0,0,0,.35);padding:6px}
+#kal#kal.klay .klyfm.an{display:block}
+#kal#kal.klay .klygr{display:block;padding:6px 10px 4px;font:600 12px var(--k-ui);color:var(--k-sub)}
+#kal#kal.klay .klyfm #kfilter{display:flex!important;flex-direction:column;gap:0;padding:0!important;border:0!important;background:none!important;margin:0!important;opacity:1!important;transform:none!important}
+#kal#kal.klay .klyfm #kfilter button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;border-radius:6px;padding:8px 10px;font:500 14px var(--k-ui);color:var(--k-t);cursor:pointer;opacity:1}
+#kal#kal.klay .klyfm #kfilter button:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#kal#kal.klay .klyfm #kfilter button i{width:16px;height:16px;border-radius:4px;flex:none;background:var(--c);border:1.5px solid var(--c);position:relative}
+#kal#kal.klay .klyfm #kfilter button i::after{content:'';position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid var(--k-t);border-width:0 2px 2px 0;transform:rotate(45deg)}
+#kal#kal.klay .klyfm #kfilter button.aus{color:var(--k-sub)}
+#kal#kal.klay .klyfm #kfilter button.aus i{background:none;border-color:color-mix(in srgb,var(--k-sub) 60%,transparent)}
+#kal#kal.klay .klyfm #kfilter button.aus i::after{display:none}
+#kal#kal.klay #kplus{position:static!important;width:auto!important;min-width:0!important;height:36px!important;border-radius:4px!important;padding:0 14px!important;display:inline-flex;align-items:center;gap:6px;background:var(--k-akz)!important;border:1px solid var(--k-akz)!important;color:var(--k-auf)!important;font:600 13.5px var(--k-ui)!important;order:0}
+#kal#kal.klay #kplus svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+#kal#kal.klay .kbody{grid-area:body;display:block!important;min-height:0}
+#kal#kal.klay .khaupt{height:100%}
+#kal#kal.klay .klinks{grid-area:links;display:flex;flex-direction:column;gap:14px;min-height:0;overflow:auto}
+#kal#kal.klay .klinks .kseite{order:0;flex:none;background:var(--k-b1)!important;border:1px solid var(--k-lin)!important;border-radius:8px!important;padding:16px!important;max-height:none!important}
+#kal#kal.klay .klinks .kmini{order:1;background:var(--k-b1)!important;border:1px solid var(--k-lin)!important;border-radius:8px!important;padding:14px 16px!important}
+#kal#kal.klay .kneu{grid-area:neu;margin-top:14px;display:flex;gap:8px}
+#kal#kal.klay .kneu input{height:42px;box-sizing:border-box;border-radius:8px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:14.5px var(--k-ui);padding:0 14px}
+#kal#kal.klay .kneu button{height:42px;border-radius:8px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:600 14px var(--k-ui)!important;letter-spacing:0!important;padding:0 16px;white-space:nowrap}
+/* Tag rechts */
+#kal#kal.klay .kskopf{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--k-lin);margin-bottom:4px}
+#kal#kal.klay .kskopf .kwd{display:block;font:600 13px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-sub)!important;text-transform:none}
+#kal#kal.klay .kskopf h3{margin:2px 0 0;font:600 19px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-t)}
+#kal#kal.klay .kskopf .kkws{font:500 12.5px var(--k-ui);color:var(--k-sub)}
+#kal#kal.klay .kszahl{font:600 12.5px var(--k-ui);color:var(--k-sub);background:color-mix(in srgb,var(--k-t) 6%,transparent);border-radius:10px;padding:2px 8px;white-space:nowrap}
+#kal#kal.klay .kszahl i{display:none}
+#kal#kal.klay .kein2{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;padding:9px 6px;border:0;border-radius:6px;background:none;cursor:pointer}
+#kal#kal.klay .kein2:hover{background:color-mix(in srgb,var(--k-t) 5%,transparent)}
+#kal#kal.klay .kein2 i{width:4px;align-self:stretch;min-height:34px;border-radius:2px;background:var(--c);flex:none}
+#kal#kal.klay .kein2 b{display:block;font:600 14px var(--k-ui);color:var(--k-t)}
+#kal#kal.klay .kein2 small{display:block;font:500 12.5px var(--k-ui);color:var(--k-sub);margin-top:1px}
+#kal#kal.klay .kein2.kneben b{font-weight:500}
+#kal#kal.klay .ktrenn{margin:8px 0 2px;font:600 12px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-sub)}
+#kal#kal.klay .kleer{font-size:13.5px;color:var(--k-sub);line-height:1.5;margin:8px 0}
+#kal#kal.klay .kseitneu{margin-top:10px;align-self:flex-start;border:0!important;background:none!important;color:var(--k-akz)!important;font:600 13.5px var(--k-ui)!important;padding:4px 0!important;height:auto}
+/* Monatsübersicht rechts */
+#kal#kal.klay .kmk{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+#kal#kal.klay .kmk>span:first-child{font:600 14px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-t)!important;text-transform:none}
+#kal#kal.klay .kmk button{width:30px;height:30px;border:1px solid var(--k-lin);border-radius:6px;background:var(--k-b1);color:var(--k-t);font-size:16px}
+#kal#kal.klay .kmg{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+#kal#kal.klay .kmg em{font:600 11.5px var(--k-ui);font-style:normal;color:var(--k-sub);padding:4px 0}
+#kal#kal.klay .kmg button{position:relative;height:32px;border:0;border-radius:6px;background:none;font:500 13.5px var(--k-ui);color:var(--k-t);cursor:pointer}
+#kal#kal.klay .kmg button:hover{background:color-mix(in srgb,var(--k-t) 6%,transparent)}
+#kal#kal.klay .kmg button.kwe{color:var(--k-sub)}
+#kal#kal.klay .kmg button.kheute{color:var(--k-akz);font-weight:700}
+#kal#kal.klay .kmg button.an{background:var(--k-akz);color:var(--k-auf);font-weight:700;box-shadow:none}
+#kal#kal.klay .kmg button i{position:absolute;left:50%;bottom:3px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--k-akz)}
+#kal#kal.klay .kmg button.an i{background:var(--k-auf)}
+/* Monat: lesbare Einträge */
+#kal#kal.klay .kmonat{grid-template-columns:34px repeat(7,minmax(0,1fr));gap:0;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;background:var(--k-lin);gap:1px;min-height:100%}
+#kal#kal.klay .kwt{display:flex;align-items:center;padding:8px 10px;background:var(--k-b1);font:600 12.5px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-sub)!important;text-transform:none}
+#kal#kal.klay .kwt.kecke{padding:0}
+#kal#kal.klay .kkw{display:flex;align-items:flex-start;justify-content:center;padding-top:9px;background:var(--k-b1);font:500 11px var(--k-ui);color:var(--k-sub)}
+#kal#kal.klay .kz{border:0!important;border-radius:0!important;background:var(--k-b1)!important;box-shadow:none!important;padding:6px 6px 5px!important;min-height:0;gap:3px;opacity:1!important}
+#kal#kal.klay .kz:hover{background:color-mix(in srgb,var(--k-akz) 4%,var(--k-b1))!important}
+#kal#kal.klay .kz.kwe{background:color-mix(in srgb,var(--k-t) 2.5%,var(--k-b1))!important}
+#kal#kal.klay .kz.kaus{background:color-mix(in srgb,var(--k-t) 4%,var(--k-b1))!important}
+#kal#kal.klay .kz.kaus .kn b,#kal#kal.klay .kz.kaus .kc{opacity:.55}
+#kal#kal.klay .kz.ksel{box-shadow:inset 0 0 0 2px var(--k-akz)!important}
+#kal#kal.klay .kz .kn{display:flex;align-items:center;gap:6px;min-height:24px}
+#kal#kal.klay .kz .kn b{font:600 13.5px var(--k-ui)!important;color:var(--k-t);min-width:24px;height:24px;display:inline-grid;place-items:center;border-radius:12px;padding:0 4px;background:none}
+#kal#kal.klay .kz.kvorbei:not(.kheute) .kn b{color:var(--k-sub)}
+#kal#kal.klay .kz.kheute .kn b{background:var(--k-akz)!important;color:var(--k-auf)!important}
+#kal#kal.klay .kz .kn em{font:500 11px var(--k-ui);font-style:normal;color:var(--k-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#kal#kal.klay .kml{font:600 11.5px var(--k-ui)!important;color:var(--k-sub)!important;margin:0!important}
+#kal#kal.klay .kz .kc{font:500 12px/1.35 var(--k-ui)!important;color:var(--k-t)!important;padding:2px 6px!important;border-radius:4px!important;border:0!important;border-left:3px solid var(--c)!important;background:color-mix(in srgb,var(--c) 12%,var(--k-b1))!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:auto!important}
+#kal#kal.klay .kz .kc.kganz{font-weight:600!important}
+#kal#kal.klay .kz .kc.kneben{background:none!important;border-left:0!important;color:var(--k-sub)!important;padding:0 4px!important}
+#kal#kal.klay .kz u{font:600 11.5px var(--k-ui)!important;color:var(--k-akz)!important;padding-left:6px}
+#kal#kal.klay .kz.kerst{box-shadow:none!important}
+#kal#kal.klay .kz.kerst.ksel{box-shadow:inset 0 0 0 2px var(--k-akz)!important}
+#kal#kal.klay .kkopf{flex-wrap:nowrap!important}
+#kal#kal.klay #kklein b{font:600 12.5px var(--k-ui)!important;display:inline!important;color:var(--k-t)!important;letter-spacing:0!important}
+#kal#kal.klay #ksuche{width:190px}
+#kal#kal.klay .kmonat{height:100%;min-height:0}
+#kal#kal.klay .khaupt{overflow:hidden}
+#kal#kal.klay #kplus svg{width:14px!important;height:14px!important;display:block;stroke-width:2.4}
+#kal#kal.klay .kblatt{padding:18px 20px!important;gap:12px}
+#kal#kal.klay .kblatt .kbk{display:flex;align-items:center;justify-content:space-between}
+#kal#kal.klay .kblatt .kbk b{font:600 13px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-sub)!important;text-transform:none}
+#kal#kal.klay .kblatt .kbk .krund{width:34px;height:34px;border-radius:17px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font-size:18px}
+#kal#kal.klay .kblatt h3{font:600 20px/1.3 var(--k-ui)!important;letter-spacing:0!important;color:var(--k-t);margin:4px 0 6px}
+#kal#kal.klay .kblatt .kinfo{gap:0}
+#kal#kal.klay .kblatt .kinfo>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;padding:9px 0;border-top:1px solid var(--k-lin);font:14.5px/1.45 var(--k-ui);color:var(--k-t)}
+#kal#kal.klay .kblatt .kinfo span{display:block;margin:0;font:600 13.5px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-sub)!important;text-transform:none}
+#kal#kal.klay .kblatt .kakt{display:flex;justify-content:space-between;gap:8px;margin-top:auto;padding-top:14px}
+#kal#kal.klay .kblatt .kakt button{height:38px;padding:0 16px;border-radius:6px;font:600 13.5px var(--k-ui)!important;letter-spacing:0!important}
+#kal#kal.klay .kblatt .kakt .kja{background:var(--k-akz);border:1px solid var(--k-akz);color:var(--k-auf)}
+#kal#kal.klay .kblatt .kakt .kweg{background:var(--k-b1);border:1px solid var(--k-lin);color:var(--k-rot)}
+
+/* ===== Cockpit verfeinert (v0.11.28) ===== */
+#am .cpkp.cplleer .cpkpb{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:14px 16px}
+#am .cpkp.cplleer .cpkleer{padding:0;font-size:14px;color:var(--k-sub)}
+#am .cplkn{border:1px solid var(--k-lin);background:var(--k-b1);border-radius:6px;height:32px;padding:0 12px;font:600 13px var(--k-ui);color:var(--k-t);cursor:pointer}
+#am .cplkn:hover{border-color:var(--k-akz);color:var(--k-akz)}
+#am#am .cpk.edit .cpkph{padding-left:12px}
+#am#am .cpkph .ctrl{position:static;transform:none;box-shadow:none;border:0;background:none;padding:0;margin-left:auto}
+#am#am .cpk.edit .cpkph .anz{display:none}
+#am#am .cpkph .weg{position:static;width:26px;height:26px;border-radius:13px;border:1px solid color-mix(in srgb,var(--k-rot) 45%,var(--k-lin));background:var(--k-b1);color:var(--k-rot);font:600 15px/1 var(--k-ui);margin-left:4px}
+#am#am .cpkph .weg:hover{background:var(--k-rot);color:var(--k-t)}
+#am#am .cpk.edit .cpkph{flex-wrap:wrap;row-gap:6px}
+#am#am .cpk.edit .cpkph .tt{flex:1 1 calc(100% - 20px);white-space:normal}
+#am#am .cpk.edit .cpkph .ctrl{margin-left:16px}
+#am#am .cpk.edit .cpkph .weg{margin-left:auto}
+
+/* ===== Firmen-Wiki ohne KI-Paket (v0.11.28) ===== */
+#am .bgx{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+#am .bgkarte,#am .bgbsp{padding:22px 24px!important}
+#am .bgkarte h3{margin:0;font:600 19px/1.3 var(--k-ui);color:var(--k-t)}
+#am .bgsub{margin:6px 0 0;font-size:14.5px;line-height:1.5;color:var(--k-sub)}
+#am .bgsub.klein{font-size:13px;margin-top:12px}
+#am .bgschritte{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+#am .bgschritte li{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--k-lin)}
+#am .bgnr{position:relative;flex:none;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--k-akz) 9%,var(--k-b1));color:var(--k-akz)}
+#am .bgnr svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#am .bgnr em{position:absolute;right:-6px;top:-6px;width:20px;height:20px;border-radius:10px;background:var(--k-akz);color:var(--k-auf);font:700 11.5px/20px var(--k-ui);font-style:normal;text-align:center;border:2px solid var(--k-b1)}
+#am .bgschritte b{display:block;font:600 15px var(--k-ui);color:var(--k-t)}
+#am .bgschritte p{margin:3px 0 0;font-size:14px;line-height:1.5;color:var(--k-sub)}
+#am .bgfuss{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:6px;padding-top:14px;border-top:1px solid var(--k-lin);font-size:13.5px;color:var(--k-sub)}
+#am .bgbk{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+#am .bgbk b{font:600 15px var(--k-ui);color:var(--k-t)}
+#am .bgstern{font-size:18px;background:linear-gradient(135deg,#4F7CFF,#9A6BFF,#1FB8D6);-webkit-background-clip:text;background-clip:text;color:transparent}
+#am .bgq{padding:10px 12px;margin-top:8px;border-radius:10px;font-size:14px;color:var(--k-t);border:1px solid transparent;background:linear-gradient(color-mix(in srgb,#9A6BFF 5%,var(--k-b1)),color-mix(in srgb,#9A6BFF 5%,var(--k-b1))) padding-box,linear-gradient(135deg,color-mix(in srgb,#4F7CFF 50%,transparent),color-mix(in srgb,#1FB8D6 50%,transparent)) border-box}
+@media (max-width:979px){#am .bgx{grid-template-columns:1fr}}
+
+/* ===== Dialoge im Büro-Design (v0.11.28) ===== */
+#am#am .ondlg.dbpc{place-items:center!important;padding:24px!important;background:color-mix(in srgb,black 28%,transparent)!important}
+#am#am .ondlg.dbpc .ondk{width:min(520px,100%)!important;height:auto!important;max-height:min(86vh,760px)!important;overflow-y:auto;border-radius:12px!important;border:1px solid var(--k-lin)!important;background:var(--k-b1)!important;box-shadow:0 30px 70px -30px rgba(0,0,0,.45)!important;padding:24px 26px 20px!important;display:flex;flex-direction:column;gap:0;transform:translateY(8px)}
+#am#am .ondlg.dbpc.an .ondk{transform:none}
+#am#am .ondlg.dbpc .ondk.lsdk{width:min(720px,100%)!important}
+#am#am .ondlg.dbpc .ondk>h3{margin:0 0 14px!important;font:600 20px/1.3 var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-t)!important}
+#am#am .ondlg.dbpc .ondk p{font-size:14.5px!important;line-height:1.55;color:var(--k-t)!important;margin:0 0 12px}
+#am#am .ondlg.dbpc .ondk p b{font-weight:600;color:var(--k-t)!important}
+#am#am .ondlg.dbpc .ondk .kl{font-size:13.5px!important;color:var(--k-sub)!important}
+#am#am .ondlg.dbpc .ondk label{display:flex;flex-direction:column;gap:6px;margin:0 0 14px;font:600 13.5px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-t)!important}
+#am#am .ondlg.dbpc .ondk input:not([type=checkbox]):not([type=radio]),#am#am .ondlg.dbpc .ondk select,#am#am .ondlg.dbpc .ondk textarea{min-height:42px;box-sizing:border-box;border-radius:8px!important;border:1px solid var(--k-lin)!important;background:var(--k-b1)!important;color:var(--k-t)!important;font:15px var(--k-ui)!important;padding:0 12px;box-shadow:none!important}
+#am#am .ondlg.dbpc .ondk input:focus{border-color:var(--k-akz)!important;outline:0}
+#am#am .ondlg.dbpc .ondkn{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
+#am#am .ondlg.dbpc .ondkn button{flex:none;min-height:38px;height:38px;padding:0 16px;border-radius:6px!important;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:600 13.5px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important}
+#am#am .ondlg.dbpc .ondkn button.ja{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}
+#am#am .ondlg.dbpc .ondk:before{display:none}
+#am .ontech{margin-top:4px;font-size:13px;color:var(--k-sub)}
+#am .ontech summary{cursor:pointer;font-weight:600}
+#am .ontech p{margin-top:8px!important;font-size:12px!important;word-break:break-word}
+#am#am .ondlg.dbpc .sytabs{display:flex;border:1px solid var(--k-lin);border-radius:8px;overflow:hidden;margin:0 0 14px;padding:0;background:var(--k-b1)}
+#am#am .ondlg.dbpc .sytabs button{flex:1;height:36px;border:0;border-left:1px solid var(--k-lin);border-radius:0;background:none;font:500 13.5px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-t);box-shadow:none}
+#am#am .ondlg.dbpc .sytabs button:first-child{border-left:0}
+#am#am .ondlg.dbpc .sytabs button.an{background:var(--k-t);color:var(--k-b1);font-weight:600!important}
+#am#am .ondlg.dbpc .ondk details>summary,#am#am .ondlg.dbpc .ondk .syerw{font:600 13px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-akz)}
+#am#am .ondlg.dbpc .ondk>*{flex-shrink:0}
 /* ===== Firmen-Wiki im Wikipedia-Aufbau (wiki.js, v0.11.5): Baum links, Artikel mit Kasten rechts ===== */
 #am .wk{--wkl:#3366CC;--wkr:#D33A2C;--wkbox:color-mix(in srgb,var(--k-t) 3%,var(--k-b1));--wkkopf:color-mix(in srgb,var(--k-t) 8%,var(--k-b1));--wkserif:Georgia,"Times New Roman",serif;
  display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;border:1px solid var(--k-lin);border-radius:10px;background:var(--k-b1);min-height:560px;color:var(--k-t)}
@@ -5329,7 +5503,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.27';
+const ON_VER='0.11.28';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5500,7 +5674,7 @@ function onMenuAktion(a){
   if(a==='ordner')onOrdner();if(a==='konto')syKontoDialog();
   if(a==='abo')kiAboDialog();
   if(a==='app'&&typeof appInstallieren==='function')appInstallieren();
-  if(a==='ueber')onDialog(`<h3>Onstand v${ON_VER}</h3><p>Firmensoftware für Baustelle und Büro: Cockpit, Angebote, Rechnungen, offene Posten, Bautagebuch, Kalender, Kunden, Personal, Mängel, Baupläne – mit Assistent zum Einsprechen.</p><p class="kl">Erste Testversion für ESTETA.</p><p class="kl" style="font-size:11px;opacity:.75">${typeof onRandInfo==='function'?esc(onRandInfo()):''}</p>`,[['OK','']])}
+  if(a==='ueber')onDialog(`<h3>Onstand v${ON_VER}</h3><p>Firmensoftware für Baustelle und Büro: Cockpit, Angebote, Rechnungen, offene Posten, Bautagebuch, Kalender, Kunden, Personal, Mängel, Baupläne – mit Assistent zum Einsprechen.</p>${typeof onRandInfo==='function'?`<details class="ontech"><summary>Technische Angaben für den Support</summary><p class="kl">${esc(onRandInfo())}</p></details>`:''}`,[['OK','']])}
 function onMenuZu(){const m=AM_EL&&AM_EL.querySelector('.onmenu');if(m)m.classList.remove('an')}
 // ---------- kleiner Dialog ----------
 function onDialog(html,knoepfe,bind){const d=AM_EL.querySelector('.ondlg');d.innerHTML=`<div class="ondk">${html}<div class="ondkn">${(knoepfe||[]).map(([t,a],i)=>`<button type="button" class="${i===knoepfe.length-1?'ja':''}" data-d="${a}">${t}</button>`).join('')}</div></div>`;d.classList.add('an');
@@ -7820,7 +7994,7 @@ function kamera(cv,welt,k,malen){const r=cv.getBoundingClientRect(),D=Math.min(2
  const pr=(x,y,z)=>{x-=k.mx;y-=k.my;const X=x*cy-y*sy,Y=x*sy+y*cy;return [r.width/2+k.px+X*k.s,r.height/2+k.py+(Y*ct-(z||0)*st)*k.s,Y]};
  return {c,w:r.width,h:r.height,pr,inv:(sx,sy2)=>{const X=(sx-r.width/2-k.px)/k.s,Y=(sy2-r.height/2-k.py)/k.s/ct;return [X*cy+Y*sy+k.mx,-X*sy+Y*cy+k.my]}}}
 // Objekte in S / M / L (Breite × Tiefe × Höhe in cm) oder eigene Maße
-const OBJ={tuer:{n:'Tür',g:{S:[80,10,200],M:[90,10,205],L:[110,10,210]},f:'#c9a77a'},fenster:{n:'Fenster',g:{S:[80,12,100],M:[120,12,140],L:[200,12,160]},z:90,f:'#7FDBFF'},bett:{n:'Bett',g:{S:[90,200,45],M:[140,200,50],L:[180,200,55]},f:'#8C9EFF'},sofa:{n:'Sofa',g:{S:[160,85,80],M:[220,95,85],L:[300,160,85]},f:'#C792EA'},tisch:{n:'Tisch',g:{S:[80,80,75],M:[160,90,75],L:[220,100,75]},f:'#D4A373'},stuhl:{n:'Stuhl',g:{S:[40,45,85],M:[45,50,90],L:[60,60,100]},f:'#A1887F'},schrank:{n:'Schrank',g:{S:[100,60,200],M:[200,60,220],L:[300,60,240]},f:'#90A4AE'},kueche:{n:'Küche',g:{S:[180,62,92],M:[280,62,92],L:[360,62,92]},f:'#B0BEC5'},dusche:{n:'Dusche',g:{S:[80,80,200],M:[90,90,200],L:[120,90,200]},f:'#81D4FA'},wc:{n:'WC',g:{S:[36,55,78],M:[40,65,80],L:[45,70,82]},f:'#ECEFF1'},wanne:{n:'Wanne',g:{S:[160,70,58],M:[170,75,60],L:[190,90,62]},f:'#B3E5FC'},pflanze:{n:'Pflanze',g:{S:[30,30,60],M:[45,45,120],L:[60,60,180]},f:'#9CCC65'}};
+const OBJ={tuer:{n:'Tür',g:{S:[80,10,200],M:[90,10,205],L:[110,10,210]},f:'#c9a77a'},fenster:{n:'Fenster',g:{S:[80,12,100],M:[120,12,140],L:[200,12,160]},z:90,f:'#7FDBFF'},bett:{n:'Bett',g:{S:[90,200,45],M:[140,200,50],L:[180,200,55]},f:'#8C9EFF'},sofa:{n:'Sofa',g:{S:[160,85,80],M:[220,95,85],L:[300,160,85]},f:'#C792EA'},tisch:{n:'Tisch',g:{S:[80,80,75],M:[160,90,75],L:[220,100,75]},f:'#D4A373'},stuhl:{n:'Stuhl',g:{S:[40,45,85],M:[45,50,90],L:[60,60,100]},f:'#A1887F'},schrank:{n:'Schrank',g:{S:[100,60,200],M:[200,60,220],L:[300,60,240]},f:'#90A4AE'},kueche:{n:'Küche',g:{S:[180,62,92],M:[280,62,92],L:[360,62,92]},f:'#B0BEC5'},dusche:{n:'Dusche',g:{S:[80,80,200],M:[90,90,200],L:[120,90,200]},f:'#81D4FA'},wc:{n:'WC',g:{S:[36,55,78],M:[40,65,80],L:[45,70,82]},f:'#ECEFF1'},wanne:{n:'Wanne',g:{S:[160,70,58],M:[170,75,60],L:[190,90,62]},f:'#B3E5FC'},pflanze:{n:'Pflanze',g:{S:[30,30,60],M:[45,45,120],L:[60,60,180]},f:'#9CCC65'},sessel:{n:'Sessel',g:{S:[70,75,80],M:[85,85,85],L:[100,95,90]},f:'#C792EA'},couchtisch:{n:'Couchtisch',g:{S:[60,60,42],M:[110,60,42],L:[130,70,42]},f:'#D4A373'},sideboard:{n:'Sideboard',g:{S:[120,45,80],M:[180,45,80],L:[240,45,85]},f:'#B08968'},regal:{n:'Regal',g:{S:[80,35,180],M:[100,40,200],L:[160,40,200]},f:'#B08968'},schreibtisch:{n:'Schreibtisch',g:{S:[120,60,74],M:[160,80,74],L:[180,90,74]},f:'#D4A373'},waschtisch:{n:'Waschtisch',g:{S:[50,40,85],M:[65,48,85],L:[120,50,85]},f:'#E3F2FD'},waschmaschine:{n:'Waschmaschine',g:{S:[60,55,85],M:[60,60,85],L:[60,65,85]},f:'#ECEFF1'},kuehlschrank:{n:'Kühlschrank',g:{S:[55,60,85],M:[60,65,180],L:[90,70,180]},f:'#CFD8DC'},heizkoerper:{n:'Heizkörper',g:{S:[60,10,60],M:[100,10,60],L:[160,10,60]},z:15,f:'#ECEFF1'},treppe:{n:'Treppe',g:{S:[250,90,280],M:[300,100,280],L:[360,120,280]},f:'#BCAAA4'}};
 function odim(o){const T=OBJ[o.t],g=o.g||'M',v=g==='X'?[o.w||T.g.M[0],o.d||T.g.M[1],o.h||T.g.M[2]]:T.g[g];return {w:v[0],d:v[1],h:v[2],z:T.z||0,f:T.f,n:T.n}}
 // Farben für die Zeichnung kommen aus dem Design (Hell/Dunkel): Wände und Linien in Textfarbe, Auswahl in Kupfer
 const BPC={t:'27,31,36',a:'174,90,39',s:'92,100,112',w:'255,255,255',wand:'70,74,80'};function bpFarben(){const g=getComputedStyle(document.documentElement),rgb=n=>{let v=g.getPropertyValue(n).trim().replace('#','');if(v.length===3)v=[...v].map(c=>c+c).join('');return /^[0-9a-f]{6}$/i.test(v)?[0,2,4].map(i=>parseInt(v.slice(i,i+2),16)).join(','):null};for(const [k,n] of [['t','--k-t'],['a','--k-akz'],['s','--k-sub'],['w','--k-b1']]){const x=rgb(n);if(x)BPC[k]=x}const T=BPC.t.split(',').map(Number),Wb=BPC.w.split(',').map(Number);BPC.wand=T.map((v,i)=>Math.round(v*.8+Wb[i]*.2)).join(',');if(!BPC.ff)try{BPC.ff=getComputedStyle(document.body).fontFamily||'Arial'}catch(e){BPC.ff='Arial'}}
@@ -7870,6 +8044,16 @@ function bpSym2D(K,r,o,T,sel){const {c,pr}=K,L=bpLokal(r,o,T),W=T.w,D=T.d,S=p=>{
   case 'dusche':{rect(0,0,W,D,F(MC.wasser),lc,lw);rect(4,4,W-4,D-4,null,lf,.8);line(4,4,W-4,D-4,lf,.7);line(W-4,4,4,D-4,lf,.7);ell(W/2,D/2,4,4,F(MC.weiss),lc,.9);break}
   case 'wc':{const tw=Math.min(20,W/2),bw=Math.min(18,W*.46);rrect(W/2-tw,0,W/2+tw,Math.min(18,D*.28),3,F(MC.weiss),lc,lw);const cv=D*.28+D*.36;ell(W/2,cv,bw,D*.36,F(MC.weiss),lc,lw);ell(W/2,cv+2,bw*.6,D*.22,F(MC.wasser),lf,.8);break}
   case 'wanne':{rrect(0,0,W,D,6,F(MC.weiss),lc,lw);rrect(7,7,W-7,D-7,Math.min(D*.38,26),F(MC.wasser),lf,.9);ell(W-22,D/2,3,3,null,lc,.9);break}
+  case 'sessel':{const a=Math.min(14,W*.17),bk=Math.min(18,D*.24);rrect(0,0,W,D,8,F(MC.stoff),lc,lw);rrect(a,0,W-a,bk,5,F(MC.stoff2),lf,.9);rrect(0,0,a,D,6,F(MC.stoff2),lf,.9);rrect(W-a,0,W,D,6,F(MC.stoff2),lf,.9);rrect(a+2,bk+2,W-a-2,D-3,6,null,lf,.9);rrect(0,0,W,D,8,null,lc,lw);break}
+  case 'couchtisch':{rrect(0,0,W,D,Math.min(8,D*.15),F(MC.holz),lc,lw);rrect(5,5,W-5,D-5,Math.min(5,D*.1),null,lf,.8);break}
+  case 'sideboard':{rect(0,0,W,D,F(MC.holz),lc,lw);line(0,D-4,W,D-4,lc,.9);const n=Math.max(2,Math.round(W/60));for(let i=1;i<n;i++)line(W*i/n,D-4,W*i/n,D,lc,.9);for(let i=0;i<n;i++)line(W*(i+.5)/n-4,D-2,W*(i+.5)/n+4,D-2,lc,1.3);break}
+  case 'regal':{rect(0,0,W,D,F(MC.holz),lc,lw);const n=Math.max(2,Math.round(W/40));for(let i=1;i<n;i++)line(W*i/n,1,W*i/n,D-1,lf,.9);line(2,2,W-2,2,lc,.8);break}
+  case 'schreibtisch':{rect(0,0,W,D,F(MC.holz),lc,lw);rect(W/2-26,5,W/2+26,9,F('#3B4048'),null);line(W/2,9,W/2,15,lc,1.2);rrect(W/2-22,D*.48,W/2+22,D*.48+13,2,F(MC.weiss),lf,.8);rrect(W/2+28,D*.5,W/2+34,D*.5+10,3,F(MC.weiss),lf,.8);break}
+  case 'waschtisch':{rrect(0,0,W,D,4,F(MC.weiss),lc,lw);const n=W>=110?2:1;for(let i=0;i<n;i++){const cu=W*(i+.5)/n,bw=Math.min(22,W/n*.36);ell(cu,D*.56,bw,D*.3,F(MC.wasser),lc,.9);ell(cu,D*.56,2.2,2.2,null,lc,.8);ell(cu,6,2.5,2.5,F(MC.weiss),lc,.9)}break}
+  case 'waschmaschine':{rect(0,0,W,D,F(MC.weiss),lc,lw);rect(2,2,W-2,9,F('#E3E7EC'),lf,.8);ell(W/2,(D+9)/2,Math.min(W,D-9)*.36,Math.min(W,D-9)*.36,F(MC.wasser),lc,.9);ell(W/2,(D+9)/2,Math.min(W,D-9)*.24,Math.min(W,D-9)*.24,null,lf,.8);break}
+  case 'kuehlschrank':{rect(0,0,W,D,F('#EEF1F4'),lc,lw);line(0,D-4,W,D-4,lc,.9);if(W>=80)line(W/2,D-4,W/2,D,lc,.9);line(W-8,D-2,W-8,D,lc,1.6);if(W>=80)line(W/2-6,D-2,W/2-6,D,lc,1.6);break}
+  case 'heizkoerper':{rect(0,0,W,D,F('#F4F6F8'),lc,lw);for(let u=5;u<W-2;u+=5)line(u,1.5,u,D-1.5,lf,.6);break}
+  case 'treppe':{rect(0,0,W,D,F('#EFE9E4'),lc,lw);const rise=18,n=Math.max(3,Math.round((T.h||280)/rise)),run=W/n;for(let i=1;i<n;i++)line(i*run,0,i*run,D,lc,.8);line(0,3,W,3,lf,.8);const m=D/2,ah=Math.min(9,D*.12);line(run*.5,m,W-run*.75,m,lc,1.3);poly([[W-run*.25,m],[W-run*.25-Math.min(16,run*.9),m-ah],[W-run*.25-Math.min(16,run*.9),m+ah]],lc,null);ell(run*.5,m,2.8,2.8,lc,null);break}
   case 'pflanze':{const rr=Math.min(W,D)/2;ell(W/2,D/2,rr*.62,rr*.62,F(MC.topf),lc,lw);for(let i=0;i<7;i++){const a=i/7*2*Math.PI+.3;ell(W/2+Math.cos(a)*rr*.42,D/2+Math.sin(a)*rr*.42,rr*.4,rr*.4,MC.gruen,'rgba(70,120,60,.6)',.8)}ell(W/2,D/2,rr*.28,rr*.28,MC.gruen,'rgba(70,120,60,.6)',.8);break}
   default:return false}
  return true}
@@ -7884,7 +8068,17 @@ const BK={
  dusche:(W,D,H)=>[[0,0,W,D,0,5,MC.weiss],[0,D-1.5,W,D,5,H,'glas'],[W-1.5,0,W,D-1.5,5,H,'glas']],
  wc:(W,D,H)=>{const tw=Math.min(20,W/2),bw=Math.min(18,W*.46);return [[W/2-tw,0,W/2+tw,Math.min(18,D*.28),0,H,MC.weiss],[W/2-bw,D*.28,W/2+bw,D,0,40,MC.weiss]]},
  wanne:(W,D,H)=>[[0,0,W,D,0,H,MC.weiss],[7,7,W-7,D-7,H,H+.5,MC.wasser]],
- pflanze:(W,D,H)=>[[W*.25,D*.25,W*.75,D*.75,0,Math.min(35,H*.3),MC.topf],[W*.05,D*.05,W*.95,D*.95,Math.min(35,H*.3),H,'#86B870']]};
+ pflanze:(W,D,H)=>[[W*.25,D*.25,W*.75,D*.75,0,Math.min(35,H*.3),MC.topf],[W*.05,D*.05,W*.95,D*.95,Math.min(35,H*.3),H,'#86B870']],
+ sessel:(W,D,H)=>{const a=Math.min(14,W*.17),bk=Math.min(18,D*.24);return [[0,0,W,D,0,10,MC.stoff2],[a,bk,W-a,D-2,10,42,MC.stoff],[0,0,W,bk,10,H,MC.stoff2],[0,bk,a,D,10,62,MC.stoff2],[W-a,bk,W,D,10,62,MC.stoff2]]},
+ couchtisch:(W,D,H)=>[[0,0,W,D,H-4,H,MC.holz],[4,4,8,8,0,H-4,MC.holz2],[W-8,4,W-4,8,0,H-4,MC.holz2],[4,D-8,8,D-4,0,H-4,MC.holz2],[W-8,D-8,W-4,D-4,0,H-4,MC.holz2],[6,6,W-6,D-6,10,12,MC.holz2]],
+ sideboard:(W,D,H)=>[[2,2,W-2,D-2,0,8,MC.holz2],[0,0,W,D,8,H,MC.holz]],
+ regal:(W,D,H)=>{const B=[[0,0,2,D,0,H,MC.holz2],[W-2,0,W,D,0,H,MC.holz2],[2,0,W-2,1.5,0,H,MC.holz2]];for(const f of [0,.25,.5,.75])B.push([2,0,W-2,D,H*f,H*f+2,MC.holz]);B.push([0,0,W,D,H-2,H,MC.holz]);return B},
+ schreibtisch:(W,D,H)=>[[0,0,W,D,H-3,H,MC.holz],[2,4,5,D-4,0,H-3,MC.holz2],[W-5,4,W-2,D-4,0,H-3,MC.holz2],[W/2-4,6,W/2+4,13,H,H+8,'#3B4048'],[W/2-26,8,W/2+26,10,H+8,H+40,'#3B4048']],
+ waschtisch:(W,D,H)=>[[2,0,W-2,D-3,12,H-4,MC.weiss],[0,0,W,D,H-4,H,MC.weiss],[W*.15,D*.3,W*.85,D*.85,H,H+.4,MC.wasser],[W*.1,0,W*.9,1.5,H+20,H+85,'glas']],
+ waschmaschine:(W,D,H)=>[[0,0,W,D,0,H,MC.weiss],[0,0,W,10,H-1,H+.3,'#DDE2E8'],[W/2-17,D,W/2+17,D+1.5,H*.5-17,H*.5+17,'#BFD0DE']],
+ kuehlschrank:(W,D,H)=>[[0,0,W,D,0,H,'#EEF1F4'],[W-9,D,W-6,D+2.5,H*.35,H*.85,'#9CA3AC']],
+ heizkoerper:(W,D,H)=>[[0,0,W,D,0,H,'#F4F6F8']],
+ treppe:(W,D,H)=>{const rise=18,n=Math.max(3,Math.round(H/rise)),run=W/n,B=[];for(let i=0;i<n;i++)B.push([i*run,0,(i+1)*run,D,0,(i+1)*H/n,'#E6DDD4']);B.push([0,0,W,2,0,H+90,'#C9BBAE']);return B}};
 function bpKoerper(Q,K,r,o,T,zc,bas,sel){const B=BK[o.t];if(!B)return false;const L=bpLokal(r,o,T),z=T.z||0,pr=K.pr;
  B(T.w,T.d,T.h).forEach(([u0,v0,u1,v1,z0,z1,f])=>{const ec=[L(u0,v0),L(u1,v0),L(u1,v1),L(u0,v1)],m=L((u0+u1)/2,(v0+v1)/2),bc=pr(m[0],m[1])[2],key=bas+((bc-zc)+z0*.6)*1e-4,glas=f==='glas',col=glas?'rgba(190,222,242,.32)':bpTon(f);
   for(let i=0;i<4;i++){const a=ec[i],b=ec[(i+1)%4],fd=(pr(a[0],a[1])[2]+pr(b[0],b[1])[2])/2;Q.push({d:key+(fd-bc)*1e-7,pts:[pr(a[0],a[1],z+z0),pr(b[0],b[1],z+z0),pr(b[0],b[1],z+z1),pr(a[0],a[1],z+z1)],fill:glas?col:bpDunkler(col,i%2?.8:.9),glas,sel})}
@@ -8116,7 +8310,7 @@ $('bOk').onclick=()=>{if(VNEU&&VNEU.typ&&(VNEU.wand||VNEU.ecke)){const v={...VNE
 // ---------- Weiter ----------
 let WK2=null,WK={mx:0,my:0,s:.5,px:0,py:0,tilt:0,yaw:0},FOK=null,OSEL=null,ESEL=null,DIM=2,OZUG=null,OMAG=true,OFUEHR=[];
 // Objekt-Magnet: Möbel stellen sich mit der Rückseite bündig an die nächste Wand (auch in Ecken), Türen und Fenster setzen sich in die Wand
-const OFREI=['tisch','stuhl','pflanze'];
+const OFREI=['tisch','stuhl','pflanze','couchtisch','sessel'];
 function osnap(o){OFUEHR=[];o.n=null;if(!OMAG||!FOK)return false;const T=odim(o),{V,H}=wandstuecke(FOK),cx=FOK.x+o.x,cy=FOK.y+o.y,thr=Math.max(12,22/WK.s),auto=!OFREI.includes(o.t),inW=o.t==='tuer'||o.t==='fenster',dim=r=>[r%180?T.d:T.w,r%180?T.w:T.d];let best=null;
  const pruef=(ver,X,a,b,s)=>{const rot=auto?(ver?(s>0?90:270):(s>0?0:180)):o.rot,[w,d]=dim(rot),[w0,d0]=dim(o.rot),qa=ver?w:d,la=ver?d:w,qc=ver?w0:d0,c=ver?cx:cy,l=ver?cy:cx;if(l<a-la/2+5||l>b+la/2-5)return;
   const dist=inW?Math.abs(c-X):Math.abs(c-s*qc/2-X);if(dist>thr||(!inW&&s*(c-X)<-qc/2))return;if(!best||dist<best.dist)best={ver,X,a,b,s,rot,qa,la,dist,ziel:inW?X-s*qa/2:X+s*qa/2}};
@@ -8141,7 +8335,7 @@ $('palette').innerHTML=Object.entries(OBJ).map(([k,o])=>{const [w,d]=o.g.M;retur
 $('palette').querySelectorAll('[data-ob]').forEach(b=>b.onclick=()=>{if(!FOK)return;const t=b.dataset.ob,T=OBJ[t],P=poly(FOK),bb=bbox(P);const n=FOK.obj.length%5,o={t,x:(FOK.rot%180?FOK.B/2:FOK.L/2)+(n-2)*35,y:(FOK.rot%180?FOK.L/2:FOK.B/2)+(n%2?40:-20),rot:0,g:'M'};if(t==='tuer'||t==='fenster'){o.y=T.g.M[1]/2}FOK.obj.push(o);OSEL=o;osnap(o);OFUEHR=[];malW();aend();toast(T.n+' eingefügt – zum Platzieren ziehen')});
 // ===== Objekte & Boden (v0.11.26): Knopf „Objekte“ im Einrichten-Kopf, Leiste rechts mit Raumwahl, Boden und Objekten =====
 let OP=false,OPK='';const OPI={};
-const OGR=[['Türen & Fenster',['tuer','fenster']],['Wohnen & Schlafen',['sofa','tisch','stuhl','bett','schrank','pflanze']],['Küche & Bad',['kueche','dusche','wc','wanne']]];
+const OGR=[['Türen, Fenster & Bau',['tuer','fenster','treppe','heizkoerper']],['Wohnen',['sofa','sessel','couchtisch','tisch','stuhl','sideboard','regal','pflanze']],['Schlafen & Arbeiten',['bett','schrank','schreibtisch']],['Küche & Bad',['kueche','kuehlschrank','dusche','wanne','wc','waschtisch','waschmaschine']]];
 const opPan=(()=>{const a=document.createElement('aside');a.className='opanel';a.id='opanel';a.setAttribute('aria-label','Objekte und Boden');ROOT.querySelector('#vWeiter .wmain').appendChild(a);return a})();
 {const k=document.createElement('button');k.type='button';k.className='pill';k.id='opAn';k.setAttribute('aria-pressed','false');k.title='Möbel, Türen, Fenster und Boden';k.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M3 11h18v5H3z"/><path d="M5 16v2M19 16v2"/></svg>Objekte';$('mpAn').before(k);
  k.onclick=()=>{OP=!OP;opMalen(true);if(OP&&!FOK&&ESEL)kameraFahrt({...einpassen(ESEL.raeume,cvW,.72),px:-170,...(WK.tilt>.3?{s:einpassen(ESEL.raeume,cvW,.72).s*.74}:{})});else if(!OP)kameraFahrt({px:0})}}
@@ -8161,7 +8355,7 @@ function opMalen(neu){const key=[OP,FOK&&FOK.id,ESEL&&ESEL.id,FOK&&JSON.stringif
   <h4>Boden</h4><div class="opart" role="group" aria-label="Bodenart">${[['','Ohne']].concat(Object.entries(BPF).map(([k,x])=>[k,x.n])).map(([k,t])=>`<button type="button" data-oa="${k}" class="${(b.a||'')===k?'an':''}">${t}</button>`).join('')}</div>
   ${A&&Object.keys(A.t).length>1?`<div class="opton">${Object.entries(A.t).map(([k,x])=>`<button type="button" data-ot="${k}" class="${(b.t||A.st)===k?'an':''}"><i style="${opMuster(b.a,x)}"></i><b>${x[0]}</b><small>${x[1]}</small></button>`).join('')}</div>`:''}
   ${A?`<button type="button" class="optext" data-op="alle">Auf alle Räume im ${esc(etLang(ESEL))} übertragen</button>`:''}
-  ${OGR.map(([g,L])=>`<h4>${g}</h4><div class="opobj">${L.map(t=>{const d=odim({t,g:'M'});return `<button type="button" data-oo="${t}"><img alt="" src="${opIcon(t)}"><b>${OBJ[t].n}</b><small>${d.w} × ${d.d} cm</small></button>`}).join('')}</div>`).join('')}
+  ${OGR.map(([g,L])=>`<h4>${g}</h4><div class="opobj">${L.map(t=>{const d=odim({t,g:'M'});return `<button type="button" data-oo="${t}"><img alt="" src="${opIcon(t)}"><b>${({waschmaschine:'Wasch&shy;maschine',kuehlschrank:'Kühl&shy;schrank',schreibtisch:'Schreib&shy;tisch',couchtisch:'Couch&shy;tisch',heizkoerper:'Heiz&shy;körper',waschtisch:'Wasch&shy;tisch',sideboard:'Side&shy;board'})[t]||OBJ[t].n}</b><small>${d.w} × ${d.d} cm</small></button>`}).join('')}</div>`).join('')}
   <p class="ophin">Klick setzt das Objekt in den Raum, dann an die richtige Stelle ziehen. Größe S · M · L und Drehen direkt am Objekt.</p></div>`}
  opPan.querySelector('[data-op="zu"]').onclick=()=>{OP=false;opMalen(true);kameraFahrt({px:0})};
  opPan.querySelectorAll('[data-or]').forEach(x=>x.onclick=()=>{const r=ESEL.raeume.find(r=>r.id===+x.dataset.or);if(!r)return;FOK=r;OSEL=null;opZiel(r);malW()});
@@ -9156,6 +9350,19 @@ function cpkZiehen(inh){const R=inh.querySelector('.cpkraster');if(!R)return;let
   const ende2=()=>{document.removeEventListener('touchmove',halt)};addEventListener('pointerup',ende2,{once:true});addEventListener('pointercancel',ende2,{once:true});
   addEventListener('pointermove',mv);addEventListener('pointerup',ende);addEventListener('pointercancel',ende)}}
 {const a=amFunktion;amFunktion=function(id){if(id!=='cockpit'){CPK.edit=false;if(CPK.zug){try{CPK.zug.g.remove()}catch(e){}CPK.zug=null}}return a.apply(this,arguments)}}
+// ===== Cockpit verfeinert (Probe „Restliche Menüs“, v0.11.28) =====
+// Volle Panel-Titel, leere Panels mit passendem nächsten Schritt statt leerer Fläche, im Anpassen-Modus Größe und Entfernen
+// in der Kopfzeile statt über dem Inhalt. Panels, Layout und Rechte bleiben in panels.js.
+const CPL_KURZ={'Offene Rechnungen gesamt':'Offene Rechnungen'};
+const CPL_LEER={angebote:['Angebot schreiben',()=>amAuf('auftraege',{neu:1})],heute:['Termin eintragen',()=>amFunktion('kalender')],baustellen:['Kunde anlegen',()=>amFunktion('kunden')],
+ lieferung:['Im Tagebuch eintragen',()=>amFunktion('tagebuch')],tagebuch:['Tagebuch öffnen',()=>amFunktion('tagebuch')],stunden:['Stunden eintragen',()=>amFunktion('personal')],urlaub:['Urlaub eintragen',()=>amFunktion('kalender')],einzug:['Einzug beim Kunden eintragen',()=>amFunktion('kunden')]};
+{const alt=cpUebersicht;cpUebersicht=function(inh){const r=alt.apply(this,arguments);try{cplNach(inh)}catch(e){console.error(e)}return r}}
+function cplNach(inh){if(!inh)return;
+ inh.querySelectorAll('.cpkph .tt').forEach(t=>{const k=t.textContent.trim();if(CPL_KURZ[k]){t.textContent=CPL_KURZ[k];t.title=k}});
+ inh.querySelectorAll('.cpkp').forEach(p=>{const l=p.querySelector('.cpkleer'),x=CPL_LEER[p.dataset.id];p.classList.toggle('cplleer',!!l);
+  if(l&&x&&!p.querySelector('.cplkn')){const b=document.createElement('button');b.type='button';b.className='cplkn';b.textContent=x[0];b.onclick=ev=>{ev.stopPropagation();if(inh.querySelector('.cpk.edit'))return;x[1]()};l.after(b)}});
+ inh.querySelectorAll('.cpk *').forEach(e=>{if(e.children.length)return;if(/Größe unten im Panel wählen/.test(e.textContent))e.textContent=e.textContent.replace('Größe unten im Panel wählen','Größe oben im Panel wählen')});
+ const tt=inh.querySelector(':scope>.mgk .amtt');if(tt){const t=tt.textContent.trim();if(t===t.toUpperCase())tt.textContent=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}}
 // QR-Code-Erzeuger: QRCode for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT-Lizenz (aus qrcode-terminal). Für Onstand im Browser verpackt.
 const ON_QR=(()=>{const M={},C={};function req(n){n=n.replace("./","");if(C[n])return C[n].exports;const m=C[n]={exports:{}};M[n](m,m.exports,req);return m.exports}
 M['QR8bitByte']=function(module,exports,require){var QRMode = require('./QRMode');
@@ -12815,6 +13022,32 @@ Frag Onstand etwas …|Zapytaj o coś Onstand …|Întreabă ceva Onstand …|Py
 Befehl tippen oder Tag erzählen …|Wpisz polecenie albo opowiedz dzień …|Scrie o comandă sau povestește ziua …|Shkruaj një komandë ose trego ditën …|Upiši naredbu ili ispričaj dan …|Напиши команда или разкажи деня …
 Welche Rechnungen sind überfällig?|Które faktury są przeterminowane?|Ce facturi sunt restante?|Cilat fatura janë me vonesë?|Koji su računi dospjeli?|Кои фактури са просрочени?
 Wer hat diese Woche wie viele Stunden?|Kto ma ile godzin w tym tygodniu?|Cine câte ore are săptămâna asta?|Kush ka sa orë këtë javë?|Tko ima koliko sati ovaj tjedan?|Кой колко часа има тази седмица?
++ Termin an diesem Tag|+ Termin tego dnia|+ Programare în această zi|+ Takim në këtë ditë|+ Termin na ovaj dan|+ Среща в този ден
+Eintragen lassen|Wpisz automatycznie|Lasă să se completeze|Lëre të regjistrohet|Neka se upiše|Остави да се впише
+Was soll der Kalender zeigen?|Co ma pokazywać kalendarz?|Ce să arate calendarul?|Çfarë të tregojë kalendari?|Što kalendar treba prikazivati?|Какво да показва календарът?
+Demnächst|Wkrótce|În curând|Së shpejti|Uskoro|Предстоящо
+Angebot schreiben|Napisz ofertę|Scrie ofertă|Shkruaj ofertë|Napiši ponudu|Напиши оферта
+Termin eintragen|Wpisz termin|Adaugă programare|Regjistro takim|Upiši termin|Впиши среща
+Tagebuch öffnen|Otwórz dziennik|Deschide jurnalul|Hap ditarin|Otvori dnevnik|Отвори дневника
+Stunden eintragen|Wpisz godziny|Introdu orele|Regjistro orët|Upiši sate|Впиши часове
+Was kostet das KI-Paket?|Ile kosztuje pakiet AI?|Cât costă pachetul AI?|Sa kushton paketa AI?|Koliko košta AI paket?|Колко струва AI пакетът?
+Onstand sortiert|Onstand sortuje|Onstand sortează|Onstand rendit|Onstand sortira|Onstand подрежда
+Einfach fragen|Po prostu zapytaj|Întreabă simplu|Thjesht pyet|Jednostavno pitaj|Просто попитай
+Das kannst du danach fragen|O to możesz potem zapytać|Asta poți întreba apoi|Këtë mund ta pyesësh pastaj|To možeš pitati poslije|Това можеш да питаш после
+Technische Angaben für den Support|Dane techniczne dla wsparcia|Date tehnice pentru suport|Të dhëna teknike për mbështetjen|Tehnički podaci za podršku|Технически данни за поддръжката
+Sessel|Fotel|Fotoliu|Kolltuk|Fotelja|Кресло
+Couchtisch|Stolik kawowy|Măsuță|Tavolinë salloni|Stolić|Холна масичка
+Sideboard|Komoda|Comodă|Bufe|Komoda|Скрин
+Regal|Regał|Raft|Raft|Polica|Стелаж
+Schreibtisch|Biurko|Birou|Tavolinë pune|Radni stol|Бюро
+Waschtisch|Umywalka|Lavoar|Lavaman|Umivaonik|Мивка
+Waschmaschine|Pralka|Mașină de spălat|Lavatriçe|Perilica|Пералня
+Kühlschrank|Lodówka|Frigider|Frigorifer|Hladnjak|Хладилник
+Heizkörper|Grzejnik|Calorifer|Radiator|Radijator|Радиатор
+Treppe|Schody|Scară|Shkallë|Stepenice|Стълби
+Türen, Fenster & Bau|Drzwi, okna i budowa|Uși, ferestre și construcție|Dyer, dritare dhe ndërtim|Vrata, prozori i gradnja|Врати, прозорци и строеж
+Wohnen|Salon|Living|Ndenja|Dnevni boravak|Хол
+Schlafen & Arbeiten|Sypialnia i praca|Dormit și lucru|Gjumi dhe puna|Spavanje i rad|Спалня и работа
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -13538,6 +13771,17 @@ addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.w
 
 // „Dateien hinzufügen“ entfällt überall (Wissen kommt aus dem verknüpften Ordner, Tagebuch, Angeboten und Kontakten)
 {const a=bwFein;bwFein=function(inh){a.apply(this,arguments);try{inh.querySelectorAll('.brdat').forEach(x=>x.remove());inh.querySelectorAll('.auhin').forEach(x=>{if(/einzelne Dateien hinzufügen/.test(x.textContent))x.textContent='Den Ordner verknüpfst du am PC. Danach ist das Firmen-Wiki auch hier am Handy da.'})}catch(e){}}}
+// ===== Firmen-Wiki ohne KI-Paket: erklärt in drei Schritten, was es macht, statt einer leeren Seite (v0.11.28) =====
+{const alt=brMalen;brMalen=function(inh){const r=alt.apply(this,arguments);try{if(inh&&typeof syAktiv==='function'&&(!syAktiv()||!KI.aktiv)&&inh.querySelector('.brx .onleucht'))bgMalen(inh)}catch(e){console.error(e)}return r}}
+function bgMalen(inh){const konto=syAktiv(),I={ordner:'<svg viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>',ki:'<svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',frage:'<svg viewBox="0 0 24 24"><path d="M5 5.5h14v10H11l-4 3.5v-3.5H5z"/></svg>'};
+ const S=[['ordner','Ordner verknüpfen','Den Ordner wählen, in dem alles über die Firma liegt: Angebote, Kundenlisten, Verträge, Notizen, Fotos. Unterordner sind egal.'],['ki','Onstand sortiert','Die KI liest neue Dateien und legt daraus Seiten an – für jeden Kunden, Lieferanten, Mitarbeiter und Ablauf. Jeder Fakt nur einmal, mit Quelle.'],['frage','Einfach fragen','„Welche Fliesen hatte Müller?“ – der Assistent antwortet aus dem Firmen-Wiki.']];
+ inh.innerHTML=`<div class="mgk"><div><span class="amtt">Teil des KI-Pakets · nur für den Chef sichtbar</span><h2 class="mgh">Firmen-Wiki</h2></div><div class="mgakt">${konto?'<button type="button" class="haupt bgabo">KI-Paket ansehen</button>':'<button type="button" class="haupt bgkonto">Firmenkonto einrichten</button>'}</div></div>
+ <div class="aux bgx"><section class="aukarte bgkarte"><h3>Alles, was ihr über die Firma wisst – an einem Ort</h3><p class="bgsub">Das Firmen-Wiki sammelt Wissen aus euren Dateien und hält es aktuell. Der Assistent kennt danach eure Kunden, Lieferanten, Absprachen und Abläufe.</p>
+  <ol class="bgschritte">${S.map(([i,t,x],n)=>`<li><span class="bgnr">${I[i]}<em>${n+1}</em></span><div><b>${t}</b><p>${x}</p></div></li>`).join('')}</ol>
+  <div class="bgfuss"><span>${konto?'Firmenkonto ist verbunden. Es fehlt nur das KI-Paket – rund 4 Mio. KI-Tokens im Monat inklusive.':'Dafür braucht es das Firmenkonto und das KI-Paket.'}</span>${konto?'':'<button type="button" class="aultext bgabo">Was kostet das KI-Paket?</button>'}</div></section>
+  <section class="aukarte bgbsp"><div class="bgbk"><span class="bgstern">✦</span><b>Das kannst du danach fragen</b></div>${['Welche Fliesen hatten wir bei Müller Bornheim?','Wer ist der Ansprechpartner bei Halle Offenbach?','Was haben wir mit dem Estrichleger abgesprochen?','Welche Lieferanten liefern Gipskarton?'].map(q=>`<div class="bgq">${esc(q)}</div>`).join('')}<p class="bgsub klein">Beispiele – die Antworten kommen aus euren eigenen Dateien.</p></section></div>`;
+ inh.querySelectorAll('.bgkonto').forEach(b=>b.onclick=()=>{try{syKontoDialog()}catch(e){}});
+ inh.querySelectorAll('.bgabo').forEach(b=>b.onclick=()=>{try{kiAboDialog()}catch(e){}})}
 // ===== Mängel nach der Onstand-Design-Probe =====
 // Titel „Mängel“, Baustelle als Auswahl oben rechts, EINE Reiterzeile (Offen · Überfällig · Zu prüfen · Erledigt · Abnahmen),
 // Liste als Tabelle Mangel | Frist | Status, rechts Karte: Kopf mit Pille, Foto, Feldzeilen, Knöpfe „Als behoben markieren“ / „Abnahme starten“.
@@ -13768,6 +14012,43 @@ kalAuf=function(){const zu=!(KAL.pz>0),r=KB_AUF.apply(this,arguments);if(zu&&!RM
 function kbEin(){const k=KAL.el;if(!k||!k.animate)return;k.classList.add('kbein');clearTimeout(kbEin.t);const hy=W<=760;
  [...k.querySelectorAll('.kin>*')].flatMap(e=>getComputedStyle(e).display==='contents'?[...e.children]:[e]).forEach((e,i)=>e.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:hy?400:560,delay:i*(hy?50:80),easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
  kbEin.t=setTimeout(()=>k.classList.remove('kbein'),1100)}
+// ===== Kalender im Büro-Design (Probe „Restliche Menüs“, v0.11.28) =====
+// Am PC (ab 980 px): Kopf wie Aufträge/Kunden (● Monat, darunter Zahlen; rechts ‹ Heute ›, Ansicht, Suche, Filter, blauer „+ Termin“),
+// Tag rechts als Vorschau mit Monatsübersicht darunter, Filter als Knopf mit Menü statt Liste, lesbare Einträge im Monat.
+// Daten, Ansichten und Eintragen bleiben in kalender.js. Handy bleibt.
+const KLY={};
+const klyBreit=()=>W>=980&&!(typeof hyHandy==='function'&&hyHandy());
+const klySatz=t=>typeof frSatz==='function'?frSatz(t):t;
+function klyOrdnen(){const k=KAL.el;if(!k)return;const pc=klyBreit();k.classList.toggle('klay',pc);const kopf=k.querySelector('.kkopf'),nav=k.querySelector('.knav'),ans=k.querySelector('#kans'),plus=k.querySelector('#kplus'),f=k.querySelector('#kfilter');
+ if(!KLY.bau){KLY.bau=1;KLY.navHeim=nav.parentNode;KLY.navNach=nav.nextSibling;KLY.fHeim=null;
+  const mw=document.createElement('div');mw.className='aulmw klyfw';mw.innerHTML='<button type="button" class="klyfb" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4-2v-4.5z"/></svg><span>Filter</span></button><div class="aulmenu klyfm" role="menu"><small class="klygr">Was soll der Kalender zeigen?</small></div>';KLY.mw=mw;
+  mw.querySelector('.klyfb').onclick=ev=>{ev.stopPropagation();const m=mw.querySelector('.aulmenu'),an=!m.classList.contains('an');document.querySelectorAll('.aulmenu.an').forEach(x=>x.classList.remove('an'));m.classList.toggle('an',an);ev.currentTarget.setAttribute('aria-expanded',an)};
+  mw.querySelector('.aulmenu').addEventListener('click',ev=>ev.stopPropagation())}
+ if(pc&&!KLY.an){KLY.an=1;KLY.fHeim=f.parentNode;KLY.fNach=f.nextSibling;ans.before(nav);plus.before(KLY.mw);KLY.mw.querySelector('.aulmenu').appendChild(f)}
+ else if(!pc&&KLY.an){KLY.an=0;KLY.navHeim.insertBefore(nav,KLY.navNach&&KLY.navNach.parentNode===KLY.navHeim?KLY.navNach:null);if(KLY.fHeim)KLY.fHeim.insertBefore(f,KLY.fNach&&KLY.fNach.parentNode===KLY.fHeim?KLY.fNach:null);KLY.mw.remove()}}
+{const alt=kalZeichnen;kalZeichnen=function(){klyOrdnen();const r=alt.apply(this,arguments);try{klyNach()}catch(e){console.error(e)}return r}}
+function klyNach(){const k=KAL.el;if(!k||!k.classList.contains('klay'))return;
+ {const f=k.querySelector('#kfilter'),m=KLY.mw&&KLY.mw.querySelector('.aulmenu');if(f&&m&&f.parentNode!==m)m.appendChild(f)}
+ // Kopf: Unterzeile mit Zahlen, Titel in normaler Schreibweise
+ const s=KAL.sel,mon=document.getElementById('kmon'),kl=document.getElementById('kklein');
+ if(KAL.ans==='liste'&&mon)mon.textContent='Demnächst';
+ if(kl){const d=kD(s),y=d.getFullYear(),m=d.getMonth();let n=0,fr=0;const tage=new Date(y,m+1,0).getDate();for(let i=1;i<=tage;i++){const t=kIso(new Date(y,m,i,12)),l=kalAm(t).filter(e=>!kNeben(e)&&e.art!=='feiertag');n+=l.length;fr+=l.filter(e=>e.art==='frist'||e.kat==='frist').length}
+  const heute=kIso(new Date()),hl=kalAm(heute).filter(e=>!kNeben(e)&&e.art!=='feiertag');
+  kl.innerHTML=(KAL.ok?`KW ${kKw(s)} · ${n} ${n===1?'Eintrag':'Einträge'}`+(hl.length?` · <b>heute ${hl.length}</b>`:''):'Datenordner nicht verbunden')}
+ if(KAL.ans==='woche'&&mon){const mo=kMo(s),so=kPlus(mo,6),a=kD(mo),b=kD(so);mon.textContent=a.getDate()+'.'+(a.getMonth()!==b.getMonth()?' '+KMONL[a.getMonth()]+' ':'')+'–'+b.getDate()+'. '+KMONL[b.getMonth()]}
+ const fb=k.querySelector('#kfiltbtn'),my=KLY.mw&&KLY.mw.querySelector('.klyfb span');if(fb&&my){const t=fb.textContent.trim();my.textContent=t==='FILTER'?'Filter':'Filter · '+t.replace('FILTER','').trim();KLY.mw.querySelector('.klyfb').classList.toggle('an',t!=='FILTER')}
+ const p=k.querySelector('#kplus');if(p&&!p.dataset.kly){p.dataset.kly=1;p.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Termin'}
+ k.querySelectorAll('#kans button').forEach(b=>{const t=b.textContent.trim();if(t===t.toUpperCase())b.textContent=klySatz(t)});
+ const nb=k.querySelector('#kneu button');if(nb&&nb.textContent.trim()==='EINTRAGEN')nb.textContent='Eintragen lassen';
+ // Tag rechts: Wochentag und Hinweise in normaler Schreibweise
+ k.querySelectorAll('#kseite .kwd,#kseite .ktrenn,#kseite .kseitneu,.kmk>span:first-child').forEach(e=>{const n=e.firstChild;if(n&&n.nodeType===3){const t=n.nodeValue.trim();if(t.length>1&&t===t.toUpperCase()&&/[A-ZÄÖÜ]/.test(t))n.nodeValue=n.nodeValue.replace(t,t.startsWith('+ ')?'+ '+klySatz(t.slice(2)).replace('An diesem tag','an diesem Tag'):klySatz(t))}});
+ const sn=k.querySelector('#kseite .kseitneu');if(sn)sn.textContent='+ Termin an diesem Tag';
+ const le=k.querySelector('#kseite .kleer');if(le&&KAL.ok)le.textContent='Nichts eingetragen. Oben „+ Termin“ – oder unten kurz eintippen, z. B. „Freitag 9 Uhr Aufmaß bei Weber“.'}
+addEventListener('resize',()=>{if(KAL.el&&KAL.pz>0){clearTimeout(KLY.rt);KLY.rt=setTimeout(()=>{try{kalZeichnen()}catch(e){}},120)}});
+// Eintragen-Blatt und Einzelansicht: Überschriften und Feldnamen in normaler Schreibweise
+{let mo=null;const fix=()=>{const k=KAL.el;if(!k||!k.classList.contains('klay'))return;k.querySelectorAll('.kblatt *').forEach(e=>{if(e.children.length&&!/^(SPAN|B|SMALL|H3|H4|LABEL|BUTTON|DIV|P|EM)$/.test(e.tagName))return;e.childNodes.forEach(n=>{if(n.nodeType!==3)return;const t=n.nodeValue.trim();if(t.length>1&&t===t.toUpperCase()&&/[A-ZÄÖÜ]{2}/.test(t))n.nodeValue=n.nodeValue.replace(t,klySatz(t))})})};
+ const an=()=>{if(mo||!KAL.el)return;const b=KAL.el.querySelector('.kblatt');if(!b)return;mo=new MutationObserver(()=>{mo.disconnect();try{fix()}finally{mo.observe(b,{childList:true,subtree:true})}});mo.observe(b,{childList:true,subtree:true})};
+ const alt=kalZeichnen;kalZeichnen=function(){const r=alt.apply(this,arguments);an();return r}}
 // ===== Bauplan · Büro-Design =====
 // Am PC bleibt beim Zeichnen die schmale Seitenleiste sichtbar: ein Klick darauf speichert und schließt erst die Werkstatt.
 document.addEventListener('click',ev=>{if(!document.body.classList.contains('bpan')||W<=760)return;const b=ev.target.closest&&ev.target.closest('#am .onseite button');if(!b)return;
@@ -14985,6 +15266,14 @@ function asBuero(){const e=AM_EL&&AM_EL.querySelector('.oneinschub');if(!e||!AS.
  const fl=e.querySelector('.asfluss');if(ki&&fl&&!AS.fluss.length&&!e.querySelector('.askibox'))fl.insertAdjacentHTML('beforebegin',`<div class="askibox"><div class="askibh"><span class="askistern2">✦</span><b>Frag Onstand</b></div><p>Die KI antwortet aus deinen Onstand-Daten – Baustellen, Angebote, Rechnungen, Tagebuch, Mängel.</p><div class="askivor">${asKiBeispiele().map(t=>`<button type="button" data-askiq="${esc(t)}">${esc(t)}</button>`).join('')}</div></div>`);
  e.querySelectorAll('[data-askiq]').forEach(b=>b.onclick=()=>asBefehl(b.dataset.askiq));
  const ab=u.querySelector('[data-askiabo]');if(ab)ab.onclick=()=>{if(typeof kiAboDialog==='function')kiAboDialog()}}
+// ===== Dialoge aus dem Firmen-Menü im Büro-Design (v0.11.28) =====
+// Profil, Sprache, Konto & Geräte, Als App installieren, Über Onstand und alle anderen Fenster über onDialog:
+// am PC als ruhige Karte in der Mitte statt als Leiste mit kleinen Großbuchstaben. Inhalt und Knöpfe bleiben gleich.
+const DB_WORT={'OK':'OK','ALS APP INSTALLIEREN':'Als App installieren','SCHLIESSEN':'Schließen','ERWEITERT':'Erweitert','SERVER-ADRESSE':'Server-Adresse','ÖFFENTLICHER SCHLÜSSEL':'Öffentlicher Schlüssel','FIRMA ANLEGEN':'Firma anlegen','MIT CODE':'Mit Code','ANMELDEN':'Anmelden','E-MAIL':'E-Mail','PASSWORT (MIND. 8 ZEICHEN)':'Passwort (mind. 8 Zeichen)','DEIN NAME':'Dein Name','FIRMA':'Firma','CODE':'Code','ROLLE':'Rolle'};
+const dbSatz=t=>{const k=t.trim();if(DB_WORT[k])return t.replace(k,DB_WORT[k]);return typeof frSatz==='function'?frSatz(t):t};
+function dbFein(d){d.classList.toggle('dbpc',W>=980);d.querySelectorAll('h3,label,button,.kl,b,small,span,summary,legend').forEach(e=>e.childNodes.forEach(n=>{if(n.nodeType!==3)return;const t=n.nodeValue.trim();if(DB_WORT[t]){if(DB_WORT[t]!==t)n.nodeValue=n.nodeValue.replace(t,DB_WORT[t]);return}if(t.length>1&&t===t.toUpperCase()&&/[A-ZÄÖÜ]{2}/.test(t)&&!/^(KI|PDF|OK|IBAN|BIC|QR|USt|GAEB|CSV)$/.test(t)&&!/^v\d/.test(t))n.nodeValue=n.nodeValue.replace(t,dbSatz(t))}))}
+{const alt=onDialog;onDialog=function(){const d=alt.apply(this,arguments);try{dbFein(d)}catch(e){}return d}}
+{let mo=null;const an=()=>{if(mo||!AM_EL)return;const d=AM_EL.querySelector('.ondlg');if(!d)return;mo=new MutationObserver(()=>{mo.disconnect();try{dbFein(d)}finally{mo.observe(d,{childList:true,subtree:true,characterData:true})}});mo.observe(d,{childList:true,subtree:true,characterData:true})};setTimeout(an,1500);addEventListener('click',an,{once:true,capture:true})}
 // ===== Neukunden-Code einlösen (Schritt 4) =====
 // Wo: beim Anlegen einer neuen Firma (Feld „Persönlicher Code“) und unter Einstellungen → „Abo & KI-Paket“ → „Code einlösen“.
 // Nur der Chef löst ein. Der Server prüft den Code und schaltet für 30 Tage Grundpaket, KI-Paket und Firmen-Look frei
