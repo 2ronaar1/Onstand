@@ -5559,13 +5559,403 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
  #am .wkliste li{grid-template-columns:76px minmax(0,1fr)}#am .wkliste .s{grid-column:2}
 }
 #am#am .wk{flex:none;height:auto;align-items:start}#am .wkbaum{align-self:stretch}
+/* ===== Handy im Büro-Design (v0.11.33) – nur bis 760 px. Gehört zu kern/handy-buero.js ===== */
+@media (max-width:760px){
+/* ---------- Kopf: Titel links, runde Knöpfe rechts, Blättern darunter ---------- */
+#am#am .aminhalt>.mgk.hb{padding-right:0!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px;row-gap:12px;flex-direction:initial}
+#am#am .mgk.hb>div:first-child{min-width:0}
+#am#am .mgk.hb h2.mgh{font-size:27px;line-height:1.15;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am#am .mgk.hb .amtt{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am#am .mgk.hb .mgakt.hbleer{display:none!important}
+#am#am .mgk.hb .hbweg{display:none!important}
+#am#am .hbr{display:flex;align-items:center;gap:8px;justify-self:end;align-self:center;width:max-content}
+#am#am .hbr>*{flex:none!important;margin:0!important;align-self:center!important;position:relative!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important}
+#am#am .hbr>button,#am#am .hbr .auldrei{width:44px;height:44px;min-height:44px;border-radius:50%;padding:0!important;display:inline-flex;align-items:center;justify-content:center;font-size:0!important;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);box-shadow:none;gap:0}
+#am#am .hbr .auldrei{font-size:20px!important;line-height:1;letter-spacing:.02em}
+#am#am .hbr>button svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#am#am .hbr>button.hbplus{background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf);width:48px!important;height:48px!important;min-height:48px;min-width:48px;box-shadow:0 4px 12px -4px color-mix(in srgb,var(--k-akz) 60%,transparent)}
+#am#am .hbr>button.hbplus svg{width:24px;height:24px;stroke-width:2.4}
+#am#am .hbr .aulmw{position:relative}
+#am#am .hbr>button.hbtext{width:auto!important;border-radius:22px;padding:0 16px!important;font:600 14.5px var(--k-ui)!important;background:var(--k-akz);border-color:var(--k-akz);color:var(--k-auf)}
+#am#am :has(>.bpweg){padding-right:48px!important}
+#am#am .hbr .aulmenu{right:0;left:auto;top:calc(100% + 6px);min-width:230px;z-index:60}
+#am#am .hbr .aulmenu button{display:flex;align-items:center;gap:10px;width:100%;min-height:46px;font-size:15px!important;text-align:left;white-space:nowrap}
+#am#am .hbr .aulmenu button svg{width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#am#am .hbr .aulmenu button span{display:inline!important;font-size:15px!important}
+#am#am .hbz{grid-column:1/-1;display:flex;align-items:center;gap:6px;min-width:0}
+#am#am .hbz>.ampf,#am#am .hbz .pekw>button{width:40px;height:40px;min-height:40px;border-radius:50%;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font-size:20px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+#am#am .hbz>.tbheute{height:40px;min-height:40px;border-radius:20px;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);font:600 15px var(--k-ui);padding:0 16px}
+#am#am .hbz .pekw{display:inline-flex;align-items:center;gap:6px}
+#am#am .hbz .pekw b{min-width:64px;text-align:center;font:600 15px var(--k-ui)}
+#am#am .hbz>.hbtext{height:40px;border-radius:20px;padding:0 16px!important;font:600 14.5px var(--k-ui)!important;background:var(--k-akz);border:0;color:var(--k-auf)}
+#am#am .hbz select{height:40px;border-radius:20px;border:1px solid var(--k-lin);background-color:var(--k-b1);color:var(--k-t);font:500 15px var(--k-ui);padding:0 34px 0 14px;max-width:100%}
+/* Tagebuch: KW-Text der Zeile rechts */
+#am#am .mgk.tbk.hb h2.mgh .amkw,#am#am .mgk.tbk.hb h2.mgh .amsep,#am#am .mgk.tbk.hb h2.mgh .ammon{display:none}
+/* ---------- Ein blauer Knopf je Seite ---------- */
+#am#am .hbzweit{background:var(--k-b1)!important;color:var(--k-akz)!important;border:1.5px solid color-mix(in srgb,var(--k-akz) 55%,var(--k-lin))!important;box-shadow:none!important}
+/* ---------- Kalender ---------- */
+#kal.hbkal .kkopf{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto auto;grid-template-areas:"t l f p" "z z z z";align-items:center;column-gap:8px;row-gap:12px;padding:7px 0 8px!important}
+#kal.hbkal .ktitel{grid-area:t;display:flex!important;flex-direction:column;min-width:0}
+#kal.hbkal .ktitel #kmon::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--cpk-kalender,#D9668F);margin:0 10px 0 2px;vertical-align:.16em}
+#kal.hbkal .ktitel #kmon{order:1;font:700 27px/1.15 var(--k-ui)!important;letter-spacing:-.01em;text-transform:none!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#kal.hbkal .ktitel #kklein{order:2;font:400 14px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-sub);margin-top:2px}
+#kal.hbkal .hbkz{grid-area:z;display:flex;align-items:center;gap:8px;min-width:0}
+#kal.hbkal .hbkz .knav{display:flex!important;align-items:center;gap:2px;flex:none;margin:0!important}
+#kal.hbkal .hbkz .knav .krund{display:none!important;width:34px!important;height:40px!important;border:0!important;background:none!important;color:var(--k-t)!important;font-size:22px!important;padding:0!important;min-width:0}
+#kal.hbkal .hbkz .knav .kpill{height:40px!important;border-radius:20px!important;border:1px solid var(--k-lin)!important;background:var(--k-b1)!important;color:var(--k-t)!important;font:600 14px var(--k-ui)!important;padding:0 12px!important;letter-spacing:0!important}
+#kal.hbkal .kmobil{display:contents!important}
+#kal.hbkal #klupe{grid-area:l}
+#kal.hbkal #kfiltbtn{grid-area:f;position:relative}
+#kal.hbkal #kfiltbtn::before,#kal.hbkal #kfiltbtn::after,#kal.hbkal #kplus::before,#kal.hbkal #kplus::after,#kal.hbkal #klupe::before,#kal.hbkal #klupe::after{content:none!important;display:none!important}
+#kal.hbkal .ktitel::before,#kal.hbkal .ktitel::after{content:none!important}
+#kal.hbkal #klupe,#kal.hbkal #kfiltbtn{width:44px!important;height:44px!important;min-width:0;border-radius:50%!important;border:1px solid var(--k-lin)!important;background:var(--k-b1)!important;color:var(--k-t)!important;padding:0!important;font-size:0!important;display:inline-flex!important;align-items:center;justify-content:center}
+#kal.hbkal #klupe svg,#kal.hbkal #kfiltbtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#kal.hbkal #kfiltbtn em{position:absolute;top:-3px;right:-5px;font:700 10px/16px var(--k-ui);font-style:normal;padding:0 4px;border-radius:8px;background:var(--k-akz);color:var(--k-auf)}
+#kal.hbkal #kplus{grid-area:p;width:48px!important;height:48px!important;border-radius:50%!important;padding:0!important;display:inline-flex!important;align-items:center;justify-content:center;background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important;position:static!important;box-shadow:0 4px 12px -4px color-mix(in srgb,var(--k-akz) 60%,transparent)}
+#kal.hbkal #kplus svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+#kal.hbkal #kans{display:flex!important;flex:1;min-width:0;margin:0!important;border:1px solid var(--k-lin);border-radius:12px;background:var(--k-b1);padding:3px;gap:2px}
+#kal.hbkal #kans button{flex:1;min-width:0;height:34px;border-radius:9px!important;border:0!important;background:none!important;color:var(--k-sub)!important;font:500 13px var(--k-ui)!important;letter-spacing:0!important;padding:0!important}
+#kal.hbkal #kans button.an{background:color-mix(in srgb,var(--k-akz) 14%,var(--k-b1))!important;color:var(--k-akz)!important;font-weight:600!important}
+#kal.hbkal .kkopf::after{content:none}
+#kal.hbkal #ksuche{grid-column:1/-1}
+#kal.hbkal .kneu input{font-size:15px}
+/* Woche als Tagesliste */
+#kal.hbkal .kbody:has(.hbkw) #kseite{display:none!important}
+#kal .khaupt.hbkw{overflow-y:auto!important;overflow-x:hidden!important;display:flex;flex-direction:column;padding:0 0 12px}
+#kal .hbkleiste{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:6px 12px 10px;background:var(--k-b0);border-bottom:1px solid var(--k-lin)}
+#kal .hbkt{display:flex;flex-direction:column;align-items:center;gap:1px;border:0;background:none;color:var(--k-t);padding:6px 0 4px;border-radius:12px;font:inherit}
+#kal .hbkt small{font:500 12px var(--k-ui);color:var(--k-sub)}
+#kal .hbkt b{font:600 18px/26px var(--k-ui);width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
+#kal .hbkt.kwe small,#kal .hbkt.kwe b{color:var(--k-sub)}
+#kal .hbkt.kheute b{color:var(--k-akz)}
+#kal .hbkt.an b{background:var(--k-akz);color:var(--k-auf)}
+#kal .hbkt span{display:flex;gap:3px;height:6px}
+#kal .hbkt i{width:5px;height:5px;border-radius:50%;background:var(--c)}
+#kal .hbkliste{padding:4px 16px 0}
+#kal .hbktag{padding:14px 0 6px;scroll-margin-top:74px}
+#kal .hbktag h4{margin:0 0 8px;font:400 14px var(--k-ui);color:var(--k-sub);display:flex;align-items:center;gap:0;flex-wrap:wrap;letter-spacing:0;text-transform:none}
+#kal .hbktag h4 b{font-weight:600;color:var(--k-t)}
+#kal .hbktag h4 em{margin-left:8px;font:600 12px/20px var(--k-ui);font-style:normal;padding:0 8px;border-radius:10px;background:color-mix(in srgb,var(--k-akz) 15%,transparent);color:var(--k-akz)}
+#kal .hbktag h4 span{margin-left:8px;font-size:12.5px;color:var(--k-sub)}
+#kal .hbktag.frei{display:flex;align-items:baseline;justify-content:space-between;padding:10px 0;border-top:1px solid var(--k-lin)}
+#kal .hbktag.frei h4{margin:0}
+#kal .hbke{display:flex;align-items:stretch;gap:12px;width:100%;text-align:left;border:1px solid var(--k-lin);background:var(--k-b1);color:var(--k-t);border-radius:12px;padding:11px 12px;margin:0 0 6px;font:inherit;position:relative;overflow:hidden}
+#kal .hbke::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+#kal .hbzeit{flex:none;width:50px;font:600 14px var(--k-ui);display:flex;flex-direction:column;padding-left:4px}
+#kal .hbzeit small{font:400 13px var(--k-ui);color:var(--k-sub)}
+#kal .hbtxt{min-width:0;display:flex;flex-direction:column;gap:2px}
+#kal .hbtxt b{font:600 15px/1.3 var(--k-ui)}
+#kal .hbtxt small{font:400 13px var(--k-ui);color:var(--k-sub)}
+#kal .hbkneben .hbke{background:none;border-style:dashed;padding:8px 12px}
+#kal .hbkneben .hbtxt b{font-weight:500;font-size:14px}
+#kal .hbkfrei{border:0;background:none;color:var(--k-sub);font:400 14px var(--k-ui);padding:0}
+#kal .hbkfrei u{text-decoration:none;color:var(--k-akz);font-weight:500}
+/* ---------- Papierkorb ---------- */
+#pk .pkin::before{content:'Papierkorb'!important;font:700 27px/1.15 var(--k-ui)!important;letter-spacing:-.01em!important;color:var(--k-t)!important;margin:6px 0 4px}
+#pk .pktabs button{font:500 15px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important}
+#pk .pksuche{height:44px;font-size:15px;border-radius:12px;padding:0 14px}
+#pk .pkleer{font-size:15px;line-height:1.5;color:var(--k-sub)}
+#pk .pkgr{font:600 13px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-sub)}
+#pk .pki b{font-size:15.5px}
+#pk .pktg{font:400 12.5px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important}
+#pk .pkak{display:flex;align-items:center;gap:6px}
+#pk .pkak button{font:600 14px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;height:40px;border-radius:20px}
+#pk .pkak button.hbmuell{width:40px;padding:0!important;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--k-lin)!important;background:var(--k-b1)!important;color:var(--k-sub)!important}
+#pk .pkak button.hbmuell svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#pk .pkak button.sicher{color:var(--k-rot)!important;border-color:var(--k-rot)!important}
+#pk .pkleeren,#pk .pkfuss button{font:600 14px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important}
+/* Kalender: Detailblatt ohne Kupfer, „Löschen“ leise rot */
+#kal.hbkal .kblatt .kweg{background:var(--k-b1)!important;color:var(--k-rot)!important;border:1.5px solid color-mix(in srgb,var(--k-rot) 45%,var(--k-lin))!important}
+#kal.hbkal .kblatt .kja{background:var(--k-akz)!important;color:var(--k-auf)!important;border:0!important}
+#kal.hbkal .kblatt :is(button,h3,span,b){letter-spacing:0!important;text-transform:none}
+#kal.hbkal .kliste h4{font:600 14px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-t)!important;text-transform:none!important}
+#kal.hbkal .kliste h4 em{font:600 12px/20px var(--k-ui);font-style:normal;padding:0 8px;margin-left:8px;border-radius:10px;background:color-mix(in srgb,var(--k-akz) 15%,transparent);color:var(--k-akz)}
+/* ---------- Kleinere Ordnung in den Menüs ---------- */
+/* Cockpit: Panels so hoch wie ihr Inhalt, keine leeren Flächen; kurze Titel */
+#am#am .cpk:not(.edit) .cpkraster{grid-auto-rows:auto!important;align-items:start}
+#am#am .cpk:not(.edit) .cpkp{grid-row:auto!important;height:auto!important;min-height:0!important}
+#am#am .cpk:not(.edit) .cpkp.s-g,#am#am .cpk:not(.edit) .cpkp.s-b{grid-column:1/-1!important}
+#am#am .cpk:not(.edit) .cpkp.s-k{min-height:128px!important}
+#am#am .cpkph .tt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#am#am .cpk:not(.edit) .cpkp.s-k .cpkph .lk{font-size:0!important;padding:0 2px;min-width:24px}
+#am#am .cpk:not(.edit) .cpkp.s-k .cpkph .lk::after{content:"›";font-size:22px;line-height:1;color:var(--k-akz)}
+/* Personal, Mängel: Reiter wischbar */
+#am#am .mbtabs{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+#am#am .mbtabs::-webkit-scrollbar{display:none}
+#am#am .mbtabs>*{flex:none}
+/* Bauplan-Liste: Mülleimer leiser (ohne Rahmen, grau), Zeilen dürfen umbrechen */
+#am#am .bpweg{border:0!important;background:none!important;color:var(--k-sub)!important;box-shadow:none!important;opacity:.8}
+/* Aufträge: Reiter waagerecht wischbar statt abgeschnitten */
+#am#am .autabs{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+#am#am .autabs::-webkit-scrollbar{display:none}
+#am#am .autabs>*{flex:none}
+}
+
+/* Tagebuch: heutiger, gewählter Tag – Zahl war blau auf blau */
+#am .amtag.sel.heute b{color:var(--k-auf)!important}
+
+/* ===== iPhone-Look (Probe „Handy“ Runde 2): Glasknöpfe wie iOS, große Titel, Segment-Umschalter, Seifenblase unten ===== */
+@media (max-width:760px){
+#kal.hbkal .ktitel{overflow:hidden}
+#kal.hbkal .ktitel #kmon{font-size:26px!important}
+#am#am .mgk.hb h2.mgh{font-size:31px!important;font-weight:700!important;letter-spacing:-.02em!important}
+#kal.hbkal .ktitel #kmon{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Glasknöpfe oben */
+#am#am .hbr>button:not(.hbplus):not(.hbtext),#am#am .hbr .auldrei,#kal.hbkal #klupe,#kal.hbkal #kfiltbtn,#am#am .hbz>.ampf,#am#am .hbz .pekw>button,#am#am .hbz>.tbheute{
+ background:color-mix(in srgb,var(--k-b1) 72%,transparent)!important;-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);
+ border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;
+ box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 1px 2px color-mix(in srgb,black 6%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent)!important}
+#am#am .hbr>button.hbplus,#kal.hbkal #kplus{box-shadow:inset 0 1px 0 color-mix(in srgb,white 40%,transparent),inset 0 -2px 4px color-mix(in srgb,black 12%,transparent),0 6px 16px -6px color-mix(in srgb,var(--k-akz) 70%,transparent)!important;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--k-akz) 82%,white),var(--k-akz) 55%)!important}
+:root[data-design="dunkel"] #am#am .hbr>button:not(.hbplus):not(.hbtext),:root[data-design="dunkel"] #am#am .hbr .auldrei,:root[data-design="dunkel"] #kal.hbkal #klupe,:root[data-design="dunkel"] #kal.hbkal #kfiltbtn,:root[data-design="dunkel"] #am#am .hbz>.ampf,:root[data-design="dunkel"] #am#am .hbz .pekw>button,:root[data-design="dunkel"] #am#am .hbz>.tbheute{
+ box-shadow:inset 0 1px 0 color-mix(in srgb,white 12%,transparent),0 4px 14px -6px black!important;border-color:color-mix(in srgb,white 9%,transparent)!important}
+/* Kalender: ‹ Heute › als eine Glaspille, Ansichten als iOS-Segment */
+#kal.hbkal .hbkz .knav{gap:0!important;height:38px;border-radius:19px;background:color-mix(in srgb,var(--k-b1) 72%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent);padding:0 2px}
+#kal.hbkal .hbkz .knav .krund{display:inline-flex!important;align-items:center;justify-content:center;width:30px!important;height:36px!important;font-size:20px!important;color:var(--k-akz)!important}
+#kal.hbkal .hbkz .knav .kpill{height:36px!important;border:0!important;background:none!important;box-shadow:none!important;padding:0 4px!important;font:600 14.5px var(--k-ui)!important;color:var(--k-akz)!important}
+#kal.hbkal #kans{border:0!important;border-radius:10px!important;background:color-mix(in srgb,var(--k-sub) 14%,transparent)!important;padding:2px!important;gap:0!important;height:36px}
+#kal.hbkal #kans button{flex:1 1 0!important;min-width:0!important;padding:0!important;height:32px!important;border-radius:8px!important;color:var(--k-t)!important;font:500 12.5px var(--k-ui)!important;letter-spacing:-.01em!important;transition:background .25s,box-shadow .25s}
+#kal.hbkal #kans button.an{background:var(--k-b1)!important;color:var(--k-t)!important;font-weight:600!important;box-shadow:0 3px 8px color-mix(in srgb,black 12%,transparent),0 0 0 .5px color-mix(in srgb,black 4%,transparent)}
+:root[data-design="dunkel"] #kal.hbkal #kans button.an{background:color-mix(in srgb,var(--k-sub) 34%,var(--k-b1))!important}
+/* Wochenleiste: iOS-Kreise */
+#kal .hbkleiste{background:color-mix(in srgb,var(--k-b0) 82%,transparent)!important;-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);border-bottom:.5px solid color-mix(in srgb,var(--k-t) 12%,transparent)!important}
+#kal .hbkt b{transition:background .25s,color .25s,transform .3s cubic-bezier(.3,1.5,.5,1)}
+#kal .hbkt.an b{transform:scale(1.04)}
+#kal .hbkt:active b{transform:scale(.9)}
+/* Tag-Ansicht mit Wochenleiste */
+#kal .khaupt.hbktg{display:flex!important;flex-direction:column}
+#kal .khaupt.hbktg>.hbkleiste{flex:none;position:static;margin:0 0 8px;border-radius:14px;border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important}
+#kal .khaupt.hbktg>.kwk{flex:1;min-height:0}
+#kal.hbkal .kbody:has(.hbktg) #kseite{display:none!important}
+#kal .khaupt.hbktg .kwkh .kwtag{display:none}
+/* ---------- Leiste unten: Seifenblase ---------- */
+#am .onleiste.hbbl .hyfaden,#am .onleiste.hbbl .hybl,#am .onleiste.hbbl .hyind{display:none!important}
+#am .onleiste.hbbl>button:not(.hymic){z-index:1}
+#am .onleiste .hbblase{position:absolute;left:0;top:50%;margin-top:-25px;width:76px;height:50px;border-radius:999px;pointer-events:none;z-index:0;opacity:0;will-change:transform;
+ background:radial-gradient(90% 70% at 32% 22%,color-mix(in srgb,white 70%,transparent),color-mix(in srgb,white 14%,transparent) 48%,transparent 72%),radial-gradient(120% 120% at 70% 90%,color-mix(in srgb,var(--k-akz) 10%,transparent),transparent 60%),color-mix(in srgb,white 22%,transparent);
+ box-shadow:inset 0 0 0 1px color-mix(in srgb,white 78%,transparent),inset 0 -5px 10px -6px color-mix(in srgb,var(--k-akz) 28%,transparent),inset 0 4px 8px -6px color-mix(in srgb,white 90%,transparent),0 6px 16px -8px color-mix(in srgb,black 28%,transparent);
+ -webkit-backdrop-filter:blur(3px) saturate(1.5) brightness(1.04);backdrop-filter:blur(3px) saturate(1.5) brightness(1.04)}
+/* Schillern: sehr dezent Lila und Gelb am Rand, wie bei einer Seifenblase */
+#am .onleiste .hbblase b{position:absolute;inset:0;border-radius:inherit;opacity:.85;
+ background:conic-gradient(from 200deg,color-mix(in srgb,#B48CFF 22%,transparent),color-mix(in srgb,#FFD86E 18%,transparent) 16%,transparent 30%,transparent 58%,color-mix(in srgb,#B48CFF 16%,transparent) 76%,color-mix(in srgb,#FFD86E 20%,transparent) 90%,color-mix(in srgb,#B48CFF 22%,transparent));
+ -webkit-mask:radial-gradient(closest-side,transparent 70%,#000 100%);mask:radial-gradient(closest-side,transparent 70%,#000 100%)}
+#am .onleiste .hbblase::after{content:"";position:absolute;left:18%;top:9%;width:30%;height:22%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,white 85%,transparent),transparent);filter:blur(.5px)}
+:root[data-design="dunkel"] #am .onleiste .hbblase{background:radial-gradient(90% 70% at 32% 22%,color-mix(in srgb,white 26%,transparent),color-mix(in srgb,white 6%,transparent) 48%,transparent 72%),color-mix(in srgb,white 8%,transparent);
+ box-shadow:inset 0 0 0 1px color-mix(in srgb,white 26%,transparent),inset 0 -5px 10px -6px color-mix(in srgb,var(--k-akz) 40%,transparent),0 6px 18px -8px black}
+:root[data-design="dunkel"] #am .onleiste .hbblase::after{background:radial-gradient(closest-side,color-mix(in srgb,white 45%,transparent),transparent)}
+#am .onleiste.hbbl>button:not(.hymic).an svg{transform:scale(1.08)}
+#am .onleiste.hbbl>button:not(.hymic) svg{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+}
+
+/* ===== Feste Bausteine (Runde 3) – überall gleich ===== */
+@media (max-width:760px){
+/* Blättern-Pille: ‹ Heute › (Tagebuch, Kalender) und ‹ KW 48 › (Personal) */
+#am#am .hbpille{display:inline-flex!important;align-items:center;gap:0!important;height:38px;border-radius:19px;padding:0 2px;background:color-mix(in srgb,var(--k-b1) 72%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent)}
+#am#am .hbpille>button,#am#am .hbz .hbpille>button,#am#am .hbz .hbpille>.ampf,#am#am .hbz .hbpille>.tbheute{width:auto!important;min-width:30px;height:36px!important;min-height:36px!important;border:0!important;background:none!important;box-shadow:none!important;-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:18px!important;padding:0 4px!important;color:var(--k-akz)!important;font:600 14.5px var(--k-ui)!important}
+#am#am .hbpille>.ampf,#am#am .hbpille>button[data-kw]{font-size:20px!important;width:30px!important}
+#am#am .hbpille>b{color:var(--k-akz);font:600 14.5px var(--k-ui)!important;min-width:0!important;padding:0 4px}
+:root[data-design="dunkel"] #am#am .hbpille,:root[data-design="dunkel"] #kal.hbkal .hbkz .knav{box-shadow:inset 0 1px 0 color-mix(in srgb,white 12%,transparent),0 4px 14px -6px black;border-color:color-mix(in srgb,white 9%,transparent)}
+/* Detail-Kopf */
+#am#am .aminhalt>.hbd{display:flex!important;flex-direction:column;align-items:flex-start;gap:4px;position:relative;padding-top:2px!important;min-height:0}
+#am#am .hbdnav{display:flex;align-items:center;justify-content:space-between;width:100%;margin:0 0 10px}
+#am#am .hbknav .hbzur,#am#am .hbd .hbzur{position:static!important;display:inline-flex!important;align-items:center;gap:2px;height:38px!important;min-height:38px;width:auto!important;padding:0 14px 0 8px!important;border-radius:19px!important;font:600 15px var(--k-ui)!important;color:var(--k-akz)!important;background:color-mix(in srgb,var(--k-b1) 72%,transparent)!important;-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent)!important;margin:0!important;transform:none!important}
+#am#am .hbknav .hbzur svg,#am#am .hbd .hbzur svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#am#am .hbknav .hbzur span,#am#am .hbd .hbzur span{display:inline!important;font-size:15px!important}
+#am#am .hbdr{display:flex;gap:8px}
+#am#am .hbd .hbrund{width:40px!important;height:40px!important;min-height:40px;border-radius:50%!important;padding:0!important;display:inline-flex!important;align-items:center;justify-content:center;color:var(--k-akz)!important;background:color-mix(in srgb,var(--k-b1) 72%,transparent)!important;-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent)!important}
+#am#am .hbd .hbrund svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+:root[data-design="dunkel"] #am#am .hbknav .hbzur,:root[data-design="dunkel"] #am#am .hbd .hbzur,:root[data-design="dunkel"] #am#am .hbd .hbrund{box-shadow:inset 0 1px 0 color-mix(in srgb,white 12%,transparent),0 4px 14px -6px black!important;border-color:color-mix(in srgb,white 9%,transparent)!important}
+#am#am .hbd .amtt,#am#am .hbd small{font:500 14px var(--k-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--k-sub)!important;order:2}
+#am#am .hbd h3,#am#am .hbd .hbdtitel{margin:0;font:700 28px/1.15 var(--k-ui)!important;letter-spacing:-.02em;color:var(--k-t)}
+#am#am .hbd .hbdtitel{order:3}
+#am#am .gldk.hbd{display:grid!important;grid-template-columns:auto 1fr;column-gap:14px;align-items:center}
+#am#am .gldk.hbd>.hbdnav{grid-column:1/-1}
+#am#am .gldk.hbd>div:not(.hbdnav):not(.mgakt){display:flex;flex-direction:column-reverse;gap:2px}
+#am#am .gldk.hbd .peava.gross{width:56px;height:56px;font-size:16px;margin:0}
+#am#am .gldk.hbd:not(:has(.peava))>div:not(.hbdnav){grid-column:1/-1}
+#am#am .mgekopf.hbd .amtt{order:0}
+/* Aktionsleiste unten in Details: Glas, ein blauer Knopf */
+#am .hyfuss{background:color-mix(in srgb,var(--k-b1) 70%,transparent)!important;-webkit-backdrop-filter:blur(20px) saturate(1.8);backdrop-filter:blur(20px) saturate(1.8);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,white 70%,transparent),0 10px 30px -12px color-mix(in srgb,black 30%,transparent)!important;border-radius:26px!important}
+#am .hyfuss .hyfk.g{background:color-mix(in srgb,var(--k-b1) 85%,transparent)!important;border:.5px solid color-mix(in srgb,var(--k-t) 12%,transparent)!important;color:var(--k-t)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,white 70%,transparent)!important}
+#am .hyfuss .hyfk.rund{background:color-mix(in srgb,var(--k-b1) 85%,transparent)!important;border:.5px solid color-mix(in srgb,var(--k-t) 12%,transparent)!important;color:var(--k-akz)!important}
+:root[data-design="dunkel"] #am .hyfuss{box-shadow:inset 0 1px 0 color-mix(in srgb,white 10%,transparent),0 10px 30px -12px black!important;border-color:color-mix(in srgb,white 9%,transparent)!important}
+:root[data-design="dunkel"] #am .hyfuss .hyfk.g,:root[data-design="dunkel"] #am .hyfuss .hyfk.rund{box-shadow:inset 0 1px 0 color-mix(in srgb,white 10%,transparent)!important;border-color:color-mix(in srgb,white 10%,transparent)!important}
+}
+/* Tagebuch: gewählter Tag – Zahl war blau auf blau */
+#am .amtag.sel b{color:var(--k-auf)!important}
+@media (max-width:760px){
+#am#am .hbd .hbdnav{display:flex!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;width:100%!important;text-align:left}
+#am .hbweg{display:none!important}
+#am#am .gldk.hbd{justify-items:start;text-align:left}
+#am#am .gldk.hbd>div:not(.hbdnav){align-items:flex-start!important;text-align:left!important}
+#am#am .mbk>b{font:700 22px/1.22 var(--k-ui)!important;letter-spacing:-.02em}
+#am#am .hbd .hbdtitel{font-size:26px!important}
+}
+@media (max-width:760px){
+#am#am .amaktion button{font:600 15px var(--k-ui)!important;height:46px!important;padding:0 18px!important;border-radius:23px!important;letter-spacing:0!important}
+#am#am .hbz>.hbsuche{flex:1;display:flex!important;align-items:center;gap:8px;height:40px;border-radius:12px;padding:0 12px;background:color-mix(in srgb,var(--k-sub) 13%,transparent)!important;border:0!important;box-shadow:none!important;color:var(--k-sub)}
+#am#am .hbz>.hbsuche svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:2}
+#am#am .hbz>.hbsuche input{flex:1;min-width:0;border:0!important;background:none!important;font:400 16px var(--k-ui)!important;color:var(--k-t);outline:0;height:38px;padding:0!important;box-shadow:none!important}
+#am#am .wk>.hbwknav{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;width:100%}
+#am#am .wk>.hbwknav:not(:has(.hbzur)){justify-content:flex-end}
+#am#am .wk .hbzur,#am#am .wk .hbpill2{display:inline-flex!important;align-items:center;gap:2px;height:38px!important;padding:0 14px 0 10px!important;border-radius:19px!important;font:600 15px var(--k-ui)!important;color:var(--k-akz)!important;background:color-mix(in srgb,var(--k-b1) 72%,transparent)!important;-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent)!important;margin:0!important;position:static!important}
+#am#am .wk .hbzur svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+:root[data-design="dunkel"] #am#am .wk .hbzur,:root[data-design="dunkel"] #am#am .wk .hbpill2{box-shadow:inset 0 1px 0 color-mix(in srgb,white 12%,transparent),0 4px 14px -6px black!important;border-color:color-mix(in srgb,white 9%,transparent)!important}
+}
+@media (max-width:760px){
+/* Zurück überall als Glaspille: Assistent, Papierkorb, Einstellungen, Verwaltung */
+#am .asschl,#pk .pkzu,#am .hyzur{display:inline-flex!important;align-items:center;gap:2px;width:auto!important;height:38px!important;min-height:38px;padding:0 14px 0 8px!important;border-radius:19px!important;font:600 15px var(--k-ui)!important;letter-spacing:0!important;color:var(--k-akz)!important;background:color-mix(in srgb,var(--k-b1) 72%,transparent)!important;-webkit-backdrop-filter:blur(14px) saturate(1.7);backdrop-filter:blur(14px) saturate(1.7);border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;box-shadow:inset 0 1px 0 color-mix(in srgb,white 75%,transparent),0 4px 14px -6px color-mix(in srgb,black 18%,transparent)!important}
+#am .asschl .aszur,#pk .pkzu .aszur{font:600 15px var(--k-ui)!important;color:var(--k-akz)!important}
+#am .asschl svg,#pk .pkzu svg,#am .hyzur svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+:root[data-design="dunkel"] #am .asschl,:root[data-design="dunkel"] #pk .pkzu,:root[data-design="dunkel"] #am .hyzur{box-shadow:inset 0 1px 0 color-mix(in srgb,white 12%,transparent),0 4px 14px -6px black!important;border-color:color-mix(in srgb,white 9%,transparent)!important}
+}
+@media (max-width:760px){
+#am .hyzur{width:max-content!important;max-width:max-content!important;align-self:flex-start!important;justify-self:start!important;flex:none!important}
+#am#am .mgk.hb.hbmitzur>.hbknav{grid-column:1/-1;grid-row:1;display:flex;margin:0 0 2px}
+#am#am .mgk.hb.hbmitzur>div:nth-child(2){grid-row:2}
+#am#am .mgk.hb.hbmitzur>.hbr{grid-row:2}
+#am#am .mgk.hb.hbmitzur>.hbz{grid-row:3}
+}
+
+/* ===== Runde 4: Feinschliff nach iOS-Vorbild (Kalender, Erinnerungen, Mail, Einstellungen) ===== */
+@media (max-width:760px){
+/* Große Titel überall gleich (auch Mehr, Einstellungen) */
+#am#am .aminhalt>.mgk h2.mgh{font-size:31px!important;font-weight:700!important;letter-spacing:-.02em!important;line-height:1.15!important}
+/* Kopfzeile beim Scrollen: Milchglas, Zurück links */
+#am .onkopf{padding-left:118px!important;padding-right:118px!important;background:color-mix(in srgb,var(--k-b0) 78%,transparent)!important;-webkit-backdrop-filter:blur(20px) saturate(1.8);backdrop-filter:blur(20px) saturate(1.8);border-bottom:.5px solid color-mix(in srgb,var(--k-t) 12%,transparent)}
+#am .onkopf:not(.zu){border-bottom-color:transparent;background:transparent!important}
+#am .onkopf b{font:600 17px var(--k-ui)!important}
+#am .onkopfzur{left:6px!important;right:auto!important;max-width:110px;overflow:hidden;white-space:nowrap;color:var(--k-akz)!important;font:500 17px var(--k-ui)!important;padding:0 8px 0 2px!important}
+#am .onkopfzur svg{width:22px!important;height:22px!important;stroke-width:2.3!important}
+/* Reiter = iOS-Segment (Aufträge, Kunden, Personal, Mängel, Mangel-Status) */
+#am#am .autabs,#am#am .glreiter,#am#am .mbtabs{gap:0!important;padding:2px!important;border:0!important;border-radius:10px!important;background:color-mix(in srgb,var(--k-sub) 14%,transparent)!important;-webkit-mask-image:none!important;mask-image:none!important;overflow-x:auto;box-shadow:none!important;margin-bottom:12px}
+#am#am .autabs>button,#am#am .glreiter>button,#am#am .mbtabs>button{flex:1 0 auto!important;height:32px!important;min-height:32px!important;padding:0 8px!important;border:0!important;border-radius:8px!important;background:none!important;color:var(--k-t)!important;font:500 13.5px var(--k-ui)!important;letter-spacing:0!important;box-shadow:none!important;display:inline-flex!important;align-items:center;justify-content:center;gap:5px;white-space:nowrap}
+#am#am .autabs>button::after,#am#am .glreiter>button::after{content:none!important;display:none!important}
+#am#am .autabs>button.an,#am#am .glreiter>button.an,#am#am .mbtabs>button.an{background:var(--k-b1)!important;font-weight:600!important;box-shadow:0 3px 8px color-mix(in srgb,black 12%,transparent),0 0 0 .5px color-mix(in srgb,black 4%,transparent)!important}
+:root[data-design="dunkel"] #am#am .autabs>button.an,:root[data-design="dunkel"] #am#am .glreiter>button.an,:root[data-design="dunkel"] #am#am .mbtabs>button.an{background:color-mix(in srgb,var(--k-sub) 34%,var(--k-b1))!important}
+#am#am .autabs em,#am#am .glreiter i,#am#am .mbtabs em{font:600 11.5px/18px var(--k-ui)!important;font-style:normal!important;min-width:18px;padding:0 5px!important;border-radius:9px;background:color-mix(in srgb,var(--k-sub) 18%,transparent)!important;color:var(--k-sub)!important;text-align:center}
+#am#am .kbhint{font-size:12.5px;color:var(--k-sub);margin:-4px 2px 10px}
+#am#am .mgstep{display:flex!important;gap:0!important;padding:2px!important;border-radius:10px!important;background:color-mix(in srgb,var(--k-sub) 14%,transparent)!important;border:0!important}
+#am#am .mgstep button{flex:1;height:30px!important;border:0!important;border-radius:8px!important;background:none!important;color:var(--k-t)!important;font:500 12.5px var(--k-ui)!important;padding:0 4px!important;box-shadow:none!important}
+#am#am .mgstep button i{display:none!important}
+#am#am .mgstep button.jetzt{background:var(--k-b1)!important;color:var(--k-akz)!important;font-weight:600!important;box-shadow:0 3px 8px color-mix(in srgb,black 12%,transparent)!important}
+#am#am .mgstep button.fertig{color:var(--k-sub)!important}
+/* Filter = Chips (Personal, Kunde, Rechnungen) */
+#am#am .fichips,#am#am .kukf{display:flex!important;gap:8px!important;overflow-x:auto;scrollbar-width:none;background:none!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+#am#am .fichips>button,#am#am .kukf>button{flex:none;height:32px!important;padding:0 14px!important;border-radius:16px!important;border:.5px solid color-mix(in srgb,var(--k-t) 14%,transparent)!important;background:var(--k-b1)!important;color:var(--k-t)!important;font:500 14px var(--k-ui)!important;box-shadow:none!important}
+#am#am .fichips>button.an,#am#am .kukf>button.an{background:var(--k-akz)!important;border-color:var(--k-akz)!important;color:var(--k-auf)!important;font-weight:600!important}
+/* Aufträge: Status als 2 × 2 Kacheln wie in „Erinnerungen“ */
+#am#am .aukette.aulzeile{display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;margin:0 0 12px;border:0!important;background:none!important;padding:0!important}
+#am#am .aukette.aulzeile>div{display:grid!important;grid-template-columns:1fr auto;grid-template-areas:"l z" "b b";align-items:center;padding:10px 12px!important;border-radius:12px!important;background:var(--k-b1)!important;border:.5px solid color-mix(in srgb,var(--k-t) 8%,transparent)!important;box-shadow:0 1px 2px color-mix(in srgb,black 5%,transparent)!important;min-width:0;cursor:pointer;text-align:left}
+#am#am .aukette.aulzeile>div small{grid-area:l;font:600 13.5px var(--k-ui)!important;color:var(--k-sub)!important;letter-spacing:0!important;text-transform:none!important}
+#am#am .aukette.aulzeile>div b{grid-area:z;font:700 22px var(--k-ui)!important;color:var(--k-t)!important}
+#am#am .aukette.aulzeile>div span{grid-area:b;font:500 13px var(--k-ui)!important;color:var(--k-sub)!important;display:block!important;margin-top:2px}
+#am#am .aukette.aulzeile>div.an,#am#am .aukette.aulzeile>div[aria-pressed="true"]{border-color:var(--k-akz)!important;box-shadow:0 0 0 1.5px var(--k-akz)!important}
+/* Kalender Tag: Termine im Raster lesbar */
+#kal .khaupt.hbktg .kwb{font:600 13px/1.25 var(--k-ui)!important;padding:5px 8px!important;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:1px;text-align:left}
+#kal .khaupt.hbktg .kwb small,#kal .khaupt.hbktg .kwb>span{font:500 11.5px var(--k-ui)!important;color:var(--c)!important}
+#kal .hbganz{font:500 11.5px var(--k-ui);font-style:normal;color:var(--k-sub);white-space:nowrap}
+/* Kalender Monat wie iOS: ruhiges Raster, Punkte, gewählter Tag als Kreis, Liste darunter */
+#kal .khaupt.hbkm{display:flex!important;flex-direction:column;overflow-y:auto!important}
+#kal .khaupt.hbkm .kmonat{flex:none!important;height:auto!important;grid-template-rows:auto!important;grid-auto-rows:50px!important;gap:0!important;background:none!important;border:0!important}
+#kal.hbkal .kbody:has(.hbkm) #kseite{display:none!important}
+#kal .khaupt.hbkm .kkw,#kal .khaupt.hbkm .kecke{display:none!important}
+#kal .khaupt.hbkm .kmonat{grid-template-columns:repeat(7,1fr)!important}
+#kal .khaupt.hbkm .kwt{font:500 12px var(--k-ui)!important;color:var(--k-sub)!important;text-align:center;padding:4px 0 6px!important;background:none!important;border:0!important}
+#kal .khaupt.hbkm .kz{background:none!important;border:0!important;border-top:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;border-radius:0!important;box-shadow:none!important;display:flex!important;flex-direction:column;align-items:center;justify-content:flex-start;padding:4px 0 0!important;min-height:0;overflow:visible}
+#kal .khaupt.hbkm .kz .kc,#kal .khaupt.hbkm .kz u,#kal .khaupt.hbkm .kz .kml,#kal .khaupt.hbkm .kz em{display:none!important}
+#kal .khaupt.hbkm .kz .kn{display:flex;justify-content:center}
+#kal .khaupt.hbkm .kz .kn b{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;font:500 17px var(--k-ui)!important;color:var(--k-t)}
+#kal .khaupt.hbkm .kz.kwe .kn b{color:var(--k-sub)}
+#kal .khaupt.hbkm .kz.kaus .kn b{color:color-mix(in srgb,var(--k-sub) 55%,transparent)}
+#kal .khaupt.hbkm .kz.kheute .kn b{color:var(--k-akz);font-weight:700!important}
+#kal .khaupt.hbkm .kz.ksel .kn b{background:var(--k-akz);color:var(--k-auf)!important;font-weight:700!important}
+#kal .khaupt.hbkm .kz.kheute:not(.ksel) .kn b{background:none}
+#kal .khaupt.hbkm .kz::before,#kal .khaupt.hbkm .kz::after{content:none!important}
+#kal .hbpunkte{display:flex;gap:3px;height:6px;margin-top:2px}
+#kal .hbpunkte i{width:5px;height:5px;border-radius:50%;background:var(--c)}
+#kal .hbkmliste{padding:8px 16px 16px!important;border-top:.5px solid color-mix(in srgb,var(--k-t) 12%,transparent)}
+#kal .hbkl .hbkliste{padding-top:0}
+/* Papierkorb: Zeilen wie in iOS – Aktionen rechts, kompakt */
+#pk .pki{border-radius:12px!important}
+#pk .pkak{justify-content:flex-end!important;margin-top:6px}
+#pk .pkak button:not(.hbmuell){width:auto!important;flex:none!important;padding:0 16px!important;height:36px!important}
+#pk .pkak button.hbmuell{width:36px!important;height:36px!important}
+/* Tagebuch-Eintrag: Blatt wie in iOS – oben „Abbrechen“ links, „Speichern“ rechts */
+#am#am .tbedit .amnk{display:flex!important;flex-direction:column;gap:8px}
+#am#am .tbedit .amnk>.mgakt{order:-1;display:flex!important;justify-content:space-between;align-items:center;width:100%;margin:0 0 2px}
+#am#am .tbedit .amnk>.mgakt button{width:auto!important;flex:none!important;height:40px!important;padding:0 6px!important;border:0!important;background:none!important;box-shadow:none!important;font:500 17px var(--k-ui)!important;color:var(--k-akz)!important}
+#am#am .tbedit .amnk>.mgakt button.amja{font-weight:700!important}
+#am#am .tbedit .amnk>.mgakt button svg{display:none}
+#am#am .tbedit .amnk small{font:600 15px var(--k-ui)!important;color:var(--k-t)!important;text-align:center;display:block;letter-spacing:0!important;text-transform:none!important}
+/* Assistent: Zurück auf Milchglas-Leiste */
+#am .oneinschub.asb2::before{content:"";position:absolute;top:0;left:0;right:0;height:58px;z-index:4;pointer-events:none;background:color-mix(in srgb,var(--k-b0) 78%,transparent);-webkit-backdrop-filter:blur(20px) saturate(1.8);backdrop-filter:blur(20px) saturate(1.8);border-bottom:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)}
+#am .oneinschub.asb2 .asschl{z-index:5!important}
+}
+@media (max-width:760px){
+#am#am .glreiter{display:flex!important}
+#kal .khaupt.hbkm .kmonat{min-height:0!important;align-content:start!important;grid-template-rows:28px!important}
+#am#am .aukette.aulzeile>.fijahr{grid-column:1/-1;justify-self:end;display:inline-flex!important;grid-template-columns:none!important;padding:2px!important;gap:0!important;border-radius:9px!important;background:color-mix(in srgb,var(--k-sub) 14%,transparent)!important;border:0!important;box-shadow:none!important}
+#am#am .aukette.aulzeile>.fijahr button{height:28px!important;padding:0 12px!important;border-radius:7px!important;border:0!important;background:none!important;color:var(--k-t)!important;font:500 13px var(--k-ui)!important;box-shadow:none!important}
+#am#am .aukette.aulzeile>.fijahr button.an{background:var(--k-b1)!important;font-weight:600!important;box-shadow:0 2px 6px color-mix(in srgb,black 12%,transparent)!important}
+/* Tagebuch: Wochenleiste wie im Kalender (Kreise, Punkte) */
+#am#am .amt5{display:grid!important;grid-template-columns:repeat(7,1fr)!important;gap:4px!important;padding:6px 4px 8px!important;border:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)!important;border-radius:14px!important;background:var(--k-b1)!important;box-shadow:none!important}
+#am#am .amt5 .amtag{display:flex!important;flex-direction:column;align-items:center;gap:1px;border:0!important;border-radius:12px!important;background:none!important;box-shadow:none!important;padding:6px 0 4px!important;font:500 12px var(--k-ui)!important;color:var(--k-sub)!important;min-width:0}
+#am#am .amt5 .amtag::after,#am#am .amt5 .amtag::before{content:none!important}
+#am#am .amt5 .amtag b{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font:600 18px var(--k-ui)!important;color:var(--k-t)!important;background:none!important;box-shadow:none!important;margin:0!important}
+#am#am .amt5 .amtag.heute b{color:var(--k-akz)!important}
+#am#am .amt5 .amtag.sel b{background:var(--k-akz)!important;color:var(--k-auf)!important}
+#am#am .amt5 .amtag .amkz{height:6px;display:flex;gap:3px;justify-content:center;background:none!important;width:auto!important}
+}
+@media (max-width:760px){
+#am#am .tbedit .amnk>div:not(.mgakt){width:100%}
+#am#am .tbedit .amnk h4,#am#am .tbedit .amnk h4 input{width:100%!important;max-width:none!important}
+#kal .hbzeit{width:58px}
+#kal .hbganz{font-size:11px!important}
+#am#am .hbnull{display:none!important}
+}
+@media (max-width:760px){
+/* Bauplan-Werkstatt: Zurück als Pille mit Namen, Weiter als Glasknopf */
+#bp #eZur,#bp #wZur{width:auto!important;min-width:0!important;padding:0 14px 0 8px!important;border-radius:22px!important;gap:2px;display:inline-flex!important;align-items:center;color:var(--k-akz)!important}
+#bp #eZur .bptx,#bp #wZur .bptx{display:inline!important;font:600 15px var(--k-ui)!important;color:var(--k-akz)!important}
+#bp #eZur svg,#bp #wZur svg{stroke:currentColor}
+#bp .pill.ja:not(.plus):not(#bOk){color:var(--k-akz)!important;border:.5px solid color-mix(in srgb,var(--k-t) 12%,transparent)!important;font-weight:600!important}
+/* Tagebuch-Eintrag (Ansicht): Bearbeiten und ⋯ rechts neben dem Titel */
+#am#am .amnotiz:not(.tbedit) .amnk{display:flex!important;flex-direction:row!important;justify-content:space-between;align-items:flex-start;gap:8px}
+#am#am .amnotiz:not(.tbedit) .amnk>.mgakt{flex:none;display:flex!important;gap:6px;margin:0!important;align-self:center}
+}
+@media (max-width:760px){
+#am#am .amnotiz:not(.tbedit)>.amnk{flex-wrap:nowrap!important;grid-template-columns:none!important}
+#am#am .amnotiz:not(.tbedit)>.amnk>div:first-child{flex:1;min-width:0}
+#am#am .amnotiz:not(.tbedit)>.amnk>.mgakt{width:auto!important;justify-content:flex-end!important}
+#am#am .amnotiz:not(.tbedit)>.amnk>.mgakt .aultext{height:36px;padding:0 12px!important;border-radius:18px!important;background:color-mix(in srgb,var(--k-akz) 10%,transparent)!important;color:var(--k-akz)!important;font:600 14px var(--k-ui)!important;border:0!important}
+#am#am .amnotiz:not(.tbedit)>.amnk>.mgakt .auldrei{width:36px!important;height:36px!important;border-radius:50%!important}
+}
+@media (max-width:760px){
+/* Kalender-Blätter (Eintragen, Formular, Details) wie iOS-Sheets */
+#kal.hbkal .kblatt h3,#kal.hbkal .kblatt h2{font:700 20px/1.25 var(--k-ui)!important;letter-spacing:-.01em!important;text-transform:none!important}
+#kal.hbkal .kblatt .kbzu,#kal.hbkal .kblatt [aria-label="Schließen"]{width:32px!important;height:32px!important;border-radius:50%!important;border:0!important;background:color-mix(in srgb,var(--k-sub) 16%,transparent)!important;color:var(--k-sub)!important;font-size:18px!important}
+#kal.hbkal .kblatt small,#kal.hbkal .kblatt label>span,#kal.hbkal .kblatt div>span:first-child{letter-spacing:0!important;text-transform:none!important}
+}
+@media (max-width:760px){
+#kal.hbkal .kblatt .kinfo>div>span{display:block;font:500 13px var(--k-ui)!important;color:var(--k-sub)!important;letter-spacing:0!important}
+#kal.hbkal .kblatt .kinfo>div{font:400 16px/1.35 var(--k-ui)!important;padding:8px 0!important;border-bottom:.5px solid color-mix(in srgb,var(--k-t) 10%,transparent)}
+#kal.hbkal .kblatt .kweg,#kal.hbkal .kblatt .kja{height:46px!important;border-radius:23px!important;font:600 16px var(--k-ui)!important}
+}
+@media (max-width:760px){#kal.hbkal .kblatt .kbk>b{font:600 13px var(--k-ui)!important;color:var(--k-sub)!important;letter-spacing:0!important}#kal.hbkal .kblatt .kbk .krund{width:32px!important;height:32px!important;border:0!important;background:color-mix(in srgb,var(--k-sub) 16%,transparent)!important;color:var(--k-sub)!important}}
+@media (max-width:760px){#am#am .hbz{justify-content:flex-start!important}#am#am .hbz .pekw{margin:0!important}}
+@media (max-width:760px){
+#am#am .mgstep button{white-space:nowrap!important;font-size:12px!important;padding:0 2px!important}
+#am#am .autabs>button{flex:1 1 auto!important;padding:0 6px!important;font-size:13px!important;gap:4px!important}
+#am#am .autabs em{min-width:16px!important;padding:0 4px!important}
+}
 </style></head><body>
 <script>
 // ===== Onstand · Basis: Speicher, Ordner, kleine Helfer (eigenständig, ohne I.R.I.S) =====
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.32';
+const ON_VER='0.11.33';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -13177,6 +13567,21 @@ neu|nowy|nou|e re|novo|ново
 Rückgängig|Cofnij|Anulează|Zhbëj|Poništi|Отмени
 Weitere Datei übernehmen|Przenieś kolejny plik|Preia alt fișier|Merr skedar tjetër|Preuzmi drugu datoteku|Прехвърли друг файл
 In der Preisliste ansehen|Zobacz w cenniku|Vezi în lista de prețuri|Shiko në listën e çmimeve|Pogledaj u cjeniku|Виж в ценоразписа
+Preise|Ceny|Prețuri|Çmimet|Cijene|Цени
+Rechnungen|Faktury|Facturi|Faturat|Računi|Фактури
+Mängel|Usterki|Defecte|Defektet|Nedostaci|Дефекти
+Termin sagen oder tippen …|Powiedz lub wpisz termin …|Spune sau scrie programarea …|Thuaj ose shkruaj takimin …|Izgovori ili upiši termin …|Кажи или въведи среща …
+Eintragen|Wpisz|Adaugă|Shto|Upiši|Въведи
+ganztägig|cały dzień|toată ziua|gjithë ditën|cijeli dan|целодневно
+Heute|Dziś|Azi|Sot|Danas|Днес
++ Termin|+ Termin|+ Programare|+ Takim|+ Termin|+ Среща
+Termin an diesem Tag|Termin tego dnia|Programare în această zi|Takim në këtë ditë|Termin na ovaj dan|Среща в този ден
+Bearbeiten|Edytuj|Editează|Ndrysho|Uredi|Редактирай
+Weitere Aktionen|Więcej działań|Mai multe acțiuni|Më shumë veprime|Više radnji|Още действия
+Wirklich löschen?|Na pewno usunąć?|Sigur ștergi?|Vërtet ta fshij?|Stvarno izbrisati?|Наистина ли да изтрия?
+Bestand|Stan|Stoc|Gjendja|Stanje|Наличност
+Angebote|Oferty|Oferte|Ofertat|Ponude|Оферти
+Zurück|Wstecz|Înapoi|Mbrapa|Natrag|Назад
 `;
 // ===== Onstand · Mehrsprachig =====
 // Jedes Gerät wählt seine Sprache (localStorage „onstandSprache“, Standard Deutsch).
@@ -15536,6 +15941,148 @@ const dbSatz=t=>{const k=t.trim();if(DB_WORT[k])return t.replace(k,DB_WORT[k]);r
 function dbFein(d){d.classList.toggle('dbpc',W>=980);d.querySelectorAll('h3,label,button,.kl,b,small,span,summary,legend').forEach(e=>e.childNodes.forEach(n=>{if(n.nodeType!==3)return;const t=n.nodeValue.trim();if(DB_WORT[t]){if(DB_WORT[t]!==t)n.nodeValue=n.nodeValue.replace(t,DB_WORT[t]);return}if(t.length>1&&t===t.toUpperCase()&&/[A-ZÄÖÜ]{2}/.test(t)&&!/^(KI|PDF|OK|IBAN|BIC|QR|USt|GAEB|CSV)$/.test(t)&&!/^v\d/.test(t))n.nodeValue=n.nodeValue.replace(t,dbSatz(t))}))}
 {const alt=onDialog;onDialog=function(){const d=alt.apply(this,arguments);try{dbFein(d)}catch(e){}return d}}
 {let mo=null;const an=()=>{if(mo||!AM_EL)return;const d=AM_EL.querySelector('.ondlg');if(!d)return;mo=new MutationObserver(()=>{mo.disconnect();try{dbFein(d)}finally{mo.observe(d,{childList:true,subtree:true,characterData:true})}});mo.observe(d,{childList:true,subtree:true,characterData:true})};setTimeout(an,1500);addEventListener('click',an,{once:true,capture:true})}
+// ===== Handy im Büro-Design (Probe „Handy“, v0.11.33) =====
+// Nur am Handy (bis 760 px). Einheitlicher Kopf in allen Menüs: links Titel und Unterzeile, rechts runde Knöpfe –
+// ein blauer „+“ für die Hauptaktion, seltene Aktionen im ⋯-Menü, Suche als Lupe. Blättern (‹ Heute ›, KW, Baustelle)
+// in einer Zeile darunter. Kalender: Woche als Tagesliste mit Wochenleiste statt engem Stundenraster.
+// Daten und Logik bleiben in den Modulen; hier wird nur umgeordnet und beschriftet.
+const HB_PLUS='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+const HB_REGLER='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>';
+const hbAn=()=>typeof hyHandy==='function'&&hyHandy();
+// ---------- Kopf ----------
+function hbKopf(k){if(!k||k.classList.contains('hb'))return;const akt=k.querySelector(':scope>.mgakt');if(!akt)return;k.classList.add('hb');
+ const re=document.createElement('div');re.className='hbr';const zeile=document.createElement('div');zeile.className='hbz';const menu=[];let haupt=null,drei=akt.querySelector(':scope>.aulmw');
+ let zur=k.querySelector('.hyzur');
+ [...akt.children].forEach(c=>{
+  if(c.classList.contains('hyzur')||(!c.matches('.ampf,.pekw,[data-n],[data-kw]')&&/^‹\s*[A-Za-zÄÖÜ]/.test(c.textContent.trim()))){zur=c;if(!c.classList.contains('hyzur')){c.classList.add('hbzur');c.innerHTML=HB_CHEV+'<span>'+esc(c.textContent.replace(/^‹\s*/,'').trim())+'</span>'}return}
+  if(c.classList.contains('haupt')){haupt=c;return}
+  if(c===drei)return;
+  if(c.classList.contains('tr')||c.classList.contains('amans')||c.classList.contains('tbls')){c.classList.add('hbweg');return}
+  if(c.matches('.ampf,.tbheute,.pekw,select,label,.fisuch')){if(c.matches('label,.fisuch'))c.classList.add('hbsuche');zeile.appendChild(c);return}
+  if(c.classList.contains('kusb')){c.classList.add('hbrund');c.setAttribute('aria-label','Suchen');re.appendChild(c);return}
+  if(c.tagName==='BUTTON')menu.push(c)});
+ if(menu.length){if(!drei){drei=document.createElement('div');drei.className='aulmw';drei.innerHTML='<button type="button" class="auldrei" aria-label="Weitere Aktionen" aria-haspopup="true" aria-expanded="false">⋯</button><div class="aulmenu" role="menu"></div>';if(typeof aulMenuBinden==='function')aulMenuBinden(drei)}
+  const m=drei.querySelector('.aulmenu');menu.forEach(b=>{b.classList.add('hbmenu');if(!b.querySelector('span')&&!b.textContent.trim())b.textContent=b.title||'';if(b.classList.contains('cpkanp'))b.insertAdjacentHTML('afterbegin',HB_REGLER);m.appendChild(b)})}
+ if(drei){drei.classList.add('hbdrei');re.appendChild(drei)}
+ if(haupt&&!haupt.querySelector('svg')&&!/^\s*\+/.test(haupt.textContent)){haupt.classList.add('hbtext');zeile.appendChild(haupt);haupt=null}
+ if(haupt){haupt.classList.add('hbplus');if(!haupt.getAttribute('aria-label'))haupt.setAttribute('aria-label',haupt.textContent.replace(/^\s*\+\s*/,'').trim()+' anlegen');if(!haupt.querySelector('svg'))haupt.insertAdjacentHTML('afterbegin',HB_PLUS);re.appendChild(haupt)}
+ {const nav=[...zeile.children].filter(c=>c.matches('.ampf,.tbheute'));if(nav.length){const pi=document.createElement('span');pi.className='hbpille';nav[0].before(pi);nav.forEach(c=>pi.appendChild(c))}zeile.querySelectorAll('.pekw').forEach(x=>x.classList.add('hbpille'))}
+ akt.classList.add('hbleer');k.appendChild(re);if(zeile.children.length)k.appendChild(zeile);
+ if(zur){const n=document.createElement('div');n.className='hbdnav hbknav';n.appendChild(zur);k.prepend(n);k.classList.add('hbmitzur')}}
+function hbAlle(){if(!hbAn()||!AM_EL)return;AM_EL.querySelectorAll('.aminhalt>.mgk:not(.hb)').forEach(k=>{try{hbKopf(k)}catch(e){console.error(e)}});try{hbDetail()}catch(e){console.error(e)}hbInhalt()}
+// ---------- Eine Ebene tiefer: gleicher Detail-Kopf überall ----------
+// Oben links eine Glaspille „‹ Aufträge“ (zurück zum Menü), rechts runde Glasknöpfe (Bearbeiten), darunter Kontext und großer Titel.
+const HB_ZUR={auftraege:'Aufträge',kunden:'Kunden',maengel:'Mängel',personal:'Personal',tagebuch:'Tagebuch',brain:'Wiki',bauplan:'Bauplan',cockpit:'Cockpit'};
+const HB_CHEV='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>',HB_STIFT='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>';
+const hbWort=t=>t.replace(/(^|[\s·(])([A-ZÄÖÜ][A-ZÄÖÜß-]{1,})(?=$|[\s·),.])/g,(m,a,w)=>/\d/.test(w)?m:a+w[0]+w.slice(1).toLowerCase());
+function hbDetail(){const a=AM_EL.querySelector('.aminhalt');if(!a)return;
+ a.querySelectorAll(':scope>.amkopf:not(.hbd),:scope>.mgekopf:not(.hbd),:scope>.gldk:not(.hbd)').forEach(k=>{
+  const zur=k.querySelector('.auzur,.kuzur,.pezur,[data-a="zu"]')||k.querySelector('.ampf');if(!zur)return;k.classList.add('hbd');
+  const ed=k.querySelector('.kued,.peed'),nav=document.createElement('div');nav.className='hbdnav';
+  zur.classList.add('hbzur');zur.innerHTML=HB_CHEV+'<span>'+esc(HB_ZUR[AM_AKT]||'Zurück')+'</span>';nav.appendChild(zur);
+  const r=document.createElement('div');r.className='hbdr';if(ed){ed.classList.add('hbrund');ed.setAttribute('aria-label','Bearbeiten');ed.title='Bearbeiten';ed.innerHTML=HB_STIFT;r.appendChild(ed)}nav.appendChild(r);
+  k.querySelectorAll('.mgakt').forEach(m=>m.classList.add('hbleer'));k.prepend(nav);
+  k.querySelectorAll('.amtt,small').forEach(x=>x.childNodes.forEach(n=>{if(n.nodeType===3)n.nodeValue=hbWort(n.nodeValue)}));
+  if(k.classList.contains('amkopf')){const t=a.querySelector('.aux .autitel2');const tt=k.querySelector('.amtt');if(!k.querySelector('.hbdtitel')){const h=document.createElement('h2');h.className='hbdtitel';if(t){h.textContent=t.textContent;t.classList.add('hbweg')}else if(tt&&!/·/.test(tt.textContent)){h.textContent=tt.textContent;tt.classList.add('hbweg')}if(h.textContent)k.appendChild(h)}}})
+ // Firmen-Wiki: auf einer Seite oben „‹ Startseite“, rechts „☰ Inhalt“
+ const wk=a.querySelector('.wk');if(wk&&typeof WK!=='undefined'){let n=wk.querySelector(':scope>.hbdnav');const ih=wk.querySelector(':scope>.wkinhalt');
+  if(!n){n=document.createElement('div');n.className='hbdnav hbwknav';wk.prepend(n)}n.hidden=false;
+  if(!WK.start&&!n.querySelector('.hbzur')){const z=document.createElement('button');z.type='button';z.className='hbzur';z.innerHTML=HB_CHEV+'<span>Startseite</span>';z.onclick=()=>{const s=wk.querySelector('.wkstart');if(s)s.click()};n.prepend(z)}
+  if(WK.start){const z=n.querySelector('.hbzur');if(z)z.remove()}
+  if(ih&&ih.parentNode!==n){ih.classList.add('hbpill2');n.appendChild(ih)}}}
+// ---------- Kleinigkeiten in den Menüs ----------
+const HB_KURZ={'Offene Rechnungen':'Rechnungen','Offene Mängel':'Mängel','Offene Angebote':'Angebote','Auftragsbestand':'Bestand','Nächster Termin':'Termin','Tagebuch fehlt':'Tagebuch fehlt'};
+function hbInhalt(){const a=AM_EL&&AM_EL.querySelector('.aminhalt');if(!a)return;
+ // kleine Feldnamen in Großbuchstaben → normale Schreibweise (wie in iOS-Formularen)
+ {const w=document.createTreeWalker(a,NodeFilter.SHOW_TEXT);const L=[];while(w.nextNode())L.push(w.currentNode);
+  L.forEach(n=>{const t=n.nodeValue.trim(),e=n.parentElement;if(!e||t.length<3||t!==t.toUpperCase()||!/[A-ZÄÖÜ]{3}/.test(t)||/\d/.test(t)||e.closest('.ambadge,.aukunde>span,[class*="ava"],[class*="kz"],.kuk,.kul,button.hbt,.hbkt,script,style')||/^[A-ZÄÖÜ]{2,4}$/.test(t)&&t.length<=3&&!/^(APP|PDF)$/.test(t))return;
+   if(parseFloat(getComputedStyle(e).fontSize)>13.5)return;n.nodeValue=n.nodeValue.replace(t,typeof frSatz==='function'?frSatz(t):t)})}
+ {const w=document.createTreeWalker(a,NodeFilter.SHOW_TEXT);const T={MO:'Mo',DI:'Di',MI:'Mi',DO:'Do',FR:'Fr',SA:'Sa',SO:'So'};while(w.nextNode()){const n=w.currentNode;if(/\b(MO|DI|MI|DO|FR|SA|SO)\b \d/.test(n.nodeValue)&&!n.parentElement.closest('.amtag,.hbkt'))n.nodeValue=n.nodeValue.replace(/\b(MO|DI|MI|DO|FR|SA|SO)\b(?= \d)/g,m=>T[m])}}
+ a.querySelectorAll('.autabs em,.glreiter i,.mbtabs em').forEach(e=>e.classList.toggle('hbnull',e.textContent.trim()==='0'));
+ a.querySelectorAll('.aulgross').forEach(x=>x.childNodes.forEach(n=>{if(n.nodeType===3)n.nodeValue=n.nodeValue.replace(/ Zu /g,' zu ').replace(/ Netto$/,' netto')}));
+ a.querySelectorAll('.autabs>button').forEach(b=>{const n=b.firstChild;if(n&&n.nodeType===3&&n.nodeValue.trim()==='Preisliste')n.nodeValue='Preise'});
+ a.querySelectorAll('.amtag').forEach(b=>{const n=b.firstChild;if(n&&n.nodeType===3&&/^[A-ZÄÖÜ]{2}$/.test(n.nodeValue.trim()))n.nodeValue=n.nodeValue.trim()[0]+n.nodeValue.trim()[1].toLowerCase()});
+ a.querySelectorAll('.cpkp.s-k .cpkph .tt').forEach(t=>{const k=t.textContent.trim();if(HB_KURZ[k]&&HB_KURZ[k]!==k){t.title=k;t.textContent=HB_KURZ[k]}});
+ // Ein blauer Knopf je Seite: zweite Hauptaktionen werden umrandet
+ a.querySelectorAll('.mgab,.tbleer .haupt,.tbneu1').forEach(b=>b.classList.add('hbzweit'));
+ a.querySelectorAll('button').forEach(b=>{const t=b.textContent.trim();if(/^(Abnahme starten|\+ Eintrag anlegen|Meine Stunden eintragen)$/.test(t))b.classList.add('hbzweit')})}
+{let mo=null,lauf=0;const an=()=>{if(mo||typeof AM_EL==='undefined'||!AM_EL)return;mo=new MutationObserver(()=>{if(lauf||!hbAn())return;lauf=1;queueMicrotask(()=>{mo.disconnect();try{hbAlle()}finally{lauf=0;mo.observe(AM_EL,{childList:true,subtree:true})}})});mo.observe(AM_EL,{childList:true,subtree:true});hbAlle()};
+ const alt=amFunktion;amFunktion=function(){const r=alt.apply(this,arguments);an();try{hbAlle()}catch(e){}return r}}
+// ---------- Kalender: Woche als Tagesliste ----------
+function hbLeiste(s){const heute=kIso(new Date()),mo=kMo(s);return [0,1,2,3,4,5,6].map(i=>kPlus(mo,i)).map(t=>{const l=kalAm(t).filter(e=>e.art!=='feiertag'),f=[...new Set(l.filter(e=>!kNeben(e)).map(kCol))].slice(0,3);return `<button type="button" class="hbkt${t===s?' an':''}${t===heute?' kheute':''}${kWt(t)>4?' kwe':''}" data-hbt="${t}"><small>${KTAG[kWt(t)][0]+KTAG[kWt(t)][1].toLowerCase()}</small><b>${kD(t).getDate()}</b><span>${f.map(c=>`<i style="--c:${c}"></i>`).join('')}</span></button>`}).join('')}
+// Tag: Wochenleiste über dem Stundenraster – Tag antippen wechselt, Wischen blättert
+function hbKalTag(){const h=document.getElementById('khaupt');if(!h||h.querySelector('.hbkleiste'))return;h.classList.add('hbktg');h.insertAdjacentHTML('afterbegin',`<div class="hbkleiste">${hbLeiste(KAL.sel)}</div>`);
+ h.querySelectorAll('[data-hbt]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();const t=b.dataset.hbt;if(t===KAL.sel)return;const r=t<KAL.sel?-1:1;KAL.sel=t;kalZeichnen(r)})}
+function hbKalWoche(){const h=document.getElementById('khaupt');if(!h)return;const s=KAL.sel,heute=kIso(new Date()),mo=kMo(s),tage=[0,1,2,3,4,5,6].map(i=>kPlus(mo,i));
+ h.className='khaupt ka-woche hbkw';
+ const leiste=hbLeiste(s);
+ const liste=tage.map(t=>{const l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),haupt=l.filter(e=>!kNeben(e)&&e.art!=='feiertag'),neben=l.filter(kNeben),d=kD(t);
+  const zeile=e=>`<button type="button" class="hbke${kNeben(e)?' kneben':''}" style="--c:${kCol(e)}" data-t="${t}" data-i="${l.indexOf(e)}"><span class="hbzeit">${e.von&&!e.ganz?esc(e.von)+(e.bis?`<small>${esc(e.bis)}</small>`:''):'<em class="hbganz">ganztägig</em>'}</span><span class="hbtxt"><b>${esc(e.t)}</b><small>${kArtName(e)}${e.ort?' · '+esc(e.ort):''}</small></span></button>`;
+  return `<section class="hbktag${t===heute?' kheute':''}${t===s?' an':''}${!haupt.length&&!neben.length?' frei':''}" data-tag="${t}"><h4><b>${KTAGL[kWt(t)]}</b>, ${d.getDate()}. ${KMONL[d.getMonth()]}${t===heute?'<em>Heute</em>':''}${fei?`<span>${esc(fei.t)}</span>`:''}</h4>${haupt.map(zeile).join('')}${neben.length?`<div class="hbkneben">${neben.map(zeile).join('')}</div>`:''}${!haupt.length&&!neben.length?`<button type="button" class="hbkfrei" data-hbneu="${t}">frei · <u>+ Termin</u></button>`:''}</section>`}).join('');
+ h.innerHTML=`<div class="hbkleiste">${leiste}</div><div class="hbkliste">${liste}</div>`;
+ h.querySelectorAll('[data-hbt]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();KAL.sel=b.dataset.hbt;hbKalWoche();const z=h.querySelector(`.hbktag[data-tag="${KAL.sel}"]`);if(z)z.scrollIntoView({block:'start',behavior:RM?'auto':'smooth'});try{kalSeite()}catch(e){}});
+ h.querySelectorAll('.hbke').forEach(b=>b.onclick=ev=>{ev.stopPropagation();const t=b.dataset.t,e=kalAm(t)[+b.dataset.i];KAL.sel=t;if(e)kalDetail(e,t)});
+ h.querySelectorAll('[data-hbneu]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();KAL.sel=b.dataset.hbneu;kalAuswahl(b.dataset.hbneu)})}
+function hbKalKopf(){const k=KAL.el;if(!k)return;const an=hbAn(),kopf=k.querySelector('.kkopf'),nav=k.querySelector('.knav'),ans=k.querySelector('#kans');k.classList.toggle('hbkal',an);
+ let z=k.querySelector('.hbkz');
+ if(!an){if(z){const t=k.querySelector('.ktitel');if(nav&&nav.parentNode===z)t.appendChild(nav);if(ans&&ans.parentNode===z)z.before(ans);z.remove()}return}
+ if(!z){z=document.createElement('div');z.className='hbkz';kopf.appendChild(z)}if(nav&&nav.parentNode!==z)z.appendChild(nav);if(ans&&ans.parentNode!==z)z.appendChild(ans);
+ const kl=document.getElementById('kklein'),km=document.getElementById('kmon'),s=KAL.sel;
+ if(kl&&km){const d=kD(s);let n=0;if(KAL.ans==='woche'){const mo=kMo(s);for(let i=0;i<7;i++)n+=kalAm(kPlus(mo,i)).filter(e=>!kNeben(e)&&e.art!=='feiertag').length;km.textContent=KMONL[kD(mo).getMonth()]+(kD(kPlus(mo,6)).getMonth()!==kD(mo).getMonth()?' / '+KMONL[kD(kPlus(mo,6)).getMonth()]:'');kl.textContent=`KW ${kKw(s)} · ${n} ${n===1?'Termin':'Termine'}`}
+  else if(KAL.ans==='monat'){km.textContent=KMONL[d.getMonth()];kl.textContent=d.getFullYear()+' · KW '+kKw(s)}
+  else if(KAL.ans==='tag'){km.textContent=d.getDate()+'. '+KMONL[d.getMonth()];kl.textContent=KTAGL[kWt(s)]+' · KW '+kKw(s)}
+  else if(KAL.ans==='jahr'){kl.textContent='Jahr'}
+  else{km.textContent='Demnächst';kl.textContent='ab '+d.getDate()+'. '+KMONL[d.getMonth()]}}
+ k.querySelectorAll('#kans button').forEach(b=>{const t=b.textContent.trim();if(t===t.toUpperCase())b.textContent=t[0]+t.slice(1).toLowerCase()});
+ const p=k.querySelector('#kplus');if(p&&!p.dataset.hb){p.dataset.hb=1;p.innerHTML=HB_PLUS;p.setAttribute('aria-label','Termin eintragen')}
+ const f=k.querySelector('#kfiltbtn');if(f&&!f.querySelector('svg')){const t=f.textContent;f.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4-2v-4.5z"/></svg>'+(t!=='FILTER'?`<em>${t.replace('FILTER','').trim()}</em>`:'')}
+ const e=k.querySelector('#kein');if(e)e.placeholder='Termin sagen oder tippen …';const eb=k.querySelector('#kneu button');if(eb&&eb.textContent.trim()==='EINTRAGEN')eb.textContent='Eintragen';
+ const sn=k.querySelector('#kseite .kseitneu');if(sn)sn.textContent='+ Termin an diesem Tag'}
+function hbKalListe(){const h=document.getElementById('khaupt');if(!h)return;const W2={};KTAGL.forEach(t=>W2[t.toUpperCase()]=t);KMON.concat(KMONL).forEach(t=>W2[t.toUpperCase()]=t);
+ h.querySelectorAll('.kliste h4').forEach(x=>{if(x.dataset.hb)return;x.dataset.hb=1;const heute=/· HEUTE$/.test(x.textContent);x.innerHTML=esc(x.textContent.replace(/ · HEUTE$/,'').replace(/[A-ZÄÖÜ]{3,}/g,w=>W2[w]||w))+(heute?'<em>Heute</em>':'')})}
+function hbKalBlatt(){const b=document.getElementById('kblatt');if(!b)return;b.querySelectorAll('*').forEach(e=>e.childNodes.forEach(n=>{if(n.nodeType!==3)return;const t=n.nodeValue.trim();if(t.length>1&&t===t.toUpperCase()&&/[A-ZÄÖÜ]{2}/.test(t))n.nodeValue=n.nodeValue.replace(t,t==='IN MÄNGEL & ABNAHME ÖFFNEN'?'In Mängel & Abnahme öffnen':typeof frSatz==='function'?frSatz(t):t)}))}
+for(const n of ['kalDetail','kalAuswahl','kalFormular']){if(typeof window[n]!=='function')continue;const alt=window[n];window[n]=function(){const r=alt.apply(this,arguments);try{if(hbAn()){hbKalBlatt();requestAnimationFrame(hbKalBlatt)}}catch(e){}return r}}
+{const alt=kalZeichnen;kalZeichnen=function(){const r=alt.apply(this,arguments);try{if(hbAn()&&KAL.ans==='woche')hbKalWoche();if(hbAn()&&KAL.ans==='tag')hbKalTag();if(hbAn()&&KAL.ans==='liste')hbKalListe();hbKalKopf()}catch(e){console.error(e)}return r}}
+addEventListener('resize',()=>{clearTimeout(hbAlle.t);hbAlle.t=setTimeout(()=>{try{hbAlle();if(KAL.el)hbKalKopf()}catch(e){}},160)});
+// ---------- Papierkorb (Fenster am Handy und im schmalen Fenster): normale Schreibweise, Mülleimer statt „ENDGÜLTIG“ ----------
+const HB_PK={'PAPIERKORB & SICHERUNG':'Papierkorb','PAPIERKORB':'Papierkorb','SICHERUNGEN':'Sicherungen','DIESE WOCHE':'Diese Woche','ÄLTER':'Älter','ZURÜCKHOLEN':'Zurückholen','LEEREN':'Leeren','WIRKLICH?':'Wirklich löschen?'};
+const HB_MUELL='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4.5h4V7M7 7l.8 13h8.4L17 7M10 11v5M14 11v5"/></svg>';
+function hbPkSatz(t){const k=t.trim();if(HB_PK[k])return t.replace(k,HB_PK[k]);
+ let m=k.match(/^ALLES \((\d+)\) ENDGÜLTIG\?$/);if(m)return t.replace(k,`Alle ${m[1]} endgültig löschen?`);
+ if(/GELÖSCHT|NOCH \d+ TAG/.test(k))return t.replace(k,k.replace(/^· /,'').replace(/GELÖSCHT/,'gelöscht').replace('HEUTE','heute').replace('GESTERN','gestern').replace(/VOR (\d+) TAGEN/,'vor $1 Tagen').replace(/NOCH (\d+) TAG(E?)/,(m,n,e)=>'noch '+n+' Tag'+(e?'e':'')));
+ return typeof frSatz==='function'?frSatz(t):t}
+function hbPk(){const e=PKV&&PKV.el;if(!e)return;
+ e.querySelectorAll('.pkkopf>span,.pktabs button,.pkgr,.pktg,.pkak button,.pkleeren,.pkfuss button,.pkx h3,.pkx h4,.pkx small,.pkx button,.pkx span').forEach(x=>x.childNodes.forEach(n=>{if(n.nodeType!==3)return;const k=n.nodeValue.trim();if(k.length>1&&k===k.toUpperCase()&&/[A-ZÄÖÜ]{2}/.test(k))n.nodeValue=hbPkSatz(n.nodeValue)}));
+ e.querySelectorAll('[data-weg]').forEach(b=>{if(b.querySelector('svg'))return;if(/^endgültig$/i.test(b.textContent.trim())){b.innerHTML=HB_MUELL;b.classList.add('hbmuell');b.setAttribute('aria-label','Endgültig löschen');b.title='Endgültig löschen'}else b.classList.remove('hbmuell')})}
+{let mo=null;const an=()=>{if(mo||!PKV.el)return;mo=new MutationObserver(()=>{mo.disconnect();try{hbPk()}finally{mo.observe(PKV.el,{childList:true,subtree:true,characterData:true})}});mo.observe(PKV.el,{childList:true,subtree:true,characterData:true})};
+ const alt=pkMalen;pkMalen=async function(){const r=await alt.apply(this,arguments);try{hbPk();an()}catch(e){console.error(e)}return r}}
+// ---------- Leiste unten: eine Seifenblase wandert statt blauer Linie ----------
+// Dick beim alten Symbol, beim Wechsel dünn und lang gezogen, dick beim neuen Symbol, dann leichtes Nachwippen.
+function hbBlase(a,sofort){if(!hbAn()||!AM_EL)return;const l=AM_EL.querySelector('.onleiste');if(!l)return;let bl=l.querySelector('.hbblase');
+ if(!bl){bl=document.createElement('i');bl.className='hbblase';bl.setAttribute('aria-hidden','true');bl.innerHTML='<b></b>';l.insertBefore(bl,l.firstChild);l.classList.add('hbbl')}
+ const b=l.querySelector(`[data-hy="${a}"]`);if(!b)return;const x1=b.offsetLeft+b.offsetWidth/2-bl.offsetWidth/2,x0=hbBlase.x;hbBlase.x=x1;
+ bl.style.transform=`translateX(${x1}px)`;bl.style.opacity=1;
+ if(sofort||RM||x0==null||Math.abs(x1-x0)<4||!bl.animate)return;try{hbBlase.lauf&&hbBlase.lauf.cancel()}catch(e){}
+ const t=(x,sx,sy)=>`translateX(${x}px) scale(${sx},${sy})`,m=(x0+x1)/2,dir=Math.sign(x1-x0);
+ hbBlase.lauf=bl.animate([{transform:t(x0,1.12,1.12),offset:0},{transform:t(x0+dir*8,1.02,.98),offset:.12},{transform:t(m,1.42,.62),offset:.42},{transform:t(x1-dir*4,1.16,1.14),offset:.7},{transform:t(x1,.95,1.05),offset:.84},{transform:t(x1,1.02,.98),offset:.93},{transform:t(x1,1,1),offset:1}],{duration:620,easing:'cubic-bezier(.35,.1,.25,1)'});
+ const sch=bl.querySelector('b');if(sch.animate)sch.animate([{filter:'hue-rotate(0deg)',opacity:.85},{filter:`hue-rotate(${dir*45}deg)`,opacity:1,offset:.45},{filter:'hue-rotate(0deg)',opacity:.85}],{duration:620,easing:'ease-in-out'})}
+{const alt=hyKreis;hyKreis=function(a,sofort){if(!hbAn())return alt.apply(this,arguments);hbBlase(a,sofort)}}
+addEventListener('resize',()=>{hbBlase.x=null;try{if(hbAn()&&typeof hyAkt==='function')hbBlase(hyAkt(),true)}catch(e){}});
+
+// ---------- Kopfzeile beim Scrollen wie in iOS: Zurück links mit Menünamen, Titel in der Mitte, Milchglas ----------
+{const alt=hyKopf;hyKopf=function(){const r=alt.apply(this,arguments);try{if(!hbAn()||!AM_EL)return r;const k=AM_EL.querySelector('.onkopf'),inh=AM_EL.querySelector('.aminhalt');if(!k||!inh||!k.classList.contains('zu'))return r;
+ const t=inh.querySelector('.hbdtitel,.mbk>b,.tbltitel');if(t)k.querySelector('b').textContent=t.textContent.replace(/\s+/g,' ').trim();
+ requestAnimationFrame(()=>{const z=k.querySelector('.onkopfzur');if(!z)return;const n=inh.querySelector('.hbzur span,.hyzur');const lab=n?n.textContent.trim():'Zurück';if(z.lastChild&&z.lastChild.nodeType===3)z.lastChild.nodeValue=lab;else z.append(lab)})}catch(e){}return r}}
+// Kalender: Monat wie iOS (Punkte statt Balken, Liste des Tages darunter), Liste in denselben Karten wie die Woche
+function hbKalTagListe(tage,mitFrei){const heute=kIso(new Date()),s=KAL.sel;return tage.map(t=>{const l=kalAm(t),fei=l.find(e=>e.art==='feiertag'),haupt=l.filter(e=>!kNeben(e)&&e.art!=='feiertag'),neben=l.filter(kNeben),d=kD(t);if(!mitFrei&&!haupt.length&&!neben.length)return '';
+ const zeile=e=>`<button type="button" class="hbke${kNeben(e)?' kneben':''}" style="--c:${kCol(e)}" data-t="${t}" data-i="${l.indexOf(e)}"><span class="hbzeit">${e.von&&!e.ganz?esc(e.von)+(e.bis?`<small>${esc(e.bis)}</small>`:''):'<em class="hbganz">ganztägig</em>'}</span><span class="hbtxt"><b>${esc(e.t)}</b><small>${kArtName(e)}${e.ort?' · '+esc(e.ort):''}</small></span></button>`;
+ return `<section class="hbktag${t===heute?' kheute':''}${t===s?' an':''}${!haupt.length&&!neben.length?' frei':''}" data-tag="${t}"><h4><b>${KTAGL[kWt(t)]}</b>, ${d.getDate()}. ${KMONL[d.getMonth()]}${t===heute?'<em>Heute</em>':''}${fei?`<span>${esc(fei.t)}</span>`:''}</h4>${haupt.map(zeile).join('')}${neben.length?`<div class="hbkneben">${neben.map(zeile).join('')}</div>`:''}${!haupt.length&&!neben.length?`<button type="button" class="hbkfrei" data-hbneu="${t}">frei · <u>+ Termin</u></button>`:''}</section>`}).join('')}
+function hbKalBinden(h){h.querySelectorAll('.hbke').forEach(b=>b.onclick=ev=>{ev.stopPropagation();const t=b.dataset.t,e=kalAm(t)[+b.dataset.i];KAL.sel=t;if(e)kalDetail(e,t)});h.querySelectorAll('[data-hbneu]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();KAL.sel=b.dataset.hbneu;kalAuswahl(b.dataset.hbneu)})}
+function hbKalMonat(){const h=document.getElementById('khaupt');if(!h)return;h.classList.add('hbkm');let l=h.querySelector('.hbkmliste');if(!l){l=document.createElement('div');l.className='hbkliste hbkmliste';h.appendChild(l)}l.innerHTML=hbKalTagListe([KAL.sel],true);hbKalBinden(l);
+ h.querySelectorAll('.kz').forEach(z=>{if(z.dataset.hb)return;z.dataset.hb=1;const pk=document.createElement('span');pk.className='hbpunkte';[...z.querySelectorAll('.kc')].slice(0,3).forEach(c=>{const i=document.createElement('i');i.style.setProperty('--c',c.style.getPropertyValue('--c'));pk.appendChild(i)});z.appendChild(pk);
+  z.addEventListener('click',()=>setTimeout(()=>{const n=h.querySelector('.hbkmliste');if(n){n.innerHTML=hbKalTagListe([KAL.sel],true);hbKalBinden(n)}},0))})}
+function hbKalListeNeu(){const h=document.getElementById('khaupt');if(!h)return;const t0=KAL.sel,tage=[];for(let i=0;i<45;i++)tage.push(kPlus(t0,i));const x=hbKalTagListe(tage,false);h.className='khaupt ka-liste hbkw hbkl';h.innerHTML=`<div class="hbkliste">${x||'<p class="kleer">In den nächsten Wochen steht nichts an.</p>'}</div>`;hbKalBinden(h)}
+{const alt=kalZeichnen;kalZeichnen=function(){const r=alt.apply(this,arguments);try{if(hbAn()&&KAL.ans==='monat')hbKalMonat();if(hbAn()&&KAL.ans==='liste')hbKalListeNeu()}catch(e){console.error(e)}return r}}
 // ===== Neukunden-Code einlösen (Schritt 4) =====
 // Wo: beim Anlegen einer neuen Firma (Feld „Persönlicher Code“) und unter Einstellungen → „Abo & KI-Paket“ → „Code einlösen“.
 // Nur der Chef löst ein. Der Server prüft den Code und schaltet für 30 Tage Grundpaket, KI-Paket und Firmen-Look frei
