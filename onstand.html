@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F6F6F7"><script>try{const d=localStorage.getItem('onstandDesign');if(d&&d!=='kupfer')document.documentElement.dataset.design=d}catch(e){}</script><title>Onstand</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%230D1014%22/%3E%3Cpath%20d=%22M36.28%2016.86L16.86%2036.28L16.86%2063.72L36.28%2083.14L63.72%2083.14L83.14%2063.72L83.14%2036.28L63.72%2016.86Z%20M60%2025.86L74.14%2040L74.14%2060L60%2074.14L40%2074.14L25.86%2060L25.86%2040L40%2025.86Z%22%20fill=%22%23EEE9E4%22%20fill-rule=%22evenodd%22/%3E%3Cpath%20d=%22M36.28%2016.86L63.72%2016.86L60%2025.86L40%2025.86Z%22%20fill=%22%23D19A6A%22/%3E%3C/svg%3E"><link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Onstand"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-/* ===== Onstand · Designs: Hell (Standard) und Dunkel, Akzent Blau (bis v0.11.2 Kupfer) =====
+/* ===== Onstand · Designs: Hell (Standard) und Dunkel (seit v0.11.32 „Anthrazit warm“), Akzent Blau (bis v0.11.2 Kupfer) =====
    Diese Datei setzt nur die Farbwerte. bauen.py ersetzt beim Bauen alle festen Farben in den übrigen CSS-Teilen
    durch diese Werte (dunkel → Flächen, hell → Text, Orange → Akzent). Grün, Gelb, Rot bleiben Markierungen. */
 :root{--k-b0:#F6F6F7;--k-b1:#FFFFFF;--k-sub:#5C6470;--k-t:#1B1F24;--k-akz:#1F5FBF;--k-akzd:#1A52A6;--k-auf:#FFFFFF;
  --k-rot:#C42B1C;--k-gelb:#9A6700;--k-gruen:#107C41;--k-info:#1C6F96;--k-blau:#2F5D9A;--k-kup:var(--k-akz);
  --k-lin:#E1E3E6;--k-nav:#F0F1F3;--k-ui:"Segoe UI Variable Text","Segoe UI",-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Roboto,Arial,sans-serif;color-scheme:light}
-:root[data-design="dunkel"]{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#6AA3FF;--k-akzd:#4C86E0;--k-auf:#071328;
- --k-rot:#FF6B7F;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-lin:#36363B;--k-nav:#1C1C1E;color-scheme:dark}
+:root[data-design="dunkel"]{--k-b0:#1C1B19;--k-b1:#272522;--k-sub:#AEA79D;--k-t:#F3F0EB;--k-akz:#72A8FF;--k-akzd:#5A93F2;--k-auf:#08162F;
+ --k-rot:#FF8270;--k-gelb:#F0C45A;--k-gruen:#8CCF8A;--k-info:#8BC4CF;--k-blau:#9ABFFF;--k-lin:#3A3733;--k-nav:#151412;color-scheme:dark}
 html.dwechsel,html.dwechsel *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
 /* Start- und Anmelde-Bildschirm immer dunkel – auch wenn das Design auf „Hell“ steht */
-#onstart,.spstart,.spstartl{--k-b0:#161618;--k-b1:#232326;--k-sub:#A1A1AA;--k-t:#F2F2F4;--k-akz:#6AA3FF;--k-akzd:#4C86E0;--k-auf:#071328;
- --k-rot:#FF6B7F;--k-gelb:#FFC857;--k-gruen:#7FD68A;--k-info:#8EC5D6;--k-blau:#8FB8FF;--k-lin:#36363B;--k-nav:#1C1C1E;color-scheme:dark;
+#onstart,.spstart,.spstartl{--k-b0:#1C1B19;--k-b1:#272522;--k-sub:#AEA79D;--k-t:#F3F0EB;--k-akz:#72A8FF;--k-akzd:#5A93F2;--k-auf:#08162F;
+ --k-rot:#FF8270;--k-gelb:#F0C45A;--k-gruen:#8CCF8A;--k-info:#8BC4CF;--k-blau:#9ABFFF;--k-lin:#3A3733;--k-nav:#151412;color-scheme:dark;
  --ad:var(--k-akzd);--aj:var(--k-akz);--bad:var(--k-rot);--bg:color-mix(in srgb,var(--k-b1) 25%,var(--k-b0));--blau:var(--k-blau);--d:var(--k-akzd);--gelb:var(--k-gelb);--gruen:var(--k-gruen);--j:var(--k-akz);--lin:color-mix(in srgb,var(--k-sub) 18%,transparent);--ok:var(--k-gruen);--plan:var(--k-info);--rot:var(--k-rot);--row:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));--sub:var(--k-sub);--txt:var(--k-t);--warn:var(--k-gelb)}
+
+/* Dunkel „Anthrazit warm“ (v0.11.32): Kopfzeile in der Flächenfarbe, Karten mit Lichtkante und leichtem Schatten,
+   gewählte Kalender-Ansicht nicht mehr grell weiß, aktiver Menüpunkt leicht blau */
+:root[data-design="dunkel"][data-design] #am .mgk{background:var(--k-b0)}
+:root[data-design="dunkel"][data-design] #am .cpkp,:root[data-design="dunkel"][data-design] #am .aukarte{box-shadow:inset 0 1px 0 color-mix(in srgb,white 5%,transparent),0 1px 2px color-mix(in srgb,black 35%,transparent)}
+:root[data-design="dunkel"][data-design] #kal#kal.klay #kans button.an{background:color-mix(in srgb,var(--k-t) 13%,var(--k-b1));color:var(--k-t)}
+:root[data-design="dunkel"][data-design] #am .onni.an{background:color-mix(in srgb,var(--k-akz) 13%,transparent)!important;color:var(--k-t)}
 /* ===== Onstand · Grundstil und Rahmen (Konzept D) ===== */
 :root{--j:var(--k-akz);--d:var(--k-akzd);--aj:var(--k-akz);--ad:var(--k-akzd);--bg:color-mix(in srgb,var(--k-b1) 25%,var(--k-b0));--txt:var(--k-t);--sub:var(--k-sub);--row:color-mix(in srgb,var(--k-t) 53%,var(--k-sub));--rot:var(--k-rot);--gelb:var(--k-gelb);--gruen:var(--k-gruen);--blau:var(--k-blau);--ok:var(--k-gruen);--warn:var(--k-gelb);--bad:var(--k-rot);--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);--seite:232px}
 *{box-sizing:border-box}
@@ -5558,7 +5565,7 @@ body.bpan #am .lklock .lkzn{width:30px;height:30px}
 // Datenablage vorerst als Ordner auf dem PC (später: Firmenkonto mit Echtzeit-Abgleich).
 // ROOT = der Onstand-Ordner, den man beim ersten Start wählt; GED = ROOT/Daten (dort liegen alle Firmendaten);
 // am Handy (ohne Ordner-Zugriff) liegen die Daten im Speicher des Browsers (IndexedDB).
-const ON_VER='0.11.31';
+const ON_VER='0.11.32';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=innerWidth,H=innerHeight;addEventListener('resize',()=>{W=innerWidth;H=innerHeight});
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -5696,7 +5703,7 @@ const amOffen=()=>true;
 function onToast(t){const e=AM_EL&&AM_EL.querySelector('.ontoast');if(!e)return;e.textContent=t;e.classList.add('an');clearTimeout(onToast.t);onToast.t=setTimeout(()=>e.classList.remove('an'),3600)}
 function say(t){if(!t)return;if(typeof asMeldung==='function'&&asOffen())asMeldung(String(t));else onToast(String(t))}
 // ---------- Design: Hell (Standard) und Dunkel, Akzent Kupfer – pro Gerät gespeichert ----------
-const ON_DESIGNS=[{id:'hell',name:'Hell',f:['#FFFFFF','#1F5FBF'],meta:'#F6F6F7'},{id:'dunkel',name:'Dunkel',f:['#232326','#6AA3FF'],meta:'#161618'}];
+const ON_DESIGNS=[{id:'hell',name:'Hell',f:['#FFFFFF','#1F5FBF'],meta:'#F6F6F7'},{id:'dunkel',name:'Dunkel',f:['#272522','#72A8FF'],meta:'#1C1B19'}];
 function onDesignAkt(){let d='hell';try{d=localStorage.getItem('onstandDesign')||'hell'}catch(e){}if(d==='kupfer'||d==='nachtblau')d='dunkel';return ON_DESIGNS.some(x=>x.id===d)?d:'hell'}
 function onDesign(id,weich){const D=ON_DESIGNS.find(x=>x.id===id)||ON_DESIGNS[0],h=document.documentElement;
  if(weich&&!RM){h.classList.add('dwechsel');clearTimeout(onDesign.t);onDesign.t=setTimeout(()=>h.classList.remove('dwechsel'),450)}
@@ -14702,7 +14709,7 @@ const lkMuster=k=>{const m=(LK_MUSTER[k]||LK_MUSTER.linien)[1];return typeof m==
 function lkVoll(d){d=Object.assign({farbe:'#AE5A27',farbe2:'',grund:'hell',kopf:'farbe',serif:false,rund:false,muster:'linien',spruch:'',anrede:'',nr:'',gruss:'',voll:'',zeichen:'',firma:''},d||{});
  d.an=Object.assign({start:true,brief:true,kopf:true,nr:true},d.an||{});if(!d.farbe2)d.farbe2=lkLum(d.farbe)>.45?'#1B1F24':lkMisch(d.farbe,'#ffffff',.55);return d}
 // Kopf-Farben eines Looks (für App und Vorschau)
-function lkKopf(d,dk){const k=d.kopf==='dunkel'?'#1E1A16':d.kopf==='hell'?(dk?'#232326':d.grund==='papier'?'#FFFDF9':'#FFFFFF'):(dk?lkMisch(d.farbe,'#000000',.25):d.farbe);return {bg:k,t:lkAufText(k),k2:d.farbe2,k2t:lkAufText(d.farbe2)}}
+function lkKopf(d,dk){const k=d.kopf==='dunkel'?'#1E1A16':d.kopf==='hell'?(dk?'#272522':d.grund==='papier'?'#FFFDF9':'#FFFFFF'):(dk?lkMisch(d.farbe,'#000000',.25):d.farbe);return {bg:k,t:lkAufText(k),k2:d.farbe2,k2t:lkAufText(d.farbe2)}}
 // Werte für die App-Farben (--k-…) im Design Hell bzw. Dunkel
 function lkWerte(d,dk){d=lkVoll(d);let akz=lkKnopfFarbe(d.farbe);if(dk)akz=lkMisch(akz,'#ffffff',lkSignal(d.farbe)?.18:.25);const W={'--k-akz':akz,'--k-akzd':lkMisch(akz,'#000000',.2),'--k-auf':dk?(lkLum(akz)>.45?'#1A0F07':'#FFFFFF'):lkAufText(akz)};
  if(!dk){if(d.grund==='papier')Object.assign(W,{'--k-b0':'#F7F3EC','--k-b1':'#FFFDF9','--k-t':'#2A241E','--k-sub':'#6E655A','--k-lin':'#E8E1D6','--k-nav':'#F1EBE1'});else W['--k-nav']=lkMisch('#F0F1F3',d.farbe,.04)}
@@ -15036,7 +15043,7 @@ function vwLkGruss(d){return `Hallo {name},\nich habe Onstand für euch eingeric
 
 // ---------- Vorschau (eigene Farben, unabhängig vom Design dieses Geräts) ----------
 function vwLkVorschau(d,art,dk){d=lkVoll(d);const W=lkWerte(d,dk),k=lkKopf(d,dk);
- const t=dk?{b0:'#161618',b1:'#232326',t:'#F2F2F4',sub:'#A1A1AA',lin:'#36363B',nav:'#1C1C1E'}:{b0:W['--k-b0']||'#F6F6F7',b1:W['--k-b1']||'#FFFFFF',t:W['--k-t']||'#1B1F24',sub:W['--k-sub']||'#5C6470',lin:W['--k-lin']||'#E1E3E6',nav:W['--k-nav']||'#F0F1F3'};
+ const t=dk?{b0:'#1C1B19',b1:'#272522',t:'#F3F0EB',sub:'#AEA79D',lin:'#3A3733',nav:'#151412'}:{b0:W['--k-b0']||'#F6F6F7',b1:W['--k-b1']||'#FFFFFF',t:W['--k-t']||'#1B1F24',sub:W['--k-sub']||'#5C6470',lin:W['--k-lin']||'#E1E3E6',nav:W['--k-nav']||'#F0F1F3'};
  const st=`--v-akz:${W['--k-akz']};--v-auf:${W['--k-auf']};--v-b0:${t.b0};--v-b1:${t.b1};--v-t:${t.t};--v-sub:${t.sub};--v-lin:${t.lin};--v-nav:${t.nav};--v-kopf:${k.bg};--v-kopft:${k.t};--v-k2:${k.k2};--v-k2t:${k.k2t};--v-muster:${lkMuster(d.muster)};--v-rot:${dk?'#FF6B7F':'#C42B1C'};--v-gruen:${dk?'#7FD68A':'#107C41'};--v-gelb:${dk?'#FFC857':'#9A6700'};--v-sch:${!dk&&d.grund==='papier'?'0 1px 6px -2px rgba(80,60,30,.16)':'none'}`;
  const name=esc(d.firma||'Firma'),wer='Tobias',gr=d.serif?`Guten Morgen, <em>${wer}</em>`:`Guten Morgen, ${wer}`,zeichen=d.zeichen?`<img src="${esc(d.zeichen)}" alt="">`:`<i>${name.slice(0,1)}</i>`;
  const pills=`<span class="lvp" style="--c:var(--v-rot)">Überfällig</span><span class="lvp" style="--c:var(--v-gelb)">Offen</span><span class="lvp" style="--c:var(--v-gruen)">Erledigt</span>`;
